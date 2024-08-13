@@ -10,15 +10,15 @@
     border: 1px solid transparent;
     background: linear-gradient(
           160deg,
-          theme(colors.gray.900 / 80%) 20%,
-          theme(colors.gray.900 / 90%) 60%
+          theme("colors.gray.900" / 80%) 20%,
+          theme("colors.gray.900" / 90%) 60%
         )
         padding-box,
       radial-gradient(
           at left top,
-          theme(colors.rose.200 / 25%),
+          theme("colors.lavender.200" / 25%),
           20%,
-          theme(colors.rose.200 / 7%) 50%
+          theme("colors.lavender.200" / 7%) 50%
         )
         border-box;
   }

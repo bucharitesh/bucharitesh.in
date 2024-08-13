@@ -1,11 +1,15 @@
-import { FOCUS_VISIBLE_OUTLINE, LINK_SUBTLE_STYLES, meta } from "@/lib/constants"
+import {
+  FOCUS_VISIBLE_OUTLINE,
+  LINK_SUBTLE_STYLES,
+  meta,
+} from "@/lib/constants"
 import clsx from "clsx"
 import Link from "next/link"
 
 export const SiteFooter = () => {
   return (
     <div className="mt-36 pb-36 text-base">
-      <div className="text-rose-100/50">
+      <div className="text-lavender-100/50">
         <div className="flex flex-col justify-between font-medium lg:flex-row">
           <div className="flex space-x-5">
             <div>
@@ -33,7 +37,7 @@ export const SiteFooter = () => {
         </div>
       </div>
 
-      <p className="mt-8 text-rose-200/30">
+      <p className="mt-8 text-lavender-200/30">
         Built with{" "}
         <a
           href="https://nextjs.org"

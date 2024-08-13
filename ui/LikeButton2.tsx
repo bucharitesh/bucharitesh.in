@@ -55,7 +55,7 @@ export const LikeButton2 = ({ slug }: { slug: string }) => {
         >
           <div
             className={clsx(
-              "absolute inset-0 transform-gpu bg-gradient-to-tl from-purple-500 to-rose-400 transition-transform",
+              "absolute inset-0 transform-gpu bg-gradient-to-tl from-purple-500 to-lavender-400 transition-transform",
               {
                 "translate-y-8": currentUserLikes === 0,
                 "translate-y-5": currentUserLikes === 1,
@@ -64,12 +64,12 @@ export const LikeButton2 = ({ slug }: { slug: string }) => {
             )}
           />
 
-          <HeartIcon className="relative w-5 transform text-rose-100 transition delay-100 duration-500 ease-out group-hover:scale-110" />
+          <HeartIcon className="relative w-5 transform text-lavender-100 transition delay-100 duration-500 ease-out group-hover:scale-110" />
         </button>
       </div>
 
       {/* Like counter text */}
-      <div className="text-lg font-medium leading-none text-rose-100/90">
+      <div className="text-lg font-medium leading-none text-lavender-100/90">
         {isLoading ? <LoadingDots /> : <span>{likes}</span>}
       </div>
     </div>

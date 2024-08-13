@@ -10,7 +10,7 @@ export const PostTableOfContents = ({
 }) => {
   return (
     <div>
-      <div className="mb-2.5 text-xs uppercase text-rose-200/30">
+      <div className="mb-2.5 text-xs uppercase text-lavender-200/40">
         On this page
       </div>
 
@@ -21,7 +21,7 @@ export const PostTableOfContents = ({
               <a
                 href={`#${heading.slug}`}
                 className={clsx(
-                  "block text-rose-200/50 underline-offset-2 transition-all hover:text-rose-100 hover:underline hover:decoration-rose-200/50",
+                  "block text-lavender-200/50 underline-offset-2 transition-all hover:text-lavender-100 hover:underline hover:decoration-lavender-200/50",
                   {
                     "pl-3": heading.heading === 2,
                     "pl-6": heading.heading === 3,

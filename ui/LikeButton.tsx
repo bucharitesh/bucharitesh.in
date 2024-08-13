@@ -65,7 +65,7 @@ export const LikeButton = ({ slug }: { slug: string }) => {
             }}
           >
             <motion.div
-              className="inset absolute h-full w-full bg-gradient-to-tl from-purple-500 to-rose-400"
+              className="inset absolute h-full w-full bg-gradient-to-tl from-purple-500 to-lavender-400"
               // `animate` passes a stringified `like` to the variants map below
               animate={String(currentUserLikes)}
               // Move gradient up or down depending on number of likes
@@ -80,13 +80,13 @@ export const LikeButton = ({ slug }: { slug: string }) => {
               initial="0"
             />
 
-            <HeartIcon className="relative w-5 text-rose-100" />
+            <HeartIcon className="relative w-5 text-lavender-100" />
           </motion.div>
         </div>
       </button>
 
       {/* Like counter text */}
-      <div className="text-lg text-rose-100/90">
+      <div className="text-lg text-lavender-100/90">
         {isLoading ? <LoadingDots /> : <span>{likes}</span>}
       </div>
     </div>

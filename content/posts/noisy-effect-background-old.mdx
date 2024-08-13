@@ -1,0 +1,102 @@
+---
+title: "Creating a Noisy Background Effect with SVG"
+description: "Learn how to add a subtle, dynamic noise effect to your website background using SVG and CSS."
+publishedAt: "2024-08-12"
+status: "draft"
+---
+
+As a web developer, I'm always looking for ways to add subtle, engaging effects to my projects. One of my favorite techniques is creating a noisy background effect. It adds depth and texture to your site without being distracting. In this post, I'll show you how to implement this effect using SVG and CSS.
+
+## The Technique
+
+The key to this effect is using SVG with a filter that generates noise. We'll create this SVG dynamically and position it over our entire page. Then, we'll use CSS to blend it with the background.
+
+Here's the code that makes it happen:
+
+```jsx
+<svg
+  className="pointer-events-none fixed isolate z-50 mix-blend-soft-light"
+  width="100%"
+  height="100%"
+>
+  <filter id="noise">
+    <feTurbulence
+      type="fractalNoise"
+      baseFrequency="0.6"
+      stitchTiles="stitch"
+    />
+  </filter>
+  <rect width="100%" height="100%" filter="url(#noise)" />
+</svg>
+```
+
+Let's break this down:
+
+1. We create an SVG element that covers the entire viewport.
+2. Inside the SVG, we define a filter with an `id` of "noise".
+3. The filter uses `feTurbulence` to generate a noise pattern.
+4. We then apply this filter to a rectangle that fills the SVG.
+
+## Styling for Effect
+
+The CSS classes applied to the SVG are crucial for achieving the desired effect:
+
+- `pointer-events-none`: This ensures the SVG doesn't interfere with user interactions on the page.
+- `fixed`: Positions the SVG relative to the viewport, covering the entire screen.
+- `isolate`: Creates a new stacking context, which can help with z-index issues.
+- `z-50`: Ensures the noise layer is above other content (adjust as needed for your layout).
+- `mix-blend-soft-light`: This is the secret sauce! It blends the noise with the background in a subtle, pleasing way.
+
+## Customization
+
+You can adjust the noise effect by modifying the `baseFrequency` attribute of the `feTurbulence` element. Lower values create larger, more distinct noise patterns, while higher values create finer, more subtle noise.
+
+## Implementation in Your Project
+
+To use this in your project, you can add the SVG code directly in your main layout component. In a Next.js project using TypeScript, it might look something like this:
+
+<Grid x="aside">
+  <Img
+    caption="Background Image"
+    src={[
+      `https://res.cloudinary.com/delba/image/upload`,
+      `w_1600,h_836,q_100`,
+      `grain-gradient.png`,
+    ].join("/")}
+    width={1600}
+    height={836}
+  />
+</Grid>
+
+```tsx
+import type { ReactNode } from 'react'
+
+export default function Background({ children }: { children: ReactNode }) {
+  return (
+    <div className="h-full w-full bg-[#080B12]">
+      {children}
+      {/* Noise effect */}
+      <svg
+        className="pointer-events-none fixed isolate z-50 mix-blend-soft-light"
+        width="100%"
+        height="100%"
+      >
+        <filter id="noise">
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.6"
+            stitchTiles="stitch"
+          />
+        </filter>
+        <rect width="100%" height="100%" filter="url(#noise)" />
+      </svg>
+    </div>
+  )
+}
+```
+
+## Conclusion
+
+This noisy background effect is a simple yet effective way to add texture and depth to your website. It's lightweight, doesn't require any external libraries, and can be easily customized to suit your design needs.
+
+Remember, subtle effects like this can greatly enhance the user experience without overwhelming the content. Happy coding!

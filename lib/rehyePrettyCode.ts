@@ -5,13 +5,13 @@ import { visit } from "unist-util-visit"
 // TODO, move this to vanilla css, its too much to send for every code block.
 const BLOCK = "valkyrie rounded-lg overflow-hidden"
 const TITLE =
-  "rounded-t-md border-b border-rose-100/[3%] bg-rose-100/[2%] px-2.5 py-1 font-mono text-xs text-rose-100/60"
+  "rounded-t-md border-b border-lavender-100/[3%] bg-lavender-100/[2%] px-2.5 py-1 font-mono text-xs text-lavender-100/60"
 const PRE =
   "overflow-x-auto py-2 text-[13px] leading-6 [color-scheme:dark] [&::-webkit-scrollbar]:h-[12px] [&::-webkit-scrollbar-track]:transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:border-[3px] [&::-webkit-scrollbar-thumb]:border-solid [&::-webkit-scrollbar-thumb]:border-transparent [&::-webkit-scrollbar-thumb]:bg-gray-700/30 hover:[&::-webkit-scrollbar-thumb]:transition hover:[&::-webkit-scrollbar-thumb]:bg-gray-700/80 [&::-webkit-scrollbar-thumb]:bg-clip-padding selection:bg-blue-700/70 selection:text-inherit"
 const CODE =
   "grid [&>span]:border-l-[3px] [&>span]:border-l-transparent [&>span]:pl-2 [&>span]:pr-3"
 const INLINE_BLOCK =
-  "whitespace-nowrap border border-rose-200/10 px-1.5 py-px text-[12px] rounded-full bg-white/5 whitespace-nowrap text-rose-300/90"
+  "whitespace-nowrap border border-lavender-200/10 px-1.5 py-px text-[12px] rounded-full bg-white/5 whitespace-nowrap text-lavender-300/90"
 const INLINE_CODE = ""
 const NUMBERED_LINES =
   "[counter-reset:line] [&>span]:before:mr-3 [&>span]:before:inline-block [&>span]:before:w-4 [&>span]:before:text-right [&>span]:before:text-white/20 [&>span]:before:![content:counter(line)] [&>span]:before:[counter-increment:line]"

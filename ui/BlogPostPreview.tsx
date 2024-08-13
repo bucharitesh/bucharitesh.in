@@ -22,7 +22,7 @@ const Metrics = ({ slug }: { slug: string }) => {
 
   return (
     <>
-      <div className="text-rose-100/30">&middot;</div>
+      <div className="text-lavender-100/30">&middot;</div>
 
       <div>
         {viewsIsError || viewsIsLoading ? (
@@ -33,7 +33,7 @@ const Metrics = ({ slug }: { slug: string }) => {
         views
       </div>
 
-      <div className="text-rose-100/30">&middot;</div>
+      <div className="text-lavender-100/30">&middot;</div>
 
       <div>
         {likesIsError || likesIsLoading ? (

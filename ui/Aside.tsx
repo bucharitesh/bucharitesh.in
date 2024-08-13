@@ -10,7 +10,7 @@ export const Aside = ({
   title?: string
 }) => {
   return (
-    <div className="z-10 border-l-2 border-rose-200/5 pl-3">
+    <div className="z-10 border-l-2 border-lavender-200/5 pl-3">
       {title ? (
         <div className="mb-2 text-base italic text-opacity-100">{title}</div>
       ) : null}
