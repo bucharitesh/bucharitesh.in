@@ -4,7 +4,6 @@ import { Post } from "contentlayer/generated"
 export const allTagNames = ["Next.js", "MDX", "Next Conf", "React Conf"]
 export const allTagSlugs = ["next", "mdx", "next-conf", "react-conf"]
 
-
 export const formatPostPreview = (post: Post) => {
   const partialPost = pick(post, [
     "tags",
@@ -22,7 +21,6 @@ export const formatPostPreview = (post: Post) => {
     tags: partialPost.tags || [],
   }
 }
-
 
 // don't send fields we don't use to the client
 // the biggest culprit is post.body.raw (the raw MDX source)

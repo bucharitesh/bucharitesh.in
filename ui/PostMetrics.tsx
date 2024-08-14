@@ -1,8 +1,7 @@
 "use client"
 
-import { usePollIfInView } from "@/lib/usePollIfInView"
-import { usePostLikes } from "@/lib/usePostLikes"
-import { usePostViews } from "@/lib/usePostViews"
+import { usePollIfInView } from "@/lib/hooks"
+import { usePostViews, usePostLikes } from "@/lib/hooks"
 import { InlineMetric } from "@/ui/InlineMetric"
 import { LoadingDots } from "@/ui/LoadingDots"
 import React from "react"
@@ -35,6 +34,8 @@ export const PostMetrics = ({ slug }: { slug: string }) => {
     // only poll when in view
     refreshInterval: shouldPoll ? interval : 0,
   })
+
+  console.log("xxxx", likes)
 
   React.useEffect(() => {
     incrementViews()

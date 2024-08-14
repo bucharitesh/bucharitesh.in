@@ -1,9 +1,8 @@
 "use client"
 
 import { formatPostPreview } from "@/lib/contentlayer"
-import { useEnabledOnFirstIntersection } from "@/lib/useEnabledOnFirstIntersection"
-import { usePostLikes } from "@/lib/usePostLikes"
-import { usePostViews } from "@/lib/usePostViews"
+import { useEnabledOnFirstIntersection } from "@/lib/hooks"
+import { usePostViews, usePostLikes } from "@/lib/hooks"
 import { ContentLink } from "@/ui/ContentLink"
 import { InlineMetric } from "@/ui/InlineMetric"
 import { LoadingDots } from "@/ui/LoadingDots"
@@ -14,6 +13,7 @@ const Metrics = ({ slug }: { slug: string }) => {
     isLoading: viewsIsLoading,
     isError: viewsIsError,
   } = usePostViews(slug)
+
   const {
     likes,
     isLoading: likesIsLoading,
@@ -48,7 +48,7 @@ const Metrics = ({ slug }: { slug: string }) => {
 }
 
 export const BlogPostPreview = (post: ReturnType<typeof formatPostPreview>) => {
-  const { enabled, intersectionRef } = useEnabledOnFirstIntersection()
+  const { intersectionRef } = useEnabledOnFirstIntersection()
 
   return (
     <div ref={intersectionRef}>

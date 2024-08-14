@@ -104,5 +104,11 @@ export const getPosts = (params?: PostParams) => {
     }
   }
 
-  return { posts, filters }
+  const trendingPosts = [
+    ...posts
+      // sort posts by views
+      .slice(0, 5),
+  ]
+
+  return { posts, filters, trendingPosts }
 }

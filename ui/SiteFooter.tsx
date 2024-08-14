@@ -17,7 +17,7 @@ export const SiteFooter = () => {
                 href="/blog"
                 className={clsx(LINK_SUBTLE_STYLES, FOCUS_VISIBLE_OUTLINE)}
               >
-                Posts
+                Blog
               </Link>
             </div>
 

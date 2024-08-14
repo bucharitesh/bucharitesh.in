@@ -2,7 +2,7 @@ import React from "react"
 import { useDebounce } from "react-use"
 import useSWR, { SWRConfiguration } from "swr"
 
-const API_URL = `/api/likes`
+const API_URL = (slug: string) => `/api/posts/${slug}/likes`
 
 type MetricsPayload = {
   likes: number
@@ -10,7 +10,7 @@ type MetricsPayload = {
 }
 
 async function getPostLikes(slug: string): Promise<MetricsPayload> {
-  const res = await fetch(API_URL + `/${slug}`)
+  const res = await fetch(API_URL(slug))
   if (!res.ok) {
     throw new Error("An error occurred while fetching the data.")
   }
@@ -21,7 +21,7 @@ async function updatePostLikes(
   slug: string,
   count: number,
 ): Promise<MetricsPayload> {
-  const res = await fetch(API_URL + `/${slug}`, {
+  const res = await fetch(API_URL(slug), {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ count }),

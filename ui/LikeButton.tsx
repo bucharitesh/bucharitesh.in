@@ -1,4 +1,4 @@
-import { usePostLikes } from "@/lib/usePostLikes"
+import { usePostLikes } from "@/lib/hooks"
 import { LoadingDots } from "@/ui/LoadingDots"
 import { HeartIcon } from "@heroicons/react/24/solid"
 import { motion } from "framer-motion"
