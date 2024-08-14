@@ -2,6 +2,7 @@ import { OOF_GRAD } from "@/lib/constants"
 import { FormattedPost } from "@/lib/contentlayer"
 import { components } from "@/lib/mdx"
 import { LikeButton2 } from "@/ui/LikeButton2"
+import MostViewed from "@/ui/most_viewed"
 import { PostMetrics } from "@/ui/PostMetrics"
 import { PostSeries } from "@/ui/PostSeries"
 import { PostTableOfContents } from "@/ui/PostTableOfContents"
@@ -38,7 +39,9 @@ export default function Post({ post }: { post: FormattedPost }) {
         </div>
       </div>
 
-      <div className="sticky top-6 hidden h-0 xl:!col-start-4 xl:row-start-3 xl:block">
+      <div className="sticky top-6 hidden h-0 xl:!col-start-4 xl:row-start-3 xl:block space-y-8">
+        <MostViewed />
+
         <div className="space-y-6">
           {post.headings ? (
             <>

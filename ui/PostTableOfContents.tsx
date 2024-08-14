@@ -10,7 +10,7 @@ export const PostTableOfContents = ({
 }) => {
   return (
     <div>
-      <div className="mb-2.5 text-xs uppercase text-lavender-200/40">
+      <div className="mb-2.5 text-xs uppercase text-lavender-200">
         On this page
       </div>
 

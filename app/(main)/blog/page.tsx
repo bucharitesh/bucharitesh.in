@@ -4,6 +4,7 @@ import { BlogPostPreview } from "@/ui/BlogPostPreview"
 
 import clsx from "clsx"
 import Balancer from "react-wrap-balancer"
+import MostViewed from "@/ui/most_viewed"
 
 /**
  * Aside from our home page which lists all posts, we can further filter down
@@ -16,7 +17,7 @@ export const generateStaticParams = () => {
 }
 
 export default async function Page({ params }: { params: PostParams }) {
-  const { posts } = getPosts(params)
+  const { posts } = await getPosts(params);
 
   return (
     <>
@@ -26,33 +27,9 @@ export default async function Page({ params }: { params: PostParams }) {
         </h1>
       </div>
 
-      {/* <div className="sticky top-6 hidden h-0 xl:!col-start-4 xl:row-start-3 xl:block">
-        <div className="space-y-6">
-          <div>
-            <div className="mb-2.5 font-bold text-xs uppercase text-lavender-200">
-              Trending
-            </div>
-          </div>
-          <ul className="space-y-2.5 text-sm">
-            {posts.map((post) => (
-              <li className="truncate" key={post.slug}>
-                <a
-                  href={`/blog/${post.slug}`}
-                  className={clsx(
-                    "block text-lavender-200/50 underline-offset-2 transition-all hover:text-lavender-100 hover:underline hover:decoration-lavender-200/50 pl-3",
-                  )}
-                >
-                  {post.title}
-                </a>
-              </li>
-            ))}
-          </ul>
-
-          <div className="flex items-center justify-between">
-            <ScrollProgress />
-          </div>
-        </div>
-      </div> */}
+      <div className="sticky top-6 hidden h-0 xl:!col-start-4 xl:row-start-3 xl:block">
+        <MostViewed />
+      </div>
 
       <div className="mt-8 space-y-10">
         {posts.map((post) => {
