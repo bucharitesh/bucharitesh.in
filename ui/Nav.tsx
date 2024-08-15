@@ -1,5 +1,6 @@
 import { FOCUS_VISIBLE_OUTLINE, meta } from "@/lib/constants"
 import { ChatBubbleBottomCenterTextIcon } from "@/ui/icons"
+import { CodeBracketIcon, CommandLineIcon, ComputerDesktopIcon, DocumentIcon } from "@heroicons/react/24/solid"
 import clsx from "clsx"
 import Link from "next/link"
 import React, { ElementType } from "react"
@@ -45,6 +46,15 @@ export const Nav = () => {
       <NavItem href="/blog" Icon={ChatBubbleBottomCenterTextIcon}>
         Blog
       </NavItem>
+      <NavItem href="/snippets" Icon={CommandLineIcon}>
+        Snippets
+      </NavItem>
+      <NavItem href="/uses" Icon={ComputerDesktopIcon}>
+        Uses
+      </NavItem>
+      {/* <NavItem href="/resume" Icon={DocumentIcon}>
+        Resume
+      </NavItem> */}
     </div>
   )
 }
