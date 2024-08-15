@@ -1,11 +1,11 @@
 import { OOF_GRAD } from "@/lib/constants"
 import { FormattedPost } from "@/lib/contentlayer"
 import { components } from "@/ui/mdx";
-import { LikeButton2 } from "@/ui/LikeButton2"
+import { LikeButton2 } from "@/ui/like-button-2"
 import MostViewed from "@/ui/blog/most-viewed"
 import { PostMetrics } from "@/ui/blog/post-metrics"
 import { PostSeries } from "@/ui/PostSeries"
-import { PostTableOfContents } from "@/ui/PostTableOfContents"
+import { PostTableOfContents } from "@/ui/post-table-of-contents"
 import { ScrollToTop } from "@/ui/ScrollToTop"
 import { ArrowLeftIcon as Left } from "@heroicons/react/24/outline"
 import clsx from "clsx"

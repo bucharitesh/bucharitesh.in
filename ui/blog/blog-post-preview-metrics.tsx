@@ -1,6 +1,6 @@
 import { usePostViews, usePostLikes } from "@/lib/hooks"
-import { InlineMetric } from "@/ui/InlineMetric"
-import { LoadingDots } from "@/ui/LoadingDots"
+import { InlineMetric } from "@/ui/blog/inline-metric"
+import { LoadingDots } from "@/ui/loading-dots"
 
 const Metrics = ({ slug }: { slug: string }) => {
   const {

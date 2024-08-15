@@ -1,5 +1,5 @@
 import { usePostLikes } from "@/lib/hooks"
-import { LoadingDots } from "@/ui/LoadingDots"
+import { LoadingDots } from "@/ui/loading-dots"
 import { HeartIcon } from "@heroicons/react/24/solid"
 import { motion } from "framer-motion"
 import React from "react"

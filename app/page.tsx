@@ -1,7 +1,7 @@
 import { meta } from "@/lib/constants"
 import { getPosts } from "@/lib/posts"
 import { BlogPostPreview } from "@/ui/blog/blog-post-preview"
-import { IntersectionSwap } from "@/ui/IntersectionSwap"
+import { IntersectionSwap } from "@/ui/intersection-swap"
 import { Nav } from "@/ui/Nav"
 import { NextMark } from "@/ui/icons"
 import { ProfileImageLarge } from "@/ui/ProfileImage"
