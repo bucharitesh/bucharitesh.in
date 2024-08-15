@@ -2,8 +2,8 @@
 
 import { usePollIfInView } from "@/lib/hooks"
 import { usePostViews, usePostLikes } from "@/lib/hooks"
-import { InlineMetric } from "@/ui/InlineMetric"
-import { LoadingDots } from "@/ui/LoadingDots"
+import { InlineMetric } from "@/ui/blog/inline-metric"
+import { LoadingDots } from "@/ui/loading-dots"
 import React from "react"
 
 export const PostMetrics = ({ slug }: { slug: string }) => {
@@ -34,8 +34,6 @@ export const PostMetrics = ({ slug }: { slug: string }) => {
     // only poll when in view
     refreshInterval: shouldPoll ? interval : 0,
   })
-
-  console.log("xxxx", likes)
 
   React.useEffect(() => {
     incrementViews()

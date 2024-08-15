@@ -2,7 +2,7 @@
 
 import { FOCUS_VISIBLE_OUTLINE } from "@/lib/constants"
 import { usePostLikes } from "@/lib/hooks"
-import { LoadingDots } from "@/ui/LoadingDots"
+import { LoadingDots } from "@/ui/loading-dots"
 import { HeartIcon } from "@heroicons/react/20/solid"
 import clsx from "clsx"
 import React from "react"

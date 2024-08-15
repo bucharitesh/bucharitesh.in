@@ -1,4 +1,4 @@
-import Post from "@/app/(main)/blog/[slug]/Post"
+import Post from "@/ui/blog/blog-post"
 import { meta } from "@/lib/constants"
 import { formatPost } from "@/lib/contentlayer"
 import { createOgImage } from "@/lib/createOgImage"

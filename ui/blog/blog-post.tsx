@@ -1,9 +1,9 @@
 import { OOF_GRAD } from "@/lib/constants"
 import { FormattedPost } from "@/lib/contentlayer"
-import { components } from "@/lib/mdx"
+import { components } from "@/ui/mdx";
 import { LikeButton2 } from "@/ui/LikeButton2"
-import MostViewed from "@/ui/most_viewed"
-import { PostMetrics } from "@/ui/PostMetrics"
+import MostViewed from "@/ui/blog/most-viewed"
+import { PostMetrics } from "@/ui/blog/post-metrics"
 import { PostSeries } from "@/ui/PostSeries"
 import { PostTableOfContents } from "@/ui/PostTableOfContents"
 import { ScrollToTop } from "@/ui/ScrollToTop"

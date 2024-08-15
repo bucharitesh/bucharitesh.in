@@ -1,10 +1,10 @@
 import { OOF_GRAD } from "@/lib/constants"
 import { getParams, getPosts, type PostParams } from "@/lib/posts"
-import { BlogPostPreview } from "@/ui/BlogPostPreview"
+import { BlogPostPreview } from "@/ui/blog/blog-post-preview";
 
 import clsx from "clsx"
 import Balancer from "react-wrap-balancer"
-import MostViewed from "@/ui/most_viewed"
+import MostViewed from "@/ui/blog/most-viewed"
 
 /**
  * Aside from our home page which lists all posts, we can further filter down
@@ -17,7 +17,7 @@ export const generateStaticParams = () => {
 }
 
 export default async function Page({ params }: { params: PostParams }) {
-  const { posts } = await getPosts(params);
+  const { posts } = await getPosts(params)
 
   return (
     <>

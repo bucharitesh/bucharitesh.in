@@ -1,6 +1,6 @@
 import { meta } from "@/lib/constants"
 import { getPosts } from "@/lib/posts"
-import { BlogPostPreview } from "@/ui/BlogPostPreview"
+import { BlogPostPreview } from "@/ui/blog/blog-post-preview"
 import { IntersectionSwap } from "@/ui/IntersectionSwap"
 import { Nav } from "@/ui/Nav"
 import { NextMark } from "@/ui/icons"

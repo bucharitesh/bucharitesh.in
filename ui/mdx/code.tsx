@@ -1,6 +1,6 @@
 "use client"
 
-import { Aside } from "@/ui/Aside"
+import { Aside } from "@/ui/aside"
 import clsx from "clsx"
 import React from "react"
 

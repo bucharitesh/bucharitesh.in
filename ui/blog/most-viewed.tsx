@@ -1,7 +1,7 @@
 "use client"
 
 import { useTrendingPosts } from "@/lib/hooks"
-import { LoadingDots } from "@/ui/LoadingDots"
+import { LoadingDots } from "@/ui/loading-dots"
 import { ArrowTrendingUpIcon } from "@heroicons/react/24/solid"
 import clsx from "clsx"
 

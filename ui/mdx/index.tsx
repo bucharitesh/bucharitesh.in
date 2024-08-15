@@ -1,16 +1,16 @@
 import { FOCUS_VISIBLE_OUTLINE, LINK_STYLES, OOF_GRAD } from "@/lib/constants"
-import { Aside } from "@/ui/Aside"
-import { BlurImage } from "@/ui/BlurImage"
-import { Code } from "@/ui/Code"
-import { Filesystem } from "@/ui/Filesystem"
-import { Grid } from "@/ui/Grid"
-import { FauxTweet } from "@/ui/posts/FauxTweet"
-import { LoadingSkeleton } from "@/ui/posts/LoadingSkeleton"
+import { Aside } from "@/ui/aside";
+import { BlurImage } from "@/ui/blur-image"
+import { Code } from "./code"
+import { Filesystem } from "./file-system"
+import { Grid } from "./grid"
+import { FauxTweet } from "./faux-tweet"
+import { LoadingSkeleton } from "./loading-skeleton"
 import clsx from "clsx"
 import type { ImageProps } from "next/image"
 import NextLink from "next/link"
 import React from "react"
-import { Caption } from "@/ui/Caption"
+import { Caption } from "./caption"
 
 export const components = {
   // One off components
