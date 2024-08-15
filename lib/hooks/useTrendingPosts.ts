@@ -1,5 +1,6 @@
 import useSWR, { SWRConfiguration } from "swr"
 import { allPosts, Tag } from "contentlayer/generated"
+import { getPosts } from "../posts";
 
 const API_URL = `/api/posts/most_viewed`;
 
@@ -11,7 +12,7 @@ async function getTrendingPosts(): Promise<any> {
 
   let data = await res.json();
 
-  let trendingPosts: any = []
+  let trendingPosts: any = [];
 
   if (allPosts.length > 0) {
     trendingPosts = allPosts.filter((post) =>

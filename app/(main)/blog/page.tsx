@@ -1,6 +1,6 @@
 import { OOF_GRAD } from "@/lib/constants"
-import { getParams, getPosts, type PostParams } from "@/lib/posts"
-import { BlogPostPreview } from "@/ui/blog/blog-post-preview";
+import { getPosts } from "@/lib/posts"
+import { BlogPostPreview } from "@/ui/blog/blog-post-preview"
 
 import clsx from "clsx"
 import Balancer from "react-wrap-balancer"
@@ -12,12 +12,12 @@ import MostViewed from "@/ui/blog/most-viewed"
  * `generateStaticParams()` to generate a static list of all possible params of
  * our filters based on our database of posts.
  */
-export const generateStaticParams = () => {
-  return getParams()
-}
+// export const generateStaticParams = () => {
+//   return getParams()
+// }
 
-export default async function Page({ params }: { params: PostParams }) {
-  const { posts } = await getPosts(params)
+export default async function Page() {
+  const { posts } = await getPosts()
 
   return (
     <>
@@ -27,15 +27,15 @@ export default async function Page({ params }: { params: PostParams }) {
         </h1>
       </div>
 
-      <div className="sticky top-6 hidden h-0 xl:!col-start-4 xl:row-start-3 xl:block">
-        <MostViewed />
-      </div>
+      {posts.length > 5 && (
+        <div className="sticky top-6 hidden h-0 xl:!col-start-4 xl:row-start-3 xl:block">
+          <MostViewed />
+        </div>
+      )}
 
-      <div className="mt-8 space-y-10">
+      <div className="space-y-10">
         {posts.map((post) => {
-          if (post.type === "Post") {
-            return <BlogPostPreview key={post.slug} {...post} />
-          }
+          return <BlogPostPreview key={post.slug} {...post} />
         })}
       </div>
     </>

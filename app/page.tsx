@@ -3,10 +3,8 @@ import { getPosts } from "@/lib/posts"
 import { BlogPostPreview } from "@/ui/blog/blog-post-preview"
 import { IntersectionSwap } from "@/ui/intersection-swap"
 import { Nav } from "@/ui/Nav"
-import { NextMark } from "@/ui/icons"
 import { ProfileImageLarge } from "@/ui/ProfileImage"
 import { SiteHeader } from "@/ui/SiteHeader"
-import { VercelMark } from "@/ui/VercelMark"
 
 import { Metadata } from "next"
 import FlamMark from "@/ui/icons/FlamMark"
@@ -17,7 +15,7 @@ export const metadata: Metadata = {
 }
 
 export default async function Page() {
-  const { posts } = getPosts()
+  const { posts } = await getPosts();
 
   return (
     <>

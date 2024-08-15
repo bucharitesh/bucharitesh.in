@@ -2,45 +2,47 @@
 
 import { useTrendingPosts } from "@/lib/hooks"
 import { LoadingDots } from "@/ui/loading-dots"
-import { ArrowTrendingUpIcon } from "@heroicons/react/24/solid"
 import clsx from "clsx"
+import { ZapIcon } from "../icons";
 
 export default function MostViewed() {
   const {
     posts,
     isLoading: viewsIsLoading,
     isError: viewsIsError,
-  } = useTrendingPosts()
+  } = useTrendingPosts();
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 bg-lavender-300/10 p-4 rounded-xl">
       <div>
         <div className="flex items-start gap-2 mb-2.5 font-bold text-xs uppercase text-lavender-200">
           Trending
-          <ArrowTrendingUpIcon className="h-4 w-4" />
+          <ZapIcon />
         </div>
       </div>
-      <ul className="space-y-2.5 text-sm">
+      <ul className="space-y-2.5 text-sm list-outside list-decimal">
         {viewsIsError || viewsIsLoading ? (
           <LoadingDots />
         ) : (
-          posts.map((post: any) => <TrendingPost post={post} key={post.slug} />)
+          posts.map((post: any, index: number) => (
+            <TrendingPostItem post={post} index={index} key={post.slug} />
+          ))
         )}
       </ul>
     </div>
   )
 }
 
-const TrendingPost = ({ post }: { post: any | undefined }) => {
+const TrendingPostItem = ({ post, index }: { post: any | undefined; index: number }) => {
   return (
     <a
       href={`/blog/${post.slug}`}
       className={clsx(
-        "block text-lavender-200/50 underline-offset-2 transition-all hover:text-lavender-100 hover:underline hover:decoration-lavender-200/50 pl-3",
+        "block text-lavender-200/50 transition-all hover:text-lavender-100 pl-3",
       )}
     >
-      <li className="-mx-0.5 truncate animate-[mutation_2s_ease-in-out_1] rounded-md px-0.5 slashed-zero tabular-nums tracking-tight">
-        {post.slug}
+      <li className="-mx-0.5 animate-[mutation_2s_ease-in-out_1] rounded-md px-0.5 slashed-zero tabular-nums tracking-tight text-xs">
+        {post.title}
       </li>
     </a>
   )

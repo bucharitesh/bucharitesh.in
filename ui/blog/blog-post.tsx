@@ -19,7 +19,7 @@ export default function Post({ post }: { post: FormattedPost }) {
   return (
     <>
       <div className="mt-24 mb-4 xl:!col-end-5">
-        <Link href="/" className="group inline-flex items-center space-x-2">
+        <Link href="/blog" className="group inline-flex items-center space-x-2">
           <div className="transition rounded-full bg-lavender-200/10 p-1 text-lavender-200/80 group-hover:bg-lavender-200/25 group-hover:text-lavender-200">
             <Left className="w-4 group-hover:scale-125 transition-transform group-active:scale-110" />
           </div>
@@ -40,8 +40,6 @@ export default function Post({ post }: { post: FormattedPost }) {
       </div>
 
       <div className="sticky top-6 hidden h-0 xl:!col-start-4 xl:row-start-3 xl:block space-y-8">
-        <MostViewed />
-
         <div className="space-y-6">
           {post.headings ? (
             <>
@@ -49,6 +47,8 @@ export default function Post({ post }: { post: FormattedPost }) {
               <div className="border-t-2 border-lavender-200/5"></div>
             </>
           ) : null}
+
+          <MostViewed />
 
           <div className="flex items-center justify-between">
             <LikeButton2 slug={post.slug} />

@@ -1,20 +1,25 @@
-"use client"
+"use client";
 
 import { formatPostPreview } from "@/lib/contentlayer"
-import { useEnabledOnFirstIntersection } from "@/lib/hooks"
-import { ContentLink } from "./content-link"
+import { ContentLink } from "./content-link";
+// import { InlineMetric } from "./inline-metric";
 
 export const BlogPostPreview = (post: ReturnType<typeof formatPostPreview>) => {
-  const { intersectionRef } = useEnabledOnFirstIntersection()
-
   return (
-    <div ref={intersectionRef}>
+    <div>
       <ContentLink key={post.slug} href={`/blog/${post.slug}`}>
         <ContentLink.Title>{post.title}</ContentLink.Title>
 
         <ContentLink.Meta>
           <div>{post.publishedAtFormatted}</div>
-          {/* {enabled ? <Metrics slug={post.slug} /> : null} */}
+          {/* <div className="text-lavender-100/30">&middot;</div>
+          <div>
+            <InlineMetric key={post.views} stat={post.views} /> views
+          </div>
+          <div className="text-lavender-100/30">&middot;</div>
+          <div>
+            <InlineMetric key={post.likes} stat={post.likes} /> likes
+          </div> */}
         </ContentLink.Meta>
 
         {post.description ? (

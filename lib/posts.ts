@@ -1,114 +1,54 @@
-import {
-  allTagSlugs,
-  formatPostPreview,
-} from "@/lib/contentlayer"
-import { allPosts, Tag } from "contentlayer/generated"
+import { formatPostPreview } from "@/lib/contentlayer"
+import { allPosts } from "contentlayer/generated"
 
-/**
- * Formats a list of filters into the shape expected by `generateStaticParams`()
- * ```
- * [
- *   // type pages e.g. `/videos`
- *   { filter: ["videos"] },
- *   { filter: ["blog"] },
- *   // tag pages e.g. `/tag/react`
- *   { filter: ["tag", "react"] },
- *   { filter: ["tag", "next"] },
- *   {...}
- *   // video tag pages e.g. `/videos/tag/react`
- *   { filter: ["videos", "tag", "react"] },
- *   { filter: ["videos", "tag", "next"] },
- *   {...}
- *   // blog tag pages e.g. `/blog/tag/react`
- *   { filter: ["blog", "tag", "react"] },
- *   { filter: ["blog", "tag", "next"] },
- *   {...}
- * ]
- * ```
- */
-export const getParams = () => {
-  return [
-    // // `/`
-    // { filters: [] },
-    // `/blog`
-    { filters: ["blog"] },
-    // `/tag/[tag]`
-    ...allTagSlugs.map((tag) => ({ filters: ["tag", tag] })),
-    // `/blog/tag/[tag]`
-    ...allTagSlugs.map((tag) => ({ filters: ["blog", "tag", tag] })),
-  ]
-}
+// const API_URL = `http://localhost:3000/api/posts/all`
 
-export type PostParams = {
-  filters: ["videos" | "blog" | "tag", string?, string?] | undefined
-}
+// export async function getPostLikesAndViews(): Promise<any> {
+//   const res = await fetch(API_URL)
+//   if (!res.ok) {
+//     throw new Error("An error occurred while fetching the data.")
+//   }
 
-const getTag = (params: PostParams) => {
-  let tag: Tag["slug"] | undefined = undefined
+//   return res.json()
+// }
 
-  if (params.filters) {
-    if (
-      // `/tag/[tag]`
-      params.filters[0] === "tag" &&
-      params.filters[1]
-    ) {
-      tag = params.filters[1] as Tag["slug"]
-    } else if (
-      // `[type]/tag/[tag]`
-      params.filters[1] === "tag" &&
-      params.filters[2]
-    ) {
-      tag = params.filters[2] as Tag["slug"]
-    }
-  }
+export const getPosts = async () => {
+  let posts: any = []
 
-  return tag
-}
-
-// Get all videos and posts, apply filters if params exist, and return the
-// subset of fields used for preview cards
-export const getPosts = (params?: PostParams) => {
-  let posts = [
+  let all = [
     ...allPosts
       // filter out draft posts
       .filter((p) => p.status === "published")
       .map(formatPostPreview),
   ]
+
+  // const posts_db = await getPostLikesAndViews();
+
+  // if (posts_db.length > 0) {
+  //   posts = getActivePostsWithStats(all, posts_db);
+  // }
+
+  if (all.length > 0) {
     // sort posts by published date
-    .sort(
+    posts = all.sort(
       (a, b) =>
         Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt)),
     )
-
-  // format filters so they're easier to work with
-  let filters:
-    | {
-        tag?: Tag["slug"]
-      }
-    | undefined = undefined
-
-  // if params are provided, filter out posts that don't match
-  if (params?.filters) {
-    filters = {}
-
-    if (params.filters[0] === "blog") {
-      posts = posts.filter((p) => p.type === "Post")
-    }
-
-    const tag = getTag(params)
-
-    if (tag) {
-      filters.tag = tag
-      // filter by post tag
-      posts = posts.filter((p) => p.tags.find((x) => x.slug === tag))
-    }
   }
 
-  const trendingPosts = [
-    ...posts
-      // sort posts by views
-      .slice(0, 5),
-  ]
-
-  return { posts, filters, trendingPosts }
+  return { posts }
 }
+
+// export function getActivePostsWithStats(allActive, db) {
+//   return allActive.map((post) => {
+//     const stats = db.find((item) => item.slug === post.slug) || {
+//       likes: 0,
+//       views: 0,
+//     }
+//     return {
+//       ...post,
+//       likes: stats.likes,
+//       views: stats.views,
+//     }
+//   })
+// }
