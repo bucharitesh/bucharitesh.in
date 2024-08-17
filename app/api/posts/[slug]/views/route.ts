@@ -38,7 +38,7 @@ export async function POST(
 
     return Response.json(post?.views || 1)
   } catch (error: any) {
-     console.error(error.message)
+    console.error(error.message)
 
     return Response.json({
       statusCode: 500,

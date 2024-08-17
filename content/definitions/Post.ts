@@ -6,6 +6,7 @@ import GithubSlugger from "github-slugger"
 import { formatShortDate } from "../../lib/formatShortDate"
 import { Series } from "./Series"
 import { Tag } from "./Tag"
+import readingTime from "reading-time"
 
 export const Post = defineDocumentType(() => ({
   name: "Post",
@@ -65,6 +66,10 @@ export const Post = defineDocumentType(() => ({
         doc._raw.sourceFileName
           // hello-world.mdx => hello-world
           .replace(/\.mdx$/, ""),
+    },
+    readingTime: {
+      type: "json",
+      resolve: (doc) => readingTime(doc.body.raw),
     },
   },
 }))

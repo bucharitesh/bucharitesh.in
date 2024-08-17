@@ -7,6 +7,7 @@ import remarkGfm from "remark-gfm"
 // https://github.com/evanw/esbuild/issues/394
 // https://github.com/contentlayerdev/contentlayer/issues/238
 import { Post } from "./content/definitions/Post"
+import { Snippets } from "./content/definitions/Snippets"
 
 import { HEADING_LINK_ANCHOR } from "./lib/constants"
 import {
@@ -16,7 +17,7 @@ import {
 
 export default makeSource({
   contentDirPath: "content",
-  documentTypes: [Post],
+  documentTypes: [Post, Snippets],
   mdx: {
     esbuildOptions(options) {
       options.target = "esnext"

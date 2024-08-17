@@ -11,6 +11,7 @@ import type { ImageProps } from "next/image"
 import NextLink from "next/link"
 import React from "react"
 import { Caption } from "./caption"
+import Step from "../Step";
 
 export const components = {
   // One off components
@@ -114,4 +115,5 @@ export const components = {
   del: (props: any) => (
     <del className="text-lavender-200/50 line-through" {...props} />
   ),
+  Step: (props: any) => <Step {...props} />,
 }

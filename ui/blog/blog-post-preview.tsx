@@ -12,6 +12,8 @@ export const BlogPostPreview = (post: ReturnType<typeof formatPostPreview>) => {
 
         <ContentLink.Meta>
           <div>{post.publishedAtFormatted}</div>
+          <div className="text-lavender-100/30">&middot;</div>
+          <div>{post.readingTime}</div>
           {/* <div className="text-lavender-100/30">&middot;</div>
           <div>
             <InlineMetric key={post.views} stat={post.views} /> views

@@ -46,7 +46,7 @@ export const Nav = () => {
       <NavItem href="/blog" Icon={ChatBubbleBottomCenterTextIcon}>
         Blog
       </NavItem>
-      <NavItem href="/snippets" Icon={CommandLineIcon}>
+      <NavItem href="/snippet" Icon={CommandLineIcon}>
         Snippets
       </NavItem>
       <NavItem href="/uses" Icon={ComputerDesktopIcon}>

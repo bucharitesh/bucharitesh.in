@@ -16,10 +16,16 @@ model Post {
   slug      String   @unique
   likes     Int      @default(0)
   views     Int      @default(0)
+  type      PostType
 }
 
 model Session {
   id        String   @id @map("_id")
   createdAt DateTime @default(now())
   likes     Int      @default(0)
+}
+
+enum PostType {
+  snippet
+  blog
 }

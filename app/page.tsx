@@ -54,9 +54,7 @@ export default async function Page() {
 
       <div className="mt-24 space-y-10">
         {posts.map((post) => {
-          if (post.type === "Post") {
             return <BlogPostPreview key={post.slug} {...post} />
-          }
         })}
       </div>
     </>

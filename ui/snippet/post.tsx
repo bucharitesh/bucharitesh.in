@@ -1,11 +1,9 @@
 import { OOF_GRAD } from "@/lib/constants"
-import { FormattedPost } from "@/lib/contentlayer"
+import { FormattedSnippet } from "@/lib/contentlayer"
 import { components } from "@/ui/mdx";
 import { LikeButton2 } from "@/ui/like-button-2"
 import MostViewed from "@/ui/blog/most-viewed"
 import { PostMetrics } from "@/ui/blog/post-metrics"
-import { PostSeries } from "@/ui/PostSeries"
-import { PostTableOfContents } from "@/ui/post-table-of-contents"
 import { ScrollToTop } from "@/ui/ScrollToTop"
 import { ArrowLeftIcon as Left } from "@heroicons/react/24/outline"
 import clsx from "clsx"
@@ -13,47 +11,47 @@ import { useMDXComponent } from "next-contentlayer/hooks"
 import Link from "next/link"
 import Balancer from "react-wrap-balancer"
 
-export default function Post({ post }: { post: FormattedPost }) {
-  const MDXContent = useMDXComponent(post.body.code)
+export default function Snippet({ snippet }: { snippet: FormattedSnippet }) {
+  const MDXContent = useMDXComponent(snippet.body.code)
 
   return (
     <>
       <div className="mt-24 mb-4 xl:!col-end-5">
-        <Link href="/blog" className="group inline-flex items-center space-x-2">
+        <Link href="/snippet" className="group inline-flex items-center space-x-2">
           <div className="transition rounded-full bg-lavender-200/10 p-1 text-lavender-200/80 group-hover:bg-lavender-200/25 group-hover:text-lavender-200">
             <Left className="w-4 group-hover:scale-125 transition-transform group-active:scale-110" />
           </div>
           <div className="mt-0.5 text-lavender-200/70 group-hover:text-lavender-200/90 transition">
-            All Posts
+            All Snipppets
           </div>
         </Link>
 
         <h1 className={clsx("mt-6 text-2xl font-medium sm:text-4xl", OOF_GRAD)}>
-          <Balancer>{post.title}</Balancer>
+          <Balancer>{snippet.title}</Balancer>
         </h1>
 
         <div className="mt-4 flex space-x-2 text-lavender-200/50">
-          <div>{post.publishedAtFormatted}</div>
+          {/* <div>{snippet.publishedAtFormatted}</div> */}
+          {/* <div className="text-lavender-200/30">&middot;</div> */}
+          {/* <div>{snippet.readingTime}</div> */}
           <div className="text-lavender-200/30">&middot;</div>
-          <div>{post.readingTime}</div>
-          <div className="text-lavender-200/30">&middot;</div>
-          <PostMetrics slug={post.slug} />
+          <PostMetrics slug={snippet.slug} />
         </div>
       </div>
 
       <div className="sticky top-6 hidden h-0 xl:!col-start-4 xl:row-start-3 xl:block space-y-8">
         <div className="space-y-6">
-          {post.headings ? (
+          {/* {snippet.headings ? (
             <>
-              <PostTableOfContents headings={post.headings} />
+              <PostTableOfContents headings={snippet.headings} />
               <div className="border-t-2 border-lavender-200/5"></div>
             </>
-          ) : null}
+          ) : null} */}
 
-          <MostViewed />
+          {/* <MostViewed /> */}
 
           <div className="flex items-center justify-between">
-            <LikeButton2 slug={post.slug} />
+            <LikeButton2 slug={snippet.slug} />
             {/* TODO: Wire this up: <ScrollProgress /> */}
 
             <ScrollToTop>Back to top</ScrollToTop>
@@ -61,21 +59,12 @@ export default function Post({ post }: { post: FormattedPost }) {
         </div>
       </div>
 
-      {post.series && post.series.posts.length > 1 ? (
-        <PostSeries data={post.series} isInteractive={true} />
-      ) : null}
-
       <MDXContent components={components} />
 
       <div className="mt-16">
-        <LikeButton2 slug={post.slug} />
+        <LikeButton2 slug={snippet.slug} />
       </div>
 
-      {post.series && post.series.posts.length > 1 ? (
-        <div className="mt-16">
-          <PostSeries data={post.series} />
-        </div>
-      ) : null}
     </>
   )
 }

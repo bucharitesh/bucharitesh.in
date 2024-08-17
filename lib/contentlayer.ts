@@ -1,5 +1,5 @@
 import { pick } from "contentlayer/client"
-import { Post } from "contentlayer/generated"
+import { Post, Snippets } from "contentlayer/generated"
 
 export const allTagNames = ["Next.js", "MDX", "Next Conf", "React Conf"]
 export const allTagSlugs = ["next", "mdx", "next-conf", "react-conf"]
@@ -12,6 +12,7 @@ export const formatPostPreview = (post: Post) => {
     "description",
     "publishedAt",
     "publishedAtFormatted",
+    "readingTime",
   ])
 
   return {
@@ -19,6 +20,7 @@ export const formatPostPreview = (post: Post) => {
     type: post.type,
     description: partialPost.description ?? null,
     tags: partialPost.tags || [],
+    readingTime: partialPost.readingTime.text ?? null,
   }
 }
 
@@ -33,6 +35,7 @@ export const formatPost = (
     body,
     series,
     headings,
+    readingTime,
   }: Post,
   allPosts: Post[],
 ) => ({
@@ -43,6 +46,7 @@ export const formatPost = (
   body: {
     code: body.code,
   },
+  readingTime: readingTime.text,
   headings:
     (headings as { heading: number; text: string; slug: string }[]) ?? null,
   series: series
@@ -67,4 +71,35 @@ export const formatPost = (
     : null,
 })
 
-export type FormattedPost = ReturnType<typeof formatPost>
+export type FormattedPost = ReturnType<typeof formatPost>;
+
+export const formatSnippetsPreview = (snippet: Snippets) => {
+  const partialSnippet = pick(snippet, [
+    "slug",
+    "title",
+    "description",
+  ])
+
+  return {
+    ...partialSnippet,
+    description: partialSnippet.description ?? null,
+  }
+}
+
+export const formatSnippet = (
+  {
+    title,
+    slug,
+    description,
+    body,
+  }: Snippets
+) => ({
+  title,
+  slug,
+  description: description ?? null,
+  body: {
+    code: body.code,
+  }
+})
+
+export type FormattedSnippet = ReturnType<typeof formatSnippet>
