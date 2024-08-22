@@ -4,8 +4,6 @@ import GithubSlugger from "github-slugger"
 // https://github.com/evanw/esbuild/issues/394
 // https://github.com/contentlayerdev/contentlayer/issues/238
 import { formatShortDate } from "../../lib/formatShortDate"
-import { Series } from "./Series"
-import { Tag } from "./Tag"
 import readingTime from "reading-time"
 
 export const Post = defineDocumentType(() => ({
@@ -17,14 +15,6 @@ export const Post = defineDocumentType(() => ({
     publishedAt: { type: "string", required: true },
     description: { type: "string" },
     status: { type: "enum", options: ["draft", "published"], required: true },
-    series: {
-      type: "nested",
-      of: Series,
-    },
-    tags: {
-      type: "list",
-      of: Tag,
-    },
   },
   computedFields: {
     headings: {

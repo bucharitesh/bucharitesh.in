@@ -1,12 +1,8 @@
 import { pick } from "contentlayer/client"
 import { Post, Snippets } from "contentlayer/generated"
 
-export const allTagNames = ["Next.js", "MDX", "Next Conf", "React Conf"]
-export const allTagSlugs = ["next", "mdx", "next-conf", "react-conf"]
-
 export const formatPostPreview = (post: Post) => {
   const partialPost = pick(post, [
-    "tags",
     "slug",
     "title",
     "description",
@@ -19,7 +15,6 @@ export const formatPostPreview = (post: Post) => {
     ...partialPost,
     type: post.type,
     description: partialPost.description ?? null,
-    tags: partialPost.tags || [],
     readingTime: partialPost.readingTime.text ?? null,
   }
 }
@@ -33,11 +28,9 @@ export const formatPost = (
     publishedAtFormatted,
     description,
     body,
-    series,
     headings,
     readingTime,
   }: Post,
-  allPosts: Post[],
 ) => ({
   title,
   slug,
@@ -49,26 +42,6 @@ export const formatPost = (
   readingTime: readingTime.text,
   headings:
     (headings as { heading: number; text: string; slug: string }[]) ?? null,
-  series: series
-    ? {
-        title: series.title,
-        posts: allPosts
-          .filter((p) => p.series?.title === series.title)
-          .sort(
-            (a, b) =>
-              Number(new Date(a.series!.order)) -
-              Number(new Date(b.series!.order)),
-          )
-          .map((p) => {
-            return {
-              title: p.title,
-              slug: p.slug,
-              status: p.status,
-              isCurrent: p.slug === slug,
-            }
-          }),
-      }
-    : null,
 })
 
 export type FormattedPost = ReturnType<typeof formatPost>;

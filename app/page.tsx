@@ -53,9 +53,37 @@ export default async function Page() {
       </IntersectionSwap>
 
       <div className="mt-24 space-y-10">
-        {posts.map((post) => {
-            return <BlogPostPreview key={post.slug} {...post} />
-        })}
+        <p>Main content</p>
+        <p>Main content</p>
+        <p>Main content</p>
+        <p>Main content</p>
+        <p>Main content</p>
+        <p>Main content</p>
+        <p>Main content</p>
+        <p>Main content</p>
+        <p>Main content</p>
+        <p>Main content</p>
+        <p>Main content</p>
+        <p>Main content</p>
+        <p>Main content</p>
+        <p>Main content</p>
+        <p>Main content</p>
+        <p>Main content</p>
+        <p>Main content</p>
+        <p>Main content</p>
+        <p>Main content</p>
+        <p>Main content</p>
+        <p>Main content</p>
+        <p>Main content</p>
+        <p>Main content</p>
+        <p>Main content</p>
+        <p>Main content</p>
+        <p>Main content</p>
+        <p>Main content</p>
+        <p>Main content</p>
+        <p>Main content</p>
+        <p>Main content</p>
+        <p>Main content</p>
       </div>
     </>
   )

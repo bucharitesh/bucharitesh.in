@@ -2,7 +2,7 @@ import { OOF_GRAD } from "@/lib/constants"
 import { getSnippets } from "@/lib/snippets";
 import { SnippetPostPreview } from "@/ui/snippet/post-preview"
 import clsx from "clsx"
-import Balancer from "react-wrap-balancer"
+import Balancer from "react-wrap-balancer";
 
 export default async function Page() {
   const { snippets } = await getSnippets();

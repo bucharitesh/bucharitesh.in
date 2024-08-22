@@ -8,6 +8,7 @@ import remarkGfm from "remark-gfm"
 // https://github.com/contentlayerdev/contentlayer/issues/238
 import { Post } from "./content/definitions/Post"
 import { Snippets } from "./content/definitions/Snippets"
+import { UseItem, UseCategory } from "./content/definitions/Uses"
 
 import { HEADING_LINK_ANCHOR } from "./lib/constants"
 import {
@@ -17,7 +18,7 @@ import {
 
 export default makeSource({
   contentDirPath: "content",
-  documentTypes: [Post, Snippets],
+  documentTypes: [Post, Snippets, UseItem, UseCategory],
   mdx: {
     esbuildOptions(options) {
       options.target = "esnext"

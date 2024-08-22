@@ -23,30 +23,7 @@ const nextConfig = {
         protocol: "https",
         hostname: "res.cloudinary.com",
       },
-      { hostname: "api.microlink.io" },
-      { hostname: "pbs.twimg.com" },
     ],
-  },
-
-  async redirects() {
-    return [
-      {
-        source: "/interactive-playgrounds",
-        destination: "/blog/interactive-playgrounds",
-        permanent: true,
-      },
-      {
-        source: "/uni",
-        destination: "/unicode",
-        permanent: true,
-      },
-      // changed slugs
-      {
-        source: "/blog/shimmer-loading-animation-with-tailwind-css",
-        destination: "/blog/animated-loading-skeletons-with-tailwind",
-        permanent: true,
-      },
-    ]
   },
 }
 

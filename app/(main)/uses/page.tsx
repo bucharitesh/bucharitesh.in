@@ -1,9 +1,11 @@
 import { OOF_GRAD } from "@/lib/constants"
 import clsx from "clsx"
 import Balancer from "react-wrap-balancer"
-import { USES, UsesPreviewProps } from "@/content/uses"
+import { getUses } from "@/lib/uses"
 
 export default async function Page() {
+  const uses = await getUses();
+
   return (
     <>
       <div className="mt-24 mb-4 xl:!col-end-5">
@@ -16,12 +18,16 @@ export default async function Page() {
       </div>
 
       <div className="space-y-10">
-        {USES.map((uses_item: any) => {
-          return <UsesPreview key={uses_item.title} item={uses_item} />
-        })}
+        {uses.map((uses_item) => (
+          <UsesPreview key={uses_item.title} item={uses_item} />
+        ))}
       </div>
     </>
   )
+}
+
+interface UsesPreviewProps {
+  item: any;
 }
 
 export const UsesPreview: React.FC<UsesPreviewProps> = ({ item }) => {
@@ -39,7 +45,7 @@ export const UsesPreview: React.FC<UsesPreviewProps> = ({ item }) => {
         {item.children.map((child, index) => (
           <li
             key={index}
-            className="rounded-md p-2 px-0.5 slashed-zero tabular-nums tracking-tight animate-[mutation_2s_ease-in-out_1]"
+            className="rounded-md p-2 px-0.5 slashed-zero tabular-nums tracking-tight"
           >
             <a
               className="cursor-pointer font-semibold text-lavender-300/80"

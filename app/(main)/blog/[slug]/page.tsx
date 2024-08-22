@@ -45,7 +45,7 @@ export default async function PostPage({ params }: Props) {
     notFound()
   }
 
-  const formattedPost = formatPost(post, allPosts)
+  const formattedPost = formatPost(post)
 
   return <Post post={formattedPost} />
 }

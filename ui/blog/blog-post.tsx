@@ -4,7 +4,6 @@ import { components } from "@/ui/mdx";
 import { LikeButton2 } from "@/ui/like-button-2"
 import MostViewed from "@/ui/blog/most-viewed"
 import { PostMetrics } from "@/ui/blog/post-metrics"
-import { PostSeries } from "@/ui/PostSeries"
 import { PostTableOfContents } from "@/ui/post-table-of-contents"
 import { ScrollToTop } from "@/ui/ScrollToTop"
 import { ArrowLeftIcon as Left } from "@heroicons/react/24/outline"
@@ -61,21 +60,11 @@ export default function Post({ post }: { post: FormattedPost }) {
         </div>
       </div>
 
-      {post.series && post.series.posts.length > 1 ? (
-        <PostSeries data={post.series} isInteractive={true} />
-      ) : null}
-
       <MDXContent components={components} />
 
       <div className="mt-16">
         <LikeButton2 slug={post.slug} />
       </div>
-
-      {post.series && post.series.posts.length > 1 ? (
-        <div className="mt-16">
-          <PostSeries data={post.series} />
-        </div>
-      ) : null}
     </>
   )
 }
