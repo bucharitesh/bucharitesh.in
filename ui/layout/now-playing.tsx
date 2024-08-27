@@ -1,4 +1,5 @@
 import { getNowPlaying } from "@/lib/services/spotify"
+import Link from "next/link";
 
 export default async function NowPlaying() {
   const data = await getNowPlaying();
@@ -13,14 +14,14 @@ export default async function NowPlaying() {
       </svg>
       <div className="inline-flex w-full max-w-full flex-col truncate sm:flex-row">
         {data?.songUrl ? (
-          <a
+          <Link
             className="max-w-max truncate font-medium text-[#1ED760]"
             href={data.songUrl}
             target="_blank"
             rel="noopener noreferrer"
           >
             {data.title}
-          </a>
+          </Link>
         ) : (
           <p className="font-medium text-[#1ED760]">Not Playing</p>
         )}
