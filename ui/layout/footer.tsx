@@ -6,6 +6,8 @@ import {
 } from "@/lib/constants"
 import clsx from "clsx"
 import Link from "next/link";
+import NowPlaying from "./now-playing";
+import { Suspense } from "react";
 
 
 const FooterItem = ({ href, label }: { href: string; label: string }) => {
@@ -20,9 +22,15 @@ const FooterItem = ({ href, label }: { href: string; label: string }) => {
   )
 }
 
-export const Footer = () => {
+export const Footer = async () => {
   return (
     <div className="mt-36 pb-36 text-base">
+      <Suspense fallback="...">
+        <NowPlaying />
+      </Suspense>
+
+      <hr className="border-1 mb-8 w-full border-primary-200/30" />
+
       <div className="text-primary-100/50 flex flex-col justify-between font-medium lg:flex-row">
         {Object.keys(FOOTER_ITEMS).map((key) => (
           <div
