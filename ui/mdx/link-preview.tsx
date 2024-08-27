@@ -1,5 +1,6 @@
+'use client';
+
 import { FOCUS_VISIBLE_OUTLINE, LINK_STYLES } from "@/lib/constants"
-import { Transition } from "@headlessui/react"
 import { EllipsisHorizontalCircleIcon } from "@heroicons/react/24/solid"
 import * as HoverCardPrimitive from "@radix-ui/react-hover-card"
 import clsx from "clsx"
@@ -70,14 +71,6 @@ export const LinkPreview = ({
         </HoverCardPrimitive.Trigger>
 
         <HoverCardPrimitive.Content side="top" align="center" sideOffset={10}>
-          <Transition
-            show={isOpen}
-            appear={true}
-            enter="transform transition duration-300 origin-bottom ease-out"
-            enterFrom="opacity-0 translate-y-2 scale-0"
-            enterTo="opacity-100 translate-y-0 scale-100"
-            className="rounded-xl shadow-xl"
-          >
             <a
               href={url}
               className="block rounded-xl border-2 border-transparent bg-white p-1 shadow hover:border-primary-500"
@@ -93,7 +86,6 @@ export const LinkPreview = ({
                 alt=""
               />
             </a>
-          </Transition>
         </HoverCardPrimitive.Content>
       </HoverCardPrimitive.Root>
     </>

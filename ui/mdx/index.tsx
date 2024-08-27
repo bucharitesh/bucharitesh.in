@@ -12,6 +12,7 @@ import NextLink from "next/link"
 import React from "react"
 import { Caption } from "./caption"
 import Step from "../Step"
+import { LinkPreview } from "./link-preview"
 
 export const components = {
   // One off components
@@ -116,4 +117,5 @@ export const components = {
     <del className="text-primary-200/50 line-through" {...props} />
   ),
   Step: (props: any) => <Step {...props} />,
+  LinkPreview: (props: any) => <LinkPreview {...props} />
 }
