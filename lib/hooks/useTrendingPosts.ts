@@ -1,6 +1,5 @@
 import useSWR, { SWRConfiguration } from "swr"
-import { allPosts, Tag } from "contentlayer/generated"
-import { getPosts } from "../posts";
+import { allPosts } from "contentlayer/generated"
 
 const API_URL = `/api/posts/most_viewed`;
 

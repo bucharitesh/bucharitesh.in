@@ -4,11 +4,13 @@
 
 @layer components {
   .valkyrie {
-    box-shadow: 1px 1px 1px hsl(24deg 16% 0% / 0.03),
+    box-shadow:
+      1px 1px 1px hsl(24deg 16% 0% / 0.03),
       10px 10px 17px -1px hsl(24deg 16% 0% / 0.03),
       50px 50px 80px -3px hsl(24deg 16% 0% / 0.03);
     border: 1px solid transparent;
-    background: linear-gradient(
+    background:
+      linear-gradient(
           160deg,
           theme("colors.gray.900" / 80%) 20%,
           theme("colors.gray.900" / 90%) 60%
@@ -16,9 +18,9 @@
         padding-box,
       radial-gradient(
           at left top,
-          theme("colors.lavender.200" / 25%),
+          theme("colors.primary.200" / 25%),
           20%,
-          theme("colors.lavender.200" / 7%) 50%
+          theme("colors.primary.200" / 7%) 50%
         )
         border-box;
   }

@@ -25,7 +25,7 @@ export function ContentLink({
 
 function Title({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="text-xl text-lavender-100/90 transition duration-300 line-clamp-2 hover:text-lavender-100/90">
+    <h3 className="text-xl text-primary-100/90 transition duration-300 line-clamp-2 hover:text-primary-100/90">
       {children}
     </h3>
   )
@@ -34,20 +34,20 @@ function Title({ children }: { children: React.ReactNode }) {
 function Icon(props: { icon: ElementType }) {
   return (
     <div className="mt-1 ml-2 shrink-0">
-      <props.icon className="w-5 text-lavender-100/30 transition-colors hover:text-lavender-100/50" />
+      <props.icon className="w-5 text-primary-100/30 transition-colors hover:text-primary-100/50" />
     </div>
   )
 }
 
 function Text({ children }: { children: React.ReactNode }) {
   return (
-    <p className="mt-4 text-lg text-lavender-100/70 line-clamp-3">{children}</p>
+    <p className="mt-4 text-lg text-primary-100/70 line-clamp-3">{children}</p>
   )
 }
 
 function Meta({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex flex-wrap space-x-2 text-base text-lavender-100/50">
+    <div className="flex flex-wrap space-x-2 text-base text-primary-100/50">
       {children}
     </div>
   )

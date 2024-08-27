@@ -9,6 +9,7 @@ import remarkGfm from "remark-gfm"
 import { Post } from "./content/definitions/Post"
 import { Snippets } from "./content/definitions/Snippets"
 import { UseItem, UseCategory } from "./content/definitions/Uses"
+import { DesignInspirationItem } from "./content/definitions/Design-Inspiraion"
 
 import { HEADING_LINK_ANCHOR } from "./lib/constants"
 import {
@@ -16,9 +17,10 @@ import {
   rehypePrettyCodeOptions,
 } from "./lib/rehyePrettyCode"
 
+
 export default makeSource({
   contentDirPath: "content",
-  documentTypes: [Post, Snippets, UseItem, UseCategory],
+  documentTypes: [Post, Snippets, UseItem, UseCategory, DesignInspirationItem],
   mdx: {
     esbuildOptions(options) {
       options.target = "esnext"

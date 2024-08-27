@@ -6,7 +6,7 @@ export const Caption = ({ children }: { children: React.ReactNode }) => {
   return (
     <div
       className={clsx(
-        "mt-2 border-l-2 border-lavender-200/5 pl-3 text-sm",
+        "mt-2 border-l-2 border-primary-200/5 pl-3 text-sm",
         OOF_GRAD,
       )}
     >

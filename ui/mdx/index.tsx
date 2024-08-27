@@ -1,6 +1,6 @@
 import { FOCUS_VISIBLE_OUTLINE, LINK_STYLES, OOF_GRAD } from "@/lib/constants"
-import { Aside } from "@/ui/aside";
-import { BlurImage } from "@/ui/blur-image"
+import { Aside } from "@/ui/mdx/aside"
+import { BlurImage } from "@/ui/mdx/blur-image"
 import { Code } from "./code"
 import { Filesystem } from "./file-system"
 import { Grid } from "./grid"
@@ -11,7 +11,7 @@ import type { ImageProps } from "next/image"
 import NextLink from "next/link"
 import React from "react"
 import { Caption } from "./caption"
-import Step from "../Step";
+import Step from "../Step"
 
 export const components = {
   // One off components
@@ -28,24 +28,24 @@ export const components = {
   Aside,
   h1: (props: any) => (
     <h2
-      className="relative mt-3 border-t-2 border-lavender-200/5 pt-9 text-xl font-medium text-lavender-200/95 sm:text-3xl"
+      className="relative mt-3 border-t-2 border-primary-200/5 pt-9 text-xl font-medium text-primary-200/95 sm:text-3xl"
       {...props}
     />
   ),
   h2: (props: any) => (
     <h3
-      className="relative mt-3 border-t-2 border-lavender-200/5 pt-9 text-xl font-medium text-lavender-200/95 sm:text-2xl"
+      className="relative mt-3 border-t-2 border-primary-200/5 pt-9 text-xl font-medium text-primary-200/95 sm:text-2xl"
       {...props}
     />
   ),
   h3: (props: any) => (
-    <h4 className="text-xl font-medium text-lavender-200/95" {...props} />
+    <h4 className="text-xl font-medium text-primary-200/95" {...props} />
   ),
   h4: (props: any) => (
-    <h5 className="text-lg font-medium text-lavender-200/95" {...props} />
+    <h5 className="text-lg font-medium text-primary-200/95" {...props} />
   ),
   hr: (props: any) => (
-    <hr className="border-t-2 border-lavender-200/5" {...props} />
+    <hr className="border-t-2 border-primary-200/5" {...props} />
   ),
   a: ({ href = "", ...props }) => {
     if (href.startsWith("http")) {
@@ -70,7 +70,7 @@ export const components = {
   },
   ul: (props: any) => (
     <ul
-      className="space-y-3 [li>&]:mt-3 [&>li]:relative [&>li]:pl-7 before:[&>li]:absolute before:[&>li]:left-1 before:[&>li]:top-2 before:[&>li]:h-1.5 before:[&>li]:w-1.5 before:[&>li]:rounded-full before:[&>li]:bg-lavender-200/20"
+      className="space-y-3 [li>&]:mt-3 [&>li]:relative [&>li]:pl-7 before:[&>li]:absolute before:[&>li]:left-1 before:[&>li]:top-2 before:[&>li]:h-1.5 before:[&>li]:w-1.5 before:[&>li]:rounded-full before:[&>li]:bg-primary-200/20"
       {...props}
     />
   ),
@@ -106,14 +106,14 @@ export const components = {
   blockquote: (props: any) => (
     <blockquote
       className={clsx(
-        "relative border-l-2 border-lavender-200/5 pl-4 pt-8 before:absolute before:top-5 before:-ml-1 before:-mt-6 before:text-6xl before:text-lavender-200/20 before:content-['“'] [&_em]:mt-3 [&_em]:block [&_em]:not-italic [&_em]:leading-none [&_em]:before:pr-1 [&_em]:before:content-['—']",
+        "relative border-l-2 border-primary-200/5 pl-4 pt-8 before:absolute before:top-5 before:-ml-1 before:-mt-6 before:text-6xl before:text-primary-200/20 before:content-['“'] [&_em]:mt-3 [&_em]:block [&_em]:not-italic [&_em]:leading-none [&_em]:before:pr-1 [&_em]:before:content-['—']",
         OOF_GRAD,
       )}
       {...props}
     />
   ),
   del: (props: any) => (
-    <del className="text-lavender-200/50 line-through" {...props} />
+    <del className="text-primary-200/50 line-through" {...props} />
   ),
   Step: (props: any) => <Step {...props} />,
 }

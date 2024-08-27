@@ -50,7 +50,7 @@ export const PostMetrics = ({ slug }: { slug: string }) => {
         views
       </div>
 
-      <div className="text-lavender-100/30">&middot;</div>
+      <div className="text-primary-100/30">&middot;</div>
 
       <div>
         {likesIsError || likesIsLoading ? (

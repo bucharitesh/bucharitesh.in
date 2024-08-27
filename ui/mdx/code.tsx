@@ -1,6 +1,6 @@
 "use client"
 
-import { Aside } from "@/ui/aside"
+import { Aside } from "@/ui/mdx/aside"
 import clsx from "clsx"
 import React from "react"
 
@@ -56,9 +56,9 @@ export const Code = ({ children }: { children: React.ReactNode }) => {
                 className={clsx(
                   "mr-2 mb-2 rounded-lg px-2 py-1 text-sm font-medium",
                   {
-                    " bg-lavender-100/10 text-lavender-100/70 hover:bg-lavender-100/20 hover:text-lavender-100":
+                    " bg-primary-100/10 text-primary-100/70 hover:bg-primary-100/20 hover:text-primary-100":
                       index !== slide,
-                    "bg-lavender-100/30 text-white": index === slide,
+                    "bg-primary-100/30 text-white": index === slide,
                   },
                 )}
                 onClick={() => setSlide(index)}

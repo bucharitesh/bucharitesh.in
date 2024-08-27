@@ -23,11 +23,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     notFound()
   }
 
-  const url = `/blog/${post.slug}`
+  const url = `/blog/${post.slug}`;
+
   const ogImage = createOgImage({
     title: post.title,
     meta: meta.domain + " · " + post.publishedAtFormatted,
-  })
+  });
 
   return {
     title: post.title,

@@ -1,6 +1,4 @@
 import { meta } from "@/lib/constants"
-import { getPosts } from "@/lib/posts"
-import { BlogPostPreview } from "@/ui/blog/blog-post-preview"
 import { IntersectionSwap } from "@/ui/intersection-swap"
 import { Nav } from "@/ui/Nav"
 import { ProfileImageLarge } from "@/ui/ProfileImage"
@@ -15,8 +13,6 @@ export const metadata: Metadata = {
 }
 
 export default async function Page() {
-  const { posts } = await getPosts();
-
   return (
     <>
       <IntersectionSwap nav={<SiteHeader />}>
@@ -25,11 +21,11 @@ export default async function Page() {
             <ProfileImageLarge />
 
             <div className="mt-2 space-y-1">
-              <h1 className="text-3xl font-semibold leading-none text-lavender-100/90">
+              <h1 className="text-3xl font-semibold leading-none text-primary-100/90">
                 {meta.name}
               </h1>
 
-              <h2 className="mt-2 items-center space-y-2 text-lg font-medium leading-none text-lavender-100/50 lg:mt-0 lg:flex lg:space-y-0 lg:space-x-2">
+              <h2 className="mt-2 items-center space-y-2 text-lg font-medium leading-none text-primary-100/50 lg:mt-0 lg:flex lg:space-y-0 lg:space-x-2">
                 <div className="whitespace-nowrap">User Experience at</div>
                 <div className="flex space-x-2">
                   <a
@@ -46,7 +42,7 @@ export default async function Page() {
             </div>
           </div>
 
-          <div className="text-xl text-lavender-100/90">{meta.description}</div>
+          <div className="text-xl text-primary-100/90">{meta.description}</div>
 
           <Nav />
         </div>

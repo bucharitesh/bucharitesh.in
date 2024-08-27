@@ -26,7 +26,7 @@ export const Filesystem = ({ items, size = "medium", withCounters }: Props) => {
   return (
     <div
       className={clsx(
-        "valkyrie backdrop-blur-mdx divide-y divide-lavender-100/5 rounded-lg font-medium shadow-xl shadow-black/5",
+        "valkyrie backdrop-blur-mdx divide-y divide-primary-100/5 rounded-lg font-medium shadow-xl shadow-black/5",
         {
           "[counter-reset:highlight]": withCounters,
         },
@@ -55,9 +55,9 @@ const Node = ({ items, lvl, size, withCounters }: Props & { lvl: number }) => {
             >
               <div
                 className={clsx({
-                  "text-lavender-100/30": !status,
+                  "text-primary-100/30": !status,
                   "text-blue-100/30": status === "highlighted",
-                  "text-lavender-100/10": status === "faded",
+                  "text-primary-100/10": status === "faded",
                   "pl-[12px]": lvl === 1,
                   "pl-[24px]": lvl === 2,
                   "pl-[36px]": lvl === 3,
@@ -73,9 +73,9 @@ const Node = ({ items, lvl, size, withCounters }: Props & { lvl: number }) => {
               <div
                 className={clsx("truncate", {
                   "text-sm": size === "small",
-                  "text-lavender-100/70": !status,
+                  "text-primary-100/70": !status,
                   "text-blue-100/70": status === "highlighted",
-                  "text-lavender-100/30": status === "faded",
+                  "text-primary-100/30": status === "faded",
                 })}
               >
                 {name}

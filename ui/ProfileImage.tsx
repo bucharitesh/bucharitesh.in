@@ -15,7 +15,7 @@ const SelfImage = () => (
 
 export const ProfileImage = () => {
   return (
-    <div className="group transform rounded-full bg-gradient-to-tl from-purple-700/60 to-lavender-400/60 p-0.5 shadow-lg transition ease-out hover:scale-105 hover:from-purple-700 hover:to-lavender-400 hover:shadow-lavender-500/25 active:translate-y-px">
+    <div className="group transform rounded-full bg-gradient-to-tl from-primary-700/60 to-primary-400/60 p-0.5 shadow-lg transition ease-out hover:scale-105 hover:from-primary-700 hover:to-primary-400 hover:shadow-primary-500/25 active:translate-y-px">
       <div className="h-[36px] w-[36px] rounded-full p-px transition duration-300 group-hover:scale-105">
         <SelfImage />
       </div>
@@ -25,7 +25,7 @@ export const ProfileImage = () => {
 
 export const ProfileImageLarge = () => {
   return (
-    <div className="rounded-full bg-gradient-to-tl from-purple-700/60 to-lavender-400/60 p-1 shadow-lg ring-[5px] ring-purple-500/10">
+    <div className="rounded-full bg-gradient-to-tl from-primary-700/60 to-primary-400/60 p-1 shadow-lg ring-[5px] ring-primary-500/10">
       <SelfImage />
     </div>
   )

@@ -1,6 +1,11 @@
 import { FOCUS_VISIBLE_OUTLINE, meta } from "@/lib/constants"
 import { ChatBubbleBottomCenterTextIcon } from "@/ui/icons"
-import { CodeBracketIcon, CommandLineIcon, ComputerDesktopIcon, DocumentIcon } from "@heroicons/react/24/solid"
+import {
+  CodeBracketIcon,
+  CommandLineIcon,
+  ComputerDesktopIcon,
+  DocumentIcon,
+} from "@heroicons/react/24/solid"
 import clsx from "clsx"
 import Link from "next/link"
 import React, { ElementType } from "react"
@@ -22,17 +27,17 @@ function NavItem({
         <div className="mb-1.5 flex justify-center sm:mb-0 sm:block">
           <div
             className={clsx(
-              "rounded-lg bg-gradient-to-tl from-purple-500/80 to-lavender-400/80 p-1 shadow-lg transition-all duration-300 ease-out group-hover:scale-[1.2] group-hover:rounded-[10px] group-hover:shadow-purple-500/40 group-active:translate-y-1",
+              "rounded-lg bg-gradient-to-tl from-primary-500/80 to-primary-400/80 p-1 shadow-lg transition-all duration-300 ease-out group-hover:scale-[1.2] group-hover:rounded-[10px] group-hover:shadow-primary-500/40 group-active:translate-y-1",
               {
-                "ring-[2px] ring-purple-500/30 ring-offset-1 ring-offset-black/5":
+                "ring-[2px] ring-primary-500/30 ring-offset-1 ring-offset-black/5":
                   isActive,
               },
             )}
           >
-            <Icon className="w-[16px] transform text-lavender-100 transition delay-100 duration-500 ease-out group-hover:scale-110" />
+            <Icon className="w-[16px] transform text-primary-100 transition delay-100 duration-500 ease-out group-hover:scale-110" />
           </div>
         </div>
-        <div className="transition-colors group-hover:text-lavender-50">
+        <div className="transition-colors group-hover:text-primary-50">
           {children}
         </div>
       </div>
@@ -42,7 +47,7 @@ function NavItem({
 
 export const Nav = () => {
   return (
-    <div className="flex items-center space-x-3 text-base font-medium leading-none text-lavender-100/90 lg:space-x-6">
+    <div className="flex items-center space-x-3 text-base font-medium leading-none text-primary-100/90 lg:space-x-6">
       <NavItem href="/blog" Icon={ChatBubbleBottomCenterTextIcon}>
         Blog
       </NavItem>

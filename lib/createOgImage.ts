@@ -16,7 +16,7 @@ export const createOgImage = ({
     `w_1600,h_836,q_100`,
 
     // TITLE
-    // Karla google font in light lavender
+    // Karla google font in light primary
     `l_text:Karla_72_bold:${e(title)},co_rgb:ffe4e6,c_fit,w_1400,h_240`,
     // Positioning
     `fl_layer_apply,g_south_west,x_100,y_180`,

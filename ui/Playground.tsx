@@ -13,7 +13,7 @@ export function Playground({
         {children}
       </div>
       {description ? (
-        <div className="mt-3 text-sm text-lavender-100/60">{description}</div>
+        <div className="mt-3 text-sm text-primary-100/60">{description}</div>
       ) : null}
     </div>
   )

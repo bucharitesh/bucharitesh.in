@@ -1,25 +1,23 @@
-import { OOF_GRAD } from "@/lib/constants"
 import { getSnippets } from "@/lib/snippets";
+import PageWrapper from "@/ui/layout/page-wrapper";
 import { SnippetPostPreview } from "@/ui/snippet/post-preview"
-import clsx from "clsx"
-import Balancer from "react-wrap-balancer";
+import { Metadata } from "next/types";
+
+export const metadata: Metadata = {
+  title: "Snippets",
+  description: "A collection of snippets that I've written.",
+}
 
 export default async function Page() {
   const { snippets } = await getSnippets();
 
   return (
-    <>
-      <div className="mt-24 mb-4 xl:!col-end-5">
-        <h1 className={clsx("mt-6 text-2xl font-medium sm:text-4xl", OOF_GRAD)}>
-          <Balancer>Snippets</Balancer>
-        </h1>
-      </div>
-
+    <PageWrapper title="Snippets">
       <div className="space-y-10">
         {snippets.map((snippet) => {
           return <SnippetPostPreview key={snippet.slug} {...snippet} />
         })}
       </div>
-    </>
+    </PageWrapper>
   )
 }

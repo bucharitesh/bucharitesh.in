@@ -1,11 +1,10 @@
 import { meta } from "@/lib/constants"
 import { createOgImage } from "@/lib/createOgImage"
 import "@/styles/globals.css"
-import { SiteFooter } from "@/ui/SiteFooter"
+import { Footer } from "@/ui/layout/footer"
 import localFont from "next/font/local"
 import clsx from "clsx"
 import { Metadata, Viewport } from "next"
-import { Analytics } from "@vercel/analytics/react"
 
 export const viewport: Viewport = {
   themeColor: "#1c1917",
@@ -51,11 +50,10 @@ export default async function RootLayout({
     <html className="[color-scheme:dark]">
       <body
         className={clsx(
-          "font-sans overscroll-y-none bg-gray-900 antialiased selection:bg-violet-600/90 selection:text-white",
+          "font-sans overscroll-y-none bg-background antialiased selection:bg-primary-600/90 selection:text-white",
           hubot.variable,
         )}
       >
-        {/* <PreloadResources /> */}
         <svg
           className="pointer-events-none fixed isolate z-50 mix-blend-soft-light"
           width="100%"
@@ -72,17 +70,14 @@ export default async function RootLayout({
           <rect width="100%" height="100%" filter="url(#noiseFilter)" />
         </svg>
 
-        <div className="layout-sm relative z-10 grid gap-y-8 px-4 pt-12 text-lavender-200/90 xl:layout-xl xl:gap-x-9 xl:px-0 [&>*]:col-start-2 xl:[&>*]:col-start-3">
+        <div className="layout-sm relative z-10 grid gap-y-8 px-4 pt-12 text-primary-200/90 xl:layout-xl xl:gap-x-9 xl:px-0 [&>*]:col-start-2 xl:[&>*]:col-start-3">
           {children}
 
-          <SiteFooter />
+          <Footer />
         </div>
-
-        {/* <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="h-full bg-[url('https://res.cloudinary.com/bucharitesh/image/upload/h_500/bg_gradient_pfosr9')] bg-top bg-no-repeat opacity-[0.3]" />
-        </div> */}
-
-        <Analytics />
+        <div className="pointer-events-none absolute inset-0 overflow-hidden bg-blend-overlay">
+          <div className="h-full bg-[url('https://res.cloudinary.com/bucha/image/upload/h_500/bg_gradient_fmgwrc')] bg-top bg-no-repeat opacity-[0.3]" />
+        </div>
       </body>
     </html>
   )

@@ -1,11 +1,21 @@
-import { allUseCategories, allUseItems } from "contentlayer/generated"
+import {
+  allUseCategories,
+  allUseItems,
+  UseCategory,
+  UseItem,
+} from "contentlayer/generated"
 
-export function getUses() {
+export interface ProcessedUseCategory extends Omit<UseCategory, "children"> {
+  children: UseItem[]
+}
+
+export function getUses(): ProcessedUseCategory[] {
   const processedCategories = allUseCategories.map((category) => ({
     ...category,
     children: category.children
       .map((childName) => allUseItems.find((item) => item.name === childName))
-      .filter(Boolean),
+      .filter((item): item is UseItem => item !== undefined),
   }))
+
   return processedCategories
 }

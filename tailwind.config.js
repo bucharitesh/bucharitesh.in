@@ -20,30 +20,44 @@ module.exports = {
       },
       colors: {
         gray: colors.stone,
-        lavender: {
-          50: "#F7F1FC",
-          100: "#EFE3F9",
-          200: "#DFC7F3",
-          300: "#CFB3E6", // Base color
-          400: "#BF9FD9",
-          500: "#AF8BCC",
-          600: "#9F77BF",
-          700: "#8F63B2",
-          800: "#7F4FA5",
-          900: "#6F3B98",
+        // background: "#1e293b",
+        background: "#1c1917",
+        primary: {
+          // 50: "#f0f9ff",
+          // 100: "#e0f2fe",
+          // 200: "#bae6fd",
+          // 300: "#7dd3fc",
+          // 400: "#38bdf8",
+          // 500: "#0ea5e9",
+          // 600: "#0284c7",
+          // 700: "#0369a1",
+          // 800: "#075985",
+          // 900: "#0c4a6e",
+          // 950: "#082f49",
+          50: "#fff1f2",
+          100: "#ffe4e6",
+          200: "#fecdd3",
+          300: "#fda4af",
+          400: "#fb7185",
+          500: "#f43f5e",
+          600: "#e11d48",
+          700: "#be123c",
+          800: "#9f1239",
+          900: "#881337",
+          950: "#4c0519",
         },
       },
       keyframes: ({ theme }) => ({
         mutation: {
           "0%": {
-            background: theme("colors.lavender.200 / 3%"),
+            background: theme("colors.primary.200 / 3%"),
           },
           "10%": {
-            background: theme("colors.lavender.200 / 15%"),
-            color: theme("colors.lavender.200 / 75%"),
+            background: theme("colors.primary.200 / 15%"),
+            color: theme("colors.primary.200 / 75%"),
           },
           "100%": {
-            background: theme("colors.lavender.200 / 0%"),
+            background: theme("colors.primary.200 / 0%"),
           },
         },
         emoji: {
@@ -81,7 +95,7 @@ module.exports = {
       boxShadow: ({ theme }) => ({
         // inspired by https://www.joshwcomeau.com/shadow-palette/
         "surface-glass": `
-          inset 0.25px 1px 0 0 ${theme("colors.lavender.200 / 3%")},
+          inset 0.25px 1px 0 0 ${theme("colors.primary.200 / 3%")},
           0px 0.3px 0.3px rgba(3, 2, 2, 0.02),
           0px 2.2px 2.5px -0.4px rgba(3, 2, 2, 0.02),
           0px 4.3px 4.8px -0.8px rgba(3, 2, 2, 0.02),
@@ -90,12 +104,12 @@ module.exports = {
           0px 21px 23.6px -2.1px rgba(3, 2, 2, 0.02),
           0px 33.2px 37.4px -2.5px rgba(3, 2, 2, 0.02)`,
         "surface-elevation-low": `
-          inset 0.25px 1px 1px 0 ${theme("colors.lavender.200 / 1.5%")}, 
+          inset 0.25px 1px 1px 0 ${theme("colors.primary.200 / 1.5%")}, 
           0.3px 0.5px 0.7px rgba(3, 2, 2, 0.2),
           0.4px 0.8px 1px -1.2px rgba(3, 2, 2, 0.2),
           1px 2px 2.5px -2.5px rgba(3, 2, 2, 0.2);`,
         "surface-elevation-medium": `
-          inset 0.25px 1px 1px 0 ${theme("colors.lavender.200 / 3%")},
+          inset 0.25px 1px 1px 0 ${theme("colors.primary.200 / 3%")},
           0.3px 0.5px 0.7px rgba(3, 2, 2, 0.1),
           0.8px 1.6px 2px -0.8px rgba(3, 2, 2, 0.1),
           2.1px 4.1px 5.2px -1.7px rgba(3, 2, 2, 0.1),
