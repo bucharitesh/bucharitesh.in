@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "target": "esnext", // Change to esnext for better ES module support
+    "module": "esnext", // Ensure module is set to esnext
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -7,7 +9,6 @@
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "incremental": true,
-    "module": "esnext",
     "esModuleInterop": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,

@@ -7,8 +7,7 @@ import {
 import clsx from "clsx"
 import Link from "next/link";
 import NowPlaying from "./now-playing";
-import { Suspense } from "react";
-
+import NewsletterForm from "../newsletter-form";
 
 const FooterItem = ({ href, label }: { href: string; label: string }) => {
   return (
@@ -25,9 +24,9 @@ const FooterItem = ({ href, label }: { href: string; label: string }) => {
 export const Footer = async () => {
   return (
     <div className="mt-36 pb-36 text-base">
-      <Suspense fallback="...">
-        <NowPlaying />
-      </Suspense>
+      <NowPlaying />
+
+      <NewsletterForm />
 
       <hr className="border-1 mb-8 w-full border-primary-200/30" />
 

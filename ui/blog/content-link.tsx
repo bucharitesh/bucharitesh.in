@@ -41,7 +41,7 @@ function Icon(props: { icon: ElementType }) {
 
 function Text({ children }: { children: React.ReactNode }) {
   return (
-    <p className="mt-4 text-lg text-primary-100/70 line-clamp-3">{children}</p>
+    <p className="mt-4 text-sm text-primary-100/70 line-clamp-3">{children}</p>
   )
 }
 
