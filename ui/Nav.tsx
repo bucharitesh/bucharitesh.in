@@ -1,6 +1,6 @@
 import { FOCUS_VISIBLE_OUTLINE } from "@/lib/constants"
 import clsx from "clsx"
-import { Braces } from "lucide-react"
+import { Bot, Braces } from "lucide-react"
 import Link from "next/link"
 import React, { ElementType } from "react"
 
@@ -42,7 +42,7 @@ function NavItem({
 export const Nav = () => {
   return (
     <div className="flex items-center space-x-3 text-base font-medium leading-none text-primary-100/90 lg:space-x-6">
-      <NavItem href="/blog" Icon={Braces}>
+      <NavItem href="/blog" Icon={Bot}>
         Blog
       </NavItem>
       <NavItem href="/snippet" Icon={Braces}>
