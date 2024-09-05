@@ -20,20 +20,8 @@ module.exports = {
       },
       colors: {
         gray: colors.stone,
-        // background: "#1e293b",
         background: "#1c1917",
         primary: {
-          // 50: "#f0f9ff",
-          // 100: "#e0f2fe",
-          // 200: "#bae6fd",
-          // 300: "#7dd3fc",
-          // 400: "#38bdf8",
-          // 500: "#0ea5e9",
-          // 600: "#0284c7",
-          // 700: "#0369a1",
-          // 800: "#075985",
-          // 900: "#0c4a6e",
-          // 950: "#082f49",
           50: "#fff1f2",
           100: "#ffe4e6",
           200: "#fecdd3",
@@ -47,7 +35,15 @@ module.exports = {
           950: "#4c0519",
         },
       },
+      animation: {
+        "border-beam": "border-beam calc(var(--duration)*1s) infinite linear",
+      },
       keyframes: ({ theme }) => ({
+        "border-beam": {
+          "100%": {
+            "offset-distance": "100%",
+          },
+        },
         mutation: {
           "0%": {
             background: theme("colors.primary.200 / 3%"),

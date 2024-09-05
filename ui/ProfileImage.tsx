@@ -25,8 +25,17 @@ export const ProfileImage = () => {
 
 export const ProfileImageLarge = () => {
   return (
-    <div className="rounded-full bg-gradient-to-tl from-primary-700/60 to-primary-400/60 p-1 shadow-lg ring-[5px] ring-primary-500/10">
-      <SelfImage />
+    <div className="relative">
+      {/* Outer ring */}
+      <div className="absolute inset-0 rounded-full bg-gradient-to-tl from-primary-700/60 to-primary-400/60 ring-[10px] ring-primary-500/10 animate-[pulse_4s_ease-in-out_infinite]"></div>
+
+      {/* Inner ring */}
+      <div className="absolute inset-0 rounded-full bg-gradient-to-tl from-primary-700/60 to-primary-400/60 ring-[5px] ring-primary-500/50 animate-[pulse_2s_ease-in-out_infinite]"></div>
+
+      {/* Image container */}
+      <div className="relative rounded-full">
+        <SelfImage />
+      </div>
     </div>
   )
 }

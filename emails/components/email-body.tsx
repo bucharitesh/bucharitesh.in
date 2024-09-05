@@ -3,7 +3,6 @@ import {
   Container,
   Head,
   Html,
-  Text,
   Preview,
   Tailwind,
   Section,
@@ -12,15 +11,14 @@ import {
 import Footer from "./footer"
 import { meta } from "@/lib/constants"
 
-export default function EmailBody(
-  {
+export default function EmailBody({
   email,
   marketing = false,
-  children
+  children,
 }: {
-  email: string
+  email?: string
   marketing?: boolean
-  children: React.ReactNode,
+  children: React.ReactNode
 }) {
   return (
     <Html>
@@ -28,41 +26,34 @@ export default function EmailBody(
       <Preview>Welcome to Bucharitesh.in</Preview>
       <Tailwind>
         <Body className="mx-auto my-auto bg-white font-sans text-[#fb7185]">
-          <svg
-            className="pointer-events-none fixed isolate z-50 mix-blend-soft-light"
-            width="100%"
-            height="100%"
-          >
-            <filter id="noiseFilter">
-              <feTurbulence
-                type="fractalNoise"
-                baseFrequency="0.80"
-                numOctaves="4"
-                stitchTiles="stitch"
-              />
-            </filter>
-            <rect width="100%" height="100%" filter="url(#noiseFilter)" />
-          </svg>
-
-          <Container className="relative mx-auto my-10 overflow-hidden bg-[#1c1917] max-w-[500px] rounded border border-solid border-gray-200 px-10 py-5">
-            <div className="pointer-events-none absolute inset-0 overflow-hidden bg-blend-overlay z-0">
-              <div className="h-full bg-[url('https://res.cloudinary.com/bucha/image/upload/h_500/bg_gradient_fmgwrc')] bg-top bg-no-repeat opacity-[0.3]" />
+          <Container className="relative mx-auto my-10 overflow-hidden bg-[#1c1917] max-w-[500px] rounded border border-solid border-gray-200 px-10 py-5 z-20">
+            <div className="pointer-events-none h-full w-full top-0 left-0 absolute overflow-hidden -z-10">
+              <div className="h-full bg-[url('https://res.cloudinary.com/bucha/image/upload/h_500/bg_gradient_fmgwrc')] bg-top bg-no-repeat bg-opacity-[0.3]" />
             </div>
 
-            <Section className="mt-8 z-20">
+            <Section className="mt-8 z-50">
               <Img
                 src={meta.image.profile}
-                height="40"
-                alt="Dub"
+                height="60"
+                alt={meta.name}
                 className="mx-auto my-0 rounded-full bg-white"
               />
+
+              {children}
+
+              <Section className="z-50">
+                <Img
+                  src="https://res.cloudinary.com/bucha/image/upload/c_thumb,q_40,h_100/signature-light_sbltch.png"
+                  height="40"
+                  alt={meta.name}
+                  className="my-0"
+                />
+              </Section>
             </Section>
 
-            {children}
-            <Text className="text-sm font-bold leading-6 text-[#f43f5e]">
-              {meta.name}
-            </Text>
-            <Footer email={email} marketing={marketing} unsubscribe={false} />
+            {email && (
+              <Footer email={email} marketing={marketing} unsubscribe={false} />
+            )}
           </Container>
         </Body>
       </Tailwind>

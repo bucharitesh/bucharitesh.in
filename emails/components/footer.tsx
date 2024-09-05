@@ -36,7 +36,7 @@ export default function Footer({
         <span className="text-[#fecdd3]">{email}</span>. If you were not
         expecting this email, you can ignore this email. If you are concerned
         about your account's safety, please reply to this email to get in touch
-        with us. get in touch with us.
+        with me.
       </Text>
 
       {unsubscribe && (

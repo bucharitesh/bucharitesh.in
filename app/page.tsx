@@ -9,7 +9,6 @@ import FlamMark from "@/ui/icons/FlamMark"
 import Link from "next/link"
 import { getPosts } from "@/lib/posts"
 import { BlogPostPreview } from "@/ui/blog/blog-post-preview"
-import { LinkPreview } from "@/ui/mdx/link-preview"
 import { ArrowRightIcon } from "@heroicons/react/24/solid"
 
 export const metadata: Metadata = {

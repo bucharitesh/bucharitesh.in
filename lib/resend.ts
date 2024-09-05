@@ -19,17 +19,17 @@ export async function subscribe(data: NewsletterFormInputs) {
   try {
     const { email } = result.data
 
-    const { data: contact_list } = await resend.contacts.list({
-      audienceId: process.env.RESEND_AUDIENCE_ID as string,
-    })
+    // const { data: contact_list } = await resend.contacts.list({
+    //   audienceId: process.env.RESEND_AUDIENCE_ID as string,
+    // })
 
-    if (
-      contact_list?.data && contact_list?.data.find(
-        (contact) => contact.email === email,
-      )
-    ) {
-      throw new Error("You have already subscribed to the newsletter!")
-    }
+    // if (
+    //   contact_list?.data && contact_list?.data.find(
+    //     (contact) => contact.email === email,
+    //   )
+    // ) {
+    //   throw new Error("You have already subscribed to the newsletter!")
+    // }
 
     const { data, error } = await resend.contacts.create({
       email: email,

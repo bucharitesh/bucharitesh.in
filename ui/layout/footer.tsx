@@ -5,9 +5,9 @@ import {
   LINK_SUBTLE_STYLES,
 } from "@/lib/constants"
 import clsx from "clsx"
-import Link from "next/link";
-import NowPlaying from "./now-playing";
-import NewsletterForm from "../newsletter-form";
+import Link from "next/link"
+// import NowPlaying from "./now-playing";
+import NewsletterForm from "./newsletter-form"
 
 const FooterItem = ({ href, label }: { href: string; label: string }) => {
   return (
@@ -24,7 +24,7 @@ const FooterItem = ({ href, label }: { href: string; label: string }) => {
 export const Footer = async () => {
   return (
     <div className="mt-36 pb-36 text-base">
-      <NowPlaying />
+      {/* <NowPlaying /> */}
 
       <NewsletterForm />
 
