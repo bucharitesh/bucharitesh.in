@@ -8,7 +8,7 @@ export async function GET(
 ) {
   try {
     const ipAddress =
-      request.headers["x-forwarded-for"] ||
+      request.headers.get("x-forwarded-for") ||
       // Fallback for localhost or non Vercel deployments
       "0.0.0.0"
 
@@ -24,7 +24,7 @@ export async function GET(
         .digest("hex")
 
     // Identify a specific users interactions with a specific post
-    const sessionId = slug + "___" + currentUserId;
+    const sessionId = slug + "___" + currentUserId
 
     const [post, user] = await Promise.all([
       // get the number of likes this post has
@@ -42,7 +42,6 @@ export async function GET(
       likes: post?.likes || 0,
       currentUserLikes: user?.likes || 0,
     })
-
   } catch (error: any) {
     console.error(error.message)
 
@@ -58,12 +57,12 @@ export async function POST(
   { params }: { params: { slug: string } },
 ) {
   try {
-    const body = await request.json();
+    const body = await request.json()
 
-    const count = z.number().min(1).max(3).parse(body.count);
+    const count = z.number().min(1).max(3).parse(body.count)
 
     const ipAddress =
-      request.headers["x-forwarded-for"] ||
+      request.headers.get("x-forwarded-for") ||
       // Fallback for localhost or non Vercel deployments
       "0.0.0.0"
 
@@ -78,7 +77,7 @@ export async function POST(
         .update(ipAddress + process.env.IP_ADDRESS_SALT!, "utf8")
         .digest("hex")
 
-     const sessionId = slug + "___" + currentUserId
+    const sessionId = slug + "___" + currentUserId
 
     // Upsert: if a row exists, update it by incrementing likes. If it
     // doesn't exist, create a new row with the number of likes this api
@@ -116,8 +115,7 @@ export async function POST(
     return Response.json({
       likes: post?.likes || 0,
       currentUserLikes: user?.likes || 0,
-    });
-
+    })
   } catch (error: any) {
     console.error(error.message)
 

@@ -6,21 +6,21 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { NewsletterFormSchema } from "@/lib/schema"
 
 import { subscribe } from "@/lib/resend"
-import { useState, useEffect } from "react"
-import { ArrowRightIcon, ArrowUpIcon } from "@heroicons/react/20/solid"
+import { useEffect, useState } from "react"
 import { BorderBeam } from "../border-beam"
 import clsx from "clsx"
 import { OOF_GRAD } from "@/lib/constants"
+import { Send, SendHorizonal } from "lucide-react"
 
 type Inputs = z.infer<typeof NewsletterFormSchema>
 
 export default function NewsletterForm() {
   const [success, setSuccess] = useState<boolean>(false)
 
-  // useEffect(() => {
-  //   const isSubscribed = localStorage?.getItem("subscribed") === "true"
-  //   setSuccess(isSubscribed)
-  // }, [])
+  useEffect(() => {
+    const isSubscribed = localStorage?.getItem("subscribed") === "true"
+    setSuccess(isSubscribed)
+  }, [])
 
   const {
     register,
@@ -104,9 +104,9 @@ export default function NewsletterForm() {
           className="w-max disabled:opacity-50 rounded-md px-4 py-2 bg-primary-400 text-primary-foreground hover:bg-primary/90"
         >
           {isSubmitting ? (
-            <ArrowUpIcon className="w-4 h-4" />
+            <Send className="w-4 h-4" />
           ) : (
-            <ArrowRightIcon className="w-4 h-4" />
+            <SendHorizonal className="w-4 h-4" />
           )}
         </button>
       </form>

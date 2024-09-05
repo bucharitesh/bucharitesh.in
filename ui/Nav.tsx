@@ -1,9 +1,6 @@
 import { FOCUS_VISIBLE_OUTLINE } from "@/lib/constants"
-import { ChatBubbleBottomCenterTextIcon } from "@/ui/icons"
-import {
-  CommandLineIcon,
-} from "@heroicons/react/24/solid"
 import clsx from "clsx"
+import { Braces } from "lucide-react"
 import Link from "next/link"
 import React, { ElementType } from "react"
 
@@ -31,7 +28,7 @@ function NavItem({
               },
             )}
           >
-            <Icon className="w-[16px] transform text-primary-100 transition delay-100 duration-500 ease-out group-hover:scale-110" />
+            <Icon className="w-[16px] h-[16px] transform text-primary-100 transition delay-100 duration-500 ease-out group-hover:scale-110" />
           </div>
         </div>
         <div className="transition-colors group-hover:text-primary-50">
@@ -45,10 +42,10 @@ function NavItem({
 export const Nav = () => {
   return (
     <div className="flex items-center space-x-3 text-base font-medium leading-none text-primary-100/90 lg:space-x-6">
-      <NavItem href="/blog" Icon={ChatBubbleBottomCenterTextIcon}>
+      <NavItem href="/blog" Icon={Braces}>
         Blog
       </NavItem>
-      <NavItem href="/snippet" Icon={CommandLineIcon}>
+      <NavItem href="/snippet" Icon={Braces}>
         Snippets
       </NavItem>
     </div>

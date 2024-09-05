@@ -4,7 +4,7 @@ import { createOgImage } from "@/lib/createOgImage"
 import { allSnippets } from "contentlayer/generated"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
-import Snippet from "@/ui/snippet/post"
+import Snippet from "@/ui/snippet/snippet"
 
 export const generateStaticParams = () => {
   return allSnippets

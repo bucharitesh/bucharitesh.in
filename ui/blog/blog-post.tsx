@@ -6,11 +6,11 @@ import MostViewed from "@/ui/blog/most-viewed"
 import { PostMetrics } from "@/ui/blog/post-metrics"
 import { PostTableOfContents } from "@/ui/post-table-of-contents"
 import { ScrollToTop } from "@/ui/ScrollToTop"
-import { ArrowLeftIcon as Left } from "@heroicons/react/24/outline"
 import clsx from "clsx"
 import { useMDXComponent } from "next-contentlayer/hooks"
 import Link from "next/link"
 import Balancer from "react-wrap-balancer"
+import { ChevronLeft } from "lucide-react"
 
 export default function Post({ post }: { post: FormattedPost }) {
   const MDXContent = useMDXComponent(post.body.code)
@@ -20,7 +20,7 @@ export default function Post({ post }: { post: FormattedPost }) {
       <div className="mt-24 mb-4 xl:!col-end-5">
         <Link href="/blog" className="group inline-flex items-center space-x-2">
           <div className="transition rounded-full bg-primary-200/10 p-1 text-primary-200/80 group-hover:bg-primary-200/25 group-hover:text-primary-200">
-            <Left className="w-4 group-hover:scale-125 transition-transform group-active:scale-110" />
+            <ChevronLeft className="w-4 h-4 group-hover:scale-125 transition-transform group-active:scale-110" />
           </div>
           <div className="mt-0.5 text-primary-200/70 group-hover:text-primary-200/90 transition">
             All Posts

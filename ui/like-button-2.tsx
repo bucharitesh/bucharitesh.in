@@ -3,8 +3,8 @@
 import { FOCUS_VISIBLE_OUTLINE } from "@/lib/constants"
 import { usePostLikes } from "@/lib/hooks"
 import { LoadingDots } from "@/ui/loading-dots"
-import { HeartIcon } from "@heroicons/react/20/solid"
 import clsx from "clsx"
+import { Heart } from "lucide-react"
 import React from "react"
 
 const emojis = ["👍", "🙏", "🥰"]
@@ -64,7 +64,7 @@ export const LikeButton2 = ({ slug }: { slug: string }) => {
             )}
           />
 
-          <HeartIcon className="relative w-5 transform text-primary-100 transition delay-100 duration-500 ease-out group-hover:scale-110" />
+          <Heart className="relative w-5 h-5 transform text-primary-100 transition delay-100 duration-500 ease-out group-hover:scale-110" />
         </button>
       </div>
 

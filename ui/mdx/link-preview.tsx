@@ -1,9 +1,9 @@
 'use client';
 
 import { FOCUS_VISIBLE_OUTLINE, LINK_STYLES } from "@/lib/constants"
-import { EllipsisHorizontalCircleIcon } from "@heroicons/react/24/solid"
 import * as HoverCardPrimitive from "@radix-ui/react-hover-card"
 import clsx from "clsx"
+import { Ellipsis } from "lucide-react";
 import { useTheme } from "next-themes"
 import Image from "next/image"
 import { encode } from "qss"
@@ -67,7 +67,7 @@ export const LinkPreview = ({
         >
           {children}
 
-          <EllipsisHorizontalCircleIcon className="mb-0.5 ml-1 inline w-4" />
+          <Ellipsis className="mb-0.5 ml-1 inline w-4 h-4" />
         </HoverCardPrimitive.Trigger>
 
         <HoverCardPrimitive.Content side="top" align="center" sideOffset={10}>

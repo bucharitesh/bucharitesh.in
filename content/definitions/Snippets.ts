@@ -7,6 +7,7 @@ export const Snippets = defineDocumentType(() => ({
   fields: {
     title: { type: "string", required: true },
     description: { type: "string" },
+    logo: { type: "string", required: true },
   },
   computedFields: {
     slug: {

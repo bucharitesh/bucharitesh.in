@@ -51,28 +51,24 @@ export const formatSnippetsPreview = (snippet: Snippets) => {
     "slug",
     "title",
     "description",
+    "logo",
   ])
 
   return {
     ...partialSnippet,
     description: partialSnippet.description ?? null,
+    logo: `/images/snippets/${partialSnippet.logo}` ?? null,
   }
 }
 
-export const formatSnippet = (
-  {
-    title,
-    slug,
-    description,
-    body,
-  }: Snippets
-) => ({
+export const formatSnippet = ({ title, slug, description, body, logo }: Snippets) => ({
   title,
   slug,
   description: description ?? null,
   body: {
     code: body.code,
-  }
+  },
+  logo: `/images/snippets/${logo}` ?? null,
 })
 
 export type FormattedSnippet = ReturnType<typeof formatSnippet>

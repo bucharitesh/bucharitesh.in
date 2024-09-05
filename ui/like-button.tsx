@@ -1,7 +1,7 @@
 import { usePostLikes } from "@/lib/hooks"
 import { LoadingDots } from "@/ui/loading-dots"
-import { HeartIcon } from "@heroicons/react/24/solid"
 import { motion } from "framer-motion"
+import { Heart } from "lucide-react"
 import React from "react"
 
 const emojis = ["👍", "🙏", "🥰"]
@@ -80,7 +80,7 @@ export const LikeButton = ({ slug }: { slug: string }) => {
               initial="0"
             />
 
-            <HeartIcon className="relative w-5 text-primary-100" />
+            <Heart className="relative w-5 h-5 text-primary-100" />
           </motion.div>
         </div>
       </button>

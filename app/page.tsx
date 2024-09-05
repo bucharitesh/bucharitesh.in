@@ -9,7 +9,7 @@ import FlamMark from "@/ui/icons/FlamMark"
 import Link from "next/link"
 import { getPosts } from "@/lib/posts"
 import { BlogPostPreview } from "@/ui/blog/blog-post-preview"
-import { ArrowRightIcon } from "@heroicons/react/24/solid"
+import { ArrowRight } from "lucide-react"
 
 export const metadata: Metadata = {
   title: meta.tagline,
@@ -66,7 +66,7 @@ export default async function Page() {
             className="flex items-center hover:underline transition-all hover:underline-offset-4 text-primary-500 text-xs self-center gap-2 group"
           >
             VIEW ALL
-            <ArrowRightIcon className="w-3 h-3 group-hover:translate-x-1 transition-all" />
+            <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-all" />
           </Link>
         </div>
       </div>

@@ -1,8 +1,8 @@
 "use client"
 
 import React from "react"
-import { BoltIcon } from "@heroicons/react/24/solid"
 import { motion } from "framer-motion"
+import { Zap } from "lucide-react"
 
 export const ZapIcon = () => {
   return (
@@ -28,7 +28,7 @@ export const ZapIcon = () => {
             fill: { delay: 0.2, type: "spring", duration: 0.3, bounce: 0 },
           }}
         >
-          <BoltIcon className="h-3 w-3 text-yellow-400" />
+          <Zap className="h-3 w-3 text-yellow-400" />
         </motion.div>
       </motion.div>
     </motion.div>

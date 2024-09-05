@@ -6,17 +6,6 @@ const { withContentlayer } = require("next-contentlayer")
 const nextConfig = {
   reactStrictMode: false,
   transpilePackages: ["shiki"],
-  modularizeImports: {
-    "@heroicons/react/24/outline": {
-      transform: "@heroicons/react/24/outline/{{member}}",
-    },
-    "@heroicons/react/24/solid": {
-      transform: "@heroicons/react/24/solid/{{member}}",
-    },
-    "@heroicons/react/20/solid": {
-      transform: "@heroicons/react/20/solid/{{member}}",
-    },
-  },
   experimental: {
     serverComponentsExternalPackages: [
       "@react-email/components",

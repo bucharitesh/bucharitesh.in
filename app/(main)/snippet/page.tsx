@@ -1,6 +1,6 @@
 import { getSnippets } from "@/lib/snippets";
 import PageWrapper from "@/ui/layout/page-wrapper";
-import { SnippetPostPreview } from "@/ui/snippet/post-preview"
+import { SnippetPostPreview } from "@/ui/snippet/snippet-preview"
 import { Metadata } from "next/types";
 
 export const metadata: Metadata = {
@@ -13,7 +13,7 @@ export default async function Page() {
 
   return (
     <PageWrapper title="Snippets">
-      <div className="space-y-10">
+      <div className="grid grid-cols-2 space-y-10">
         {snippets.map((snippet) => {
           return <SnippetPostPreview key={snippet.slug} {...snippet} />
         })}
