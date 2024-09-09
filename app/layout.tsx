@@ -5,6 +5,8 @@ import { Footer } from "@/ui/layout/footer"
 import localFont from "next/font/local"
 import clsx from "clsx"
 import { Metadata, Viewport } from "next"
+import { SessionProvider } from "next-auth/react"
+import { auth } from "@/lib/auth"
 
 export const viewport: Viewport = {
   themeColor: "#1c1917",
@@ -46,39 +48,43 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const session = await auth();
+
   return (
     <html className="[color-scheme:dark]">
-      <body
-        className={clsx(
-          "font-sans overscroll-y-none bg-background antialiased selection:bg-primary-600/90 selection:text-white",
-          hubot.variable,
-        )}
-      >
-        <svg
-          className="pointer-events-none fixed isolate z-50 mix-blend-soft-light"
-          width="100%"
-          height="100%"
+      <SessionProvider session={session}>
+        <body
+          className={clsx(
+            "font-sans overscroll-y-none bg-background antialiased selection:bg-primary-600/90 selection:text-white",
+            hubot.variable,
+          )}
         >
-          <filter id="noiseFilter">
-            <feTurbulence
-              type="fractalNoise"
-              baseFrequency="0.80"
-              numOctaves="4"
-              stitchTiles="stitch"
-            />
-          </filter>
-          <rect width="100%" height="100%" filter="url(#noiseFilter)" />
-        </svg>
+          <svg
+            className="pointer-events-none fixed isolate z-50 mix-blend-soft-light"
+            width="100%"
+            height="100%"
+          >
+            <filter id="noiseFilter">
+              <feTurbulence
+                type="fractalNoise"
+                baseFrequency="0.80"
+                numOctaves="4"
+                stitchTiles="stitch"
+              />
+            </filter>
+            <rect width="100%" height="100%" filter="url(#noiseFilter)" />
+          </svg>
 
-        <div className="layout-sm relative z-10 grid gap-y-8 px-4 pt-12 text-primary-200/90 xl:layout-xl xl:gap-x-9 xl:px-0 [&>*]:col-start-2 xl:[&>*]:col-start-3">
-          {children}
+          <div className="layout-sm relative z-10 grid gap-y-8 px-4 pt-12 text-primary-200/90 xl:layout-xl xl:gap-x-9 xl:px-0 [&>*]:col-start-2 xl:[&>*]:col-start-3">
+            {children}
 
-          <Footer />
-        </div>
-        <div className="pointer-events-none absolute inset-0 overflow-hidden bg-blend-overlay">
-          <div className="h-full bg-[url('https://res.cloudinary.com/bucha/image/upload/h_500/bg_gradient_fmgwrc')] bg-top bg-no-repeat opacity-[0.3]" />
-        </div>
-      </body>
+            <Footer />
+          </div>
+          <div className="pointer-events-none absolute inset-0 overflow-hidden bg-blend-overlay">
+            <div className="h-full bg-[url('https://res.cloudinary.com/bucha/image/upload/h_500/bg_gradient_fmgwrc')] bg-top bg-no-repeat opacity-[0.3]" />
+          </div>
+        </body>
+      </SessionProvider>
     </html>
   )
 }

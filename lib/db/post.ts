@@ -3,7 +3,7 @@ import GithubSlugger from "github-slugger"
 // esbuild doesn't support module aliases 😤🤌
 // https://github.com/evanw/esbuild/issues/394
 // https://github.com/contentlayerdev/contentlayer/issues/238
-import { formatShortDate } from "../../lib/formatShortDate"
+import { formatShortDate } from "../formatShortDate"
 import readingTime from "reading-time"
 
 export const Post = defineDocumentType(() => ({

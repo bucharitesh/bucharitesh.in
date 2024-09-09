@@ -23,3 +23,13 @@ model Session {
   createdAt DateTime @default(now())
   likes     Int      @default(0)
 }
+
+model Guestbook {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  name      String
+  message   String
+  email     String?
+  image     String
+  user_id   String
+}

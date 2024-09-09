@@ -6,17 +6,16 @@ import remarkGfm from "remark-gfm"
 // esbuild doesn't support module aliases 😤🤌
 // https://github.com/evanw/esbuild/issues/394
 // https://github.com/contentlayerdev/contentlayer/issues/238
-import { Post } from "./content/definitions/Post"
-import { Snippets } from "./content/definitions/Snippets"
-import { UseItem, UseCategory } from "./content/definitions/Uses"
-import { DesignInspirationItem } from "./content/definitions/Design-Inspiraion"
+import { Post } from "./lib/db/post"
+import { Snippets } from "./lib/db/snippets"
+import { UseItem, UseCategory } from "./lib/db/uses"
+import { DesignInspirationItem } from "./lib/db/design-inspiraion"
 
 import { HEADING_LINK_ANCHOR } from "./lib/constants"
 import {
   rehypePrettyCodeClasses,
   rehypePrettyCodeOptions,
 } from "./lib/rehyePrettyCode"
-
 
 export default makeSource({
   contentDirPath: "content",
