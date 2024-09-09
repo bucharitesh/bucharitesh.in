@@ -1,9 +1,9 @@
-'use client';
+"use client"
 
 import { FOCUS_VISIBLE_OUTLINE, LINK_STYLES } from "@/lib/constants"
 import * as HoverCardPrimitive from "@radix-ui/react-hover-card"
-import clsx from "clsx"
-import { Ellipsis } from "lucide-react";
+import { cn } from "@/lib/utils"
+import { Ellipsis } from "lucide-react"
 import { useTheme } from "next-themes"
 import Image from "next/image"
 import { encode } from "qss"
@@ -63,7 +63,7 @@ export const LinkPreview = ({
       >
         <HoverCardPrimitive.Trigger
           href={url}
-          className={clsx(LINK_STYLES, FOCUS_VISIBLE_OUTLINE)}
+          className={cn(LINK_STYLES, FOCUS_VISIBLE_OUTLINE)}
         >
           {children}
 
@@ -71,21 +71,21 @@ export const LinkPreview = ({
         </HoverCardPrimitive.Trigger>
 
         <HoverCardPrimitive.Content side="top" align="center" sideOffset={10}>
-            <a
-              href={url}
-              className="block rounded-xl border-2 border-transparent bg-white p-1 shadow hover:border-primary-500"
-              style={{ fontSize: 0 }}
-            >
-              <Image
-                src={src}
-                width={width}
-                height={height}
-                layout={layout}
-                quality={q}
-                className="rounded-lg"
-                alt=""
-              />
-            </a>
+          <a
+            href={url}
+            className="block rounded-xl border-2 border-transparent bg-white p-1 shadow hover:border-primary-500"
+            style={{ fontSize: 0 }}
+          >
+            <Image
+              src={src}
+              width={width}
+              height={height}
+              layout={layout}
+              quality={q}
+              className="rounded-lg"
+              alt=""
+            />
+          </a>
         </HoverCardPrimitive.Content>
       </HoverCardPrimitive.Root>
     </>

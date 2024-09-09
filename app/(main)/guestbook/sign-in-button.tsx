@@ -28,7 +28,7 @@ export default function LoginButton() {
   const leaveEntry = async (data: any) => {
     startTransition(async () => {
       try {
-        const res = await fetch("/api/words", {
+        const res = await fetch("/api/guestbook", {
           body: JSON.stringify(data),
           headers: {
             "Content-Type": "application/json",
@@ -43,7 +43,7 @@ export default function LoginButton() {
         }
 
         reset()
-        mutate("/api/words")
+        mutate("/api/guestbook")
         setMessage(`Thanks for writing! You're awesome 👑`)
       } catch (err) {
         console.error("Error submitting entry:", err)

@@ -3,7 +3,7 @@
 import { FOCUS_VISIBLE_OUTLINE } from "@/lib/constants"
 import { usePostLikes } from "@/lib/hooks"
 import { LoadingDots } from "@/ui/loading-dots"
-import clsx from "clsx"
+import { cn } from "@/lib/utils"
 import { Heart } from "lucide-react"
 import React from "react"
 
@@ -42,7 +42,7 @@ export const LikeButton2 = ({ slug }: { slug: string }) => {
         })}
 
         <button
-          className={clsx(
+          className={cn(
             "shadow-lgx group relative block transform overflow-hidden rounded-lg bg-gradient-to-tl from-white/5 to-white/30 p-1 transition-all duration-300 ease-out hover:scale-[1.2] hover:rounded-[10px] active:scale-100 active:rounded-lg",
             FOCUS_VISIBLE_OUTLINE,
             {
@@ -54,7 +54,7 @@ export const LikeButton2 = ({ slug }: { slug: string }) => {
           onClick={handleClick}
         >
           <div
-            className={clsx(
+            className={cn(
               "absolute inset-0 transform-gpu bg-gradient-to-tl from-primary-500 to-primary-400 transition-transform",
               {
                 "translate-y-8": currentUserLikes === 0,

@@ -4,7 +4,7 @@ import {
   FOOTER_ITEMS,
   LINK_SUBTLE_STYLES,
 } from "@/lib/constants"
-import clsx from "clsx"
+import { cn } from "@/lib/utils"
 import Link from "next/link"
 // import NowPlaying from "./now-playing";
 import NewsletterForm from "./newsletter-form"
@@ -14,7 +14,7 @@ const FooterItem = ({ href, label }: { href: string; label: string }) => {
     <Link
       key={href}
       href={href}
-      className={clsx(LINK_SUBTLE_STYLES, FOCUS_VISIBLE_OUTLINE)}
+      className={cn(LINK_SUBTLE_STYLES, FOCUS_VISIBLE_OUTLINE)}
     >
       {label}
     </Link>
@@ -58,7 +58,7 @@ export const Footer = async () => {
               <Link
                 key={item.href}
                 href={item.href}
-                className={clsx(LINK_SUBTLE_STYLES, FOCUS_VISIBLE_OUTLINE)}
+                className={cn(LINK_SUBTLE_STYLES, FOCUS_VISIBLE_OUTLINE)}
               >
                 {item.label}
               </Link>

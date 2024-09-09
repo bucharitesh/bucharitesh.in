@@ -7,8 +7,7 @@ import { NewsletterFormSchema } from "@/lib/schema"
 
 import { subscribe } from "@/lib/resend"
 import { useEffect, useState } from "react"
-import { BorderBeam } from "../border-beam"
-import clsx from "clsx"
+import { cn } from "@/lib/utils"
 import { OOF_GRAD } from "@/lib/constants"
 import { Send, SendHorizonal } from "lucide-react"
 
@@ -52,7 +51,7 @@ export default function NewsletterForm() {
     return (
       <section className="pointer-events-none relative my-8 p-8 bg-primary-400/40 rounded-xl border-0 dark:border items-center justify-center text-center font-bold overflow-hidden">
         <h1
-          className={clsx(
+          className={cn(
             "absolute -top-1/4 left-1/2 -translate-x-1/2 text-6xl font-bold opacity-20 from-primary-200/70 to-primary-400/10",
             OOF_GRAD,
           )}
@@ -63,7 +62,7 @@ export default function NewsletterForm() {
           Amazing content is on its way!
         </p>
         <h1
-          className={clsx(
+          className={cn(
             "absolute -bottom-1/4 left-1/2 -translate-x-1/2 text-6xl font-bold rotate-180 opacity-20 from-primary-200/70 to-primary-400/10",
             OOF_GRAD,
           )}
@@ -76,8 +75,6 @@ export default function NewsletterForm() {
 
   return (
     <section className="relative my-8 p-8 bg-primary-200/20 rounded-xl border-0 dark:border grid grid-cols-4 flex-col gap-8 md:flex-row md:justify-between">
-      <BorderBeam colorFrom="#9f1239" colorTo="#fb7185" />
-
       <div className="flex flex-col gap-1 col-span-2">
         <h2 className="text-xl font-bold">Subscribe to awesomeness</h2>
         <p className="text-sm text-muted-foreground">

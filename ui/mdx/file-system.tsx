@@ -7,7 +7,7 @@ import {
 } from "@/ui/icons"
 
 import { TemplateIcon } from "@/ui/icons"
-import clsx from "clsx"
+import { cn } from "@/lib/utils"
 import React from "react"
 
 export type Item = {
@@ -25,7 +25,7 @@ type Props = {
 export const Filesystem = ({ items, size = "medium", withCounters }: Props) => {
   return (
     <div
-      className={clsx(
+      className={cn(
         "valkyrie backdrop-blur-mdx divide-y divide-primary-100/5 rounded-lg font-medium shadow-xl shadow-black/5",
         {
           "[counter-reset:highlight]": withCounters,
@@ -44,7 +44,7 @@ const Node = ({ items, lvl, size, withCounters }: Props & { lvl: number }) => {
         return (
           <React.Fragment key={name}>
             <div
-              className={clsx("flex items-center space-x-2 leading-none", {
+              className={cn("flex items-center space-x-2 leading-none", {
                 "py-3 px-4": size === "medium",
                 "py-2 px-3": size === "small",
                 "rounded-lg border-none bg-blue-700/[15%] ring-2 ring-blue-700/80":
@@ -54,7 +54,7 @@ const Node = ({ items, lvl, size, withCounters }: Props & { lvl: number }) => {
               })}
             >
               <div
-                className={clsx({
+                className={cn({
                   "text-primary-100/30": !status,
                   "text-blue-100/30": status === "highlighted",
                   "text-primary-100/10": status === "faded",
@@ -71,7 +71,7 @@ const Node = ({ items, lvl, size, withCounters }: Props & { lvl: number }) => {
                 />
               </div>
               <div
-                className={clsx("truncate", {
+                className={cn("truncate", {
                   "text-sm": size === "small",
                   "text-primary-100/70": !status,
                   "text-blue-100/70": status === "highlighted",

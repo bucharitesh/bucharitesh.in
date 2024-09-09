@@ -1,11 +1,11 @@
 import { OOF_GRAD } from "@/lib/constants"
-import clsx from "clsx"
+import { cn } from "@/lib/utils"
 import React from "react"
 
 export const Caption = ({ children }: { children: React.ReactNode }) => {
   return (
     <div
-      className={clsx(
+      className={cn(
         "mt-2 border-l-2 border-primary-200/5 pl-3 text-sm",
         OOF_GRAD,
       )}

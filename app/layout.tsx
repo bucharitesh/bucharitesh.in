@@ -3,10 +3,12 @@ import { createOgImage } from "@/lib/createOgImage"
 import "@/styles/globals.css"
 import { Footer } from "@/ui/layout/footer"
 import localFont from "next/font/local"
-import clsx from "clsx"
 import { Metadata, Viewport } from "next"
 import { SessionProvider } from "next-auth/react"
 import { auth } from "@/lib/auth"
+import { cn } from "@/lib/utils"
+import Toolbar from "@/ui/layout/help"
+// import UserSurveyPopup from "@/ui/survey"
 
 export const viewport: Viewport = {
   themeColor: "#1c1917",
@@ -48,13 +50,13 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const session = await auth();
+  const session = await auth()
 
   return (
     <html className="[color-scheme:dark]">
       <SessionProvider session={session}>
         <body
-          className={clsx(
+          className={cn(
             "font-sans overscroll-y-none bg-background antialiased selection:bg-primary-600/90 selection:text-white",
             hubot.variable,
           )}
@@ -83,6 +85,9 @@ export default async function RootLayout({
           <div className="pointer-events-none absolute inset-0 overflow-hidden bg-blend-overlay">
             <div className="h-full bg-[url('https://res.cloudinary.com/bucha/image/upload/h_500/bg_gradient_fmgwrc')] bg-top bg-no-repeat opacity-[0.3]" />
           </div>
+
+          {/* <UserSurveyPopup /> */}
+          <Toolbar />
         </body>
       </SessionProvider>
     </html>

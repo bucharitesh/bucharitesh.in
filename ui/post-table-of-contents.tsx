@@ -1,7 +1,7 @@
 "use client"
 
 import { FormattedPost } from "@/lib/contentlayer"
-import clsx from "clsx"
+import { cn } from "@/lib/utils"
 
 export const PostTableOfContents = ({
   headings,
@@ -20,7 +20,7 @@ export const PostTableOfContents = ({
             <li key={heading.slug}>
               <a
                 href={`#${heading.slug}`}
-                className={clsx(
+                className={cn(
                   "block text-primary-200/50 underline-offset-2 transition-all hover:text-primary-100 hover:underline hover:decoration-primary-200/50",
                   {
                     "pl-3": heading.heading === 2,

@@ -22,14 +22,18 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
 const useComments = () => {
   const [text, setText] = useState("")
-  const { data: comments, mutate } = useSWR<Comment[]>("/api/words", fetcher, {
-    fallbackData: [],
-  })
+  const { data: comments, mutate } = useSWR<Comment[]>(
+    "/api/guestbook",
+    fetcher,
+    {
+      fallbackData: [],
+    },
+  )
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     try {
-      await fetch("/api/words", {
+      await fetch("/api/guestbook", {
         method: "POST",
         body: JSON.stringify({ text }),
         headers: {
@@ -45,7 +49,7 @@ const useComments = () => {
 
   const onDelete = async (comment: Comment) => {
     try {
-      await fetch("/api/words", {
+      await fetch("/api/guestbook", {
         method: "DELETE",
         body: JSON.stringify({ comment }),
         headers: {

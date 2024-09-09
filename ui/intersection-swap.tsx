@@ -1,6 +1,6 @@
 "use client"
 
-import clsx from "clsx"
+import { cn } from "@/lib/utils"
 import React from "react"
 import { useIntersection } from "react-use"
 
@@ -28,7 +28,7 @@ export function IntersectionSwap({
   return (
     <>
       <div
-        className={clsx(
+        className={cn(
           "sticky top-6 z-30 -mx-px transition duration-75 will-change-transform",
           {
             "-translate-y-2 scale-95 opacity-0": !showPrimary,
@@ -40,7 +40,7 @@ export function IntersectionSwap({
       </div>
       <div ref={intersectionRef}>
         <div
-          className={clsx("transition duration-150 will-change-transform", {
+          className={cn("transition duration-150 will-change-transform", {
             "-translate-y-2 scale-[0.98] opacity-0": showPrimary,
             "opacity-100 delay-100": !showPrimary,
           })}

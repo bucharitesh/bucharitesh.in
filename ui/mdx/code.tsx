@@ -1,7 +1,7 @@
 "use client"
 
 import { Aside } from "@/ui/mdx/aside"
-import clsx from "clsx"
+import { cn } from "@/lib/utils"
 import React from "react"
 
 // There are probably better ways to do this 🥴
@@ -34,7 +34,7 @@ export const Code = ({ children }: { children: React.ReactNode }) => {
     return (
       <div
         key={index}
-        className={clsx({
+        className={cn({
           block: index === slide,
           hidden: index !== slide,
         })}
@@ -53,7 +53,7 @@ export const Code = ({ children }: { children: React.ReactNode }) => {
             return (
               <button
                 key={index}
-                className={clsx(
+                className={cn(
                   "mr-2 mb-2 rounded-lg px-2 py-1 text-sm font-medium",
                   {
                     " bg-primary-100/10 text-primary-100/70 hover:bg-primary-100/20 hover:text-primary-100":

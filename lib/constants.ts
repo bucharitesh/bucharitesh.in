@@ -33,6 +33,7 @@ export const FOOTER_ITEMS = {
     { href: "/", label: "Home" },
     { href: "/blog", label: "Blog" },
     { href: "/projects", label: "Projects" },
+    { href: "/guestbook", label: "Guestbook" },
   ],
   SOCIAL: [
     { href: "/cal", label: "Book a Meeting" },

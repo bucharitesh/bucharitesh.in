@@ -6,7 +6,7 @@ import { Filesystem } from "./file-system"
 import { Grid } from "./grid"
 import { FauxTweet } from "./faux-tweet"
 import { LoadingSkeleton } from "./loading-skeleton"
-import clsx from "clsx"
+import { cn } from "@/lib/utils"
 import type { ImageProps } from "next/image"
 import NextLink from "next/link"
 import React from "react"
@@ -52,7 +52,7 @@ export const components = {
     if (href.startsWith("http")) {
       return (
         <a
-          className={clsx(LINK_STYLES, FOCUS_VISIBLE_OUTLINE)}
+          className={cn(LINK_STYLES, FOCUS_VISIBLE_OUTLINE)}
           href={href}
           target="_blank"
           rel="noopener"
@@ -64,7 +64,7 @@ export const components = {
     return (
       <NextLink
         href={href}
-        className={clsx(LINK_STYLES, FOCUS_VISIBLE_OUTLINE)}
+        className={cn(LINK_STYLES, FOCUS_VISIBLE_OUTLINE)}
         {...props}
       />
     )
@@ -92,7 +92,7 @@ export const components = {
     return (
       <>
         <div
-          className={clsx({
+          className={cn({
             "xl:!col-start-2 xl:!col-end-4": bleed === true,
           })}
         >
@@ -106,7 +106,7 @@ export const components = {
   // reserve `<em>` to style citations.
   blockquote: (props: any) => (
     <blockquote
-      className={clsx(
+      className={cn(
         "relative border-l-2 border-primary-200/5 pl-4 pt-8 before:absolute before:top-5 before:-ml-1 before:-mt-6 before:text-6xl before:text-primary-200/20 before:content-['“'] [&_em]:mt-3 [&_em]:block [&_em]:not-italic [&_em]:leading-none [&_em]:before:pr-1 [&_em]:before:content-['—']",
         OOF_GRAD,
       )}
@@ -117,5 +117,5 @@ export const components = {
     <del className="text-primary-200/50 line-through" {...props} />
   ),
   Step: (props: any) => <Step {...props} />,
-  LinkPreview: (props: any) => <LinkPreview {...props} />
+  LinkPreview: (props: any) => <LinkPreview {...props} />,
 }

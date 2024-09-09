@@ -1,5 +1,5 @@
 import { OOF_GRAD } from "@/lib/constants"
-import clsx from "clsx"
+import { cn } from "@/lib/utils"
 import Balancer from "react-wrap-balancer"
 import { getUses, ProcessedUseCategory } from "@/lib/uses"
 import PageWrapper from "@/ui/layout/page-wrapper"
@@ -7,9 +7,9 @@ import { Metadata } from "next/types"
 
 export const metadata: Metadata = {
   title: "Uses",
-  description: "All the things I use to do my job, run my life, and get things done!",
+  description:
+    "All the things I use to do my job, run my life, and get things done!",
 }
-
 
 export default async function Page() {
   const uses = await getUses()
@@ -36,7 +36,7 @@ const UsesPreview: React.FC<UsesPreviewProps> = ({ item }) => {
   return (
     <div className="border-b border-dashed pb-10 border-primary-500/30 last:border-b-0">
       <h3
-        className={clsx(
+        className={cn(
           "mt-6 text-4xl text-primary-500 font-bold sm:text-2xl",
           OOF_GRAD,
         )}

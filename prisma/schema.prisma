@@ -33,3 +33,11 @@ model Guestbook {
   image     String
   user_id   String
 }
+
+model Support {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  name      String
+  email     String
+  message   String
+}

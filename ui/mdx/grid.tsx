@@ -1,4 +1,4 @@
-import clsx from "clsx"
+import { cn } from "@/lib/utils"
 import React from "react"
 
 export const Grid = ({
@@ -10,7 +10,7 @@ export const Grid = ({
 }) => {
   return (
     <div
-      className={clsx({
+      className={cn({
         "z-10 !col-start-1 !col-end-[-1] grid auto-cols-[min(400px,80%)] grid-flow-col gap-5 overflow-x-auto bg-gray-900 shadow-[0_0_30px_20px] shadow-gray-900 [color-scheme:dark] xl:px-4":
           x === "full",
         "relative xl:!col-start-2": x === "aside",

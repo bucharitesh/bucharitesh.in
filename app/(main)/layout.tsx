@@ -1,4 +1,4 @@
-import { SiteHeader } from "@/ui/SiteHeader"
+import { SiteHeader } from "@/ui/SiteHeader";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -6,7 +6,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <div className="sticky top-6 z-30 -mx-px">
         <SiteHeader />
       </div>
-
       {children}
     </>
   )

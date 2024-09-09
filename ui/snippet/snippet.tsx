@@ -5,7 +5,7 @@ import { LikeButton2 } from "@/ui/like-button-2"
 import MostViewed from "@/ui/blog/most-viewed"
 import { PostMetrics } from "@/ui/blog/post-metrics"
 import { ScrollToTop } from "@/ui/ScrollToTop"
-import clsx from "clsx"
+import { cn } from "@/lib/utils"
 import { useMDXComponent } from "next-contentlayer/hooks"
 import Link from "next/link"
 import Balancer from "react-wrap-balancer"
@@ -29,7 +29,7 @@ export default function Snippet({ snippet }: { snippet: FormattedSnippet }) {
           </div>
         </Link>
 
-        <h1 className={clsx("mt-6 text-2xl font-medium sm:text-4xl", OOF_GRAD)}>
+        <h1 className={cn("mt-6 text-2xl font-medium sm:text-4xl", OOF_GRAD)}>
           <Balancer>{snippet.title}</Balancer>
         </h1>
 

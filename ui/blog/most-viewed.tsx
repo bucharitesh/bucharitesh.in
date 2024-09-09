@@ -2,7 +2,7 @@
 
 import { useTrendingPosts } from "@/lib/hooks"
 import { LoadingDots } from "@/ui/loading-dots"
-import clsx from "clsx"
+import { cn } from "@/lib/utils"
 import { ZapIcon } from "../icons"
 
 export default function MostViewed() {
@@ -43,7 +43,7 @@ const TrendingPostItem = ({
   return (
     <a
       href={`/blog/${post.slug}`}
-      className={clsx(
+      className={cn(
         "block text-primary-200/50 transition-all hover:text-primary-100 pl-3",
       )}
     >

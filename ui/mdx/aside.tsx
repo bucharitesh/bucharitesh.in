@@ -1,5 +1,5 @@
 import { OOF_GRAD } from "@/lib/constants"
-import clsx from "clsx"
+import { cn } from "@/lib/utils"
 import React from "react"
 
 export const Aside = ({
@@ -16,7 +16,7 @@ export const Aside = ({
       ) : null}
 
       <div
-        className={clsx(
+        className={cn(
           "[&>span[data-rehype-pretty-code-fragment]]:!text-[11px] text-sm",
           OOF_GRAD,
         )}

@@ -1,7 +1,7 @@
 import { FOCUS_VISIBLE_OUTLINE } from "@/lib/constants"
 import { Nav } from "@/ui/Nav"
 import { ProfileImage } from "@/ui/ProfileImage"
-import clsx from "clsx"
+import { cn } from "@/lib/utils"
 import Link from "next/link"
 
 export function SiteHeader() {
@@ -11,7 +11,7 @@ export function SiteHeader() {
         <Link
           href="/"
           title="Navigate home"
-          className={clsx("rounded-full", FOCUS_VISIBLE_OUTLINE)}
+          className={cn("rounded-full", FOCUS_VISIBLE_OUTLINE)}
         >
           <ProfileImage />
         </Link>
