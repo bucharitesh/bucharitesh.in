@@ -5,7 +5,7 @@ import {
   LINK_SUBTLE_STYLES,
 } from "@/lib/constants"
 import { cn } from "@/lib/utils"
-import Link from "next/link"
+import { Link } from "next-view-transitions"
 // import NowPlaying from "./now-playing";
 import NewsletterForm from "./newsletter-form"
 

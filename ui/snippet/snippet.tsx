@@ -7,7 +7,7 @@ import { PostMetrics } from "@/ui/blog/post-metrics"
 import { ScrollToTop } from "@/ui/ScrollToTop"
 import { cn } from "@/lib/utils"
 import { useMDXComponent } from "next-contentlayer/hooks"
-import Link from "next/link"
+import { Link } from "next-view-transitions"
 import Balancer from "react-wrap-balancer"
 import { ChevronLeft } from "lucide-react"
 

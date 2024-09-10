@@ -6,7 +6,7 @@ import { SiteHeader } from "@/ui/SiteHeader"
 
 import { Metadata } from "next"
 import FlamMark from "@/ui/icons/FlamMark"
-import Link from "next/link"
+import { Link } from "next-view-transitions"
 import { getPosts } from "@/lib/posts"
 import { BlogPostPreview } from "@/ui/blog/blog-post-preview"
 import { ArrowRight } from "lucide-react"

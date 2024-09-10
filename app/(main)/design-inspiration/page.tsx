@@ -1,13 +1,13 @@
 import PageWrapper from "@/ui/layout/page-wrapper"
 import React from "react"
 import Image from "next/image"
-import Link from "next/link"
-import { getDesignInspiration } from "@/lib/get-design-inspiraion";
-import { DesignInspirationItem } from "@/.contentlayer/generated";
+import { Link } from "next-view-transitions"
+import { getDesignInspiration } from "@/lib/get-design-inspiraion"
+import { DesignInspirationItem } from "@/.contentlayer/generated"
 
 export default async function Page() {
-  const { data: items } = await getDesignInspiration();
-  
+  const { data: items } = await getDesignInspiration()
+
   return (
     <PageWrapper
       title="Designers and Design Engineers"

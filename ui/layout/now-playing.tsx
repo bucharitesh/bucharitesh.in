@@ -1,9 +1,9 @@
 import { getNowPlaying } from "@/lib/services/spotify"
-import Link from "next/link";
-import Image from "next/image";
+import { Link } from "next-view-transitions"
+import Image from "next/image"
 
 export default async function NowPlaying() {
-  const data = await getNowPlaying();
+  const data = await getNowPlaying()
 
   return (
     <div className="mb-8 flex w-full flex-row-reverse space-x-0 sm:flex-row sm:space-x-2">

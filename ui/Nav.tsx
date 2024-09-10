@@ -1,7 +1,7 @@
 import { FOCUS_VISIBLE_OUTLINE } from "@/lib/constants"
 import { cn } from "@/lib/utils"
 import { Book, Bot, Braces } from "lucide-react"
-import Link from "next/link"
+import { Link } from "next-view-transitions"
 import React, { ElementType } from "react"
 
 function NavItem({

@@ -2,7 +2,7 @@ import { FOCUS_VISIBLE_OUTLINE } from "@/lib/constants"
 import { Nav } from "@/ui/Nav"
 import { ProfileImage } from "@/ui/ProfileImage"
 import { cn } from "@/lib/utils"
-import Link from "next/link"
+import { Link } from "next-view-transitions"
 
 export function SiteHeader() {
   return (
