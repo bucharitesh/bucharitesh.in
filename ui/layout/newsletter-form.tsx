@@ -74,7 +74,7 @@ export default function NewsletterForm() {
   }
 
   return (
-    <section className="relative my-8 p-8 bg-primary-200/20 rounded-xl border-0 dark:border grid grid-cols-4 flex-col gap-8 md:flex-row md:justify-between">
+    <section className="relative my-8 p-6 md:p-8 bg-primary-200/20 rounded-xl border-0 dark:border md:grid grid-cols-4 flex flex-col gap-8 md:flex-row md:justify-between">
       <div className="flex flex-col gap-1 col-span-2">
         <h2 className="text-xl font-bold">Subscribe to awesomeness</h2>
         <p className="text-sm text-muted-foreground">

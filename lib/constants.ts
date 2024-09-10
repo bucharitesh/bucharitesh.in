@@ -36,9 +36,9 @@ export const FOOTER_ITEMS = {
     { href: "/guestbook", label: "Guestbook" },
   ],
   SOCIAL: [
-    { href: "/cal", label: "Book a Meeting" },
     { href: meta.social.github, label: "GitHub" },
     { href: meta.social.twitter, label: "Twitter" },
+    { href: "/cal", label: "Book a Meeting" },
   ],
   PAGES: [
     { href: "/snippets", label: "Snippets" },

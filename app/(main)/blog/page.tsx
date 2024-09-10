@@ -2,7 +2,10 @@ import { getPosts } from "@/lib/posts"
 import { BlogPostPreview } from "@/ui/blog/blog-post-preview"
 
 import MostViewed from "@/ui/blog/most-viewed"
+import { Button } from "@/ui/Button"
 import PageWrapper from "@/ui/layout/page-wrapper"
+import { Rss } from "lucide-react"
+import Link from "next/link"
 import { Metadata } from "next/types"
 
 /**
@@ -21,7 +24,15 @@ export default async function Page() {
   const { posts } = await getPosts()
 
   return (
-    <PageWrapper title="Blogs">
+    <PageWrapper
+      title="Blogs"
+      description="Read my thoughts on software development, design, and more."
+      action={
+        <Link href="/blog/feed.xml" className="bg-primary-700/40 text-primary-100 p-4">
+          <Rss className="h-4 w-4" />
+        </Link>
+      }
+    >
       {posts && (
         <div className="sticky top-6 hidden h-0 xl:!col-start-4 xl:row-start-3 xl:block">
           <MostViewed />

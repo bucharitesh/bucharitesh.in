@@ -52,8 +52,6 @@ export default async function RootLayout({
 }) {
   const session = await auth();
 
-  console.log(createOgImage({ title: meta.name, meta: meta.tagline }))
-
   return (
     <ViewTransitions>
       <html className="[color-scheme:dark]">
