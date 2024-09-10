@@ -10,9 +10,11 @@ import { useMDXComponent } from "next-contentlayer/hooks"
 import { Link } from "next-view-transitions"
 import Balancer from "react-wrap-balancer"
 import { ChevronLeft } from "lucide-react"
+import { PostTableOfContents } from "../post-table-of-contents"
+import { BlurImage } from "../mdx/blur-image"
 
 export default function Snippet({ snippet }: { snippet: FormattedSnippet }) {
-  const MDXContent = useMDXComponent(snippet.body.code)
+  const MDXContent = useMDXComponent(snippet.body.code);
 
   return (
     <>
@@ -29,23 +31,39 @@ export default function Snippet({ snippet }: { snippet: FormattedSnippet }) {
           </div>
         </Link>
 
-        <h1 className={cn("mt-6 text-2xl font-medium sm:text-4xl", OOF_GRAD)}>
+        <h1
+          className={cn(
+            "flex items-center space-x-4 justify-start mt-6 text-2xl font-medium sm:text-4xl",
+            OOF_GRAD,
+          )}
+        >
+          {snippet.logo ? (
+            <BlurImage
+              height={40}
+              width={40}
+              src={snippet.logo}
+              alt={snippet.title}
+              className="rounded-full"
+            />
+          ) : null}
           <Balancer>{snippet.title}</Balancer>
         </h1>
 
         <div className="mt-4 flex space-x-2 text-primary-200/50">
+          <div>{snippet.publishedAtFormatted}</div>
+          <div className="text-primary-200/30">&middot;</div>
           <PostMetrics slug={snippet.slug} />
         </div>
       </div>
 
       <div className="sticky top-6 hidden h-0 xl:!col-start-4 xl:row-start-3 xl:block space-y-8">
         <div className="space-y-6">
-          {/* {snippet.headings ? (
+          {snippet.headings ? (
             <>
               <PostTableOfContents headings={snippet.headings} />
               <div className="border-t-2 border-primary-200/5"></div>
             </>
-          ) : null} */}
+          ) : null}
 
           {/* <MostViewed /> */}
 

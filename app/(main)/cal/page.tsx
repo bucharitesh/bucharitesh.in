@@ -10,7 +10,13 @@ import PageWrapper from "@/ui/layout/page-wrapper"
 // npm install @calcom/embed-react
 
 import Cal from "@calcom/embed-react"
+import { Metadata } from "next/types"
 // import { useEffect } from "react"
+
+export const metadata: Metadata = {
+  title: "Book a Meeting",
+  description: "Schedule a meeting with me to discuss anything from design to engineering to business to anything else.",
+}
 
 export default function MyApp() {
 

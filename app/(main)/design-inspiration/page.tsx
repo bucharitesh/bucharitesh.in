@@ -4,6 +4,12 @@ import Image from "next/image"
 import { Link } from "next-view-transitions"
 import { getDesignInspiration } from "@/lib/get-design-inspiraion"
 import { DesignInspirationItem } from "@/.contentlayer/generated"
+import { Metadata } from "next/types"
+
+export const metadata: Metadata = {
+  title: "Designers and Design Engineers",
+  description: "A curated list of designers and design engineers I follow and look up to.",
+}
 
 export default async function Page() {
   const { data: items } = await getDesignInspiration()

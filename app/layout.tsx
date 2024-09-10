@@ -7,7 +7,7 @@ import { Metadata, Viewport } from "next"
 import { SessionProvider } from "next-auth/react"
 import { auth } from "@/lib/auth"
 import { cn } from "@/lib/utils"
-import Toolbar from "@/ui/layout/help"
+// import Toolbar from "@/ui/layout/help"
 import { ViewTransitions } from "next-view-transitions"
 
 export const viewport: Viewport = {
@@ -16,7 +16,7 @@ export const viewport: Viewport = {
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: { template: `${meta.name} | %s`, default: `${meta.name}` },
+    title: { template: `%s | ${meta.name}`, default: `${meta.name}` },
     metadataBase: new URL(`https://${meta.domain}`),
     openGraph: {
       title: meta.name,
@@ -88,7 +88,7 @@ export default async function RootLayout({
             </div>
 
             {/* <UserSurveyPopup /> */}
-            <Toolbar />
+            {/* <Toolbar /> */}
           </body>
         </SessionProvider>
       </html>
