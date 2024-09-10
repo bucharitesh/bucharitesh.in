@@ -50,7 +50,9 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const session = await auth()
+  const session = await auth();
+
+  console.log(createOgImage({ title: meta.name, meta: meta.tagline }))
 
   return (
     <ViewTransitions>

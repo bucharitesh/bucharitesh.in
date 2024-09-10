@@ -2,7 +2,7 @@
 const e = (str: string) => encodeURIComponent(encodeURIComponent(str))
 
 const overlayImageUrl =
-  "https://res.cloudinary.com/bucha/image/upload/v1723548212/bucha_h6yyke.png"
+  "aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYnVjaGEvaW1hZ2UvdXBsb2FkL2Jfd2hpdGUvYnVjaGFfaDZ5eWtlLnBuZw=="
 
 // TODO: Update OG image logic
 export const createOgImage = ({ title, meta }: { title: string; meta: string }) =>
@@ -26,11 +26,11 @@ export const createOgImage = ({ title, meta }: { title: string; meta: string }) 
 
     // PROFILE IMAGE
     // // dynamically fetched from my twitter profile
-    // `l_fetch:${e(overlayImageUrl)}`,
+    `l_fetch:${(overlayImageUrl)}`,
     // // Transformations
-    // `c_thumb,g_face,r_max,w_380,h_380,q_100`,
+    `c_thumb,r_max,w_380,h_380,q_100`,
     // // Positioning
-    // `fl_layer_apply,w_140,g_north_west,x_100,y_100`,
+    `fl_layer_apply,w_140,g_north_west,x_100,y_100`,
 
     // BG
     `grain-gradient_ctrjnp.png`,
