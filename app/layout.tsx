@@ -9,6 +9,7 @@ import { auth } from "@/lib/auth"
 import { cn } from "@/lib/utils"
 // import Toolbar from "@/ui/layout/help"
 import { ViewTransitions } from "next-view-transitions"
+import { PreloadResources } from "@/ui/backgrounds/preload-resource"
 
 export const viewport: Viewport = {
   themeColor: "#1c1917",
@@ -62,6 +63,7 @@ export default async function RootLayout({
               hubot.variable,
             )}
           >
+            <PreloadResources url={"https://res.cloudinary.com/bucha/image/upload/h_500/bg_gradient_fmgwrc"} />
             <svg
               className="pointer-events-none fixed isolate z-50 mix-blend-soft-light"
               width="100%"

@@ -19,12 +19,6 @@ export default function LoginButton() {
   const [isPending, startTransition] = useTransition()
   const [message, setMessage] = useState("")
 
-  useEffect(() => {
-    if (status === "loading") {
-      console.log("Session is loading...")
-    }
-  }, [status])
-
   const leaveEntry = async (data: any) => {
     startTransition(async () => {
       try {

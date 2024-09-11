@@ -2,7 +2,7 @@ import { getPosts } from "@/lib/posts"
 import { BlogPostPreview } from "@/ui/blog/blog-post-preview"
 
 import MostViewed from "@/ui/blog/most-viewed"
-import { Button } from "@/ui/Button"
+import { Button } from "@/ui/button"
 import PageWrapper from "@/ui/layout/page-wrapper"
 import { Rss } from "lucide-react"
 import Link from "next/link"
@@ -28,9 +28,13 @@ export default async function Page() {
       title="Blogs"
       description="Read my thoughts on software development, design, and more."
       action={
-        <Link href="/blog/feed.xml" className="bg-primary-700/40 text-primary-100 p-4">
-          <Rss className="h-4 w-4" />
-        </Link>
+        <Button variant={"outline"} className="py-5">
+          <Link
+            href="/blog/feed.xml"
+          >
+            <Rss className="h-4 w-4" />
+          </Link>
+        </Button>
       }
     >
       {posts && (

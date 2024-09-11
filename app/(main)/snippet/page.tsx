@@ -1,4 +1,5 @@
 import { getSnippets } from "@/lib/snippets";
+import { Button } from "@/ui/button";
 import PageWrapper from "@/ui/layout/page-wrapper";
 import { SnippetPostPreview } from "@/ui/snippet/snippet-preview"
 import { Rss } from "lucide-react";
@@ -18,15 +19,14 @@ export default async function Page() {
       title="Snippets"
       description="A collection of snippets that I've written."
       action={
-        <Link
-          href="/snippet/feed.xml"
-          className="bg-primary-700/40 text-primary-100 p-4"
-        >
-          <Rss className="h-4 w-4" />
-        </Link>
+        <Button variant={"outline"} className="py-5">
+          <Link href="/snippet/feed.xml">
+            <Rss className="h-4 w-4" />
+          </Link>
+        </Button>
       }
     >
-      <div className="grid grid-cols-2 space-y-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 space-y-10">
         {snippets.map((snippet) => {
           return <SnippetPostPreview key={snippet.slug} {...snippet} />
         })}

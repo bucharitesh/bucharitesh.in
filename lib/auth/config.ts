@@ -10,6 +10,7 @@ export type User = {
 
 export default {
   debug: process.env.NODE_ENV !== "production" ? true : false,
+  secret: process.env.AUTH_SECRET as string,
   providers: [
     Github({
       clientId: process.env.GITHUB_ID,
@@ -25,7 +26,6 @@ export default {
   ],
   callbacks: {
     async session({ session, token }) {
-      console.log("session", session, token)
       if (session && session.user && token.sub) {
         session.user.sub = token.sub
       }

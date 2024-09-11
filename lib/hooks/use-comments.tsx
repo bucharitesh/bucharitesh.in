@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import { useState } from "react"
 import useSWR from "swr"
@@ -22,13 +22,13 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
 const useComments = () => {
   const [text, setText] = useState("")
-  const { data: comments, mutate } = useSWR<Comment[]>(
-    "/api/guestbook",
-    fetcher,
-    {
-      fallbackData: [],
-    },
-  )
+  const {
+    data: comments,
+    isLoading,
+    mutate,
+  } = useSWR<Comment[]>("/api/guestbook", fetcher, {
+    fallbackData: [],
+  })
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -62,7 +62,14 @@ const useComments = () => {
     }
   }
 
-  return { text, setText, comments, onSubmit, onDelete }
+  return {
+    loading: isLoading || !comments,
+    text,
+    setText,
+    comments,
+    onSubmit,
+    onDelete,
+  }
 }
 
 export { useComments }

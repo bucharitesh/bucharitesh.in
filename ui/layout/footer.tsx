@@ -30,13 +30,13 @@ export const Footer = async () => {
 
       <hr className="border-1 mb-8 w-full border-primary-200/30" />
 
-      <div className="text-primary-100/50 flex flex-col justify-between font-medium lg:flex-row">
+      <div className="text-primary-100/50 flex flex-col justify-between font-medium lg:flex-row gap-5">
         {Object.keys(FOOTER_ITEMS).map((key) => (
           <div
             key={key}
             className="flex justify-between font-medium lg:flex-row"
           >
-            <div className="flex flex-col space-y-5">
+            <div className="flex flex-col gap-5">
               {FOOTER_ITEMS[key].map((item) => (
                 <FooterItem
                   key={item.href}

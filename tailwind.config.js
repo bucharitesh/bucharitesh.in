@@ -20,7 +20,7 @@ module.exports = {
       },
       colors: {
         gray: colors.stone,
-        background: "#1c1917",
+        background: "hsl(var(--background))",
         primary: {
           50: "#fff1f2",
           100: "#ffe4e6",
@@ -33,6 +33,43 @@ module.exports = {
           800: "#9f1239",
           900: "#881337",
           950: "#4c0519",
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        foreground: "hsl(var(--foreground))",
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        chart: {
+          1: "hsl(var(--chart-1))",
+          2: "hsl(var(--chart-2))",
+          3: "hsl(var(--chart-3))",
+          4: "hsl(var(--chart-4))",
+          5: "hsl(var(--chart-5))",
         },
       },
       animation: {
@@ -40,6 +77,8 @@ module.exports = {
         "spin-around": "spin-around calc(var(--speed) * 2) infinite linear",
         slide: "slide var(--speed) ease-in-out infinite alternate",
       },
+      keyframes:
+        '({ theme }) => ({\n        "spin-around": {\n          "0%": {\n            transform: "translateZ(0) rotate(0)",\n          },\n          "15%, 35%": {\n            transform: "translateZ(0) rotate(90deg)",\n          },\n          "65%, 85%": {\n            transform: "translateZ(0) rotate(270deg)",\n          },\n          "100%": {\n            transform: "translateZ(0) rotate(360deg)",\n          },\n        },\n        slide: {\n          to: {\n            transform: "translate(calc(100cqw - 100%), 0)",\n          },\n        },\n        "border-beam": {\n          "100%": {\n            "offset-distance": "100%",\n          },\n        },\n        mutation: {\n          "0%": {\n            background: theme("colors.primary.200 / 3%"),\n          },\n          "10%": {\n            background: theme("colors.primary.200 / 15%"),\n            color: theme("colors.primary.200 / 75%"),\n          },\n          "100%": {\n            background: theme("colors.primary.200 / 0%"),\n          },\n        },\n        emoji: {\n          "0%": {\n            opacity: "0",\n            transform: "translateY(0) scale(0)",\n          },\n          "50%": {\n            opacity: "1",\n            transform: "translateY(-40px) scale(1)",\n          },\n          to: {\n            opacity: "0",\n            transform: "translateY(-60px) scale(1.4)",\n          },\n        },\n        loading: {\n          "0%": {\n            opacity: ".2",\n          },\n          "20%": {\n            opacity: "1",\n            transform: "translateX(1px)",\n          },\n          to: {\n            opacity: ".2",\n          },\n        },\n        shimmer: {\n          "100%": {\n            transform: "translateX(100%)",\n          },\n        },\n      })',
       keyframes: ({ theme }) => ({
         "spin-around": {
           "0%": {

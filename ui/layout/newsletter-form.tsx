@@ -10,6 +10,9 @@ import { useEffect, useState } from "react"
 import { cn } from "@/lib/utils"
 import { OOF_GRAD } from "@/lib/constants"
 import { Send, SendHorizonal } from "lucide-react"
+import { Input } from "../input"
+import { Button } from "../button"
+import { LoadingDots } from "../loading-dots"
 
 type Inputs = z.infer<typeof NewsletterFormSchema>
 
@@ -77,7 +80,7 @@ export default function NewsletterForm() {
     <section className="relative my-8 p-6 md:p-8 bg-primary-200/20 rounded-xl border-0 dark:border md:grid grid-cols-4 flex flex-col gap-8 md:flex-row md:justify-between">
       <div className="flex flex-col gap-1 col-span-2">
         <h2 className="text-xl font-bold">Subscribe to awesomeness</h2>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-sm text-primary-300">
           I wont spam you. Pinky Promise!
         </p>
       </div>
@@ -86,26 +89,21 @@ export default function NewsletterForm() {
         onSubmit={handleSubmit(processForm)}
         className="flex items-center gap-3 col-span-2"
       >
-        <input
+        <Input
           type="email"
           id="email"
           autoComplete="email"
           placeholder="Email"
-          className="w-full rounded-md border border-input px-4 py-2 bg-primary-200 text-primary-800 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-primary-500 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary-200 disabled:cursor-not-allowed disabled:opacity-50"
           {...register("email")}
         />
 
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className="w-max disabled:opacity-50 rounded-md px-4 py-2 bg-primary-400 text-primary-foreground hover:bg-primary/90"
-        >
+        <Button type="submit" disabled={isSubmitting} className="group">
           {isSubmitting ? (
-            <Send className="w-4 h-4" />
+            <LoadingDots />
           ) : (
-            <SendHorizonal className="w-4 h-4" />
+            <SendHorizonal className="w-4 h-4 group-hover:-rotate-45 transition-all" />
           )}
-        </button>
+        </Button>
       </form>
     </section>
   )
