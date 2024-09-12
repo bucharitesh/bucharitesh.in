@@ -1,3 +1,4 @@
+import { Button } from '@/ui/button'
 import React from 'react'
 import { Dispatch, SetStateAction } from "react"
 
@@ -10,7 +11,7 @@ const MainContent = ({
     <div className="space-y-2">
       <p className="font-medium text-foreground">Need help?</p>
       <p className="text-muted-foreground text-sm">
-        We are here to help you with any questions you may have.
+        I am happy to help you.
       </p>
       {/* <Button variant="ghost" className="w-full" asChild>
         <a
@@ -31,13 +32,13 @@ const MainContent = ({
           Join Discord
         </a>
       </Button> */}
-      <button
-        // variant="ghost"
+      <Button
+        variant="outline"
         className="w-full"
         onClick={() => setScreen("contact")}
       >
         Get in touch
-      </button>
+      </Button>
     </div>
   )
 }

@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils"
 // import Toolbar from "@/ui/layout/help"
 import { ViewTransitions } from "next-view-transitions"
 import { PreloadResources } from "@/ui/backgrounds/preload-resource"
+import Toolbar from "@/ui/layout/help"
 
 export const viewport: Viewport = {
   themeColor: "#1c1917",
@@ -90,7 +91,7 @@ export default async function RootLayout({
             </div>
 
             {/* <UserSurveyPopup /> */}
-            {/* <Toolbar /> */}
+            <Toolbar />
           </body>
         </SessionProvider>
       </html>

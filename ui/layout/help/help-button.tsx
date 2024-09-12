@@ -24,7 +24,7 @@ export function HelpButton() {
         onClick={() => {
           setIsOpen((o) => !o)
         }}
-        className="font-lg relative h-12 w-12 overflow-hidden rounded-full border text-primary-200 border-primary-400/20 bg-white/5 shadow-md active:bg-primary-600"
+        className="font-lg relative h-12 w-12 overflow-hidden rounded-full border text-primary-200 border-primary-400/20 bg-white/5 shadow-md active:bg-primary-600 active:scale-[0.9]"
       >
         <AnimatePresence>
           <motion.div
@@ -50,7 +50,7 @@ function HelpSection() {
 
   return (
     <motion.div
-      className="w-full overflow-scroll sm:w-[24rem]"
+      className="overflow-scroll w-[20rem]"
       animate={{
         height: resizeObserverEntry?.borderBoxSize[0].blockSize ?? "auto",
         maxHeight: "calc(100vh - 10rem)",

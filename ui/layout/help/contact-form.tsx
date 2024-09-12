@@ -1,3 +1,5 @@
+import { Button } from "@/ui/button"
+import { Input } from "@/ui/input"
 import { AnimatePresence, motion } from "framer-motion"
 import { CheckCheck, CheckCircle, ChevronLeft } from "lucide-react"
 import { Dispatch, SetStateAction, useRef, useState } from "react"
@@ -25,7 +27,7 @@ export function ContactForm({
   )
 
   return (
-    <div className="relative w-full px-3 pb-16 pt-5 sm:px-6">
+    <div className="relative w-full px-3 pb-16 pt-5 sm:px-2">
       <button
         type="button"
         className="-ml-2 flex items-center text-center text-primary-100 space-x-1 px-2 py-1"
@@ -42,8 +44,8 @@ export function ContactForm({
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <CheckCheck className="h-8 w-8 text-primary-200" />
-            <p className="text-primary-500">
+            <CheckCheck className="h-8 w-8 text-primary-500" />
+            <p className="text-primary-300">
               Thanks for reaching out! <br /> I'll get back to you as soon as
               possible.
             </p>
@@ -72,9 +74,10 @@ export function ContactForm({
           >
             <label>
               <span className="text-sm font-medium text-primary-300">Name</span>
-              <input
+              <Input
                 name="name"
                 required
+                placeholder="enter your name"
                 autoFocus
                 value={data.name}
                 onChange={(e) =>
@@ -88,9 +91,10 @@ export function ContactForm({
               <span className="text-sm font-medium text-primary-300">
                 Email
               </span>
-              <input
+              <Input
                 name="email"
                 type="email"
+                placeholder="enter your email"
                 required
                 value={data.email}
                 onChange={(e) =>
@@ -118,14 +122,12 @@ export function ContactForm({
               />
             </label>
 
-            <div className="fixed bottom-0 left-0 z-10 flex h-16 w-full items-center justify-center rounded-b-lg bg-primary-600 px-3 sm:px-6">
-              <button
-                className="h-9"
-                disabled={!data.message}
-              >
-                Send message
-              </button>
-            </div>
+            <Button
+              className="fixed bottom-0 left-0 z-10 flex h-16 w-full items-center justify-center rounded-b-lg bg-primary-600 px-3 sm:px-6"
+              disabled={!data.message}
+            >
+              Send message
+            </Button>
           </motion.form>
         )}
       </AnimatePresence>
