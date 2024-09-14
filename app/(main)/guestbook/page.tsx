@@ -17,8 +17,7 @@ export default async function Page() {
   return (
     <PageWrapper
       title="Words"
-      description="Write anything for future visitors of this website. I'd love a random
-        joke though."
+      description="Sign my guestbook and leave your mark"
     >
       <div className="space-y-10">
         <Suspense fallback={<div className="h-[70px]" />}>

@@ -11,7 +11,7 @@ export function SubmitButton() {
       disabled={pending}
       type="submit"
     >
-      Sign
+      {pending ? "Loading..." : "Sign"}
     </button>
   )
 }

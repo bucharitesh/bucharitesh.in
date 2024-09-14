@@ -4,6 +4,7 @@ import prisma from "@/lib/prisma"
 import { auth } from "../auth"
 import { Session } from "next-auth"
 import { unstable_cache as cache, revalidatePath } from "next/cache"
+import { sendEmail } from "@/emails"
 
 async function getSession(): Promise<Session> {
   let session = await auth()
@@ -70,16 +71,17 @@ export async function deleteGuestbookEntries(selectedEntries: string[]) {
   let session = await getSession()
   let email = session.user?.email as string
 
-  if (email !== "me@leerob.io") {
+  if (email !== "bucharitesh@gmail.com") {
     throw new Error("Unauthorized")
   }
 
-  let selectedEntriesAsNumbers = selectedEntries.map(Number)
-  let arrayLiteral = `{${selectedEntriesAsNumbers.join(",")}}`
-
-   await prisma.guestbook.delete({
-     where: { id: arrayLiteral },
-   })
+  await prisma.guestbook.deleteMany({
+    where: {
+      id: {
+        in: selectedEntries,
+      },
+    },
+  });
 
   revalidatePath("/admin")
   revalidatePath("/guestbook")
