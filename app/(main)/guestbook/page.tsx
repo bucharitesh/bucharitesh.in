@@ -1,8 +1,11 @@
 import PageWrapper from "@/ui/layout/page-wrapper"
-import React from "react"
-import PageClient from "./page-client"
-import { auth } from "@/lib/auth"
+import React, { Suspense } from "react"
 import { Metadata } from "next/types"
+import { Form } from "./form"
+import { getGuestbookEntries } from "@/lib/db/guestbook"
+import Image from "next/image"
+import { format } from "date-fns"
+import { TrashIcon } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Guestbook",
@@ -11,8 +14,6 @@ export const metadata: Metadata = {
 }
 
 export default async function Page() {
-  const session = await auth()
-
   return (
     <PageWrapper
       title="Words"
@@ -20,8 +21,54 @@ export default async function Page() {
         joke though."
     >
       <div className="space-y-10">
-        <PageClient session={session} />
+        <Suspense fallback={<div className="h-[70px]" />}>
+          <Form />
+        </Suspense>
+        <GuestbookEntries />
       </div>
     </PageWrapper>
+  )
+}
+
+async function GuestbookEntries() {
+  const entries = await getGuestbookEntries()
+
+  if (entries.length === 0) {
+    return null
+  }
+
+  return entries.map((entry) => (
+    <WordsEntry
+      key={entry.id}
+      comment={entry}
+    />
+  ))
+}
+
+function WordsEntry({ comment }: any) {
+  return (
+    <div className="relative flex w-full flex-col space-y-4">
+      <div className="prose w-full break-words prose-dark text-primary-300">
+        {comment.message}
+      </div>
+      <div className="flex items-center space-x-3">
+        <Image
+          src={comment.image}
+          width="20"
+          height="20"
+          objectFit="cover"
+          className="rounded-full border-none outline-none ring-1 ring-primary-400 ring-offset-1 ring-offset-transparent"
+          alt=""
+        />
+
+        <p className="text-sm text-primary-600/90">{comment.name}</p>
+
+        <span className="text-primary-400">/</span>
+
+        <p className="text-sm text-primary-600/90">
+          {format(new Date(comment.createdAt), "d MMM yyyy 'at' h:mm bb")}
+        </p>
+      </div>
+    </div>
   )
 }
