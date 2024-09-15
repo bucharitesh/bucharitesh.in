@@ -5,6 +5,7 @@ import { createOgImage } from "@/lib/createOgImage"
 import { allPosts } from "contentlayer/generated"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
+import BLOG_SCRIPT_ORG from "@/app/script"
 
 export const generateStaticParams = () => {
   return allPosts
@@ -23,12 +24,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     notFound()
   }
 
-  const url = `/blog/${post.slug}`;
+  const url = `/blog/${post.slug}`
 
   const ogImage = createOgImage({
     title: post.title,
     meta: meta.domain + " · " + post.publishedAtFormatted,
-  });
+  })
 
   return {
     title: post.title,
@@ -48,5 +49,10 @@ export default async function PostPage({ params }: Props) {
 
   const formattedPost = formatPost(post)
 
-  return <Post post={formattedPost} />
+  return (
+    <>
+      <BLOG_SCRIPT_ORG published_at={post.publishedAt} title={post.title} description={post.description} slug={post.slug} />
+      <Post post={formattedPost} />
+    </>
+  )
 }

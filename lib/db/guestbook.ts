@@ -4,7 +4,7 @@ import prisma from "@/lib/prisma"
 import { auth } from "../auth"
 import { Session } from "next-auth"
 import { unstable_cache as cache, revalidatePath } from "next/cache"
-import { sendEmail } from "@/emails"
+// import { sendEmail } from "@/emails"
 
 async function getSession(): Promise<Session> {
   let session = await auth()
@@ -47,7 +47,7 @@ export async function saveGuestbookEntry(formData: FormData) {
     },
   })
 
-  revalidatePath("/guestbook")
+  revalidatePath("/guestbook");
 
   // let data = await fetch("https://api.resend.com/emails", {
   //   method: "POST",

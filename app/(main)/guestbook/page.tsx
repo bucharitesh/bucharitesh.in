@@ -5,7 +5,6 @@ import { Form } from "./form"
 import { getGuestbookEntries } from "@/lib/db/guestbook"
 import Image from "next/image"
 import { format } from "date-fns"
-import { TrashIcon } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Guestbook",
