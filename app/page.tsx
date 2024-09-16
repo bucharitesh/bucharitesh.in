@@ -10,6 +10,7 @@ import { Link } from "next-view-transitions"
 import { getPosts } from "@/lib/posts"
 import { BlogPostPreview } from "@/ui/blog/blog-post-preview"
 import { ArrowRight } from "lucide-react"
+import { COMMON_SCRIPT_ORG } from "./script"
 
 export const metadata: Metadata = {
   title: meta.tagline,
@@ -23,6 +24,7 @@ export default async function Page() {
 
   return (
     <>
+      <COMMON_SCRIPT_ORG />
       <IntersectionSwap nav={<SiteHeader />}>
         <div className="space-y-8">
           <div className="flex items-center space-x-6">

@@ -5,6 +5,7 @@ import { allSnippets } from "contentlayer/generated"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
 import Snippet from "@/ui/snippet/snippet"
+import { SNIPPET_SCRIPT_ORG } from "@/app/script"
 
 export const generateStaticParams = () => {
   return allSnippets
@@ -22,7 +23,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     notFound()
   }
 
-  const url = `/blog/${snippet.slug}`
+  const url = `/blog/${snippet.slug}`;
+
   const ogImage = createOgImage({
     title: snippet.title,
     meta: meta.domain,
@@ -38,13 +40,27 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function SnippetsPage({ params }: Props) {
-  const snippets = allSnippets.find((snippet) => snippet.slug === params?.slug)
+  const snippet = allSnippets.find((snippet) => snippet.slug === params?.slug)
 
-  if (!snippets) {
+  if (!snippet) {
     notFound()
   }
 
-  const FormattedSnippet = formatSnippet(snippets)
+  const FormattedSnippet = formatSnippet(snippet)
 
-  return <Snippet snippet={FormattedSnippet} />
+  return (
+    <>
+      <SNIPPET_SCRIPT_ORG
+        image={createOgImage({
+          title: snippet.title,
+          meta: meta.domain,
+        })}
+        published_at={snippet.publishedAt}
+        title={snippet.title}
+        description={snippet.description}
+        slug={snippet.slug}
+      />
+      <Snippet snippet={FormattedSnippet} />
+    </>
+  )
 }

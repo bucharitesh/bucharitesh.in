@@ -17,6 +17,7 @@ export const meta = {
     twitter: "https://twitter.com/bucha_ritesh",
     github: "https://github.com/bucharitesh",
   },
+  email: "bucharitesh@gmail.com",
   twitterHandle: "@bucha.ritesh",
   domain: "bucharitesh.in",
   tagline: "User Experience at Flam",

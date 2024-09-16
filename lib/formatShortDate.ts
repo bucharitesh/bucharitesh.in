@@ -9,5 +9,5 @@ export const formatShortDate = (date: string) => {
 export const formatSchemaOrgDate = (date: string) => {
   const _date = new Date(date)
 
-  return format(_date, "y-MM-dd")
+  return _date.toISOString();
 }
