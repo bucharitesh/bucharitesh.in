@@ -10,7 +10,7 @@ import { Link } from "next-view-transitions"
 import { getPosts } from "@/lib/posts"
 import { BlogPostPreview } from "@/ui/blog/blog-post-preview"
 import { ArrowRight } from "lucide-react"
-import { COMMON_SCRIPT_ORG } from "./script"
+import { COMMON_SCRIPT_ORG } from "../lib/script"
 
 export const metadata: Metadata = {
   title: meta.tagline,

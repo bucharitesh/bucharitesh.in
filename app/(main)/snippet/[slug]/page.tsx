@@ -5,7 +5,7 @@ import { allSnippets } from "contentlayer/generated"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
 import Snippet from "@/ui/snippet/snippet"
-import { SNIPPET_SCRIPT_ORG } from "@/app/script"
+import { SNIPPET_SCRIPT_ORG } from "@/lib/script"
 
 export const generateStaticParams = () => {
   return allSnippets

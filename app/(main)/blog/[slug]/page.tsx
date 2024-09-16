@@ -5,7 +5,7 @@ import { createOgImage } from "@/lib/createOgImage"
 import { allPosts } from "contentlayer/generated"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
-import { BLOG_SCRIPT_ORG } from "@/app/script"
+import { BLOG_SCRIPT_ORG } from "@/lib/script"
 
 export const generateStaticParams = () => {
   return allPosts
