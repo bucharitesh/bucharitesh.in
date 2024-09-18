@@ -6,18 +6,21 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { NewsletterFormSchema } from "@/lib/schema"
 
 import { subscribe } from "@/lib/resend"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
 import { OOF_GRAD } from "@/lib/constants"
 import { Send, SendHorizonal } from "lucide-react"
 import { Input } from "../input"
 import { Button } from "../button"
 import { LoadingDots } from "../loading-dots"
+import Confetti, { ConfettiRef } from "../magicui/confetti"
 
 type Inputs = z.infer<typeof NewsletterFormSchema>
 
 export default function NewsletterForm() {
   const [success, setSuccess] = useState<boolean>(false)
+
+  const confettiRef = useRef<ConfettiRef>(null)
 
   useEffect(() => {
     const isSubscribed = localStorage?.getItem("subscribed") === "true"
@@ -48,63 +51,64 @@ export default function NewsletterForm() {
 
     setSuccess(true)
     reset()
-  }
-
-  if (success) {
-    return (
-      <section className="pointer-events-none relative my-8 p-8 bg-primary-400/40 rounded-xl border-0 dark:border items-center justify-center text-center font-bold overflow-hidden">
-        <h1
-          className={cn(
-            "absolute -top-1/4 left-1/2 -translate-x-1/2 text-6xl font-bold opacity-20 from-primary-200/70 to-primary-400/10",
-            OOF_GRAD,
-          )}
-        >
-          Subscribed
-        </h1>
-        <p className="text-sm text-primary-200">
-          Amazing content is on its way!
-        </p>
-        <h1
-          className={cn(
-            "absolute -bottom-1/4 left-1/2 -translate-x-1/2 text-6xl font-bold rotate-180 opacity-20 from-primary-200/70 to-primary-400/10",
-            OOF_GRAD,
-          )}
-        >
-          Subscribed
-        </h1>
-      </section>
-    )
+    confettiRef.current?.fire({});
   }
 
   return (
-    <section className="relative my-8 p-6 md:p-8 bg-primary-200/20 rounded-xl border-0 dark:border md:grid grid-cols-4 flex flex-col gap-8 md:flex-row md:justify-between">
-      <div className="flex flex-col gap-1 col-span-2">
-        <h2 className="text-xl font-bold">Subscribe to awesomeness</h2>
-        <p className="text-sm text-primary-300">
-          I wont spam you. Pinky Promise!
-        </p>
+    <section className="relative w-full">
+      <h1
+        className={cn(
+          "absolute z-0 -top-1/3 left-1/2 opacity-50 -translate-x-1/2 text-4xl md:text-6xl font-bold bg-gradient-to-br from-primary-200/40 to-primary-200/0 bg-clip-text text-transparent",
+        )}
+      >
+        Subscribe{success && "d"}
+      </h1>
+      <div className="my-8 bg-primary-900 border-primary-900 z-40 rounded-xl border-0 dark:border w-full p-6 md:p-8 flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
+        {success ? (
+          <p className="text-base w-full text-center text-primary-200">
+            Amazing content is on its way!
+          </p>
+        ) : (
+          <>
+            <p className="text-base text-primary-100 lowercase">
+              I wont spam you. Pinky Promise!
+            </p>
+
+            <form
+              onSubmit={handleSubmit(processForm)}
+              className="flex items-center gap-3"
+            >
+              <Input
+                type="email"
+                id="email"
+                autoComplete="email"
+                placeholder="Email"
+                {...register("email")}
+              />
+
+              <Button
+                variant={"outline"}
+                type="submit"
+                disabled={isSubmitting}
+                className="group"
+              >
+                {isSubmitting ? (
+                  <LoadingDots />
+                ) : (
+                  <SendHorizonal className="w-4 h-4 group-hover:-rotate-45 transition-all" />
+                )}
+              </Button>
+            </form>
+          </>
+        )}
       </div>
 
-      <form
-        onSubmit={handleSubmit(processForm)}
-        className="flex items-center gap-3 col-span-2"
-      >
-        <Input
-          type="email"
-          id="email"
-          autoComplete="email"
-          placeholder="Email"
-          {...register("email")}
+      {success && (
+        <Confetti
+          ref={confettiRef}
+          className="absolute left-0 top-0 z-0 size-full"
         />
-
-        <Button type="submit" disabled={isSubmitting} className="group">
-          {isSubmitting ? (
-            <LoadingDots />
-          ) : (
-            <SendHorizonal className="w-4 h-4 group-hover:-rotate-45 transition-all" />
-          )}
-        </Button>
-      </form>
+      )}
     </section>
   )
 }
