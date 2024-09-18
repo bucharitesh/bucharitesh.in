@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: "Uses",
   description:
     "All the things I use to do my job, run my life, and get things done!",
+  alternates: {
+    canonical: "/uses",
+  },
 }
 
 export default async function Page() {

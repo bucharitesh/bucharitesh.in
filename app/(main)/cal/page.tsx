@@ -4,7 +4,11 @@ import CalEmbed from "./cal-embed"
 
 export const metadata: Metadata = {
   title: "Book a Meeting",
-  description: "Schedule a meeting with me to discuss anything from design to engineering to business to anything else.",
+  description:
+    "Schedule a meeting with me to discuss anything from design to engineering to business to anything else.",
+  alternates: {
+    canonical: "/cal",
+  },
 }
 
 export default function MyApp() {

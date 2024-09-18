@@ -1,4 +1,5 @@
 import { getPosts } from "@/lib/posts"
+import { BlogItem } from "@/ui/blog/blog-item"
 import { BlogPostPreview } from "@/ui/blog/blog-post-preview"
 
 import MostViewed from "@/ui/blog/most-viewed"
@@ -18,6 +19,9 @@ import { Metadata } from "next/types"
 export const metadata: Metadata = {
   title: "Blog",
   description: "Read my thoughts on software development, design, and more.",
+  alternates: {
+    canonical: "/blog",
+  },
 }
 
 export default async function Page() {
@@ -28,10 +32,8 @@ export default async function Page() {
       title="Blogs"
       description="Read my thoughts on software development, design, and more."
       action={
-        <Button variant={"outline"} className="py-5">
-          <Link
-            href="/blog/feed.xml"
-          >
+        <Button variant={"secondary"} className="py-5">
+          <Link href="/blog/feed.xml">
             <Rss className="h-4 w-4" />
           </Link>
         </Button>
@@ -43,9 +45,11 @@ export default async function Page() {
         </div>
       )}
 
-      {posts.map((post) => {
-        return <BlogPostPreview key={post.slug} {...post} />
-      })}
+      <div>
+        {posts.map((post) => {
+          return <BlogItem key={post.slug} {...post} />
+        })}
+      </div>
     </PageWrapper>
   )
 }

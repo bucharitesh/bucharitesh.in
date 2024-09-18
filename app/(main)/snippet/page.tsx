@@ -9,6 +9,9 @@ import { Metadata } from "next/types";
 export const metadata: Metadata = {
   title: "Snippets",
   description: "A collection of snippets that I've written.",
+  alternates: {
+    canonical: "/snippet",
+  },
 }
 
 export default async function Page() {

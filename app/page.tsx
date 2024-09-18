@@ -6,15 +6,18 @@ import { SiteHeader } from "@/ui/SiteHeader"
 
 import { Metadata } from "next"
 import FlamMark from "@/ui/icons/FlamMark"
-import { Link } from "next-view-transitions"
 import { getPosts } from "@/lib/posts"
-import { BlogPostPreview } from "@/ui/blog/blog-post-preview"
-import { ArrowRight } from "lucide-react"
 import { COMMON_SCRIPT_ORG } from "../lib/script"
+import { BlogItem } from "../ui/blog/blog-item"
+import { Link } from "next-view-transitions"
+import { ArrowRight } from "lucide-react"
 
 export const metadata: Metadata = {
   title: meta.tagline,
   description: meta.description,
+  alternates: {
+    canonical: "/",
+  },
 }
 
 export default async function Page() {
@@ -56,19 +59,25 @@ export default async function Page() {
         </div>
       </IntersectionSwap>
 
-      <div className="mt-24 space-y-10">
-        {/* Recent Blogs */}
-        <div className="font-semibold flex flex-col gap-8">
-          <div className="text-primary-300">Recent Blogs</div>
-          {recentPosts.map((post) => {
-            return <BlogPostPreview key={post.slug} {...post} />
-          })}
+      <div className="mt-12">
+        <div className="flex flex-col space-y-10">
+          {/* Recent Blogs */}
+          <div className="font-semibold flex flex-col">
+            <div className="flex items-center justify-between">
+              <h3 className="mt-10 text-base text-primary-500/90 mb-6">
+                Recent Blogs
+              </h3>
+            </div>
+            {recentPosts.map((post) => {
+              return <BlogItem key={post.slug} {...post} />
+            })}
+          </div>
           <Link
             href="/blog"
-            className="flex items-center hover:underline transition-all hover:underline-offset-4 text-primary-500 text-xs self-center gap-2 group"
+            className="flex w-max items-center justify-end hover:underline transition-all hover:underline-offset-4 text-primary-300/90 text-xs self-center gap-2 group"
           >
-            VIEW ALL
-            <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-all" />
+            view all
+            <ArrowRight className="w-2 h-2 group-hover:translate-x-1 transition-all" />
           </Link>
         </div>
       </div>

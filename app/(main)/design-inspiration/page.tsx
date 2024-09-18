@@ -8,7 +8,11 @@ import { Metadata } from "next/types"
 
 export const metadata: Metadata = {
   title: "Designers and Design Engineers",
-  description: "A curated list of designers and design engineers I follow and look up to.",
+  description:
+    "A curated list of designers and design engineers I follow and look up to.",
+  alternates: {
+    canonical: "/design-inspiration",
+  },
 }
 
 export default async function Page() {

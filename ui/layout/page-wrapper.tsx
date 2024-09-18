@@ -16,9 +16,14 @@ export default function PageWrapper({
 }) {
   return (
     <>
-      <div className="flex justify-between items-center mt-24 mb-4 xl:!col-end-5">
+      <div className="flex lowercase justify-between items-center mt-24 mb-4 xl:!col-end-5">
         <div>
-          <h1 className={cn("mt-6 text-2xl font-medium sm:text-4xl", OOF_GRAD)}>
+          <h1
+            className={cn(
+              "mt-6 text-2xl font-medium sm:text-4xl",
+              OOF_GRAD,
+            )}
+          >
             <Balancer>{title}</Balancer>
           </h1>
 

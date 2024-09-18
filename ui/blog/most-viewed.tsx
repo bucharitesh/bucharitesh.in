@@ -13,9 +13,9 @@ export default function MostViewed() {
   } = useTrendingPosts()
 
   return (
-    <div className="space-y-6 bg-primary-300/10 p-4 rounded-xl">
+    <div className="space-y-6 bg-primary-400/5 p-4 rounded-xl">
       <div>
-        <div className="flex items-start gap-2 mb-2.5 font-bold text-xs uppercase text-primary-200">
+        <div className="flex items-start gap-2 mb-2.5 font-bold text-xs lowercase text-primary-500">
           Trending
           <ZapIcon />
         </div>
@@ -24,8 +24,8 @@ export default function MostViewed() {
         {viewsIsError || viewsIsLoading ? (
           <LoadingDots />
         ) : (
-          posts.map((post: any, index: number) => (
-            <TrendingPostItem post={post} index={index} key={post.slug} />
+          posts.map((post: any) => (
+            <TrendingPostItem post={post} key={post.slug} />
           ))
         )}
       </ul>
@@ -35,16 +35,14 @@ export default function MostViewed() {
 
 const TrendingPostItem = ({
   post,
-  index,
 }: {
   post: any | undefined
-  index: number
 }) => {
   return (
     <a
       href={`/blog/${post.slug}`}
       className={cn(
-        "block text-primary-200/50 transition-all hover:text-primary-100 pl-3",
+        "block text-primary-300/50 transition-all hover:text-primary-400 pl-3",
       )}
     >
       <li className="-mx-0.5 animate-[mutation_2s_ease-in-out_1] rounded-md px-0.5 slashed-zero tabular-nums tracking-tight text-xs">

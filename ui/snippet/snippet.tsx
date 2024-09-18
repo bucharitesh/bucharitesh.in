@@ -2,16 +2,14 @@ import { OOF_GRAD } from "@/lib/constants"
 import { FormattedSnippet } from "@/lib/contentlayer"
 import { components } from "@/ui/mdx"
 import { LikeButton2 } from "@/ui/like-button-2"
-import MostViewed from "@/ui/blog/most-viewed"
 import { PostMetrics } from "@/ui/blog/post-metrics"
 import { ScrollToTop } from "@/ui/ScrollToTop"
 import { cn } from "@/lib/utils"
 import { useMDXComponent } from "next-contentlayer/hooks"
-import { Link } from "next-view-transitions"
 import Balancer from "react-wrap-balancer"
-import { ChevronLeft } from "lucide-react"
 import { PostTableOfContents } from "../post-table-of-contents"
 import { BlurImage } from "../mdx/blur-image"
+import Back from "../back-button"
 
 export default function Snippet({ snippet }: { snippet: FormattedSnippet }) {
   const MDXContent = useMDXComponent(snippet.body.code);
@@ -19,17 +17,7 @@ export default function Snippet({ snippet }: { snippet: FormattedSnippet }) {
   return (
     <>
       <div className="mt-24 mb-4 xl:!col-end-5">
-        <Link
-          href="/snippet"
-          className="group inline-flex items-center space-x-2"
-        >
-          <div className="transition rounded-full bg-primary-200/10 p-1 text-primary-200/80 group-hover:bg-primary-200/25 group-hover:text-primary-200">
-            <ChevronLeft className="w-4 h-4 group-hover:scale-125 transition-transform group-active:scale-110" />
-          </div>
-          <div className="mt-0.5 text-primary-200/70 group-hover:text-primary-200/90 transition">
-            All Snipppets
-          </div>
-        </Link>
+        <Back />
 
         <h1
           className={cn(

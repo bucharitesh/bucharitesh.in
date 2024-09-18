@@ -10,12 +10,15 @@ export const metadata: Metadata = {
   title: "Guestbook",
   description:
     "Write anything for future visitors of this website. I'd love a random joke though.",
+  alternates: {
+    canonical: "/guestbook",
+  },
 }
 
 export default async function Page() {
   return (
     <PageWrapper
-      title="Words"
+      title="Guestbook"
       description="Sign my guestbook and leave your mark"
     >
       <div className="space-y-10">
