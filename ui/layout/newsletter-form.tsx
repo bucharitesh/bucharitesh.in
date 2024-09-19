@@ -51,58 +51,62 @@ export default function NewsletterForm() {
 
     setSuccess(true)
     reset()
-    confettiRef.current?.fire({});
+    confettiRef.current?.fire({})
   }
 
   return (
-    <section className="relative w-full">
+    <section className="relative my-8 overflow-clip bg-primary-900/95 border-primary-900 z-40 rounded-xl border-0 dark:border w-full p-6 md:p-8 flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
       <h1
         className={cn(
-          "absolute z-0 -top-1/3 left-1/2 opacity-50 -translate-x-1/2 text-4xl md:text-6xl font-bold bg-gradient-to-br from-primary-200/40 to-primary-200/0 bg-clip-text text-transparent",
+          "absolute uppercase -z-10 -top-1/2 left-1/2 -translate-x-1/2 translate-y-1/4 text-4xl md:text-6xl font-bold bg-gradient-to-b opacity-5 from-primary-200 to-primary-200 bg-clip-text text-transparent",
         )}
       >
         Subscribe{success && "d"}
       </h1>
-      <div className="my-8 bg-primary-900 border-primary-900 z-40 rounded-xl border-0 dark:border w-full p-6 md:p-8 flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
-        {success ? (
-          <p className="text-base w-full text-center text-primary-200">
-            Amazing content is on its way!
-          </p>
-        ) : (
-          <>
-            <p className="text-base text-primary-100 lowercase">
-              I wont spam you. Pinky Promise!
-            </p>
-
-            <form
-              onSubmit={handleSubmit(processForm)}
-              className="flex items-center gap-3"
-            >
-              <Input
-                type="email"
-                id="email"
-                autoComplete="email"
-                placeholder="Email"
-                {...register("email")}
-              />
-
-              <Button
-                variant={"outline"}
-                type="submit"
-                disabled={isSubmitting}
-                className="group"
-              >
-                {isSubmitting ? (
-                  <LoadingDots />
-                ) : (
-                  <SendHorizonal className="w-4 h-4 group-hover:-rotate-45 transition-all" />
-                )}
-              </Button>
-            </form>
-          </>
+      <h1
+        className={cn(
+          "absolute uppercase -z-10 -bottom-1/2 left-1/2 -translate-x-1/2 -translate-y-1/4 text-4xl md:text-6xl font-bold bg-gradient-to-b opacity-5 from-primary-200 to-primary-200 bg-clip-text text-transparent",
         )}
-      </div>
+      >
+        Subscribe{success && "d"}
+      </h1>
+      {success ? (
+        <p className="text-base w-full text-center text-primary-200">
+          Amazing content is on its way!
+        </p>
+      ) : (
+        <>
+          <p className="text-base text-primary-100 lowercase">
+            I wont spam you. Pinky Promise!
+          </p>
 
+          <form
+            onSubmit={handleSubmit(processForm)}
+            className="flex items-center gap-3"
+          >
+            <Input
+              type="email"
+              id="email"
+              autoComplete="email"
+              placeholder="Email"
+              {...register("email")}
+            />
+
+            <Button
+              variant={"outline"}
+              type="submit"
+              disabled={isSubmitting}
+              className="group"
+            >
+              {isSubmitting ? (
+                <LoadingDots />
+              ) : (
+                <SendHorizonal className="w-4 h-4 group-hover:-rotate-45 transition-all" />
+              )}
+            </Button>
+          </form>
+        </>
+      )}
       {success && (
         <Confetti
           ref={confettiRef}
