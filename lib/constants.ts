@@ -53,3 +53,19 @@ export const BUILT_WITH = [
   { href: "https://tailwindcss.com", label: "Tailwind" },
   { href: "https://vercel.com", label: "Vercel" },
 ]
+
+export const COLLECTION_IDS = [
+  48069938, 48073561,
+  // 15968768,
+  // 23598938,
+  // 16949672,
+  // 15807896,
+  // 15807897,
+  // 15969648,
+  // 16338467,
+  // TWEETS_COLLECTION_ID,
+  // 25589709,
+  // 17139082,
+  // 22029101,
+  // 39696243,
+]

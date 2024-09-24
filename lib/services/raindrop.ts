@@ -1,29 +1,10 @@
-// import { cache } from "react"
-// import "server-only"
-
-export const TWEETS_COLLECTION_ID = 15896982
-
-export const COLLECTION_IDS = [
-  48069938, 48073561,
-  // 15968768,
-  // 23598938,
-  // 16949672,
-  // 15807896,
-  // 15807897,
-  // 15969648,
-  // 16338467,
-  // TWEETS_COLLECTION_ID,
-  // 25589709,
-  // 17139082,
-  // 22029101,
-  // 39696243,
-]
+import { COLLECTION_IDS } from "../constants"
 
 const options = {
   method: "GET",
   headers: {
     "Content-Type": "application/json",
-    Authorization: `Bearer ${"8da007a5-ea8d-46c1-a754-99f1249faf7c"}`,
+    Authorization: `Bearer ${process.env.RAINDROP_API_KEY}`,
   },
 }
 
