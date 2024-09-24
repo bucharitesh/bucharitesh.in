@@ -1,21 +1,10 @@
-// import { cache } from "react"
+import { cache } from "react"
 import "server-only"
 
 import { formatPostPreview } from "@/lib/contentlayer"
 import { allPosts } from "contentlayer/generated"
 
-// const API_URL = `http://localhost:3000/api/posts/all`
-
-// export async function getPostLikesAndViews(): Promise<any> {
-//   const res = await fetch(API_URL)
-//   if (!res.ok) {
-//     throw new Error("An error occurred while fetching the data.")
-//   }
-
-//   return res.json()
-// }
-
-export const getAllPosts = (async () => {
+export const getAllPosts = cache(async () => {
   try {
     let posts: any = []
 
@@ -40,17 +29,3 @@ export const getAllPosts = (async () => {
     return []
   }
 })
-
-// export function getActivePostsWithStats(allActive, db) {
-//   return allActive.map((post) => {
-//     const stats = db.find((item) => item.slug === post.slug) || {
-//       likes: 0,
-//       views: 0,
-//     }
-//     return {
-//       ...post,
-//       likes: stats.likes,
-//       views: stats.views,
-//     }
-//   })
-// }

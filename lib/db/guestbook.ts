@@ -4,7 +4,6 @@ import prisma from "@/lib/prisma"
 import { auth } from "../auth"
 import { Session } from "next-auth"
 import { unstable_cache as cache, revalidatePath } from "next/cache"
-// import { sendEmail } from "@/emails"
 
 async function getSession(): Promise<Session> {
   let session = await auth()
