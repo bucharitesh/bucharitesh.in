@@ -8,8 +8,7 @@ import { NewsletterFormSchema } from "@/lib/schema"
 import { subscribe } from "@/lib/resend"
 import { useEffect, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
-import { OOF_GRAD } from "@/lib/constants"
-import { Send, SendHorizonal } from "lucide-react"
+import { SendHorizonal } from "lucide-react"
 import { Input } from "../input"
 import { Button } from "../button"
 import { LoadingDots } from "../loading-dots"
@@ -17,15 +16,10 @@ import Confetti, { ConfettiRef } from "../magicui/confetti"
 
 type Inputs = z.infer<typeof NewsletterFormSchema>
 
-export default function NewsletterForm() {
-  const [success, setSuccess] = useState<boolean>(false)
+export default function NewsletterForm({ submitted }: { submitted : boolean }) {
+  const [success, setSuccess] = useState<boolean>(submitted ?? false);
 
-  const confettiRef = useRef<ConfettiRef>(null)
-
-  useEffect(() => {
-    const isSubscribed = localStorage?.getItem("subscribed") === "true"
-    setSuccess(isSubscribed)
-  }, [])
+  const confettiRef = useRef<ConfettiRef>(null);
 
   const {
     register,
@@ -46,8 +40,6 @@ export default function NewsletterForm() {
       console.error(result?.error ?? "An error occurred! Please try again.")
       return
     }
-
-    localStorage.setItem("subscribed", "true")
 
     setSuccess(true)
     reset()

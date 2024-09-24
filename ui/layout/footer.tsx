@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils"
 import { Link } from "next-view-transitions"
 // import NowPlaying from "./now-playing";
 import NewsletterForm from "./newsletter-form"
+import { cookies } from "next/headers"
 
 const FooterItem = ({ href, label }: { href: string; label: string }) => {
   return (
@@ -21,12 +22,20 @@ const FooterItem = ({ href, label }: { href: string; label: string }) => {
   )
 }
 
-export default function Footer() {
+const NEWSLETTER_COOKIE_NAME = "newsletter";
+
+export default async function Footer() {
+  const cookieStore = cookies();
+  
+  const newsletterSubmissionCookie: any = cookieStore.get(
+    NEWSLETTER_COOKIE_NAME,
+  )
+
   return (
     <div className="mt-36 pb-36 text-base">
       {/* <NowPlaying /> */}
 
-      <NewsletterForm />
+      <NewsletterForm submitted={newsletterSubmissionCookie?.value === "1"} />
 
       <hr className="border-1 mb-8 w-full border-primary-200/30" />
 

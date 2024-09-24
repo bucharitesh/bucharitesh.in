@@ -5,12 +5,17 @@ import { NewsletterFormSchema } from "./schema"
 import { z } from "zod"
 import { sendEmail } from "@/emails"
 import WelcomeEmail from "@/emails/welcome-email"
+import { cookies } from "next/headers"
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 type NewsletterFormInputs = z.infer<typeof NewsletterFormSchema>
 
+const NEWSLETTER_COOKIE_NAME = "newsletter"
+
 export async function subscribe(data: NewsletterFormInputs) {
-  const result = NewsletterFormSchema.safeParse(data)
+  const result = NewsletterFormSchema.safeParse(data);
+
+  const cookieStore = cookies();
 
   if (result.error) {
     return { error: result.error.format() }
@@ -45,6 +50,14 @@ export async function subscribe(data: NewsletterFormInputs) {
       subject: "Welcome to my newsletter",
       react: WelcomeEmail({ email: email }),
     })
+
+    cookieStore.set(
+      NEWSLETTER_COOKIE_NAME, // Name
+      "1",
+      {
+        maxAge: 60 * 60 * 24, // 24 hours
+      },
+    )
 
     return { success: true }
   } catch (error) {
