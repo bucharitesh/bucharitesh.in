@@ -24,7 +24,7 @@ export default function PageWrapper({
               OOF_GRAD,
             )}
           >
-            <Balancer>{title}</Balancer>
+            {title}
           </h1>
 
           <p className="mt-6 text-sm font-bold text-primary-100/40">

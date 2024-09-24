@@ -76,10 +76,20 @@ module.exports = {
         "border-beam": "border-beam calc(var(--duration)*1s) infinite linear",
         "spin-around": "spin-around calc(var(--speed) * 2) infinite linear",
         slide: "slide var(--speed) ease-in-out infinite alternate",
+        reveal: "reveal 0.7s ease-in-out",
       },
       keyframes:
         '({ theme }) => ({\n        "spin-around": {\n          "0%": {\n            transform: "translateZ(0) rotate(0)",\n          },\n          "15%, 35%": {\n            transform: "translateZ(0) rotate(90deg)",\n          },\n          "65%, 85%": {\n            transform: "translateZ(0) rotate(270deg)",\n          },\n          "100%": {\n            transform: "translateZ(0) rotate(360deg)",\n          },\n        },\n        slide: {\n          to: {\n            transform: "translate(calc(100cqw - 100%), 0)",\n          },\n        },\n        "border-beam": {\n          "100%": {\n            "offset-distance": "100%",\n          },\n        },\n        mutation: {\n          "0%": {\n            background: theme("colors.primary.200 / 3%"),\n          },\n          "10%": {\n            background: theme("colors.primary.200 / 15%"),\n            color: theme("colors.primary.200 / 75%"),\n          },\n          "100%": {\n            background: theme("colors.primary.200 / 0%"),\n          },\n        },\n        emoji: {\n          "0%": {\n            opacity: "0",\n            transform: "translateY(0) scale(0)",\n          },\n          "50%": {\n            opacity: "1",\n            transform: "translateY(-40px) scale(1)",\n          },\n          to: {\n            opacity: "0",\n            transform: "translateY(-60px) scale(1.4)",\n          },\n        },\n        loading: {\n          "0%": {\n            opacity: ".2",\n          },\n          "20%": {\n            opacity: "1",\n            transform: "translateX(1px)",\n          },\n          to: {\n            opacity: ".2",\n          },\n        },\n        shimmer: {\n          "100%": {\n            transform: "translateX(100%)",\n          },\n        },\n      })',
       keyframes: ({ theme }) => ({
+        reveal: {
+          "0%": {
+            opacity: 0,
+            filter: "brightness(1) blur(15px)",
+            scale: "1.0125",
+          },
+          "10%": { opacity: 1, filter: "brightness(1.25) blur(10px)" },
+          "100%": { opacity: 1, filter: "brightness(1) blur(0)", scale: "1" },
+        },
         "spin-around": {
           "0%": {
             transform: "translateZ(0) rotate(0)",

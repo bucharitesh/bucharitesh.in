@@ -1,3 +1,5 @@
+// import million from "million/compiler"
+
 const { withContentlayer } = require("next-contentlayer")
 
 /**
@@ -5,13 +7,34 @@ const { withContentlayer } = require("next-contentlayer")
  */
 const nextConfig = {
   reactStrictMode: false,
-  transpilePackages: ["shiki"],
+  logging: {
+    fetches: {
+      fullUrl: process.env.NODE_ENV === "development",
+    },
+  },
+  // compiler: {
+  //   removeConsole: {
+  //     exclude: ["error", "info"],
+  //   },
+  // },
+  trailingSlash: false,
+  images: {
+    deviceSizes: [390, 435, 768, 1024, 1280],
+    formats: ["image/avif"],
+  },
+  transpilePackages: ["shiki", "jimp"],
   experimental: {
     serverComponentsExternalPackages: [
       "@react-email/components",
       "@react-email/render",
       "@react-email/tailwind",
     ],
+    optimizePackageImports: [
+      "framer-motion",
+      "@supabase/supabase-js",
+      "react-tweet",
+    ],
+    webVitalsAttribution: ["FCP", "LCP", "CLS", "FID", "TTFB", "INP"],
   },
   webpack: (config, { webpack, isServer }) => {
     if (isServer) {
@@ -49,9 +72,20 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "avatars.githubusercontent.com",
-      }
+      },
     ],
   },
 }
 
-module.exports = withContentlayer(nextConfig)
+const millionConfig = {
+  auto: {
+    rsc: true,
+  },
+  server: true,
+  rsc: true,
+}
+
+// const config = withContentlayer(nextConfig)
+// module.exports = million.next(config, millionConfig);
+
+module.exports = withContentlayer(nextConfig);

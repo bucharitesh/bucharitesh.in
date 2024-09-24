@@ -1,6 +1,5 @@
-import { getPosts } from "@/lib/posts"
+import { getAllPosts } from "@/lib/posts"
 import { BlogItem } from "@/ui/blog/blog-item"
-import { BlogPostPreview } from "@/ui/blog/blog-post-preview"
 
 import MostViewed from "@/ui/blog/most-viewed"
 import { Button } from "@/ui/button"
@@ -25,7 +24,7 @@ export const metadata: Metadata = {
 }
 
 export default async function Page() {
-  const { posts } = await getPosts()
+  const posts = await getAllPosts()
 
   return (
     <PageWrapper

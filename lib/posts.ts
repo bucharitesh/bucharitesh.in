@@ -1,3 +1,6 @@
+// import { cache } from "react"
+import "server-only"
+
 import { formatPostPreview } from "@/lib/contentlayer"
 import { allPosts } from "contentlayer/generated"
 
@@ -12,32 +15,31 @@ import { allPosts } from "contentlayer/generated"
 //   return res.json()
 // }
 
-export const getPosts = async () => {
-  let posts: any = []
+export const getAllPosts = (async () => {
+  try {
+    let posts: any = []
 
-  let all = [
-    ...allPosts
-      // filter out draft posts
-      .filter((p) => p.status === "published")
-      .map(formatPostPreview),
-  ]
+    let all = [
+      ...allPosts
+        // filter out draft posts
+        .filter((p) => p.status === "published")
+        .map(formatPostPreview),
+    ]
 
-  // const posts_db = await getPostLikesAndViews();
+     if (all.length > 0) {
+       // sort posts by published date
+       posts = all.sort(
+         (a, b) =>
+           Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt)),
+       )
+     }
 
-  // if (posts_db.length > 0) {
-  //   posts = getActivePostsWithStats(all, posts_db);
-  // }
-
-  if (all.length > 0) {
-    // sort posts by published date
-    posts = all.sort(
-      (a, b) =>
-        Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt)),
-    )
+    return posts ?? []
+  } catch (error) {
+    console.info(error)
+    return []
   }
-
-  return { posts }
-}
+})
 
 // export function getActivePostsWithStats(allActive, db) {
 //   return allActive.map((post) => {

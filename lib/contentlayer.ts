@@ -60,7 +60,7 @@ export const formatSnippetsPreview = (snippet: Snippets) => {
   return {
     ...partialSnippet,
     description: partialSnippet.description ?? null,
-    logo: `/images/snippets/${partialSnippet.logo}` ?? null,
+    logo: `/images/snippets/${partialSnippet?.logo}`,
     readingTime: partialSnippet.readingTime.text ?? null,
   }
 }
@@ -81,7 +81,7 @@ export const formatSnippet = ({
   body: {
     code: body.code,
   },
-  logo: `/images/snippets/${logo}` ?? null,
+  logo: `/images/snippets/${logo}`,
   publishedAtFormatted,
   readingTime: readingTime.text,
   headings:

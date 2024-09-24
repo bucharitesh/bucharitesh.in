@@ -3,10 +3,9 @@ import { IntersectionSwap } from "@/ui/intersection-swap"
 import { Nav } from "@/ui/Nav"
 import { ProfileImageLarge } from "@/ui/ProfileImage"
 import { SiteHeader } from "@/ui/SiteHeader"
-
 import { Metadata } from "next"
 import FlamMark from "@/ui/icons/FlamMark"
-import { getPosts } from "@/lib/posts"
+import { getAllPosts } from "@/lib/posts"
 import { COMMON_SCRIPT_ORG } from "../lib/script"
 import { BlogItem } from "../ui/blog/blog-item"
 import { Link } from "next-view-transitions"
@@ -21,7 +20,7 @@ export const metadata: Metadata = {
 }
 
 export default async function Page() {
-  const { posts } = await getPosts();
+  const posts = await getAllPosts();
 
   const recentPosts = posts.slice(0, 3);
 

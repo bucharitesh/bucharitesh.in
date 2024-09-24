@@ -21,7 +21,7 @@ const FooterItem = ({ href, label }: { href: string; label: string }) => {
   )
 }
 
-export const Footer = async () => {
+export default function Footer() {
   return (
     <div className="mt-36 pb-36 text-base">
       {/* <NowPlaying /> */}
