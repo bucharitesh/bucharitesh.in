@@ -1,28 +1,174 @@
-'use client';
+"use client"
 
-import React, { useRef, useEffect, useState } from "react"
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 
 interface PixelIconProps {
   icon: number[][]
   baseColor: string
-  glitterColors: string[]
+  flickerColor: string
   secondaryColor?: string
   size?: number
-  changeProbability?: number
+  flickerChance?: number
   pixelShape?: "circle" | "square"
+  className?: string
 }
 
 const PixelIcon: React.FC<PixelIconProps> = ({
   icon,
   baseColor,
-  glitterColors,
+  flickerColor,
   secondaryColor = "gray",
   size = 80,
-  changeProbability = 0.01,
+  flickerChance = 0.3,
   pixelShape = "circle",
+  className,
 }) => {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null)
+  const canvasRef = useRef<HTMLCanvasElement>(null)
   const [isHovering, setIsHovering] = useState(false)
+  const [isInView, setIsInView] = useState(false)
+
+  const memoizedColors = useMemo(() => {
+    const toRGB = (color: string): [number, number, number] => {
+      if (typeof window === "undefined") {
+        return [0, 0, 0]
+      }
+      const canvas = document.createElement("canvas")
+      canvas.width = canvas.height = 1
+      const ctx = canvas.getContext("2d")
+      if (!ctx) return [255, 0, 0]
+      ctx.fillStyle = color
+      ctx.fillRect(0, 0, 1, 1)
+      const [r, g, b] = ctx.getImageData(0, 0, 1, 1).data
+      return [r, g, b]
+    }
+
+    const createShades = (
+      color: [number, number, number],
+      isDarker: boolean,
+    ) => {
+      const shades: any = []
+      for (let i = 0; i < 4; i++) {
+        const factor = isDarker
+          ? 0.1 + (0.3 * i) / 3 // Range from 0.4 to 0.7 for darker shades
+          : 0.8 + (0.3 * i) / 3 // Range from 0.7 to 1.0 for lighter shades
+        shades.push(
+          color.map((c) => Math.floor(c * factor)) as [number, number, number],
+        )
+      }
+      return shades
+    }
+
+    const baseRGB = toRGB(baseColor)
+    const flickerRGB = toRGB(flickerColor)
+    const secondaryRGB = toRGB(secondaryColor)
+
+    return {
+      base: `rgb(${baseRGB.join(",")})`,
+      flickerDark: createShades(flickerRGB, true),
+      flickerLight: createShades(flickerRGB, false),
+      secondary: `rgb(${secondaryRGB.join(",")})`,
+    }
+  }, [baseColor, flickerColor, secondaryColor])
+
+  const setupCanvas = useCallback(
+    (canvas: HTMLCanvasElement) => {
+      const dpr = window.devicePixelRatio || 1
+      canvas.width = size * dpr
+      canvas.height = size * dpr
+      canvas.style.width = `${size}px`
+      canvas.style.height = `${size}px`
+
+      const pixelSize = size / icon.length
+      const pixelStates = icon.map((row) =>
+        row.map((pixel) => ({
+          type: pixel,
+          shadeIndex: 3, // Start with the brightest shade
+        })),
+      )
+
+      return {
+        pixelSize,
+        pixelStates,
+        dpr,
+      }
+    },
+    [icon, size],
+  )
+
+  const updatePixels = useCallback(
+    (
+      pixelStates: { type: number; shadeIndex: number }[][],
+      deltaTime: number,
+    ) => {
+      if (!isHovering) return
+
+      pixelStates.forEach((row) => {
+        row.forEach((pixel) => {
+          if (pixel.type !== 0 && Math.random() < flickerChance * deltaTime) {
+            if (pixel.type === 1) {
+              // Darker shades for type 1
+              pixel.shadeIndex = Math.floor(Math.random() * 4) // 0 to 3
+            } else if (pixel.type === 2) {
+              // Lighter shades for type 2
+              pixel.shadeIndex = Math.floor(Math.random() * 4) // 0 to 3
+            }
+          }
+        })
+      })
+    },
+    [isHovering, flickerChance],
+  )
+
+  const drawIcon = useCallback(
+    (
+      ctx: CanvasRenderingContext2D,
+      pixelSize: number,
+      pixelStates: { type: number; shadeIndex: number }[][],
+      dpr: number,
+    ) => {
+      ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
+
+      pixelStates.forEach((row, y) => {
+        row.forEach((pixel, x) => {
+          if (pixel.type === 0) return
+
+          let color
+          if (isHovering) {
+            if (pixel.type === 2) {
+              color = `rgb(${memoizedColors.flickerDark[pixel.shadeIndex].join(",")})`
+            } else if (pixel.type === 1) {
+              color = `rgb(${memoizedColors.flickerLight[pixel.shadeIndex].join(",")})`
+            }
+          } else {
+            color =
+              pixel.type === 1 ? memoizedColors.base : memoizedColors.secondary
+          }
+
+          ctx.fillStyle = color
+
+          if (pixelShape === "circle") {
+            ctx.beginPath()
+            ctx.arc(
+              (x * pixelSize + pixelSize / 2) * dpr,
+              (y * pixelSize + pixelSize / 2) * dpr,
+              (pixelSize / 2) * dpr,
+              0,
+              Math.PI * 2,
+            )
+            ctx.fill()
+          } else {
+            ctx.fillRect(
+              x * pixelSize * dpr,
+              y * pixelSize * dpr,
+              pixelSize * dpr,
+              pixelSize * dpr,
+            )
+          }
+        })
+      })
+    },
+    [memoizedColors, isHovering, pixelShape],
+  )
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -31,85 +177,45 @@ const PixelIcon: React.FC<PixelIconProps> = ({
     const ctx = canvas.getContext("2d")
     if (!ctx) return
 
-    const pixelSize = size / icon.length
-    let animationId: number
+    let animationFrameId: number
+    let { pixelSize, pixelStates, dpr } = setupCanvas(canvas)
 
-    const pixelStates = icon.map((row) =>
-      row.map((pixel) => ({
-        colorIndex: Math.floor(Math.random() * glitterColors.length),
-        changeProb: Math.random() * changeProbability,
-      })),
+    let lastTime = 0
+    const animate = (time: number) => {
+      if (!isInView) return
+
+      const deltaTime = (time - lastTime) / 1000
+      lastTime = time
+
+      updatePixels(pixelStates, deltaTime)
+      drawIcon(ctx, pixelSize, pixelStates, dpr)
+      animationFrameId = requestAnimationFrame(animate)
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting)
+      },
+      { threshold: 0 },
     )
 
-    const drawPixel = (x: number, y: number, color: string) => {
-      ctx.fillStyle = color
-      if (pixelShape === "circle") {
-        ctx.beginPath()
-        ctx.arc(
-          x * pixelSize + pixelSize / 2,
-          y * pixelSize + pixelSize / 2,
-          pixelSize / 2,
-          0,
-          Math.PI * 2,
-        )
-        ctx.fill()
-      } else {
-        ctx.fillRect(x * pixelSize, y * pixelSize, pixelSize, pixelSize)
-      }
+    observer.observe(canvas)
+
+    if (isInView) {
+      animationFrameId = requestAnimationFrame(animate)
     }
-
-    const drawIcon = () => {
-      ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
-
-      icon.forEach((row, y) => {
-        row.forEach((pixel, x) => {
-          const state = pixelStates[y][x]
-          let color: string
-
-          if (pixel === 1 || pixel === 2) {
-            if (isHovering) {
-              if (Math.random() < state.changeProb) {
-                state.colorIndex = (state.colorIndex + 1) % glitterColors.length
-              }
-              color = glitterColors[state.colorIndex]
-            } else {
-              color = pixel === 1 ? baseColor : secondaryColor
-            }
-          } else {
-            return // Skip drawing for pixel value 0
-          }
-
-          drawPixel(x, y, color)
-        })
-      })
-    }
-
-    const animate = () => {
-      drawIcon()
-      animationId = requestAnimationFrame(animate)
-    }
-
-    animate()
 
     return () => {
-      if (animationId) cancelAnimationFrame(animationId)
+      cancelAnimationFrame(animationFrameId)
+      observer.disconnect()
     }
-  }, [
-    icon,
-    isHovering,
-    baseColor,
-    glitterColors,
-    secondaryColor,
-    size,
-    changeProbability,
-    pixelShape,
-  ])
+  }, [setupCanvas, updatePixels, drawIcon, isInView])
 
   return (
     <div
       role="img"
       aria-label="Pixel icon"
-      className="box-border"
+      className={`box-border cursor-pointer ${className}`}
       style={{ width: `${size}px`, height: `${size}px` }}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
@@ -120,7 +226,7 @@ const PixelIcon: React.FC<PixelIconProps> = ({
         className="w-full h-full"
         width={size}
         height={size}
-      ></canvas>
+      />
     </div>
   )
 }

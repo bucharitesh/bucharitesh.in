@@ -16,7 +16,7 @@ def process_image(image_path)
             return nil
         end
 
-        image.rotate!(90)
+        image.rotate!(-90)
         rows = []
 
         0.step(image.rows - 1, 4) do |i|

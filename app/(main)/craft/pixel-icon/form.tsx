@@ -45,8 +45,7 @@ export default function ImageProcessor() {
         <PixelIcon
           icon={result}
           baseColor="#000000"
-          glitterColors={["#ff00ff", "#20211a", "#3e4b51"]}
-          changeProbability={0.1}
+          flickerColor={"#ff00ff"}
           pixelShape="circle"
         />
       )}

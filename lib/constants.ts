@@ -35,7 +35,6 @@ export const FOOTER_ITEMS = {
     { href: "/blog", label: "Blog" },
     { href: "/projects", label: "Projects" },
     { href: "/guestbook", label: "Guestbook" },
-    { href: "/bookmarks", label: "Bookmarks"}
   ],
   SOCIAL: [
     { href: meta.social.github, label: "GitHub" },
@@ -44,6 +43,7 @@ export const FOOTER_ITEMS = {
   ],
   PAGES: [
     { href: "/snippets", label: "Snippets" },
+    { href: "/bookmarks", label: "Bookmarks"},
     { href: "/design-inspiration", label: "Design Inspiration" },
   ],
 }

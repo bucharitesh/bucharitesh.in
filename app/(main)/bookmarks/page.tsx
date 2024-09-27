@@ -18,18 +18,20 @@ export default async function Bookmarks() {
 
   return (
     <PageWrapper title={"Bookmarks"}>
+      <div className="grid grid-cols-2 gap-4">
         {bookmarks?.map((bookmark) => {
           return (
             <Link
               key={bookmark._id}
               href={`/bookmarks/${bookmark.slug}`}
-              className="flex flex-col gap-1 border-b px-4 text-primary-400 py-3 text-sm bg-primary-100 rounded-xl"
+              className="flex flex-col gap-1 border-b p-2 text-primary-400 text-sm bg-primary-100 rounded-xl"
             >
               <span className="font-medium">{bookmark.title}</span>
               <span className="text-slate-500">{bookmark.count} bookmarks</span>
             </Link>
           )
         })}
+      </div>
     </PageWrapper>
   )
 }

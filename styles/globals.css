@@ -26,6 +26,16 @@
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .cursor, .caret {
+    animation-play-state: paused;
+  }
+
+  .caret {
+    opacity: 1 !important;
+  }
+}
+
 /* @layer base {
   * {
     @apply border-border;
