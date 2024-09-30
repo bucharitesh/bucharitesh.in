@@ -36,7 +36,7 @@ export default function Snippet({ snippet }: { snippet: any }) {
         <div className="mt-4 flex space-x-2 text-primary-200/50">
           <div>{snippet.publishedAtFormatted}</div>
           <div className="text-primary-200/30">&middot;</div>
-          <PostMetrics slug={snippet.slug} />
+          <PostMetrics slug={snippet.slugAsParams} />
         </div>
       </div>
 
@@ -52,7 +52,7 @@ export default function Snippet({ snippet }: { snippet: any }) {
           {/* <MostViewed /> */}
 
           <div className="flex items-center justify-between">
-            <LikeButton2 slug={snippet.slug} />
+            <LikeButton2 slug={snippet.slugAsParams} />
             {/* TODO: Wire this up: <ScrollProgress /> */}
 
             <ScrollToTop>Back to top</ScrollToTop>
@@ -61,10 +61,6 @@ export default function Snippet({ snippet }: { snippet: any }) {
       </div>
 
       <Mdx code={snippet.body.code} />
-
-      <div className="mt-16">
-        <LikeButton2 slug={snippet.slug} />
-      </div>
     </>
   )
 }
