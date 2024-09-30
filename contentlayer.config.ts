@@ -11,11 +11,9 @@ import { Snippets } from "./lib/db/snippets"
 import { UseItem, UseCategory } from "./lib/db/uses"
 import { DesignInspirationItem } from "./lib/db/design-inspiraion"
 
+import { visit } from "unist-util-visit"
+import { rehypePrettyCodeClasses, rehypePrettyCodeOptions } from "./lib/rehyePrettyCode"
 import { HEADING_LINK_ANCHOR } from "./lib/constants"
-import {
-  rehypePrettyCodeClasses,
-  rehypePrettyCodeOptions,
-} from "./lib/rehyePrettyCode"
 
 export default makeSource({
   contentDirPath: "content",
@@ -25,13 +23,72 @@ export default makeSource({
       options.target = "esnext"
       return options
     },
-    remarkPlugins: [[remarkGfm]],
+    remarkPlugins: [remarkGfm],
     rehypePlugins: [
-      [rehypeSlug],
+      rehypeSlug,
+      () => (tree) => {
+        visit(tree, (node) => {
+          if (node?.type === "element" && node?.tagName === "pre") {
+            const [codeEl] = node.children
+            if (codeEl.tagName !== "code") {
+              return
+            }
+
+            if (codeEl.data?.meta) {
+              // Extract event from meta and pass it down the tree.
+              const regex = /event="([^"]*)"/
+              const match = codeEl.data?.meta.match(regex)
+              if (match) {
+                node.__event__ = match ? match[1] : null
+                codeEl.data.meta = codeEl.data.meta.replace(regex, "")
+              }
+            }
+
+            node.__rawString__ = codeEl.children?.[0].value
+            node.__style__ = node.properties?.__style__
+          }
+        })
+      },
       [rehypePrettyCode, rehypePrettyCodeOptions],
       [rehypePrettyCodeClasses],
+      () => (tree) => {
+        visit(tree, (node) => {
+          if (node?.type === "element" && node?.tagName === "div") {
+            if (!("data-rehype-pretty-code-fragment" in node.properties)) {
+              return
+            }
+
+            const preElement = node.children.at(-1)
+            if (preElement.tagName !== "pre") {
+              return
+            }
+
+            preElement.properties["__withMeta__"] =
+              node.children.at(0).tagName === "div"
+            preElement.properties["__rawString__"] = node.__rawString__
+
+            if (node.__src__) {
+              preElement.properties["__src__"] = node.__src__
+            }
+
+            if (node.__event__) {
+              preElement.properties["__event__"] = node.__event__
+            }
+
+            if (node.__style__) {
+              preElement.properties["__style__"] = node.__style__
+            }
+          }
+        })
+      },
       [
         rehypeAutolinkHeadings,
+        {
+          properties: {
+            className: ["anchor"],
+            ariaLabel: "Link to section",
+          },
+        },
         {
           behavior: "wrap",
           properties: {

@@ -22,7 +22,7 @@ export default async function Page() {
       title="Snippets"
       description="A collection of snippets that I've written."
       action={
-        <Button variant={"outline"} className="py-5">
+        <Button variant={"secondary"} className="py-5">
           <Link href="/snippet/feed.xml">
             <Rss className="h-4 w-4" />
           </Link>

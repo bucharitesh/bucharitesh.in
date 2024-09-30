@@ -2,16 +2,15 @@ import { getBookmarkItems, getBookmarks } from "@/lib/services/raindrop"
 import { cn, sortByProperty } from "@/lib/utils"
 import { notFound } from "next/navigation"
 import { BookmarkList } from "./bookmark-list"
-import PageWrapper from "@/ui/layout/page-wrapper"
 import Sidebar from "./sidebar"
 import Balancer from "react-wrap-balancer"
 import { OOF_GRAD } from "@/lib/constants"
 import Back from "@/ui/back-button"
 
-// export async function generateStaticParams() {
-//   const bookmarks = await getBookmarks()
-//   return bookmarks.map((bookmark) => ({ slug: bookmark.slug }))
-// }
+export async function generateStaticParams() {
+  const bookmarks = await getBookmarks()
+  return bookmarks.map((bookmark) => ({ slug: bookmark.slug }))
+}
 
 async function fetchData(slug) {
   const bookmarks = await getBookmarks()

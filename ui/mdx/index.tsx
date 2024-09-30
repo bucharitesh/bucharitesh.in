@@ -13,6 +13,7 @@ import React from "react"
 import { Caption } from "./caption"
 import Step from "../Step"
 import { LinkPreview } from "./link-preview"
+import { CopyButton } from "../copy-button"
 
 export const components = {
   // One off components
@@ -118,4 +119,32 @@ export const components = {
   ),
   Step: (props: any) => <Step {...props} />,
   LinkPreview: (props: any) => <LinkPreview {...props} />,
+  // pre: ({
+  //   className,
+  //   __rawString__,
+  //   __name__,
+  //   ...props
+  // }: React.HTMLAttributes<HTMLPreElement> & {
+  //   __rawString__?: string
+  //   __name__?: string
+  // }) => {
+  //   return (
+  //     <>
+  //       <pre
+  //         className={cn(
+  //           "max-h-[650px]",
+  //           className,
+  //         )}
+  //         {...props}
+  //       />
+  //       {__rawString__ && (
+  //         <CopyButton
+  //           value={__rawString__}
+  //           src={__rawString__}
+  //           className={cn("absolute right-2 top-2")}
+  //         />
+  //       )}
+  //     </>
+  //   )
+  // },
 }
