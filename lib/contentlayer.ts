@@ -1,5 +1,5 @@
 import { pick } from "contentlayer/client"
-import { Post, Snippets } from "contentlayer/generated"
+import { Post } from "contentlayer/generated"
 
 export const formatPostPreview = (post: Post) => {
   const partialPost = pick(post, [
@@ -45,47 +45,3 @@ export const formatPost = (
 })
 
 export type FormattedPost = ReturnType<typeof formatPost>;
-
-export const formatSnippetsPreview = (snippet: Snippets) => {
-  const partialSnippet = pick(snippet, [
-    "slug",
-    "title",
-    "description",
-    "logo",
-    "publishedAt",
-    "publishedAtFormatted",
-    "readingTime",
-  ])
-
-  return {
-    ...partialSnippet,
-    description: partialSnippet.description ?? null,
-    logo: `/images/snippets/${partialSnippet?.logo}`,
-    readingTime: partialSnippet.readingTime.text ?? null,
-  }
-}
-
-export const formatSnippet = ({
-  title,
-  slug,
-  description,
-  body,
-  publishedAtFormatted,
-  logo,
-  readingTime,
-  headings,
-}: Snippets) => ({
-  title,
-  slug,
-  description: description ?? null,
-  body: {
-    code: body.code,
-  },
-  logo: `/images/snippets/${logo}`,
-  publishedAtFormatted,
-  readingTime: readingTime.text,
-  headings:
-    (headings as { heading: number; text: string; slug: string }[]) ?? null,
-})
-
-export type FormattedSnippet = ReturnType<typeof formatSnippet>

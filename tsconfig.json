@@ -23,7 +23,9 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
-      "contentlayer/generated": ["./.contentlayer/generated"]
+      "contentlayer/generated": ["./.contentlayer/generated"],
+      "@/components/bucharitesh/*": ["./registry/components/bucharitesh/*"],
+      "@/components/example/*": ["./registry/components/example/*"]
     }
   },
   "include": [
@@ -32,6 +34,6 @@
     "**/*.ts",
     "**/*.tsx",
     ".contentlayer/generated"
-  ],
+, "content/craft/magic-card.mdx"  ],
   "exclude": ["node_modules"]
 }

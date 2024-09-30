@@ -1,11 +1,7 @@
-'use client';
+"use client"
 
-import React, { useState } from "react"
-import PixelIcon from "./pixel-icon"
-import ImageProcessor from "./form"
-import { CheckIcon, CopyIcon } from "lucide-react"
-import { Button } from "@/ui/button"
-import { toast } from "sonner"
+import React from "react"
+import PixelIcon from "@/registry/components/bucharitesh/pixel-icon";
 
 const Icons = [
   {
@@ -190,24 +186,10 @@ const Icons = [
   },
 ]
 
-const page = () => {
-  const [copiedIcon, setCopiedIcon] = useState(null)
-
-  const handleCopyIcon = (icon: any) => {
-    navigator.clipboard.writeText(JSON.stringify(icon.code))
-    setCopiedIcon(icon.name)
-    toast("Icon Copied", {
-      description: `The ${icon.name} icon has been copied to your clipboard.`,
-    })
-    setTimeout(() => {
-      setCopiedIcon(null)
-    }, 1000)
-  }
-
+const PixelIconDemo = () => {
   return (
-    <div className="p-8 space-y-4 flex flex-col gap-8 rounded-2xl bg-gray-800/95 shadow-surface-glass backdrop-blur [@supports(backdrop-filter:blur(0px))]:bg-white/[80%]">
-      <p className="text-gray-800 font-bold text-xl">Icons</p>
-      <div className="grid grid-cols-4 gap-10 w-full place-items-center">
+    <div className="relative flex bg-white w-full items-center justify-center overflow-hidden rounded-lg border bg-background p-10 md:shadow-xl">
+      <div className="grid grid-cols-4 gap-4 w-full place-items-center">
         {Icons.map((icon) => {
           return (
             <div
@@ -220,29 +202,14 @@ const page = () => {
                 flickerColor={icon.color}
                 secondaryColor="gray"
                 size={60}
-                flickerChance={0.8}
+                flickerChance={0.2}
               />
-              <div className="absolute top-0 right-0 hidden group-hover:block">
-                <Button
-                  onClick={() => handleCopyIcon(icon)}
-                  size="sm"
-                  className="p-1 h-6"
-                >
-                  {copiedIcon === icon.name ? (
-                    <CheckIcon className="h-3 w-3" />
-                  ) : (
-                    <CopyIcon className="h-3 w-3" />
-                  )}
-                </Button>
-              </div>
             </div>
           )
         })}
       </div>
-      <hr className="bg-black" />
-      <ImageProcessor />
     </div>
   )
 }
 
-export default page
+export default PixelIconDemo

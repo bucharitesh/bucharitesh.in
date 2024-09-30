@@ -7,17 +7,18 @@ import remarkGfm from "remark-gfm"
 // https://github.com/evanw/esbuild/issues/394
 // https://github.com/contentlayerdev/contentlayer/issues/238
 import { Post } from "./lib/db/post"
-import { Snippets } from "./lib/db/snippets"
 import { UseItem, UseCategory } from "./lib/db/uses"
 import { DesignInspirationItem } from "./lib/db/design-inspiraion"
 
 import { visit } from "unist-util-visit"
 import { rehypePrettyCodeClasses, rehypePrettyCodeOptions } from "./lib/rehyePrettyCode"
 import { HEADING_LINK_ANCHOR } from "./lib/constants"
+import { Craft } from "./lib/db/craft"
+import { rehypeComponent } from "./lib/rehype-component"
 
 export default makeSource({
   contentDirPath: "content",
-  documentTypes: [Post, Snippets, UseItem, UseCategory, DesignInspirationItem],
+  documentTypes: [Post, UseItem, UseCategory, DesignInspirationItem, Craft],
   mdx: {
     esbuildOptions(options) {
       options.target = "esnext"
@@ -26,6 +27,7 @@ export default makeSource({
     remarkPlugins: [remarkGfm],
     rehypePlugins: [
       rehypeSlug,
+      rehypeComponent,
       () => (tree) => {
         visit(tree, (node) => {
           if (node?.type === "element" && node?.tagName === "pre") {
@@ -69,10 +71,6 @@ export default makeSource({
 
             if (node.__src__) {
               preElement.properties["__src__"] = node.__src__
-            }
-
-            if (node.__event__) {
-              preElement.properties["__event__"] = node.__event__
             }
 
             if (node.__style__) {

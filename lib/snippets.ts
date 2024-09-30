@@ -1,14 +1,12 @@
-import { formatSnippetsPreview } from "@/lib/contentlayer"
-import { allSnippets } from "contentlayer/generated"
+import { allCrafts } from "contentlayer/generated"
 
-export const getSnippets = async () => {
+export const getCrafts = async () => {
   let snippets: any = []
 
   let all = [
-    ...allSnippets
+    ...allCrafts
       // filter out draft posts
       // .filter((p) => p.status === "published")
-      .map(formatSnippetsPreview),
   ]
 
   // const posts_db = await getPostLikesAndViews();

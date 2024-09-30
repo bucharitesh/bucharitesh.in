@@ -60,10 +60,10 @@ function createCodeSnippetJsonLd(data: {
     },
     image: data.image,
     articleBody: data.description,
-    url: `https://${meta.domain}/snippet/${data.slug}/`,
+    url: `https://${meta.domain}/craft/${data.slug}/`,
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://${meta.domain}/snippet/${data.slug}/`,
+      "@id": `https://${meta.domain}/craft/${data.slug}/`,
     },
   }
 }

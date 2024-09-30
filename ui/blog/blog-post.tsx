@@ -1,21 +1,18 @@
 import { OOF_GRAD } from "@/lib/constants"
 import { FormattedPost } from "@/lib/contentlayer"
-import { components } from "@/ui/mdx"
+import { components, Mdx } from "@/ui/mdx"
 import { LikeButton2 } from "@/ui/like-button-2"
 import MostViewed from "@/ui/blog/most-viewed"
 import { PostMetrics } from "@/ui/blog/post-metrics"
 import { PostTableOfContents } from "@/ui/post-table-of-contents"
 import { ScrollToTop } from "@/ui/ScrollToTop"
 import { cn } from "@/lib/utils"
-import { useMDXComponent } from "next-contentlayer/hooks"
-import { Link } from "next-view-transitions"
+// import { Link } from "next-view-transitions"
 import Balancer from "react-wrap-balancer"
-import { ChevronLeft } from "lucide-react"
+// import { ChevronLeft } from "lucide-react"
 import Back from "../back-button"
 
 export default function Post({ post }: { post: FormattedPost }) {
-  const MDXContent = useMDXComponent(post.body.code)
-
   return (
     <>
       <div className="mt-24 mb-4 xl:!col-end-5">
@@ -54,7 +51,7 @@ export default function Post({ post }: { post: FormattedPost }) {
         </div>
       </div>
 
-      <MDXContent components={components} />
+      <Mdx code={post.body.code} />
 
       <div className="mt-16">
         <LikeButton2 slug={post.slug} />

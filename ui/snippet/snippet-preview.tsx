@@ -1,19 +1,18 @@
 "use client";
 
-import { formatSnippetsPreview } from "@/lib/contentlayer"
 import { ContentLink } from "./content-link";
 import { BlurImage } from "../mdx/blur-image";
 import { cn } from "@/lib/utils";
 
 export const SnippetPostPreview = (
-  snippet: ReturnType<typeof formatSnippetsPreview>,
+  snippet: ReturnType<any>,
 ) => {
   return (
     <div>
       <ContentLink
         className="flex justify-between"
         key={snippet.slug}
-        href={`/snippet/${snippet.slug}`}
+        href={`/craft/${snippet.slug}`}
       >
         <div className="flex flex-col gap-4">
           <ContentLink.Title>{snippet.title}</ContentLink.Title>
@@ -34,7 +33,7 @@ export const SnippetPostPreview = (
             <BlurImage
               height={40}
               width={40}
-              src={snippet.logo}
+              src={`/images/snippets/${snippet.logo}`}
               alt={snippet.title}
               className="rounded-full"
             />

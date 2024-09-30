@@ -45,8 +45,8 @@ export const Nav = () => {
       <NavItem href="/blog" Icon={Bot}>
         Blog
       </NavItem>
-      <NavItem href="/snippet" Icon={Braces}>
-        Snippets
+      <NavItem href="/craft" Icon={Braces}>
+        Craft
       </NavItem>
       <NavItem href="/guestbook" Icon={Book}>
         Guestbook

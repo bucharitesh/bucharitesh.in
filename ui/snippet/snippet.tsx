@@ -1,19 +1,15 @@
 import { OOF_GRAD } from "@/lib/constants"
-import { FormattedSnippet } from "@/lib/contentlayer"
-import { components } from "@/ui/mdx"
+import { Mdx } from "@/ui/mdx"
 import { LikeButton2 } from "@/ui/like-button-2"
 import { PostMetrics } from "@/ui/blog/post-metrics"
 import { ScrollToTop } from "@/ui/ScrollToTop"
 import { cn } from "@/lib/utils"
-import { useMDXComponent } from "next-contentlayer/hooks"
 import Balancer from "react-wrap-balancer"
 import { PostTableOfContents } from "../post-table-of-contents"
 import { BlurImage } from "../mdx/blur-image"
 import Back from "../back-button"
 
-export default function Snippet({ snippet }: { snippet: FormattedSnippet }) {
-  const MDXContent = useMDXComponent(snippet.body.code);
-
+export default function Snippet({ snippet }: { snippet: any }) {
   return (
     <>
       <div className="mt-24 mb-4 xl:!col-end-5">
@@ -29,7 +25,7 @@ export default function Snippet({ snippet }: { snippet: FormattedSnippet }) {
             <BlurImage
               height={40}
               width={40}
-              src={snippet.logo}
+              src={`/images/snippets/${snippet.logo}`}
               alt={snippet.title}
               className="rounded-full"
             />
@@ -64,7 +60,7 @@ export default function Snippet({ snippet }: { snippet: FormattedSnippet }) {
         </div>
       </div>
 
-      <MDXContent components={components} />
+      <Mdx code={snippet.body.code} />
 
       <div className="mt-16">
         <LikeButton2 slug={snippet.slug} />

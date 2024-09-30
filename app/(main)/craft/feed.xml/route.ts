@@ -1,5 +1,5 @@
 import { meta } from "@/lib/constants"
-import { allPosts, allSnippets } from "contentlayer/generated"
+import { allCrafts } from "contentlayer/generated"
 import RSS from "rss"
 
 export async function GET() {
@@ -7,7 +7,7 @@ export async function GET() {
     title: meta.name,
     description: meta.tagline,
     generator: "RSS for Node and Next.js",
-    feed_url: "https://www.bucharitesh.in/snippet/feed.xml",
+    feed_url: "https://www.bucharitesh.in/craft/feed.xml",
     site_url: "https://www.bucharitesh.in",
     managingEditor: "contact@bucharitesh.in (Ritesh Bucha)",
     webMaster: "contact@bucharitesh.in (Ritesh Bucha)",
@@ -17,7 +17,7 @@ export async function GET() {
     ttl: 60,
   })
 
-  allSnippets
+  allCrafts
     .sort(
       (a, b) =>
         new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
@@ -26,7 +26,7 @@ export async function GET() {
       feed.item({
         title: post.title,
         description: post.description,
-        url: `https://www.bucharitesh.in/snippet/${post.slug}`,
+        url: `https://www.bucharitesh.in/craft/${post.slug}`,
         author: "Ritesh Bucha",
         date: post.publishedAt,
       })

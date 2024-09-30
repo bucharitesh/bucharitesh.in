@@ -42,7 +42,7 @@ export const FOOTER_ITEMS = {
     { href: "/cal", label: "Book a Meeting" },
   ],
   PAGES: [
-    { href: "/snippets", label: "Snippets" },
+    { href: "/craft", label: "Craft" },
     { href: "/bookmarks", label: "Bookmarks"},
     { href: "/design-inspiration", label: "Design Inspiration" },
   ],
