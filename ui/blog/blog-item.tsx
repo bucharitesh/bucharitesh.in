@@ -73,9 +73,9 @@ export const BlogItem = (post: ReturnType<typeof formatPostPreview>) => {
   return (
     <Link
       href={`/blog/${post.slug}`}
-      className="flex gap-x-4 px-4 -mx-4 pt-4 rounded-[12px] border-none hover:bg-primary-900/50 group"
+      className="flex gap-x-4 px-4 pt-4 rounded-[12px] border-none bg-white/5 hover:bg-primary-900/50 group transition-all"
     >
-      <div className="flex flex-col justify-between gap-3 w-full border-b border-primary-900/50 flex-auto pb-4 group-hover:border-transparent text-primary-400/80">
+      <div className="flex flex-col justify-between gap-3 w-full flex-auto pb-4 group-hover:border-transparent text-primary-400/80">
         <div className="flex flex-col gap-1">
           <div className="text-base text-primary-300/90">{post.title}</div>
           <div className="flex flex-wrap items-center space-x-1 tabular-nums text-xs text-primary-100/50 lowercase">

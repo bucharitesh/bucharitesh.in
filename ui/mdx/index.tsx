@@ -11,7 +11,6 @@ import type { ImageProps } from "next/image"
 import NextLink from "next/link"
 import React from "react"
 import { Caption } from "./caption"
-import Step from "../Step"
 import { LinkPreview } from "./link-preview"
 // import { CopyButton } from "../copy-button"
 import { useMDXComponent } from "next-contentlayer/hooks"
@@ -106,12 +105,6 @@ export const components = {
       {...props}
     />
   ),
-  // h2: (props: any) => (
-  //   <h3
-  //     className="relative mt-3 border-t-2 border-primary-200/5 pt-9 text-xl font-medium text-primary-200/95 sm:text-2xl"
-  //     {...props}
-  //   />
-  // ),
   h2: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h2
       className={cn(
@@ -126,6 +119,12 @@ export const components = {
   ),
   h4: (props: any) => (
     <h5 className="text-lg font-medium text-primary-200/95" {...props} />
+  ),
+  p: ({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
+    <p
+      className={cn("leading-7 [&:not(:first-child)]:mt-6", className)}
+      {...props}
+    />
   ),
   hr: (props: any) => (
     <hr className="border-t-2 border-primary-200/5" {...props} />
@@ -158,7 +157,7 @@ export const components = {
     />
   ),
   ol: (props: any) => (
-    <ol className="list-decimal space-y-3 pl-10" {...props} />
+    <ol className="list-decimal space-y-3 pl-10 my-5" {...props} />
   ),
   strong: (props: any) => <strong className="font-semibold" {...props} />,
   Img: ({
@@ -174,7 +173,7 @@ export const components = {
     return (
       <>
         <div
-          className={cn({
+          className={cn("my-4", {
             "xl:!col-start-2 xl:!col-end-4": bleed === true,
           })}
         >

@@ -5,11 +5,9 @@ import { ProfileImageLarge } from "@/ui/ProfileImage"
 import { SiteHeader } from "@/ui/SiteHeader"
 import { Metadata } from "next"
 import FlamMark from "@/ui/icons/FlamMark"
-import { getAllPosts } from "@/lib/posts"
 import { COMMON_SCRIPT_ORG } from "../lib/script"
-import { BlogItem } from "../ui/blog/blog-item"
-import { Link } from "next-view-transitions"
-import { ArrowRight } from "lucide-react"
+import { CraftShowcase } from "./craft-showcase"
+import RecentBlogs from "./recent-blogs"
 
 export const metadata: Metadata = {
   title: meta.tagline,
@@ -20,10 +18,6 @@ export const metadata: Metadata = {
 }
 
 export default async function Page() {
-  const posts = await getAllPosts();
-
-  const recentPosts = posts.slice(0, 3);
-
   return (
     <>
       <COMMON_SCRIPT_ORG />
@@ -59,25 +53,68 @@ export default async function Page() {
       </IntersectionSwap>
 
       <div className="mt-12">
-        <div className="flex flex-col space-y-10">
-          {/* Recent Blogs */}
-          <div className="font-semibold flex flex-col">
-            <div className="flex items-center justify-between">
-              <h3 className="mt-10 text-base text-primary-500/90 mb-6">
-                Recent Blogs
-              </h3>
-            </div>
-            {recentPosts.map((post) => {
-              return <BlogItem key={post.slug} {...post} />
-            })}
-          </div>
-          <Link
-            href="/blog"
-            className="flex w-max items-center justify-end hover:underline transition-all hover:underline-offset-4 text-primary-300/90 text-xs self-center gap-2 group"
-          >
-            view all
-            <ArrowRight className="w-2 h-2 group-hover:translate-x-1 transition-all" />
-          </Link>
+        <div className="space-y-20">
+          {/* <div className="text-gray-200 space-y-4 leading-snug">
+            <p>
+              I'm a frontend developer, optimist, and community builder. I work
+              at{" "}
+              <Link href="/work" className="text-blue-500 hover:text-blue-700">
+                Vercel
+              </Link>
+              , where I teach the{" "}
+              <Link
+                href="/n/stack"
+                className="text-blue-500 hover:text-blue-700"
+              >
+                Next.js
+              </Link>{" "}
+              community, an open-source web framework built with React.
+            </p>
+            <p>
+              I create educational content for developers, teaching them about
+              TypeScript, React and Next.js, and more. I write about{" "}
+              <Link href="/n/dx" className="text-blue-500 hover:text-blue-700">
+                developer experience
+              </Link>
+              ,{" "}
+              <Link
+                href="/n/developer-marketing"
+                className="text-blue-500 hover:text-blue-700"
+              >
+                developer marketing
+              </Link>
+              ,{" "}
+              <Link
+                href="/n/devrel"
+                className="text-blue-500 hover:text-blue-700"
+              >
+                developer relations
+              </Link>
+              , building{" "}
+              <Link
+                href="/n/devtools"
+                className="text-blue-500 hover:text-blue-700"
+              >
+                developer tools
+              </Link>
+              , and{" "}
+              <Link
+                href="/n/moderation"
+                className="text-blue-500 hover:text-blue-700"
+              >
+                open-source
+              </Link>
+              .
+            </p>
+            <p>
+              I invest small angel checks into early stage startups building
+              tools for developers.
+            </p>
+          </div> */}
+
+          <RecentBlogs />
+
+          {/* <CraftShowcase /> */}
         </div>
       </div>
     </>

@@ -15,13 +15,16 @@ import { createOgImage } from "@/lib/createOgImage"
 const POPUP_URL = "https://bucharitesh.in/cal"
 
 const POPUP_IMAGE_URL = createOgImage({
-  title: "Book a meeting",
+  title: "Let's Discuss",
   meta: "bucharitesh.in",
 })
+
 const POPUP_TITLE = "Book a meeting"
 const POPUP_DESCRIPTION =
-  "Ready to elevate your project? 🚀 Book a meeting with me and let's turn your ideas into reality! Your journey starts here."
-const POPUP_ID = "hideChangelogPopup09172024"
+  "🚀 Schedule a meeting with me to discuss anything from design to engineering to business to anything else."
+const POPUP_ID = "hideBookaMeetingPopup"
+
+const SHOW_POPUP_AFTER = 25000
 
 export const PopupContext = createContext<{
   hidePopup: () => void
@@ -36,7 +39,7 @@ export function Popup({
   children: ReactNode
   hiddenCookieId: string
 }) {
-  const [hidden, setHidden] = useState(true);
+  const [hidden, setHidden] = useState(true)
 
   const hidePopup = () => {
     setHidden(true)
@@ -44,16 +47,16 @@ export function Popup({
   }
 
   useEffect(() => {
-    let timeout;
+    let timeout
 
     timeout = setTimeout(() => {
       setHidden(Cookies.get(hiddenCookieId) === "1")
-    }, 10000);
+    }, SHOW_POPUP_AFTER);
 
-    () => {
-      clearTimeout(timeout);
-      return setHidden(true);
-    };
+    return () => {
+      clearTimeout(timeout)
+      setHidden(true)
+    }
   }, [])
 
   return (
@@ -65,15 +68,15 @@ export function Popup({
   )
 }
 
-export default function ChangelogPopup() {
+export default function BookaMeetingPopup() {
   return (
     <Popup hiddenCookieId={POPUP_ID}>
-      <ChangelogPopupInner />
+      <BookaMeetingPopupInner />
     </Popup>
   )
 }
 
-export function ChangelogPopupInner() {
+export function BookaMeetingPopupInner() {
   const { hidePopup } = useContext(PopupContext)
 
   return (
@@ -84,13 +87,13 @@ export function ChangelogPopupInner() {
         translateY: 0,
       }}
       exit={{ opacity: 0, y: "100%" }}
-      className="group fixed bottom-4 z-40 mx-2 overflow-hidden rounded-lg border border-primary-200 bg-primary-200 shadow-md sm:left-4 sm:mx-auto sm:max-w-sm"
+      className="group fixed bottom-4 z-40 mx-2 overflow-hidden rounded-xl border border-black/40 bg-black/40 shadow-md sm:left-4 sm:mx-auto sm:max-w-sm"
     >
       <button
-        className="absolute right-2.5 top-2.5 z-10 rounded-full p-1 transition-colors text-primary-100 hover:bg-primary-800 active:scale-90"
+        className="absolute right-2.5 top-2.5 z-10 rounded-full p-1 transition-colors text-primary-100 hover:text-black hover:bg-white active:scale-90"
         onClick={hidePopup}
       >
-        <X className="h-4 w-4 text-primary-200" />
+        <X className="h-4 w-4" />
       </button>
       <Link
         href={POPUP_URL}
@@ -98,7 +101,7 @@ export function ChangelogPopupInner() {
         className="flex max-w-sm flex-col items-center justify-center"
         onClick={() => hidePopup()}
       >
-        <div className="border-b border-primary-200">
+        <div className="border-b border-black/80">
           <BlurImage
             src={POPUP_IMAGE_URL}
             alt="Root Domain Links"
@@ -111,7 +114,7 @@ export function ChangelogPopupInner() {
           <p className="text-center font-semibold text-primary-800 underline-offset-4 group-hover:underline">
             {POPUP_TITLE}
           </p>
-          <p className="text-pretty text-sm text-primary-800/60">
+          <p className="text-pretty text-sm text-primary-100">
             {POPUP_DESCRIPTION}
           </p>
         </div>

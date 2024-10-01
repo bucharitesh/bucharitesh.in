@@ -44,7 +44,7 @@ export default async function Page() {
         </div>
       )}
 
-      <div>
+      <div className="space-y-4">
         {posts.map((post) => {
           return <BlogItem key={post.slug} {...post} />
         })}

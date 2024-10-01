@@ -33,7 +33,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".contentlayer/generated"
-, "content/craft/magic-card.mdx"  ],
+    ".contentlayer/generated"  
+  ],
   "exclude": ["node_modules"]
 }

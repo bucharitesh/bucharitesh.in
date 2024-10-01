@@ -77,10 +77,18 @@ module.exports = {
         "spin-around": "spin-around calc(var(--speed) * 2) infinite linear",
         slide: "slide var(--speed) ease-in-out infinite alternate",
         reveal: "reveal 0.7s ease-in-out",
+        marquee: "marquee var(--duration) linear infinite",
+        "marquee-vertical": "marquee-vertical var(--duration) linear infinite",
       },
-      keyframes:
-        '({ theme }) => ({\n        "spin-around": {\n          "0%": {\n            transform: "translateZ(0) rotate(0)",\n          },\n          "15%, 35%": {\n            transform: "translateZ(0) rotate(90deg)",\n          },\n          "65%, 85%": {\n            transform: "translateZ(0) rotate(270deg)",\n          },\n          "100%": {\n            transform: "translateZ(0) rotate(360deg)",\n          },\n        },\n        slide: {\n          to: {\n            transform: "translate(calc(100cqw - 100%), 0)",\n          },\n        },\n        "border-beam": {\n          "100%": {\n            "offset-distance": "100%",\n          },\n        },\n        mutation: {\n          "0%": {\n            background: theme("colors.primary.200 / 3%"),\n          },\n          "10%": {\n            background: theme("colors.primary.200 / 15%"),\n            color: theme("colors.primary.200 / 75%"),\n          },\n          "100%": {\n            background: theme("colors.primary.200 / 0%"),\n          },\n        },\n        emoji: {\n          "0%": {\n            opacity: "0",\n            transform: "translateY(0) scale(0)",\n          },\n          "50%": {\n            opacity: "1",\n            transform: "translateY(-40px) scale(1)",\n          },\n          to: {\n            opacity: "0",\n            transform: "translateY(-60px) scale(1.4)",\n          },\n        },\n        loading: {\n          "0%": {\n            opacity: ".2",\n          },\n          "20%": {\n            opacity: "1",\n            transform: "translateX(1px)",\n          },\n          to: {\n            opacity: ".2",\n          },\n        },\n        shimmer: {\n          "100%": {\n            transform: "translateX(100%)",\n          },\n        },\n      })',
       keyframes: ({ theme }) => ({
+        marquee: {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(calc(-100% - var(--gap)))" },
+        },
+        "marquee-vertical": {
+          from: { transform: "translateY(0)" },
+          to: { transform: "translateY(calc(-100% - var(--gap)))" },
+        },
         reveal: {
           "0%": {
             opacity: 0,

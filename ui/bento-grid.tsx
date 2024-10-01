@@ -1,16 +1,20 @@
-import { cn } from "@/lib/utils"
+import { ReactNode } from "react"
 
-export const BentoGrid = ({
-  className,
+import { cn } from "@/lib/utils"
+import { Button } from "./button"
+import { ArrowRightIcon } from "lucide-react"
+
+const BentoGrid = ({
   children,
+  className,
 }: {
+  children: ReactNode
   className?: string
-  children?: React.ReactNode
 }) => {
   return (
     <div
       className={cn(
-        "grid md:auto-rows-[18rem] grid-cols-1 md:grid-cols-3 gap-4 max-w-7xl mx-auto ",
+        "grid w-full auto-rows-[22rem] grid-cols-3 gap-4",
         className,
       )}
     >
@@ -19,21 +23,57 @@ export const BentoGrid = ({
   )
 }
 
-export const BentoGridItem = ({
+const BentoCard = ({
+  name,
   className,
-  header,
+  background,
+  Icon,
+  description,
+  href,
+  cta,
 }: {
-  className?: string
-  header?: React.ReactNode
-}) => {
-  return (
+  name: string
+  className: string
+  background: ReactNode
+  Icon: any
+  description: string
+  href: string
+  cta: string
+}) => (
+  <div
+    key={name}
+    className={cn(
+      "group relative col-span-3 flex flex-col justify-between overflow-hidden rounded-xl",
+      // light styles
+      "bg-white/5 [box-shadow:0_0_0_1px_rgba(0,0,0,.03),0_2px_4px_rgba(0,0,0,.05),0_12px_24px_rgba(0,0,0,.05)]",
+      // dark styles
+      "transform-gpu dark:bg-black dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset]",
+      className,
+    )}
+  >
+    <div>{background}</div>
+    <div className="pointer-events-none z-10 flex transform-gpu flex-col gap-2 p-6 transition-all duration-300 group-hover:-translate-y-10">
+      <Icon className="h-8 w-8 origin-left transform-gpu text-white transition-all duration-300 ease-in-out group-hover:scale-75" />
+      <h3 className="text-lg font-semibold text-white">{name}</h3>
+      <p className="max-w-lg text-sm text-primary-400 transition-all">
+        {description}
+      </p>
+    </div>
+
     <div
       className={cn(
-        "row-span-1 rounded-xl h-full w-full group/bento hover:shadow-xl transition duration-200 shadow-input shadow-none bg-gray-400/10 border-white/[0.2] border justify-between flex flex-col space-y-4",
-        className,
+        "pointer-events-none absolute bottom-0 flex w-full translate-y-10 transform-gpu flex-row items-center p-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100",
       )}
     >
-      {header}
+      <Button variant="ghost" asChild size="sm" className="pointer-events-auto">
+        <a href={href}>
+          {cta}
+          <ArrowRightIcon className="ml-2 h-4 w-4" />
+        </a>
+      </Button>
     </div>
-  )
-}
+    <div className="pointer-events-none absolute inset-0 transform-gpu transition-all duration-300 group-hover:bg-black/[.03] group-hover:dark:bg-neutral-800/10" />
+  </div>
+)
+
+export { BentoCard, BentoGrid }

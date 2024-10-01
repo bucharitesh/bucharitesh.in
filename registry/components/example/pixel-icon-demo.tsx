@@ -3,7 +3,7 @@
 import React from "react"
 import PixelIcon from "@/registry/components/bucharitesh/pixel-icon";
 
-const Icons = [
+export const PixelIconData = [
   {
     name: "nextjs",
     color: "#005738",
@@ -190,7 +190,7 @@ const PixelIconDemo = () => {
   return (
     <div className="relative flex bg-white w-full items-center justify-center overflow-hidden rounded-lg border bg-background p-10 md:shadow-xl">
       <div className="grid grid-cols-4 gap-4 w-full place-items-center">
-        {Icons.map((icon) => {
+        {PixelIconData.map((icon) => {
           return (
             <div
               key={icon.name}
