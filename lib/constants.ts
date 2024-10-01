@@ -33,8 +33,8 @@ export const FOOTER_ITEMS = {
   GENERAL: [
     { href: "/", label: "Home" },
     { href: "/blog", label: "Blog" },
-    { href: "/projects", label: "Projects" },
-    { href: "/guestbook", label: "Guestbook" },
+    { href: "/craft", label: "Craft" },
+    // { href: "/projects", label: "Projects" },
   ],
   SOCIAL: [
     { href: meta.social.github, label: "GitHub" },
@@ -42,8 +42,8 @@ export const FOOTER_ITEMS = {
     { href: "/cal", label: "Book a Meeting" },
   ],
   PAGES: [
-    { href: "/craft", label: "Craft" },
-    { href: "/bookmarks", label: "Bookmarks"},
+    { href: "/guestbook", label: "Guestbook" },
+    { href: "/bookmarks", label: "Bookmarks" },
     { href: "/design-inspiration", label: "Design Inspiration" },
   ],
 }

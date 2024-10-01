@@ -12,6 +12,7 @@ import { ViewTransitions } from "next-view-transitions"
 import { PreloadResources } from "@/ui/backgrounds/preload-resource"
 import Toolbar from "@/ui/layout/help"
 import { Suspense } from "react"
+import ChangelogPopup from "@/ui/book-a-meeting-popup"
 
 const hubot = localFont({
   src: "../public/assets/HubotSans.woff2",
@@ -68,6 +69,7 @@ export default async function RootLayout({
               <div className="h-full bg-[url('https://res.cloudinary.com/bucha/image/upload/h_500/bg_gradient_fmgwrc')] bg-top bg-no-repeat opacity-[0.3]" />
             </div>
 
+            <ChangelogPopup />
             {/* <UserSurveyPopup /> */}
             <Toolbar />
           </body>
