@@ -26,7 +26,7 @@ export async function GET() {
       feed.item({
         title: post.title,
         description: post.description,
-        url: `https://www.bucharitesh.in/craft/${post.slug}`,
+        url: `https://www.bucharitesh.in/craft/${post.slugAsParams}`,
         author: "Ritesh Bucha",
         date: post.publishedAt,
       })

@@ -31,7 +31,7 @@ export default async function Page() {
     >
       <div className="grid grid-cols-1 md:grid-cols-1 space-y-10">
         {snippets.map((snippet) => {
-          return <SnippetPostPreview key={snippet.slug} {...snippet} />
+          return <SnippetPostPreview key={snippet.slugAsParams} {...snippet} />
         })}
       </div>
     </PageWrapper>

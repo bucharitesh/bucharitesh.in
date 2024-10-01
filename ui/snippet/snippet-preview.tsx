@@ -11,8 +11,7 @@ export const SnippetPostPreview = (
     <div>
       <ContentLink
         className="flex justify-between"
-        key={snippet.slug}
-        href={`/craft/${snippet.slug}`}
+        href={`/craft/${snippet.slugAsParams}`}
       >
         <div className="flex flex-col gap-4">
           <ContentLink.Title>{snippet.title}</ContentLink.Title>
@@ -24,11 +23,7 @@ export const SnippetPostPreview = (
           ) : null}
         </div>
 
-        <h1
-          className={cn(
-            "text-2xl font-medium sm:text-4xl",
-          )}
-        >
+        <h1 className={cn("text-2xl font-medium sm:text-4xl")}>
           {snippet.logo ? (
             <BlurImage
               height={40}

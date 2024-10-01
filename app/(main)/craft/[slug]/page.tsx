@@ -57,7 +57,7 @@ export default async function CraftPage({ params }: Props) {
         published_at={craft.publishedAt}
         title={craft.title}
         description={craft.description}
-        slug={craft.slug}
+        slug={craft.slugAsParams}
       />
       <Snippet snippet={craft} />
     </>
