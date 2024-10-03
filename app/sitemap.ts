@@ -1,5 +1,5 @@
 import { allPosts } from "@/.contentlayer/generated"
-import { getCrafts } from "@/lib/crafts"
+import { getAllCrafts } from "@/lib/crafts"
 import { getBookmarks } from "@/lib/services/raindrop"
 import { MetadataRoute } from "next"
 import { headers } from "next/headers"
@@ -8,7 +8,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const headersList = headers()
   let domain = headersList.get("host") as string
 
-  const allCrafts = await getAllCrafts()
+  const allCrafts = await getAllCrafts({ published: true })
 
   if (domain === "localhost:8888" || domain.endsWith(".vercel.app")) {
     // for local development and preview URLs

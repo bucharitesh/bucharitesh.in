@@ -16,10 +16,10 @@ import Confetti, { ConfettiRef } from "../magicui/confetti"
 
 type Inputs = z.infer<typeof NewsletterFormSchema>
 
-export default function NewsletterForm({ submitted }: { submitted : boolean }) {
-  const [success, setSuccess] = useState<boolean>(submitted ?? false);
+export default function NewsletterForm({ submitted }: { submitted: boolean }) {
+  const [success, setSuccess] = useState<boolean>(submitted ?? false)
 
-  const confettiRef = useRef<ConfettiRef>(null);
+  const confettiRef = useRef<ConfettiRef>(null)
 
   const {
     register,

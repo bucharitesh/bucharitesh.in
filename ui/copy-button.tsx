@@ -38,9 +38,7 @@ export function CopyButton({
         className,
       )}
       onClick={() => {
-        copyToClipboardWithMeta(
-          value
-        )
+        copyToClipboardWithMeta(value)
         setHasCopied(true)
       }}
       {...props}

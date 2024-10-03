@@ -51,7 +51,7 @@ export function getPagerForDoc(doc: Craft, allDocs: any) {
 
   const flattenedLinks = [null, ...flatten(getURLs), null]
 
-  const activeIndex = flattenedLinks.findIndex((link) => doc.url === link?.href);
+  const activeIndex = flattenedLinks.findIndex((link) => doc.url === link?.href)
 
   const prev = activeIndex !== 0 ? flattenedLinks[activeIndex - 1] : null
   const next =
