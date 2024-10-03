@@ -1,4 +1,4 @@
-import { getAllPosts } from "@/lib/posts"
+import { getAllPosts } from "@/lib/crafts"
 import { BlogItem } from "@/ui/blog/blog-item"
 
 import MostViewed from "@/ui/blog/most-viewed"

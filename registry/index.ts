@@ -8,6 +8,11 @@ const ui: Registry = {
     type: "components:bucharitesh",
     files: ["registry/components/bucharitesh/pixel-icon.tsx"],
   },
+  "vercel-grid": {
+    name: "vercel-grid",
+    type: "components:bucharitesh",
+    files: ["registry/components/bucharitesh/vercel-grid.tsx"],
+  },
 }
 
 const example: Registry = {
@@ -18,6 +23,24 @@ const example: Registry = {
     files: ["registry/components/example/pixel-icon-demo.tsx"],
     component: React.lazy(
       () => import("@/registry/components/example/pixel-icon-demo"),
+    ),
+  },
+  // "vercel-grid-demo-empty": {
+  //   name: "/vercel-grid-demo-empty",
+  //   type: "components:example",
+  //   registryDependencies: ["vercel-grid"],
+  //   files: ["registry/components/example/vercel-grid-demo-empty.tsx"],
+  //   component: React.lazy(
+  //     () => import("@/registry/components/example/vercel-grid-demo-empty"),
+  //   ),
+  // },
+  "vercel-grid-demo-text": {
+    name: "vercel-grid-demo-text",
+    type: "components:example",
+    registryDependencies: ["vercel-grid"],
+    files: ["registry/components/example/vercel-grid-demo-text.tsx"],
+    component: React.lazy(
+      () => import("@/registry/components/example/vercel-grid-demo-text"),
     ),
   },
 }

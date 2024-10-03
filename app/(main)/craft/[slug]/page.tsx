@@ -1,16 +1,14 @@
-import { allCrafts } from "@/.contentlayer/generated"
 import { meta } from "@/lib/constants"
+import { getAllCrafts } from "@/lib/crafts"
 import { createOgImage } from "@/lib/createOgImage"
 import { SNIPPET_SCRIPT_ORG } from "@/lib/script"
-import { Mdx } from "@/ui/mdx"
 import Snippet from "@/ui/snippet/snippet"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
 
-export const generateStaticParams = () => {
-  return allCrafts
-    .filter((p) => p.published)
-    .map((p) => ({ slug: p.slugAsParams }))
+export const generateStaticParams = async () => {
+  const allCrafts = await getAllCrafts({})
+  return allCrafts?.map((p) => ({ slug: p.slugAsParams }))
 }
 
 type Props = {
@@ -18,6 +16,8 @@ type Props = {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const allCrafts = await getAllCrafts({})
+
   const craft = allCrafts.find((post) => post.slugAsParams === params?.slug)
 
   if (!craft) {
@@ -41,7 +41,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function CraftPage({ params }: Props) {
-  const craft = allCrafts.find((post) => post.slugAsParams === params?.slug);
+  const allCrafts = await getAllCrafts({})
+  const craft = allCrafts.find((post) => post.slugAsParams === params?.slug)
 
   if (!craft) {
     notFound()

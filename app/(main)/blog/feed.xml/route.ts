@@ -1,5 +1,5 @@
 import { meta } from "@/lib/constants"
-import { allPosts } from "contentlayer/generated"
+import { getAllPosts } from "@/lib/crafts"
 import RSS from "rss"
 
 export async function GET() {
@@ -17,20 +17,17 @@ export async function GET() {
     ttl: 60,
   })
 
-  allPosts
-    .sort(
-      (a, b) =>
-        new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
-    )
-    .map((post) => {
-      feed.item({
-        title: post.title,
-        description: post.description,
-        url: `https://www.bucharitesh.in/blog/${post.slug}`,
-        author: "Ritesh Bucha",
-        date: post.publishedAt,
-      })
+  const allPosts = await getAllPosts()
+
+  allPosts.map((post) => {
+    feed.item({
+      title: post.title,
+      description: post.description,
+      url: `https://www.bucharitesh.in/blog/${post.slug}`,
+      author: "Ritesh Bucha",
+      date: post.publishedAt,
     })
+  })
   return new Response(feed.xml({ indent: true }), {
     headers: {
       "Content-Type": "application/xml; charset=utf-8",

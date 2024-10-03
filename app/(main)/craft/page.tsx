@@ -1,4 +1,4 @@
-import { getCrafts } from "@/lib/snippets"
+import { getAllCrafts } from "@/lib/crafts"
 import { Button } from "@/ui/button"
 import PageWrapper from "@/ui/layout/page-wrapper"
 import { SnippetPostPreview } from "@/ui/snippet/snippet-preview"
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 }
 
 export default async function Page() {
-  const { snippets } = await getCrafts()
+  const snippets = await getAllCrafts({ published: true, sorted: true })
 
   return (
     <PageWrapper
