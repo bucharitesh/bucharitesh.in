@@ -47,13 +47,30 @@ const PixelIcon: React.FC<PixelIconProps> = ({
       isDarker: boolean,
     ) => {
       const shades: any = []
-      for (let i = 0; i < 4; i++) {
-        const factor = isDarker
-          ? 0.1 + (0.3 * i) / 3 // Range from 0.4 to 0.7 for darker shades
-          : 0.8 + (0.3 * i) / 3 // Range from 0.7 to 1.0 for lighter shades
-        shades.push(
-          color.map((c) => Math.floor(c * factor)) as [number, number, number],
-        )
+      if (isDarker) {
+        // Create more distinct dark shades
+        const darkFactors = [0.7, 0.8, 0.9, 1.0]
+        for (let factor of darkFactors) {
+          shades.push(
+            color.map((c) => Math.floor(c * factor)) as [
+              number,
+              number,
+              number,
+            ],
+          )
+        }
+      } else {
+        // Keep the original logic for lighter shades
+        for (let i = 0; i < 4; i++) {
+          const factor = 0.7 + (0.6 * i) / 3 // Range from 0.7 to 1.3
+          shades.push(
+            color.map((c) => Math.min(255, Math.floor(c * factor))) as [
+              number,
+              number,
+              number,
+            ],
+          )
+        }
       }
       return shades
     }
