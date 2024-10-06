@@ -19,6 +19,12 @@ module.exports = {
         sans: ["var(--font-hubot)", ...defaultTheme.fontFamily.sans],
       },
       colors: {
+        "ds-gray-1000": "hsla(0, 0%, 93%, 1)",
+        "ds-gray-200": "hsla(0, 0%, 12%, 1)",
+        "ds-amber-600": "hsla(39, 85%, 49%, 1)",
+        // Add other custom colors as needed
+        // Example:
+        "ds-blue-600": "hsla(206, 100%, 50%, 1)",
         gray: colors.stone,
         background: "hsl(var(--background))",
         primary: {
