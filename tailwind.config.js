@@ -79,8 +79,17 @@ module.exports = {
         reveal: "reveal 0.7s ease-in-out",
         marquee: "marquee var(--duration) linear infinite",
         "marquee-vertical": "marquee-vertical var(--duration) linear infinite",
+        disappear: "disappear 2s ease-out forwards",
       },
       keyframes: ({ theme }) => ({
+        disappear: {
+          "90%": {
+            opacity: 1,
+          },
+          to: {
+            opacity: 0,
+          },
+        },
         marquee: {
           from: { transform: "translateX(0)" },
           to: { transform: "translateX(calc(-100% - var(--gap)))" },
