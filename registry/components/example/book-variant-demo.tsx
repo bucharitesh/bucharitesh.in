@@ -1,25 +1,15 @@
-import React from 'react'
-import Book from './book'
-import { Leaf, LineChart } from 'lucide-react'
+import React from "react"
+import Book from "../bucharitesh/book"
+import { Leaf } from "lucide-react"
 
-const Page = () => {
+const BookDemo = () => {
   return (
-    <div className="w-full p-6 flex flex-col gap-10">
-      <Book title="The user experience of the Frontend Cloud" />
-
-      <p>Variants</p>
+    <div className="w-full p-6 grid grid-cols-1 md:grid-cols-2 gap-10">
       <Book
         title="The user experience of the Frontend Cloud"
         variant="simple"
         width={196}
       />
-      <Book
-        title="The user experience of the Frontend Cloud"
-        variant="stripe"
-        width={196}
-      />
-
-      <p>custom color</p>
       <Book
         color="#9D2127"
         title="How Vercel improves your website's search engine ranking"
@@ -31,8 +21,6 @@ const Page = () => {
         variant="simple"
       />
       <Book color="#FED954" title="The user experience of the Frontend Cloud" />
-
-      <p>with illustration</p>
       <Book
         illustration={
           <svg
@@ -100,4 +88,4 @@ const Page = () => {
   )
 }
 
-export default Page
+export default BookDemo

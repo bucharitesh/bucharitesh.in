@@ -1,7 +1,5 @@
 .book-perspective {
     --book-default-width: 196;
-    --book-color: var(--ds-gray-200);
-    --book-text-color: var(--ds-gray-1000);
     --book-depth: 29cqw;
     --book-border-radius: 6px 4px 4px 6px;
     --hover-rotate: -20deg;
@@ -239,9 +237,9 @@
         gap: var(--stack-gap,0)
     }
 
-    .stack_padding__ox8JS {
+    /* .stack_padding__ox8JS {
         padding: var(--stack-padding,0)
-    }
+    } */
 
     @media screen and (max-width: 600px) {
         .stack-stack {

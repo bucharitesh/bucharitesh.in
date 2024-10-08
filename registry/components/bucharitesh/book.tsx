@@ -1,5 +1,5 @@
 import React, { CSSProperties } from "react"
-import "./style.css"
+import "./book.style.css"
 import { VercelLogoIcon } from "@radix-ui/react-icons"
 import { cn } from "@/lib/utils"
 
@@ -38,7 +38,7 @@ const Book = ({
   width = 196,
   variant = "stripe",
   color = "#e79d13",
-  textColor = "white",
+  textColor = "#ffffff",
   illustration,
 }: {
   title: string
@@ -59,7 +59,12 @@ const Book = ({
           "book-stripe": variant === "stripe",
           "book-simple": variant === "simple",
         })}
-        style={{ "--book-color": color } as React.CSSProperties}
+        style={
+          {
+            "--book-color": color,
+            "--book-text-color": textColor,
+          } as React.CSSProperties
+        }
       >
         <div
           className="stack-stack stack book-book"
@@ -118,29 +123,20 @@ const Book = ({
                   "--stack-flex": "initial",
                   "--stack-direction": "column",
                   "--stack-align": "stretch",
-                  "--stack-justify": variant === 'stripe' ? "space-between" : "flex-start",
+                  "--stack-justify":
+                    variant === "stripe" ? "space-between" : "flex-start",
                   "--stack-padding": "0px",
                   "--stack-gap": "0px",
                 } as React.CSSProperties
               }
             >
-              <span
-                className="text_wrapper__i87JK book-title"
-                data-version="v1"
-                style={
-                  {
-                    "--text-color": textColor,
-                    "--text-size": "0.875rem",
-                    "--text-line-height": "1.25rem",
-                    "--text-letter-spacing": "initial",
-                    "--text-weight": "600",
-                  } as React.CSSProperties
-                }
-              >
+              <span className="book-title" data-version="v1">
                 {title}
               </span>
-              {variant === 'simple' && (
-                <div className="book-illustration">{illustration ? illustration : defaultIllustration}</div>
+              {variant === "simple" && (
+                <div className="book-illustration">
+                  {illustration ? illustration : defaultIllustration}
+                </div>
               )}
               {variant === "stripe" && (
                 <VercelLogoIcon

@@ -13,6 +13,11 @@ const ui: Registry = {
     type: "components:bucharitesh",
     files: ["registry/components/bucharitesh/vercel-grid.tsx"],
   },
+  "book": {
+    name: "book",
+    type: "components:bucharitesh",
+    files: ["registry/components/bucharitesh/book.tsx"],
+  },
 }
 
 const example: Registry = {
@@ -41,6 +46,24 @@ const example: Registry = {
     files: ["registry/components/example/vercel-grid-demo-text.tsx"],
     component: React.lazy(
       () => import("@/registry/components/example/vercel-grid-demo-text"),
+    ),
+  },
+  "book-demo": {
+    name: "book-demo",
+    type: "components:example",
+    registryDependencies: ["book"],
+    files: ["registry/components/example/book-demo.tsx"],
+    component: React.lazy(
+      () => import("@/registry/components/example/book-demo"),
+    ),
+  },
+  "book-variant-demo": {
+    name: "book-variant-demo",
+    type: "components:example",
+    registryDependencies: ["book"],
+    files: ["registry/components/example/book-variant-demo.tsx"],
+    component: React.lazy(
+      () => import("@/registry/components/example/book-variant-demo"),
     ),
   },
 }
