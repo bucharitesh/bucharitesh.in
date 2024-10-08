@@ -3,17 +3,32 @@ import "./style.css"
 import { cn } from "@/lib/utils"
 
 const Guide = ({ x, y, borderRight, borderBottom, classNames }: any) => {
+  const getBorders = () => {
+    let borders = {};
+
+    if(borderRight) {
+      borders = {
+        "border-right": "none"
+      }
+    }
+
+    if(borderBottom) {
+      borders = {
+        "border-bottom": "none",
+      }
+    }
+    return borders;
+  }
+
   return (
     <div
       aria-hidden="true"
-      className={cn("grid_guide__Ei25j", classNames, {
-        "!border-r-0": borderRight,
-        "!border-b-0": borderBottom,
-      })}
+      className={cn("grid_guide__Ei25j", classNames)}
       style={
         {
           "--x": x,
           "--y": y,
+          ...getBorders()
         } as React.CSSProperties
       }
     />
@@ -25,6 +40,7 @@ const Grid = ({
   rows,
   height,
   children,
+  hideGuides,
 }: {
   height?: string
   columns:
@@ -46,6 +62,7 @@ const Grid = ({
       }
     | number
   children?: any
+  hideGuides?: 'row' | 'column';
 }) => {
   const generateGuides = useMemo(() => {
     if (typeof columns === "number" && typeof rows === "number") {
@@ -57,8 +74,8 @@ const Grid = ({
               key={`${x}-${y}`}
               x={x}
               y={y}
-              borderRight={x === columns}
-              borderBottom={y === rows}
+              borderRight={x === columns || (hideGuides && hideGuides === "column")}
+              borderBottom={y === rows || (hideGuides && hideGuides === "row")}
             />,
           )
         }
@@ -95,8 +112,8 @@ const Grid = ({
       breakpoints.forEach((breakpoint) => {
         const guides: React.ReactNode[] = []
 
-       const colCount = getNextAvailableValue(columns, breakpoint)
-       const rowCount = getNextAvailableValue(rows, breakpoint)
+        const colCount = getNextAvailableValue(columns, breakpoint)
+        const rowCount = getNextAvailableValue(rows, breakpoint)
 
         for (let y = 1; y < rowCount + 1; y++) {
           for (let x = 1; x < colCount + 1; x++) {
@@ -108,11 +125,11 @@ const Grid = ({
                 borderRight={colCount === x}
                 borderBottom={rowCount === y}
                 classNames={cn("", {
-                  "grid_xsGuide__Xupsz": breakpoint === 'xs',
-                  "grid_smGuide__dhwwf": breakpoint === 'sm',
-                  "grid_smdGuide__pWYK7": breakpoint === "smd",
-                  "grid_mdGuide__Kf1OM": breakpoint === "md",
-                  "grid_lgGuide__2OXaB": breakpoint === "lg",
+                  grid_xsGuide__Xupsz: breakpoint === "xs",
+                  grid_smGuide__dhwwf: breakpoint === "sm",
+                  grid_smdGuide__pWYK7: breakpoint === "smd",
+                  grid_mdGuide__Kf1OM: breakpoint === "md",
+                  grid_lgGuide__2OXaB: breakpoint === "lg",
                 })}
               />,
             )
@@ -241,14 +258,17 @@ interface GridCellProps {
   children: React.ReactNode
   column?: any;
   row?: any;
+  solid?: boolean;
 }
 
 const GridCell: React.FC<GridCellProps> = ({
   children,
   column,
   row,
+  solid = true,
 }: {
   children: any
+  solid?: boolean
   column?:
     | {
         sm: string
@@ -272,18 +292,18 @@ const GridCell: React.FC<GridCellProps> = ({
   }
 
   function calculateDifference(input: string | number): any {
-    if(typeof input === "number") {
-      return input;
+    if (typeof input === "number") {
+      return input
     }
 
-    if(typeof input === "string") {
+    if (typeof input === "string") {
       const [numerator, denominator] = input.split("/").map(Number)
 
       // Calculate the difference (denominator - numerator)
-      return denominator - numerator;
+      return denominator - numerator
     }
 
-    return 'NaN';
+    return "NaN"
   }
 
   const getStyle = () => {
@@ -293,9 +313,10 @@ const GridCell: React.FC<GridCellProps> = ({
         "--sm-grid-row": row,
         "--sm-grid-column": column,
         "--sm-cell-rows": calculateDifference(row),
-        "--sm-cell-columns": calculateDifference(column)
+        "--sm-cell-columns": calculateDifference(column),
       } as React.CSSProperties
     }
+
     if (typeof row === "object" && typeof column === "object") {
       return {
         "--sm-grid-row": css(row.sm),
@@ -343,11 +364,7 @@ const GridCell: React.FC<GridCellProps> = ({
   }
 
   return (
-    <div
-      className={`grid_block__lyImu`}
-      data-grid-cell
-      style={getStyle()}
-    >
+    <div className={`grid_block__lyImu`} data-grid-cell style={getStyle()}>
       {children}
     </div>
   )
