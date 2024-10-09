@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 }
 
 export default async function Page() {
-  const snippets = await getAllCrafts({ published: true, sorted: true })
+  const crafts = await getAllCrafts({ published: true, sorted: true })
 
   return (
     <PageWrapper
@@ -30,8 +30,8 @@ export default async function Page() {
       }
     >
       <div className="grid grid-cols-1 md:grid-cols-1 space-y-10">
-        {snippets.map((snippet) => {
-          return <SnippetPostPreview key={snippet.slugAsParams} {...snippet} />
+        {crafts.map((craft) => {
+          return <SnippetPostPreview key={craft.slugAsParams} {...craft} />
         })}
       </div>
     </PageWrapper>

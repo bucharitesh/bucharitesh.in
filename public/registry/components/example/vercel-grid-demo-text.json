@@ -1,0 +1,13 @@
+{
+  "name": "vercel-grid-demo-text",
+  "registryDependencies": [
+    "vercel-grid"
+  ],
+  "files": [
+    {
+      "name": "vercel-grid-demo-text.tsx",
+      "content": "\"use client\"\n\nimport React from \"react\"\nimport Grid from \"@/registry/components/bucharitesh/vercel-grid\";\n\nconst VercelGridDemo = () => {\n  return (\n    <div className=\"relative space-y-10 w-full\">\n      <Grid rows={4} columns={4}>\n        <Grid.Cell row=\"auto\" column={1}>\n          What\n        </Grid.Cell>\n        <Grid.Cell row=\"auto\" column={4}>\n          will\n        </Grid.Cell>\n        <Grid.Cell row={2} column={3}>\n          you\n        </Grid.Cell>\n        <Grid.Cell row={3} column={4}>\n          ship\n        </Grid.Cell>\n        <Grid.Cell row={4} column=\"auto\">\n          ?\n        </Grid.Cell>\n      </Grid>\n\n      <Grid rows={4} columns={4}>\n        <Grid.Cross column={1} row={4} />\n        <Grid.Cross column={2} row={3} />\n        <Grid.Cross column={2} row={4} />\n        <Grid.Cross column={3} row={2} />\n        <Grid.Cross column={3} row={3} />\n        <Grid.Cross column={3} row={4} />\n        <Grid.Cross column={4} row={3} />\n        <Grid.Cross column={4} row={4} />\n        <Grid.Cross column={5} row={4} />\n      </Grid>\n    </div>\n  )\n}\n\nexport default VercelGridDemo\n"
+    }
+  ],
+  "type": "components:example"
+}

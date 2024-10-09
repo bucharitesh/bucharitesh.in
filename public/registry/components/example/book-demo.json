@@ -1,0 +1,13 @@
+{
+  "name": "book-demo",
+  "registryDependencies": [
+    "book"
+  ],
+  "files": [
+    {
+      "name": "book-demo.tsx",
+      "content": "import React from \"react\"\nimport Book from \"../bucharitesh/book\"\n\nconst BookDemo = () => {\n  return (\n    <div className=\"w-full p-6 grid grid-cols-3 gap-10\">\n      <Book title=\"The user experience of the Frontend Cloud\" />\n    </div>\n  )\n}\n\nexport default BookDemo\n"
+    }
+  ],
+  "type": "components:example"
+}

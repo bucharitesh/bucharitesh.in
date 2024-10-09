@@ -79,15 +79,24 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/r/:name",
+        destination: "/registry/components/bucharitesh/:name.json",
+        permanent: true,
+      },
+    ];
+  },
 }
 
-const millionConfig = {
-  auto: {
-    rsc: true,
-  },
-  server: true,
-  rsc: true,
-}
+// const millionConfig = {
+//   auto: {
+//     rsc: true,
+//   },
+//   server: true,
+//   rsc: true,
+// }
 
 // const config = withContentlayer(nextConfig)
 // module.exports = million.next(config, millionConfig);

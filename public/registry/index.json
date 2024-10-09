@@ -1,0 +1,63 @@
+[
+  {
+    "name": "book",
+    "files": [
+      "registry/components/bucharitesh/book.tsx"
+    ],
+    "type": "components:bucharitesh"
+  },
+  {
+    "name": "book-demo",
+    "registryDependencies": [
+      "book"
+    ],
+    "files": [
+      "registry/components/example/book-demo.tsx"
+    ],
+    "type": "components:example"
+  },
+  {
+    "name": "book-variant-demo",
+    "registryDependencies": [
+      "book"
+    ],
+    "files": [
+      "registry/components/example/book-variant-demo.tsx"
+    ],
+    "type": "components:example"
+  },
+  {
+    "name": "pixel-icon",
+    "files": [
+      "registry/components/bucharitesh/pixel-icon.tsx"
+    ],
+    "type": "components:bucharitesh"
+  },
+  {
+    "name": "pixel-icon-demo",
+    "registryDependencies": [
+      "pixel-icon"
+    ],
+    "files": [
+      "registry/components/example/pixel-icon-demo.tsx"
+    ],
+    "type": "components:example"
+  },
+  {
+    "name": "vercel-grid",
+    "files": [
+      "registry/components/bucharitesh/vercel-grid.tsx"
+    ],
+    "type": "components:bucharitesh"
+  },
+  {
+    "name": "vercel-grid-demo-text",
+    "registryDependencies": [
+      "vercel-grid"
+    ],
+    "files": [
+      "registry/components/example/vercel-grid-demo-text.tsx"
+    ],
+    "type": "components:example"
+  }
+]

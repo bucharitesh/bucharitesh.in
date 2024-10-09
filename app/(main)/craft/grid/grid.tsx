@@ -3,23 +3,6 @@ import "./style.css"
 import { cn } from "@/lib/utils"
 
 const Guide = ({ x, y, borderRight, borderBottom, classNames }: any) => {
-  const getBorders = () => {
-    let borders = {};
-
-    if(borderRight) {
-      borders = {
-        "border-right": "none"
-      }
-    }
-
-    if(borderBottom) {
-      borders = {
-        "border-bottom": "none",
-      }
-    }
-    return borders;
-  }
-
   return (
     <div
       aria-hidden="true"
@@ -28,7 +11,8 @@ const Guide = ({ x, y, borderRight, borderBottom, classNames }: any) => {
         {
           "--x": x,
           "--y": y,
-          ...getBorders()
+          "border-right": borderRight ? "none" : undefined,
+          "border-bottom": borderBottom ? "none" : undefined,
         } as React.CSSProperties
       }
     />
