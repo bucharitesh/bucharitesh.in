@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
     "target": "esnext", // Change to esnext for better ES module support
-    "module": "esnext", // Ensure module is set to esnext
+    "module": "esnext",
+    "moduleResolution": "node",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -10,7 +11,6 @@
     "noEmit": true,
     "incremental": true,
     "esModuleInterop": true,
-    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
@@ -34,6 +34,6 @@
     "**/*.ts",
     "**/*.tsx",
     ".contentlayer/generated"  
-, "scripts/build-registry.ts"  ],
-  "exclude": ["node_modules"]
+  ],
+  "exclude": ["node_modules", "scripts/**/*", "scripts/build-registry.ts", "__registry__"]
 }

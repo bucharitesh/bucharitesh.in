@@ -1,18 +1,20 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { RotateCcw } from "lucide-react"
+import * as React from "react";
+import { Index } from "__registry__";
+import { RotateCcw } from "lucide-react";
 
-import { cn } from "@/lib/utils"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/ui/tabs"
-import { ComponentName, registry } from "@/registry/index"
-import { Button } from "../button"
-import ComponentWrapper from "./component-wrapper"
+import { useConfig } from "@/lib/use-config";
+import { cn } from "@/lib/utils";
+import { Button } from "@/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/ui/tabs";
+import { styles } from "@/registry/registry-styles";
+import ComponentWrapper from "./component-wrapper";
 
 interface ComponentPreviewProps extends React.HTMLAttributes<HTMLDivElement> {
-  name: ComponentName
-  align?: "center" | "start" | "end"
-  preview?: boolean
+  name: string;
+  align?: "center" | "start" | "end";
+  preview?: boolean;
 }
 
 export function ComponentPreview({
@@ -23,15 +25,19 @@ export function ComponentPreview({
   preview = false,
   ...props
 }: ComponentPreviewProps) {
-  const [key, setKey] = React.useState(0) // State to trigger re-render of preview
-  const Codes = React.Children.toArray(children) as React.ReactElement[]
-  const Code = Codes[0] // first child
+  const [key, setKey] = React.useState(0);
+  const [config] = useConfig();
+  const index = styles.findIndex((style) => style.name === config.style);
+
+  const Codes = React.Children.toArray(children) as React.ReactElement[];
+  const Code = Codes[index];
 
   const Preview = React.useMemo(() => {
-    const Component = registry[name]?.component
+    console.log(Index, config.style, name);
+    const Component = Index[config.style][name]?.component;
 
     if (!Component) {
-      console.error(`Component with name "${name}" not found in registry.`)
+      console.error(`Component with name "${name}" not found in registry.`);
       return (
         <p className="text-sm text-muted-foreground">
           Component{" "}
@@ -40,17 +46,17 @@ export function ComponentPreview({
           </code>{" "}
           not found in registry.
         </p>
-      )
+      );
     }
 
-    return <Component />
-  }, [name, key])
+    return <Component />;
+  }, [name, config.style]);
 
   return (
     <div
       className={cn(
         "relative my-4 flex flex-col space-y-2 lg:max-w-[120ch]",
-        className,
+        className
       )}
       {...props}
     >
@@ -96,12 +102,12 @@ export function ComponentPreview({
         </TabsContent>
         <TabsContent value="code">
           <div className="flex flex-col space-y-4">
-            <div className="w-full rounded-md [&_pre]:max-h-[350px] [&_pre]:max-w-[750px]">
+            <div className="w-full rounded-md [&_pre]:my-0 [&_pre]:max-h-[350px] [&_pre]:overflow-auto">
               {Code}
             </div>
           </div>
         </TabsContent>
       </Tabs>
     </div>
-  )
+  );
 }

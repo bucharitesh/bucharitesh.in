@@ -3,10 +3,10 @@
 import { ArrowRight, BellIcon, CalendarIcon, FileTextIcon, Share2Icon } from "lucide-react"
 
 import { BentoCard, BentoGrid } from "@/ui/bento-grid"
-import { PixelIconData } from "@/registry/components/example/pixel-icon-demo"
-import PixelIcon from "@/registry/components/bucharitesh/pixel-icon"
 import { Marquee } from "@/ui/marquee"
 import { Link } from "next-view-transitions"
+import { PixelIconData } from "@/registry/default/example/pixel-icon-demo"
+import PixelIcon from "@/registry/default/bucharitesh/pixel-icon"
 
 const features = [
   {

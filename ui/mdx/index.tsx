@@ -15,8 +15,8 @@ import { LinkPreview } from "./link-preview"
 // import { CopyButton } from "../copy-button"
 import { useMDXComponent } from "next-contentlayer/hooks"
 import { ComponentPreview } from "./component-preview"
-import { ComponentSource } from "./component-source"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../tabs"
+import ComponentSource from "./component-source"
 
 export const components = {
   // One off components

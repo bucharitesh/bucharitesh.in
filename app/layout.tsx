@@ -2,23 +2,17 @@ import { meta } from "@/lib/constants"
 import { createOgImage } from "@/lib/createOgImage"
 import "@/styles/globals.css"
 import Footer from "@/ui/layout/footer"
-import localFont from "next/font/local"
 import { Metadata, Viewport } from "next"
 import { SessionProvider } from "next-auth/react"
 import { auth } from "@/lib/auth"
 import { cn } from "@/lib/utils"
-// import Toolbar from "@/ui/layout/help"
 import { ViewTransitions } from "next-view-transitions"
 import { PreloadResources } from "@/ui/backgrounds/preload-resource"
 import Toolbar from "@/ui/layout/help"
 import { Suspense } from "react"
 import ChangelogPopup from "@/ui/book-a-meeting-popup"
 
-const hubot = localFont({
-  src: "../public/assets/HubotSans.woff2",
-  variable: "--font-hubot",
-  weight: "400 900",
-})
+import { hubot } from "@/lib/fonts";
 
 export default async function RootLayout({
   children,
@@ -76,7 +70,7 @@ export default async function RootLayout({
         </SessionProvider>
       </html>
     </ViewTransitions>
-  )
+  );
 }
 
 export const viewport: Viewport = {

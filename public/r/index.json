@@ -1,0 +1,32 @@
+[
+  {
+    "name": "pixel-icon",
+    "type": "registry:ui",
+    "files": [
+      {
+        "path": "bucharitesh/pixel-icon.tsx",
+        "type": "registry:ui"
+      }
+    ]
+  },
+  {
+    "name": "book",
+    "type": "registry:ui",
+    "files": [
+      {
+        "path": "bucharitesh/book.tsx",
+        "type": "registry:ui"
+      }
+    ]
+  },
+  {
+    "name": "vercel-grid",
+    "type": "registry:ui",
+    "files": [
+      {
+        "path": "bucharitesh/vercel-grid.tsx",
+        "type": "registry:ui"
+      }
+    ]
+  }
+]

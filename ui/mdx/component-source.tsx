@@ -1,26 +1,27 @@
-"use client"
+import { cn } from "@/lib/utils";
 
-import * as React from "react"
-
-import { cn } from "@/lib/utils"
-import { CodeBlockWrapper } from "./code-block-wrapper"
-
-interface ComponentSourceProps extends React.HTMLAttributes<HTMLDivElement> {
-  src: string
+interface ComponentWrapperProps {
+  className?: string;
+  children: any;
 }
-
-export function ComponentSource({
-  children,
-  className,
-  ...props
-}: ComponentSourceProps) {
+const ComponentWrapper = ({ className, children }: ComponentWrapperProps) => {
   return (
-    <CodeBlockWrapper
-      expandButtonTitle="Expand"
-      className={cn("my-6 overflow-hidden rounded-md", className)}
-      {...props}
+    <div
+      className={cn(
+        "max-w-screen relative flex flex-col items-center justify-center rounded-xl bg-background p-0 md:border md:p-16",
+        className
+      )}
     >
+      <div
+        className={cn(
+          `absolute inset-0 size-full`,
+          `bg-[radial-gradient(#00000055_1px,transparent_1px)] dark:bg-[radial-gradient(#ffffff22_1px,transparent_1px)]`,
+          "lab-bg [background-size:16px_16px]"
+        )}
+      />
       {children}
-    </CodeBlockWrapper>
-  )
-}
+    </div>
+  );
+};
+
+export default ComponentWrapper;

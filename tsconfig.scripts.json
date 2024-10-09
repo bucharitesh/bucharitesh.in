@@ -3,10 +3,11 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "target": "es6",
-    "module": "commonjs",
+    "module": "ESNext",
+    "moduleResolution": "node",
     "esModuleInterop": true,
     "isolatedModules": false
   },
-  "include": ["scripts/**/*.ts"],
+  "include": [".content-collections/generated", "scripts/**/*.ts"],
   "exclude": ["node_modules"]
 }

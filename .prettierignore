@@ -1,0 +1,5 @@
+yarn.lock
+node_modules
+.next
+.content-collections
+.contentlayer
