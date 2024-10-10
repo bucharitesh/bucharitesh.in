@@ -22,10 +22,16 @@
     "strictNullChecks": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"],
+      "@/*": [
+        "./*"
+      ],
+      "@/components/bucharitesh/*": [
+        "./registry/default/bucharitesh/*"
+      ],
+      "@/components/example/*": [
+        "./registry/default/example/*"
+      ],
       "contentlayer/generated": ["./.contentlayer/generated"],
-      "@/components/bucharitesh/*": ["./registry/components/bucharitesh/*"],
-      "@/components/example/*": ["./registry/components/example/*"]
     }
   },
   "include": [

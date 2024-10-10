@@ -1,6 +1,5 @@
 import { meta } from "@/lib/constants"
 import { createOgImage } from "@/lib/createOgImage"
-import "@/styles/globals.css"
 import Footer from "@/ui/layout/footer"
 import { Metadata, Viewport } from "next"
 import { SessionProvider } from "next-auth/react"
@@ -10,9 +9,11 @@ import { ViewTransitions } from "next-view-transitions"
 import { PreloadResources } from "@/ui/backgrounds/preload-resource"
 import Toolbar from "@/ui/layout/help"
 import { Suspense } from "react"
-import ChangelogPopup from "@/ui/book-a-meeting-popup"
-
+// import ChangelogPopup from "@/ui/book-a-meeting-popup"
 import { hubot } from "@/lib/fonts";
+
+import "@/styles/globals.css";
+import "@/styles/mdx.css";
 
 export default async function RootLayout({
   children,
@@ -63,7 +64,7 @@ export default async function RootLayout({
               <div className="h-full bg-[url('https://res.cloudinary.com/bucha/image/upload/h_500/bg_gradient_fmgwrc')] bg-top bg-no-repeat opacity-[0.3]" />
             </div>
 
-            <ChangelogPopup />
+            {/* <ChangelogPopup /> */}
             {/* <UserSurveyPopup /> */}
             <Toolbar />
           </body>

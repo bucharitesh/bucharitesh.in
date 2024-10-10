@@ -1,14 +1,14 @@
-import React from "react"
+import React from "react";
 
 const Grid = ({ columns, rows, children }) => {
-  const gridClass = `grid grid-cols-${columns} grid-rows-${rows} border-2 border-gray-600 border-r-0 border-b-0 relative`
+  const gridClass = `grid grid-cols-${columns} grid-rows-${rows} border-2 border-gray-600 border-r-0 border-b-0 relative`;
 
   return (
     <div className={gridClass}>
       <div className="contents">
         {Array.from({ length: rows * columns }, (_, index) => {
-          const x = (index % columns) + 1
-          const y = Math.floor(index / columns) + 1
+          const x = (index % columns) + 1;
+          const y = Math.floor(index / columns) + 1;
           return (
             <div
               key={index}
@@ -20,13 +20,13 @@ const Grid = ({ columns, rows, children }) => {
                 gridRowEnd: "span 1",
               }}
             />
-          )
+          );
         })}
       </div>
       {children}
     </div>
-  )
-}
+  );
+};
 
 const Cell = ({ column, row, children }) => {
   return (
@@ -39,8 +39,8 @@ const Cell = ({ column, row, children }) => {
     >
       {children}
     </div>
-  )
-}
+  );
+};
 
 const Cross = ({ column, row }) => {
   return (
@@ -51,10 +51,10 @@ const Cross = ({ column, row }) => {
         gridRow: row,
       }}
     />
-  )
-}
+  );
+};
 
-Grid.Cell = Cell
-Grid.Cross = Cross
+Grid.Cell = Cell;
+Grid.Cross = Cross;
 
 export default Grid;

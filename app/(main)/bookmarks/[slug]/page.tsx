@@ -35,7 +35,7 @@ export default async function CollectionPage({ params }) {
   return (
     <>
       <div className="mt-24 mb-4 xl:!col-end-5">
-        <Back />
+        <Back href={"/bookmarks"} />
 
         <h1 className={cn("mt-6 text-2xl font-medium sm:text-4xl", OOF_GRAD)}>
           <Balancer>{currentBookmark?.title}</Balancer>

@@ -31,7 +31,7 @@ export default async function Page() {
       title="Blogs"
       description="Read my thoughts on software development, design, and more."
       action={
-        <Button variant={"secondary"} className="py-5">
+        <Button variant={"outline"} className="rounded-full h-8 w-8">
           <Link href="/blog/feed.xml">
             <Rss className="h-4 w-4" />
           </Link>

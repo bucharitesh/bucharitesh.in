@@ -9,11 +9,11 @@ import { PostTableOfContents } from "../post-table-of-contents"
 import { BlurImage } from "../mdx/blur-image"
 import Back from "../back-button"
 
-export default function Snippet({ snippet }: { snippet: any }) {
+export default function Craft({ snippet }: { snippet: any }) {
   return (
     <>
       <div className="mt-24 mb-4 xl:!col-end-5">
-        <Back />
+        <Back href={"/craft"} />
 
         <h1
           className={cn(

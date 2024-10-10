@@ -16,7 +16,8 @@ import { LinkPreview } from "./link-preview"
 import { useMDXComponent } from "next-contentlayer/hooks"
 import { ComponentPreview } from "./component-preview"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../tabs"
-import ComponentSource from "./component-source"
+import { ComponentSource } from "./component-source"
+import { CopyButton } from "../copy-button"
 
 export const components = {
   // One off components
@@ -35,7 +36,7 @@ export const components = {
   ComponentPreview,
   ComponentSource: (props: any) => <ComponentSource {...props} />,
   table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
-    <div className="my-6 w-full overflow-y-auto">
+    <div className="relative my-6 w-full overflow-y-auto">
       <table className={cn("w-full", className)} {...props} />
     </div>
   ),
@@ -152,7 +153,7 @@ export const components = {
   },
   ul: (props: any) => (
     <ul
-      className="space-y-3 [li>&]:mt-3 [&>li]:relative [&>li]:pl-7 before:[&>li]:absolute before:[&>li]:left-1 before:[&>li]:top-2 before:[&>li]:h-1.5 before:[&>li]:w-1.5 before:[&>li]:rounded-full before:[&>li]:bg-primary-200/20"
+      className="space-y-3 my-4 [li>&]:mt-3 [&>li]:relative [&>li]:pl-7 before:[&>li]:absolute before:[&>li]:left-1 before:[&>li]:top-2 before:[&>li]:h-1.5 before:[&>li]:w-1.5 before:[&>li]:rounded-full before:[&>li]:bg-primary-200/20"
       {...props}
     />
   ),
@@ -213,6 +214,57 @@ export const components = {
     />
   ),
   LinkPreview: (props: any) => <LinkPreview {...props} />,
+  pre: ({
+    className,
+    __rawString__,
+    __npmCommand__,
+    __pnpmCommand__,
+    __yarnCommand__,
+    __bunCommand__,
+    __withMeta__,
+    __src__,
+    // __style__,
+    __name__,
+    ...props
+  }: React.HTMLAttributes<HTMLPreElement> & {
+    // __style__?: Style["name"]
+    __rawString__?: string;
+    __npmCommand__?: string;
+    __pnpmCommand__?: string;
+    __yarnCommand__?: string;
+    __bunCommand__?: string;
+    __withMeta__?: boolean;
+    __src__?: string;
+    __name__?: string;
+  }) => {
+    return (
+      <>
+        <pre
+          className={cn(
+            // "max-h-[650px] overflow-x-auto",
+            className,
+          )}
+          {...props}
+        />
+        {__rawString__ && __src__ && (
+          <CopyButton
+            value={__rawString__}
+            src={__src__}
+            className={cn("absolute right-4 top-4", __withMeta__ && "top-16")}
+          />
+        )}
+      </>
+    );
+  },
+  code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
+    <code
+      className={cn(
+        "relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm",
+        className,
+      )}
+      {...props}
+    />
+  ),
 }
 
 interface MDXProps {

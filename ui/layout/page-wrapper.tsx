@@ -16,25 +16,18 @@ export default function PageWrapper({
 }) {
   return (
     <>
-      <div className="flex lowercase justify-between items-center mt-24 mb-4 xl:!col-end-5">
-        <div>
-          <h1
-            className={cn(
-              "mt-6 text-2xl font-medium sm:text-4xl",
-              OOF_GRAD,
-            )}
-          >
+      <div className="flex space-y-4 flex-col lowercase items-start mt-24 mb-4 xl:!col-end-5">
+        <div className="flex items-center justify-center space-x-4">
+          <h1 className={cn("text-2xl font-medium sm:text-4xl", OOF_GRAD)}>
             {title}
           </h1>
-
-          <p className="mt-6 text-sm font-bold text-primary-100/40">
-            {description}
-          </p>
+          {action}
         </div>
-        {action}
+        <p className="text-sm font-bold text-primary-100/40">
+          {description}
+        </p>
       </div>
-
       {children}
     </>
-  )
+  );
 }

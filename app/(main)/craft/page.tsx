@@ -22,7 +22,7 @@ export default async function Page() {
       title="Craft"
       description="A collection of craft that I've written."
       action={
-        <Button variant={"secondary"} className="py-5">
+        <Button variant={"outline"} className="rounded-full h-8 w-8">
           <Link href="/craft/feed.xml">
             <Rss className="h-4 w-4" />
           </Link>

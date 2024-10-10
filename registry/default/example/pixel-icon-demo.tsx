@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import React from "react"
-import PixelIcon from "../bucharitesh/pixel-icon"
+import React from "react";
+import PixelIcon from "../bucharitesh/pixel-icon";
 
 export const PixelIconData = [
   {
@@ -184,7 +184,7 @@ export const PixelIconData = [
       [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
     ],
   },
-]
+];
 
 const PixelIconDemo = () => {
   return (
@@ -205,11 +205,11 @@ const PixelIconDemo = () => {
                 flickerChance={0.2}
               />
             </div>
-          )
+          );
         })}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default PixelIconDemo
+export default PixelIconDemo;

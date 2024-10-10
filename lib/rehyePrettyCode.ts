@@ -3,7 +3,7 @@ import { visit } from "unist-util-visit"
 
 // div.BLOCK > pre.PRE > code.CODE
 // TODO, move this to vanilla css, its too much to send for every code block.
-const BLOCK = "valkyrie rounded-lg overflow-hidden my-4"
+const BLOCK = "valkyrie rounded-lg overflow-hidden w-full my-4"
 const TITLE =
   "rounded-t-md border-b border-primary-100/[3%] bg-primary-100/[2%] px-2.5 py-1 font-mono text-xs text-primary-100/60"
 const PRE =
@@ -121,4 +121,19 @@ export const rehypePrettyCodeOptions: Partial<Options> = {
   onVisitHighlightedLine(node) {
     node.properties.className.push(HIGHLIGHTED_LINE)
   },
+
+  // theme: "github-dark",
+  // onVisitLine(node: any) {
+  //   // Prevent lines from collapsing in `display: grid` mode, and allow empty
+  //   // lines to be copy/pasted
+  //   if (node.children.length === 0) {
+  //     node.children = [{ type: "text", value: " " }];
+  //   }
+  // },
+  // onVisitHighlightedLine(node: any) {
+  //   node.properties.className.push("line--highlighted");
+  // },
+  // onVisitHighlightedWord(node: any) {
+  //   node.properties.className = ["word--highlighted"];
+  // },
 }

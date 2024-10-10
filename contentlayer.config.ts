@@ -46,8 +46,9 @@ export default makeSource({
               }
             }
 
-            node.__rawString__ = codeEl.children?.[0].value
-            node.__style__ = node.properties?.__style__
+            node.__rawString__ = codeEl.children?.[0].value;
+            node.__src__ = node.properties?.__src__;
+            node.__style__ = node.properties?.__style__;
           }
         })
       },

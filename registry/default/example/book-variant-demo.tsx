@@ -1,6 +1,6 @@
-import React from "react"
-import Book from "../bucharitesh/book"
-import { Leaf } from "lucide-react"
+import React from "react";
+import Book from "../bucharitesh/book";
+import { Leaf } from "lucide-react";
 
 const BookDemo = () => {
   return (
@@ -85,7 +85,7 @@ const BookDemo = () => {
         variant="simple"
       />
     </div>
-  )
-}
+  );
+};
 
-export default BookDemo
+export default BookDemo;

@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import React from "react"
-import Grid from "../bucharitesh/vercel-grid"
+import React from "react";
+import Grid from "../bucharitesh/vercel-grid";
 
 const VercelGridDemo = () => {
   return (
@@ -36,7 +36,7 @@ const VercelGridDemo = () => {
         <Grid.Cross column={5} row={4} />
       </Grid>
     </div>
-  )
-}
+  );
+};
 
-export default VercelGridDemo
+export default VercelGridDemo;

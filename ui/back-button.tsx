@@ -1,15 +1,16 @@
 "use client"
 
 import { ChevronLeft } from "lucide-react"
-import { useTransitionRouter } from "next-view-transitions"
+import { Link, useTransitionRouter } from "next-view-transitions"
 import React from "react"
 
-const Back = () => {
+const Back = ({ href }: { href?: string }) => {
   const router = useTransitionRouter()
 
   return (
-    <div
-      onClick={() => router.back()}
+    <Link
+      // onClick={() => router.back()}
+      href={href as string}
       className="group inline-flex items-center space-x-2 cursor-pointer"
     >
       <div className="transition rounded-full bg-primary-200/10 p-1 text-primary-200/80 group-hover:bg-primary-200/25 group-hover:text-primary-200">
@@ -18,7 +19,7 @@ const Back = () => {
       <div className="mt-0.5 text-primary-200/70 group-hover:text-primary-200/90 transition">
         back
       </div>
-    </div>
+    </Link>
   )
 }
 

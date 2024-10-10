@@ -72,7 +72,7 @@
 }
 
 .book-rotate-wrapper.book-stripe .book-back {
-    background-color: var(--ds-gray-200)
+    background-color: var(--book-color)
 }
 
 .book-rotate-wrapper.book-stripe .book-stripe {
