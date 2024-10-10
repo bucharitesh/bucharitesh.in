@@ -1,16 +1,17 @@
 "use client"
 
-import { ArrowRight, BellIcon, CalendarIcon, FileTextIcon, Share2Icon } from "lucide-react"
+import { ArrowRight, BookIcon, CalendarIcon, Share2Icon } from "lucide-react"
 
 import { BentoCard, BentoGrid } from "@/ui/bento-grid"
 import { Marquee } from "@/ui/marquee"
 import { Link } from "next-view-transitions"
 import { PixelIconData } from "@/registry/default/example/pixel-icon-demo"
 import PixelIcon from "@/registry/default/bucharitesh/pixel-icon"
+import Book from "@/registry/default/bucharitesh/book"
 
 const features = [
   {
-    Icon: FileTextIcon,
+    Icon: Share2Icon,
     name: "Pixel Icons",
     description: "Handcrafted pixel based icons",
     href: "/craft/pixel-icon",
@@ -30,7 +31,7 @@ const features = [
                 size={80}
                 flickerChance={0.2}
               />
-            )
+            );
           })}
         </Marquee>
         <Marquee pauseOnHover reverse className="[--duration:20s]">
@@ -45,22 +46,39 @@ const features = [
                 size={80}
                 flickerChance={0.2}
               />
-            )
+            );
           })}
         </Marquee>
       </div>
     ),
   },
   {
-    Icon: BellIcon,
-    name: "Notifications",
-    description: "Get notified when something happens.",
-    href: "#",
+    Icon: BookIcon,
+    name: "Book",
+    description: "Books to display",
+    href: "/craft/book",
     cta: "Read more",
     className: "col-span-3 lg:col-span-2",
     background: (
-      <div className="absolute flex flex-col gap-4 h-full top-6 [--duration:20s] [mask-image:linear-gradient(to_top,transparent_0%,#000_100%)]">
-        
+      <div className="absolute grid grid-cols-2 gap-10 h-full p-6 top-6 [--duration:20s] [mask-image:linear-gradient(to_top,transparent_0%,#000_100%)]">
+        <Book
+          title="The user experience of the Frontend Cloud"
+          variant="simple"
+        />
+        <Book
+          color="#9D2127"
+          title="How Vercel improves your website's search engine ranking"
+        />
+        <Book
+          color="#7DC1C1"
+          textColor="white"
+          title="Design Engineering at Vercel"
+          variant="simple"
+        />
+        <Book
+          color="#FED954"
+          title="The user experience of the Frontend Cloud"
+        />
       </div>
     ),
   },
@@ -72,9 +90,7 @@ const features = [
     cta: "Read more",
     className: "col-span-3 lg:col-span-2",
     background: (
-      <div className="absolute flex flex-col gap-4 h-full top-6 [--duration:20s] [mask-image:linear-gradient(to_top,transparent_0%,#000_100%)]">
-        
-      </div>
+      <div className="absolute flex flex-col gap-4 h-full top-6 [--duration:20s] [mask-image:linear-gradient(to_top,transparent_0%,#000_100%)]"></div>
     ),
   },
   {
@@ -85,12 +101,10 @@ const features = [
     href: "#",
     cta: "Read more",
     background: (
-      <div className="absolute flex flex-col gap-4 h-full top-6 [--duration:20s] [mask-image:linear-gradient(to_top,transparent_0%,#000_100%)]">
-        
-      </div>
+      <div className="absolute flex flex-col gap-4 h-full top-6 [--duration:20s] [mask-image:linear-gradient(to_top,transparent_0%,#000_100%)]"></div>
     ),
   },
-]
+];
 
 export function CraftShowcase() {
   return (
