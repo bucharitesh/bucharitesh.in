@@ -1,16 +1,16 @@
-import { OOF_GRAD } from "@/lib/constants"
-import { FormattedPost } from "@/lib/contentlayer"
-import { components, Mdx } from "@/ui/mdx"
-import { LikeButton2 } from "@/ui/like-button-2"
-import MostViewed from "@/ui/blog/most-viewed"
-import { PostMetrics } from "@/ui/blog/post-metrics"
-import { PostTableOfContents } from "@/ui/post-table-of-contents"
-import { ScrollToTop } from "@/ui/ScrollToTop"
-import { cn } from "@/lib/utils"
+import { OOF_GRAD } from "@/lib/constants";
+import { FormattedPost } from "@/lib/contentlayer";
+import { components, Mdx } from "@/ui/mdx";
+import { LikeButton2 } from "@/ui/like-button-2";
+import MostViewed from "@/ui/blog/most-viewed";
+import { PostMetrics } from "@/ui/blog/post-metrics";
+import { PostTableOfContents } from "@/ui/post-table-of-contents";
+import { ScrollToTop } from "@/ui/ScrollToTop";
+import { cn } from "@/lib/utils";
 // import { Link } from "next-view-transitions"
-import Balancer from "react-wrap-balancer"
+import Balancer from "react-wrap-balancer";
 // import { ChevronLeft } from "lucide-react"
-import Back from "../back-button"
+import Back from "../back-button";
 
 export default function Post({ post }: { post: FormattedPost }) {
   return (
@@ -22,21 +22,21 @@ export default function Post({ post }: { post: FormattedPost }) {
           <Balancer>{post.title}</Balancer>
         </h1>
 
-        <div className="mt-4 flex space-x-2 text-primary-200/50">
+        <div className="mt-4 flex space-x-2 text-primary/50">
           <div>{post.publishedAtFormatted}</div>
-          <div className="text-primary-200/30">&middot;</div>
+          <div className="text-primary/30">&middot;</div>
           <div>{post.readingTime}</div>
-          <div className="text-primary-200/30">&middot;</div>
+          <div className="text-primary/30">&middot;</div>
           <PostMetrics slug={post.slug} />
         </div>
       </div>
 
-      <div className="sticky top-6 hidden h-0 xl:!col-start-4 xl:row-start-3 xl:block space-y-8">
+      <div className="sticky top-0 hidden h-0 xl:!col-start-4 xl:row-start-3 xl:block space-y-8">
         <div className="space-y-6">
           {post.headings ? (
             <>
               <PostTableOfContents headings={post.headings} />
-              <div className="border-t-2 border-primary-200/5"></div>
+              <div className="border-t-2 border-primary/5"></div>
             </>
           ) : null}
 
@@ -44,8 +44,6 @@ export default function Post({ post }: { post: FormattedPost }) {
 
           <div className="flex items-center justify-between">
             <LikeButton2 slug={post.slug} />
-            {/* TODO: Wire this up: <ScrollProgress /> */}
-
             <ScrollToTop>Back to top</ScrollToTop>
           </div>
         </div>
@@ -57,5 +55,5 @@ export default function Post({ post }: { post: FormattedPost }) {
         <LikeButton2 slug={post.slug} />
       </div>
     </>
-  )
+  );
 }

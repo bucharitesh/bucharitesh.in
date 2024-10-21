@@ -1,10 +1,10 @@
-import { Link2Icon } from "lucide-react"
+import { Link2Icon } from "lucide-react";
 
 export const BookmarkCard = ({ bookmark, order }) => {
   return (
     <a
       key={bookmark._id}
-      className="thumbnail-shadow flex aspect-auto min-w-0 cursor-pointer flex-col gap-4 overflow-hidden rounded-xl bg-primary-700/40 p-4 transition-colors duration-300 hover:bg-primary-800"
+      className="thumbnail-shadow flex aspect-auto min-w-0 cursor-pointer flex-col gap-4 overflow-hidden rounded-xl bg-primary/40 p-4 transition-colors duration-300 hover:bg-primary"
       href={`${bookmark.link}?ref=bucharitesh.in`}
       target="_blank"
       rel="noopener noreferrer"
@@ -28,7 +28,7 @@ export const BookmarkCard = ({ bookmark, order }) => {
       </span>
       <div className="flex flex-col gap-1">
         <h2 className="line-clamp-4 text-lg leading-snug">{bookmark.title}</h2>
-        <span className="line-clamp-4 inline-flex items-center gap-1 text-sm text-primary-300">
+        <span className="line-clamp-4 inline-flex items-center gap-1 text-sm text-primary">
           <Link2Icon size={16} />
           {bookmark.domain}
         </span>
@@ -37,5 +37,5 @@ export const BookmarkCard = ({ bookmark, order }) => {
         </span>
       </div>
     </a>
-  )
-}
+  );
+};

@@ -1,25 +1,25 @@
-import { usePostLikes } from "@/lib/hooks"
-import { LoadingDots } from "@/ui/loading-dots"
-import { motion } from "framer-motion"
-import { Heart } from "lucide-react"
-import React from "react"
+import { usePostLikes } from "@/lib/hooks";
+import { LoadingDots } from "@/ui/loading-dots";
+import { motion } from "framer-motion";
+import { Heart } from "lucide-react";
+import React from "react";
 
-const emojis = ["👍", "🙏", "🥰"]
+const emojis = ["👍", "🙏", "🥰"];
 
 // A visual component that...
 // 1. Fills a heart shape with a gradient depending on the number of likes passed
 // 2. Animates a thank you emoji as the number of likes increase
 export const LikeButton = ({ slug }: { slug: string }) => {
-  const { currentUserLikes, likes, isLoading, increment } = usePostLikes(slug)
+  const { currentUserLikes, likes, isLoading, increment } = usePostLikes(slug);
 
   return (
     <div className="flex items-center space-x-2">
       <button
         className="focus:outline-none"
         onClick={() => {
-          if (isLoading) return
+          if (isLoading) return;
 
-          increment()
+          increment();
         }}
       >
         <div className="relative">
@@ -43,7 +43,7 @@ export const LikeButton = ({ slug }: { slug: string }) => {
                 >
                   {item}
                 </motion.div>
-              )
+              );
             })}
           </div>
 
@@ -65,7 +65,7 @@ export const LikeButton = ({ slug }: { slug: string }) => {
             }}
           >
             <motion.div
-              className="inset absolute h-full w-full bg-gradient-to-tl from-primary-500 to-primary-400"
+              className="inset absolute h-full w-full bg-gradient-to-tl from-primary to-primary-400"
               // `animate` passes a stringified `like` to the variants map below
               animate={String(currentUserLikes)}
               // Move gradient up or down depending on number of likes
@@ -80,15 +80,15 @@ export const LikeButton = ({ slug }: { slug: string }) => {
               initial="0"
             />
 
-            <Heart className="relative w-5 h-5 text-primary-100" />
+            <Heart className="relative w-5 h-5 text-primary" />
           </motion.div>
         </div>
       </button>
 
       {/* Like counter text */}
-      <div className="text-lg text-primary-100/90">
+      <div className="text-lg text-primary/90">
         {isLoading ? <LoadingDots /> : <span>{likes}</span>}
       </div>
     </div>
-  )
-}
+  );
+};

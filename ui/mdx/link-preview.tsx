@@ -1,27 +1,27 @@
-"use client"
+"use client";
 
-import { FOCUS_VISIBLE_OUTLINE, LINK_STYLES } from "@/lib/constants"
-import * as HoverCardPrimitive from "@radix-ui/react-hover-card"
-import { cn } from "@/lib/utils"
-import { Ellipsis } from "lucide-react"
-import { useTheme } from "next-themes"
-import Image from "next/image"
-import { encode } from "qss"
-import React from "react"
+import { FOCUS_VISIBLE_OUTLINE, LINK_STYLES } from "@/lib/constants";
+import * as HoverCardPrimitive from "@radix-ui/react-hover-card";
+import { cn } from "@/lib/utils";
+import { Ellipsis } from "lucide-react";
+import { useTheme } from "next-themes";
+import Image from "next/image";
+import { encode } from "qss";
+import React from "react";
 
 export const LinkPreview = ({
   children,
   url,
 }: {
-  children: React.ReactNode
-  url: string
+  children: React.ReactNode;
+  url: string;
 }) => {
-  const { resolvedTheme } = useTheme()
+  const { resolvedTheme } = useTheme();
 
-  const width = 200
-  const height = 125
-  const layout = "fixed"
-  const q = 90
+  const width = 200;
+  const height = 125;
+  const layout = "fixed";
+  const q = 90;
 
   // Simplifies things by encoding our microlink params into a query string.
   const params = encode({
@@ -39,26 +39,26 @@ export const LinkPreview = ({
     // than our images but maintain the same ratio
     "viewport.width": width * 3,
     "viewport.height": height * 3,
-  })
+  });
 
-  const src = `https://api.microlink.io/?${params}`
+  const src = `https://api.microlink.io/?${params}`;
 
-  const [isOpen, setIsOpen] = React.useState(false)
+  const [isOpen, setIsOpen] = React.useState(false);
 
   // Microlink.io can take a few seconds to fetch and generate a screenshot.
   // Fetch the image url when the component mounts to ensure the image is ready
   // (screenshot taken, next/image generated and cached) by the time a user
   // triggers the <LinkPreview>.
   React.useEffect(() => {
-    fetch(`/_next/image?url=${encodeURIComponent(src)}&w=256&q=${q}`)
-  }, [])
+    fetch(`/_next/image?url=${encodeURIComponent(src)}&w=256&q=${q}`);
+  }, []);
 
   return (
     <>
       <HoverCardPrimitive.Root
         openDelay={50}
         onOpenChange={(open) => {
-          setIsOpen(open)
+          setIsOpen(open);
         }}
       >
         <HoverCardPrimitive.Trigger
@@ -73,7 +73,7 @@ export const LinkPreview = ({
         <HoverCardPrimitive.Content side="top" align="center" sideOffset={10}>
           <a
             href={url}
-            className="block rounded-xl border-2 border-transparent bg-white p-1 shadow hover:border-primary-500"
+            className="block rounded-xl border-2 border-transparent bg-white p-1 shadow hover:border-primary"
             style={{ fontSize: 0 }}
           >
             <Image
@@ -89,5 +89,5 @@ export const LinkPreview = ({
         </HoverCardPrimitive.Content>
       </HoverCardPrimitive.Root>
     </>
-  )
-}
+  );
+};

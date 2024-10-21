@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { formatPostPreview } from "@/lib/contentlayer"
-import { ContentLink } from "./content-link"
+import { formatPostPreview } from "@/lib/contentlayer";
+import { ContentLink } from "./content-link";
 // import { InlineMetric } from "./inline-metric";
 
 export const BlogPostPreview = (post: ReturnType<typeof formatPostPreview>) => {
@@ -12,13 +12,13 @@ export const BlogPostPreview = (post: ReturnType<typeof formatPostPreview>) => {
 
         <ContentLink.Meta>
           <div>{post.publishedAtFormatted}</div>
-          <div className="text-primary-100/30">&middot;</div>
+          <div className="text-primary/30">&middot;</div>
           <div>{post.readingTime}</div>
-          {/* <div className="text-primary-100/30">&middot;</div>
+          {/* <div className="text-primary/30">&middot;</div>
           <div>
             <InlineMetric key={post.views} stat={post.views} /> views
           </div>
-          <div className="text-primary-100/30">&middot;</div>
+          <div className="text-primary/30">&middot;</div>
           <div>
             <InlineMetric key={post.likes} stat={post.likes} /> likes
           </div> */}
@@ -29,5 +29,5 @@ export const BlogPostPreview = (post: ReturnType<typeof formatPostPreview>) => {
         ) : null}
       </ContentLink>
     </div>
-  )
-}
+  );
+};

@@ -1,13 +1,13 @@
-import { OOF_GRAD } from "@/lib/constants"
-import { Mdx } from "@/ui/mdx"
-import { LikeButton2 } from "@/ui/like-button-2"
-import { PostMetrics } from "@/ui/blog/post-metrics"
-import { ScrollToTop } from "@/ui/ScrollToTop"
-import { cn } from "@/lib/utils"
-import Balancer from "react-wrap-balancer"
-import { PostTableOfContents } from "../post-table-of-contents"
-import { BlurImage } from "../mdx/blur-image"
-import Back from "../back-button"
+import { OOF_GRAD } from "@/lib/constants";
+import { Mdx } from "@/ui/mdx";
+import { LikeButton2 } from "@/ui/like-button-2";
+import { PostMetrics } from "@/ui/blog/post-metrics";
+import { ScrollToTop } from "@/ui/ScrollToTop";
+import { cn } from "@/lib/utils";
+import Balancer from "react-wrap-balancer";
+import { PostTableOfContents } from "../post-table-of-contents";
+import { BlurImage } from "../mdx/blur-image";
+import Back from "../back-button";
 
 export default function Craft({ snippet }: { snippet: any }) {
   return (
@@ -18,7 +18,7 @@ export default function Craft({ snippet }: { snippet: any }) {
         <h1
           className={cn(
             "flex items-center space-x-4 justify-start mt-6 text-2xl font-medium sm:text-4xl",
-            OOF_GRAD,
+            OOF_GRAD
           )}
         >
           {snippet.logo ? (
@@ -33,9 +33,9 @@ export default function Craft({ snippet }: { snippet: any }) {
           <Balancer>{snippet.title}</Balancer>
         </h1>
 
-        <div className="mt-4 flex space-x-2 text-primary-200/50">
+        <div className="mt-4 flex space-x-2 text-primary/50">
           <div>{snippet.publishedAtFormatted}</div>
-          <div className="text-primary-200/30">&middot;</div>
+          <div className="text-primary/30">&middot;</div>
           <PostMetrics slug={snippet.slugAsParams} />
         </div>
       </div>
@@ -45,7 +45,7 @@ export default function Craft({ snippet }: { snippet: any }) {
           {snippet.headings ? (
             <>
               <PostTableOfContents headings={snippet.headings} />
-              <div className="border-t-2 border-primary-200/5"></div>
+              <div className="border-t-2 border-primary/5"></div>
             </>
           ) : null}
 
@@ -62,5 +62,5 @@ export default function Craft({ snippet }: { snippet: any }) {
 
       <Mdx code={snippet.body.code} />
     </>
-  )
+  );
 }

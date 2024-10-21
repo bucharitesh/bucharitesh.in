@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
-import { usePollIfInView } from "@/lib/hooks"
-import { usePostViews, usePostLikes } from "@/lib/hooks"
-import { InlineMetric } from "@/ui/blog/inline-metric"
-import { LoadingDots } from "@/ui/loading-dots"
-import React from "react"
+import { usePollIfInView } from "@/lib/hooks";
+import { usePostViews, usePostLikes } from "@/lib/hooks";
+import { InlineMetric } from "@/ui/blog/inline-metric";
+import { LoadingDots } from "@/ui/loading-dots";
+import React from "react";
 
 export const PostMetrics = ({ slug }: { slug: string }) => {
-  const interval = 5000
-  const { shouldPoll, intersectionRef } = usePollIfInView(interval)
+  const interval = 5000;
+  const { shouldPoll, intersectionRef } = usePollIfInView(interval);
 
   const {
     views,
@@ -24,7 +24,7 @@ export const PostMetrics = ({ slug }: { slug: string }) => {
     // Override `usePostViews` default dedupingInterval for the polling usecase
     // (refresh interval can never be faster than deduping interval)
     dedupingInterval: interval,
-  })
+  });
 
   const {
     likes,
@@ -33,11 +33,11 @@ export const PostMetrics = ({ slug }: { slug: string }) => {
   } = usePostLikes(slug, {
     // only poll when in view
     refreshInterval: shouldPoll ? interval : 0,
-  })
+  });
 
   React.useEffect(() => {
-    incrementViews()
-  }, [])
+    incrementViews();
+  }, []);
 
   return (
     <>
@@ -50,7 +50,7 @@ export const PostMetrics = ({ slug }: { slug: string }) => {
         views
       </div>
 
-      <div className="text-primary-100/30">&middot;</div>
+      <div className="text-primary/30">&middot;</div>
 
       <div>
         {likesIsError || likesIsLoading ? (
@@ -61,5 +61,5 @@ export const PostMetrics = ({ slug }: { slug: string }) => {
         likes
       </div>
     </>
-  )
-}
+  );
+};

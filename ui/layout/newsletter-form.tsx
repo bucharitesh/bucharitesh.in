@@ -1,25 +1,25 @@
-"use client"
+"use client";
 
-import { z } from "zod"
-import { SubmitHandler, useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { NewsletterFormSchema } from "@/lib/schema"
+import { z } from "zod";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { NewsletterFormSchema } from "@/lib/schema";
 
-import { subscribe } from "@/lib/resend"
-import { useEffect, useRef, useState } from "react"
-import { cn } from "@/lib/utils"
-import { SendHorizonal } from "lucide-react"
-import { Input } from "../input"
-import { Button } from "../button"
-import { LoadingDots } from "../loading-dots"
-import Confetti, { ConfettiRef } from "../magicui/confetti"
+import { subscribe } from "@/lib/resend";
+import { useEffect, useRef, useState } from "react";
+import { cn } from "@/lib/utils";
+import { SendHorizonal } from "lucide-react";
+import { Input } from "../input";
+import { Button } from "../button";
+import { LoadingDots } from "../loading-dots";
+import Confetti, { ConfettiRef } from "../magicui/confetti";
 
-type Inputs = z.infer<typeof NewsletterFormSchema>
+type Inputs = z.infer<typeof NewsletterFormSchema>;
 
 export default function NewsletterForm({ submitted }: { submitted: boolean }) {
-  const [success, setSuccess] = useState<boolean>(submitted ?? false)
+  const [success, setSuccess] = useState<boolean>(submitted ?? false);
 
-  const confettiRef = useRef<ConfettiRef>(null)
+  const confettiRef = useRef<ConfettiRef>(null);
 
   const {
     register,
@@ -31,44 +31,44 @@ export default function NewsletterForm({ submitted }: { submitted: boolean }) {
     defaultValues: {
       email: "",
     },
-  })
+  });
 
   const processForm: SubmitHandler<Inputs> = async (data) => {
-    const result = await subscribe(data)
+    const result = await subscribe(data);
 
     if (result?.error) {
-      console.error(result?.error ?? "An error occurred! Please try again.")
-      return
+      console.error(result?.error ?? "An error occurred! Please try again.");
+      return;
     }
 
-    setSuccess(true)
-    reset()
-    confettiRef.current?.fire({})
-  }
+    setSuccess(true);
+    reset();
+    confettiRef.current?.fire({});
+  };
 
   return (
-    <section className="relative my-8 overflow-clip bg-primary-900/95 border-primary-900 z-40 rounded-xl border-0 dark:border w-full p-6 md:p-8 flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
+    <section className="relative my-8 overflow-clip bg-primary/95 border-primary z-40 rounded-xl border-0 dark:border w-full p-6 md:p-8 flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
       <h1
         className={cn(
-          "absolute uppercase -z-10 -top-1/2 left-1/2 -translate-x-1/2 translate-y-1/4 text-4xl md:text-6xl font-bold bg-gradient-to-b opacity-5 from-primary-200 to-primary-200 bg-clip-text text-transparent",
+          "absolute uppercase -z-10 -top-1/2 left-1/2 -translate-x-1/2 translate-y-1/4 text-4xl md:text-6xl font-bold bg-gradient-to-b opacity-5 from-primary to-primary bg-clip-text text-transparent"
         )}
       >
         Subscribe{success && "d"}
       </h1>
       <h1
         className={cn(
-          "absolute uppercase -z-10 -bottom-1/2 left-1/2 -translate-x-1/2 -translate-y-1/4 text-4xl md:text-6xl font-bold bg-gradient-to-b opacity-5 from-primary-200 to-primary-200 bg-clip-text text-transparent",
+          "absolute uppercase -z-10 -bottom-1/2 left-1/2 -translate-x-1/2 -translate-y-1/4 text-4xl md:text-6xl font-bold bg-gradient-to-b opacity-5 from-primary to-primary bg-clip-text text-transparent"
         )}
       >
         Subscribe{success && "d"}
       </h1>
       {success ? (
-        <p className="text-base w-full text-center text-primary-200">
+        <p className="text-base w-full text-center text-primary">
           Amazing content is on its way!
         </p>
       ) : (
         <>
-          <p className="text-base text-primary-100 lowercase">
+          <p className="text-base text-primary lowercase">
             I wont spam you. Pinky Promise!
           </p>
 
@@ -106,5 +106,5 @@ export default function NewsletterForm({ submitted }: { submitted: boolean }) {
         />
       )}
     </section>
-  )
+  );
 }

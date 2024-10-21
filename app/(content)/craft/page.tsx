@@ -18,22 +18,11 @@ export default async function Page() {
   const crafts = await getAllCrafts({ published: true, sorted: true })
 
   return (
-    <PageWrapper
-      title="Craft"
-      description="A collection of craft that I've written."
-      action={
-        <Button variant={"outline"} className="rounded-full h-8 w-8">
-          <Link href="/craft/feed.xml">
-            <Rss className="h-4 w-4" />
-          </Link>
-        </Button>
-      }
-    >
-      <div className="grid grid-cols-1 md:grid-cols-1 space-y-10">
-        {crafts.map((craft) => {
-          return <SnippetPostPreview key={craft.slugAsParams} {...craft} />
-        })}
-      </div>
-    </PageWrapper>
-  )
+    <div className="grid gap-2 w-full">
+      {crafts.map((craft) => {
+        return <SnippetPostPreview key={craft.slugAsParams} {...craft} />;
+      })}
+    </div>
+    // </PageWrapper>
+  );
 }

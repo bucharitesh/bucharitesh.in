@@ -1,11 +1,11 @@
-import React from "react"
+import React from "react";
 
 export function Playground({
   children,
   description,
 }: {
-  children: React.ReactNode
-  description?: string
+  children: React.ReactNode;
+  description?: string;
 }) {
   return (
     <div className="mb-6 md:-mx-10">
@@ -13,8 +13,8 @@ export function Playground({
         {children}
       </div>
       {description ? (
-        <div className="mt-3 text-sm text-primary-100/60">{description}</div>
+        <div className="mt-3 text-sm text-primary/60">{description}</div>
       ) : null}
     </div>
-  )
+  );
 }

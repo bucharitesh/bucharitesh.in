@@ -4,38 +4,38 @@ import {
   FolderIcon,
   LoadingIcon,
   LayoutIcon,
-} from "@/ui/icons"
+} from "@/ui/icons";
 
-import { TemplateIcon } from "@/ui/icons"
-import { cn } from "@/lib/utils"
-import React from "react"
+import { TemplateIcon } from "@/ui/icons";
+import { cn } from "@/lib/utils";
+import React from "react";
 
 export type Item = {
-  name: string
-  status?: "highlighted" | "faded"
-  items?: Item[]
-}
+  name: string;
+  status?: "highlighted" | "faded";
+  items?: Item[];
+};
 
 type Props = {
-  items: Item[]
-  size?: "small" | "medium"
-  withCounters?: boolean
-}
+  items: Item[];
+  size?: "small" | "medium";
+  withCounters?: boolean;
+};
 
 export const Filesystem = ({ items, size = "medium", withCounters }: Props) => {
   return (
     <div
       className={cn(
-        "valkyrie backdrop-blur-mdx divide-y divide-primary-100/5 rounded-lg font-medium shadow-xl shadow-black/5",
+        "valkyrie backdrop-blur-mdx divide-y divide-primary/5 rounded-lg font-medium shadow-xl shadow-black/5",
         {
           "[counter-reset:highlight]": withCounters,
-        },
+        }
       )}
     >
       <Node items={items} lvl={0} size={size} withCounters={withCounters} />
     </div>
-  )
-}
+  );
+};
 
 const Node = ({ items, lvl, size, withCounters }: Props & { lvl: number }) => {
   return (
@@ -55,9 +55,9 @@ const Node = ({ items, lvl, size, withCounters }: Props & { lvl: number }) => {
             >
               <div
                 className={cn({
-                  "text-primary-100/30": !status,
+                  "text-primary/30": !status,
                   "text-blue-100/30": status === "highlighted",
-                  "text-primary-100/10": status === "faded",
+                  "text-primary/10": status === "faded",
                   "pl-[12px]": lvl === 1,
                   "pl-[24px]": lvl === 2,
                   "pl-[36px]": lvl === 3,
@@ -73,9 +73,9 @@ const Node = ({ items, lvl, size, withCounters }: Props & { lvl: number }) => {
               <div
                 className={cn("truncate", {
                   "text-sm": size === "small",
-                  "text-primary-100/70": !status,
+                  "text-primary/70": !status,
                   "text-blue-100/70": status === "highlighted",
-                  "text-primary-100/30": status === "faded",
+                  "text-primary/30": status === "faded",
                 })}
               >
                 {name}
@@ -91,37 +91,37 @@ const Node = ({ items, lvl, size, withCounters }: Props & { lvl: number }) => {
               />
             ) : null}
           </React.Fragment>
-        )
+        );
       })}
     </>
-  )
-}
+  );
+};
 
 const Icon = ({
   name,
   className,
   isFolder,
 }: {
-  name: string
-  className: string
-  isFolder?: boolean
+  name: string;
+  className: string;
+  isFolder?: boolean;
 }) => {
   if (isFolder) {
-    return <FolderIcon className={className} />
+    return <FolderIcon className={className} />;
   }
 
   switch (name) {
     case "layout.tsx":
-      return <LayoutIcon className={className} />
+      return <LayoutIcon className={className} />;
     case "loading.tsx":
-      return <LoadingIcon className={className} />
+      return <LoadingIcon className={className} />;
     case "error.tsx":
-      return <ErrorIcon className={className} />
+      return <ErrorIcon className={className} />;
     case "head.tsx":
     case "template.tsx":
-      return <TemplateIcon className={className} />
+      return <TemplateIcon className={className} />;
     case "page.tsx":
     default:
-      return <PageIcon className={className} />
+      return <PageIcon className={className} />;
   }
-}
+};

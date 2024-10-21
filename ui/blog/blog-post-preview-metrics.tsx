@@ -1,23 +1,23 @@
-import { usePostViews, usePostLikes } from "@/lib/hooks"
-import { InlineMetric } from "@/ui/blog/inline-metric"
-import { LoadingDots } from "@/ui/loading-dots"
+import { usePostViews, usePostLikes } from "@/lib/hooks";
+import { InlineMetric } from "@/ui/blog/inline-metric";
+import { LoadingDots } from "@/ui/loading-dots";
 
 const Metrics = ({ slug }: { slug: string }) => {
   const {
     views,
     isLoading: viewsIsLoading,
     isError: viewsIsError,
-  } = usePostViews(slug)
+  } = usePostViews(slug);
 
   const {
     likes,
     isLoading: likesIsLoading,
     isError: likesIsError,
-  } = usePostLikes(slug)
+  } = usePostLikes(slug);
 
   return (
     <>
-      <div className="text-primary-100/30">&middot;</div>
+      <div className="text-primary/30">&middot;</div>
 
       <div>
         {viewsIsError || viewsIsLoading ? (
@@ -28,7 +28,7 @@ const Metrics = ({ slug }: { slug: string }) => {
         views
       </div>
 
-      <div className="text-primary-100/30">&middot;</div>
+      <div className="text-primary/30">&middot;</div>
 
       <div>
         {likesIsError || likesIsLoading ? (
@@ -39,5 +39,5 @@ const Metrics = ({ slug }: { slug: string }) => {
         likes
       </div>
     </>
-  )
-}
+  );
+};

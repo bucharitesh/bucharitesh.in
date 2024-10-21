@@ -1,23 +1,23 @@
-import { FOCUS_VISIBLE_OUTLINE, LINK_STYLES, OOF_GRAD } from "@/lib/constants"
-import { Aside } from "@/ui/mdx/aside"
-import { BlurImage } from "@/ui/mdx/blur-image"
-import { Code } from "./code"
-import { Filesystem } from "./file-system"
-import { Grid } from "./grid"
-import { FauxTweet } from "./faux-tweet"
-import { LoadingSkeleton } from "./loading-skeleton"
-import { cn } from "@/lib/utils"
-import type { ImageProps } from "next/image"
-import NextLink from "next/link"
-import React from "react"
-import { Caption } from "./caption"
-import { LinkPreview } from "./link-preview"
+import { FOCUS_VISIBLE_OUTLINE, LINK_STYLES, OOF_GRAD } from "@/lib/constants";
+import { Aside } from "@/ui/mdx/aside";
+import { BlurImage } from "@/ui/mdx/blur-image";
+import { Code } from "./code";
+import { Filesystem } from "./file-system";
+import { Grid } from "./grid";
+import { FauxTweet } from "./faux-tweet";
+import { LoadingSkeleton } from "./loading-skeleton";
+import { cn } from "@/lib/utils";
+import type { ImageProps } from "next/image";
+import NextLink from "next/link";
+import React from "react";
+import { Caption } from "./caption";
+import { LinkPreview } from "./link-preview";
 // import { CopyButton } from "../copy-button"
-import { useMDXComponent } from "next-contentlayer/hooks"
-import { ComponentPreview } from "./component-preview"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../tabs"
-import { ComponentSource } from "./component-source"
-import { CopyButton } from "../copy-button"
+import { useMDXComponent } from "next-contentlayer/hooks";
+import { ComponentPreview } from "./component-preview";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../tabs";
+import { ComponentSource } from "./component-source";
+import { CopyButton } from "../copy-button";
 
 export const components = {
   // One off components
@@ -47,7 +47,7 @@ export const components = {
     <th
       className={cn(
         "border px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right",
-        className,
+        className
       )}
       {...props}
     />
@@ -56,7 +56,7 @@ export const components = {
     <td
       className={cn(
         "border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right",
-        className,
+        className
       )}
       {...props}
     />
@@ -71,7 +71,7 @@ export const components = {
     <TabsList
       className={cn(
         "w-full justify-start rounded-none border-b bg-transparent p-0",
-        className,
+        className
       )}
       {...props}
     />
@@ -83,7 +83,7 @@ export const components = {
     <TabsTrigger
       className={cn(
         "relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none",
-        className,
+        className
       )}
       {...props}
     />
@@ -95,14 +95,14 @@ export const components = {
     <TabsContent
       className={cn(
         "relative [&_h3.font-heading]:text-base [&_h3.font-heading]:font-semibold",
-        className,
+        className
       )}
       {...props}
     />
   ),
   h1: (props: any) => (
     <h2
-      className="relative mt-3 border-t-2 border-primary-200/5 pt-9 text-xl font-medium text-primary-200/95 sm:text-3xl"
+      className="relative mt-3 border-t-2 border-primary/5 pt-9 text-xl font-medium text-primary/95 sm:text-3xl"
       {...props}
     />
   ),
@@ -110,16 +110,16 @@ export const components = {
     <h2
       className={cn(
         "font-heading mt-12 scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0",
-        className,
+        className
       )}
       {...props}
     />
   ),
   h3: (props: any) => (
-    <h4 className="text-xl font-medium text-primary-200/95" {...props} />
+    <h4 className="text-xl font-medium text-primary/95" {...props} />
   ),
   h4: (props: any) => (
-    <h5 className="text-lg font-medium text-primary-200/95" {...props} />
+    <h5 className="text-lg font-medium text-primary/95" {...props} />
   ),
   p: ({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
     <p
@@ -127,9 +127,7 @@ export const components = {
       {...props}
     />
   ),
-  hr: (props: any) => (
-    <hr className="border-t-2 border-primary-200/5" {...props} />
-  ),
+  hr: (props: any) => <hr className="border-t-2 border-primary/5" {...props} />,
   a: ({ href = "", ...props }) => {
     if (href.startsWith("http")) {
       return (
@@ -140,7 +138,7 @@ export const components = {
           rel="noopener"
           {...props}
         />
-      )
+      );
     }
 
     return (
@@ -149,11 +147,11 @@ export const components = {
         className={cn(LINK_STYLES, FOCUS_VISIBLE_OUTLINE)}
         {...props}
       />
-    )
+    );
   },
   ul: (props: any) => (
     <ul
-      className="space-y-3 my-4 [li>&]:mt-3 [&>li]:relative [&>li]:pl-7 before:[&>li]:absolute before:[&>li]:left-1 before:[&>li]:top-2 before:[&>li]:h-1.5 before:[&>li]:w-1.5 before:[&>li]:rounded-full before:[&>li]:bg-primary-200/20"
+      className="space-y-3 my-4 [li>&]:mt-3 [&>li]:relative [&>li]:pl-7 before:[&>li]:absolute before:[&>li]:left-1 before:[&>li]:top-2 before:[&>li]:h-1.5 before:[&>li]:w-1.5 before:[&>li]:rounded-full before:[&>li]:bg-primary/20"
       {...props}
     />
   ),
@@ -167,9 +165,9 @@ export const components = {
     caption,
     ...props
   }: {
-    children: React.ReactNode
-    bleed?: boolean
-    caption?: string
+    children: React.ReactNode;
+    bleed?: boolean;
+    caption?: string;
   } & ImageProps) => {
     return (
       <>
@@ -182,27 +180,27 @@ export const components = {
         </div>
         {caption ? <Caption>{caption}</Caption> : null}
       </>
-    )
+    );
   },
   // Since markdown blockquotes don't have native support for citations, we
   // reserve `<em>` to style citations.
   blockquote: (props: any) => (
     <blockquote
       className={cn(
-        "relative border-l-2 border-primary-200/5 pl-4 pt-8 before:absolute before:top-5 before:-ml-1 before:-mt-6 before:text-6xl before:text-primary-200/20 before:content-['“'] [&_em]:mt-3 [&_em]:block [&_em]:not-italic [&_em]:leading-none [&_em]:before:pr-1 [&_em]:before:content-['—']",
-        OOF_GRAD,
+        "relative border-l-2 border-primary/5 pl-4 pt-8 before:absolute before:top-5 before:-ml-1 before:-mt-6 before:text-6xl before:text-primary/20 before:content-['“'] [&_em]:mt-3 [&_em]:block [&_em]:not-italic [&_em]:leading-none [&_em]:before:pr-1 [&_em]:before:content-['—']",
+        OOF_GRAD
       )}
       {...props}
     />
   ),
   del: (props: any) => (
-    <del className="text-primary-200/50 line-through" {...props} />
+    <del className="text-primary/50 line-through" {...props} />
   ),
   Step: ({ className, ...props }: React.ComponentProps<"h3">) => (
     <h3
       className={cn(
         "font-heading mt-8 scroll-m-20 text-xl font-semibold tracking-tight",
-        className,
+        className
       )}
       {...props}
     />
@@ -242,7 +240,7 @@ export const components = {
         <pre
           className={cn(
             // "max-h-[650px] overflow-x-auto",
-            className,
+            className
           )}
           {...props}
         />
@@ -260,24 +258,24 @@ export const components = {
     <code
       className={cn(
         "relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm",
-        className,
+        className
       )}
       {...props}
     />
   ),
-}
+};
 
 interface MDXProps {
-  code: string
-  className?: string
+  code: string;
+  className?: string;
 }
 
 export function Mdx({ code, className }: MDXProps) {
-  const Component = useMDXComponent(code)
+  const Component = useMDXComponent(code);
 
   return (
     <article className={cn("", className)}>
       <Component components={components} />
     </article>
-  )
+  );
 }

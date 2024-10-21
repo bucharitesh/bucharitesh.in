@@ -1,13 +1,13 @@
-import { auth } from "@/lib/auth"
-import { SignIn, SignOut } from "./buttons"
-import { SubmitButton } from "./submit-button"
-import { saveGuestbookEntry } from "@/lib/db/guestbook"
+import { auth } from "@/lib/auth";
+import { SignIn, SignOut } from "./buttons";
+import { SubmitButton } from "./submit-button";
+import { saveGuestbookEntry } from "@/lib/db/guestbook";
 
 export async function Form() {
-  let session = await auth()
+  let session = await auth();
 
   if (!session?.user) {
-    return <SignIn />
+    return <SignIn />;
   }
 
   return (
@@ -19,7 +19,7 @@ export async function Form() {
             placeholder="Your message..."
             name="entry"
             required
-            className="pl-4 pr-32 py-2 mt-1 focus:ring-primary-500 focus:border-primary-500 block w-full border-primary-300 rounded-md bg-primary-100 text-primary-900"
+            className="pl-4 pr-32 py-2 mt-1 focus:ring-primary focus:border-primary block w-full border-primary rounded-md bg-primary text-primary"
           />
           <span className="absolute -bottom-px right-px h-px w-[40%] bg-gradient-to-r from-primary-400/0 via-primary-400/40 to-primary-400/0"></span>
           <span className="absolute -left-px top-4 h-[40%] w-px bg-gradient-to-b from-primary-400/0 via-primary-400/40 to-primary-400/0"></span>
@@ -30,5 +30,5 @@ export async function Form() {
         </div>
       </form>
     </>
-  )
+  );
 }

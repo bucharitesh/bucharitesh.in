@@ -1,7 +1,6 @@
-import { OOF_GRAD } from "@/lib/constants"
-import { cn } from "@/lib/utils"
-import React from "react"
-import Balancer from "react-wrap-balancer"
+import { OOF_GRAD } from "@/lib/constants";
+import { cn } from "@/lib/utils";
+import React from "react";
 
 export default function PageWrapper({
   children,
@@ -9,10 +8,10 @@ export default function PageWrapper({
   description,
   action,
 }: {
-  children: React.ReactNode
-  title: string
-  description?: string
-  action?: any
+  children: React.ReactNode;
+  title: string;
+  description?: string;
+  action?: any;
 }) {
   return (
     <>
@@ -23,9 +22,7 @@ export default function PageWrapper({
           </h1>
           {action}
         </div>
-        <p className="text-sm font-bold text-primary-100/40">
-          {description}
-        </p>
+        <p className="text-sm font-bold text-primary/40">{description}</p>
       </div>
       {children}
     </>

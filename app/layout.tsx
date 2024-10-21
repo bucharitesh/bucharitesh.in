@@ -1,72 +1,38 @@
-import { meta } from "@/lib/constants"
-import { createOgImage } from "@/lib/createOgImage"
-import Footer from "@/ui/layout/footer"
-import { Metadata, Viewport } from "next"
-import { SessionProvider } from "next-auth/react"
-import { auth } from "@/lib/auth"
-import { cn } from "@/lib/utils"
-import { ViewTransitions } from "next-view-transitions"
-import { PreloadResources } from "@/ui/backgrounds/preload-resource"
-import Toolbar from "@/ui/layout/help"
-import { Suspense } from "react"
-// import ChangelogPopup from "@/ui/book-a-meeting-popup"
+import { meta } from "@/lib/constants";
+import { createOgImage } from "@/lib/createOgImage";
+import { Metadata, Viewport } from "next";
+import { SessionProvider } from "next-auth/react";
+import { auth } from "@/lib/auth";
+import { cn } from "@/lib/utils";
+import { ViewTransitions } from "next-view-transitions";
 import { hubot } from "@/lib/fonts";
 
 import "@/styles/globals.css";
 import "@/styles/mdx.css";
+import { ThemeProvider } from "./provider";
+import BottomDock from "../ui/layout/bottom-dock";
 
 export default async function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
-  const session = await auth()
+  const session = await auth();
 
   return (
     <ViewTransitions>
-      <html className="[color-scheme:dark]">
+      <html lang="en" suppressHydrationWarning>
         <SessionProvider session={session}>
           <body
             className={cn(
-              "font-sans overscroll-y-none bg-background antialiased selection:bg-primary-600/90 selection:text-white",
-              hubot.variable,
+              "font-sans overscroll-y-none bg-white dark:bg-neutral-900 text-black dark:text-white antialiased selection:bg-red-400/90 selection:text-white",
+              hubot.variable
             )}
           >
-            <PreloadResources
-              url={
-                "https://res.cloudinary.com/bucha/image/upload/h_500/bg_gradient_fmgwrc"
-              }
-            />
-            <svg
-              className="pointer-events-none fixed isolate z-50 mix-blend-soft-light"
-              width="100%"
-              height="100%"
-            >
-              <filter id="noiseFilter">
-                <feTurbulence
-                  type="fractalNoise"
-                  baseFrequency="0.80"
-                  numOctaves="4"
-                  stitchTiles="stitch"
-                />
-              </filter>
-              <rect width="100%" height="100%" filter="url(#noiseFilter)" />
-            </svg>
-
-            <div className="layout-sm relative z-10 grid gap-y-8 px-4 pt-12 text-primary-200/90 xl:layout-xl xl:gap-x-9 xl:px-0 [&>*]:col-start-2 xl:[&>*]:col-start-3">
+            <ThemeProvider attribute="class" defaultTheme="light">
               {children}
-
-              <Suspense>
-                <Footer />
-              </Suspense>
-            </div>
-            <div className="pointer-events-none absolute inset-0 overflow-hidden bg-blend-overlay">
-              <div className="h-full bg-[url('https://res.cloudinary.com/bucha/image/upload/h_500/bg_gradient_fmgwrc')] bg-top bg-no-repeat opacity-[0.3]" />
-            </div>
-
-            {/* <ChangelogPopup /> */}
-            {/* <UserSurveyPopup /> */}
-            <Toolbar />
+              <BottomDock />
+            </ThemeProvider>
           </body>
         </SessionProvider>
       </html>
@@ -79,7 +45,7 @@ export const viewport: Viewport = {
   colorScheme: "dark",
   width: "device-width",
   initialScale: 1,
-}
+};
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -103,5 +69,5 @@ export async function generateMetadata(): Promise<Metadata> {
       creator: meta.twitterHandle,
       card: "summary_large_image",
     },
-  }
+  };
 }

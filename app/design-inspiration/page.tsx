@@ -1,10 +1,10 @@
-import PageWrapper from "@/ui/layout/page-wrapper"
-import React from "react"
-import Image from "next/image"
-import { Link } from "next-view-transitions"
-import { getDesignInspiration } from "@/lib/get-design-inspiraion"
-import { DesignInspirationItem } from "@/.contentlayer/generated"
-import { Metadata } from "next/types"
+import PageWrapper from "@/ui/layout/page-wrapper";
+import React from "react";
+import Image from "next/image";
+import { Link } from "next-view-transitions";
+import { getDesignInspiration } from "@/lib/get-design-inspiraion";
+import { DesignInspirationItem } from "@/.contentlayer/generated";
+import { Metadata } from "next/types";
 
 export const metadata: Metadata = {
   title: "Designers and Design Engineers",
@@ -13,10 +13,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/design-inspiration",
   },
-}
+};
 
 export default async function Page() {
-  const { data: items } = await getDesignInspiration()
+  const { data: items } = await getDesignInspiration();
 
   return (
     <PageWrapper
@@ -27,9 +27,7 @@ export default async function Page() {
       <div className="max-w-2xl mx-auto w-full pb-20">
         {items.map((item: DesignInspirationItem) => (
           <div key={item.name} className="md:mb-20">
-            <h2 className="font-bold text-base text-primary-200">
-              {item.name}
-            </h2>
+            <h2 className="font-bold text-base text-primary">{item.name}</h2>
             <div className="flex items-center gap-2">
               <Link
                 href={item.twitter}
@@ -38,11 +36,11 @@ export default async function Page() {
               >
                 @{item.twitter.split("/").pop()}
               </Link>
-              <span className="bg-primary-300 h-1 w-1 text-sm rounded-full"></span>
+              <span className="bg-primary h-1 w-1 text-sm rounded-full"></span>
               <Link
                 href={item.website}
                 target="_blank"
-                className="text-primary-100 text-sm"
+                className="text-primary text-sm"
               >
                 {item.website.replace("https://", "").replace("www.", "")}
               </Link>
@@ -63,5 +61,5 @@ export default async function Page() {
         ))}
       </div>
     </PageWrapper>
-  )
+  );
 }

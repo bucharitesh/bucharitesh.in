@@ -1,30 +1,30 @@
-"use client"
+"use client";
 
-import { FOCUS_VISIBLE_OUTLINE } from "@/lib/constants"
-import { usePostLikes } from "@/lib/hooks"
-import { LoadingDots } from "@/ui/loading-dots"
-import { cn } from "@/lib/utils"
-import { Heart } from "lucide-react"
-import React from "react"
+import { FOCUS_VISIBLE_OUTLINE } from "@/lib/constants";
+import { usePostLikes } from "@/lib/hooks";
+import { LoadingDots } from "@/ui/loading-dots";
+import { cn } from "@/lib/utils";
+import { Heart } from "lucide-react";
+import React from "react";
 
-const emojis = ["👍", "🙏", "🥰"]
+const emojis = ["👍", "🙏", "🥰"];
 
 // A visual component that...
 // 1. Fills a heart shape with a gradient depending on the number of likes passed
 // 2. Animates a thank you emoji as the number of likes increase
 export const LikeButton2 = ({ slug }: { slug: string }) => {
-  const { currentUserLikes, likes, isLoading, increment } = usePostLikes(slug)
+  const { currentUserLikes, likes, isLoading, increment } = usePostLikes(slug);
 
   let [animatedEmojis, setAnimatedEmojis] = React.useState<string[]>(
-    currentUserLikes ? [emojis[currentUserLikes]] : [],
-  )
+    currentUserLikes ? [emojis[currentUserLikes]] : []
+  );
 
   const handleClick = () => {
-    increment()
+    increment();
     if (currentUserLikes && currentUserLikes <= 2) {
-      setAnimatedEmojis([...animatedEmojis, emojis[currentUserLikes]])
+      setAnimatedEmojis([...animatedEmojis, emojis[currentUserLikes]]);
     }
-  }
+  };
 
   return (
     <div className="flex items-center space-x-2">
@@ -38,7 +38,7 @@ export const LikeButton2 = ({ slug }: { slug: string }) => {
             >
               {emoji}
             </div>
-          )
+          );
         })}
 
         <button
@@ -48,30 +48,30 @@ export const LikeButton2 = ({ slug }: { slug: string }) => {
             {
               "animate-pulse": isLoading,
               "hover:shadow-gray-500/30": currentUserLikes === 0,
-              "hover:shadow-primary-500/50": currentUserLikes !== 0,
-            },
+              "hover:shadow-primary/50": currentUserLikes !== 0,
+            }
           )}
           onClick={handleClick}
         >
           <div
             className={cn(
-              "absolute inset-0 transform-gpu bg-gradient-to-tl from-primary-500 to-primary-400 transition-transform",
+              "absolute inset-0 transform-gpu bg-gradient-to-tl from-primary to-primary-400 transition-transform",
               {
                 "translate-y-8": currentUserLikes === 0,
                 "translate-y-5": currentUserLikes === 1,
                 "translate-y-3": currentUserLikes === 2,
-              },
+              }
             )}
           />
 
-          <Heart className="relative w-5 h-5 transform text-primary-100 transition delay-100 duration-500 ease-out group-hover:scale-110" />
+          <Heart className="relative w-5 h-5 transform text-primary transition delay-100 duration-500 ease-out group-hover:scale-110" />
         </button>
       </div>
 
       {/* Like counter text */}
-      <div className="text-lg font-medium leading-none text-primary-100/90">
+      <div className="text-lg font-medium leading-none text-primary/90">
         {isLoading ? <LoadingDots /> : <span>{likes}</span>}
       </div>
     </div>
-  )
-}
+  );
+};

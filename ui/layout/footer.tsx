@@ -3,12 +3,12 @@ import {
   FOCUS_VISIBLE_OUTLINE,
   FOOTER_ITEMS,
   LINK_SUBTLE_STYLES,
-} from "@/lib/constants"
-import { cn } from "@/lib/utils"
-import { Link } from "next-view-transitions"
+} from "@/lib/constants";
+import { cn } from "@/lib/utils";
+import { Link } from "next-view-transitions";
 // import NowPlaying from "./now-playing";
-import NewsletterForm from "./newsletter-form"
-import { cookies } from "next/headers"
+import NewsletterForm from "./newsletter-form";
+import { cookies } from "next/headers";
 
 const FooterItem = ({ href, label }: { href: string; label: string }) => {
   return (
@@ -19,17 +19,17 @@ const FooterItem = ({ href, label }: { href: string; label: string }) => {
     >
       {label}
     </Link>
-  )
-}
+  );
+};
 
 const NEWSLETTER_COOKIE_NAME = "newsletter";
 
 export default async function Footer() {
   const cookieStore = cookies();
-  
+
   const newsletterSubmissionCookie: any = cookieStore.get(
-    NEWSLETTER_COOKIE_NAME,
-  )
+    NEWSLETTER_COOKIE_NAME
+  );
 
   return (
     <div className="mt-36 pb-36 text-base">
@@ -37,9 +37,9 @@ export default async function Footer() {
 
       <NewsletterForm submitted={newsletterSubmissionCookie?.value === "1"} />
 
-      <hr className="border-1 mb-8 w-full border-primary-200/30" />
+      <hr className="border-1 mb-8 w-full border-primary/30" />
 
-      <div className="text-primary-100/50 flex flex-col justify-between font-medium lg:flex-row gap-5">
+      <div className="text-primary/50 flex flex-col justify-between font-medium lg:flex-row gap-5">
         {Object.keys(FOOTER_ITEMS).map((key) => (
           <div
             key={key}
@@ -58,7 +58,7 @@ export default async function Footer() {
         ))}
       </div>
 
-      <p className="mt-8 text-primary-200/30">
+      <p className="mt-8 text-primary/30">
         Built with{" "}
         <span className="font-bold">
           {BUILT_WITH.map((item, index) => (
@@ -77,5 +77,5 @@ export default async function Footer() {
         </span>
       </p>
     </div>
-  )
+  );
 }

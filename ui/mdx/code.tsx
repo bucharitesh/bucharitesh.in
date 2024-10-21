@@ -1,17 +1,17 @@
-"use client"
+"use client";
 
-import { Aside } from "@/ui/mdx/aside"
-import { cn } from "@/lib/utils"
-import React from "react"
+import { Aside } from "@/ui/mdx/aside";
+import { cn } from "@/lib/utils";
+import React from "react";
 
 // There are probably better ways to do this 🥴
 export const Code = ({ children }: { children: React.ReactNode }) => {
-  const [slide, setSlide] = React.useState(0)
+  const [slide, setSlide] = React.useState(0);
 
-  let titles: string[] = []
+  let titles: string[] = [];
 
   if (React.Children.count(children) === 0) {
-    return null
+    return null;
   }
 
   const slides = React.Children.map(children, (child, index) => {
@@ -19,7 +19,7 @@ export const Code = ({ children }: { children: React.ReactNode }) => {
       !React.isValidElement(child) ||
       typeof child.props?.["data-rehype-pretty-code-fragment"] === "undefined"
     ) {
-      return null
+      return null;
     }
 
     if (
@@ -27,8 +27,8 @@ export const Code = ({ children }: { children: React.ReactNode }) => {
         "data-rehype-pretty-code-title"
       ] !== "undefined"
     ) {
-      let title = child.props.children[0].props.children.split("/")
-      titles.push(title[title.length - 1])
+      let title = child.props.children[0].props.children.split("/");
+      titles.push(title[title.length - 1]);
     }
 
     return (
@@ -41,8 +41,8 @@ export const Code = ({ children }: { children: React.ReactNode }) => {
       >
         {child}
       </div>
-    )
-  })
+    );
+  });
 
   return (
     <>
@@ -56,21 +56,21 @@ export const Code = ({ children }: { children: React.ReactNode }) => {
                 className={cn(
                   "mr-2 mb-2 rounded-lg px-2 py-1 text-sm font-medium",
                   {
-                    " bg-primary-100/10 text-primary-100/70 hover:bg-primary-100/20 hover:text-primary-100":
+                    " bg-primary/10 text-primary/70 hover:bg-primary/20 hover:text-primary":
                       index !== slide,
-                    "bg-primary-100/30 text-white": index === slide,
-                  },
+                    "bg-primary/30 text-white": index === slide,
+                  }
                 )}
                 onClick={() => setSlide(index)}
               >
                 {title}
               </button>
-            )
+            );
           })}
         </div>
       </Aside>
 
       <div>{slides}</div>
     </>
-  )
-}
+  );
+};

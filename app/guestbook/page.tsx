@@ -1,10 +1,10 @@
-import PageWrapper from "@/ui/layout/page-wrapper"
-import React, { Suspense } from "react"
-import { Metadata } from "next/types"
-import { Form } from "./form"
-import { getGuestbookEntries } from "@/lib/db/guestbook"
-import Image from "next/image"
-import { format } from "date-fns"
+import PageWrapper from "@/ui/layout/page-wrapper";
+import React, { Suspense } from "react";
+import { Metadata } from "next/types";
+import { Form } from "./form";
+import { getGuestbookEntries } from "@/lib/db/guestbook";
+import Image from "next/image";
+import { format } from "date-fns";
 
 export const metadata: Metadata = {
   title: "Guestbook",
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/guestbook",
   },
-}
+};
 
 export default async function Page() {
   return (
@@ -28,28 +28,23 @@ export default async function Page() {
         <GuestbookEntries />
       </div>
     </PageWrapper>
-  )
+  );
 }
 
 async function GuestbookEntries() {
-  const entries = await getGuestbookEntries()
+  const entries = await getGuestbookEntries();
 
   if (entries.length === 0) {
-    return null
+    return null;
   }
 
-  return entries.map((entry) => (
-    <WordsEntry
-      key={entry.id}
-      comment={entry}
-    />
-  ))
+  return entries.map((entry) => <WordsEntry key={entry.id} comment={entry} />);
 }
 
 function WordsEntry({ comment }: any) {
   return (
     <div className="relative flex w-full flex-col space-y-4">
-      <div className="prose w-full break-words prose-dark text-primary-300">
+      <div className="prose w-full break-words prose-dark text-primary">
         {comment.message}
       </div>
       <div className="flex items-center space-x-3">
@@ -62,14 +57,14 @@ function WordsEntry({ comment }: any) {
           alt=""
         />
 
-        <p className="text-sm text-primary-600/90">{comment.name}</p>
+        <p className="text-sm text-primary/90">{comment.name}</p>
 
         <span className="text-primary-400">/</span>
 
-        <p className="text-sm text-primary-600/90">
+        <p className="text-sm text-primary/90">
           {format(new Date(comment.createdAt), "d MMM yyyy 'at' h:mm bb")}
         </p>
       </div>
     </div>
-  )
+  );
 }

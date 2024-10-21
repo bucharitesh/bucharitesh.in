@@ -19,41 +19,22 @@ module.exports = {
         sans: ["var(--font-hubot)", ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        "ds-gray-1000": "hsla(0, 0%, 93%, 1)",
-        "ds-gray-200": "hsla(0, 0%, 12%, 1)",
-        "ds-amber-600": "hsla(39, 85%, 49%, 1)",
-        // Add other custom colors as needed
-        // Example:
-        "ds-blue-600": "hsla(206, 100%, 50%, 1)",
-        gray: colors.stone,
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
         primary: {
-          50: "#fff1f2",
-          100: "#ffe4e6",
-          200: "#fecdd3",
-          300: "#fda4af",
-          400: "#fb7185",
-          500: "#f43f5e",
-          600: "#e11d48",
-          700: "#be123c",
-          800: "#9f1239",
-          900: "#881337",
-          950: "#4c0519",
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
-        },
-        foreground: "hsl(var(--foreground))",
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
-        },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",
@@ -63,11 +44,14 @@ module.exports = {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
         },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
         },
-        border: "hsl(var(--border))",
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         chart: {
@@ -86,8 +70,19 @@ module.exports = {
         marquee: "marquee var(--duration) linear infinite",
         "marquee-vertical": "marquee-vertical var(--duration) linear infinite",
         disappear: "disappear 2s ease-out forwards",
+        "slide-up-fade": "slideUpFade 500ms ease 200ms 1 normal forwards",
       },
       keyframes: ({ theme }) => ({
+        "slide-up-fade": {
+          "0%": {
+            opacity: "0",
+            transform: "translate(-50%, -50%) translateY(80px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translate(-50%, -50%) translateY(0)",
+          },
+        },
         disappear: {
           "90%": {
             opacity: 1,
@@ -217,14 +212,15 @@ module.exports = {
         },
         ".layout-xl": {
           "grid-template-columns": `1fr minmax(auto,${theme(
-            "spacing.60",
+            "spacing.60"
           )}) min(${theme("screens.sm")},100%) minmax(auto,${theme(
-            "spacing.60",
+            "spacing.60"
           )}) 1fr`,
         },
-      })
+      });
     }),
     require("@tailwindcss/forms"),
     require("tailwindcss-animate"),
+    require("@tailwindcss/typography"),
   ],
-}
+};
