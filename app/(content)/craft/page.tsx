@@ -1,3 +1,4 @@
+import Section from "@/app/section"
 import { getAllCrafts } from "@/lib/crafts"
 import { Button } from "@/ui/button"
 import PageWrapper from "@/ui/layout/page-wrapper"
@@ -22,6 +23,8 @@ export default async function Page() {
       {crafts.map((craft) => {
         return <SnippetPostPreview key={craft.slugAsParams} {...craft} />;
       })}
+
+      <Section />
     </div>
     // </PageWrapper>
   );

@@ -97,7 +97,7 @@ const Page = () => {
         />
       </Grid.System>
     </div>
-  )
+  );
 }
 
 export default Page

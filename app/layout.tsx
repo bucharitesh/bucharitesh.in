@@ -9,8 +9,11 @@ import { hubot } from "@/lib/fonts";
 
 import "@/styles/globals.css";
 import "@/styles/mdx.css";
+import "@/styles/cmdk.css";
+
 import { ThemeProvider } from "./provider";
 import BottomDock from "../ui/layout/bottom-dock";
+import { CommandMenu } from "@/ui/command-menu";
 
 export default async function RootLayout({
   children,
@@ -32,6 +35,7 @@ export default async function RootLayout({
             <ThemeProvider attribute="class" defaultTheme="light">
               {children}
               <BottomDock />
+              <CommandMenu />
             </ThemeProvider>
           </body>
         </SessionProvider>

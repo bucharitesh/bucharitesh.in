@@ -2,7 +2,84 @@ import React, { useMemo } from "react"
 import "./style.css"
 import { cn } from "@/lib/utils"
 
-const Guide = ({ x, y, borderRight, borderBottom, classNames }: any) => {
+type GridType = string | number;
+
+interface GridRowColType {
+  xs?: GridType;
+  sm?: GridType;
+  smd?: GridType;
+  md?: GridType;
+  lg?: GridType;
+}
+
+interface CustomCSSProperties extends React.CSSProperties {
+  "--x"?: number;
+  "--y"?: number;
+  "--cross-row"?: number;
+  "--cross-column"?: number;
+  "--cross-half-size"?: string;
+  "--cross-size"?: string;
+  "--guide-width"?: string;
+  "--width"?: string;
+  "--sm-height"?: string;
+  "--grid-rows"?: number;
+  "--grid-columns"?: number;
+  // Grid rows for all breakpoints
+  "--xs-grid-rows"?: GridType;
+  "--sm-grid-rows"?: GridType;
+  "--smd-grid-rows"?: GridType;
+  "--md-grid-rows"?: GridType;
+  "--lg-grid-rows"?: GridType;
+
+  // Grid columns for all breakpoints
+  "--xs-grid-columns"?: GridType;
+  "--sm-grid-columns"?: GridType;
+  "--smd-grid-columns"?: GridType;
+  "--md-grid-columns"?: GridType;
+  "--lg-grid-columns"?: GridType;
+
+  // Grid row positions for all breakpoints
+  "--xs-grid-row"?: string;
+  "--sm-grid-row"?: string;
+  "--smd-grid-row"?: string;
+  "--md-grid-row"?: string;
+  "--lg-grid-row"?: string;
+
+  // Grid column positions for all breakpoints
+  "--xs-grid-column"?: string;
+  "--sm-grid-column"?: string;
+  "--smd-grid-column"?: string;
+  "--md-grid-column"?: string;
+  "--lg-grid-column"?: string;
+
+  // Cell rows for all breakpoints
+  "--xs-cell-rows"?: string | number;
+  "--sm-cell-rows"?: string | number;
+  "--smd-cell-rows"?: string | number;
+  "--md-cell-rows"?: string | number;
+  "--lg-cell-rows"?: string | number;
+
+  // Cell columns for all breakpoints
+  "--xs-cell-columns"?: string | number;
+  "--sm-cell-columns"?: string | number;
+  "--smd-cell-columns"?: string | number;
+  "--md-cell-columns"?: string | number;
+  "--lg-cell-columns"?: string | number;
+}
+
+const Guide = ({
+  x,
+  y,
+  borderRight,
+  borderBottom,
+  classNames,
+}: {
+  x: number;
+  y: number;
+  borderRight: boolean;
+  borderBottom: boolean;
+  classNames?: string;
+}) => {
   return (
     <div
       aria-hidden="true"
@@ -16,8 +93,8 @@ const Guide = ({ x, y, borderRight, borderBottom, classNames }: any) => {
         } as React.CSSProperties
       }
     />
-  )
-}
+  );
+};
 
 const Grid = ({
   columns,
@@ -26,31 +103,15 @@ const Grid = ({
   children,
   hideGuides,
 }: {
-  height?: string
-  columns:
-    | {
-        xs?: number
-        sm?: number
-        smd?: number
-        md?: number
-        lg?: number
-      }
-    | number
-  rows:
-    | {
-        xs?: number
-        sm?: number
-        smd?: number
-        md?: number
-        lg?: number
-      }
-    | number
-  children?: any
-  hideGuides?: 'row' | 'column';
+  height?: string;
+  columns?: GridType | GridRowColType;
+  rows?: GridType | GridRowColType;
+  children?: React.ReactNode;
+  hideGuides?: "row" | "column";
 }) => {
   const generateGuides = useMemo(() => {
     if (typeof columns === "number" && typeof rows === "number") {
-      const guides: any = []
+      const guides: React.ReactNode[] = [];
       for (let y = 1; y < rows + 1; y++) {
         for (let x = 1; x < columns + 1; x++) {
           guides.push(
@@ -58,46 +119,53 @@ const Grid = ({
               key={`${x}-${y}`}
               x={x}
               y={y}
-              borderRight={x === columns || (hideGuides && hideGuides === "column")}
-              borderBottom={y === rows || (hideGuides && hideGuides === "row")}
-            />,
-          )
+              borderRight={x === columns || hideGuides === "column"}
+              borderBottom={y === rows || hideGuides === "row"}
+            />
+          );
         }
       }
       return (
         <div
+          key="single-breakpoint-guides"
           aria-hidden="true"
           className="grid_guides__XbybQ"
           data-grid-guides="true"
         >
           {guides}
         </div>
-      )
+      );
     }
 
     if (typeof columns === "object" && typeof rows === "object") {
-      const breakpointGuide: React.ReactNode[] = []
-      const breakpoints = ["xs", "sm", "smd", "md", "lg"] as const
+      const breakpointGuide: React.ReactNode[] = [];
+      const breakpoints = ["xs", "sm", "smd", "md", "lg"] as const;
 
       const getNextAvailableValue = (
-        obj: typeof columns | typeof rows,
-        currentBreakpoint: string,
+        obj: GridRowColType,
+        currentBreakpoint: string
       ): number => {
-        const index = breakpoints.indexOf(currentBreakpoint as any)
+        const index = breakpoints.indexOf(currentBreakpoint as any);
         for (let i = index; i < breakpoints.length; i++) {
-          const value = obj[breakpoints[i] as keyof typeof obj]
+          const value = obj[breakpoints[i] as keyof typeof obj];
           if (typeof value === "number") {
-            return value
+            return value;
           }
         }
-        return 1 // Default to 1 if no value is found
-      }
+        return 1;
+      };
 
       breakpoints.forEach((breakpoint) => {
-        const guides: React.ReactNode[] = []
+        const guides: React.ReactNode[] = [];
 
-        const colCount = getNextAvailableValue(columns, breakpoint)
-        const rowCount = getNextAvailableValue(rows, breakpoint)
+        const colCount = getNextAvailableValue(
+          columns as GridRowColType,
+          breakpoint
+        );
+        const rowCount = getNextAvailableValue(
+          rows as GridRowColType,
+          breakpoint
+        );
 
         for (let y = 1; y < rowCount + 1; y++) {
           for (let x = 1; x < colCount + 1; x++) {
@@ -115,74 +183,92 @@ const Grid = ({
                   grid_mdGuide__Kf1OM: breakpoint === "md",
                   grid_lgGuide__2OXaB: breakpoint === "lg",
                 })}
-              />,
-            )
+              />
+            );
           }
         }
 
         breakpointGuide.push(
           <div
+            key={`breakpoint-${breakpoint}`}
             aria-hidden="true"
             className="grid_guides__XbybQ"
             data-grid-guides="true"
           >
             {guides}
-          </div>,
-        )
-      })
+          </div>
+        );
+      });
 
-      return breakpointGuide
+      return breakpointGuide;
     }
 
-    return null
-  }, [columns, rows])
+    return null;
+  }, [columns, rows, hideGuides]);
 
-  const getStyle = () => {
-    let style = {}
+  const getStyle = (): CustomCSSProperties => {
+    let style: CustomCSSProperties = {};
 
+    // Handle height
     if (height) {
       if (height === "preserve-aspect-ratio") {
         style = {
           "--sm-height":
             "calc(var(--width) / var(--grid-columns) * var(--grid-rows))",
-        }
+        };
       } else {
         style = {
           "--sm-height": height,
-        }
+        };
       }
     } else {
       style = {
-        "--sm-height": "fit content",
-      }
+        "--sm-height": "fit-content",
+      };
     }
 
+    // Handle responsive breakpoints
     if (typeof rows === "object" && typeof columns === "object") {
       style = {
         ...style,
+        // Grid rows for all breakpoints
+        "--xs-grid-rows": rows.xs,
         "--sm-grid-rows": rows.sm,
+        "--smd-grid-rows": rows.smd,
         "--md-grid-rows": rows.md,
         "--lg-grid-rows": rows.lg,
+
+        // Grid columns for all breakpoints
+        "--xs-grid-columns": columns.xs,
         "--sm-grid-columns": columns.sm,
+        "--smd-grid-columns": columns.smd,
         "--md-grid-columns": columns.md,
         "--lg-grid-columns": columns.lg,
-      } as React.CSSProperties
+      };
     }
 
+    // Handle fixed numbers
     if (typeof rows === "number" && typeof columns === "number") {
       style = {
         ...style,
         "--grid-rows": rows,
         "--grid-columns": columns,
-      }
+        // Set the same value for all breakpoints for consistency
+        "--xs-grid-rows": rows,
+        "--sm-grid-rows": rows,
+        "--smd-grid-rows": rows,
+        "--md-grid-rows": rows,
+        "--lg-grid-rows": rows,
+        "--xs-grid-columns": columns,
+        "--sm-grid-columns": columns,
+        "--smd-grid-columns": columns,
+        "--md-grid-columns": columns,
+        "--lg-grid-columns": columns,
+      };
     }
 
-    style = {
-      ...style,
-    } as React.CSSProperties
-
-    return style as React.CSSProperties
-  }
+    return style;
+  };
 
   return (
     <section
@@ -197,8 +283,8 @@ const Grid = ({
       {children}
       {generateGuides}
     </section>
-  )
-}
+  );
+};
 
 const GridCross = ({ row, column }: { row: number, column: number }) => {
   return (
@@ -239,9 +325,9 @@ const GridCross = ({ row, column }: { row: number, column: number }) => {
 Grid.Cross = GridCross;
 
 interface GridCellProps {
-  children: React.ReactNode
-  column?: any;
-  row?: any;
+  children: React.ReactNode;
+  column?: GridType | GridRowColType;
+  row?: GridType | GridRowColType;
   solid?: boolean;
 }
 
@@ -249,94 +335,51 @@ const GridCell: React.FC<GridCellProps> = ({
   children,
   column,
   row,
-  solid = true,
-}: {
-  children: any
-  solid?: boolean
-  column?:
-    | {
-        sm: string
-        md: string
-        lg: string
-      }
-    | string
-  row?:
-    | {
-        sm: string
-        md: string
-        lg: string
-      }
-    | string
-}) => {
+  solid = false,
+}: GridCellProps) => {
   const css = (_a: string | number) => {
     if (typeof _a === "number") {
-      return `${_a} / span 1`
+      return `${_a} / span 1`;
     }
-    return _a
-  }
+    return _a;
+  };
 
   function calculateDifference(input: string | number): any {
     if (typeof input === "number") {
-      return input
+      return input;
     }
 
     if (typeof input === "string") {
-      const [numerator, denominator] = input.split("/").map(Number)
-
-      // Calculate the difference (denominator - numerator)
-      return denominator - numerator
+      const [numerator, denominator] = input.split("/").map(Number);
+      return denominator - numerator;
     }
 
-    return "NaN"
+    return "NaN";
   }
 
-  const getStyle = () => {
+  const getStyle = (): CustomCSSProperties => {
     if (typeof row === "string" && typeof column === "string") {
       return {
-        // 1/3 1/3
         "--sm-grid-row": row,
         "--sm-grid-column": column,
         "--sm-cell-rows": calculateDifference(row),
         "--sm-cell-columns": calculateDifference(column),
-      } as React.CSSProperties
+      };
     }
 
     if (typeof row === "object" && typeof column === "object") {
       return {
-        "--sm-grid-row": css(row.sm),
-        "--sm-grid-column": css(column.sm),
-
-        "--smd-grid-row": css(row.md),
-        "--smd-grid-column": css(column.md),
-
-        "--lg-grid-row": css(row.lg),
-        "--lg-grid-column": css(column.lg),
-
-        "--sm-cell-rows": calculateDifference(row.sm),
-        "--sm-cell-columns": calculateDifference(column.sm),
-
-        "--smd-cell-rows": calculateDifference(row.sm),
-        "--smd-cell-columns": calculateDifference(column.sm),
-
-        // "--sm-cell-rows": "2",
-        // "--smd-cell-rows": "1",
-
-        // "--sm-cell-columns": "1",
-        // "--smd-cell-columns": "",
-
-        // column={{ sm: "1", md: "1/3" }}
-        // row={{ sm: "1/3", md: 1 }}
-
-        // "--xs-cell-columns": "NaN",
-        // "--sm-cell-columns": "NaN",
-        // "--smd-cell-columns": "",
-
-        // column={{ sm: 1, md: "1/3", lg: "2/4" }}
-        // row={{ sm: "5/7", md: 3, lg: 2 }}
-
-        // "--sm-cell-columns": "1",
-        // "--smd-cell-columns": "",
-      } as React.CSSProperties
+        "--sm-grid-row": css(row.sm || ""),
+        "--sm-grid-column": css(column.sm || ""),
+        "--smd-grid-row": css(row.md || ""),
+        "--smd-grid-column": css(column.md || ""),
+        "--lg-grid-row": css(row.lg || ""),
+        "--lg-grid-column": css(column.lg || ""),
+        "--sm-cell-rows": calculateDifference(row.sm || ""),
+        "--sm-cell-columns": calculateDifference(column.sm || ""),
+        "--smd-cell-rows": calculateDifference(row.sm || ""),
+        "--smd-cell-columns": calculateDifference(column.sm || ""),
+      };
     }
 
     return {
@@ -344,15 +387,15 @@ const GridCell: React.FC<GridCellProps> = ({
       "--sm-grid-column": "auto",
       "--sm-cell-rows": "auto",
       "--sm-cell-columns": "auto",
-    } as React.CSSProperties
-  }
+    };
+  };
 
   return (
     <div className={`grid_block__lyImu`} data-grid-cell style={getStyle()}>
       {children}
     </div>
-  )
-}
+  );
+};
 
 Grid.Cell = GridCell;
 
@@ -363,7 +406,7 @@ const GridSystem = ({
 }: {
   debug?: boolean
   guideWidth?: number
-  children: any
+  children: React.ReactNode
 }) => {
   return (
     <div className="grid_unstable_gridSystemWrapper__9OFL9">
