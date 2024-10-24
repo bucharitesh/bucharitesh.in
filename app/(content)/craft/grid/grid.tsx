@@ -1,6 +1,6 @@
-import React, { useMemo } from "react"
-import "./style.css"
-import { cn } from "@/lib/utils"
+import React, { useMemo } from "react";
+import "./style.css";
+import { cn } from "@/lib/utils";
 
 type GridType = string | number;
 
@@ -30,41 +30,62 @@ interface CustomCSSProperties extends React.CSSProperties {
   "--smd-grid-rows"?: GridType;
   "--md-grid-rows"?: GridType;
   "--lg-grid-rows"?: GridType;
-
   // Grid columns for all breakpoints
   "--xs-grid-columns"?: GridType;
   "--sm-grid-columns"?: GridType;
   "--smd-grid-columns"?: GridType;
   "--md-grid-columns"?: GridType;
   "--lg-grid-columns"?: GridType;
-
   // Grid row positions for all breakpoints
   "--xs-grid-row"?: string;
   "--sm-grid-row"?: string;
   "--smd-grid-row"?: string;
   "--md-grid-row"?: string;
   "--lg-grid-row"?: string;
-
   // Grid column positions for all breakpoints
   "--xs-grid-column"?: string;
   "--sm-grid-column"?: string;
   "--smd-grid-column"?: string;
   "--md-grid-column"?: string;
   "--lg-grid-column"?: string;
-
   // Cell rows for all breakpoints
   "--xs-cell-rows"?: string | number;
   "--sm-cell-rows"?: string | number;
   "--smd-cell-rows"?: string | number;
   "--md-cell-rows"?: string | number;
   "--lg-cell-rows"?: string | number;
-
   // Cell columns for all breakpoints
   "--xs-cell-columns"?: string | number;
   "--sm-cell-columns"?: string | number;
   "--smd-cell-columns"?: string | number;
   "--md-cell-columns"?: string | number;
   "--lg-cell-columns"?: string | number;
+}
+
+interface GridProps {
+  height?: string;
+  columns?: GridType | GridRowColType;
+  rows?: GridType | GridRowColType;
+  children?: React.ReactNode;
+  hideGuides?: "row" | "column";
+}
+
+interface GridCellProps {
+  children: React.ReactNode;
+  column?: GridType | GridRowColType;
+  row?: GridType | GridRowColType;
+  solid?: boolean;
+}
+
+interface GridSystemProps {
+  debug?: boolean;
+  guideWidth?: number;
+  children: React.ReactNode;
+}
+
+interface GridCrossProps {
+  row: number;
+  column: number;
 }
 
 const Guide = ({
@@ -90,7 +111,7 @@ const Guide = ({
           "--y": y,
           "border-right": borderRight ? "none" : undefined,
           "border-bottom": borderBottom ? "none" : undefined,
-        } as React.CSSProperties
+        } as CustomCSSProperties
       }
     />
   );
@@ -174,8 +195,8 @@ const Grid = ({
                 key={`${breakpoint}-${x}-${y}`}
                 x={x}
                 y={y}
-                borderRight={colCount === x}
-                borderBottom={rowCount === y}
+                borderRight={colCount === x || hideGuides === "column"}
+                borderBottom={rowCount === y || hideGuides === "row"}
                 classNames={cn("", {
                   grid_xsGuide__Xupsz: breakpoint === "xs",
                   grid_smGuide__dhwwf: breakpoint === "sm",
@@ -209,226 +230,141 @@ const Grid = ({
   const getStyle = (): CustomCSSProperties => {
     let style: CustomCSSProperties = {};
 
-    // Handle height
     if (height) {
       if (height === "preserve-aspect-ratio") {
-        style = {
-          "--sm-height":
-            "calc(var(--width) / var(--grid-columns) * var(--grid-rows))",
-        };
+        style["--sm-height"] =
+          "calc(var(--width) / var(--grid-columns) * var(--grid-rows))";
       } else {
-        style = {
-          "--sm-height": height,
-        };
+        style["--sm-height"] = height;
       }
-    } else {
-      style = {
-        "--sm-height": "fit-content",
-      };
     }
 
-    // Handle responsive breakpoints
     if (typeof rows === "object" && typeof columns === "object") {
-      style = {
-        ...style,
-        // Grid rows for all breakpoints
-        "--xs-grid-rows": rows.xs,
-        "--sm-grid-rows": rows.sm,
-        "--smd-grid-rows": rows.smd,
-        "--md-grid-rows": rows.md,
-        "--lg-grid-rows": rows.lg,
-
-        // Grid columns for all breakpoints
-        "--xs-grid-columns": columns.xs,
-        "--sm-grid-columns": columns.sm,
-        "--smd-grid-columns": columns.smd,
-        "--md-grid-columns": columns.md,
-        "--lg-grid-columns": columns.lg,
-      };
+      const breakpoints = ["xs", "sm", "smd", "md", "lg"] as const;
+      breakpoints.forEach((bp) => {
+        if (rows[bp]) style[`--${bp}-grid-rows`] = rows[bp];
+        if (columns[bp]) style[`--${bp}-grid-columns`] = columns[bp];
+      });
     }
 
-    // Handle fixed numbers
     if (typeof rows === "number" && typeof columns === "number") {
-      style = {
-        ...style,
-        "--grid-rows": rows,
-        "--grid-columns": columns,
-        // Set the same value for all breakpoints for consistency
-        "--xs-grid-rows": rows,
-        "--sm-grid-rows": rows,
-        "--smd-grid-rows": rows,
-        "--md-grid-rows": rows,
-        "--lg-grid-rows": rows,
-        "--xs-grid-columns": columns,
-        "--sm-grid-columns": columns,
-        "--smd-grid-columns": columns,
-        "--md-grid-columns": columns,
-        "--lg-grid-columns": columns,
-      };
+      style["--grid-rows"] = rows;
+      style["--grid-columns"] = columns;
     }
 
     return style;
   };
 
   return (
-    <section
-      className="grid_grid__MIUsj"
-      data-grid
-      style={
-        {
-          ...getStyle(),
-        } as React.CSSProperties
-      }
-    >
+    <section className="grid_grid__MIUsj" data-grid style={getStyle()}>
       {children}
       {generateGuides}
     </section>
   );
 };
 
-const GridCross = ({ row, column }: { row: number, column: number }) => {
-  return (
-    <div
-      className="grid_cross__fUKA7"
-      data-grid-cross
-      style={
-        {
-          "--cross-row": row,
-          "--cross-column": column,
-        } as React.CSSProperties
-      }
-    >
-      <div
-        className="grid_crossLine__BTLQL"
-        style={
-          {
-            width: "var(--cross-half-size)",
-            height: "var(--cross-size)",
-            "border-right-width": "var(--guide-width)",
-          } as React.CSSProperties
-        }
-      ></div>
-      <div
-        className="grid_crossLine__BTLQL"
-        style={
-          {
-            width: "var(--cross-size)",
-            height: "var(--cross-half-size)",
-            "border-bottom-width": "var(--guide-width)",
-          } as React.CSSProperties
-        }
-      ></div>
-    </div>
-  )
-}
-
-Grid.Cross = GridCross;
-
-interface GridCellProps {
-  children: React.ReactNode;
-  column?: GridType | GridRowColType;
-  row?: GridType | GridRowColType;
-  solid?: boolean;
-}
-
 const GridCell: React.FC<GridCellProps> = ({
   children,
   column,
   row,
   solid = false,
-}: GridCellProps) => {
-  const css = (_a: string | number) => {
-    if (typeof _a === "number") {
-      return `${_a} / span 1`;
-    }
-    return _a;
+}) => {
+  const css = (value: string | number | undefined): string => {
+    if (typeof value === "number") return `${value} / span 1`;
+    if (typeof value === "string") return value;
+    return "auto";
   };
-
-  function calculateDifference(input: string | number): any {
-    if (typeof input === "number") {
-      return input;
-    }
-
-    if (typeof input === "string") {
-      const [numerator, denominator] = input.split("/").map(Number);
-      return denominator - numerator;
-    }
-
-    return "NaN";
-  }
 
   const getStyle = (): CustomCSSProperties => {
     if (typeof row === "string" && typeof column === "string") {
       return {
         "--sm-grid-row": row,
         "--sm-grid-column": column,
-        "--sm-cell-rows": calculateDifference(row),
-        "--sm-cell-columns": calculateDifference(column),
       };
     }
 
     if (typeof row === "object" && typeof column === "object") {
-      return {
-        "--sm-grid-row": css(row.sm || ""),
-        "--sm-grid-column": css(column.sm || ""),
-        "--smd-grid-row": css(row.md || ""),
-        "--smd-grid-column": css(column.md || ""),
-        "--lg-grid-row": css(row.lg || ""),
-        "--lg-grid-column": css(column.lg || ""),
-        "--sm-cell-rows": calculateDifference(row.sm || ""),
-        "--sm-cell-columns": calculateDifference(column.sm || ""),
-        "--smd-cell-rows": calculateDifference(row.sm || ""),
-        "--smd-cell-columns": calculateDifference(column.sm || ""),
-      };
+      const style: CustomCSSProperties = {};
+      const breakpoints = ["xs", "sm", "smd", "md", "lg"] as const;
+
+      breakpoints.forEach((bp) => {
+        if (row?.[bp]) style[`--${bp}-grid-row`] = css(row[bp]);
+        if (column?.[bp]) style[`--${bp}-grid-column`] = css(column[bp]);
+      });
+
+      return style;
     }
 
     return {
       "--sm-grid-row": "auto",
       "--sm-grid-column": "auto",
-      "--sm-cell-rows": "auto",
-      "--sm-cell-columns": "auto",
     };
   };
 
   return (
-    <div className={`grid_block__lyImu`} data-grid-cell style={getStyle()}>
+    <div className="grid_block__lyImu" data-grid-cell style={getStyle()}>
       {children}
     </div>
   );
 };
 
-Grid.Cell = GridCell;
+const GridCross = ({ row, column }: GridCrossProps) => (
+  <div
+    className="grid_cross__fUKA7"
+    data-grid-cross
+    style={
+      {
+        "--cross-row": row,
+        "--cross-column": column,
+      } as CustomCSSProperties
+    }
+  >
+    <div
+      className="grid_crossLine__BTLQL"
+      style={
+        {
+          width: "var(--cross-half-size)",
+          height: "var(--cross-size)",
+          borderRightWidth: "var(--guide-width)",
+        } as CustomCSSProperties
+      }
+    />
+    <div
+      className="grid_crossLine__BTLQL"
+      style={
+        {
+          width: "var(--cross-size)",
+          height: "var(--cross-half-size)",
+          borderBottomWidth: "var(--guide-width)",
+        } as CustomCSSProperties
+      }
+    />
+  </div>
+);
 
 const GridSystem = ({
   debug = false,
   guideWidth = 1,
   children,
-}: {
-  debug?: boolean
-  guideWidth?: number
-  children: React.ReactNode
-}) => {
-  return (
-    <div className="grid_unstable_gridSystemWrapper__9OFL9">
-      <div
-        className={cn("grid_gridSystem__LtQ2f", {
-          grid_systemDebug__U9mKm: debug,
-        })}
-        style={{ "--guide-width": `${guideWidth}px` } as React.CSSProperties}
-      >
-        {children}
-        <div className="grid_gridSystemLazyContent__qAuyX"></div>
-        {debug && (
-          <div
-            className="before:flex before:border before:border-dashed before:border-[var(--guide-color)] before:bg-black before:text-white before:text-xs before:absolute before:right-2 before:top-2 before:p-1 before:px-2
-                    before:xs:content-['xs'] before:sm:content-['smd'] before:md:content-['md'] before:lg:content-['lg'] before:animate-[disappear_2s_ease-out_forwards]"
-          />
-        )}
-      </div>
+}: GridSystemProps) => (
+  <div className="grid_unstable_gridSystemWrapper__9OFL9">
+    <div
+      className={cn("grid_gridSystem__LtQ2f", {
+        grid_systemDebug__U9mKm: debug,
+      })}
+      style={{ "--guide-width": `${guideWidth}px` } as CustomCSSProperties}
+    >
+      {children}
+      <div className="grid_gridSystemLazyContent__qAuyX" />
+      {debug && (
+        <div className="before:flex before:border before:border-dashed before:border-[var(--guide-color)] before:bg-black before:text-white before:text-xs before:absolute before:right-2 before:top-2 before:p-1 before:px-2 before:xs:content-['xs'] before:sm:content-['smd'] before:md:content-['md'] before:lg:content-['lg'] before:animate-[disappear_2s_ease-out_forwards]" />
+      )}
     </div>
-  )
-}
+  </div>
+);
 
-Grid.System = GridSystem
+Grid.Cell = GridCell;
+Grid.Cross = GridCross;
+Grid.System = GridSystem;
 
-export default Grid
+export default Grid;
