@@ -9,11 +9,10 @@ import { hubot } from "@/lib/fonts";
 
 import "@/styles/globals.css";
 import "@/styles/mdx.css";
-import "@/styles/cmdk.css";
 
 import { ThemeProvider } from "./provider";
 import BottomDock from "../ui/layout/bottom-dock";
-import { CommandMenu } from "@/ui/command-menu";
+import { CommandMenu } from "@/components/command-menu";
 
 export default async function RootLayout({
   children,
