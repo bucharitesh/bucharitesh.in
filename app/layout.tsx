@@ -9,6 +9,7 @@ import { hubot } from "@/lib/fonts";
 
 import "@/styles/globals.css";
 import "@/styles/mdx.css";
+import "@/styles/cmdk.scss";
 
 import { ThemeProvider } from "./provider";
 import BottomDock from "../ui/layout/bottom-dock";
@@ -35,6 +36,7 @@ export default async function RootLayout({
               {children}
               <BottomDock />
               <CommandMenu />
+              <div className="fixed bottom-0 z-30 w-full pointer-events-none h-[clamp(80px,10vh,200px)] backdrop-blur [mask-image:linear-gradient(to_top,#000_25%,transparent)] [-webkit-mask-image:linear-gradient(to_top,#000_25%,transparent)]"></div>
             </ThemeProvider>
           </body>
         </SessionProvider>

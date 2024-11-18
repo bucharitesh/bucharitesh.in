@@ -6,6 +6,7 @@ import {
   HarmBlockThreshold,
 } from "@google/generative-ai";
 import { CommandGroup } from "../types";
+import ReactMarkdown from 'react-markdown';
 
 // Constants and configurations
 const MAX_REQUESTS_PER_MINUTE = 10;
@@ -80,19 +81,6 @@ Style Guide:
 4. Mix technical accuracy with entertaining responses
 5. Keep the tone friendly and engaging
 6. Use minimal emojis for emphasis (max 1 per response)
-
-Example Responses:
-Project: "Ah, the Command Menu! It's one of Ritesh's favorite creations - think Spotlight search meets React, but cooler than a CSS-in-JS theme 😎"
-Work: "At Flam, Ritesh is architecting the frontend like a master builder - turning complex AR/VR experiences into smooth user interactions."
-Skills: "React and TypeScript are just the beginning. Ritesh's tech stack is more diverse than a node_modules folder!"
-
-Remember:
-- Keep responses smart and engaging
-- Mix humor with helpful information
-- Stay focused on Ritesh's expertise
-- Make tech-savvy visitors smile
-- Reference specific projects and experiences when relevant
-- Provide contact information when asked
 `;
 
 interface GeminiCommandProps {
@@ -131,7 +119,6 @@ export const useGeminiCommand = ({
   const [response, setResponse] = useState("");
   const [displayedResponse, setDisplayedResponse] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [copiedId, setCopiedId] = useState<string | null>(null);
   const [requestCount, setRequestCount] = useState(0);
   const [lastRequestTime, setLastRequestTime] = useState(Date.now());
   const [thinkingMessage, setThinkingMessage] = useState(
@@ -255,37 +242,26 @@ export const useGeminiCommand = ({
 
   const ThinkingAnimation = () => (
     <div className="flex flex-col space-y-2 items-start text-gray-500 dark:text-gray-400">
-      <div className="flex items-center space-x-2">
-        <span className="text-sm font-medium">Computing</span>
-        <div className="flex space-x-1">
-          {[0, 1, 2].map((i) => (
-            <div
-              key={i}
-              className="w-1.5 h-1.5 rounded-full bg-current animate-bounce"
-              style={{
-                animationDelay: `${i * 0.2}s`,
-                animationDuration: "1s",
-              }}
-            />
-          ))}
-        </div>
-      </div>
       <span className="text-xs italic font-mono">{thinkingMessage}</span>
     </div>
   );
 
-  const EmptyState = () => <>Get AI Assistant for any questions</>;
+  const EmptyState = () => (
+    <div className="text-sm text-gray-500 dark:text-gray-400">
+      Get AI Assistant for any questions
+    </div>
+  );
 
   return {
     name: "AI Assistant",
     commands: [
       {
         id: "gemini-input",
-        name: searchQuery.startsWith("@")
+        name: searchQuery
           ? `Ask: "${searchQuery.replace(/^@\s*/, "").trim()}"`
           : "Ask AI",
         description: (
-          <div className="flex flex-col space-y-2">
+          <div className="flex flex-col space-y-2 w-full max-w-full">
             {!response && !isLoading ? (
               <EmptyState />
             ) : (
@@ -293,12 +269,46 @@ export const useGeminiCommand = ({
                 {isLoading ? (
                   <ThinkingAnimation />
                 ) : (
-                  <pre className="whitespace-pre-wrap break-words text-gray-700 dark:text-gray-200 text-sm">
-                    {displayedResponse}
-                  </pre>
+                  <div className="space-y-2">
+                    <ReactMarkdown
+                      components={{
+                        p: ({ children }) => (
+                          <p className={`my-1 text-left text-gray-200`}>
+                            {children}
+                          </p>
+                        ),
+                        ul: ({ children }) => (
+                          <ul className={`my-1 list-disc pl-4 text-gray-200`}>
+                            {children}
+                          </ul>
+                        ),
+                        ol: ({ children }) => (
+                          <ol
+                            className={`my-1 list-decimal pl-4 text-gray-200`}
+                          >
+                            {children}
+                          </ol>
+                        ),
+                        li: ({ children }) => (
+                          <li className={`my-1 text-gray-200`}>{children}</li>
+                        ),
+                        code: ({ children }) => (
+                          <code
+                            className={`
+                                rounded px-1 py-0.5
+                              `}
+                          >
+                            {children}
+                          </code>
+                        ),
+                      }}
+                    >
+                      {displayedResponse}
+                    </ReactMarkdown>
+                  </div>
                 )}
-                {response && !isLoading && (
-                  <div className="flex items-center gap-2 pt-1">
+                {/* {response && !isLoading && (
+                  <div className="flex items-center gap-2 pt-1 sticky bottom-0 bg-white dark:bg-gray-800">
                     <button
                       onClick={async (e) => {
                         e.stopPropagation();
@@ -306,7 +316,7 @@ export const useGeminiCommand = ({
                         setCopiedId("gemini-copy");
                         setTimeout(() => setCopiedId(null), 1000);
                       }}
-                      className="flex items-center gap-1.5 px-1.5 py-0.5 rounded text-xs bg-black/5 dark:bg-white/5 text-gray-500 dark:text-gray-400 transition-colors duration-200"
+                      className="flex items-center gap-1.5 px-1.5 py-0.5 rounded text-xs bg-black/5 dark:bg-white/5 text-gray-500 dark:text-gray-400 transition-colors duration-200 hover:bg-black/10 dark:hover:bg-white/10"
                     >
                       {copiedId === "gemini-copy" ? (
                         <HiCheck className="w-3 h-3" />
@@ -316,7 +326,7 @@ export const useGeminiCommand = ({
                       {copiedId === "gemini-copy" ? "Copied" : "Copy"}
                     </button>
                   </div>
-                )}
+                )} */}
               </>
             )}
           </div>
@@ -324,7 +334,7 @@ export const useGeminiCommand = ({
         icon: HiSparkles,
         action: async () => {
           // If search is empty or doesn't start with @, set it to @ and return
-          if (!searchQuery || !searchQuery.startsWith("@")) {
+          if (!searchQuery) {
             setSearchQuery("@");
             return;
           }

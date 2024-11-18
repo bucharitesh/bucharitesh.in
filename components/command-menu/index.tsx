@@ -3,14 +3,13 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { DialogProps } from "@radix-ui/react-dialog";
 import { HiOutlineCommandLine, HiCalculator } from "react-icons/hi2";
-import { motion } from "framer-motion";
+import { Command } from "cmdk";
 import {
-  CommandDialog,
-  CommandList,
-  CommandEmpty,
-  CommandGroup,
-  CommandItem,
-} from "@/ui/command";
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+} from "@/ui/dialog";
 
 // Import command hooks
 import { useThemeCommand } from "./apps/theme-command";
@@ -19,13 +18,16 @@ import { useTimeCommand } from "./apps/time";
 import { useWeatherCommand } from "./apps/weather";
 import { useCurrencyCommand } from "./apps/currency";
 import { useGeminiCommand } from "./apps/gemini";
+import { useSocialsCommand } from "./apps/socials";
+import { useCraftsCommand } from "./apps/crafts";
+import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 export function CommandMenu({ ...props }: DialogProps) {
   // State management
   const [open, setOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const commandsListRef = useRef<HTMLDivElement>(null);
 
   // Initialize command hooks
   const themeCommands = useThemeCommand();
@@ -40,6 +42,8 @@ export function CommandMenu({ ...props }: DialogProps) {
     searchQuery,
     setSearchQuery,
   });
+  const socialsCommands = useSocialsCommand({ setOpen });
+  const craftCommands = useCraftsCommand({ setOpen, searchQuery });
 
   // Filter and organize commands based on search query and active results
   const filteredCommands = useMemo(() => {
@@ -88,12 +92,16 @@ export function CommandMenu({ ...props }: DialogProps) {
             ...geminiCommands.commands.slice(0, 1),
           ],
         },
+        craftCommands,
+        socialsCommands,
       ];
     }
 
     // Filter commands based on search
     const filteredGroups = [
       themeCommands,
+      socialsCommands,
+      craftCommands,
       calculatorCommands,
       timeCommands,
       weatherCommands,
@@ -127,6 +135,8 @@ export function CommandMenu({ ...props }: DialogProps) {
     themeCommands,
     weatherCommands,
     geminiCommands,
+    socialsCommands,
+    craftCommands,
   ]);
 
   // Helper functions
@@ -137,17 +147,17 @@ export function CommandMenu({ ...props }: DialogProps) {
     );
   };
 
-  const scrollSelectedIntoView = (index: number) => {
-    if (!commandsListRef.current) return;
+  // const scrollSelectedIntoView = (index: number) => {
+  //   if (!commandsListRef.current) return;
 
-    const commandElements = commandsListRef.current.children;
-    if (commandElements[index]) {
-      commandElements[index].scrollIntoView({
-        block: "nearest",
-        behavior: "smooth",
-      });
-    }
-  };
+  //   const commandElements = commandsListRef.current.children;
+  //   if (commandElements[index]) {
+  //     commandElements[index].scrollIntoView({
+  //       block: "nearest",
+  //       behavior: "smooth",
+  //     });
+  //   }
+  // };
 
   const handleMouseMove = (groupIndex: number, commandIndex: number) => {
     let flatIndex = 0;
@@ -185,51 +195,47 @@ export function CommandMenu({ ...props }: DialogProps) {
     if (!open) return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      const allCommands = getAllCommands();
-
       switch (e.key) {
-        case "ArrowDown": {
-          e.preventDefault();
-          setSelectedIndex((prev) =>
-            prev < allCommands.length - 1 ? prev + 1 : prev
-          );
-          scrollSelectedIntoView(selectedIndex + 1);
+        case "Escape":
+          setOpen(false);
           break;
-        }
-        case "ArrowUp": {
+        case "ArrowDown":
           e.preventDefault();
-          setSelectedIndex((prev) => (prev > 0 ? prev - 1 : prev));
-          scrollSelectedIntoView(selectedIndex - 1);
+          const allCommands = getAllCommands();
+          setSelectedIndex((prev) => {
+            const newIndex = (prev + 1) % allCommands.length;
+            // scrollSelectedIntoView(newIndex);
+            return newIndex;
+          });
           break;
-        }
-        case "Enter": {
+        case "ArrowUp":
           e.preventDefault();
-          const commandToExecute = allCommands[selectedIndex];
-          if (commandToExecute?.action) {
-            commandToExecute.action();
-          }
+          const commands = getAllCommands();
+          setSelectedIndex((prev) => {
+            const newIndex = prev - 1 < 0 ? commands.length - 1 : prev - 1;
+            // scrollSelectedIntoView(newIndex);
+            return newIndex;
+          });
           break;
-        }
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [open, selectedIndex]);
+  }, [open, getAllCommands]);
 
   // Reset selected index when search query changes
   useEffect(() => {
     setSelectedIndex(0);
   }, [searchQuery]);
 
+  // Render component
   return (
     <CommandDialog open={open} onOpenChange={setOpen} {...props}>
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
         className="p-4 border-b"
       >
-        <div className="flex items-center gap-3 px-3 py-2 rounded-lg bg-gray-900/5">
+        <div className="flex items-center gap-3 px-3 py-2 rounded-lg">
           {calculatorCommands.name === "Result" ? (
             <HiCalculator className="w-5 h-5 text-gray-400" />
           ) : (
@@ -260,57 +266,55 @@ export function CommandMenu({ ...props }: DialogProps) {
             autoFocus
           />
           <div className="flex items-center gap-2">
-            <kbd className="hidden sm:flex items-center justify-center px-2 py-1 text-xs font-medium rounded">
+            <kbd className="hidden sm:flex items-center justify-center px-2 py-1 text-xs font-medium rounded bg-gray-400">
               ESC
             </kbd>
           </div>
         </div>
       </motion.div>
 
-      <CommandList ref={commandsListRef}>
-        <CommandEmpty>No results found.</CommandEmpty>
+      {/* Command List */}
+      <Command.List>
+        <Command.Empty>No results found.</Command.Empty>
         {filteredCommands.map((group, groupIndex) => (
-          <CommandGroup key={group.name} className="mb-4">
+          <Command.Group key={group.name} className="my-4">
             <div className="px-4 sm:px-6 py-2 text-xs font-medium tracking-wider">
               {group.name.toUpperCase()}
             </div>
             {group.commands.map((command, index) => (
-              <CommandItem asChild key={command.id}>
+              <CommandItem key={command.id} asChild>
                 <motion.button
-                  variants={{
-                    hidden: { opacity: 0 },
-                    visible: { opacity: 1 },
-                  }}
                   onClick={() => {
-                    if (
-                      command.id === "gemini-input" &&
-                      (!searchQuery || !searchQuery.startsWith("@"))
-                    ) {
+                    if (command.id === "gemini-input" && !searchQuery) {
                       setSearchQuery("@");
                     } else {
                       command.action();
                     }
                   }}
                   onMouseMove={() => handleMouseMove(groupIndex, index)}
-                  className={`
-                    w-full px-4 sm:px-6 py-3 flex items-center
-                    group transition-all duration-75
-                  `}
+                  className={cn(
+                    `relative w-full px-4 sm:px-6 py-3 flex items-center group transition-all duration-75`
+                  )}
                 >
-                  <div className="flex items-center gap-3 sm:gap-4 min-w-0 w-full">
+                  <div className="flex items-start gap-3 sm:gap-4 min-w-0 w-full relative z-10">
                     {command.icon && (
-                      <div className="p-1.5 rounded-lg flex-shrink-0 flex items-center justify-center w-8 h-8 transition-colors">
+                      <div
+                        className={cn(
+                          "p-1.5 rounded-lg flex-shrink-0 flex items-center justify-center w-8 h-8 transition-colors",
+                          "bg-gray-800/50 text-gray-400"
+                        )}
+                      >
                         {React.createElement(command.icon, {
                           className: "w-4 h-4",
                         })}
                       </div>
                     )}
                     <div className="flex flex-col min-w-0 flex-1">
-                      <span className="font-medium text-base text-left">
+                      <span className={cn("font-medium text-base text-left")}>
                         {command.name}
                       </span>
                       {command.description && (
-                        <div className="text-sm text-left text-gray-500 dark:text-gray-400">
+                        <div className={cn("text-sm text-left text-gray-500")}>
                           {command.description}
                         </div>
                       )}
@@ -326,9 +330,39 @@ export function CommandMenu({ ...props }: DialogProps) {
                 </motion.button>
               </CommandItem>
             ))}
-          </CommandGroup>
+          </Command.Group>
         ))}
-      </CommandList>
+      </Command.List>
     </CommandDialog>
   );
 }
+
+interface CommandDialogProps extends DialogProps {}
+
+const CommandDialog = ({ children, ...props }: CommandDialogProps) => {
+  return (
+    <Dialog {...props}>
+      <DialogContent noClose className="overflow-hidden p-0 max-w-2xl">
+        <DialogTitle hidden />
+        <DialogDescription hidden />
+        <Command>
+          {children}
+        </Command>
+      </DialogContent>
+    </Dialog>
+  );
+};
+
+const CommandItem = React.forwardRef<
+  React.ElementRef<typeof Command.Item>,
+  React.ComponentPropsWithoutRef<typeof Command.Item>
+>(({ className, ...props }, ref) => (
+  <Command.Item
+    ref={ref}
+    className={cn(
+      "relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm    data-[disabled=true]:pointer-events-none data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground data-[disabled=true]:opacity-50",
+      className
+    )}
+    {...props}
+  />
+));

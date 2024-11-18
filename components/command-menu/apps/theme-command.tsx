@@ -13,13 +13,6 @@ export const useThemeCommand = (): CommandGroup => {
         name: `Switch to ${theme === "dark" ? "light" : "dark"} mode`,
         description: `Currently in ${theme === "dark" ? "dark" : "light"} mode`,
         icon: theme === "dark" ? HiSun : HiMoon,
-        rightIcon: ({ className }) => (
-          <kbd
-            className={`${className} text-[11px] font-medium font-['Inter'] opacity-50`}
-          >
-            L
-          </kbd>
-        ),
         action: () => setTheme(theme === "light" ? "dark" : "light"),
       },
     ],

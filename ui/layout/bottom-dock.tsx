@@ -94,7 +94,7 @@ function BottomDock() {
   const pathname = usePathname();
 
   return (
-    <Dock className="fixed bottom-2 left-1/2 -translate-x-1/2">
+    <Dock className="fixed z-40 left-1/2 -translate-x-1/2">
       {DATA.navbar.map((item) => (
         <DockIcon key={item.label} title={item.label}>
           <Link href={item.href}>

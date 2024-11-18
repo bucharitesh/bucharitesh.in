@@ -3,7 +3,7 @@ import { format } from "date-fns";
 import { toZonedTime } from "date-fns-tz";
 import cityTimezones from "city-timezones";
 import { useMemo } from "react";
-import { CommandGroup } from "../types";
+import { CommandGroup, CommandItem } from "../types";
 
 interface TimeCommandProps {
   searchQuery: string;
@@ -20,7 +20,7 @@ export const useTimeCommand = ({
     return format(zonedTime, "h:mm a");
   };
 
-  const parseTimeQuery = (query: string) => {
+  const parseTimeQuery = (query: string): CommandItem[] => {
     const normalizedQuery = query.toLowerCase().trim();
 
     if (normalizedQuery.includes("time")) {
@@ -29,11 +29,41 @@ export const useTimeCommand = ({
         .replace("time at", "")
         .trim();
 
+      if (!cityQuery) {
+        return [];
+      }
+
+      // Handle multiple matches using cityMapping
+      const allCities = cityTimezones.cityMapping;
+      const possibleMatches = allCities
+        .filter(
+          (city) =>
+            city.city.toLowerCase().includes(cityQuery) ||
+            city.country.toLowerCase().includes(cityQuery)
+        )
+        .slice(0, 5);
+
+      if (possibleMatches.length > 0) {
+        return possibleMatches.map((city) => {
+          const timeString = getTimeInTimezone(city.timezone);
+          return {
+            id: `time-${city.city}-${city.country}`,
+            name: `${city.city}, ${city.country}: ${timeString}`,
+            description: `Current time in ${city.city}`,
+            icon: HiClock,
+            action: async () => {
+              await navigator.clipboard.writeText(timeString);
+            },
+          };
+        });
+      }
+
+      // Fallback to lookupViaCity if no matches found in cityMapping
       const cityResults = cityTimezones.lookupViaCity(cityQuery);
 
       if (cityResults && cityResults.length > 0) {
         return cityResults.slice(0, 5).map((city) => ({
-          id: `time-${city.city}`,
+          id: `time-${city.city}-${city.country}`,
           name: `${city.city}, ${city.country}: ${getTimeInTimezone(city.timezone)}`,
           description: `Current time in ${city.city}`,
           icon: HiClock,
@@ -49,7 +79,7 @@ export const useTimeCommand = ({
   };
 
   const commands = useMemo(() => {
-    const baseCommand = {
+    const baseCommand: CommandItem = {
       id: "time",
       name: "Check time anywhere",
       description: "Try: time in tokyo or time in berlin",
