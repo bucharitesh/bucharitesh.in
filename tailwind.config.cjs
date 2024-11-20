@@ -10,6 +10,7 @@ module.exports = {
     "./src/**/*.{ts,tsx}",
     "./ui/**/*.{ts,tsx}",
     "./lib/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
     "./content/posts/**/*.mdx",
   ],
   darkMode: "class",
