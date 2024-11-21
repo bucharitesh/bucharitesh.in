@@ -2,6 +2,7 @@ import { meta } from "@/lib/constants";
 import { COMMON_SCRIPT_ORG } from "../lib/script";
 import { Metadata } from "next/types";
 import MapLocation from "@/components/home/map";
+import ViewMagnifier from "@/components/view-magnifier";
 
 export const metadata: Metadata = {
   title: meta.tagline,
@@ -19,7 +20,10 @@ export default async function Page() {
         <h1 className="font-medium text-xl">Ritesh Bucha</h1>
         <section className="mt-12">
           <h2 className="mb-3 font-medium text-white">Where</h2>
-          <MapLocation />
+
+          <ViewMagnifier>
+            <MapLocation />
+          </ViewMagnifier>
         </section>
       </div>
     </>

@@ -1,30 +1,14 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
-const Cloud = ({ delay = 0 }: { delay?: number }) => (
-  <motion.img
-    src="/assets/map/cloud.webp"
-    width="100%"
-    height="100%"
-    alt=""
-    draggable="false"
-    className="absolute opacity-75 blur-sm"
-    initial={{ x: -350, y: -350 }}
-    animate={{
-      x: [-350, 350, 600, -400, -350],
-      y: [-350, 350, -350, 350, -350],
-    }}
-    transition={{
-      duration: 120,
-      delay,
-      repeat: Infinity,
-      ease: "linear",
-    }}
-  />
-);
+// Core configs
+const WEATHER_CYCLE_DURATION = 10000;
+const TRANSITION_SPEED = 0.05;
+const INTENSITY_INTERVAL = 100;
 
+// Window resize hook
 const useWindowSize = () => {
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
 
@@ -44,6 +28,7 @@ const useWindowSize = () => {
   return windowSize;
 };
 
+// Utils
 const getRandomDirection = () => {
   const directions = [
     { start: "left", end: "right" },
@@ -53,6 +38,29 @@ const getRandomDirection = () => {
   ];
   return directions[Math.floor(Math.random() * directions.length)];
 };
+
+// Visual components
+const Cloud = ({ delay = 0 }) => (
+  <motion.img
+    src="/assets/map/cloud.webp"
+    width="100%"
+    height="100%"
+    alt=""
+    draggable="false"
+    className="absolute opacity-75 blur-sm z-10"
+    initial={{ x: -350, y: -350 }}
+    animate={{
+      x: [-350, 350, 600, -400, -350],
+      y: [-350, 350, -350, 350, -350],
+    }}
+    transition={{
+      duration: 120,
+      delay,
+      repeat: Infinity,
+      ease: "linear",
+    }}
+  />
+);
 
 const Plane = ({ delay = 0 }) => {
   const { width, height } = useWindowSize();
@@ -80,7 +88,7 @@ const Plane = ({ delay = 0 }) => {
         angle = -45;
         break;
       case "top":
-        start = { x:  width / 2, y: height / 2 };
+        start = { x: width / 2, y: height / 2 };
         end = { x: width, y: height };
         angle = 0;
         break;
@@ -103,17 +111,12 @@ const Plane = ({ delay = 0 }) => {
         alt=""
         draggable="false"
         className="absolute z-30"
-        initial={{
-          x: movement.start.x,
-          y: movement.start.y,
-        }}
+        initial={{ x: movement.start.x, y: movement.start.y }}
         animate={{
           x: [movement.start.x, movement.end.x],
           y: [movement.start.y, movement.end.y],
         }}
-        style={{
-          rotate: movement.angle,
-        }}
+        style={{ rotate: movement.angle }}
         transition={{
           duration: 10,
           delay,
@@ -136,9 +139,7 @@ const Plane = ({ delay = 0 }) => {
           x: [movement.start.x + 20, movement.end.x + 20],
           y: [movement.start.y + 20, movement.end.y + 20],
         }}
-        style={{
-          rotate: movement.angle,
-        }}
+        style={{ rotate: movement.angle }}
         transition={{
           duration: 10,
           delay,
@@ -150,18 +151,233 @@ const Plane = ({ delay = 0 }) => {
   );
 };
 
-const Map = () => {
+// Weather icons
+const SunIcon = () => (
+  <motion.svg
+    viewBox="0 0 24 24"
+    className="w-4 h-4"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
+    <motion.circle
+      cx="12"
+      cy="12"
+      r="4"
+      initial={{ scale: 0.8 }}
+      animate={{ scale: [0.8, 1, 0.8] }}
+      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+    />
+    {[...Array(8)].map((_, i) => (
+      <motion.line
+        key={i}
+        x1="12"
+        y1="6"
+        x2="12"
+        y2="4"
+        initial={{ opacity: 0.4 }}
+        animate={{ opacity: [0.4, 1, 0.4] }}
+        transition={{
+          duration: 2,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: i * 0.2,
+        }}
+        style={{ transformOrigin: "center", transform: `rotate(${i * 45}deg)` }}
+      />
+    ))}
+  </motion.svg>
+);
+
+const MoonIcon = () => (
+  <motion.svg
+    viewBox="0 0 24 24"
+    className="w-4 h-4"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
+    <motion.path
+      d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+      initial={{ rotate: -20 }}
+      animate={{ rotate: [-20, 0, -20] }}
+      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+    />
+  </motion.svg>
+);
+
+const RainIcon = () => (
+  <motion.svg
+    viewBox="0 0 24 24"
+    className="w-4 h-4"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
+    <motion.path
+      d="M3 13.6C3 13.6 7 13.6 7 9.6C7 6.6 9.6 4 12.6 4C15.6 4 18.2 6.6 18.2 9.6C18.2 13.6 22.2 13.6 22.2 13.6"
+      initial={{ pathLength: 0 }}
+      animate={{ pathLength: 1 }}
+      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+    />
+    {[...Array(3)].map((_, i) => (
+      <motion.line
+        key={i}
+        x1={8 + i * 6}
+        y1="16"
+        x2={8 + i * 6}
+        y2="20"
+        initial={{ y1: 16, y2: 16 }}
+        animate={{ y1: [16, 16], y2: [16, 20] }}
+        transition={{
+          duration: 1,
+          repeat: Infinity,
+          ease: "easeOut",
+          delay: i * 0.2,
+        }}
+      />
+    ))}
+  </motion.svg>
+);
+
+const WeatherIcon = ({ type }) => {
+  const icons = {
+    sun: <SunIcon />,
+    moon: <MoonIcon />,
+    rain: <RainIcon />,
+  };
+  return icons[type] || icons.sun;
+};
+
+// Weather components
+const RainDrop = ({ intensity }) => {
+  const width = Math.random() * 2 + 2;
+  const height = Math.random() * 20 + 20;
+  const left = `${Math.random() * 100}%`;
+
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
+      className="absolute bg-blue-400"
+      style={{ width, height, left, opacity: intensity * 0.5 }}
+      initial={{ y: -20 }}
+      animate={{ y: "120vh" }}
+      transition={{
+        duration: 0.7,
+        repeat: Infinity,
+        ease: "linear",
+        delay: Math.random(),
+      }}
+    />
+  );
+};
+
+const WeatherInfo = ({ isNight, isRaining }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
+    className="absolute bottom-0 left-0 mb-3 ml-3 z-40"
+  >
+    <motion.div
+      className="group relative bg-black/40 backdrop-blur-md rounded-lg px-2.5 py-1.5 flex items-center gap-2 text-white text-[0.6rem]"
+      whileHover={{ scale: 1.05 }}
+    >
+      <motion.div
+        className="absolute inset-0 -z-10 rounded-lg opacity-50"
+        style={{
+          background:
+            "radial-gradient(circle at center, rgba(59, 130, 246, 0.2), rgba(147, 51, 234, 0.2))",
+          filter: "blur(8px)",
+        }}
+        animate={{ scale: [1, 1.05, 1] }}
+        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+      />
+
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={isRaining ? "rain" : isNight ? "moon" : "sun"}
+          initial={{ opacity: 0, scale: 0.5, rotate: -30 }}
+          animate={{ opacity: 1, scale: 1, rotate: 0 }}
+          exit={{ opacity: 0, scale: 0.5, rotate: 30 }}
+          transition={{ duration: 0.5 }}
+          className="text-white"
+        >
+          <WeatherIcon type={isRaining ? "rain" : isNight ? "moon" : "sun"} />
+        </motion.div>
+      </AnimatePresence>
+
+      <motion.span
+        className="font-light tracking-wide opacity-90 group-hover:opacity-100"
+        initial={{ opacity: 0, x: -5 }}
+        animate={{ opacity: 0.9, x: 0 }}
+        transition={{ duration: 0.3 }}
+      >
+        {isRaining ? "Rainy" : isNight ? "Night" : "Day"}
+      </motion.span>
+
+      <motion.div
+        className="absolute inset-0 -z-20 rounded-lg opacity-0 group-hover:opacity-30"
+        style={{
+          background:
+            "radial-gradient(circle at center, rgba(255, 255, 255, 0.8), transparent)",
+          filter: "blur(12px)",
+        }}
+        transition={{ duration: 0.2 }}
+      />
+    </motion.div>
+  </motion.div>
+);
+
+// Main component
+const Map = () => {
+  const [isNight, setIsNight] = useState(false);
+  const [isRaining, setIsRaining] = useState(false);
+  const [nightIntensity, setNightIntensity] = useState(0);
+  const [rainIntensity, setRainIntensity] = useState(0);
+
+  useEffect(() => {
+    let interval;
+    if (isNight && nightIntensity < 1) {
+      interval = setInterval(() => {
+        setNightIntensity((prev) => Math.min(prev + TRANSITION_SPEED, 1));
+      }, INTENSITY_INTERVAL);
+    } else if (!isNight && nightIntensity > 0) {
+      interval = setInterval(() => {
+        setNightIntensity((prev) => Math.max(prev - TRANSITION_SPEED, 0));
+      }, INTENSITY_INTERVAL);
+    }
+    return () => clearInterval(interval);
+  }, [isNight, nightIntensity]);
+
+  useEffect(() => {
+    let interval;
+    if (isRaining && rainIntensity < 1) {
+      interval = setInterval(() => {
+        setRainIntensity((prev) => Math.min(prev + TRANSITION_SPEED, 1));
+      }, INTENSITY_INTERVAL);
+    } else if (!isRaining && rainIntensity > 0) {
+      interval = setInterval(() => {
+        setRainIntensity((prev) => Math.max(prev - TRANSITION_SPEED, 0));
+      }, INTENSITY_INTERVAL);
+    }
+    return () => clearInterval(interval);
+  }, [isRaining, rainIntensity]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsNight((prev) => !prev);
+      setIsRaining(Math.random() < 0.3);
+    }, WEATHER_CYCLE_DURATION);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <motion.div
+      initial={{ scale: 1.3 }}
+      animate={{ scale: 1 }}
       transition={{ duration: 0.5 }}
       className="relative h-fit w-full overflow-hidden rounded-xl"
     >
-      {[...Array(5)].map((_, index) => (
-        <Cloud key={index} />
-      ))}
-
       <motion.img
         initial={{ scale: 1.1 }}
         animate={{ scale: 1 }}
@@ -170,20 +386,62 @@ const Map = () => {
         height="100%"
         src="/assets/map/map.webp"
         alt="Map with marker of Bengaluru, India"
-        loading="eager"
         draggable="false"
-        className="rounded-xl"
+        className="rounded-xl relative z-10"
+      />
+
+      {/* Night effects */}
+      <motion.div
+        className="absolute inset-0 bg-[#0A1431] pointer-events-none z-20"
+        animate={{ opacity: nightIntensity * 0.75 }}
+        transition={{ duration: 1, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="absolute inset-0 pointer-events-none z-20"
+        animate={{ opacity: nightIntensity * 0.4 }}
+        transition={{ duration: 1, ease: "easeInOut" }}
+        style={{
+          background:
+            "linear-gradient(to bottom, rgba(10, 20, 49, 0) 0%, rgba(10, 20, 49, 0.8) 100%)",
+        }}
+      />
+      <motion.div
+        className="absolute inset-0 pointer-events-none z-20"
+        animate={{ opacity: nightIntensity * 0.15 }}
+        transition={{ duration: 1, ease: "easeInOut" }}
+        style={{
+          backdropFilter: "blur(1px)",
+          background:
+            "radial-gradient(circle at center, rgba(147, 197, 253, 0.1) 0%, transparent 70%)",
+        }}
       />
 
       {[...Array(5)].map((_, index) => (
-        <Plane key={index} />
+        <Cloud key={index} delay={index * 2} />
       ))}
+
+      {rainIntensity > 0 && (
+        <div className="absolute inset-0 overflow-hidden z-30">
+          {[...Array(Math.floor(100 * rainIntensity))].map((_, i) => (
+            <RainDrop key={i} intensity={rainIntensity} />
+          ))}
+        </div>
+      )}
+
+      {[...Array(5)].map((_, index) => (
+        <Plane key={index} delay={index * 2} />
+      ))}
+
+      <WeatherInfo
+        isNight={nightIntensity > 0.5}
+        isRaining={rainIntensity > 0.5}
+      />
 
       <motion.a
         href="https://en.wikipedia.org/wiki/Bangalore"
         target="_blank"
         rel="noreferrer"
-        className="exclude absolute bottom-0 right-0 mb-3 mr-3 select-none rounded-md border border-neutral-300 bg-neutral-50 px-2 py-1.5 text-[0.6rem] text-neutral-600 z-40"
+        className="absolute bottom-0 right-0 mb-3 mr-3 select-none rounded-md border border-neutral-300 bg-neutral-50 px-2 py-1.5 text-[0.6rem] text-neutral-600 z-40"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
