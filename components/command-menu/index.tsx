@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { DialogProps } from "@radix-ui/react-dialog";
 import { HiOutlineCommandLine, HiCalculator } from "react-icons/hi2";
 import { Command } from "cmdk";
@@ -232,9 +232,7 @@ export function CommandMenu({ ...props }: DialogProps) {
   // Render component
   return (
     <CommandDialog open={open} onOpenChange={setOpen} {...props}>
-      <motion.div
-        className="p-4 border-b"
-      >
+      <motion.div className="p-4 border-b">
         <div className="flex items-center gap-3 px-3 py-2 rounded-lg">
           {calculatorCommands.name === "Result" ? (
             <HiCalculator className="w-5 h-5 text-gray-400" />
@@ -293,7 +291,7 @@ export function CommandMenu({ ...props }: DialogProps) {
                   }}
                   onMouseMove={() => handleMouseMove(groupIndex, index)}
                   className={cn(
-                    `relative w-full px-4 sm:px-6 py-3 flex items-center group transition-all duration-75`
+                    `relative w-full px-4 sm:px-6 py-3 flex items-center group transition-all duration-75 cursor-pointer`
                   )}
                 >
                   <div className="flex items-start gap-3 sm:gap-4 min-w-0 w-full relative z-10">
@@ -301,7 +299,7 @@ export function CommandMenu({ ...props }: DialogProps) {
                       <div
                         className={cn(
                           "p-1.5 rounded-lg flex-shrink-0 flex items-center justify-center w-8 h-8 transition-colors",
-                          "bg-gray-800/50 text-gray-400"
+                          "bg-gray-300/60 text-gray-600/50 dark:bg-gray-600/50 dark:text-white"
                         )}
                       >
                         {React.createElement(command.icon, {
@@ -360,7 +358,7 @@ const CommandItem = React.forwardRef<
   <Command.Item
     ref={ref}
     className={cn(
-      "relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm    data-[disabled=true]:pointer-events-none data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground data-[disabled=true]:opacity-50",
+      "relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm data-[disabled=true]:pointer-events-none data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground data-[disabled=true]:opacity-50",
       className
     )}
     {...props}

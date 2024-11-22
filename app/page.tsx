@@ -19,9 +19,9 @@ export default async function Page() {
       <div className="layout-sm relative z-10 grid gap-y-8 px-4 pt-12 xl:layout-xl xl:gap-x-9 xl:px-0 [&>*]:col-start-2 xl:[&>*]:col-start-3">
         <h1 className="font-medium text-xl">Ritesh Bucha</h1>
         <section className="mt-12">
-          <h2 className="mb-3 font-medium text-white">Where</h2>
+          <h2 className="mb-3 font-medium">Where</h2>
 
-          <ViewMagnifier>
+          <ViewMagnifier maxWidth={800}>
             <MapLocation />
           </ViewMagnifier>
         </section>
