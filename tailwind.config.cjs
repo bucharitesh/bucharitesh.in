@@ -1,5 +1,3 @@
-const defaultTheme = require("tailwindcss/defaultTheme")
-const colors = require("tailwindcss/colors")
 const plugin = require("tailwindcss/plugin")
 
 /** @type {import('tailwindcss').Config} */
@@ -7,17 +5,15 @@ module.exports = {
   content: [
     "./app/**/*.{ts,tsx}",
     "./pages/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}",
-    "./ui/**/*.{ts,tsx}",
     "./lib/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
-    "./content/posts/**/*.mdx",
   ],
   darkMode: "class",
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-hubot)", ...defaultTheme.fontFamily.sans],
+        mono: ["var(--font-mono)"],
+        x: ["var(--font-x)"],
       },
       colors: {
         border: "hsl(var(--border))",

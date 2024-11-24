@@ -7,18 +7,18 @@ import {
   Tailwind,
   Section,
   Img,
-} from "@react-email/components"
-import Footer from "./footer"
-import { meta } from "@/lib/constants"
+} from "@react-email/components";
+import Footer from "./footer";
+import { meta } from "@/old/lib/constants";
 
 export default function EmailBody({
   email,
   marketing = false,
   children,
 }: {
-  email?: string
-  marketing?: boolean
-  children: React.ReactNode
+  email?: string;
+  marketing?: boolean;
+  children: React.ReactNode;
 }) {
   return (
     <Html>
@@ -58,5 +58,5 @@ export default function EmailBody({
         </Body>
       </Tailwind>
     </Html>
-  )
+  );
 }

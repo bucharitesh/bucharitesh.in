@@ -9,7 +9,7 @@ import {
   DialogContent,
   DialogDescription,
   DialogTitle,
-} from "@/ui/dialog";
+} from "@/components/ui/dialog";
 
 // Import command hooks
 import { useThemeCommand } from "./apps/theme-command";
@@ -21,7 +21,7 @@ import { useGeminiCommand } from "./apps/gemini";
 import { useSocialsCommand } from "./apps/socials";
 import { useCraftsCommand } from "./apps/crafts";
 import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
+import { cn } from "@/old/lib/utils";
 
 export function CommandMenu({ ...props }: DialogProps) {
   // State management
@@ -343,9 +343,7 @@ const CommandDialog = ({ children, ...props }: CommandDialogProps) => {
       <DialogContent noClose className="overflow-hidden p-0 max-w-2xl">
         <DialogTitle hidden />
         <DialogDescription hidden />
-        <Command>
-          {children}
-        </Command>
+        <Command>{children}</Command>
       </DialogContent>
     </Dialog>
   );

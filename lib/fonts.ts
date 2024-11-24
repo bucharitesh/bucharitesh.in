@@ -1,16 +1,23 @@
 import { JetBrains_Mono as FontMono } from "next/font/google";
-import { GeistSans } from "geist/font/sans";
 import localFont from "next/font/local";
-
-export const fontSans = GeistSans;
 
 export const fontMono = FontMono({
   subsets: ["latin"],
   variable: "--font-mono",
 });
 
-export const hubot = localFont({
-  src: "../public/assets/HubotSans.woff2",
-  variable: "--font-hubot",
-  weight: "400 900",
-})
+export const fontX = localFont({
+  src: [
+    {
+      path: "../public/assets/X-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/assets/X-Medium.woff2",
+      weight: "500",
+      style: "normal",
+    },
+  ],
+  variable: "--font-x", // This creates the CSS variable
+});
