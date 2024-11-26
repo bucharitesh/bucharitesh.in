@@ -1,23 +1,23 @@
-import useSWR, { SWRConfiguration } from "swr"
-import { allPosts } from "contentlayer/generated"
+import useSWR, { SWRConfiguration } from "swr";
+// import { allPosts } from "@/old/.contentlayer/generated";
 
 const API_URL = `/api/posts/most_viewed`;
 
 async function getTrendingPosts(): Promise<any> {
   const res = await fetch(API_URL);
   if (!res.ok) {
-    throw new Error("An error occurred while fetching the data.")
+    throw new Error("An error occurred while fetching the data.");
   }
 
   let data = await res.json();
 
   let trendingPosts: any = [];
 
-  if (allPosts.length > 0) {
-    trendingPosts = allPosts.filter((post) =>
-      data?.some((trendingItem) => trendingItem.slug === post.slug),
-    )
-  }
+  // if (allPosts.length > 0) {
+  //   trendingPosts = allPosts.filter((post) =>
+  //     data?.some((trendingItem) => trendingItem.slug === post.slug)
+  //   );
+  // }
 
   return trendingPosts ?? [];
 }
@@ -29,12 +29,12 @@ export const useTrendingPosts = (config?: SWRConfiguration) => {
     {
       dedupingInterval: 60000,
       ...config,
-    },
-  )
+    }
+  );
 
   return {
     posts: trendingPosts ?? [],
     isLoading: !error && !trendingPosts,
     isError: !!error,
-  }
-}
+  };
+};

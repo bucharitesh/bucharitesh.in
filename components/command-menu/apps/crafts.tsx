@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { CommandGroup } from "../types";
 import { HiNewspaper } from "react-icons/hi2";
-import { allPosts } from "contentlayer/generated";
+// import { allPosts } from "@/old/.contentlayer/generated";
 import { compareDesc } from "date-fns";
 import { useRouter } from "next/navigation";
 
@@ -17,11 +17,12 @@ export const useCraftsCommand = ({
   const router = useRouter();
   const commands = useMemo(() => {
     // Filter published posts and sort by publishedAt
-    const sortedPosts = allPosts
-      .filter((post) => post.status === "published")
-      .sort((a, b) =>
-        compareDesc(new Date(a.publishedAt), new Date(b.publishedAt))
-      );
+    // const sortedPosts = allPosts
+    //   .filter((post) => post.status === "published")
+    //   .sort((a, b) =>
+    //     compareDesc(new Date(a.publishedAt), new Date(b.publishedAt))
+    //   );
+    const sortedPosts: any = [];
 
     // Filter posts based on search query
     const filteredPosts = sortedPosts.filter((post) => {
@@ -41,9 +42,7 @@ export const useCraftsCommand = ({
       id: post._id,
       name: post.title,
       description: (
-        <div className="truncate line-clamp-1">
-          {post.description}
-        </div>
+        <div className="truncate line-clamp-1">{post.description}</div>
       ),
       icon: HiNewspaper,
       action: () => {

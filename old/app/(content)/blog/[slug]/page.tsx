@@ -2,7 +2,7 @@
 import { meta } from "@/old/lib/constants";
 import { formatPost } from "@/old/lib/contentlayer";
 import { createOgImage } from "@/old/lib/createOgImage";
-import { allPosts } from "contentlayer/generated";
+import { allPosts } from "@/old/.contentlayer/generated";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { BLOG_SCRIPT_ORG } from "@/old/lib/script";

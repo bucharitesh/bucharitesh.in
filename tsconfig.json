@@ -1,45 +1,43 @@
 {
+  "display": "Next.js",
   "compilerOptions": {
-    "target": "esnext", // Change to esnext for better ES module support
-    "module": "esnext",
-    "moduleResolution": "node",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": false,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "incremental": true,
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
     "plugins": [
       {
         "name": "next"
       }
     ],
-    "strictNullChecks": true,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "allowJs": true,
+    "jsx": "preserve",
+    "noEmit": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./*"
-      ],
-      "@/components/bucharitesh/*": [
-        "./registry/default/bucharitesh/*"
-      ],
-      "@/components/example/*": [
-        "./registry/default/example/*"
-      ],
-      "contentlayer/generated": ["./.contentlayer/generated"],
-    }
+      "@/*": ["./*"],
+      "content-collections": ["./.content-collections/generated"]
+    },
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "skipLibCheck": true,
+    "strict": false,
+    "incremental": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "declaration": true,
+    "declarationMap": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleDetection": "force",
+    "target": "ES2022",
+    "strictNullChecks": true
   },
+  "exclude": [
+    "node_modules"
+  ],
   "include": [
     "next-env.d.ts",
-    ".next/types/**/*.ts",
+    "next.config.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".contentlayer/generated"  
-  ],
-  "exclude": ["node_modules", "scripts/**/*", "scripts/build-registry.ts", "__registry__"]
+    ".next/types/**/*.ts"
+  ]
 }

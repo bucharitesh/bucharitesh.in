@@ -74,19 +74,6 @@ const ViewMagnifier: React.FC<ViewMagnifierProps> = ({
     [isMouseDown, maxScale, scale, isFocused]
   );
 
-  // Handle global space key press to focus the component
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.code === "Space") {
-        e.preventDefault();
-        containerRef.current?.focus();
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
-
   useEffect(() => {
     if (isMouseDown && isFocused) {
       window.addEventListener("mousemove", handleMouseMove);

@@ -3,10 +3,10 @@ import {
   allUseItems,
   UseCategory,
   UseItem,
-} from "contentlayer/generated"
+} from "@/old/.contentlayer/generated";
 
 export interface ProcessedUseCategory extends Omit<UseCategory, "children"> {
-  children: UseItem[]
+  children: UseItem[];
 }
 
 export function getUses(): ProcessedUseCategory[] {
@@ -15,7 +15,7 @@ export function getUses(): ProcessedUseCategory[] {
     children: category.children
       .map((childName) => allUseItems.find((item) => item.name === childName))
       .filter((item): item is UseItem => item !== undefined),
-  }))
+  }));
 
-  return processedCategories
+  return processedCategories;
 }

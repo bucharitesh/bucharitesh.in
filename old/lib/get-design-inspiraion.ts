@@ -1,13 +1,16 @@
-import { allDesignInspirationItems, DesignInspirationItem } from "contentlayer/generated"
+import {
+  allDesignInspirationItems,
+  DesignInspirationItem,
+} from "@/old/.contentlayer/generated";
 
 export const getDesignInspiration = async () => {
-  let data: DesignInspirationItem[] = []
+  let data: DesignInspirationItem[] = [];
 
-  let all = [...allDesignInspirationItems]
+  let all = [...allDesignInspirationItems];
 
   if (all.length > 0) {
-    data = all
+    data = all;
   }
 
-  return { data: data }
-}
+  return { data: data };
+};

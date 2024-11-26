@@ -5,7 +5,7 @@ import { visit } from "unist-util-visit";
 
 import { UnistNode, UnistTree } from "@/types/unist";
 
-import { Index } from "../../__registry__";
+import { Index } from "../__registry__";
 import { styles } from "../../registry/registry-styles";
 
 export function rehypeComponent() {

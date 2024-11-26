@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Craft } from "@/.contentlayer/generated";
+import { Craft } from "@/old/.contentlayer/generated";
 import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 
 import { cn } from "@/old/lib/utils";

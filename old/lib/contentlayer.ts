@@ -1,5 +1,5 @@
-import { pick } from "contentlayer/client"
-import { Post } from "contentlayer/generated"
+import { pick } from "contentlayer/client";
+import { Post } from "@/old/.contentlayer/generated";
 
 export const formatPostPreview = (post: Post) => {
   const partialPost = pick(post, [
@@ -9,29 +9,27 @@ export const formatPostPreview = (post: Post) => {
     "publishedAt",
     "publishedAtFormatted",
     "readingTime",
-  ])
+  ]);
 
   return {
     ...partialPost,
     type: post.type,
     description: partialPost.description ?? null,
     readingTime: partialPost.readingTime.text ?? null,
-  }
-}
+  };
+};
 
 // don't send fields we don't use to the client
 // the biggest culprit is post.body.raw (the raw MDX source)
-export const formatPost = (
-  {
-    title,
-    slug,
-    publishedAtFormatted,
-    description,
-    body,
-    headings,
-    readingTime,
-  }: Post,
-) => ({
+export const formatPost = ({
+  title,
+  slug,
+  publishedAtFormatted,
+  description,
+  body,
+  headings,
+  readingTime,
+}: Post) => ({
   title,
   slug,
   publishedAtFormatted,
@@ -42,6 +40,6 @@ export const formatPost = (
   readingTime: readingTime.text,
   headings:
     (headings as { heading: number; text: string; slug: string }[]) ?? null,
-})
+});
 
 export type FormattedPost = ReturnType<typeof formatPost>;

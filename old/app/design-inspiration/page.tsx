@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 import { Link } from "next-view-transitions";
 import { getDesignInspiration } from "@/old/lib/get-design-inspiraion";
-import { DesignInspirationItem } from "@/.contentlayer/generated";
+import { DesignInspirationItem } from "@/old/.contentlayer/generated";
 import { Metadata } from "next/types";
 
 export const metadata: Metadata = {

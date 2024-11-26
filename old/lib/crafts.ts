@@ -8,7 +8,7 @@ import {
   allUseItems,
   UseCategory,
   UseItem,
-} from "contentlayer/generated";
+} from "@/old/.contentlayer/generated";
 
 import { formatPostPreview } from "@/old/lib/contentlayer";
 

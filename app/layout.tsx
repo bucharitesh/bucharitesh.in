@@ -9,6 +9,7 @@ import { fontMono, fontX } from "@/lib/fonts";
 
 import "@/styles/globals.css";
 import "@/styles/cmdk.scss";
+import "@/styles/mdx.css";
 
 import { ThemeProvider } from "../components/provider";
 import BottomDock from "@/components/dock";

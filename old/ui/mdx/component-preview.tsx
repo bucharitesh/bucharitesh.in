@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Index } from "__registry__";
+import { Index } from "@/old/__registry__";
 import { RotateCcw } from "lucide-react";
 
 import { useConfig } from "@/old/lib/use-config";
