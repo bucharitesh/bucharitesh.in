@@ -23,15 +23,16 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "declaration": true,
     "declarationMap": true,
     "forceConsistentCasingInFileNames": true,
     "moduleDetection": "force",
     "target": "ES2022",
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "declaration": false
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "old"
   ],
   "include": [
     "next-env.d.ts",

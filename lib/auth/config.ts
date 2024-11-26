@@ -1,4 +1,3 @@
-import type { NextAuthConfig } from "next-auth"
 import Github from "next-auth/providers/github"
 
 export type User = {
@@ -8,12 +7,12 @@ export type User = {
   email?: string
 }
 
-export default {
+const authConfig: any = {
   debug: process.env.NODE_ENV !== "production" ? true : false,
   secret: process.env.AUTH_SECRET as string,
-  session: {
-    strategy: "jwt"
-  },
+  // session: {
+  //   strategy: "jwt",
+  // },
   providers: [
     Github({
       clientId: process.env.GITHUB_ID,
@@ -30,9 +29,11 @@ export default {
   callbacks: {
     async session({ session, token }) {
       if (session && session.user && token.sub) {
-        session.user.sub = token.sub
+        session.user.sub = token.sub;
       }
-      return session
+      return session;
     },
   },
-} satisfies NextAuthConfig
+};
+
+export default authConfig;

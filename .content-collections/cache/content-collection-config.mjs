@@ -23,7 +23,7 @@ var posts = defineCollection({
     description: z.string(),
     date: z.string(),
     is_published: z.boolean().default(false),
-    type: z.enum(["none", "demo", "blog_post", "essay"]),
+    type: z.enum(["none", "demo", "blog", "essay"]),
     // Optional fields
     tags: z.array(z.string()).default([]),
     video: z.string().nullable().optional(),

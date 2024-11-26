@@ -1,8 +1,6 @@
 import { meta } from "@/old/lib/constants";
 import { createOgImage } from "@/old/lib/createOgImage";
 import { Metadata, Viewport } from "next";
-import { SessionProvider } from "next-auth/react";
-import { auth } from "@/old/lib/auth";
 import { cn } from "@/old/lib/utils";
 import { ViewTransitions } from "next-view-transitions";
 import { fontMono, fontX } from "@/lib/fonts";
@@ -11,9 +9,11 @@ import "@/styles/globals.css";
 import "@/styles/cmdk.scss";
 import "@/styles/mdx.css";
 
-import { ThemeProvider } from "../components/provider";
+import { Provider } from "../components/provider";
 import BottomDock from "@/components/dock";
 import { CommandMenu } from "@/components/command-menu";
+import HedgehogBuddy from "@/components/hedgehog";
+import { auth } from "@/lib/auth";
 
 export const viewport: Viewport = {
   themeColor: "#1c1917",
@@ -57,22 +57,25 @@ export default async function RootLayout({
   return (
     <ViewTransitions>
       <html lang="en" suppressHydrationWarning>
-        <SessionProvider session={session}>
-          <body
-            className={cn(
-              "font-x overscroll-y-none bg-white dark:bg-neutral-900 text-black dark:text-white antialiased selection:bg-red-400/90 selection:text-white",
-              fontX.variable,
-              fontMono.variable
-            )}
-          >
-            <ThemeProvider attribute="class" defaultTheme="light">
-              {children}
-              <BottomDock />
-              <CommandMenu />
-              <div className="fixed bottom-0 z-30 w-full pointer-events-none h-[clamp(80px,10vh,200px)] backdrop-blur [mask-image:linear-gradient(to_top,#000_25%,transparent)] [-webkit-mask-image:linear-gradient(to_top,#000_25%,transparent)]"></div>
-            </ThemeProvider>
-          </body>
-        </SessionProvider>
+        <body
+          className={cn(
+            "font-x overscroll-y-none z-0 bg-white h-screen w-screen dark:bg-neutral-900 text-black dark:text-white antialiased selection:bg-red-400/90 selection:text-white",
+            fontX.variable,
+            fontMono.variable
+          )}
+        >
+          <Provider session={session}>
+            {children}
+            <BottomDock />
+            <CommandMenu />
+            <HedgehogBuddy
+              hedgehogConfig={{
+                controls_enabled: true,
+                interactions_enabled: false,
+              }}
+            />
+          </Provider>
+        </body>
       </html>
     </ViewTransitions>
   );
