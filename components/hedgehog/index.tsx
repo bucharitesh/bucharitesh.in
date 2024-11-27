@@ -11,6 +11,7 @@ import {
 } from "./config";
 import { HedgehogBuddyProps } from "./types";
 import { HedgehogActor } from "./actor";
+import { spriteOverlayUrl, spriteUrl } from "./utils";
 
 const HedgehogBuddy = React.forwardRef<HTMLDivElement, HedgehogBuddyProps>(
   function HedgehogBuddy(
@@ -23,43 +24,29 @@ const HedgehogBuddy = React.forwardRef<HTMLDivElement, HedgehogBuddyProps>(
     },
     ref
   ): JSX.Element {
-    const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
     const [isMounted, setIsMounted] = useState(false);
-    const [_, setLoopTrigger] = useState(0);
     const actorRef = useRef<HedgehogActor>();
 
-    // Merge default config with user config
-    const mergedConfig = {
-      ...defaultConfig,
-      ...userConfig,
-    };
+    if (!actorRef.current) {
+      actorRef.current = new HedgehogActor();
+      onActorLoaded?.(actorRef.current);
+    }
+
+    const actor = actorRef.current;
+
+    const [_, setTimerLoop] = useState(0);
 
     // Initialize window size and mounted state
     useEffect(() => {
       setIsMounted(true);
-
-      const updateWindowSize = () => {
-        setWindowSize({
-          width: window.innerWidth,
-          height: window.innerHeight,
-        });
-      };
-
-      updateWindowSize();
-      window.addEventListener("resize", updateWindowSize);
-      return () => window.removeEventListener("resize", updateWindowSize);
     }, []);
 
     // Initialize actor with config
     useEffect(() => {
-      if (!isMounted || windowSize.width === 0) return;
+      if (!isMounted) return;
 
       if (!actorRef.current) {
-        actorRef.current = new HedgehogActor(
-          windowSize.width,
-          windowSize.height
-        );
-        actorRef.current.hedgehogConfig = mergedConfig;
+        actorRef.current = new HedgehogActor();
         onActorLoaded?.(actorRef.current);
       }
 
@@ -67,40 +54,25 @@ const HedgehogBuddy = React.forwardRef<HTMLDivElement, HedgehogBuddyProps>(
       return () => {
         cleanup();
       };
-    }, [isMounted, windowSize.width, mergedConfig]);
+    }, [isMounted]);
 
-    // Animation loop
     useEffect(() => {
       if (!isMounted || !actorRef.current) return;
 
-      let timer: NodeJS.Timeout | null = null;
-      let isRunning = true;
+      let timer: any = null;
 
       const loop = (): void => {
-        if (!isRunning || !actorRef.current) return;
-
-        actorRef.current.update(windowSize.width, windowSize.height);
-        setLoopTrigger((x) => x + 1);
+        actor.update();
+        setTimerLoop((x) => x + 1);
         timer = setTimeout(loop, 1000 / FPS);
       };
 
       loop();
-
       return () => {
-        isRunning = false;
-        if (timer) clearTimeout(timer);
+        clearTimeout(timer);
       };
-    }, [isMounted, windowSize]);
+    }, [isMounted]);
 
-    // Update config when it changes
-    useEffect(() => {
-      if (!actorRef.current) return;
-
-      actorRef.current.hedgehogConfig = mergedConfig;
-      actorRef.current.setAnimation(
-        mergedConfig.walking_enabled ? "walk" : "stop"
-      );
-    }, [mergedConfig]);
 
     // Handle static mode changes
     useEffect(() => {
@@ -131,15 +103,84 @@ const HedgehogBuddy = React.forwardRef<HTMLDivElement, HedgehogBuddyProps>(
 
     if (!isMounted || !actorRef.current) return <></>;
 
-    const actor = actorRef.current;
-
     const onClick = (): void => {
       if (!actor.isDragging) {
         _onClick?.(actor);
       }
     };
 
-    if (windowSize.width < 748 || windowSize.height < 400) return <></>;
+    const onTouchOrMouseStart = (): void => {
+      let moved = false;
+      const lastPositions: [number, number, number][] = [];
+
+      // In your move handler, store timestamp along with positions
+
+      const onMove = (e: TouchEvent | MouseEvent): void => {
+        moved = true;
+        actor.isDragging = true;
+        actor.setAnimation("fall");
+
+        const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
+        const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
+
+        actor.x = clientX - SPRITE_SIZE / 2;
+        actor.y = window.innerHeight - clientY - SPRITE_SIZE / 2;
+
+        lastPositions.push([clientX, clientY, Date.now()]);
+      };
+
+      const onEnd = (): void => {
+        if (!moved) {
+          onClick();
+        }
+        actor.isDragging = false;
+        // get the velocity as an average of the last moves
+
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const relevantPositions = lastPositions.filter(([_x, _y, t]) => {
+          // We only consider the last 500ms but not the last 100ms (to avoid delays in letting go)
+          return t > Date.now() - 500 && t < Date.now() - 20;
+        });
+
+        const [xPixelsPerSecond, yPixelsPerSecond] = relevantPositions.reduce(
+          ([x, y], [x2, y2, t2], i) => {
+            if (i === 0) {
+              return [0, 0];
+            }
+            const dt = (t2 - relevantPositions[i - 1][2]) / 1000;
+            return [
+              x + (x2 - relevantPositions[i - 1][0]) / dt,
+              y + (y2 - relevantPositions[i - 1][1]) / dt,
+            ];
+          },
+
+          [0, 0]
+        );
+
+        if (relevantPositions.length) {
+          const maxVelocity = 250;
+          actor.xVelocity = Math.min(
+            maxVelocity,
+            xPixelsPerSecond / relevantPositions.length / FPS
+          );
+          actor.yVelocity = Math.min(
+            maxVelocity,
+            (yPixelsPerSecond / relevantPositions.length / FPS) * -1
+          );
+        }
+
+        actor.setAnimation("fall");
+        window.removeEventListener("touchmove", onMove);
+        window.removeEventListener("touchend", onEnd);
+        window.removeEventListener("mousemove", onMove);
+        window.removeEventListener("mouseup", onEnd);
+      };
+
+      window.addEventListener("touchmove", onMove);
+      window.addEventListener("touchend", onEnd);
+      window.addEventListener("mousemove", onMove);
+      window.addEventListener("mouseup", onEnd);
+    };
     
     return (
       <>
@@ -154,28 +195,8 @@ const HedgehogBuddy = React.forwardRef<HTMLDivElement, HedgehogBuddyProps>(
             "z-50 m-0 cursor-pointer after:absolute after:-z-10 after:w-0 after:h-0 after:overflow-hidden after:content-[attr(data-content)]",
             {}
           )}
-          onMouseDown={() => {
-            let moved = false;
-            const onMouseMove = (e: MouseEvent): void => {
-              moved = true;
-              actor.isDragging = true;
-              actor.setAnimation("fall");
-              actor.x = e.clientX - SPRITE_SIZE / 2;
-              actor.y = windowSize.height - e.clientY - SPRITE_SIZE / 2;
-            };
-
-            const onWindowUp = (): void => {
-              if (!moved) {
-                onClick();
-              }
-              actor.isDragging = false;
-              actor.setAnimation("fall");
-              window.removeEventListener("mouseup", onWindowUp);
-              window.removeEventListener("mousemove", onMouseMove);
-            };
-            window.addEventListener("mousemove", onMouseMove);
-            window.addEventListener("mouseup", onWindowUp);
-          }}
+          onTouchStart={actor.static ? undefined : () => onTouchOrMouseStart()}
+          onMouseDown={actor.static ? undefined : () => onTouchOrMouseStart()}
           style={{
             position: actor.static ? "relative" : "fixed",
             left: actor.static ? undefined : actor.x,
@@ -193,16 +214,20 @@ const HedgehogBuddy = React.forwardRef<HTMLDivElement, HedgehogBuddyProps>(
             {actor.mainAnimation && (
               <div
                 className="rendering-pixelated"
+                // eslint-disable-next-line react/forbid-dom-props
                 style={{
                   width: SPRITE_SIZE,
                   height: SPRITE_SIZE,
-                  backgroundImage: `url(${actor.mainAnimation.spriteInfo.img})`,
+                  backgroundImage: `url(${spriteUrl(
+                    actor.mainAnimation.spriteInfo.img
+                  )})`,
                   backgroundPosition: `-${(actor.mainAnimation.frame % X_FRAMES) * SPRITE_SIZE}px -${
                     Math.floor(actor.mainAnimation.frame / X_FRAMES) *
                     SPRITE_SIZE
                   }px`,
-                  backgroundSize: `${(SPRITE_SIZE / SPRITE_SIZE) * X_FRAMES * 100}%`,
-                  ...actor.mainAnimation.spriteInfo.style,
+                  backgroundSize:
+                    (SPRITE_SIZE / SPRITE_SIZE) * X_FRAMES * 100 + "%",
+                  ...(actor.mainAnimation.spriteInfo.style ?? {}),
                 }}
               />
             )}
@@ -210,22 +235,20 @@ const HedgehogBuddy = React.forwardRef<HTMLDivElement, HedgehogBuddyProps>(
             {actor.overlayAnimation && (
               <div
                 className="absolute top-0 left-0 rendering-pixelated"
+                // eslint-disable-next-line react/forbid-dom-props
                 style={{
                   width: SPRITE_SIZE,
                   height: SPRITE_SIZE,
-                  backgroundImage: `url(${actor.overlayAnimation.spriteInfo.img})`,
-                  backgroundPosition: `-${(actor.overlayAnimation.frame % X_FRAMES) * SPRITE_SIZE}px -${
-                    Math.floor(actor.overlayAnimation.frame / X_FRAMES) *
-                    SPRITE_SIZE
-                  }px`,
-                  ...actor.overlayAnimation.spriteInfo.style,
+                  backgroundImage: `url(${spriteOverlayUrl(actor.overlayAnimation.spriteInfo.img)})`,
+                  backgroundPosition: `-${
+                    (actor.overlayAnimation.frame % X_FRAMES) * SPRITE_SIZE
+                  }px -${Math.floor(actor.overlayAnimation.frame / X_FRAMES) * SPRITE_SIZE}px`,
+                  ...(actor.overlayAnimation.spriteInfo.style ?? {}),
                 }}
               />
             )}
           </div>
         </div>
-
-        {actor.renderRope()}
       </>
     );
   }

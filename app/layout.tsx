@@ -12,8 +12,8 @@ import "@/styles/mdx.css";
 import { Provider } from "../components/provider";
 import BottomDock from "@/components/dock";
 import { CommandMenu } from "@/components/command-menu";
-import HedgehogBuddy from "@/components/hedgehog";
 import { auth } from "@/lib/auth";
+import MyHedgehogBuddy from "@/components/hedgehog";
 
 export const viewport: Viewport = {
   themeColor: "#1c1917",
@@ -68,12 +68,7 @@ export default async function RootLayout({
             {children}
             <BottomDock />
             <CommandMenu />
-            <HedgehogBuddy
-              hedgehogConfig={{
-                controls_enabled: true,
-                interactions_enabled: false,
-              }}
-            />
+            <MyHedgehogBuddy />
           </Provider>
         </body>
       </html>

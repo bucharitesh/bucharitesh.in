@@ -29,7 +29,7 @@ export function shouldIgnoreInput(e: KeyboardEvent): boolean {
   );
 }
 
-export  const randomChoiceList: string[] = Object.keys(
+export const randomChoiceList: string[] = Object.keys(
   standardAnimations
 ).reduce((acc: string[], key: string) => {
   return [
@@ -56,3 +56,11 @@ export function elementToBox(element: Element): Box {
     height: rect.height - (isHedgehog ? 30 : 0),
   };
 }
+
+export const spriteUrl = (img: string): string => {
+  return `/assets/hedgehog/skins/default/${img}.png`;
+};
+
+export const spriteOverlayUrl = (img: string): string => {
+  return `/assets/hedgehog/overlays/${img}.png`;
+};

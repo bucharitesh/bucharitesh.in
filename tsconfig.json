@@ -23,7 +23,6 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "declarationMap": true,
     "forceConsistentCasingInFileNames": true,
     "moduleDetection": "force",
     "target": "ES2022",

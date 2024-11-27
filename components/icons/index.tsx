@@ -4,8 +4,8 @@ export type IconProps = React.HTMLAttributes<SVGElement>;
 
 export const Icons = {
   home: (props: IconProps) => <HomeIcon {...props} />,
-  craft: (props: IconProps) => <CalendarIcon {...props} />,
-  calendar: (props: IconProps) => <PencilIcon {...props} />,
+  craft: (props: IconProps) => <PencilIcon {...props} />,
+  calendar: (props: IconProps) => <CalendarIcon {...props} />,
   email: (props: IconProps) => <MailIcon {...props} />,
   linkedin: (props: IconProps) => (
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>

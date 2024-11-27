@@ -21,7 +21,8 @@ export const meta = {
 export const DockConfig = {
   navbar: [
     { href: "/", icon: Icons.home, label: "Home" },
-    { href: "/cal", icon: Icons.craft, label: "Book a Meeting" },
+    { href: "/craft", icon: Icons.craft, label: "My Crafts" },
+    { href: "/cal", icon: Icons.calendar, label: "Book a Meeting" },
   ],
   contact: {
     social: {
