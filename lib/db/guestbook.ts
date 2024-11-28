@@ -1,7 +1,7 @@
 "use server";
 
 import prisma from "@/old/lib/prisma";
-import { auth } from "../auth";
+import { auth } from "@/lib/auth";
 import { Session } from "next-auth";
 import { unstable_cache as cache, revalidatePath } from "next/cache";
 
