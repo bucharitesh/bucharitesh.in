@@ -214,7 +214,6 @@ const HedgehogBuddy = React.forwardRef<HTMLDivElement, HedgehogBuddyProps>(
             {actor.mainAnimation && (
               <div
                 className="rendering-pixelated"
-                // eslint-disable-next-line react/forbid-dom-props
                 style={{
                   width: SPRITE_SIZE,
                   height: SPRITE_SIZE,
@@ -235,7 +234,6 @@ const HedgehogBuddy = React.forwardRef<HTMLDivElement, HedgehogBuddyProps>(
             {actor.overlayAnimation && (
               <div
                 className="absolute top-0 left-0 rendering-pixelated"
-                // eslint-disable-next-line react/forbid-dom-props
                 style={{
                   width: SPRITE_SIZE,
                   height: SPRITE_SIZE,

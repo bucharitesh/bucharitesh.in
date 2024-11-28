@@ -2,6 +2,8 @@
 import { headers } from "next/headers";
 import { NextRequest } from "next/server";
 
+export const dynamic = "force-dynamic";
+
 interface WeatherResponse {
   location: {
     name: string;
@@ -104,7 +106,7 @@ async function getWeatherData(lat: number, lon: number, timezone: string) {
 export async function GET(request: NextRequest) {
   try {
     // Get headers
-    const headersList = headers();
+    const headersList = await headers();
     const clientIp = headersList.get("x-forwarded-for") || "localhost";
     const clientLocation = headersList.get("x-vercel-ip-country") || "LOCAL";
 

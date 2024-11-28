@@ -291,7 +291,7 @@ export function CommandMenu({ ...props }: DialogProps) {
                   }}
                   onMouseMove={() => handleMouseMove(groupIndex, index)}
                   className={cn(
-                    `relative w-full px-4 sm:px-6 py-3 flex items-center group transition-all duration-75 cursor-pointer`
+                    `relative w-full flex items-center group transition-all duration-75 cursor-pointer p-4`
                   )}
                 >
                   <div className="flex items-start gap-3 sm:gap-4 min-w-0 w-full relative z-10">

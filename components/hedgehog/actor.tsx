@@ -1,4 +1,4 @@
-import { defaultConfig, FPS, GRAVITY_PIXELS, MAX_JUMP_COUNT, SPRITE_SIZE, standardAnimations } from "./config";
+import { defaultConfig, FPS, GRAVITY_PIXELS, MAX_JUMP_COUNT, overlayAnimations, SPRITE_SIZE, standardAnimations } from "./config";
 import { AnimationState, Box, HedgehogConfig, SpriteInfo } from "./types";
 import { elementToBox, range, sampleOne, shouldIgnoreInput, spriteUrl } from "./utils";
 
@@ -15,24 +15,23 @@ export class HedgehogActor {
   xVelocity = 1; // Start with positive velocity to walk right
   ground: Element | null = null;
   jumpCount = 0;
-  gravity = GRAVITY_PIXELS;
-  ignoreGroundAboveY?: number;
-  showTooltip = false;
-  static = false;
-  lastScreenPosition = [0, 0];
-
   mainAnimation: AnimationState | null = null;
   overlayAnimation: AnimationState | null = null;
+  gravity = GRAVITY_PIXELS;
+  ignoreGroundAboveY?: number;
+  static = false;
+  lastScreenPosition = [window.screenX, window.screenY + window.innerHeight];
+
   hedgehogConfig: HedgehogConfig = defaultConfig;
 
   constructor() {
     this.x = Math.min(
-      Math.max(0, Math.floor(Math.random() * window.innerWidth)),
+      Math.max(0, Math.floor(Math.random() * window?.innerWidth)),
       window.innerWidth - SPRITE_SIZE
     );
     this.y = Math.min(
-      Math.max(0, Math.floor(Math.random() * window.innerHeight)),
-      window.innerHeight - SPRITE_SIZE
+      Math.max(0, Math.floor(Math.random() * window?.innerHeight)),
+      window?.innerHeight - SPRITE_SIZE
     );
     this.preloadAnimationSprites();
     this.setAnimation("fall");
@@ -61,7 +60,9 @@ export class HedgehogActor {
     }[] = [
       {
         keys: ["f", "f", "f"],
-        action: () => this.setOnFire(),
+        action: () => {
+          this.setOnFire();
+        },
       },
       {
         keys: ["f", "i", "r", "e"],
@@ -219,7 +220,7 @@ export class HedgehogActor {
       return;
     }
 
-    const spriteInfo = standardAnimations[animationName];
+    const spriteInfo = overlayAnimations[animationName];
     if (!spriteInfo) return;
 
     this.overlayAnimation = {

@@ -62,3 +62,13 @@ export const standardAnimations: { [key: string]: SpriteInfo } = {
   },
 };
 
+export const overlayAnimations: { [key: string]: SpriteInfo } = {
+  fire: {
+    img: "fire",
+    frames: 14,
+    maxIteration: 1,
+    style: {
+      opacity: 0.75,
+    },
+  },
+};
