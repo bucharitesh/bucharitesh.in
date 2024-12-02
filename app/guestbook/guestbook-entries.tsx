@@ -30,12 +30,11 @@ function WordsEntry({ comment }: any) {
   return (
     <div
       className="relative flex w-full flex-col gap-3 rounded-2xl p-5
-      dark:bg-gradient-to-br dark:from-neutral-800/90 dark:via-neutral-900/90 dark:to-neutral-950/95 
       bg-gradient-to-br from-neutral-50/90 via-neutral-100/80 to-white/90
+      dark:bg-gradient-to-br dark:from-neutral-800/80 dark:via-neutral-900/90 dark:to-neutral-950
       border border-neutral-200/50 dark:border-neutral-800/50
-      shadow-lg shadow-neutral-200/20 dark:shadow-neutral-950/30
+      shadow-lg shadow-neutral-200/20 dark:shadow-neutral-950/50
       backdrop-blur-md
-      hover:shadow-xl hover:shadow-neutral-200/30 dark:hover:shadow-neutral-950/40
       group
       transition-all duration-300"
     >
@@ -44,14 +43,17 @@ function WordsEntry({ comment }: any) {
         <div className="flex-1 space-y-2">
           {/* User info */}
           <div className="flex items-center gap-2">
-            <Image
-              src={comment.image}
-              width="24"
-              height="24"
-              alt={comment.name}
-              className="rounded-full shadow-sm ring-1 ring-neutral-200/50 dark:ring-neutral-700
-                transition-transform duration-300 group-hover:scale-110"
-            />
+            <div className="relative">
+              <Image
+                src={comment.image}
+                width="24"
+                height="24"
+                alt={comment.name}
+                className="rounded-full shadow-sm ring-1 ring-neutral-200/50 dark:ring-neutral-700
+                  transition-transform duration-300"
+              />
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-neutral-400/10 to-neutral-300/10 dark:from-neutral-600/20 dark:to-neutral-700/20 opacity-0 group-hover:opacity-100 blur transition-opacity duration-300" />
+            </div>
             <span className="text-sm font-medium text-neutral-800 dark:text-neutral-100">
               {comment.name}
             </span>
@@ -74,24 +76,17 @@ function WordsEntry({ comment }: any) {
         {/* Right side - Signature */}
         {comment.signature && (
           <div className="relative shrink-0 self-end pl-4">
+            <div className="absolute inset-0 blur-[2px] bg-gradient-to-b from-transparent via-neutral-300/5 to-neutral-300/10 dark:via-neutral-600/10 dark:to-neutral-500/20 opacity-0 transition-opacity duration-300" />
             <img
-              className="h-10 w-max object-contain opacity-90
-                transition-all duration-300 group-hover:opacity-100
-                dark:invert dark:hue-rotate-180"
+              className="relative h-10 w-max object-contain opacity-90
+                transition-all duration-300
+                dark:invert dark:contrast-125 dark:brightness-125"
               src={comment.signature}
               alt={`${comment.name}'s signature`}
             />
           </div>
         )}
       </div>
-
-      {/* Bottom gradient line */}
-      <div
-        className="absolute left-2 right-2 bottom-0 h-px bg-gradient-to-r 
-          from-transparent via-neutral-200/50 dark:via-neutral-700/50 to-transparent
-          opacity-0 group-hover:opacity-100 scale-x-90 group-hover:scale-x-100
-          transition-all duration-300"
-      />
     </div>
   );
 }
