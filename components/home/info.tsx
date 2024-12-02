@@ -2,10 +2,22 @@
 
 import { useTime, useScreenSize } from "@/lib/hooks";
 import { motion } from "framer-motion";
+import { useEasterEggs } from "../easter-egg-provider";
+import { cn } from "@/old/lib/utils";
+import { HiArrowPath } from "react-icons/hi2";
 
 export default function Info() {
   const time = useTime();
   const { width, height } = useScreenSize();
+
+   const {
+      totalPoints,
+      progress,
+      discoverEgg,
+      resetEasterEggs,
+  } = useEasterEggs();
+
+  const allEggsDiscovered = progress.earnedPoints === progress.possiblePoints;
 
   // Animation variants
   const fadeIn = {
@@ -38,6 +50,21 @@ export default function Info() {
         transition={fadeIn.transition}
       >
         {width} x {height}
+      </motion.div>
+
+      <motion.div
+        className={cn(
+          "z-[32] fixed top-4 right-4 text-xs font-x tracking-wider text-gray-600 dark:text-gray-300",
+          allEggsDiscovered && "text-green-400 font-semibold"
+        )}
+        onClick={() => {
+          discoverEgg("FONT_SWITCH");
+        }}
+        initial={fadeIn.initial}
+        animate={fadeIn.animate}
+        transition={fadeIn.transition}
+      >
+        {totalPoints} / {progress.possiblePoints}
       </motion.div>
     </>
   );

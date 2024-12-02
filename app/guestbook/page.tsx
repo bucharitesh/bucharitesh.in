@@ -18,8 +18,8 @@ export default async function GuestbookPage() {
 
   return (
     <div className="layout-sm relative z-10 grid gap-y-8 px-4 pt-12 xl:layout-xl xl:gap-x-9 xl:px-0 [&>*]:col-start-2 xl:[&>*]:col-start-3">
-      <div className="sticky top-10 hidden h-0 xl:!col-start-2 xl:row-start-1 xl:block col-span-1">
-        <h2 className="text-3xl font-bold">Guestbook</h2>
+      <div className="sticky top-10 space-y-2 hidden h-0 xl:!col-start-2 xl:row-start-1 xl:block col-span-1">
+        <h2 className="text-4xl font-bold font-ndot55 uppercase tracking-wider">Guestbook</h2>
         <p className="text-sm text-gray-500">
           Leave a message for future visitors of this website.
         </p>

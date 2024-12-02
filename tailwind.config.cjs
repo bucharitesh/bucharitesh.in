@@ -14,6 +14,7 @@ module.exports = {
       fontFamily: {
         mono: ["var(--font-mono)"],
         x: ["var(--font-x)"],
+        ndot55: ["var(--font-ndot-55)"],
       },
       colors: {
         border: "hsl(var(--border))",

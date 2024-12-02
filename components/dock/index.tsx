@@ -8,6 +8,7 @@ import { ModeToggle } from "./mode-toggle";
 import { usePathname } from "next/navigation";
 import { DockConfig } from "@/lib/config";
 import { cn } from "@/old/lib/utils";
+import { useEasterEggs } from "../easter-egg-provider";
 
 const DOCK_AUTOHIDE_TIMEOUT = 5000;
 
@@ -15,6 +16,8 @@ function BottomDock() {
   const [active, setActive] = useState(true);
   const pathname = usePathname();
   const timeoutRef = useRef<NodeJS.Timeout>();
+
+  const { totalPoints, progress } = useEasterEggs();
 
   const startTimeout = () => {
     clearTimeout(timeoutRef.current); // Clear any existing timeout

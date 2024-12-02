@@ -3,7 +3,7 @@ import { createOgImage } from "@/old/lib/createOgImage";
 import { Metadata, Viewport } from "next";
 import { cn } from "@/old/lib/utils";
 import { ViewTransitions } from "next-view-transitions";
-import { fontMono, fontX } from "@/lib/fonts";
+import { fontMono, fontNdot55, fontX } from "@/lib/fonts";
 
 import "@/styles/globals.css";
 import "@/styles/cmdk.scss";
@@ -13,7 +13,6 @@ import { Provider } from "../components/provider";
 import BottomDock from "@/components/dock";
 import { CommandMenu } from "@/components/command-menu";
 import { auth } from "@/lib/auth";
-import MyHedgehogBuddy from "@/components/hedgehog";
 
 export const viewport: Viewport = {
   themeColor: "#1c1917",
@@ -61,14 +60,14 @@ export default async function RootLayout({
           className={cn(
             "font-x overscroll-y-none z-0 bg-white h-screen w-screen dark:bg-neutral-900 text-black dark:text-white antialiased selection:bg-red-400/90 selection:text-white",
             fontX.variable,
-            fontMono.variable
+            fontMono.variable,
+            fontNdot55.variable
           )}
         >
           <Provider session={session}>
             {children}
             <BottomDock />
             <CommandMenu />
-            <MyHedgehogBuddy />
           </Provider>
         </body>
       </html>

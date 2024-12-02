@@ -5,6 +5,8 @@ export const meta = {
   social: {
     twitter: "https://twitter.com/bucha_ritesh",
     github: "https://github.com/bucharitesh",
+    linkedin: "https://www.linkedin.com/in/bucharitesh/",
+    bluesky: "https://bsky.app/profile/bucharitesh.in",
   },
   email: "bucharitesh@gmail.com",
   twitterHandle: "@bucha.ritesh",
@@ -22,29 +24,35 @@ export const DockConfig = {
   navbar: [
     { href: "/", icon: Icons.home, label: "Home" },
     { href: "/craft", icon: Icons.craft, label: "My Crafts" },
+    { href: "/guestbook", icon: Icons.guestbook, label: "Guestbook" },
     { href: "/cal", icon: Icons.calendar, label: "Book a Meeting" },
   ],
   contact: {
     social: {
       GitHub: {
         name: "GitHub",
-        url: "#",
+        url: meta.social.github,
         icon: Icons.github,
       },
       LinkedIn: {
         name: "LinkedIn",
-        url: "#",
+        url: meta.social.linkedin,
         icon: Icons.linkedin,
       },
       X: {
         name: "X",
-        url: "#",
+        url: meta.social.twitter,
         icon: Icons.x,
       },
       email: {
         name: "Send Email",
-        url: "#",
+        url: `mailto:${meta.email}`,
         icon: Icons.email,
+      },
+      Bluesky: {
+        name: "Bluesky",
+        url: meta.social.bluesky,
+        icon: Icons.bluesky,
       },
     },
   },

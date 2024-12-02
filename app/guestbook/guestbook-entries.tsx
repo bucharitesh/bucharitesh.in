@@ -1,40 +1,20 @@
 "use client";
 
-import { format } from "date-fns";
 import Image from "next/image";
-// import { getGuestbookEntries } from "@/lib/db/guestbook";
-import { motion, useInView } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 import { formatTimeAgo } from "@/lib/utils";
 
 export default function GuestbookEntries({ entries }: { entries: any[] }) {
-  const [visibleEntries, setVisibleEntries] = useState<any>([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const containerRef = useRef(null);
-  const isInView = useInView(containerRef);
-
-  useEffect(() => {
-    if (isInView) {
-      const nextBatch: any = entries.slice(0, currentPage * 10);
-      setVisibleEntries(nextBatch);
-      setCurrentPage((prev) => prev + 1);
-    }
-  }, [isInView, entries]);
-
   return (
-    <motion.div
-      layout
-      className="pb-32 space-y-6" // Add bottom padding
-      ref={containerRef}
-    >
-      {visibleEntries.map((entry, index) => (
+    <motion.div layout className="pb-24 space-y-4">
+      {entries.map((entry, index) => (
         <motion.div
           key={entry.id}
-          initial={{ opacity: 0, scale: 0.8, y: 100 }}
+          initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{
-            duration: 0.3,
-            delay: index * 0.15,
+            duration: 0.2,
+            delay: index * 0.1,
             type: "spring",
             bounce: 0.2,
           }}
@@ -49,42 +29,69 @@ export default function GuestbookEntries({ entries }: { entries: any[] }) {
 function WordsEntry({ comment }: any) {
   return (
     <div
-      className="relative flex w-full flex-col gap-2 rounded-[2.8rem] p-8
+      className="relative flex w-full flex-col gap-3 rounded-2xl p-5
       dark:bg-gradient-to-br dark:from-neutral-800/90 dark:via-neutral-900/90 dark:to-neutral-950/95 
       bg-gradient-to-br from-neutral-50/90 via-neutral-100/80 to-white/90
       border border-neutral-200/50 dark:border-neutral-800/50
-      shadow-xl shadow-neutral-200/20 dark:shadow-neutral-950/30
+      shadow-lg shadow-neutral-200/20 dark:shadow-neutral-950/30
       backdrop-blur-md
-      hover:shadow-2xl hover:shadow-neutral-200/30 dark:hover:shadow-neutral-950/40
+      hover:shadow-xl hover:shadow-neutral-200/30 dark:hover:shadow-neutral-950/40
+      group
       transition-all duration-300"
     >
-      <div className="flex justify-between items-center">
-        <div className="flex items-center space-x-3">
-          <Image
-            src={comment.image}
-            width="30"
-            height="30"
-            objectFit="cover"
-            className="rounded-full shadow-md ring-2 ring-neutral-200/50 dark:ring-neutral-700"
-            alt=""
-          />
-          <p className="font-bold text-md tracking-wide text-neutral-800 dark:text-neutral-100">
-            {comment.name}
-          </p>
+      <div className="flex items-start justify-between gap-3">
+        {/* Left side - User info and message */}
+        <div className="flex-1 space-y-2">
+          {/* User info */}
+          <div className="flex items-center gap-2">
+            <Image
+              src={comment.image}
+              width="24"
+              height="24"
+              alt={comment.name}
+              className="rounded-full shadow-sm ring-1 ring-neutral-200/50 dark:ring-neutral-700
+                transition-transform duration-300 group-hover:scale-110"
+            />
+            <span className="text-sm font-medium text-neutral-800 dark:text-neutral-100">
+              {comment.name}
+            </span>
+            <span className="text-xs text-neutral-500 dark:text-neutral-400">
+              • {formatTimeAgo(new Date(comment.createdAt))}
+            </span>
+          </div>
+
+          {/* Message */}
+          <div
+            className="prose-sm w-full break-words
+            prose-neutral dark:prose-invert
+            prose-p:text-neutral-700 dark:prose-p:text-neutral-300 
+            prose-p:leading-normal"
+          >
+            {comment.message}
+          </div>
         </div>
-        <p className="text-xs text-neutral-600 dark:text-neutral-400">
-          {formatTimeAgo(new Date(comment.createdAt))}
-        </p>
+
+        {/* Right side - Signature */}
+        {comment.signature && (
+          <div className="relative shrink-0 self-end pl-4">
+            <img
+              className="h-10 w-max object-contain opacity-90
+                transition-all duration-300 group-hover:opacity-100
+                dark:invert dark:hue-rotate-180"
+              src={comment.signature}
+              alt={`${comment.name}'s signature`}
+            />
+          </div>
+        )}
       </div>
+
+      {/* Bottom gradient line */}
       <div
-        className="prose w-full break-words 
-        prose-neutral dark:prose-invert
-        prose-p:text-neutral-700 dark:prose-p:text-neutral-300 
-        prose-p:leading-relaxed
-        ml-10"
-      >
-        {comment.message}
-      </div>
+        className="absolute left-2 right-2 bottom-0 h-px bg-gradient-to-r 
+          from-transparent via-neutral-200/50 dark:via-neutral-700/50 to-transparent
+          opacity-0 group-hover:opacity-100 scale-x-90 group-hover:scale-x-100
+          transition-all duration-300"
+      />
     </div>
   );
 }

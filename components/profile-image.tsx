@@ -1,7 +1,7 @@
 import { meta } from "@/old/lib/constants";
 import Image from "next/image";
 
-const SelfImage = () => (
+export const SelfImage = () => (
   <Image
     src={meta.image.profile}
     quality={95}

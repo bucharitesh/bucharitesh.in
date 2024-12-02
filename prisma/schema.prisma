@@ -32,6 +32,7 @@ model Guestbook {
   email     String?
   image     String
   user_id   String
+  signature String?
 }
 
 model Support {

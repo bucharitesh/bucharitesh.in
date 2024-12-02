@@ -21,3 +21,8 @@ export const fontX = localFont({
   ],
   variable: "--font-x", // This creates the CSS variable
 });
+
+export const fontNdot55 = localFont({
+  src: "../public/assets/Ndot-55.otf",
+  variable: "--font-ndot-55",
+});

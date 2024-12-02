@@ -3,8 +3,8 @@ import { COMMON_SCRIPT_ORG } from "@/lib/script";
 import { Metadata } from "next/types";
 import MapLocation from "@/components/shared/compoenents/map";
 import ViewMagnifier from "@/components/shared/compoenents/view-magnifier";
-// import { SelfImage } from "@/old/ui/ProfileImage";
 import Info from "@/components/home/info";
+import { SelfImage } from "@/components/profile-image";
 
 export const metadata: Metadata = {
   title: meta.tagline,
@@ -25,7 +25,7 @@ export default async function Page() {
             className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden flex-shrink-0"
             style={{ aspectRatio: "1 / 1" }}
           >
-            {/* <SelfImage /> */}
+            <SelfImage />
           </div>
           <div>
             <h1 className="text-base sm:text-l">
