@@ -21,6 +21,7 @@ import { getStroke } from "perfect-freehand";
 import { getSvgPathFromStroke } from "./helper";
 import { Point } from "./point";
 import { cn } from "@/old/lib/utils";
+import { useTheme } from "next-themes";
 
 const unsafe_useEffectOnce = (callback: EffectCallback) => {
   return useEffect(callback, []);
@@ -58,6 +59,8 @@ export const SignaturePad = forwardRef(function SignaturePad(
   const $el = useRef<HTMLCanvasElement>(null);
   const $imageData = useRef<ImageData | null>(null);
   const [dpi, setDpi] = useState(1);
+
+  const { theme } = useTheme();
 
   const [isPressed, setIsPressed] = useState(false);
   const [lines, setLines] = useState<Point[][]>([]);
@@ -160,7 +163,7 @@ export const SignaturePad = forwardRef(function SignaturePad(
       const ctx = $el.current.getContext("2d");
       if (ctx) {
         ctx.clearRect(0, 0, $el.current.width / dpi, $el.current.height / dpi);
-        ctx.fillStyle = "black";
+        ctx.fillStyle = theme === "dark" ? "white" : "black";
 
         lines.forEach((line) => {
           const pathData = new Path2D(
@@ -202,7 +205,7 @@ export const SignaturePad = forwardRef(function SignaturePad(
       const ctx = $el.current.getContext("2d");
       if (ctx) {
         ctx.clearRect(0, 0, $el.current.width / dpi, $el.current.height / dpi);
-        ctx.fillStyle = "black";
+        ctx.fillStyle = (theme === "dark" ? "white" : "black");
 
         newLines.forEach((line) => {
           const pathData = new Path2D(

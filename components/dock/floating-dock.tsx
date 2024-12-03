@@ -141,7 +141,7 @@ const DockIcon = ({
           </motion.div>
         )}
       </AnimatePresence>
-      <motion.div className="w-full h-full flex items-center justify-center">
+      <motion.div className="w-full h-full flex items-center justify-center rounded-full overflow-hidden">
         {React.Children.map(children, (child) => {
           if (React.isValidElement(child) && child.type !== DockIconActiveDot) {
             return React.cloneElement(child, {

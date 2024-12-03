@@ -8,16 +8,17 @@ import { ModeToggle } from "./mode-toggle";
 import { usePathname } from "next/navigation";
 import { DockConfig } from "@/lib/config";
 import { cn } from "@/old/lib/utils";
-import { useEasterEggs } from "../easter-egg-provider";
+// import { useSession } from "next-auth/react";
+// import Image from "next/image";
 
-const DOCK_AUTOHIDE_TIMEOUT = 5000;
+const DOCK_AUTOHIDE_TIMEOUT = 10_000;
 
 function BottomDock() {
   const [active, setActive] = useState(true);
   const pathname = usePathname();
   const timeoutRef = useRef<NodeJS.Timeout>();
 
-  const { totalPoints, progress } = useEasterEggs();
+  // const { data: session } = useSession();
 
   const startTimeout = () => {
     clearTimeout(timeoutRef.current); // Clear any existing timeout
@@ -32,19 +33,19 @@ function BottomDock() {
   }, []);
 
   return (
-    <>
-      <div
-        onMouseEnter={() => {
-          setActive(true);
-          clearTimeout(timeoutRef.current); // Clear timeout when mouse enters
-        }}
-        onMouseLeave={() => {
-          startTimeout(); // Start timeout when mouse leaves
-        }}
-        className="fixed bottom-0 z-30 w-full h-[clamp(80px,10vh,200px)] backdrop-blur [mask-image:linear-gradient(to_top,#000_25%,transparent)] [-webkit-mask-image:linear-gradient(to_top,#000_25%,transparent)]"
-      ></div>
+    <div
+      onMouseEnter={() => {
+        setActive(true);
+        clearTimeout(timeoutRef.current); // Clear timeout when mouse enters
+      }}
+      onMouseLeave={() => {
+        startTimeout(); // Start timeout when mouse leaves
+      }}
+      className="fixed bottom-0 h-[clamp(80px,10vh,200px)] w-full z-40 left-1/2 -translate-x-1/2"
+    >
+      <div className="absolute top-0 left-0 w-full h-full backdrop-blur [mask-image:linear-gradient(to_top,#000_25%,transparent)] [-webkit-mask-image:linear-gradient(to_top,#000_25%,transparent)]"></div>
       <Dock
-        className={cn("fixed z-40 left-1/2 -translate-x-1/2 transition-all", {
+        className={cn("transition-all", {
           "-bottom-[4.5rem]": !active,
         })}
       >
@@ -70,8 +71,18 @@ function BottomDock() {
         <DockIcon title={"Theme"}>
           <ModeToggle />
         </DockIcon>
+        {/* {session?.user?.email && (
+          <DockIcon title={session?.user?.name}>
+            <Link href={"/guestbook"}>
+              <Image src={session?.user?.image} alt="Guestbook" fill />
+            </Link>
+          </DockIcon>
+        )} */}
+        {/* <DockFolder title="Guestbook">
+          <DockIcon title="Guestbook"></DockIcon>
+        </DockFolder> */}
       </Dock>
-    </>
+    </div>
   );
 }
 

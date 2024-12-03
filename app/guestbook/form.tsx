@@ -6,12 +6,12 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCallback, memo, useRef, useState } from "react";
 import { SignaturePad, SignaturePadRef } from "@/components/ui/signature-pad";
-import { Github } from "lucide-react";
+import { GitHubLogoIcon } from "@radix-ui/react-icons";
 
 const LoginButton = memo(function LoginButton() {
   return (
     <motion.button
-      className="group relative flex w-56 items-center justify-center gap-2 rounded-xl px-4 py-2.5
+      className="group w-full relative flex items-center justify-center gap-2 rounded-xl px-4 py-2.5
         bg-white dark:bg-neutral-800/90 overflow-hidden
         text-neutral-900 dark:text-neutral-100
         border border-neutral-200 dark:border-neutral-700
@@ -31,7 +31,7 @@ const LoginButton = memo(function LoginButton() {
         whileHover={{ x: "100%" }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
       />
-      <Github className="h-4 w-4" />
+      <GitHubLogoIcon className="h-4 w-4" />
       <span className="font-medium text-sm">Sign in with GitHub</span>
     </motion.button>
   );
