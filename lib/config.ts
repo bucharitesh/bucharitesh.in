@@ -57,3 +57,5 @@ export const DockConfig = {
     },
   },
 };
+
+export const COLLECTION_IDS = [48069938, 48073561];

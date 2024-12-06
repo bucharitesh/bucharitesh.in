@@ -231,6 +231,18 @@ module.exports = {
           },
         },
       }),
+      gridTemplateRows: {
+        "max-1": "repeat(1, minmax(0, max-content))",
+      },
+      height: {
+        "dynamic-screen": "100dvh",
+      },
+      minHeight: {
+        "dynamic-screen": "100dvh",
+      },
+      maxHeight: {
+        "dynamic-screen": "100dvh",
+      },
       boxShadow: ({ theme }) => ({
         // inspired by https://www.joshwcomeau.com/shadow-palette/
         "surface-glass": `
@@ -278,5 +290,9 @@ module.exports = {
     require("@tailwindcss/forms"),
     require("tailwindcss-animate"),
     require("@tailwindcss/typography"),
+    require("@tailwindcss/container-queries"),
   ],
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
 };

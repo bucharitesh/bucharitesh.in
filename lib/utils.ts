@@ -20,3 +20,10 @@ export function formatTimeAgo(date: Date): string {
 
   return "just now";
 }
+
+/**
+ * Checks if the current environment is set to development mode.
+ * The function compares the value of the `NODE_ENV` environment variable with 'development'.
+ * @returns A boolean value indicating whether the current environment is set to development mode.
+ */
+export const isDevelopment = process.env.NODE_ENV === "development";

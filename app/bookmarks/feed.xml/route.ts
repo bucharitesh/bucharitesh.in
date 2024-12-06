@@ -1,5 +1,5 @@
 import { meta } from "@/old/lib/constants";
-import { getBookmarkItems, getBookmarks } from "@/old/lib/services/raindrop";
+import { getBookmarkItems, getBookmarks } from "@/lib/services/raindrop";
 import RSS from "rss";
 
 export async function GET() {

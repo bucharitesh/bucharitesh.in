@@ -27,7 +27,8 @@
 } */
 
 @media (prefers-reduced-motion: reduce) {
-  .cursor, .caret {
+  .cursor,
+  .caret {
     animation-play-state: paused;
   }
 
@@ -46,81 +47,114 @@
 } */
 
 @layer base {
-    :root {
-      --background: 0 0% 100%;
-      --foreground: 210 11.1% 3.53%;
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 210 11.1% 3.53%;
 
-      --card: 0 0% 100%;
-      --card-foreground: 210 11.1% 3.53%;
+    --card: 0 0% 100%;
+    --card-foreground: 210 11.1% 3.53%;
 
-      --popover: 0 0% 100%;
-      --popover-foreground: 210 11.1% 3.53%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 11.1% 3.53%;
 
-      --primary: 0 0% 9%;
-      --primary-foreground: 0 0% 98%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
 
-      --secondary: 0 0% 96.1%;
-      --secondary-foreground: 0 0% 9%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
 
-      --muted: 0 0% 96.1%;
-      --muted-foreground: 0 0% 45.1%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
 
-      --accent: 0 0% 96.1%;
+    --accent: 0 0% 96.1%;
     --accent-foreground: 0 0% 9%;
 
-      --destructive: 0 84.2% 60.2%;
-      --destructive-foreground: 0 0% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
 
-      --border: 0 0% 89.8%;
-      --input: 0 0% 89.8%;
-      --ring: 0 0% 3.9%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
 
-      --radius: 0.5rem;
-    }
-
-    .dark {
-      --background: 210 11.1% 3.53%;
-      --foreground: 0 0% 98%;
-
-      --card: 210 11.1% 3.53%;
-      --card-foreground: 0 0% 98%;
-
-      --popover: 210 11.1% 3.53%;
-      --popover-foreground: 0 0% 98%;
-
-      --primary: 0 0% 98%;
-      --primary-foreground: 0 0% 9%;
-
-      --secondary: 0 0% 14.9%;
-      --secondary-foreground: 0 0% 98%;
-
-      --muted: 0 0% 14.9%;
-      --muted-foreground: 0 0% 63.9%;
-
-      --accent: 0 0% 14.9%;
-      --accent-foreground: 0 0% 98%;
-
-      --destructive: 0 62.8% 30.6%;
-      --destructive-foreground: 0 0% 98%;
-
-      --border: 0 0% 14.9%;
-      --input: 0 0% 14.9%;
-      --ring: 0 0% 83.1%;
-    } 
-
-    body {
-      @apply text-black dark:text-white;
-    }
+    --radius: 0.5rem;
   }
 
-  @layer base {
-    * {
-      @apply border-border;
-    }
-    body {
-      @apply bg-background text-foreground;
-    }
+  .dark {
+    --background: 210 11.1% 3.53%;
+    --foreground: 0 0% 98%;
+
+    --card: 210 11.1% 3.53%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 210 11.1% 3.53%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
   }
+}
+
+html {
+  @apply overflow-hidden scroll-smooth antialiased;
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  @apply text-black dark:text-white;
+}
+
+#__next {
+  @apply min-h-dynamic-screen;
+}
+
+/* @layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+} */
+
+@layer components {
+  .content-wrapper {
+    @apply z-[1] w-full px-6 pb-8 pt-8 lg:px-8 lg:pb-16 lg:pt-24;
+  }
+
+  .content {
+    @apply mx-auto w-full lg:mb-0 lg:max-w-3xl;
+  }
+
+  .scrollable-area {
+    @apply h-full max-h-dynamic-screen min-h-dynamic-screen overflow-y-auto overflow-x-hidden;
+  }
+
+  .horizontal-scroll-area {
+    @apply block w-fit min-w-full grow;
+  }
+
+  .thumbnail-shadow {
+    @apply shadow-[0_0_0_0.5px] shadow-neutral-200 dark:shadow-neutral-800 ring-1 ring-neutral-200/50 dark:ring-neutral-800/50 ring-offset-2 ring-offset-neutral-50 dark:ring-offset-neutral-900;
+  }
+}
 
 @layer utilities {
   .step {
@@ -134,37 +168,60 @@
   }
 
   .mask-gradient {
-    mask-image: linear-gradient(0deg, transparent, rgb(255, 255, 255) 16px, rgb(255, 255, 255) calc(100% - 16px), transparent);
+    mask-image: linear-gradient(
+      0deg,
+      transparent,
+      rgb(255, 255, 255) 16px,
+      rgb(255, 255, 255) calc(100% - 16px),
+      transparent
+    );
   }
-}
 
-.lab-bg {
-  --mask-offset: 100px;
-  -webkit-mask: linear-gradient(
-      to bottom,
-      transparent,
-      #fff var(--mask-offset) calc(100% - var(--mask-offset)),
-      transparent
-    ),
-    linear-gradient(
-      to right,
-      transparent,
-      #fff var(--mask-offset) calc(100% - var(--mask-offset)),
-      transparent
-    );
-  mask: linear-gradient(
-      to bottom,
-      transparent,
-      #fff var(--mask-offset) calc(100% - var(--mask-offset)),
-      transparent
-    ),
-    linear-gradient(
-      to right,
-      transparent,
-      #fff var(--mask-offset) calc(100% - var(--mask-offset)),
-      transparent
-    );
-  /* -webkit-mask: radial-gradient(circle at 50% 50%,transparent 0,#fff calc(100% - var(--mask-offset)),transparent 100%); */
-  -webkit-mask-composite: source-in, xor;
-  mask-composite: intersect;
+  .lab-bg {
+    --mask-offset: 100px;
+    -webkit-mask: linear-gradient(
+        to bottom,
+        transparent,
+        #fff var(--mask-offset) calc(100% - var(--mask-offset)),
+        transparent
+      ),
+      linear-gradient(
+        to right,
+        transparent,
+        #fff var(--mask-offset) calc(100% - var(--mask-offset)),
+        transparent
+      );
+    mask: linear-gradient(
+        to bottom,
+        transparent,
+        #fff var(--mask-offset) calc(100% - var(--mask-offset)),
+        transparent
+      ),
+      linear-gradient(
+        to right,
+        transparent,
+        #fff var(--mask-offset) calc(100% - var(--mask-offset)),
+        transparent
+      );
+    /* -webkit-mask: radial-gradient(circle at 50% 50%,transparent 0,#fff calc(100% - var(--mask-offset)),transparent 100%); */
+    -webkit-mask-composite: source-in, xor;
+    mask-composite: intersect;
+  }
+
+  .word-break-word {
+    word-break: break-word;
+  }
+
+  .px-safe {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+
+  .bg-dots {
+    @apply bg-white dark:bg-neutral-900 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px];
+  }
+
+  .bg-grid {
+    @apply bg-white dark:bg-neutral-900 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px];
+  }
 }

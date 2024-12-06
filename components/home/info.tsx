@@ -12,6 +12,10 @@ const fadeIn = {
 };
 
 export default function Info({ show }: { show: string[] }) {
+  const { width } = useScreenSize();
+
+  if (width < 1000) return null;
+
   return (
     <>
       {show.includes("time") && <Time className="top-4 left-4" />}
