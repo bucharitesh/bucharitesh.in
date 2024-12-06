@@ -1,8 +1,6 @@
 import { useMemo } from "react";
 import { CommandGroup } from "../types";
 import { HiNewspaper } from "react-icons/hi2";
-// import { allPosts } from "@/old/.contentlayer/generated";
-import { compareDesc } from "date-fns";
 import { useRouter } from "next/navigation";
 
 interface CraftCommandProps {

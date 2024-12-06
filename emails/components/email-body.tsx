@@ -9,7 +9,7 @@ import {
   Img,
 } from "@react-email/components";
 import Footer from "./footer";
-import { meta } from "@/old/lib/constants";
+import { meta } from "@/lib/config";
 
 export default function EmailBody({
   email,

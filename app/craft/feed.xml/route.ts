@@ -1,5 +1,5 @@
 import { allPosts } from "content-collections";
-import { meta } from "@/old/lib/constants";
+import { meta } from "@/lib/config";
 import RSS from "rss";
 
 export async function GET() {

@@ -1,5 +1,5 @@
-import { meta } from "@/old/lib/constants";
-import { createOgImage } from "@/old/lib/createOgImage";
+import { meta } from "@/lib/config";
+import { createOgImage } from "@/lib/createOgImage";
 import { Metadata, Viewport } from "next";
 import { cn } from "@/lib/utils";
 import { ViewTransitions } from "next-view-transitions";

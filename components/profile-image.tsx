@@ -1,4 +1,4 @@
-import { meta } from "@/old/lib/constants";
+import { meta } from "@/lib/config";
 import Image from "next/image";
 
 export const SelfImage = () => (

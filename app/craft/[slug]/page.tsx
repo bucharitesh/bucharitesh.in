@@ -1,12 +1,11 @@
-import { meta } from "@/old/lib/constants";
-import { createOgImage } from "@/old/lib/createOgImage";
+import { meta } from "@/lib/config";
+import { createOgImage } from "@/lib/createOgImage";
 import { allPosts } from "content-collections";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 export const generateStaticParams = () => {
-  return allPosts
-    .map((p) => ({ slug: p.slug }));
+  return allPosts.map((p) => ({ slug: p.slug }));
 };
 
 type Props = {

@@ -1,4 +1,4 @@
-import { meta } from "@/old/lib/constants";
+import { meta } from "@/lib/config";
 import { getBookmarkItems, getBookmarks } from "@/lib/services/raindrop";
 import RSS from "rss";
 

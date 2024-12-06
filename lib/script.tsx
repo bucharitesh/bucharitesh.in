@@ -5,8 +5,8 @@ import {
   TechArticle,
   WithContext,
 } from "schema-dts";
-import { meta } from "@/old/lib/constants";
-import { formatSchemaOrgDate } from "@/old/lib/formatShortDate";
+import { meta } from "@/lib/config";
+import { formatSchemaOrgDate } from "@/lib/formatShortDate";
 
 function createBlogJsonLd(data: {
   title: string;

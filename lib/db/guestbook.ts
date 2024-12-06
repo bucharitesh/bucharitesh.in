@@ -1,6 +1,6 @@
 "use server";
 
-import prisma from "@/old/lib/prisma";
+import prisma from "@/lib/prisma";
 import { auth } from "@/lib/auth";
 import { Session } from "next-auth";
 import { unstable_cache as cache, revalidatePath } from "next/cache";
@@ -22,7 +22,10 @@ export const getGuestbookEntries = cache(async () => {
   });
 }, ["guestbook"]);
 
-export async function saveGuestbookEntry(formData: FormData, localSignature?: string) {
+export async function saveGuestbookEntry(
+  formData: FormData,
+  localSignature?: string
+) {
   let session = await getSession();
   let email = session.user?.email as string;
   let created_by = session.user?.name as string;
