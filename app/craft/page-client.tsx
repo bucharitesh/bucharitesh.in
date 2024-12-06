@@ -112,7 +112,7 @@ export const Card: React.FC<any> = ({
   return (
     <div
       className={cn(
-        "block w-full bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden mb-6 transition-all duration-200",
+        "block w-full bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden mb-6 transition-all duration-200",
         className,
         {
           "p-1": craft_type !== "none",
@@ -120,8 +120,9 @@ export const Card: React.FC<any> = ({
       )}
     >
       <div
-        className={cn("relative overflow-hidden", 
-        "after:content-[''] after:absolute after:w-full after:h-[200px] after:bottom-[-64px] after:transition-opacity after:duration-200 after:pointer-events-none after:bg-gradient-to-t after:from-white/90 after:via-transparent after:to-transparent dark:after:from-black/90",
+        className={cn(
+          "relative overflow-hidden",
+          "after:content-[''] after:absolute after:w-full after:h-[200px] after:bottom-[-64px] after:transition-opacity after:duration-200 after:pointer-events-none after:bg-gradient-to-t after:from-white/90 after:via-transparent after:to-transparent dark:after:from-black/90",
           {
             "rounded-lg": craft_type !== "none",
           }
@@ -145,10 +146,10 @@ export const Card: React.FC<any> = ({
             }
           )}
         >
-          <div className="text-[#171717] whitespace-nowrap overflow-ellipsis overflow-hidden text-sm">
+          <div className="text-[#171717] dark:text-neutral-100 whitespace-nowrap overflow-ellipsis overflow-hidden text-sm">
             {title}
           </div>
-          <div className="text-[#171717] whitespace-nowrap overflow-ellipsis overflow-hidden text-sm">
+          <div className="text-[#171717] dark:text-neutral-400 whitespace-nowrap overflow-ellipsis overflow-hidden text-sm">
             {date}
           </div>
         </div>
@@ -160,13 +161,13 @@ export const Card: React.FC<any> = ({
           data-fake-button
           className="
           h-10 mt-1
-      bg-gray-100 dark:bg-gray-800
+      bg-neutral-100 dark:bg-neutral-800
       rounded-lg
       flex items-center justify-center gap-1.5
       text-sm font-medium
-      text-gray-900 dark:text-gray-100
+      text-neutral-900 dark:text-neutral-100
       transition-colors duration-150
-      hover:bg-gray-200 dark:hover:bg-gray-700
+      hover:bg-neutral-200 dark:hover:bg-neutral-700
         "
         >
           {craft_type === "essay"

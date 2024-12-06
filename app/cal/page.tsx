@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function BookingPage() {
   return (
-    <div className="flex flex-col items-center justify-center h-screen w-full space-y-12 bottom-12">
+    <div className="flex flex-col bg-grid items-center justify-center h-screen w-full space-y-12 bottom-12">
       <div className="max-h-400 z-10 w-full">
         <CalEmbed />
       </div>

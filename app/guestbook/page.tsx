@@ -3,6 +3,7 @@ import React, { Suspense } from "react";
 import { Form } from "./form";
 import GuestbookEntries from "./guestbook-entries";
 import { getGuestbookEntries } from "@/lib/db/guestbook";
+import { ScrollArea } from "@/components/scroll-area";
 
 export const metadata: Metadata = {
   title: "Guestbook",
@@ -17,7 +18,7 @@ export default async function GuestbookPage() {
   const entries = await getGuestbookEntries();
 
   return (
-    <>
+    <ScrollArea className="bg-grid">
       {/* Mobile Layout */}
       <div className="xl:hidden w-full px-4 pt-6 space-y-8">
         <div>
@@ -66,6 +67,6 @@ export default async function GuestbookPage() {
           <Form />
         </div>
       </div>
-    </>
+    </ScrollArea>
   );
 }

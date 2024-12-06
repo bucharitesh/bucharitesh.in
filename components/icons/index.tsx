@@ -1,4 +1,4 @@
-import { BookOpenIcon, CalendarIcon, HomeIcon, MailIcon, PencilIcon } from "lucide-react";
+import { BookOpenIcon, CalendarIcon, HomeIcon, MailIcon, PencilIcon, BookmarkIcon } from "lucide-react";
 
 export type IconProps = React.HTMLAttributes<SVGElement>;
 
@@ -6,6 +6,7 @@ export const Icons = {
   home: (props: IconProps) => <HomeIcon {...props} />,
   craft: (props: IconProps) => <PencilIcon {...props} />,
   guestbook: (props: IconProps) => <BookOpenIcon {...props} />,
+  bookmark: (props: IconProps) => <BookmarkIcon {...props} />,
   calendar: (props: IconProps) => <CalendarIcon {...props} />,
   email: (props: IconProps) => <MailIcon {...props} />,
   bluesky: (props: IconProps) => (
