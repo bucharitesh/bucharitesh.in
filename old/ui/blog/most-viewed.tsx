@@ -2,7 +2,7 @@
 
 import { useTrendingPosts } from "@/lib/hooks";
 import { LoadingDots } from "@/ui/loading-dots";
-import { cn } from "@/old/lib/utils";
+import { cn } from "@/lib/utils";
 import { ZapIcon } from "../icons";
 
 export default function MostViewed() {

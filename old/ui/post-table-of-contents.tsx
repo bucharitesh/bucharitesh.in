@@ -1,7 +1,7 @@
 "use client";
 
 import { FormattedPost } from "@/old/lib/contentlayer";
-import { cn } from "@/old/lib/utils";
+import { cn } from "@/lib/utils";
 
 export const PostTableOfContents = ({
   headings,

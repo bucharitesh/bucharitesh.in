@@ -1,7 +1,7 @@
 import { meta } from "@/old/lib/constants";
 import { createOgImage } from "@/old/lib/createOgImage";
 import { Metadata, Viewport } from "next";
-import { cn } from "@/old/lib/utils";
+import { cn } from "@/lib/utils";
 import { ViewTransitions } from "next-view-transitions";
 import { fontMono, fontNdot55, fontX } from "@/lib/fonts";
 
@@ -14,7 +14,6 @@ import BottomDock from "@/components/dock";
 import { CommandMenu } from "@/components/command-menu";
 import { auth } from "@/lib/auth";
 import DevTools from "@/components/dev-tools";
-import { FloatingHeader } from "@/components/floating-header";
 
 export const viewport: Viewport = {
   themeColor: "#1c1917",

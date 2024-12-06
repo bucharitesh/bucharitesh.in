@@ -20,7 +20,7 @@ import type { StrokeOptions } from "perfect-freehand";
 import { getStroke } from "perfect-freehand";
 import { getSvgPathFromStroke } from "./helper";
 import { Point } from "./point";
-import { cn } from "@/old/lib/utils";
+import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
 
 const unsafe_useEffectOnce = (callback: EffectCallback) => {
@@ -205,7 +205,7 @@ export const SignaturePad = forwardRef(function SignaturePad(
       const ctx = $el.current.getContext("2d");
       if (ctx) {
         ctx.clearRect(0, 0, $el.current.width / dpi, $el.current.height / dpi);
-        ctx.fillStyle = (theme === "dark" ? "white" : "black");
+        ctx.fillStyle = theme === "dark" ? "white" : "black";
 
         newLines.forEach((line) => {
           const pathData = new Path2D(

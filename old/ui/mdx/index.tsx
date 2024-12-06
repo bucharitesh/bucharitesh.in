@@ -10,7 +10,7 @@ import { Filesystem } from "./file-system";
 import { Grid } from "./grid";
 import { FauxTweet } from "./faux-tweet";
 import { LoadingSkeleton } from "./loading-skeleton";
-import { cn } from "@/old/lib/utils";
+import { cn } from "@/lib/utils";
 import type { ImageProps } from "next/image";
 import NextLink from "next/link";
 import React from "react";

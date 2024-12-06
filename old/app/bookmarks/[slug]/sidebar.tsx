@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/old/lib/utils";
+import { cn } from "@/lib/utils";
 import { Link, useTransitionRouter } from "next-view-transitions";
 import React from "react";
 

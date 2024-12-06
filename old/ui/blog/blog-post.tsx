@@ -6,7 +6,7 @@ import MostViewed from "@/ui/blog/most-viewed";
 import { PostMetrics } from "@/ui/blog/post-metrics";
 import { PostTableOfContents } from "@/ui/post-table-of-contents";
 import { ScrollToTop } from "@/ui/ScrollToTop";
-import { cn } from "@/old/lib/utils";
+import { cn } from "@/lib/utils";
 // import { Link } from "next-view-transitions"
 import Balancer from "react-wrap-balancer";
 // import { ChevronLeft } from "lucide-react"

@@ -7,7 +7,7 @@ import { Dock, DockIcon, DockIconActiveDot } from "./floating-dock";
 import { ModeToggle } from "./mode-toggle";
 import { usePathname } from "next/navigation";
 import { DockConfig } from "@/lib/config";
-import { cn } from "@/old/lib/utils";
+import { cn } from "@/lib/utils";
 import { useScreenSize } from "@/lib/hooks";
 
 const DOCK_AUTOHIDE_TIMEOUT = 10_000;

@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { getBookmarks } from "@/old/lib/services/raindrop";
-import { sortByProperty } from "@/old/lib/utils";
+import { sortByProperty } from "@/lib/utils";
 // import PageWrapper from "@/old/ui/layout/page-wrapper";
 // import { Button } from "@/old/ui/button";
 import { Rss } from "lucide-react";

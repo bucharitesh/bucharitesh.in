@@ -4,7 +4,7 @@ import {
   FOOTER_ITEMS,
   LINK_SUBTLE_STYLES,
 } from "@/old/lib/constants";
-import { cn } from "@/old/lib/utils";
+import { cn } from "@/lib/utils";
 import { Link } from "next-view-transitions";
 // import NowPlaying from "./now-playing";
 import NewsletterForm from "./newsletter-form";

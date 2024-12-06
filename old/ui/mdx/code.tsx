@@ -1,7 +1,7 @@
 "use client";
 
 import { Aside } from "@/ui/mdx/aside";
-import { cn } from "@/old/lib/utils";
+import { cn } from "@/lib/utils";
 import React from "react";
 
 // There are probably better ways to do this 🥴

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { cn } from "@/old/lib/utils";
+import { cn } from "@/lib/utils";
 
 export const ListItem = ({ title, description, path }) => {
   const pathname = usePathname();
@@ -15,14 +15,27 @@ export const ListItem = ({ title, description, path }) => {
       href={path}
       className={cn(
         "flex flex-col gap-1 rounded-lg p-2 transition-colors duration-300 [&>*]:transition-colors [&>*]:duration-300",
-        isActive ? "bg-black dark:bg-zinc-700" : "hover:bg-gray-200 dark:hover:bg-zinc-700"
+        isActive
+          ? "bg-black dark:bg-zinc-700"
+          : "hover:bg-gray-200 dark:hover:bg-zinc-700"
       )}
     >
-      <span className={cn("font-medium", isActive && "text-white dark:text-zinc-100")}>
+      <span
+        className={cn(
+          "font-medium",
+          isActive && "text-white dark:text-zinc-100"
+        )}
+      >
         {title}
       </span>
       {description && (
-        <span className={cn(isActive ? "text-slate-300 dark:text-zinc-500" : "text-slate-500 dark:text-zinc-500")}>
+        <span
+          className={cn(
+            isActive
+              ? "text-slate-300 dark:text-zinc-500"
+              : "text-slate-500 dark:text-zinc-500"
+          )}
+        >
           {description}
         </span>
       )}

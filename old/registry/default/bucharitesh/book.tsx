@@ -1,7 +1,7 @@
 import React, { CSSProperties } from "react";
 import "./book.style.css";
 import { VercelLogoIcon } from "@radix-ui/react-icons";
-import { cn } from "@/old/lib/utils";
+import { cn } from "@/lib/utils";
 
 const defaultIllustration = (
   <svg

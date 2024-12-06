@@ -1,5 +1,5 @@
 import { getBookmarkItems, getBookmarks } from "@/old/lib/services/raindrop";
-import { cn, sortByProperty } from "@/old/lib/utils";
+import { cn, sortByProperty } from "@/lib/utils";
 import { notFound } from "next/navigation";
 import { BookmarkList } from "./bookmark-list";
 import Sidebar from "./sidebar";

@@ -1,4 +1,4 @@
-import { cn } from "@/old/lib/utils";
+import { cn } from "@/lib/utils";
 import React from "react";
 
 export const Grid = ({

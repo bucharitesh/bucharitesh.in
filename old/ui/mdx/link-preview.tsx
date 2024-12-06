@@ -2,7 +2,7 @@
 
 import { FOCUS_VISIBLE_OUTLINE, LINK_STYLES } from "@/old/lib/constants";
 import * as HoverCardPrimitive from "@radix-ui/react-hover-card";
-import { cn } from "@/old/lib/utils";
+import { cn } from "@/lib/utils";
 import { Ellipsis } from "lucide-react";
 import { useTheme } from "next-themes";
 import Image from "next/image";

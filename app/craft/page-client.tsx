@@ -4,7 +4,7 @@ import { Post } from "content-collections";
 import { MasonryGrid } from "./masonary-grid";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
-import { cn } from "@/old/lib/utils";
+import { cn } from "@/lib/utils";
 
 export default function PageClient({ posts }: { posts: Post[] }) {
   return (

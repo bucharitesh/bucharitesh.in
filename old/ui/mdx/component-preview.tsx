@@ -5,7 +5,7 @@ import { Index } from "@/old/__registry__";
 import { RotateCcw } from "lucide-react";
 
 import { useConfig } from "@/old/lib/use-config";
-import { cn } from "@/old/lib/utils";
+import { cn } from "@/lib/utils";
 import { Button } from "@/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/ui/tabs";
 import { styles } from "@/registry/registry-styles";

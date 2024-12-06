@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/old/lib/utils";
+import { cn } from "@/lib/utils";
 import type { ImageProps } from "next/image";
 import NextImage from "next/image";
 import React from "react";

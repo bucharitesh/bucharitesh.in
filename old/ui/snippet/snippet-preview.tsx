@@ -2,7 +2,7 @@
 
 import { ContentLink } from "./content-link";
 import { BlurImage } from "../mdx/blur-image";
-import { cn } from "@/old/lib/utils";
+import { cn } from "@/lib/utils";
 
 export const SnippetPostPreview = (snippet: ReturnType<any>) => {
   return (

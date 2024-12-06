@@ -3,7 +3,7 @@ import { Mdx } from "@/ui/mdx";
 import { LikeButton2 } from "@/ui/like-button-2";
 import { PostMetrics } from "@/ui/blog/post-metrics";
 import { ScrollToTop } from "@/ui/ScrollToTop";
-import { cn } from "@/old/lib/utils";
+import { cn } from "@/lib/utils";
 import Balancer from "react-wrap-balancer";
 import { PostTableOfContents } from "../post-table-of-contents";
 import { BlurImage } from "../mdx/blur-image";

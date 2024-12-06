@@ -1,5 +1,5 @@
 import { OOF_GRAD } from "@/old/lib/constants";
-import { cn } from "@/old/lib/utils";
+import { cn } from "@/lib/utils";
 import React from "react";
 
 export const Caption = ({ children }: { children: React.ReactNode }) => {

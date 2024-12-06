@@ -3,7 +3,7 @@
 import { useTime, useScreenSize } from "@/lib/hooks";
 import { motion } from "framer-motion";
 import { useEasterEggs } from "../easter-egg-provider";
-import { cn } from "@/old/lib/utils";
+import { cn } from "@/lib/utils";
 
 const fadeIn = {
   initial: { opacity: 0, x: -20 },
@@ -43,7 +43,7 @@ export function Time({ className }: { className?: string }) {
   );
 }
 
-export function ScreenSize({ className }: { className?: string }  ) {
+export function ScreenSize({ className }: { className?: string }) {
   const { width, height } = useScreenSize();
 
   return (
@@ -64,7 +64,7 @@ export function ScreenSize({ className }: { className?: string }  ) {
 export function EasterEggs({ className }: { className?: string }) {
   const { totalPoints, progress, discoverEgg } = useEasterEggs();
 
-   const allEggsDiscovered = progress.earnedPoints === progress.possiblePoints;
+  const allEggsDiscovered = progress.earnedPoints === progress.possiblePoints;
 
   return (
     <motion.div

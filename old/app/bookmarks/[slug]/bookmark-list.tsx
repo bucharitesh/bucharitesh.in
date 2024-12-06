@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useMemo } from "react";
 
-import { cn } from "@/old/lib/utils";
+import { cn } from "@/lib/utils";
 import { BookmarkCard } from "./bookmark-card";
 
 export const BookmarkList = ({ initialData, id }) => {

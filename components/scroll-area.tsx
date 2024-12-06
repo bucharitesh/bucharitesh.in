@@ -1,4 +1,4 @@
-import { cn } from "@/old/lib/utils";
+import { cn } from "@/lib/utils";
 
 export const SCROLL_AREA_ID = "scroll-area";
 

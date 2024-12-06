@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Craft } from "@/old/.contentlayer/generated";
 import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 
-import { cn } from "@/old/lib/utils";
+import { cn } from "@/lib/utils";
 import { buttonVariants } from "./button";
 
 interface DocsPagerProps {

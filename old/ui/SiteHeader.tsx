@@ -1,7 +1,7 @@
 import { FOCUS_VISIBLE_OUTLINE } from "@/old/lib/constants";
 import { Nav } from "@/ui/Nav";
 import { ProfileImage } from "@/ui/ProfileImage";
-import { cn } from "@/old/lib/utils";
+import { cn } from "@/lib/utils";
 import { Link } from "next-view-transitions";
 
 export function SiteHeader() {

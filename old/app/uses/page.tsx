@@ -1,5 +1,5 @@
 import { OOF_GRAD } from "@/old/lib/constants";
-import { cn } from "@/old/lib/utils";
+import { cn } from "@/lib/utils";
 import Balancer from "react-wrap-balancer";
 import { getUses, ProcessedUseCategory } from "@/old/lib/uses";
 // import PageWrapper from "@/old/ui/layout/page-wrapper";

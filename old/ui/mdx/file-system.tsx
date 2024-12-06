@@ -7,7 +7,7 @@ import {
 } from "@/ui/icons";
 
 import { TemplateIcon } from "@/ui/icons";
-import { cn } from "@/old/lib/utils";
+import { cn } from "@/lib/utils";
 import React from "react";
 
 export type Item = {

@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/old/lib/utils";
+import { cn } from "@/lib/utils";
 import React from "react";
 import { useIntersection } from "react-use";
 

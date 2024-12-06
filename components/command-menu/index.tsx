@@ -21,7 +21,7 @@ import { useGeminiCommand } from "./apps/gemini";
 import { useSocialsCommand } from "./apps/socials";
 import { useCraftsCommand } from "./apps/crafts";
 import { motion } from "framer-motion";
-import { cn } from "@/old/lib/utils";
+import { cn } from "@/lib/utils";
 
 export function CommandMenu({ ...props }: DialogProps) {
   // State management

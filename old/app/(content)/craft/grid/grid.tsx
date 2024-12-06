@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import "./style.css";
-import { cn } from "@/old/lib/utils";
+import { cn } from "@/lib/utils";
 
 type GridType = string | number;
 

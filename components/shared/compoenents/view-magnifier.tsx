@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useCallback, useRef, useEffect } from "react";
-import { cn } from "@/old/lib/utils";
+import { cn } from "@/lib/utils";
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 
 interface ViewMagnifierProps {

@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { getBookmarkItems, getBookmarks } from "@/lib/services/raindrop";
-import { cn, sortByProperty } from "@/old/lib/utils";
+import { cn, sortByProperty } from "@/lib/utils";
 import { ScrollArea } from "@/components/scroll-area";
 import Balancer from "react-wrap-balancer";
 import { BookmarkList } from "@/components/bookmarks/bookmark-list";

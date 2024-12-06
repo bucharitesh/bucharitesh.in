@@ -11,7 +11,7 @@ import {
   useTransform,
 } from "framer-motion";
 
-import { cn } from "@/old/lib/utils";
+import { cn } from "@/lib/utils";
 
 export interface DockProps extends VariantProps<typeof dockVariants> {
   className?: string;

@@ -3,7 +3,7 @@
 import { FOCUS_VISIBLE_OUTLINE } from "@/old/lib/constants";
 import { usePostLikes } from "@/lib/hooks";
 import { LoadingDots } from "@/ui/loading-dots";
-import { cn } from "@/old/lib/utils";
+import { cn } from "@/lib/utils";
 import { Heart } from "lucide-react";
 import React from "react";
 

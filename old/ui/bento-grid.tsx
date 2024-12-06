@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-import { cn } from "@/old/lib/utils";
+import { cn } from "@/lib/utils";
 import { Button } from "./button";
 import { ArrowRightIcon } from "lucide-react";
 

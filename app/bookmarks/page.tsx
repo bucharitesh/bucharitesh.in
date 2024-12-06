@@ -1,6 +1,6 @@
 import { ScrollArea } from "@/components/scroll-area";
 import { getBookmarks } from "@/lib/services/raindrop";
-import { sortByProperty } from "@/old/lib/utils";
+import { sortByProperty } from "@/lib/utils";
 import { Suspense } from "react";
 import Link from "next/link";
 

@@ -4,8 +4,8 @@ import { useEffect, useState, useCallback, useMemo } from "react";
 import { ArrowDownIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { BookmarkCard } from "./bookmark-card"; 
-import { cn } from "@/old/lib/utils";
+import { BookmarkCard } from "./bookmark-card";
+import { cn } from "@/lib/utils";
 import { getBookmarkItemsByPageIndex } from "@/lib/actions";
 
 export const BookmarkList = ({ initialData, id }) => {
@@ -31,7 +31,7 @@ export const BookmarkList = ({ initialData, id }) => {
     if (pageIndex > 0) fetchInfiniteData();
   }, [pageIndex, fetchInfiniteData]);
 
-  const isReachingEnd = data.length >= initialData?.count ?? 0;
+  const isReachingEnd = data?.length >= initialData?.count;
 
   return (
     <div>

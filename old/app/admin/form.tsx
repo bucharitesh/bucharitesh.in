@@ -3,7 +3,7 @@
 import { useFormStatus } from "react-dom";
 import { useState, useEffect } from "react";
 import { deleteGuestbookEntries } from "@/old/lib/db/guestbook";
-import { cn } from "@/old/lib/utils";
+import { cn } from "@/lib/utils";
 // import { Button } from "@/old/ui/button";
 
 export default function Form({ entries }) {

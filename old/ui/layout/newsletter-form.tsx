@@ -7,7 +7,7 @@ import { NewsletterFormSchema } from "@/old/lib/schema";
 
 import { subscribe } from "@/old/lib/resend";
 import { useEffect, useRef, useState } from "react";
-import { cn } from "@/old/lib/utils";
+import { cn } from "@/lib/utils";
 import { SendHorizonal } from "lucide-react";
 import { Input } from "../input";
 import { Button } from "../button";
