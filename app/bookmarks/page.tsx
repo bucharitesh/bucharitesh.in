@@ -3,6 +3,21 @@ import { getBookmarks } from "@/lib/services/raindrop";
 import { sortByProperty } from "@/lib/utils";
 import { Suspense } from "react";
 import Link from "next/link";
+import { Metadata } from "next/types";
+
+export const metadata: Metadata = {
+  title: "Bookmarks",
+  description:
+    "A curated selection of various handpicked bookmarks by Ritesh Bucha",
+  alternates: {
+    canonical: "/bookmarks",
+  },
+};
+
+export async function generateStaticParams() {
+  const bookmarks = await getBookmarks();
+  return bookmarks.map((bookmark) => ({ slug: bookmark.slug }));
+}
 
 async function fetchData() {
   const bookmarks = await getBookmarks();
