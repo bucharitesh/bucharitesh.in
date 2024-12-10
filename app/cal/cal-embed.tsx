@@ -39,11 +39,6 @@ export default function CalEmbed() {
       <Cal
         namespace="30min"
         calLink="bucharitesh/30min"
-        style={{
-          width: "100%",
-          height: "100%",
-          overflow: "scroll",
-        }}
       />
   )
 }

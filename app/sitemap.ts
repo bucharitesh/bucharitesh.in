@@ -36,7 +36,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/guestbook",
     "/bookmarks",
     // "/blog",
-    "/craft",
+    // "/craft",
     //  "/project",
     // "/design-inspiration",
     // "/uses",

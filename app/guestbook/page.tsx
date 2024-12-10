@@ -18,7 +18,7 @@ export default async function GuestbookPage() {
   const entries = await getGuestbookEntries();
 
   return (
-    <ScrollArea className="bg-grid">
+    <ScrollArea className="">
       {/* Mobile Layout */}
       <div className="xl:hidden w-full px-4 pt-6 space-y-8">
         <div>

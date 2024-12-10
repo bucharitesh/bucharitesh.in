@@ -8,7 +8,6 @@ import { ModeToggle } from "./mode-toggle";
 import { usePathname } from "next/navigation";
 import { DockConfig } from "@/lib/config";
 import { cn } from "@/lib/utils";
-import { useScreenSize } from "@/lib/hooks";
 
 const DOCK_AUTOHIDE_TIMEOUT = 10_000;
 
@@ -16,10 +15,6 @@ function BottomDock() {
   const [active, setActive] = useState(true);
   const pathname = usePathname();
   const timeoutRef = useRef<NodeJS.Timeout>();
-
-  const { width } = useScreenSize();
-
-  const isMobile = width < 1000;
 
   const startTimeout = () => {
     clearTimeout(timeoutRef.current); // Clear any existing timeout
@@ -29,11 +24,9 @@ function BottomDock() {
   };
 
   useEffect(() => {
-    if (!isMobile) startTimeout();
+    startTimeout();
     return () => clearTimeout(timeoutRef.current);
   }, []);
-
-  // if (isMobile) return null;
 
   return (
     <div

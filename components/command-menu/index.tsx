@@ -232,7 +232,7 @@ export function CommandMenu({ ...props }: DialogProps) {
   // Render component
   return (
     <CommandDialog open={open} onOpenChange={setOpen} {...props}>
-      <motion.div className="p-4 border-b">
+      <motion.div className="p-4 border-b border-neutral-700">
         <div className="flex items-center gap-3 px-3 py-2 rounded-lg">
           {calculatorCommands.name === "Result" ? (
             <HiCalculator className="w-5 h-5 text-gray-400" />
@@ -291,7 +291,7 @@ export function CommandMenu({ ...props }: DialogProps) {
                   }}
                   onMouseMove={() => handleMouseMove(groupIndex, index)}
                   className={cn(
-                    `relative w-full flex items-center group transition-all duration-75 cursor-pointer p-4`
+                    `relative w-full flex items-center group transition-all duration-75 cursor-pointer !py-10 !px-8`
                   )}
                 >
                   <div className="flex items-start gap-3 sm:gap-4 min-w-0 w-full relative z-10">
@@ -340,7 +340,7 @@ interface CommandDialogProps extends DialogProps {}
 const CommandDialog = ({ children, ...props }: CommandDialogProps) => {
   return (
     <Dialog {...props}>
-      <DialogContent noClose className="overflow-hidden p-0 max-w-2xl">
+      <DialogContent noClose className="overflow-hidden p-0 max-w-2xl border-neutral-700">
         <DialogTitle hidden />
         <DialogDescription hidden />
         <Command>{children}</Command>

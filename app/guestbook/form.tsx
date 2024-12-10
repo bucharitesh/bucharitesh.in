@@ -151,12 +151,12 @@ export function Form() {
 
             {/* Signature area */}
             <div className="w-full space-y-1.5">
-              <p className="text-xs text-neutral-500 dark:text-neutral-400">
+              <p className="text-xs text-right text-neutral-500 dark:text-neutral-400">
                 Add your signature
               </p>
               <SignaturePad
                 ref={signaturePadRef}
-                className="h-32 w-full rounded-xl border"
+                className="h-32 w-full rounded-xl border bg-white dark:bg-neutral-800"
                 containerClassName="dark:hue-rotate-180 dark:invert"
                 onChange={setLocalSignature}
                 onClear={() => setLocalSignature(null)}

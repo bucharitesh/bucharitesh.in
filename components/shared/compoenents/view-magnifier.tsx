@@ -7,26 +7,41 @@ import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 interface ViewMagnifierProps {
   children: React.ReactNode;
   className?: string;
-  defaultBackground?: string;
   maxScale?: number;
-  maxBlur?: number;
-  ariaLabel?: string;
+  onScaleChange?: (isActive: boolean) => void;
+  onMaxScaleReached?: (isAtMax: boolean) => void;
 }
 
 const ViewMagnifier: React.FC<ViewMagnifierProps> = ({
   className,
   children,
   maxScale = 1.8,
+  onScaleChange,
+  onMaxScaleReached,
+  ...props
 }) => {
   const [isMouseDown, setIsMouseDown] = useState<boolean>(false);
-  const [isFocused, setIsFocused] = useState<boolean>(false);
   const [zoomLevel, setZoomLevel] = useState<number>(100);
+  const [isAtMaxScale, setIsAtMaxScale] = useState<boolean>(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const startX = useRef<number>(0);
   const initialScale = useRef<number>(1);
   const scale = useMotionValue(1);
   const opacity = useTransform(scale, [1, maxScale], [0, 1]);
   const containerScale = useTransform(scale, [1, maxScale], [1, 1.6]);
+
+  // Monitor scale changes for max scale callback
+  useEffect(() => {
+    const unsubscribe = scale.on("change", (latestScale) => {
+      const newIsAtMaxScale = Math.abs(latestScale - maxScale) < 0.01;
+      if (newIsAtMaxScale !== isAtMaxScale) {
+        setIsAtMaxScale(newIsAtMaxScale);
+        onMaxScaleReached?.(newIsAtMaxScale);
+      }
+    });
+
+    return () => unsubscribe();
+  }, [scale, maxScale, isAtMaxScale, onMaxScaleReached]);
 
   const handleZoomAnimation = useCallback(
     (targetScale: number) => {
@@ -40,26 +55,32 @@ const ViewMagnifier: React.FC<ViewMagnifierProps> = ({
     [scale]
   );
 
-  const handleMouseDown = useCallback(
-    (e: React.MouseEvent): void => {
-      if (!isFocused) return;
+  const handlePointerDown = useCallback(
+    (e: React.PointerEvent<HTMLButtonElement>): void => {
       setIsMouseDown(true);
       startX.current = e.clientX;
       initialScale.current = scale.get();
+      e.currentTarget.setPointerCapture(e.pointerId);
+      onScaleChange?.(true);
     },
-    [scale, isFocused]
+    [scale, onScaleChange]
   );
 
-  const handleMouseUp = useCallback((): void => {
-    if (isMouseDown) {
-      setIsMouseDown(false);
-      handleZoomAnimation(1);
-    }
-  }, [isMouseDown, handleZoomAnimation]);
+  const handlePointerUp = useCallback(
+    (e: React.PointerEvent<HTMLButtonElement>): void => {
+      if (isMouseDown) {
+        setIsMouseDown(false);
+        handleZoomAnimation(1);
+        e.currentTarget.releasePointerCapture(e.pointerId);
+        onScaleChange?.(false);
+      }
+    },
+    [isMouseDown, handleZoomAnimation, onScaleChange]
+  );
 
-  const handleMouseMove = useCallback(
-    (e: MouseEvent): void => {
-      if (!isMouseDown || !isFocused) return;
+  const handlePointerMove = useCallback(
+    (e: React.PointerEvent<HTMLButtonElement>): void => {
+      if (!isMouseDown) return;
 
       const deltaX = e.clientX - startX.current;
       const scaleChange = deltaX * 0.005;
@@ -71,32 +92,14 @@ const ViewMagnifier: React.FC<ViewMagnifierProps> = ({
       scale.set(newScale);
       setZoomLevel(Math.round(newScale * 100));
     },
-    [isMouseDown, maxScale, scale, isFocused]
+    [isMouseDown, maxScale, scale]
   );
 
-  useEffect(() => {
-    if (isMouseDown && isFocused) {
-      window.addEventListener("mousemove", handleMouseMove);
-      window.addEventListener("mouseup", handleMouseUp);
-    }
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mouseup", handleMouseUp);
-    };
-  }, [isMouseDown, handleMouseMove, handleMouseUp, isFocused]);
-
   return (
-    <div
+   <div
       ref={containerRef}
-      tabIndex={0}
       className="outline-none z-40"
-      onFocus={() => setIsFocused(true)}
-      onBlur={() => {
-        setIsFocused(false);
-        handleZoomAnimation(1);
-        setIsMouseDown(false);
-      }}
+      {...props}
     >
       <motion.div
         className={cn(
@@ -135,7 +138,10 @@ const ViewMagnifier: React.FC<ViewMagnifierProps> = ({
         />
 
         <motion.button
-          onMouseDown={handleMouseDown}
+          onPointerDown={handlePointerDown}
+          onPointerUp={handlePointerUp}
+          onPointerMove={handlePointerMove}
+          onPointerLeave={handlePointerUp}
           style={{
             scale: containerScale,
             translateY: "-50%",
@@ -160,6 +166,7 @@ const ViewMagnifier: React.FC<ViewMagnifierProps> = ({
             isMouseDown ? "cursor-grabbing" : "cursor-grab",
             "after:content-[''] after:absolute after:w-4 after:h-full after:-left-2 after:top-0"
           )}
+          touch-action="none"
         />
       </motion.div>
     </div>

@@ -19,7 +19,7 @@ export default async function Page() {
     <>
       <COMMON_SCRIPT_ORG />
       <Info show={["time", "screen"]} />
-      <div className="layout-sm relative z-10 grid gap-y-8 px-4 pt-12 xl:layout-xl xl:gap-x-9 xl:px-0 [&>*]:col-start-2 xl:[&>*]:col-start-3">
+      <div className="layout-sm relative z-10 grid gap-y-2 px-4 pt-12 xl:layout-xl xl:gap-x-9 xl:px-0 [&>*]:col-start-2 xl:[&>*]:col-start-3">
         <header className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
           <div
             className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden flex-shrink-0"
