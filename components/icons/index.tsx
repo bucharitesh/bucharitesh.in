@@ -1,4 +1,13 @@
-import { BookOpenIcon, CalendarIcon, HomeIcon, MailIcon, PencilIcon, BookmarkIcon, LogIn } from "lucide-react";
+import {
+  BookOpenIcon,
+  CalendarIcon,
+  HomeIcon,
+  MailIcon,
+  PencilIcon,
+  BookmarkIcon,
+  LogIn,
+  FileIcon,
+} from "lucide-react";
 
 export type IconProps = React.HTMLAttributes<SVGElement>;
 
@@ -10,6 +19,7 @@ export const Icons = {
   calendar: (props: IconProps) => <CalendarIcon {...props} />,
   email: (props: IconProps) => <MailIcon {...props} />,
   signin: (props: IconProps) => <LogIn {...props} />,
+  resume: (props: IconProps) => <FileIcon {...props} />,
   bluesky: (props: IconProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"

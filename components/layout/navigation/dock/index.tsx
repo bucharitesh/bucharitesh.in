@@ -12,6 +12,7 @@ import { ModeToggle } from "./mode-toggle";
 import { usePathname } from "next/navigation";
 import { DockConfig } from "@/lib/config";
 import { cn } from "@/lib/utils";
+import { Icons } from "@/components/icons";
 // import { signIn, signOut, useSession } from "next-auth/react";
 // import Image from "next/image";
 // import { Icons } from "@/components/icons";
@@ -79,7 +80,7 @@ function BottomDock({ className }: { className: string }) {
         <DockIcon title={"Theme"}>
           <ModeToggle />
         </DockIcon>
-
+        
         {/* <DockIcon
           onMouseUp={async () => {
             if (session?.user?.email) {

@@ -1,10 +1,4 @@
 export const resumeData = {
-  personal: {
-    name: "Ishan Chhabra",
-    title: "Software Developer",
-    website: "ishanchhabra.com",
-    intro: `Ishan enjoys building things that live on the internet. He used to do complex Web stuff at Incredible but left to pursue some personal engineering goals. Clearly, he operates from his gut. Also, he develops exceptional websites and web apps that provide intuitive, pixel-perfect user interfaces with efficient and modern backends.`,
-  },
   experience: [
     {
       company: "Incredible",

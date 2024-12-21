@@ -4,10 +4,11 @@ import React, { useState } from "react";
 import { resumeData } from "@/lib/resume-data";
 import { meta } from "@/lib/config";
 import { A4_HEIGHT_MM, A4_WIDTH_MM, MM_TO_PX, Ruler } from "./ruler";
+import DownloadButton from "./download-button";
 
 
 export default function ResumePage() {
-  const { personal, experience, education, skills } = resumeData;
+  const { experience, education, skills } = resumeData;
   const [scrollX, setScrollX] = useState(0);
   const [scrollY, setScrollY] = useState(0);
 
@@ -18,9 +19,12 @@ export default function ResumePage() {
   };  
 
   return (
-    <div className="fixed inset-0 bg-gray-100">
+    <div className="fixed inset-0 bg-neutral-100 dark:bg-neutral-500/40">
+      {/* Download button */}
+      <DownloadButton contentId="resume" fileName="resume.pdf" />
+
       {/* Corner square */}
-      <div className="hidden z-[21] lg:block fixed top-0 left-0 w-8 h-8 bg-white border-b border-r border-gray-200" />
+      <div className="hidden z-[21] lg:block fixed top-0 left-0 w-8 h-8 bg-white dark:bg-neutral-800 border-b border-r border-neutral-200 dark:border-neutral-700" />
 
       {/* Rulers */}
       <Ruler orientation="horizontal" scrollPosition={scrollX} />
@@ -28,24 +32,27 @@ export default function ResumePage() {
 
       {/* Content area */}
       <div
-        className="fixed top-8 left-8 right-0 bottom-0 overflow-auto"
+        className="md:fixed md:top-8 md:left-8 md:right-0 md:bottom-0 overflow-auto"
         onScroll={handleScroll}
       >
-        <div className="min-h-full w-full flex flex-col items-center p-20">
+        <div className="md:min-h-full w-full flex flex-col items-center p-4 md:p-20">
           <div
-            className="relative bg-white shadow-lg rounded-md overflow-hidden"
+            className="relative bg-white shadow-lg rounded-md overflow-hidden scale-50 md:scale-100"
             style={{
               width: `${A4_WIDTH_MM * MM_TO_PX}px`,
               height: `${A4_HEIGHT_MM * MM_TO_PX}px`,
             }}
+            id="resume"
           >
             {/* Content with margins */}
             <div className="absolute inset-0 p-8 overflow-hidden">
               {/* Header */}
               <div>
-                <h1 className="font-bold text-3xl mb-1">{meta.name}</h1>
-                <h2 className="tracking-wide text-sm">
-                  {personal.title} |{" "}
+                <h1 className="font-bold text-3xl mb-1 text-black">
+                  {meta.name}
+                </h1>
+                <h2 className="tracking-wide text-sm text-black">
+                  {meta.tagline} |{" "}
                   <a
                     href={`https://${meta.domain}`}
                     className="text-[#ad1d1d] hover:underline"
@@ -55,7 +62,7 @@ export default function ResumePage() {
                 </h2>
                 <div className="prose prose-sm mt-4 text-[#939598]">
                   <p className="text-sm whitespace-pre-wrap">
-                    {personal.intro}
+                    {meta.description}
                   </p>
                 </div>
               </div>

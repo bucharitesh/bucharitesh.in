@@ -21,8 +21,32 @@ export default function DownloadButton({
         return;
       }
 
+      // Create a clone of the element
+      const clone = element.cloneNode(true) as HTMLElement;
+
+      // Create a temporary container with desktop styles
+      const container = document.createElement("div");
+      container.style.position = "absolute";
+      container.style.left = "-9999px";
+      container.style.top = "0";
+      document.body.appendChild(container);
+
+      // Apply desktop styles to clone
+      clone.style.width = "793px"; // A4 width in pixels
+      clone.style.height = "1122px"; // A4 height in pixels
+      clone.style.padding = "32px"; // Equivalent to p-8
+      clone.style.display = "block";
+
+      // Remove any mobile-specific classes and add desktop classes
+      clone.classList.remove("grid-cols-1");
+      clone.querySelector(".grid")?.classList.remove("grid-cols-1");
+      clone.querySelector(".grid")?.classList.add("grid-cols-5");
+
+      // Add clone to temporary container
+      container.appendChild(clone);
+
       // Create canvas with proper A4 dimensions
-      const canvas = await html2canvas(element, {
+      const canvas = await html2canvas(clone, {
         scale: 2, // Higher resolution
         useCORS: true,
         logging: false,
@@ -30,6 +54,9 @@ export default function DownloadButton({
         height: 1122, // A4 height in pixels at 96 DPI
         backgroundColor: "#ffffff",
       });
+
+      // Remove temporary container
+      document.body.removeChild(container);
 
       // Create PDF with A4 dimensions
       const pdf = new jsPDF({
@@ -48,7 +75,7 @@ export default function DownloadButton({
       );
 
       // Save the PDF
-      pdf.save(`${fileName}.pdf`);
+      pdf.save(fileName);
     } catch (error) {
       console.error("Error generating PDF:", error);
     }
@@ -57,7 +84,7 @@ export default function DownloadButton({
   return (
     <button
       onClick={downloadPDF}
-      className="fixed top-4 right-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow-lg transition-colors duration-200"
+      className="hidden md:block fixed z-40 top-12 right-4 lg:top-12 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow-lg transition-colors duration-200"
     >
       Download PDF
     </button>
