@@ -36,7 +36,7 @@ export default async function CollectionPage({ params }) {
     <ScrollArea className="bg-grid" useScrollAreaId>
       <div className="content-wrapper">
         <div className="content container">
-          <div className={cn("mb-6 text-xl font-medium")}>
+          <div className={cn("mb-6 text-4xl font-bold font-ndot55 tracking-widest")}>
             <Balancer as="h1">{currentBookmark.title}</Balancer>
           </div>
           <Suspense fallback={<p>...</p>}>

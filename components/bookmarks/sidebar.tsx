@@ -4,10 +4,34 @@ import { RadioIcon } from "lucide-react";
 
 import { ScrollArea } from "@/components/scroll-area";
 
+import { useKeyPress } from "@/lib/hooks";
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
+import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
-export const SideMenu = ({ children, title, isInner, rss_url }) => {
+const keyCodePathnameMapping = {
+  Digit1: "/",
+  Digit2: "/writing",
+  Digit3: "/journey",
+  Digit4: "/stack",
+  Digit5: "/workspace",
+  Digit6: "/bookmarks",
+};
+
+export const SideMenu = ({ children, title, isInner, rss_url, routeMapping }: any) => {
+  const router = useRouter();
+  const pathname = usePathname();
+
+  function onKeyPress(event) {
+    const key = event.code;
+    const targetPathname = routeMapping[key];
+    if (targetPathname && targetPathname !== pathname)
+      router.push(targetPathname);
+  }
+
+  routeMapping && useKeyPress(onKeyPress, Object.keys(routeMapping));
+
   return (
     <ScrollArea
       className={cn(

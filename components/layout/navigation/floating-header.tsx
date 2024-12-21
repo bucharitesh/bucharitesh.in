@@ -8,19 +8,20 @@ import Balancer from "react-wrap-balancer";
 import { ArrowLeftIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { SCROLL_AREA_ID } from "./scroll-area";
+import { SCROLL_AREA_ID } from "@/components/scroll-area";
+import { cn } from "@/lib/utils";
 
 const MobileDrawer = dynamic(() =>
-  import("@/components/mobile-drawer").then((mod) => mod.MobileDrawer)
+  import("@/components/layout/navigation/mobile-drawer").then((mod) => mod.MobileDrawer)
 );
 
 export const MOBILE_SCROLL_THRESHOLD = 20;
 
 export const FloatingHeader = memo(
   ({
+    className,
     scrollTitle,
     title,
-    goBackLink,
     children,
   }: any) => {
     const [transformValues, setTransformValues] = useState({
@@ -29,6 +30,9 @@ export const FloatingHeader = memo(
     });
     const pathname = usePathname();
     const isWritingPath = pathname.startsWith("/writing");
+
+    const goBack = pathname.split("/").length > 2;
+    const goBackLink = pathname.split("/").slice(0, -1).join("/") || "/";
 
     useEffect(() => {
       const scrollAreaElem = document.querySelector(`#${SCROLL_AREA_ID}`);
@@ -62,11 +66,11 @@ export const FloatingHeader = memo(
     }, [scrollTitle]);
 
     return (
-      <header className="sticky inset-x-0 top-0 z-10 mx-auto flex h-12 w-full shrink-0 items-center overflow-hidden border-b border-b-gray-200 dark:border-b-neutral-800 bg-white dark:bg-neutral-900 text-sm font-medium">
+      <header className={cn("sticky inset-x-0 top-0 z-10 mx-auto flex h-12 w-full shrink-0 items-center overflow-hidden border-b border-b-gray-200 dark:border-b-neutral-800 bg-white dark:bg-neutral-900 text-sm font-medium", className)}>
         <div className="flex size-full items-center px-3">
           <div className="flex w-full items-center justify-between gap-2">
             <div className="flex flex-1 items-center gap-1">
-              {goBackLink ? (
+              {goBack ? (
                 <Button
                   variant="ghost"
                   size="icon"

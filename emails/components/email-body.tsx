@@ -33,7 +33,7 @@ export default function EmailBody({
 
             <Section className="mt-8 z-50">
               <Img
-                src={meta.image.profile}
+                src={meta.image.animated}
                 height="60"
                 alt={meta.name}
                 className="mx-auto my-0 rounded-full bg-white"

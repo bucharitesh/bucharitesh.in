@@ -5,13 +5,11 @@ export default [
     "description": "Learn how to add a subtle, dynamic noise effect to your website background using SVG and CSS.",
     "date": new Date("2024-08-13T00:00:00.000Z"),
     "is_published": false,
-    "type": "blog",
     "tags": [
       "design",
       "react",
       "nextjs"
     ],
-    "video": "https://cdn.rauno.me/spatial-tooltip.mp4",
     "_meta": {
       "filePath": "noisy-effect-background.mdx",
       "fileName": "noisy-effect-background.mdx",
@@ -31,12 +29,10 @@ export default [
     "description": "Discover how to simplify your React forms with the useActionState hook. Learn its basics, implementation with server actions, and advanced use cases in this comprehensive guide.",
     "date": new Date("2024-09-15T00:00:00.000Z"),
     "is_published": false,
-    "type": "blog",
     "tags": [
       "react",
       "nextjs"
     ],
-    "video": "https://cdn.rauno.me/gooey-tooltip.mp4",
     "_meta": {
       "filePath": "use-state-action.mdx",
       "fileName": "use-state-action.mdx",

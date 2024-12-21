@@ -17,6 +17,8 @@ export const meta = {
   image: {
     profile:
       "https://res.cloudinary.com/bucha/image/upload/c_thumb,q_100/bucha_h6yyke.png",
+    animated:
+      "https://res.cloudinary.com/bucha/image/upload/c_thumb,q_100/download_1_ksk2zu.png",
   },
 };
 

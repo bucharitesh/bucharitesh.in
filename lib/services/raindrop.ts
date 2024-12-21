@@ -8,6 +8,9 @@ const options = {
     "Content-Type": "application/json",
     Authorization: `Bearer ${process.env.NEXT_PUBLIC_RAINDROP_ACCESS_TOKEN}`,
   },
+  next: {
+    revalidate: 60 * 60 * 24 * 2, // 2 days
+  },
 };
 
 const RAINDROP_API_URL = "https://api.raindrop.io/rest/v1";

@@ -6,14 +6,14 @@ import { ViewTransitions } from "next-view-transitions";
 import { fontMono, fontNdot55, fontX } from "@/lib/fonts";
 
 import "@/styles/globals.css";
-// import "@/styles/cmdk.scss";
 import "@/styles/mdx.css";
 
-import { Provider } from "../components/provider";
-// import { CommandMenu } from "@/components/command-menu";
 import { auth } from "@/lib/auth";
 import DevTools from "@/components/dev-tools";
-import { Navigation } from "@/components/navigation";
+import Navigation from "@/components/layout/navigation";
+import { Providers } from "@/lib/providers";
+
+// import HedgehogBuddy from '@/components/hedgehog';
 
 export const viewport: Viewport = {
   themeColor: "#1c1917",
@@ -66,7 +66,7 @@ export default async function RootLayout({
           )}
           suppressHydrationWarning
         >
-          <Provider session={session}>
+          <Providers session={session}>
             <main
               vaul-drawer-wrapper=""
               className="relative h-full w-full flex-1 bg-white dark:bg-neutral-900 text-black dark:text-white"
@@ -74,9 +74,10 @@ export default async function RootLayout({
               <Navigation />
               {children}
               {/* <CommandMenu /> */}
+              {/* <HedgehogBuddy /> */}
             </main>
             <DevTools />
-          </Provider>
+          </Providers>
         </body>
       </html>
     </ViewTransitions>

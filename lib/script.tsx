@@ -77,7 +77,7 @@ const CommonJsonLd: WithContext<Organization> = {
   "@context": "https://schema.org",
   "@type": "Organization",
   email: meta.email,
-  image: meta.image.profile,
+  image: meta.image.animated,
   description: meta.description,
   name: meta.name,
   telephone: "+91 93651 80200",

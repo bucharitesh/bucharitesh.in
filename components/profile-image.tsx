@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export const SelfImage = () => (
   <Image
-    src={meta.image.profile}
+    src={meta.image.animated}
     quality={95}
     width={64}
     height={64}

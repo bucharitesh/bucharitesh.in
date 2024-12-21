@@ -1,12 +1,12 @@
 "use client";
 
-import { Post } from "content-collections";
+import { Craft, Post } from "content-collections";
 import { MasonryGrid } from "./masonary-grid";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-export default function PageClient({ posts }: { posts: Post[] }) {
+export default function PageClient({ crafts }: { crafts: Craft[] }) {
   return (
     <MasonryGrid
       breakpoints={{
@@ -15,7 +15,7 @@ export default function PageClient({ posts }: { posts: Post[] }) {
         xl: 3,
       }}
     >
-      {posts.map((item, index) => (
+      {crafts.map((item, index) => (
         <Card
           key={`${item.title}-${index}`}
           title={item.title}
@@ -23,7 +23,6 @@ export default function PageClient({ posts }: { posts: Post[] }) {
           src={item.video}
           type="video"
           craft_type={item.type}
-          // position={index % 3 === 0 ? "top" : "bottom"}
         />
       ))}
     </MasonryGrid>
@@ -170,9 +169,9 @@ export const Card: React.FC<any> = ({
       hover:bg-neutral-200 dark:hover:bg-neutral-700
         "
         >
-          {craft_type === "essay"
-            ? "Read Essay"
-            : craft_type === "demo"
+          {craft_type === "code"
+            ? "Get Code"
+            : craft_type === "component"
               ? "View Prototype"
               : "Read Article"}
           <ArrowRight

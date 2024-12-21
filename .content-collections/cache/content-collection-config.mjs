@@ -13,25 +13,22 @@ var rehypeCodeOptions = {
     dark: "catppuccin-mocha"
   }
 };
-var posts = defineCollection({
-  name: "posts",
-  directory: "content/posts",
+var crafts = defineCollection({
+  name: "crafts",
+  directory: "content/crafts",
   include: "**/*.mdx",
   schema: (z) => ({
     // Required fields
     title: z.string(),
     description: z.string(),
+    type: z.enum(["component", "code", "none"]).default("none").optional(),
     date: z.string(),
-    is_published: z.boolean().default(false),
-    type: z.enum(["none", "demo", "blog", "essay"]),
+    published: z.boolean().default(false),
     // Optional fields
     tags: z.array(z.string()).default([]),
-    video: z.string().nullable().optional(),
     image: z.string().nullable().optional(),
     blurImage: z.string().nullable().optional(),
-    // These will be computed in transform
-    readingTime: z.string().nullable().optional(),
-    body: z.any().nullable().optional()
+    video: z.string().nullable().optional()
   }),
   transform: async (page, context) => {
     try {
@@ -50,12 +47,57 @@ var posts = defineCollection({
         ...page,
         body: compiledBody || null,
         date: new Date(page.date),
+        type: page.type,
         slug: page._meta.path,
         readingTime: calculatedReadingTime || null,
         // Only include image-related fields if they exist
         image: page.image || null,
-        blurImage: page.blurImage || null,
-        video: page.video || null
+        video: page.video || null,
+        blurImage: page.blurImage || null
+      };
+    } catch (error) {
+      console.error(`Error transforming page ${page._meta.path}:`, error);
+      throw error;
+    }
+  }
+});
+var posts = defineCollection({
+  name: "posts",
+  directory: "content/posts",
+  include: "**/*.mdx",
+  schema: (z) => ({
+    // Required fields
+    title: z.string(),
+    description: z.string(),
+    date: z.string(),
+    is_published: z.boolean().default(false),
+    // Optional fields
+    tags: z.array(z.string()).default([]),
+    image: z.string().nullable().optional(),
+    blurImage: z.string().nullable().optional(),
+    // These will be computed in transform
+    readingTime: z.string().nullable().optional(),
+    body: z.any().nullable().optional()
+  }),
+  transform: async (page, context) => {
+    try {
+      let compiledBody = await context.cache(
+        page.content,
+        async () => compileMDX(context, page, {
+          remarkPlugins: [remarkGfm, remarkHeading],
+          rehypePlugins: [[rehypeCode, rehypeCodeOptions]]
+        })
+      );
+      const calculatedReadingTime = readingTime(page.content).text;
+      return {
+        ...page,
+        body: compiledBody || null,
+        date: new Date(page.date),
+        slug: page._meta.path,
+        readingTime: calculatedReadingTime || null,
+        // Only include image-related fields if they exist
+        image: page.image || null,
+        blurImage: page.blurImage || null
       };
     } catch (error) {
       console.error(`Error transforming page ${page._meta.path}:`, error);
@@ -64,7 +106,7 @@ var posts = defineCollection({
   }
 });
 var content_collections_default = defineConfig({
-  collections: [posts]
+  collections: [crafts, posts]
 });
 export {
   content_collections_default as default

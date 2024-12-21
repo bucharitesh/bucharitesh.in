@@ -1,8 +1,8 @@
 import PageClient from "./page-client";
-import { allPosts } from "content-collections";
+import { allCrafts } from "content-collections";
 
 export default async function Page() {
-  const posts = await allPosts;
+  const crafts = await allCrafts;
   
-  return <PageClient posts={posts} />;
+  return <PageClient crafts={crafts} />;
 }

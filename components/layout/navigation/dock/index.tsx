@@ -3,18 +3,27 @@
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
-import { Dock, DockIcon, DockIconActiveDot } from "./floating-dock";
+import {
+  Dock,
+  DockIcon,
+  DockIconActiveDot,
+} from "@/components/shared/compoenents/floating-dock";
 import { ModeToggle } from "./mode-toggle";
 import { usePathname } from "next/navigation";
 import { DockConfig } from "@/lib/config";
 import { cn } from "@/lib/utils";
+// import { signIn, signOut, useSession } from "next-auth/react";
+// import Image from "next/image";
+// import { Icons } from "@/components/icons";
 
 const DOCK_AUTOHIDE_TIMEOUT = 10_000;
 
-function BottomDock() {
+function BottomDock({ className }: { className: string }) {
   const [active, setActive] = useState(true);
   const pathname = usePathname();
   const timeoutRef = useRef<NodeJS.Timeout>();
+
+  // const { data: session } = useSession();
 
   const startTimeout = () => {
     clearTimeout(timeoutRef.current); // Clear any existing timeout
@@ -37,7 +46,10 @@ function BottomDock() {
       onMouseLeave={() => {
         startTimeout(); // Start timeout when mouse leaves
       }}
-      className="fixed bottom-0 h-[clamp(80px,10vh,200px)] w-full z-40 left-1/2 -translate-x-1/2"
+      className={cn(
+        "fixed bottom-0 h-[clamp(80px,10vh,200px)] w-full z-40 left-1/2 -translate-x-1/2",
+        className
+      )}
     >
       <div className="absolute top-0 left-0 w-full h-full backdrop-blur [mask-image:linear-gradient(to_top,#000_25%,transparent)] [-webkit-mask-image:linear-gradient(to_top,#000_25%,transparent)]"></div>
       <Dock
@@ -67,13 +79,24 @@ function BottomDock() {
         <DockIcon title={"Theme"}>
           <ModeToggle />
         </DockIcon>
-        {/* {session?.user?.email && (
-          <DockIcon title={session?.user?.name}>
-            <Link href={"/guestbook"}>
-              <Image src={session?.user?.image} alt="Guestbook" fill />
-            </Link>
-          </DockIcon>
-        )} */}
+
+        {/* <DockIcon
+          onMouseUp={async () => {
+            if (session?.user?.email) {
+              await signOut();
+            } else {
+              await signIn("github");
+            }
+          }}
+          title={session?.user?.name ?? "Login"}
+        >
+          {session?.user?.email ? (
+            <Image src={session?.user?.image} alt="Guestbook" fill />
+          ) : (
+            <Icons.signin className="size-4" />
+          )}
+        </DockIcon> */}
+
         {/* <DockFolder title="Guestbook">
           <DockIcon title="Guestbook"></DockIcon>
         </DockFolder> */}

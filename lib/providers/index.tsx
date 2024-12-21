@@ -5,7 +5,7 @@ import { SessionProvider } from "next-auth/react";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { EasterEggProvider } from "./easter-egg-provider";
 
-export function Provider({
+export function Providers({
   children,
   session,
   ...props

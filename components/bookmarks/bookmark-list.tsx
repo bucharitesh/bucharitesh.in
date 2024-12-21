@@ -31,11 +31,25 @@ export const BookmarkList = ({ initialData, id }) => {
     if (pageIndex > 0) fetchInfiniteData();
   }, [pageIndex, fetchInfiniteData]);
 
+  const getChunks = useCallback(() => {
+    const firstChunk: any = [];
+    const lastChunk: any = [];
+    data.forEach((element, index) => {
+      if (index % 2 === 0) {
+        firstChunk.push(element);
+      } else {
+        lastChunk.push(element);
+      }
+    });
+    return [[...firstChunk], [...lastChunk]];
+  }, [data]);
+
+  const chunks = useMemo(() => getChunks(), [getChunks]);
   const isReachingEnd = data?.length >= initialData?.count;
 
   return (
     <div>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-4 lg:hidden">
         {data.map((bookmark, bookmarkIndex) => {
           return (
             <div key={`bookmark_${bookmarkIndex}`} className={cn("grid gap-4")}>
@@ -48,15 +62,10 @@ export const BookmarkList = ({ initialData, id }) => {
           );
         })}
       </div>
-      {/* <div className="hidden @lg:grid @lg:grid-cols-2 @lg:gap-4">
+      <div className="hidden lg:grid lg:grid-cols-2 lg:gap-4">
         {chunks.map((chunk, chunkIndex) => {
           return (
-            <div
-              key={`chunk_${chunkIndex}`}
-              className={cn(
-                "grid gap-4",
-              )}
-            >
+            <div key={`chunk_${chunkIndex}`} className={cn("grid gap-4")}>
               {chunk.map((bookmark, bookmarkIndex) => {
                 return (
                   <BookmarkCard
@@ -69,7 +78,7 @@ export const BookmarkList = ({ initialData, id }) => {
             </div>
           );
         })}
-      </div> */}
+      </div>
       {data.length > 0 ? (
         <div className="mt-8 flex min-h-16 items-center justify-center text-sm lg:mt-12">
           {!isReachingEnd ? (

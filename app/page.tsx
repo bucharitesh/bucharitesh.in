@@ -40,10 +40,19 @@ export default async function Page() {
 
         <section className="mt-12">
           <h2 className="mb-3 text-lg font-medium">About</h2>
-          <p>
-            What I'm learning about shipping great products, becoming a better
-            developer, and growing a career in tech.
-          </p>
+          <div className="space-y-4 text-gray-800 dark:text-gray-200">
+            <p>
+              I’m a senior frontend engineer based in India, specializing in
+              building pixel-perfect, engaging, and accessible digital
+              experiences.
+            </p>
+            <p>
+              As a passionate engineer and also a total nerd, I enjoy building
+              software in the sweet spot where design, problem-solving, and
+              engineering meet — creating things that not only look good but are
+              also easy to use and well-built under the hood.
+            </p>
+          </div>
         </section>
 
         <section className="mt-12">
