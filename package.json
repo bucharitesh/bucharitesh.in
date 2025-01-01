@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "dev": "prisma generate && next dev --port 8888",
+    "dev": "prisma generate && next dev --port 6969",
     "prisma:dev": "prisma generate && prisma studio --browser none",
     "email:dev": "email dev --port 3333",
     "prebuild": "content-collections build",

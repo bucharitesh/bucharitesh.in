@@ -73,6 +73,7 @@ module.exports = {
         marker: "marker 4s ease-out infinite",
         plane: "plane 30s linear infinite",
         "plane-shadow": "plane-shadow 30s linear infinite",
+        "line-shadow": "line-shadow 15s linear infinite",
       },
       keyframes: ({ theme }) => ({
         "slide-up-fade": {
@@ -127,6 +128,14 @@ module.exports = {
         slide: {
           to: {
             transform: "translate(calc(100cqw - 100%), 0)",
+          },
+        },
+        "line-shadow": {
+          "0%": {
+            transform: "translateX(0)",
+          },
+          "100%": {
+            transform: "translateX(100%)",
           },
         },
         "border-beam": {

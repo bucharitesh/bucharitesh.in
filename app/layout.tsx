@@ -12,6 +12,7 @@ import { auth } from "@/lib/auth";
 import DevTools from "@/components/dev-tools";
 import Navigation from "@/components/layout/navigation";
 import { Providers } from "@/lib/providers";
+import { Seasons } from "@/components/seasons";
 
 // import HedgehogBuddy from '@/components/hedgehog';
 
@@ -67,6 +68,7 @@ export default async function RootLayout({
           suppressHydrationWarning
         >
           <Providers session={session}>
+            <Seasons />
             <main
               vaul-drawer-wrapper=""
               className="relative h-full w-full flex-1 bg-white dark:bg-neutral-900 text-black dark:text-white"

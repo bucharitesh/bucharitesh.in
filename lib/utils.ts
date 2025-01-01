@@ -16,7 +16,7 @@ export function cn(...inputs: ClassValue[]) {
 
 export function getAPI() {
   if (process.env.NODE_ENV === "development") {
-    return "http://localhost:8888";
+    return "http://localhost:6969";
   }
 
   return "https://bucharitesh.in";
@@ -184,3 +184,27 @@ export function formatTimeAgo(date: Date): string {
  * @returns A boolean value indicating whether the current environment is set to development mode.
  */
 export const isDevelopment = process.env.NODE_ENV === "development";
+
+/**
+ * Determines the current season based on the current month.
+ * @returns A string representing the current season ("winter", "rainy", "summer", "fall", or "none").
+ */
+export type SeasonsEffect = "winter" | "rainy" | "summer" | "fall" | "none";
+
+/**
+ * Determines the current season based on the current month.
+ * @returns A string representing the current season ("winter", "rainy", "summer", "fall", or "none").
+ */
+export const getCurrentSeason = (): SeasonsEffect => {
+  const month = new Date().getMonth(); // 0-11
+
+  // Winter: December (11), January (0), February (1)
+  if (month === 11 || month === 0 || month === 1) return "winter";
+  // Spring: March (2), April (3), May (4)
+  if (month >= 2 && month <= 4) return "rainy";
+  // Summer: June (5), July (6), August (7)
+  if (month === 5 || month === 6 || month === 7) return "summer";
+  // Fall: September (8), October (9), November (10)
+  if (month >= 8 && month <= 10) return "fall";
+  return "none";
+};

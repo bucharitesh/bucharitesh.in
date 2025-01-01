@@ -6,7 +6,6 @@ import { meta } from "@/lib/config";
 import { A4_HEIGHT_MM, A4_WIDTH_MM, MM_TO_PX, Ruler } from "./ruler";
 import DownloadButton from "./download-button";
 
-
 export default function ResumePage() {
   const { experience, education, skills } = resumeData;
   const [scrollX, setScrollX] = useState(0);
@@ -16,7 +15,7 @@ export default function ResumePage() {
     const target = e.target as HTMLDivElement;
     setScrollX(target.scrollLeft);
     setScrollY(target.scrollTop);
-  };  
+  };
 
   return (
     <div className="fixed inset-0 bg-neutral-100 dark:bg-neutral-500/40">
@@ -24,11 +23,12 @@ export default function ResumePage() {
       <DownloadButton contentId="resume" fileName="resume.pdf" />
 
       {/* Corner square */}
-      <div className="hidden z-[21] lg:block fixed top-0 left-0 w-8 h-8 bg-white dark:bg-neutral-800 border-b border-r border-neutral-200 dark:border-neutral-700" />
+      <div className="hidden z-[21] lg:block fixed top-0 left-0 w-8 h-8 border-r border-b" />
 
       {/* Rulers */}
       <Ruler orientation="horizontal" scrollPosition={scrollX} />
       <Ruler orientation="vertical" scrollPosition={scrollY} />
+      <MarginGuide />
 
       {/* Content area */}
       <div
@@ -37,7 +37,7 @@ export default function ResumePage() {
       >
         <div className="md:min-h-full w-full flex flex-col items-center p-4 md:p-20">
           <div
-            className="relative bg-white shadow-lg rounded-md overflow-hidden scale-50 md:scale-100"
+            className="relative bg-white shadow-lg rounded-md overflow-hidden scale-50 md:scale-100 border border-dotted border-neutral-400"
             style={{
               width: `${A4_WIDTH_MM * MM_TO_PX}px`,
               height: `${A4_HEIGHT_MM * MM_TO_PX}px`,
@@ -159,3 +159,8 @@ export default function ResumePage() {
     </div>
   );
 }
+
+
+export const MarginGuide = () => {
+  return <div className="absolute inset-0 border border-dotted border-neutral-400" />;
+};

@@ -1,41 +1,27 @@
 import { meta } from "@/lib/config";
 import Image from "next/image";
+import { Icons } from "./icons";
 
 export const SelfImage = () => (
-  <Image
-    src={meta.image.animated}
-    quality={95}
-    width={64}
-    height={64}
-    priority={true}
-    className="rounded-full bg-white"
-    alt={`A photo of ${meta.name}`}
-  />
+    <Image
+      src={meta.image.animated}
+      quality={95}
+      width={64}
+      height={64}
+      priority={true}
+      className="rounded-full bg-white"
+      alt={`A photo of ${meta.name}`}
+    />
 );
 
 export const ProfileImage = () => {
   return (
-    <div className="group transform rounded-full bg-gradient-to-tl from-primary/60 to-primary-400/60 p-0.5 shadow-lg transition ease-out hover:scale-105 hover:from-primary hover:to-primary-400 hover:shadow-primary/25 active:translate-y-px">
-      <div className="h-[36px] w-[36px] rounded-full p-px transition duration-300 group-hover:scale-105">
-        <SelfImage />
-      </div>
-    </div>
-  );
-};
-
-export const ProfileImageLarge = () => {
-  return (
-    <div className="relative">
-      {/* Outer ring */}
-      <div className="absolute inset-0 rounded-full bg-gradient-to-tl from-primary/60 to-primary-400/60 ring-[10px] ring-primary/10 animate-[pulse_4s_ease-in-out_infinite]"></div>
-
-      {/* Inner ring */}
-      <div className="absolute inset-0 rounded-full bg-gradient-to-tl from-primary/60 to-primary-400/60 ring-[5px] ring-primary/50 animate-[pulse_2s_ease-in-out_infinite]"></div>
-
-      {/* Image container */}
-      <div className="relative rounded-full">
-        <SelfImage />
-      </div>
+    <div
+    className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full flex-shrink-0"
+    style={{ aspectRatio: "1 / 1" }}
+  >
+      <Icons.winter_hat className="absolute -top-2/3 left-3 h-14 w-14 sm:h-16 sm:w-16" />
+      <SelfImage />
     </div>
   );
 };

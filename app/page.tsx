@@ -4,7 +4,7 @@ import { Metadata } from "next/types";
 import MapLocation from "@/components/shared/compoenents/map";
 import ViewMagnifier from "@/components/shared/compoenents/view-magnifier";
 import Info from "@/components/home/info";
-import { SelfImage } from "@/components/profile-image";
+import { ProfileImage } from "@/components/profile-image";
 
 export const metadata: Metadata = {
   title: meta.tagline,
@@ -21,12 +21,7 @@ export default async function Page() {
       <Info show={["time", "screen"]} />
       <div className="layout-sm relative z-10 grid gap-y-2 px-4 pt-12 xl:layout-xl xl:gap-x-9 xl:px-0 [&>*]:col-start-2 xl:[&>*]:col-start-3">
         <header className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
-          <div
-            className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden flex-shrink-0"
-            style={{ aspectRatio: "1 / 1" }}
-          >
-            <SelfImage />
-          </div>
+          <ProfileImage />
           <div>
             <h1 className="text-base sm:text-l">
               <span className="font-bold">Hi, I am Ritesh.</span>{" "}

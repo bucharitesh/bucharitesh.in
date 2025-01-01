@@ -24,11 +24,11 @@ export const Ruler: React.FC<{
     <div className="hidden relative lg:block z-20">
       {/* Ruler background */}
       <div
-        className={`fixed bg-white dark:bg-neutral-800 ${
+        className={`fixed ${
           isHorizontal
             ? "left-8 right-0 top-0 h-8 border-b"
             : "left-0 top-8 bottom-0 w-8 border-r"
-        } border-neutral-200 dark:border-neutral-700`}
+        }`}
         style={
           {
             ...rulerStyles,
