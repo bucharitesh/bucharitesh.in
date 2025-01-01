@@ -15,7 +15,7 @@ const Page = () => {
 
 export default Page
 
-export function LineShadowText({
+function LineShadowText({
   text = "SHADOW",
   shadowColor = "black",
   className,
