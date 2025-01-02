@@ -10,7 +10,7 @@ import "@/styles/mdx.css";
 
 import { auth } from "@/lib/auth";
 import DevTools from "@/components/dev-tools";
-import Navigation from "@/components/layout/navigation";
+import Navigation from "@/components/navigation";
 import { Providers } from "@/lib/providers";
 import { Seasons } from "@/components/seasons";
 
@@ -60,7 +60,7 @@ export default async function RootLayout({
       <html lang="en" suppressHydrationWarning>
         <body
           className={cn(
-            "font-x overscroll-y-none z-0 h-screen w-screen antialiased selection:bg-red-400/90 selection:text-white",
+            "font-x overscroll-y-none z-0 h-screen w-screen antialiased selection:bg-blue-400/90 selection:text-white",
             fontX.variable,
             fontMono.variable,
             fontNdot55.variable

@@ -32,7 +32,7 @@ export function Snowfall({ enabled = true }: { enabled?: boolean }) {
       const x = Math.random() * width;
       const size = Math.random() * 4 + 3; // Increased size: 3-7px
       const delay = Math.random() * 2;
-      const duration = Math.random() * 3 + 6; // Slower fall: 6-9s
+      const duration = Math.random() * 3 + 0; // Slower fall: 6-9s
 
       setSnowflakes((prev) => [...prev, { id, x, size, delay, duration }]);
 

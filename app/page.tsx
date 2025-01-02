@@ -1,7 +1,7 @@
 import { meta } from "@/lib/config";
 import { COMMON_SCRIPT_ORG } from "@/lib/script";
 import { Metadata } from "next/types";
-import MapLocation from "@/components/shared/compoenents/map";
+import MapLocation from "@/components/home/map";
 import ViewMagnifier from "@/components/shared/compoenents/view-magnifier";
 import Info from "@/components/home/info";
 import { ProfileImage } from "@/components/profile-image";
@@ -25,9 +25,10 @@ export default async function Page() {
           <div>
             <h1 className="text-base sm:text-l">
               <span className="font-bold">Hi, I am Ritesh.</span>{" "}
-              <span className={`font-normal dark:text-gray-500 text-gray-600`}>
-                What I'm learning about shipping great products, becoming a
-                better developer, and growing a career in tech.
+              <span
+                className={`font-normal text-neutral-800 dark:text-neutral-300/80`}
+              >
+                {meta.description}
               </span>
             </h1>
           </div>
@@ -35,7 +36,7 @@ export default async function Page() {
 
         <section className="mt-12">
           <h2 className="mb-3 text-lg font-medium">About</h2>
-          <div className="space-y-4 text-gray-800 dark:text-gray-200">
+          <div className="space-y-4 text-neutral-800 dark:text-neutral-300/80">
             <p>
               I’m a senior frontend engineer based in India, specializing in
               building pixel-perfect, engaging, and accessible digital

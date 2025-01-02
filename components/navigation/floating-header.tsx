@@ -12,18 +12,15 @@ import { SCROLL_AREA_ID } from "@/components/scroll-area";
 import { cn } from "@/lib/utils";
 
 const MobileDrawer = dynamic(() =>
-  import("@/components/layout/navigation/mobile-drawer").then((mod) => mod.MobileDrawer)
+  import("@/components/navigation/mobile-drawer").then(
+    (mod) => mod.MobileDrawer
+  )
 );
 
 export const MOBILE_SCROLL_THRESHOLD = 20;
 
 export const FloatingHeader = memo(
-  ({
-    className,
-    scrollTitle,
-    title,
-    children,
-  }: any) => {
+  ({ className, scrollTitle, title, children }: any) => {
     const [transformValues, setTransformValues] = useState({
       translateY: 0,
       opacity: scrollTitle ? 0 : 1,
@@ -43,12 +40,10 @@ export const FloatingHeader = memo(
         const translateY = Math.max(100 - scrollY, 0);
         const opacity = Math.min(
           Math.max(
-            (
-              (scrollY -
-                MOBILE_SCROLL_THRESHOLD *
-                  (MOBILE_SCROLL_THRESHOLD / (scrollY ** 2 / 100))) /
-              100
-            ),
+            (scrollY -
+              MOBILE_SCROLL_THRESHOLD *
+                (MOBILE_SCROLL_THRESHOLD / (scrollY ** 2 / 100))) /
+              100,
             0
           ),
           1
@@ -66,7 +61,12 @@ export const FloatingHeader = memo(
     }, [scrollTitle]);
 
     return (
-      <header className={cn("sticky inset-x-0 top-0 z-10 mx-auto flex h-12 w-full shrink-0 items-center overflow-hidden border-b border-b-gray-200 dark:border-b-neutral-800 bg-white dark:bg-neutral-900 text-sm font-medium", className)}>
+      <header
+        className={cn(
+          "sticky inset-x-0 top-0 z-10 mx-auto flex h-12 w-full shrink-0 items-center overflow-hidden border-b border-b-gray-200 dark:border-b-neutral-800 bg-white dark:bg-neutral-900 text-sm font-medium",
+          className
+        )}
+      >
         <div className="flex size-full items-center px-3">
           <div className="flex w-full items-center justify-between gap-2">
             <div className="flex flex-1 items-center gap-1">

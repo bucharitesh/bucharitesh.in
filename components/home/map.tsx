@@ -319,6 +319,128 @@ const WeatherInfo = ({ isNight, isRaining }) => (
 );
 
 // Main component
+// const Map = () => {
+//   const [isNight, setIsNight] = useState(false);
+//   const [isRaining, setIsRaining] = useState(false);
+//   const [nightIntensity, setNightIntensity] = useState(0);
+//   const [rainIntensity, setRainIntensity] = useState(0);
+
+//   useEffect(() => {
+//     let interval;
+//     if (isNight && nightIntensity < 1) {
+//       interval = setInterval(() => {
+//         setNightIntensity((prev) => Math.min(prev + TRANSITION_SPEED, 1));
+//       }, INTENSITY_INTERVAL);
+//     } else if (!isNight && nightIntensity > 0) {
+//       interval = setInterval(() => {
+//         setNightIntensity((prev) => Math.max(prev - TRANSITION_SPEED, 0));
+//       }, INTENSITY_INTERVAL);
+//     }
+//     return () => clearInterval(interval);
+//   }, [isNight, nightIntensity]);
+
+//   useEffect(() => {
+//     let interval;
+//     if (isRaining && rainIntensity < 1) {
+//       interval = setInterval(() => {
+//         setRainIntensity((prev) => Math.min(prev + TRANSITION_SPEED, 1));
+//       }, INTENSITY_INTERVAL);
+//     } else if (!isRaining && rainIntensity > 0) {
+//       interval = setInterval(() => {
+//         setRainIntensity((prev) => Math.max(prev - TRANSITION_SPEED, 0));
+//       }, INTENSITY_INTERVAL);
+//     }
+//     return () => clearInterval(interval);
+//   }, [isRaining, rainIntensity]);
+
+//   useEffect(() => {
+//     const interval = setInterval(() => {
+//       setIsNight((prev) => !prev);
+//       setIsRaining(Math.random() < 0.3);
+//     }, WEATHER_CYCLE_DURATION);
+//     return () => clearInterval(interval);
+//   }, []);
+
+//   return (
+//     <motion.div
+//       initial={{ scale: 1.3 }}
+//       animate={{ scale: 1 }}
+//       transition={{ duration: 0.5 }}
+//       className="relative h-fit w-full overflow-hidden rounded-xl"
+//     >
+//       <motion.img
+//         initial={{ scale: 1.1 }}
+//         animate={{ scale: 1 }}
+//         transition={{ duration: 0.8, ease: "easeOut" }}
+//         width="100%"
+//         height="100%"
+//         src="/assets/map/map.webp"
+//         alt="Map with marker of Bengaluru, India"
+//         draggable="false"
+//         className="rounded-xl relative z-10"
+//       />
+
+//       {/* Night effects */}
+//       <motion.div
+//         className="absolute inset-0 bg-[#0A1431] pointer-events-none z-[21]"
+//         animate={{ opacity: nightIntensity * 0.75 }}
+//         transition={{ duration: 1, ease: "easeInOut" }}
+//       />
+//       <motion.div
+//         className="absolute inset-0 pointer-events-none z-[22]"
+//         animate={{ opacity: nightIntensity * 0.4 }}
+//         transition={{ duration: 1, ease: "easeInOut" }}
+//         style={{
+//           background:
+//             "linear-gradient(to bottom, rgba(10, 20, 49, 0) 0%, rgba(10, 20, 49, 0.8) 100%)",
+//         }}
+//       />
+//       <motion.div
+//         className="absolute inset-0 pointer-events-none z-[22]"
+//         animate={{ opacity: nightIntensity * 0.15 }}
+//         transition={{ duration: 1, ease: "easeInOut" }}
+//         style={{
+//           backdropFilter: "blur(1px)",
+//           background:
+//             "radial-gradient(circle at center, rgba(147, 197, 253, 0.1) 0%, transparent 70%)",
+//         }}
+//       />
+
+//       {[...Array(5)].map((_, index) => (
+//         <Cloud key={index} delay={index * 2} />
+//       ))}
+
+//       {rainIntensity > 0 && (
+//         <div className="absolute inset-0 overflow-hidden z-30">
+//           {[...Array(Math.floor(100 * rainIntensity))].map((_, i) => (
+//             <RainDrop key={i} intensity={rainIntensity} />
+//           ))}
+//         </div>
+//       )}
+
+//       {[...Array(5)].map((_, index) => (
+//         <Plane key={index} delay={index * 2} />
+//       ))}
+
+//       <WeatherInfo
+//         isNight={nightIntensity > 0.5}
+//         isRaining={rainIntensity > 0.5}
+//       />
+
+//       <motion.a
+//         href="https://en.wikipedia.org/wiki/Bangalore"
+//         target="_blank"
+//         rel="noreferrer"
+//         className="absolute bottom-0 right-0 mb-3 mr-3 select-none rounded-md border border-neutral-300 bg-neutral-50 px-2 py-1.5 text-[0.6rem] text-neutral-600 z-[21]"
+//         whileHover={{ scale: 1.05 }}
+//         whileTap={{ scale: 0.95 }}
+//       >
+//         Bengaluru, India
+//       </motion.a>
+//     </motion.div>
+//   );
+// };
+
 const Map = () => {
   const [isNight, setIsNight] = useState(false);
   const [isRaining, setIsRaining] = useState(false);
@@ -379,22 +501,6 @@ const Map = () => {
         draggable="false"
         className="rounded-xl relative z-10"
       />
-
-      {/* Night effects */}
-      <motion.div
-        className="absolute inset-0 bg-[#0A1431] pointer-events-none z-[21]"
-        animate={{ opacity: nightIntensity * 0.75 }}
-        transition={{ duration: 1, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute inset-0 pointer-events-none z-[22]"
-        animate={{ opacity: nightIntensity * 0.4 }}
-        transition={{ duration: 1, ease: "easeInOut" }}
-        style={{
-          background:
-            "linear-gradient(to bottom, rgba(10, 20, 49, 0) 0%, rgba(10, 20, 49, 0.8) 100%)",
-        }}
-      />
       <motion.div
         className="absolute inset-0 pointer-events-none z-[22]"
         animate={{ opacity: nightIntensity * 0.15 }}
@@ -405,38 +511,6 @@ const Map = () => {
             "radial-gradient(circle at center, rgba(147, 197, 253, 0.1) 0%, transparent 70%)",
         }}
       />
-
-      {[...Array(5)].map((_, index) => (
-        <Cloud key={index} delay={index * 2} />
-      ))}
-
-      {rainIntensity > 0 && (
-        <div className="absolute inset-0 overflow-hidden z-30">
-          {[...Array(Math.floor(100 * rainIntensity))].map((_, i) => (
-            <RainDrop key={i} intensity={rainIntensity} />
-          ))}
-        </div>
-      )}
-
-      {[...Array(5)].map((_, index) => (
-        <Plane key={index} delay={index * 2} />
-      ))}
-
-      <WeatherInfo
-        isNight={nightIntensity > 0.5}
-        isRaining={rainIntensity > 0.5}
-      />
-
-      <motion.a
-        href="https://en.wikipedia.org/wiki/Bangalore"
-        target="_blank"
-        rel="noreferrer"
-        className="absolute bottom-0 right-0 mb-3 mr-3 select-none rounded-md border border-neutral-300 bg-neutral-50 px-2 py-1.5 text-[0.6rem] text-neutral-600 z-[21]"
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        Bengaluru, India
-      </motion.a>
     </motion.div>
   );
 };

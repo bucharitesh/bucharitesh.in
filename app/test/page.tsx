@@ -1,52 +1,56 @@
-"use client";
-
-import { cn } from "@/lib/utils";
+import { SplitTextEffect } from "@/components/core/split-text-effect";
 
 const Page = () => {
   return (
-    <div>
-      <LineShadowText
-        text="half"
-        className="italic tracking-tighter font-bold"
-      />
+    <div className="grid grid-cols-1 p-20 gap-4 max-w-4xl mx-auto">
+      <div className="h-96">
+        <SplitTextEffect
+          text={
+            <>
+              Security that <br /> scales with you.
+            </>
+          }
+          fill={0.45}
+          primaryColor="black"
+          accentColor="#006efe"
+          backgroundColor="black"
+          gradientFrom="#00418c"
+          gradientTo="transparent"
+        />
+      </div>
+
+      <div className="h-72">
+        <SplitTextEffect
+          text="Grow Together"
+          fill={0.5}
+          primaryColor="#1a472a"
+          accentColor="#2ecc71"
+          backgroundColor="black"
+          gradientFrom="#2ecc71"
+          gradientTo="transparent"
+        />
+      </div>
+
+      <div className="h-72">
+        <SplitTextEffect
+          text={
+            <>
+              MAKE AN
+              <br />
+              IMPACT
+            </>
+          }
+          primaryColor="#000"
+          accentColor="#ed8936"
+          backgroundColor="#0f0f0f"
+          gradientFrom="#000000"
+          gradientTo="transparent"
+          className="font-black tracking-tight"
+        />
+      </div>
     </div>
   );
 }
 
 export default Page
 
-function LineShadowText({
-  text = "SHADOW",
-  shadowColor = "black",
-  className,
-}: {
-  text?: string;
-  shadowColor?: string;
-  className?: string;
-}) {
-  return (
-    <span
-      style={{ "--shadow-color": shadowColor } as React.CSSProperties}
-      className={cn(
-        "relative inline-flex",
-
-        // positioning
-        "after:content-[attr(data-text)] after:absolute after:top-[0.04em] after:z-[-1] after:left-[0.04em]",
-
-        // color
-        "after:bg-[linear-gradient(45deg,transparent_45%,var(--shadow-color)_45%,var(--shadow-color)_55%,transparent_0)]",
-
-        // text
-        "after:bg-[length:0.06em_0.06em] after:bg-clip-text after:text-transparent",
-
-        // animation
-        "after:animate-line-shadow",
-
-        className
-      )}
-      data-text={text}
-    >
-      {text}
-    </span>
-  );
-}

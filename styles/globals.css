@@ -2,30 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @layer components {
-  .valkyrie {
-    box-shadow:
-      1px 1px 1px hsl(24deg 16% 0% / 0.03),
-      10px 10px 17px -1px hsl(24deg 16% 0% / 0.03),
-      50px 50px 80px -3px hsl(24deg 16% 0% / 0.03);
-    border: 1px solid transparent;
-    background:
-      linear-gradient(
-          160deg,
-          theme("colors.gray.900" / 80%) 20%,
-          theme("colors.gray.900" / 90%) 60%
-        )
-        padding-box,
-      radial-gradient(
-          at left top,
-          theme("colors.primary" / 25%),
-          20%,
-          theme("colors.primary" / 7%) 50%
-        )
-        border-box;
-  }
-} */
-
 @media (prefers-reduced-motion: reduce) {
   .cursor,
   .caret {
@@ -36,16 +12,6 @@
     opacity: 1 !important;
   }
 }
-
-/* @layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-} */
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -120,19 +86,6 @@ html {
 body {
   @apply text-black dark:text-white;
 }
-
-#__next {
-  @apply min-h-dynamic-screen;
-}
-
-/* @layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-} */
 
 @layer components {
   .content-wrapper {

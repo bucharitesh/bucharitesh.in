@@ -15,7 +15,7 @@ export function Providers({
 }) {
   return (
     <SessionProvider session={session}>
-      <NextThemesProvider attribute="class" defaultTheme="light" {...props}>
+      <NextThemesProvider attribute="class" defaultTheme="system" enableSystem {...props}>
         <EasterEggProvider>{children}</EasterEggProvider>
       </NextThemesProvider>
     </SessionProvider>
