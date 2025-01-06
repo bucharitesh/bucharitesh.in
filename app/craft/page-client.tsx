@@ -25,11 +25,12 @@ export default function PageClient({ crafts }: { crafts: Craft[] }) {
             year: "numeric",
           })}
           href={`/craft/${item.slug}`}
-          src={item.video}
+          src={item.video ? item.video : item.image}
+          type={item.video ? "video" : "image"}
           blurImage={item.blurImage}
-          type="video"
           craft_type={item.type}
           theme={item.theme}
+          aspectRatio={item.aspect_ratio}
         />
       ))}
     </MasonryGrid>
@@ -40,24 +41,55 @@ export interface MediaContentProps {
   src: string;
   title: string;
   type?: "image" | "video";
-  aspectRatio?: string;
-  width?: number;
-  height?: number;
+  aspectRatio?: number;
 }
 
-export const Card: React.FC<any> = ({
+export const Card = ({
   title,
   date,
   src,
   href,
-  width,
   craft_type,
   theme,
-  height,
+  aspectRatio = 4 / 3,
   position = "bottom",
   className = "",
   blurImage,
-}: any) => {
+  type = "video",
+}) => {
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const isVideo = type === "video";
+  const showContent = isVideo ? isVideoLoaded : isImageLoaded;
+
+  useEffect(() => {
+    if (!isVideo) return;
+
+    const videoElement = videoRef.current;
+    if (!videoElement) return;
+
+    const handleLoaded = () => {
+      if (videoElement.readyState >= 3) {
+        setIsVideoLoaded(true);
+      }
+    };
+
+    videoElement.addEventListener("loadeddata", handleLoaded);
+    videoElement.addEventListener("canplay", handleLoaded);
+    videoElement.addEventListener("playing", handleLoaded);
+
+    if (videoElement.readyState >= 3) {
+      handleLoaded();
+    }
+
+    return () => {
+      videoElement.removeEventListener("loadeddata", handleLoaded);
+      videoElement.removeEventListener("canplay", handleLoaded);
+      videoElement.removeEventListener("playing", handleLoaded);
+    };
+  }, [isVideo]);
+
   return (
     <div
       className={cn(
@@ -77,19 +109,52 @@ export const Card: React.FC<any> = ({
           }
         )}
       >
-        <div
-          className="relative"
-          style={{ aspectRatio: `${width}/${height}` }}
-        >
-          <video
-            src={src}
-            autoPlay
-            loop
-            muted
-            playsInline
-            poster={blurImage}
-            className="w-full h-full object-cover"
-          />
+        <div className="relative w-full" style={{ aspectRatio: aspectRatio }}>
+          {/* Blur image - only show for videos */}
+          {isVideo && (
+            <img
+              aria-hidden="true"
+              className={cn(
+                "absolute inset-0 w-full h-full transition-opacity duration-300",
+                {
+                  "opacity-0": showContent,
+                  "opacity-100": !showContent,
+                }
+              )}
+              src={blurImage}
+              style={{
+                filter: "blur(32px)",
+                transform: "scale(1) translateZ(0px)",
+              }}
+              alt=""
+            />
+          )}
+
+          {/* Main content: either video or image */}
+          {isVideo ? (
+            <video
+              ref={videoRef}
+              src={src}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className={cn(
+                "absolute inset-0 w-full h-full object-cover transition-opacity duration-300",
+                {
+                  "opacity-0": !isVideoLoaded,
+                  "opacity-100": isVideoLoaded,
+                }
+              )}
+            />
+          ) : (
+            <img
+              src={src}
+              onLoad={() => setIsImageLoaded(true)}
+              className="absolute inset-0 w-full h-full object-cover"
+              alt={title}
+            />
+          )}
         </div>
 
         {/* Title and metadata */}
@@ -102,16 +167,26 @@ export const Card: React.FC<any> = ({
             }
           )}
         >
-          <div className={cn("text-neutral-900 dark:text-neutral-100 whitespace-nowrap overflow-ellipsis overflow-hidden text-sm", {
-            "text-neutral-100": theme === "light",
-            "text-neutral-900": theme === "dark",
-          })}>
+          <div
+            className={cn(
+              "whitespace-nowrap overflow-ellipsis overflow-hidden text-sm",
+              {
+                "text-neutral-100": theme === "light",
+                "text-neutral-900": theme === "dark",
+              }
+            )}
+          >
             {title}
           </div>
-          <div className={cn("text-neutral-400 dark:text-neutral-400 whitespace-nowrap overflow-ellipsis overflow-hidden text-sm", {
-            "text-neutral-400": theme === "light",
-            "text-neutral-100": theme === "dark",
-          })}>
+          <div
+            className={cn(
+              "whitespace-nowrap overflow-ellipsis overflow-hidden text-sm",
+              {
+                "text-neutral-400": theme === "light",
+                "text-neutral-800/60": theme === "dark",
+              }
+            )}
+          >
             {date}
           </div>
         </div>
@@ -124,14 +199,14 @@ export const Card: React.FC<any> = ({
           data-fake-button
           className="
           h-10 mt-1
-      bg-neutral-100 dark:bg-neutral-800
-      rounded-lg
-      flex items-center justify-center gap-1.5
-      text-sm font-medium
-      text-neutral-900 dark:text-neutral-100
-      transition-colors duration-150
-      hover:bg-neutral-200 dark:hover:bg-neutral-700
-        "
+          bg-neutral-100 dark:bg-neutral-800
+          rounded-lg
+          flex items-center justify-center gap-1.5
+          text-sm font-medium
+          text-neutral-900 dark:text-neutral-100
+          transition-colors duration-150
+          hover:bg-neutral-200 dark:hover:bg-neutral-700
+          "
         >
           {craft_type === "code"
             ? "Get Code"

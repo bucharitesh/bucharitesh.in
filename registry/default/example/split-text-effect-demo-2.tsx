@@ -1,4 +1,4 @@
-import { SplitTextEffect } from "@/components/ui/split-text-effect";
+import { SplitTextEffect } from "@/components/bucharitesh/split-text-effect";
 
 export default function SplitTextEffectDemo() {
   return (

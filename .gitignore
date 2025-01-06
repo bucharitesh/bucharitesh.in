@@ -35,9 +35,5 @@ yarn-error.log*
 # vercel
 .vercel
 
-# contentlayer
-.contentlayer
-certificates
-
 # content
-.content-collections
+/.content-collections

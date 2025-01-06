@@ -55,6 +55,7 @@ const crafts = defineCollection({
     image: z.string(),
     video: z.string().nullable().optional(),
     theme: z.enum(["light", "dark"]).default("light"),
+    aspect_ratio: z.number().optional(),
   }),
   transform: async (page, context) => {
     try {
@@ -152,6 +153,7 @@ const crafts = defineCollection({
         image: page.image,
         video: page.video,
         theme: page.theme,
+        aspect_ratio: page.aspect_ratio,
         blurImage,
       };
     } catch (error) {

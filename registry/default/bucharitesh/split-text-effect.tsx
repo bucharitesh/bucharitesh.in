@@ -25,7 +25,7 @@ const Cross = React.forwardRef<HTMLDivElement, CrossProps>(
         className={cn(
           "absolute cursor-pointer w-[15px] h-[15px]",
           positionClasses[position],
-          className,
+          className
         )}
         data-position={position}
         {...props}
@@ -40,35 +40,18 @@ const Cross = React.forwardRef<HTMLDivElement, CrossProps>(
         />
       </div>
     );
-  },
+  }
 );
 Cross.displayName = "Cross";
 
 interface SplitTextEffectProps extends React.HTMLAttributes<HTMLDivElement> {
   text: string | React.ReactNode;
   fill?: number;
-  primaryColor?: string;
-  accentColor?: string;
-  backgroundColor?: string;
-  gradientFrom?: string;
-  gradientTo?: string;
+  accent?: string;
 }
 
 const SplitTextEffect = React.forwardRef<HTMLDivElement, SplitTextEffectProps>(
-  (
-    {
-      text,
-      fill = 0.5,
-      primaryColor = "black",
-      accentColor = "#006efe",
-      backgroundColor = "black",
-      gradientFrom = "#00418c",
-      gradientTo = "transparent",
-      className,
-      ...props
-    },
-    ref,
-  ) => {
+  ({ text, fill = 0.5, accent = "#006efe", className, ...props }, ref) => {
     const containerRef = React.useRef<HTMLDivElement>(null);
     const lineRef = React.useRef<HTMLDivElement>(null);
     const [hasMounted, setHasMounted] = React.useState(false);
@@ -77,14 +60,20 @@ const SplitTextEffect = React.forwardRef<HTMLDivElement, SplitTextEffectProps>(
       setHasMounted(true);
     }, []);
 
-    const smoothY = useSpring(0);
+    const smoothY = useSpring(0, {
+      stiffness: 100,
+      damping: 20,
+    });
 
     React.useEffect(() => {
       if (!hasMounted || !containerRef.current) return;
 
       const container = containerRef.current;
       const height = container.offsetHeight;
-      const initialY = height * (1 - fill);
+      const initialY = Math.min(
+        Math.max(height * (1 - fill), height * 0.1),
+        height * 0.9
+      );
 
       smoothY.set(initialY);
     }, [hasMounted, fill]);
@@ -92,14 +81,22 @@ const SplitTextEffect = React.forwardRef<HTMLDivElement, SplitTextEffectProps>(
     const handleMouseMove = (e: React.MouseEvent) => {
       if (!containerRef.current) return;
       const rect = containerRef.current.getBoundingClientRect();
-      const y = e.clientY - rect.top;
-      smoothY.set(y);
+      const height = rect.height;
+
+      // Calculate y position and clamp between 20% and 80% of height
+      const rawY = e.clientY - rect.top;
+      const clampedY = Math.min(Math.max(rawY, height * 0.1), height * 0.9);
+      smoothY.set(clampedY);
     };
 
     const handleMouseLeave = () => {
       if (!containerRef.current) return;
       const height = containerRef.current.offsetHeight;
-      const resetY = height * (1 - fill);
+      // Reset to initial fill position, but respect the 20%-80% bounds
+      const resetY = Math.min(
+        Math.max(height * (1 - fill), height * 0.1),
+        height * 0.9
+      );
       smoothY.set(resetY);
     };
 
@@ -107,36 +104,32 @@ const SplitTextEffect = React.forwardRef<HTMLDivElement, SplitTextEffectProps>(
       <div
         ref={containerRef}
         className={cn(
-          "relative flex items-center justify-center text-5xl p-20 w-full h-full",
-          className,
+          "relative flex items-center justify-center text-5xl p-20 w-full h-full bg-white dark:bg-black",
+          className
         )}
-        style={{
-          backgroundColor: backgroundColor,
-        }}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         {...props}
       >
-        <Cross position="top-left" color={accentColor} />
-        <Cross position="top-right" color={accentColor} />
-        <Cross position="bottom-left" color={accentColor} />
-        <Cross position="bottom-right" color={accentColor} />
+        <Cross position="top-left" color={accent} />
+        <Cross position="top-right" color={accent} />
+        <Cross position="bottom-left" color={accent} />
+        <Cross position="bottom-right" color={accent} />
 
-        <div className="z-0 w-full h-full flex items-center justify-center text-white">
+        <div className="z-0 w-full h-full flex items-center justify-center text-black dark:text-white">
           {text}
         </div>
 
         <motion.div
           ref={lineRef}
           aria-hidden="true"
-          className="absolute inset-0 z-20 select-none h-1"
+          className="absolute inset-0 z-20 select-none h-1 border-t-white dark:border-t-black"
           style={{
             opacity: 1,
             y: smoothY,
             borderTopWidth: "2px",
             borderBottomWidth: "2px",
-            borderTopColor: primaryColor,
-            borderBottomColor: accentColor,
+            borderBottomColor: accent,
           }}
         />
 
@@ -147,20 +140,20 @@ const SplitTextEffect = React.forwardRef<HTMLDivElement, SplitTextEffectProps>(
             opacity: 1,
             clipPath: useTransform(
               smoothY,
-              (value) => `inset(${value}px 0 0 0)`,
+              (value) => `inset(${value}px 0 0 0)`
             ),
           }}
         >
           <div
             className="absolute inset-0"
             style={{
-              background: `linear-gradient(180deg, ${gradientFrom} 0, ${gradientTo} 100%)`,
+              background: `linear-gradient(180deg, ${accent} 0, transparent 100%)`,
             }}
           />
           <div
+            className="text-white dark:text-black"
             style={{
-              color: primaryColor,
-              textShadow: `-1px -1px 0 ${accentColor}, 1px -1px 0 ${accentColor}, -1px 1px 0 ${accentColor}, 1px 1px 0 ${accentColor}`,
+              textShadow: `-1px -1px 0 ${accent}, 1px -1px 0 ${accent}, -1px 1px 0 ${accent}, 1px 1px 0 ${accent}`,
             }}
           >
             {text}
@@ -168,7 +161,7 @@ const SplitTextEffect = React.forwardRef<HTMLDivElement, SplitTextEffectProps>(
         </motion.div>
       </div>
     );
-  },
+  }
 );
 SplitTextEffect.displayName = "SplitTextEffect";
 

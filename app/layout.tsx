@@ -66,7 +66,7 @@ export default async function RootLayout({
           suppressHydrationWarning
         >
           <Providers session={session}>
-            <Seasons />
+            {/* <Seasons /> */}
             <main
               vaul-drawer-wrapper=""
               className="relative h-full w-full flex-1 overflow-y-auto"

@@ -14,7 +14,9 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
-      "content-collections": ["./.content-collections/generated"]
+      "content-collections": ["./.content-collections/generated"],
+      "@/components/bucharitesh/*": ["./registry/default/bucharitesh/*"],
+      "@/components/example/*": ["./registry/default/example/*"]
     },
     "lib": ["dom", "dom.iterable", "esnext"],
     "skipLibCheck": true,
