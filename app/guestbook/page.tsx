@@ -2,7 +2,7 @@ import { Metadata } from "next/types";
 import React, { Suspense } from "react";
 import { Form } from "./form";
 import GuestbookEntries from "./guestbook-entries";
-import { getGuestbookEntries } from "@/lib/db/guestbook";
+// import { getGuestbookEntries } from "@/lib/db/guestbook";
 import { ScrollArea } from "@/components/scroll-area";
 
 export const metadata: Metadata = {
@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 };
 
 export default async function GuestbookPage() {
-  const entries = await getGuestbookEntries();
+  // const entries = await getGuestbookEntries();
+  const entries = [];
 
   return (
     <ScrollArea className="">

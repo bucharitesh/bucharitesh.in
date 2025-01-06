@@ -14,8 +14,6 @@ import Navigation from "@/components/navigation";
 import { Providers } from "@/lib/providers";
 import { Seasons } from "@/components/seasons";
 
-// import HedgehogBuddy from '@/components/hedgehog';
-
 export const viewport: Viewport = {
   themeColor: "#1c1917",
   colorScheme: "dark",
@@ -71,12 +69,10 @@ export default async function RootLayout({
             <Seasons />
             <main
               vaul-drawer-wrapper=""
-              className="relative h-full w-full flex-1 bg-white dark:bg-neutral-900 text-black dark:text-white"
+              className="relative h-full w-full flex-1 overflow-y-auto"
             >
               <Navigation />
               {children}
-              {/* <CommandMenu /> */}
-              {/* <HedgehogBuddy /> */}
             </main>
             <DevTools />
           </Providers>

@@ -204,8 +204,6 @@ export class HedgehogActor {
         this.mainAnimation.iterations !== null
           ? this.mainAnimation.iterations * spriteInfo.frames * (1000 / FPS)
           : "∞";
-
-      console.log(`Will '${this.mainAnimation.name}' for ${duration}ms`);
     }
   }
 

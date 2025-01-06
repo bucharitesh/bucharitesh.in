@@ -1,11 +1,17 @@
+import { Mdx } from "@/components/mdx-components";
+import { TableOfContents } from "@/components/toc";
 import { meta } from "@/lib/config";
 import { createOgImage } from "@/lib/createOgImage";
-import { allPosts } from "content-collections";
+import { getTableOfContents } from "@/lib/toc";
+import { cn } from "@/lib/utils";
+import { allCrafts } from "content-collections";
+import { ChevronRightIcon } from "lucide-react";
 import { Metadata } from "next";
+import { Link } from "next-view-transitions";
 import { notFound } from "next/navigation";
 
 export const generateStaticParams = () => {
-  return allPosts.map((p) => ({ slug: p.slug }));
+  return allCrafts.map((p) => ({ slug: p.slug }));
 };
 
 type Props = {
@@ -13,7 +19,7 @@ type Props = {
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const post = allPosts.find((post) => post.slug === params?.slug);
+  const post = allCrafts.find((post) => post.slug === params?.slug);
 
   if (!post) {
     notFound();
@@ -36,25 +42,45 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function PostPage({ params }: Props) {
-  const post = allPosts.find((post) => post.slug === params?.slug);
+  const craft = allCrafts.find((post) => post.slug === params?.slug);
 
-  if (!post) {
+  if (!craft) {
     notFound();
   }
 
+  const toc = await getTableOfContents(craft.body.raw || "");
+
   return (
-    <>
-      {/* <BLOG_SCRIPT_ORG
-        image={createOgImage({
-          title: post.title,
-          meta: meta.domain + " · " + post.publishedAtFormatted,
-        })}
-        published_at={post.publishedAt}
-        title={post.title}
-        description={post.description}
-        slug={post.slug}
-      /> */}
-      {/* <Post post={formattedPost} /> */}
-    </>
+    <div className="layout-sm mb-40 relative z-10 grid gap-y-2 px-4 pt-12 xl:layout-craft xl:gap-x-9 xl:px-0 [&>*]:col-start-2 xl:[&>*]:col-start-3">
+      <div className="mx-auto w-full">
+        <div className="mb-4 flex items-center space-x-1 text-sm text-muted-foreground">
+          <Link
+            href="/craft"
+            className="truncate hover:underline underline-offset-4 transition-all duration-300"
+          >
+            Craft
+          </Link>
+          <ChevronRightIcon className="size-4" />
+          <div className="font-medium text-foreground">{craft.title}</div>
+        </div>
+        <div className="space-y-2">
+          <h1 className={cn("scroll-m-20 text-4xl font-bold tracking-tight")}>
+            {craft.title}
+          </h1>
+          {craft.description && (
+            <p className="text-balance text-lg text-muted-foreground">
+              {craft.description}
+            </p>
+          )}
+        </div>
+        <div className="pb-12 pt-8">
+          <Mdx code={craft.body.code || ""} />
+        </div>
+      </div>
+
+      <div className="sticky top-14 pt-4 hidden h-0 xl:!col-start-4 xl:row-start-1 xl:block col-span-2 max-w-md">
+        <TableOfContents toc={toc} />
+      </div>
+    </div>
   );
 }

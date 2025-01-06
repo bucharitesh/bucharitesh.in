@@ -1,6 +1,6 @@
 "use client";
 
-import { saveGuestbookEntry } from "@/lib/db/guestbook";
+// import { saveGuestbookEntry } from "@/lib/db/guestbook";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
@@ -69,7 +69,7 @@ export function Form() {
 
       try {
         const formData = new FormData(e.currentTarget);
-        await saveGuestbookEntry(formData, localSignature || "");
+        // await saveGuestbookEntry(formData, localSignature || "");
         formRef.current?.reset();
         signaturePadRef.current?.clear();
         setLocalSignature(null);

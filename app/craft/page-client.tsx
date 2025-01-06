@@ -1,10 +1,11 @@
 "use client";
 
-import { Craft, Post } from "content-collections";
+import { Craft } from "content-collections";
 import { MasonryGrid } from "./masonary-grid";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Link } from "next-view-transitions";
 
 export default function PageClient({ crafts }: { crafts: Craft[] }) {
   return (
@@ -19,10 +20,16 @@ export default function PageClient({ crafts }: { crafts: Craft[] }) {
         <Card
           key={`${item.title}-${index}`}
           title={item.title}
-          date={"121312312"}
+          date={item.date.toLocaleDateString("en-US", {
+            month: "long",
+            year: "numeric",
+          })}
+          href={`/craft/${item.slug}`}
           src={item.video}
+          blurImage={item.blurImage}
           type="video"
           craft_type={item.type}
+          theme={item.theme}
         />
       ))}
     </MasonryGrid>
@@ -38,75 +45,18 @@ export interface MediaContentProps {
   height?: number;
 }
 
-const MediaContent: React.FC<MediaContentProps> = ({
-  src,
-  title,
-  type = "image",
-  width,
-  height,
-}) => {
-  const mediaRef = useRef<any>(null);
-  const [isInView, setIsInView] = useState(false);
-
-  useEffect(() => {
-    if (!mediaRef.current) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsInView(entry.isIntersecting);
-      },
-      { threshold: 0.1 }
-    );
-
-    observer.observe(mediaRef.current);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <div
-      className="relative"
-      ref={mediaRef}
-      style={{ aspectRatio: `${width}/${height}` }}
-    >
-      <img
-        aria-hidden="true"
-        ref={mediaRef}
-        src={src}
-        alt={title}
-        style={{
-          filter: "blur(32px)",
-          transform: "scale(1) translateZ(0px)",
-        }}
-        className="absolute inset-0 w-full h-full object-cover"
-        loading="lazy"
-        width={width}
-        height={height}
-      />
-      {isInView && (
-        <video
-          src={src}
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover"
-        />
-      )}
-    </div>
-  );
-};
-
 export const Card: React.FC<any> = ({
   title,
   date,
   src,
   href,
-  type = "image",
   width,
   craft_type,
+  theme,
   height,
   position = "bottom",
   className = "",
+  blurImage,
 }: any) => {
   return (
     <div
@@ -121,19 +71,26 @@ export const Card: React.FC<any> = ({
       <div
         className={cn(
           "relative overflow-hidden",
-          "after:content-[''] after:absolute after:w-full after:h-[200px] after:bottom-[-64px] after:transition-opacity after:duration-200 after:pointer-events-none after:bg-gradient-to-t after:from-white/90 after:via-transparent after:to-transparent dark:after:from-black/90",
+          "after:content-[''] after:absolute after:w-full after:h-[200px] after:bottom-[-64px] after:transition-opacity after:duration-200 after:pointer-events-none after:bg-gradient-to-t after:via-transparent after:to-transparent after:from-black/90",
           {
             "rounded-lg": craft_type !== "none",
           }
         )}
       >
-        <MediaContent
-          src={src}
-          title={title}
-          type={type}
-          width={width}
-          height={height}
-        />
+        <div
+          className="relative"
+          style={{ aspectRatio: `${width}/${height}` }}
+        >
+          <video
+            src={src}
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster={blurImage}
+            className="w-full h-full object-cover"
+          />
+        </div>
 
         {/* Title and metadata */}
         <div
@@ -145,10 +102,16 @@ export const Card: React.FC<any> = ({
             }
           )}
         >
-          <div className="text-[#171717] dark:text-neutral-100 whitespace-nowrap overflow-ellipsis overflow-hidden text-sm">
+          <div className={cn("text-neutral-900 dark:text-neutral-100 whitespace-nowrap overflow-ellipsis overflow-hidden text-sm", {
+            "text-neutral-100": theme === "light",
+            "text-neutral-900": theme === "dark",
+          })}>
             {title}
           </div>
-          <div className="text-[#171717] dark:text-neutral-400 whitespace-nowrap overflow-ellipsis overflow-hidden text-sm">
+          <div className={cn("text-neutral-400 dark:text-neutral-400 whitespace-nowrap overflow-ellipsis overflow-hidden text-sm", {
+            "text-neutral-400": theme === "light",
+            "text-neutral-100": theme === "dark",
+          })}>
             {date}
           </div>
         </div>
@@ -156,7 +119,8 @@ export const Card: React.FC<any> = ({
 
       {/* Action button */}
       {craft_type !== "none" && (
-        <div
+        <Link
+          href={href}
           data-fake-button
           className="
           h-10 mt-1
@@ -178,7 +142,7 @@ export const Card: React.FC<any> = ({
             size={16}
             className={href?.startsWith("http") ? "-rotate-45" : ""}
           />
-        </div>
+        </Link>
       )}
     </div>
   );

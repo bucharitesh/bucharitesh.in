@@ -7,11 +7,13 @@ import {
   BookmarkIcon,
   LogIn,
   FileIcon,
+  Loader2,
 } from "lucide-react";
 
 export type IconProps = React.HTMLAttributes<SVGElement>;
 
 export const Icons = {
+  spinner: Loader2,
   home: (props: IconProps) => <HomeIcon {...props} />,
   craft: (props: IconProps) => <PencilIcon {...props} />,
   guestbook: (props: IconProps) => <BookOpenIcon {...props} />,

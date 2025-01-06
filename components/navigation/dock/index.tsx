@@ -12,10 +12,6 @@ import { ModeToggle } from "./mode-toggle";
 import { usePathname } from "next/navigation";
 import { DockConfig } from "@/lib/config";
 import { cn } from "@/lib/utils";
-import { Icons } from "@/components/icons";
-// import { signIn, signOut, useSession } from "next-auth/react";
-// import Image from "next/image";
-// import { Icons } from "@/components/icons";
 
 const DOCK_AUTOHIDE_TIMEOUT = 10_000;
 

@@ -50,15 +50,6 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        chart: {
-          1: "hsl(var(--chart-1))",
-          2: "hsl(var(--chart-2))",
-          3: "hsl(var(--chart-3))",
-          4: "hsl(var(--chart-4))",
-          5: "hsl(var(--chart-5))",
-        },
       },
       animation: {
         "border-beam": "border-beam calc(var(--duration)*1s) infinite linear",
@@ -292,6 +283,13 @@ module.exports = {
             "spacing.60"
           )}) min(${theme("screens.sm")},100%) minmax(auto,${theme(
             "spacing.60"
+          )}) 1fr`,
+        },
+        ".layout-craft": {
+          "grid-template-columns": `1fr minmax(auto,${theme(
+            "spacing.80"
+          )}) min(${theme("screens.md")},100%) minmax(auto,${theme(
+            "spacing.80"
           )}) 1fr`,
         },
       });

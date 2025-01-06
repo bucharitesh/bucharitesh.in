@@ -1,0 +1,22 @@
+[
+  {
+    "name": "pixel-icon",
+    "type": "registry:ui",
+    "files": [
+      {
+        "path": "bucharitesh/pixel-icon.tsx",
+        "type": "registry:ui"
+      }
+    ]
+  },
+  {
+    "name": "split-text-effect",
+    "type": "registry:ui",
+    "files": [
+      {
+        "path": "bucharitesh/split-text-effect.tsx",
+        "type": "registry:ui"
+      }
+    ]
+  }
+]

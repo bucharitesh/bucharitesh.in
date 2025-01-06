@@ -1,23 +1,44 @@
 import { defineCollection, defineConfig } from "@content-collections/core";
-import { compileMDX } from "@content-collections/mdx";
 import readingTime from "reading-time";
-import {
-  type RehypeCodeOptions,
-  rehypeCode,
-  remarkGfm,
-  remarkHeading,
-} from "fumadocs-core/mdx-plugins";
+import { generateBlurUrl } from "./lib/media";
+import { compileMDX } from "@content-collections/mdx";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypePrettyCode, { type Options } from "rehype-pretty-code";
+import rehypeSlug from "rehype-slug";
+import { codeImport } from "remark-code-import";
+import remarkGfm from "remark-gfm";
+import { createHighlighter } from "shiki";
+import { visit } from "unist-util-visit";
 
-const rehypeCodeOptions: RehypeCodeOptions = {
-  themes: {
-    light: "catppuccin-mocha",
-    dark: "catppuccin-mocha",
+import { rehypeComponent } from "./lib/rehype-component";
+import { rehypeNpmCommand } from "./lib/rehype-npm-command";
+
+const prettyCodeOptions: Options = {
+  theme: "github-dark",
+  getHighlighter: (options) =>
+    createHighlighter({
+      ...options,
+    }),
+  onVisitLine(node) {
+    // Prevent lines from collapsing in `display: grid` mode, and allow empty
+    // lines to be copy/pasted
+    if (node.children.length === 0) {
+      node.children = [{ type: "text", value: " " }];
+    }
+  },
+  onVisitHighlightedLine(node) {
+    if (!node.properties.className) {
+      node.properties.className = [];
+    }
+    node.properties.className.push("line--highlighted");
+  },
+  onVisitHighlightedChars(node) {
+    if (!node.properties.className) {
+      node.properties.className = [];
+    }
+    node.properties.className = ["word--highlighted"];
   },
 };
-
-// Define the post types as a union type
-type PostType = "demo" | "blog" | "essay";
-
 const crafts = defineCollection({
   name: "crafts",
   directory: "content/crafts",
@@ -31,36 +52,107 @@ const crafts = defineCollection({
     published: z.boolean().default(false),
     // Optional fields
     tags: z.array(z.string()).default([]),
-    image: z.string().nullable().optional(),
-    blurImage: z.string().nullable().optional(),
+    image: z.string(),
     video: z.string().nullable().optional(),
+    theme: z.enum(["light", "dark"]).default("light"),
   }),
   transform: async (page, context) => {
     try {
-      // Only compile MDX if the post is not a redirect type
-      let compiledBody: string | null = null;
-      if (page.type !== "none") {
-        compiledBody = await context.cache(page.content, async () =>
-          compileMDX(context, page, {
-            remarkPlugins: [remarkGfm, remarkHeading],
-            rehypePlugins: [[rehypeCode, rehypeCodeOptions]],
-          })
+      const body = await compileMDX(context, page, {
+        // @ts-ignore
+        remarkPlugins: [codeImport, remarkGfm],
+        rehypePlugins: [
+          // @ts-ignore
+          rehypeSlug,
+          rehypeComponent,
+          () => (tree) => {
+            visit(tree, (node) => {
+              if (node?.type === "element" && node?.tagName === "pre") {
+                const [codeEl] = node.children;
+                if (codeEl.tagName !== "code") {
+                  return;
+                }
+                if (codeEl.data?.meta) {
+                  // Extract event from meta and pass it down the tree.
+                  const regex = /event="([^"]*)"/;
+                  const match = codeEl.data?.meta.match(regex);
+                  if (match) {
+                    node.__event__ = match ? match[1] : null;
+                    codeEl.data.meta = codeEl.data.meta.replace(regex, "");
+                  }
+                }
+                node.__rawString__ = codeEl.children?.[0].value;
+                node.__src__ = node.properties?.__src__;
+                node.__style__ = node.properties?.__style__;
+              }
+            });
+          },
+          [rehypePrettyCode, prettyCodeOptions],
+          () => (tree) => {
+            visit(tree, (node) => {
+              if (node?.type === "element" && node?.tagName === "figure") {
+                if (!("data-rehype-pretty-code-figure" in node.properties)) {
+                  return;
+                }
+
+                const preElement = node.children.at(-1);
+                if (preElement.tagName !== "pre") {
+                  return;
+                }
+
+                preElement.properties["__withMeta__"] =
+                  node.children.at(0).tagName === "div";
+                preElement.properties["__rawString__"] = node.__rawString__;
+
+                if (node.__src__) {
+                  preElement.properties["__src__"] = node.__src__;
+                }
+
+                if (node.__event__) {
+                  preElement.properties["__event__"] = node.__event__;
+                }
+
+                if (node.__style__) {
+                  preElement.properties["__style__"] = node.__style__;
+                }
+              }
+            });
+          },
+          rehypeNpmCommand,
+          [
+            // @ts-ignore
+            rehypeAutolinkHeadings,
+            {
+              properties: {
+                className: ["subheading-anchor"],
+                ariaLabel: "Link to section",
+              },
+            },
+          ],
+        ],
+      });
+
+      // Generate blur URLs for images if they don't already exist
+      let blurImage: string | null = null;
+      if (page.image) {
+        blurImage = await context.cache(`blur-${page.image}`, async () =>
+          generateBlurUrl(page?.image ?? "")
         );
       }
-      // Calculate reading time for all posts, even redirects
-      const calculatedReadingTime = readingTime(page.content).text;
 
       return {
         ...page,
-        body: compiledBody || null,
+        body: {
+          raw: page.content,
+          code: body,
+        },
         date: new Date(page.date),
         type: page.type,
         slug: page._meta.path,
-        readingTime: calculatedReadingTime || null,
-        // Only include image-related fields if they exist
-        image: page.image || null,
-        video: page.video || null,
-        blurImage: page.blurImage || null,
+        image: page.image,
+        video: page.video,
+        theme: page.theme,
+        blurImage,
       };
     } catch (error) {
       console.error(`Error transforming page ${page._meta.path}:`, error);
@@ -90,20 +182,11 @@ const posts = defineCollection({
   }),
   transform: async (page, context) => {
     try {
-      // Only compile MDX if the post is not a redirect type
-      let compiledBody = await context.cache(page.content, async () =>
-        compileMDX(context, page, {
-          remarkPlugins: [remarkGfm, remarkHeading],
-          rehypePlugins: [[rehypeCode, rehypeCodeOptions]],
-        })
-      );
-
       // Calculate reading time for all posts, even redirects
       const calculatedReadingTime = readingTime(page.content).text;
 
       return {
         ...page,
-        body: compiledBody || null,
         date: new Date(page.date),
         slug: page._meta.path,
         readingTime: calculatedReadingTime || null,
@@ -121,19 +204,3 @@ const posts = defineCollection({
 export default defineConfig({
   collections: [crafts, posts],
 });
-
-// Type definitions for better TypeScript support
-export type Post = {
-  title: string;
-  description: string;
-  date: Date;
-  is_published: boolean;
-  type: PostType;
-  tags: string[];
-  readingTime: string | null;
-  body: any | null;
-  video: string | null;
-  image: string | null;
-  blurImage: string | null;
-  slug: string;
-};

@@ -31,13 +31,18 @@
   },
   "exclude": [
     "node_modules",
-    "old"
+    "old",
+    "scripts/build-registry.ts",
+    "__registry__",
+    "packages/**/*",
+    "scripts/**/*"
   ],
   "include": [
     "next-env.d.ts",
     "next.config.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    ".content-colletions/generated"
   ]
 }
