@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import PageClient from "./page-client";
-import { allCrafts } from "content-collections";
+import { getCrafts } from "@/lib/db/craft";
 
 export const metadata: Metadata = {
   title: "Craft",
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  const crafts = await allCrafts;
+  const crafts = await getCrafts();
   
   return <PageClient crafts={crafts} />;
 }

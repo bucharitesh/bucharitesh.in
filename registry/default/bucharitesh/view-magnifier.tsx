@@ -52,7 +52,7 @@ const ViewMagnifier: React.FC<ViewMagnifierProps> = ({
         onUpdate: (latest) => setZoomLevel(Math.round(latest * 100)),
       });
     },
-    [scale]
+    [scale],
   );
 
   const handlePointerDown = useCallback(
@@ -63,7 +63,7 @@ const ViewMagnifier: React.FC<ViewMagnifierProps> = ({
       e.currentTarget.setPointerCapture(e.pointerId);
       onScaleChange?.(true);
     },
-    [scale, onScaleChange]
+    [scale, onScaleChange],
   );
 
   const handlePointerUp = useCallback(
@@ -75,7 +75,7 @@ const ViewMagnifier: React.FC<ViewMagnifierProps> = ({
         onScaleChange?.(false);
       }
     },
-    [isMouseDown, handleZoomAnimation, onScaleChange]
+    [isMouseDown, handleZoomAnimation, onScaleChange],
   );
 
   const handlePointerMove = useCallback(
@@ -86,27 +86,23 @@ const ViewMagnifier: React.FC<ViewMagnifierProps> = ({
       const scaleChange = deltaX * 0.005;
       const newScale = Math.max(
         0.8,
-        Math.min(maxScale, initialScale.current + scaleChange)
+        Math.min(maxScale, initialScale.current + scaleChange),
       );
 
       scale.set(newScale);
       setZoomLevel(Math.round(newScale * 100));
     },
-    [isMouseDown, maxScale, scale]
+    [isMouseDown, maxScale, scale],
   );
 
   return (
-   <div
-      ref={containerRef}
-      className="outline-none z-40"
-      {...props}
-    >
+    <div ref={containerRef} className="outline-none" {...props}>
       <motion.div
         className={cn(
           "fixed h-screen w-screen outline-none inset-0 pointer-events-none backdrop-blur-xl",
           "after:content-[''] after:rounded-[inherit] after:w-full after:h-full after:inset-0",
           "after:absolute after:pointer-events-none dark:after:block",
-          "dark:after:shadow-[inset_0_0_0_1px_hsla(0,0%,100%,0.2)]"
+          "dark:after:shadow-[inset_0_0_0_1px_hsla(0,0%,100%,0.2)]",
         )}
         style={{ opacity }}
         aria-hidden="true"
@@ -115,9 +111,9 @@ const ViewMagnifier: React.FC<ViewMagnifierProps> = ({
       <motion.div
         className={cn(
           "relative left-1/2 right-1/2 w-full h-auto overflow-visible my-3",
-          "z-[60] rounded-2xl",
+          "z-[100] rounded-2xl",
           "transform lg:transform-none",
-          className
+          className,
         )}
         style={{
           scale: containerScale,
@@ -127,7 +123,7 @@ const ViewMagnifier: React.FC<ViewMagnifierProps> = ({
         role="img"
         aria-label={`Content at zoom level ${zoomLevel}%`}
       >
-        <div className="w-full h-full rounded-[inherit] overflow-hidden">
+        <div className="relative w-full h-full rounded-2xl overflow-hidden">
           {children}
         </div>
 
@@ -164,7 +160,7 @@ const ViewMagnifier: React.FC<ViewMagnifierProps> = ({
             "focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900",
             "md:block hidden",
             isMouseDown ? "cursor-grabbing" : "cursor-grab",
-            "after:content-[''] after:absolute after:w-4 after:h-full after:-left-2 after:top-0"
+            "after:content-[''] after:absolute after:w-4 after:h-full after:-left-2 after:top-0",
           )}
           touch-action="none"
         />

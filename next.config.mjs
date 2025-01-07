@@ -56,6 +56,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "cdn.bucharitesh.in",
       },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
     ],
   },
   async redirects() {

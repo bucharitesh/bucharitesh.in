@@ -27,6 +27,17 @@ export const Index: Record<string, any> = {
       subcategory: "undefined",
       chunks: []
     },
+    "view-magnifier": {
+      name: "view-magnifier",
+      type: "registry:ui",
+      registryDependencies: undefined,
+      files: ["registry/default/bucharitesh/view-magnifier.tsx"],
+      component: React.lazy(() => import("@/registry/default/bucharitesh/view-magnifier.tsx")),
+      source: "",
+      category: "undefined",
+      subcategory: "undefined",
+      chunks: []
+    },
     "pixel-icon-demo": {
       name: "pixel-icon-demo",
       type: "registry:example",
@@ -66,6 +77,28 @@ export const Index: Record<string, any> = {
       registryDependencies: ["split-text-effect"],
       files: ["registry/default/example/split-text-effect-demo-3.tsx"],
       component: React.lazy(() => import("@/registry/default/example/split-text-effect-demo-3.tsx")),
+      source: "",
+      category: "undefined",
+      subcategory: "undefined",
+      chunks: []
+    },
+    "view-magnifier-demo": {
+      name: "view-magnifier-demo",
+      type: "registry:example",
+      registryDependencies: ["view-magnifier"],
+      files: ["registry/default/example/view-magnifier-demo.tsx"],
+      component: React.lazy(() => import("@/registry/default/example/view-magnifier-demo.tsx")),
+      source: "",
+      category: "undefined",
+      subcategory: "undefined",
+      chunks: []
+    },
+    "view-magnifier-demo-2": {
+      name: "view-magnifier-demo-2",
+      type: "registry:example",
+      registryDependencies: ["view-magnifier"],
+      files: ["registry/default/example/view-magnifier-demo-2.tsx"],
+      component: React.lazy(() => import("@/registry/default/example/view-magnifier-demo-2.tsx")),
       source: "",
       category: "undefined",
       subcategory: "undefined",

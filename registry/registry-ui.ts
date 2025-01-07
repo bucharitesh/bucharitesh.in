@@ -11,6 +11,11 @@ export const ui: Registry = [
     type: "registry:ui",
     files: ["bucharitesh/split-text-effect.tsx"],
   },
+  {
+    name: "view-magnifier",
+    type: "registry:ui",
+    files: ["bucharitesh/view-magnifier.tsx"],
+  },
   // {
   //   name: "book",
   //   type: "registry:ui",

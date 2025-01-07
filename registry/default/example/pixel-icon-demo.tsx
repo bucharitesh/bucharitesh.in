@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import PixelIcon from "../bucharitesh/pixel-icon";
+import PixelIcon from "@/components/bucharitesh/pixel-icon";
 
 export const PixelIconData = [
   {
@@ -188,8 +188,8 @@ export const PixelIconData = [
 
 const PixelIconDemo = () => {
   return (
-    <div className="relative flex w-full items-center justify-center overflow-hidden rounded-lg p-10">
-      <div className="grid grid-cols-2 gap-4 w-full place-items-center">
+    <div className="relative flex bg-white w-full items-center justify-center overflow-hidden rounded-lg p-10">
+      <div className="grid grid-cols-3 gap-4 w-full place-items-center">
         {PixelIconData.map((icon) => {
           return (
             <div

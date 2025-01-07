@@ -25,6 +25,18 @@ export const examples: Registry = [
     registryDependencies: ["split-text-effect"],
     files: ["example/split-text-effect-demo-3.tsx"],
   },
+  {
+    name: "view-magnifier-demo",
+    type: "registry:example",
+    registryDependencies: ["view-magnifier"],
+    files: ["example/view-magnifier-demo.tsx"],
+  },
+  {
+    name: "view-magnifier-demo-2",
+    type: "registry:example",
+    registryDependencies: ["view-magnifier"],
+    files: ["example/view-magnifier-demo-2.tsx"],
+  },
   // {
   //   name: "vercel-grid-demo-text",
   //   type: "registry:example",

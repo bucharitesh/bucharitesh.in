@@ -2,7 +2,7 @@ import { meta } from "@/lib/config";
 import { COMMON_SCRIPT_ORG } from "@/lib/script";
 import { Metadata } from "next/types";
 import MapLocation from "@/components/home/map";
-import ViewMagnifier from "@/components/shared/compoenents/view-magnifier";
+import ViewMagnifier from "@/components/bucharitesh/view-magnifier";
 import Info from "@/components/home/info";
 import { ProfileImage } from "@/components/profile-image";
 

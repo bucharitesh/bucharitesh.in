@@ -18,5 +18,15 @@
         "type": "registry:ui"
       }
     ]
+  },
+  {
+    "name": "view-magnifier",
+    "type": "registry:ui",
+    "files": [
+      {
+        "path": "bucharitesh/view-magnifier.tsx",
+        "type": "registry:ui"
+      }
+    ]
   }
 ]

@@ -25,7 +25,7 @@ const Cross = React.forwardRef<HTMLDivElement, CrossProps>(
         className={cn(
           "absolute cursor-pointer w-[15px] h-[15px]",
           positionClasses[position],
-          className
+          className,
         )}
         data-position={position}
         {...props}
@@ -40,7 +40,7 @@ const Cross = React.forwardRef<HTMLDivElement, CrossProps>(
         />
       </div>
     );
-  }
+  },
 );
 Cross.displayName = "Cross";
 
@@ -72,7 +72,7 @@ const SplitTextEffect = React.forwardRef<HTMLDivElement, SplitTextEffectProps>(
       const height = container.offsetHeight;
       const initialY = Math.min(
         Math.max(height * (1 - fill), height * 0.1),
-        height * 0.9
+        height * 0.9,
       );
 
       smoothY.set(initialY);
@@ -95,7 +95,7 @@ const SplitTextEffect = React.forwardRef<HTMLDivElement, SplitTextEffectProps>(
       // Reset to initial fill position, but respect the 20%-80% bounds
       const resetY = Math.min(
         Math.max(height * (1 - fill), height * 0.1),
-        height * 0.9
+        height * 0.9,
       );
       smoothY.set(resetY);
     };
@@ -105,7 +105,7 @@ const SplitTextEffect = React.forwardRef<HTMLDivElement, SplitTextEffectProps>(
         ref={containerRef}
         className={cn(
           "relative flex items-center justify-center text-5xl p-20 w-full h-full bg-white dark:bg-black",
-          className
+          className,
         )}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
@@ -140,7 +140,7 @@ const SplitTextEffect = React.forwardRef<HTMLDivElement, SplitTextEffectProps>(
             opacity: 1,
             clipPath: useTransform(
               smoothY,
-              (value) => `inset(${value}px 0 0 0)`
+              (value) => `inset(${value}px 0 0 0)`,
             ),
           }}
         >
@@ -161,7 +161,7 @@ const SplitTextEffect = React.forwardRef<HTMLDivElement, SplitTextEffectProps>(
         </motion.div>
       </div>
     );
-  }
+  },
 );
 SplitTextEffect.displayName = "SplitTextEffect";
 

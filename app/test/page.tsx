@@ -1,11 +1,10 @@
-
-import { SplitTextEffect } from "@/registry/default/bucharitesh/split-text-effect";
+import ViewMagnifierDemo from "@/registry/default/example/view-magnifier-demo-2";
 
 const page = () => {
   return (
-    <div className="w-full h-full flex items-center justify-center">
-      <div className="h-96 w-full max-w-2xl">
-        <SplitTextEffect text="Grow Together" fill={0.5} accent="#2ecc71" />
+    <div className="w-full h-full py-80 flex items-center justify-center">
+      <div className="w-full h-full max-w-2xl">
+        <ViewMagnifierDemo />
       </div>
     </div>
   );

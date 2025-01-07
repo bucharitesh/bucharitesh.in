@@ -9,6 +9,7 @@ import { ChevronRightIcon } from "lucide-react";
 import { Metadata } from "next";
 import { Link } from "next-view-transitions";
 import { notFound } from "next/navigation";
+import { CraftsPager } from "@/components/pager";
 
 export const generateStaticParams = () => {
   return allCrafts.map((p) => ({ slug: p.slug }));
@@ -81,6 +82,8 @@ export default async function PostPage({ params }: Props) {
       <div className="sticky top-14 pt-4 hidden h-0 xl:!col-start-4 xl:row-start-1 xl:block col-span-2 max-w-md">
         <TableOfContents toc={toc} />
       </div>
+
+      <CraftsPager craft={craft} />
     </div>
   );
 }
