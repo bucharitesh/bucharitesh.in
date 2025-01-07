@@ -49,18 +49,17 @@ npx shadcn@latest add "https://bucharitesh.in/r/game-of-life"
 
 ## Props
 
-| Prop           | Type                    | Description                                          | Default     |
-|----------------|-------------------------|------------------------------------------------------|-------------|
-| icon           | number[][]              | 2D array representing the icon's pixel layout        |             |
-| baseColor      | string                  | Base color of the icon                               |             |
-| flickerColor   | string                  | Color used for the flicker effect                    |             |
-| secondaryColor | string                  | Secondary color for additional details               | "gray"      |
-| size           | number                  | Size of the icon in pixels                           | 80          |
-| flickerChance  | number                  | Probability of pixel color change on hover (0 to 1)  | 0.3         |
-| pixelShape     | "circle" \| "square"    | Shape of individual pixels                           | "circle"    |
-| className      | string                  | Additional CSS classes for the icon container        |             |
+| Prop             | Type                    | Description                                          | Default     |
+|------------------|-------------------------|------------------------------------------------------|-------------|
+| size             | number                  | size of the pixel                                    | 12          |
+| interval         | number                  | Interval between frames in milliseconds              | 150         |
+| backgroundColor  | string                  | Background color of the canvas                       | "#000000"   |
+| cellColor        | string                  | Color of the cells                                   | "#1e1e1e"   |
+| density          | number                  | Density of the cells (0 to 1)                        | 0.1         |
 
 ## Examples
+
+{/* ### Basic */}
 
 <ComponentPreview name="game-of-life-demo-2" />
 

@@ -24,10 +24,10 @@ export const ProfileImage = async () => {
       style={{ aspectRatio: "1 / 1" }}
     >
       {season === "winter" && (
-        <Icons.winter_hat className="absolute -top-2/3 left-3 h-14 w-14 sm:h-16 sm:w-16" />
+        <Icons.winter_hat className="absolute z-20 -top-2/3 left-3 h-14 w-14 sm:h-16 sm:w-16" />
       )}
       {/* flipping image on hover */}
-      <div className="absolute inset-0 [perspective:1000px] group">
+      <div className="absolute z-10 inset-0 [perspective:1000px] group">
         <div className="relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
           {/* Front */}
           <div className="absolute inset-0 rounded-full [backface-visibility:hidden]">

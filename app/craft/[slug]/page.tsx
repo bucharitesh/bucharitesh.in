@@ -10,6 +10,7 @@ import { Metadata } from "next";
 import { Link } from "next-view-transitions";
 import { notFound } from "next/navigation";
 import { CraftsPager } from "@/components/pager";
+import { Contribute } from "@/components/contribute";
 
 export const generateStaticParams = () => {
   return allCrafts.map((p) => ({ slug: p.slug }));
@@ -79,8 +80,10 @@ export default async function PostPage({ params }: Props) {
         </div>
       </div>
 
-      <div className="sticky top-14 pt-4 hidden h-0 xl:!col-start-4 xl:row-start-1 xl:block col-span-2 max-w-md">
+      <div className="sticky space-y-4 top-14 pt-4 hidden h-0 xl:!col-start-4 xl:row-start-1 xl:block col-span-2 max-w-md">
         <TableOfContents toc={toc} />
+        {/* TODO: Add Contribute component */}
+        {/* <Contribute craft={craft} /> */}
       </div>
 
       <CraftsPager craft={craft} />

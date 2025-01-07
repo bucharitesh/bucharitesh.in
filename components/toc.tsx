@@ -1,16 +1,18 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-
 import type { TableOfContents } from "@/lib/toc";
 import { useMounted } from "@/lib/hooks";
 import { cn } from "@/lib/utils";
+import { AlignLeftIcon } from "lucide-react";
 
 interface TocProps {
   toc: TableOfContents;
 }
 
 export function TableOfContents({ toc }: TocProps) {
+  const mounted = useMounted();
+
   const refinedToc = useMemo(() => {
     if (!toc.items || toc.items.length === 0) {
       return toc;
@@ -27,7 +29,7 @@ export function TableOfContents({ toc }: TocProps) {
     return toc;
   }, [toc]);
 
-  const itemIds: string[] = useMemo(
+  const itemIds = useMemo(
     () =>
       refinedToc.items
         ? refinedToc.items
@@ -39,25 +41,23 @@ export function TableOfContents({ toc }: TocProps) {
     [refinedToc]
   ) as string[];
 
-  const activeHeading = useActiveItem(itemIds);
-  const mounted = useMounted();
+  // Initialize activeId based on initial viewport position
+  const initialActiveId = useMemo(() => {
+    if (typeof window === 'undefined') return null;
+    
+    return itemIds.find((id) => {
+      const element = document.getElementById(id);
+      if (!element) return false;
+      const rect = element.getBoundingClientRect();
+      return rect.top <= window.innerHeight * 0.2;
+    }) || itemIds[0];
+  }, [itemIds]);
 
-  if (!toc?.items || !mounted) {
-    return null;
-  }
-
-  return (
-    <div className="space-y-2">
-      <p className="font-medium">On This Page</p>
-      <Tree tree={refinedToc} activeItem={activeHeading} />
-    </div>
-  );
-}
-
-function useActiveItem(itemIds: string[]): string | null {
-  const [activeId, setActiveId] = useState<string | null>(null);
+  const [activeId, setActiveId] = useState(initialActiveId);
 
   useEffect(() => {
+    if (!mounted) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -84,9 +84,21 @@ function useActiveItem(itemIds: string[]): string | null {
         }
       });
     };
-  }, [itemIds]);
+  }, [itemIds, mounted]);
 
-  return activeId;
+  if (!toc?.items) return null;
+
+  return (
+    <div className="space-y-2">
+      <p className="-ml-0.5 flex items-center gap-1.5 text-sm text-gray-500">
+        <AlignLeftIcon className="size-4" />
+        On this page
+      </p>
+      <nav aria-label="Table of contents">
+        <Tree tree={refinedToc} activeItem={activeId} />
+      </nav>
+    </div>
+  );
 }
 
 interface TreeProps {
@@ -96,22 +108,36 @@ interface TreeProps {
 }
 
 function Tree({ tree, level = 1, activeItem }: TreeProps) {
-  return tree?.items?.length && level < 3 ? (
-    <ul className={cn("m-0 list-none", { "pl-4": level !== 1 })}>
+  if (!tree?.items?.length || level >= 3) return null;
+
+  return (
+    <ul
+      className={cn("mt-4 grid gap-4 border-l-2 border-gray-200", {
+        "pl-4": level !== 1,
+      })}
+    >
       {tree.items.map((item, index) => {
+        const isActive = item.url === `#${activeItem}`;
         return (
-          <li key={index} className={cn("mt-0 pt-2")}>
+          <li key={index} className="relative -ml-0.5 pl-4">
             <a
               href={item.url}
               className={cn(
-                "inline-block no-underline transition-colors hover:text-foreground",
-                item.url === `#${activeItem}`
+                "inline-block text-sm transition-colors duration-200",
+                isActive
                   ? "font-medium text-foreground"
-                  : "text-muted-foreground"
+                  : "text-muted-foreground hover:text-foreground"
               )}
             >
               {item.title}
             </a>
+            <div
+              className="absolute left-0 top-0 h-full w-0.5 bg-black transition-all duration-200 ease-in-out"
+              style={{
+                opacity: isActive ? 1 : 0,
+                transform: `translateY(${isActive ? "0" : "-100%"})`,
+              }}
+            />
             {item.items?.length ? (
               <Tree tree={item} level={level + 1} activeItem={activeItem} />
             ) : null}
@@ -119,5 +145,7 @@ function Tree({ tree, level = 1, activeItem }: TreeProps) {
         );
       })}
     </ul>
-  ) : null;
+  );
 }
+
+export default TableOfContents;
