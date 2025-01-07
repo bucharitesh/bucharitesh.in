@@ -137,7 +137,7 @@ const crafts = defineCollection({
       let blurImage: string | null = null;
       if (page.image) {
         blurImage = await context.cache(`blur-${page.image}`, async () =>
-          generateBlurUrl(page?.image ?? "")
+          generateBlurUrl(page?.image ?? ""),
         );
       }
 

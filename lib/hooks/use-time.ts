@@ -15,7 +15,7 @@ export function useTime() {
           minute: "numeric",
           second: "numeric",
           hour12: true,
-        })
+        }),
       );
     };
 

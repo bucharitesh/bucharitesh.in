@@ -61,7 +61,7 @@ export default async function RootLayout({
             "font-x overscroll-y-none z-0 h-screen w-screen antialiased selection:bg-blue-400/90 selection:text-white",
             fontX.variable,
             fontMono.variable,
-            fontNdot55.variable
+            fontNdot55.variable,
           )}
           suppressHydrationWarning
         >

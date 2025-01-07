@@ -1,4 +1,9 @@
-import { ArrowUpRightIcon, AtSignIcon, CommandIcon, SunIcon } from "lucide-react";
+import {
+  ArrowUpRightIcon,
+  AtSignIcon,
+  CommandIcon,
+  SunIcon,
+} from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
@@ -89,10 +94,10 @@ export const NavigationLink = memo(({ href, label, icon }: any) => {
         rel="noopener noreferrer"
         className="flex items-center justify-between gap-2 rounded-lg p-2 hover:bg-gray-200 dark:hover:bg-gray-800"
       >
-          <span className="inline-flex items-center gap-2 font-medium">
-            {iconCmp}
-            {label}
-          </span>
+        <span className="inline-flex items-center gap-2 font-medium">
+          {iconCmp}
+          {label}
+        </span>
         <ArrowUpRightIcon size={16} />
       </a>
     );
@@ -111,7 +116,9 @@ export const NavigationLink = memo(({ href, label, icon }: any) => {
       href={href}
       className={cn(
         "group flex items-center justify-between rounded-lg p-2",
-        isActive ? "bg-black text-white dark:bg-neutral-800" : "hover:bg-neutral-200 dark:hover:bg-neutral-800"
+        isActive
+          ? "bg-black text-white dark:bg-neutral-800"
+          : "hover:bg-neutral-200 dark:hover:bg-neutral-800",
       )}
     >
       <span className="flex items-center gap-2">
@@ -119,7 +126,7 @@ export const NavigationLink = memo(({ href, label, icon }: any) => {
         <span
           className={cn(
             "font-medium",
-            isActive && "text-white dark:text-neutral-400"
+            isActive && "text-white dark:text-neutral-400",
           )}
         >
           {label}

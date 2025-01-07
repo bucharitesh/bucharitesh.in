@@ -54,7 +54,7 @@ export const useSocialsCommand = ({
           setOpen(false);
         },
       })),
-    [setOpen]
+    [setOpen],
   );
 
   return {

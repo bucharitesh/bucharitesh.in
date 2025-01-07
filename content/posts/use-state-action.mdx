@@ -3,7 +3,7 @@ title: "Learn useActionState - React Simplified"
 description: "Discover how to simplify your React forms with the useActionState hook. Learn its basics, implementation with server actions, and advanced use cases in this comprehensive guide."
 date: "2024-09-15"
 type: "blog"
-tags: ['react', 'nextjs']
+tags: ["react", "nextjs"]
 ---
 
 Are you tired of writing complex code for forms in React? Say hello to `useActionState`, a game-changing hook that's about to make your life a whole lot easier. In this article, we'll dive into the world of `useActionState` and show you how it can revolutionize your React, Next.js, and server component workflows. Buckle up, because we're about to simplify your form handling in just 8 minutes!
@@ -30,21 +30,24 @@ It's enough to make even seasoned developers reach for the aspirin. But fear not
 ## How to Use useActionState: A Step-by-Step Guide
 
 1. **Import the Hook**:
+
    ```javascript
-   import { useActionState } from 'react';
+   import { useActionState } from "react";
    ```
 
 2. **Set Up Your Action**:
+
    ```javascript
    const saveUser = async (name) => {
      // Simulate API call
-     await new Promise(resolve => setTimeout(resolve, 1000));
-     if (name.trim() === '') return { error: 'Name is required' };
+     await new Promise((resolve) => setTimeout(resolve, 1000));
+     if (name.trim() === "") return { error: "Name is required" };
      return { success: `User ${name} saved successfully` };
    };
    ```
 
 3. **Implement useActionState**:
+
    ```javascript
    const [data, action, pending] = useActionState(saveUser, { loading: false });
    ```
@@ -53,7 +56,9 @@ It's enough to make even seasoned developers reach for the aspirin. But fear not
    ```jsx
    <form onSubmit={action}>
      <input name="name" />
-     <button type="submit" disabled={pending}>Submit</button>
+     <button type="submit" disabled={pending}>
+       Submit
+     </button>
      {data?.error && <p>{data.error}</p>}
      {data?.success && <p>{data.success}</p>}
    </form>
@@ -64,6 +69,7 @@ It's enough to make even seasoned developers reach for the aspirin. But fear not
 `useActionState` plays nicely with Next.js server actions. Here's how:
 
 1. **Mark Your Function as a Server Action**:
+
    ```javascript
    "use server";
    const saveUser = async (formData) => {
@@ -84,7 +90,11 @@ Now you can handle form submissions, manage state, and communicate with the serv
 For those edge cases where JavaScript hasn't loaded, `useActionState` has you covered:
 
 ```javascript
-const [data, action, pending] = useActionState(saveUser, { loading: false }, '/submit-form');
+const [data, action, pending] = useActionState(
+  saveUser,
+  { loading: false },
+  "/submit-form",
+);
 ```
 
 This ensures your form works even if JavaScript is taking its sweet time to load.
@@ -97,4 +107,4 @@ So, the next time you're staring down the barrel of a complex form implementatio
 
 ---
 
-*Note: This article is based on React 19 features. Make sure you're using the latest version to access `useActionState`.*
+_Note: This article is based on React 19 features. Make sure you're using the latest version to access `useActionState`._

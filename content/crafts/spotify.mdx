@@ -5,8 +5,7 @@ description: "Show what you're listening to."
 author: bucharitesh
 published: false
 type: "code"
-image: "https://cdn.rauno.me/spotify.png"
-video: "https://cdn.rauno.me/gooey-tooltip.mp4"
+image: "https://cdn.bucharitesh.in/split-text-effect.png"
 ---
 
 ```bash
@@ -27,6 +26,7 @@ Remember to keep your Client ID and Secret private - they're the keys to your Sp
 ## Step 2: Get Your Authorization
 
 1. Replace `YOUR_CLIENT_ID` in this URL and open it in your browser:
+
    ```bash
    https://accounts.spotify.com/authorize?client_id=YOUR_CLIENT_ID&response_type=code&redirect_uri=http%3A%2F%2Flocalhost:3000&scope=user-read-currently-playing%20user-top-read
    ```
@@ -34,9 +34,11 @@ Remember to keep your Client ID and Secret private - they're the keys to your Sp
 2. After authorizing, you'll be redirected. The URL will contain a `code`. Save this.
 
 3. Now, let's get your refresh token. In your terminal, run:
+
    ```bash
    curl -H "Authorization: Basic BASE64_ENCODED_CLIENT_ID_AND_SECRET" -d grant_type=authorization_code -d code=CODE_FROM_STEP_2 -d redirect_uri=http%3A%2F%2Flocalhost:3000 https://accounts.spotify.com/api/token
    ```
+
    Replace `BASE64_ENCODED_CLIENT_ID_AND_SECRET` with your Client ID and Secret encoded in Base64 (use an online Base64 encoder), and `CODE_FROM_STEP_2` with the code you got in step 2.
 
 4. From the response, save the `refresh_token`. This is your long-term pass to access your Spotify data.
@@ -135,14 +137,14 @@ export default async (_, res) => {
 Create a React component to show your currently playing song:
 
 ```jsx
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 export default function NowPlaying() {
   const [nowPlaying, setNowPlaying] = useState(null);
 
   useEffect(() => {
     async function fetchNowPlaying() {
-      const res = await fetch('/api/now-playing');
+      const res = await fetch("/api/now-playing");
       const data = await res.json();
       setNowPlaying(data);
     }
@@ -159,8 +161,15 @@ export default function NowPlaying() {
   return (
     <div>
       <h2>Now Playing</h2>
-      <p>{nowPlaying.title} by {nowPlaying.artist}</p>
-      <img src={nowPlaying.albumImageUrl} alt={nowPlaying.album} width="300" height="300" />
+      <p>
+        {nowPlaying.title} by {nowPlaying.artist}
+      </p>
+      <img
+        src={nowPlaying.albumImageUrl}
+        alt={nowPlaying.album}
+        width="300"
+        height="300"
+      />
       <a href={nowPlaying.songUrl} target="_blank" rel="noopener noreferrer">
         Listen on Spotify
       </a>

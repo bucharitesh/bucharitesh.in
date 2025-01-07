@@ -62,7 +62,7 @@ export const Ruler: React.FC<{
                         }),
                   }}
                 />
-              )
+              ),
           )}
 
           {/* Long lines - rendered every 10mm */}

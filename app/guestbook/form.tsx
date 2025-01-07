@@ -79,7 +79,7 @@ export function Form() {
         setIsSubmitting(false);
       }
     },
-    [localSignature]
+    [localSignature],
   );
 
   if (!session?.user) {

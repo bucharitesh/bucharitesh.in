@@ -39,7 +39,7 @@ export const useTimeCommand = ({
         .filter(
           (city) =>
             city.city.toLowerCase().includes(cityQuery) ||
-            city.country.toLowerCase().includes(cityQuery)
+            city.country.toLowerCase().includes(cityQuery),
         )
         .slice(0, 5);
 
@@ -69,7 +69,7 @@ export const useTimeCommand = ({
           icon: HiClock,
           action: async () => {
             await navigator.clipboard.writeText(
-              getTimeInTimezone(city.timezone)
+              getTimeInTimezone(city.timezone),
             );
           },
         }));

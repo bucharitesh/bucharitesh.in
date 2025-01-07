@@ -62,7 +62,7 @@ const Grid = ({
                 x === columns || (hideGuides && hideGuides === "column")
               }
               borderBottom={y === rows || (hideGuides && hideGuides === "row")}
-            />
+            />,
           );
         }
       }
@@ -83,7 +83,7 @@ const Grid = ({
 
       const getNextAvailableValue = (
         obj: typeof columns | typeof rows,
-        currentBreakpoint: string
+        currentBreakpoint: string,
       ): number => {
         const index = breakpoints.indexOf(currentBreakpoint as any);
         for (let i = index; i < breakpoints.length; i++) {
@@ -117,7 +117,7 @@ const Grid = ({
                   grid_mdGuide__Kf1OM: breakpoint === "md",
                   grid_lgGuide__2OXaB: breakpoint === "lg",
                 })}
-              />
+              />,
             );
           }
         }
@@ -129,7 +129,7 @@ const Grid = ({
             data-grid-guides="true"
           >
             {guides}
-          </div>
+          </div>,
         );
       });
 

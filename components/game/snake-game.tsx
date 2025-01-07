@@ -42,7 +42,7 @@ const SnakeGame = React.forwardRef<HTMLDivElement, SnakeGameProps>(
       };
 
       const isOnSnake = snake.some(
-        (segment) => segment.x === newFood.x && segment.y === newFood.y
+        (segment) => segment.x === newFood.x && segment.y === newFood.y,
       );
 
       if (isOnSnake) {
@@ -77,7 +77,7 @@ const SnakeGame = React.forwardRef<HTMLDivElement, SnakeGameProps>(
             break;
         }
       },
-      [direction, gameOver, gameStarted, isFocused]
+      [direction, gameOver, gameStarted, isFocused],
     );
 
     const handleTouchStart = (e: React.TouchEvent) => {
@@ -273,7 +273,7 @@ const SnakeGame = React.forwardRef<HTMLDivElement, SnakeGameProps>(
           tabIndex={0}
           className={cn(
             "relative rounded-lg flex flex-col items-center cursor-pointer bg-muted border outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
-            className
+            className,
           )}
           style={containerStyle}
           onClick={startGame}
@@ -301,7 +301,7 @@ const SnakeGame = React.forwardRef<HTMLDivElement, SnakeGameProps>(
         tabIndex={0}
         className={cn(
           "relative rounded-lg bg-muted border outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
-          className
+          className,
         )}
         style={containerStyle}
         onFocus={handleFocus}
@@ -371,7 +371,7 @@ const SnakeGame = React.forwardRef<HTMLDivElement, SnakeGameProps>(
         )}
       </div>
     );
-  }
+  },
 );
 
 SnakeGame.displayName = "SnakeGame";

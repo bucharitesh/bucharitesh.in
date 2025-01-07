@@ -97,7 +97,7 @@ export const Card = ({
         className,
         {
           "p-1": craft_type !== "none",
-        }
+        },
       )}
     >
       <div
@@ -106,7 +106,7 @@ export const Card = ({
           "after:content-[''] after:absolute after:w-full after:h-[200px] after:bottom-[-64px] after:transition-opacity after:duration-200 after:pointer-events-none after:bg-gradient-to-t after:via-transparent after:to-transparent after:from-black/90",
           {
             "rounded-lg": craft_type !== "none",
-          }
+          },
         )}
       >
         <div className="relative w-full" style={{ aspectRatio: aspectRatio }}>
@@ -119,7 +119,7 @@ export const Card = ({
                 {
                   "opacity-0": showContent,
                   "opacity-100": !showContent,
-                }
+                },
               )}
               src={blurImage}
               style={{
@@ -144,7 +144,7 @@ export const Card = ({
                 {
                   "opacity-0": !isVideoLoaded,
                   "opacity-100": isVideoLoaded,
-                }
+                },
               )}
             />
           ) : (
@@ -164,7 +164,7 @@ export const Card = ({
             {
               "top-2": position === "top",
               "bottom-2": position === "bottom",
-            }
+            },
           )}
         >
           <div
@@ -173,7 +173,7 @@ export const Card = ({
               {
                 "text-neutral-100": theme === "light",
                 "text-neutral-900": theme === "dark",
-              }
+              },
             )}
           >
             {title}
@@ -184,7 +184,7 @@ export const Card = ({
               {
                 "text-neutral-400": theme === "light",
                 "text-neutral-800/60": theme === "dark",
-              }
+              },
             )}
           >
             {date}

@@ -9,7 +9,7 @@ type MediaConfig = {
 
 export async function generateBlurUrl(
   mediaPath: string,
-  config: MediaConfig = { quality: 10, size: { width: 16, height: 16 } }
+  config: MediaConfig = { quality: 10, size: { width: 16, height: 16 } },
 ) {
   try {
     // Handle both local and remote paths

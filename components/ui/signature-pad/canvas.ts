@@ -113,7 +113,7 @@ export class Canvas {
       0,
       0,
       width * this.DPI,
-      height * this.DPI
+      height * this.DPI,
     );
   }
 
@@ -159,7 +159,7 @@ export class Canvas {
    */
   private onMouseUp(
     event: MouseEvent | PointerEvent | TouchEvent,
-    addPoint = true
+    addPoint = true,
   ): void {
     if (event.cancelable) {
       event.preventDefault();
@@ -285,18 +285,18 @@ export class Canvas {
   private strokeWidth(velocity: number): number {
     return Math.max(
       this.maxStrokeWidth() / (velocity + 1),
-      this.minStrokeWidth()
+      this.minStrokeWidth(),
     );
   }
 
   public registerOnChangeHandler(
-    handler: (_canvas: Canvas, _cleared: boolean) => void
+    handler: (_canvas: Canvas, _cleared: boolean) => void,
   ): void {
     this.onChangeHandlers.push(handler);
   }
 
   public unregisterOnChangeHandler(
-    handler: (_canvas: Canvas, _cleared: boolean) => void
+    handler: (_canvas: Canvas, _cleared: boolean) => void,
   ): void {
     this.onChangeHandlers = this.onChangeHandlers.filter((l) => l !== handler);
   }
@@ -336,7 +336,7 @@ export class Canvas {
           resolve(blob);
         },
         type,
-        quality
+        quality,
       );
     });
 

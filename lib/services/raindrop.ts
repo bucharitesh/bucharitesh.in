@@ -23,7 +23,7 @@ export const getBookmarkItems = cache(async (id, pageIndex = 0) => {
           page: pageIndex.toString(),
           perpage: "50",
         }),
-      options
+      options,
     );
     return await response.json();
   } catch (error) {
@@ -37,7 +37,7 @@ export const getBookmarks = cache(async () => {
     const response = await fetch(`${RAINDROP_API_URL}/collections`, options);
     const bookmarks = await response.json();
     const filteredBookmarks = bookmarks.items.filter((bookmark) =>
-      COLLECTION_IDS.includes(bookmark._id)
+      COLLECTION_IDS.includes(bookmark._id),
     );
     return filteredBookmarks;
   } catch (error) {
@@ -50,7 +50,7 @@ export const getBookmark = cache(async (id) => {
   try {
     const response = await fetch(
       `${RAINDROP_API_URL}/collection/${id}`,
-      options
+      options,
     );
     return await response.json();
   } catch (error) {

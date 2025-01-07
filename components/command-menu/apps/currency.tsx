@@ -21,7 +21,7 @@ export const useCurrencyCommand = ({
     const fetchRates = async () => {
       try {
         const response = await fetch(
-          "https://api.exchangerate-api.com/v4/latest/USD"
+          "https://api.exchangerate-api.com/v4/latest/USD",
         );
         const data = await response.json();
         setExchangeRates(data.rates);

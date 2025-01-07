@@ -1,4 +1,3 @@
-
 import { SnakeGame } from "@/components/game/snake-game";
 import Info from "@/components/home/info";
 import { Button } from "@/components/ui/button";

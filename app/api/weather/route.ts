@@ -56,15 +56,15 @@ function getWindDirection(degrees: number): string {
 
 async function getCityCoordinates(city: string) {
   const url = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(
-    city
+    city,
   )}&count=1`;
-  
+
   try {
     const response = await fetch(url);
     if (!response.ok) {
       throw new Error(`API responded with status: ${response.status}`);
     }
-    
+
     const data = await response.json();
     if (!data.results?.[0]) {
       throw new Error(`City "${city}" not found`);
@@ -84,11 +84,11 @@ async function getWeatherData(lat: number, lon: number, timezone: string) {
   url.searchParams.append("timezone", timezone);
   url.searchParams.append(
     "current",
-    "temperature_2m,relative_humidity_2m,apparent_temperature,pressure_msl,wind_speed_10m,wind_direction_10m,weather_code"
+    "temperature_2m,relative_humidity_2m,apparent_temperature,pressure_msl,wind_speed_10m,wind_direction_10m,weather_code",
   );
   url.searchParams.append(
     "daily",
-    "temperature_2m_max,temperature_2m_min,weather_code,precipitation_probability_max"
+    "temperature_2m_max,temperature_2m_min,weather_code,precipitation_probability_max",
   );
 
   try {
@@ -114,7 +114,7 @@ export async function GET(request: NextRequest) {
     if (!city) {
       return Response.json(
         { error: "City parameter is required" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -122,9 +122,9 @@ export async function GET(request: NextRequest) {
 
     cityData = await getCityCoordinates(city);
     weatherData = await getWeatherData(
-    cityData.latitude,
-    cityData.longitude,
-    cityData.timezone || "UTC"
+      cityData.latitude,
+      cityData.longitude,
+      cityData.timezone || "UTC",
     );
 
     // Format response
@@ -141,16 +141,24 @@ export async function GET(request: NextRequest) {
         humidity: Math.round(weatherData.current.relative_humidity_2m),
         pressure: Math.round(weatherData.current.pressure_msl),
         wind_speed: Math.round(weatherData.current.wind_speed_10m),
-        wind_direction: getWindDirection(weatherData.current.wind_direction_10m),
-        description: WEATHER_CODES.get(weatherData.current.weather_code)?.description || "Unknown",
-        icon: WEATHER_CODES.get(weatherData.current.weather_code)?.icon || "01d",
+        wind_direction: getWindDirection(
+          weatherData.current.wind_direction_10m,
+        ),
+        description:
+          WEATHER_CODES.get(weatherData.current.weather_code)?.description ||
+          "Unknown",
+        icon:
+          WEATHER_CODES.get(weatherData.current.weather_code)?.icon || "01d",
       },
       forecast: weatherData.daily.time.map((date: string, i: number) => ({
         date,
         temp_min: Math.round(weatherData.daily.temperature_2m_min[i]),
         temp_max: Math.round(weatherData.daily.temperature_2m_max[i]),
-        description: WEATHER_CODES.get(weatherData.daily.weather_code[i])?.description || "Unknown",
-        precipitation_chance: weatherData.daily.precipitation_probability_max[i],
+        description:
+          WEATHER_CODES.get(weatherData.daily.weather_code[i])?.description ||
+          "Unknown",
+        precipitation_chance:
+          weatherData.daily.precipitation_probability_max[i],
       })),
       meta: {
         updated_at: new Date().toISOString(),
@@ -167,16 +175,21 @@ export async function GET(request: NextRequest) {
         "X-Client-Location": clientLocation,
       },
     });
-
   } catch (error) {
     console.error("Weather API error:", error);
     return Response.json(
       {
-        error: error instanceof Error ? error.message : "Failed to fetch weather data",
+        error:
+          error instanceof Error
+            ? error.message
+            : "Failed to fetch weather data",
       },
-      { 
-        status: error instanceof Error && error.message.includes("not found") ? 404 : 500 
-      }
+      {
+        status:
+          error instanceof Error && error.message.includes("not found")
+            ? 404
+            : 500,
+      },
     );
   }
 }

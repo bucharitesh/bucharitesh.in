@@ -1,17 +1,17 @@
-import React from "react"
-import { useIntersection } from "react-use"
+import React from "react";
+import { useIntersection } from "react-use";
 
 export const useEnabledOnFirstIntersection = () => {
-  const [enabled, setEnabled] = React.useState(false)
-  const intersectionRef = React.useRef<HTMLDivElement | null>(null)
-  const intersection = useIntersection(intersectionRef, {})
+  const [enabled, setEnabled] = React.useState(false);
+  const intersectionRef = React.useRef<HTMLDivElement | null>(null);
+  const intersection = useIntersection(intersectionRef, {});
 
   React.useEffect(() => {
     if (!enabled && intersection?.isIntersecting) {
-      setEnabled(true)
-      intersectionRef.current = null
+      setEnabled(true);
+      intersectionRef.current = null;
     }
-  }, [intersection?.isIntersecting])
+  }, [intersection?.isIntersecting]);
 
-  return { enabled, intersectionRef }
-}
+  return { enabled, intersectionRef };
+};

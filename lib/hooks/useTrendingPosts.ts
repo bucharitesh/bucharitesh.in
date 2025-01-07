@@ -28,7 +28,7 @@ export const useTrendingPosts = (config?: SWRConfiguration) => {
     {
       dedupingInterval: 60000,
       ...config,
-    }
+    },
   );
 
   return {

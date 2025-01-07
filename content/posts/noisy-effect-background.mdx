@@ -3,7 +3,7 @@ title: "The Noisy Coder's Guide to Awesome Backgrounds"
 description: "Learn how to add a subtle, dynamic noise effect to your website background using SVG and CSS."
 date: "2024-08-13"
 type: "blog"
-tags: ['design', 'react', 'nextjs']
+tags: ["design", "react", "nextjs"]
 ---
 
 Hey there, fellow pixel pushers and code wranglers! 👋 Today, we're diving into the wild world of noisy backgrounds. Why? Because sometimes, a little chaos is exactly what your website needs to go from "meh" to "woah!" 🎉
@@ -13,7 +13,7 @@ Hey there, fellow pixel pushers and code wranglers! 👋 Today, we're diving int
 Picture this: You've just created the sleekest, most minimalist website known to mankind. It's so clean, you could eat off it. But something's missing. It feels... soulless. Empty. Like a vintage Star Wars poster without lens flares.
 
 ![Baby Yoda looking sad](/baby_yoda.jpg)
-*Caption: Baby Yoda when he sees another flat design website*
+_Caption: Baby Yoda when he sees another flat design website_
 
 Fear not, young Padawan! For I bring you the solution to breathe life into your digital canvas: The Noisy Background Effect™!
 
@@ -64,7 +64,7 @@ Want to tweak the noise? Fiddle with the `baseFrequency` attribute. Lower values
 Here's how you can add this to your Next.js project, because we all know that's what the cool kids are using these days:
 
 ```tsx
-import type { ReactNode } from 'react'
+import type { ReactNode } from "react";
 
 export default function Background({ children }: { children: ReactNode }) {
   return (
@@ -86,7 +86,7 @@ export default function Background({ children }: { children: ReactNode }) {
         <rect width="100%" height="100%" filter="url(#noise)" />
       </svg>
     </div>
-  )
+  );
 }
 ```
 

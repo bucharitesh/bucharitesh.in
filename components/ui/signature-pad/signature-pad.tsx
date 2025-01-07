@@ -54,7 +54,7 @@ export const SignaturePad = forwardRef(function SignaturePad(
     disabled = false,
     ...props
   }: SignaturePadProps,
-  ref: ForwardedRef<SignaturePadRef>
+  ref: ForwardedRef<SignaturePadRef>,
 ) {
   const $el = useRef<HTMLCanvasElement>(null);
   const $imageData = useRef<ImageData | null>(null);
@@ -81,7 +81,7 @@ export const SignaturePad = forwardRef(function SignaturePad(
       isEmpty: () => lines.length === 0 && currentLine.length === 0,
       getData: () => $el.current?.toDataURL() || null,
     }),
-    [lines, currentLine]
+    [lines, currentLine],
   );
 
   // Initialize canvas with correct scaling
@@ -167,15 +167,15 @@ export const SignaturePad = forwardRef(function SignaturePad(
 
         lines.forEach((line) => {
           const pathData = new Path2D(
-            getSvgPathFromStroke(getStroke(line, perfectFreehandOptions))
+            getSvgPathFromStroke(getStroke(line, perfectFreehandOptions)),
           );
           ctx.fill(pathData);
         });
 
         const pathData = new Path2D(
           getSvgPathFromStroke(
-            getStroke([...currentLine, point], perfectFreehandOptions)
-          )
+            getStroke([...currentLine, point], perfectFreehandOptions),
+          ),
         );
         ctx.fill(pathData);
       }
@@ -184,7 +184,7 @@ export const SignaturePad = forwardRef(function SignaturePad(
 
   const onMouseUp = (
     event: MouseEvent | PointerEvent | TouchEvent,
-    addLine = true
+    addLine = true,
   ) => {
     if (event.cancelable) {
       event.preventDefault();
@@ -209,7 +209,7 @@ export const SignaturePad = forwardRef(function SignaturePad(
 
         newLines.forEach((line) => {
           const pathData = new Path2D(
-            getSvgPathFromStroke(getStroke(line, perfectFreehandOptions))
+            getSvgPathFromStroke(getStroke(line, perfectFreehandOptions)),
           );
           ctx.fill(pathData);
         });
@@ -277,14 +277,14 @@ export const SignaturePad = forwardRef(function SignaturePad(
           0,
           0,
           Math.min(width / dpi, img.width),
-          Math.min(height / dpi, img.height)
+          Math.min(height / dpi, img.height),
         );
 
         const defaultImageData = ctx.getImageData(
           0,
           0,
           width / dpi,
-          height / dpi
+          height / dpi,
         );
         $imageData.current = defaultImageData;
       };
@@ -303,7 +303,7 @@ export const SignaturePad = forwardRef(function SignaturePad(
         ref={$el}
         className={cn(
           "relative block dark:hue-rotate-180 dark:invert",
-          className
+          className,
         )}
         style={{ touchAction: "none" }}
         onPointerMove={onMouseMove}

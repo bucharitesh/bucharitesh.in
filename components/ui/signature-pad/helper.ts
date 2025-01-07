@@ -12,7 +12,7 @@ export const getSvgPathFromStroke = (points: number[][], closed = true) => {
   const c = points[2];
 
   let result = `M${a[0].toFixed(2)},${a[1].toFixed(2)} Q${b[0].toFixed(2)},${b[1].toFixed(
-    2
+    2,
   )} ${average(b[0], c[0]).toFixed(2)},${average(b[1], c[1]).toFixed(2)} T`;
 
   for (let i = 2, max = len - 1; i < max; i++) {

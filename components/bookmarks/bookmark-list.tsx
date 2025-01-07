@@ -10,7 +10,7 @@ import { getBookmarkItemsByPageIndex } from "@/lib/actions";
 
 export const BookmarkList = ({ initialData, id }) => {
   const [data, setData] = useState(
-    initialData?.result ? initialData?.items : []
+    initialData?.result ? initialData?.items : [],
   );
   const [pageIndex, setPageIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(false);

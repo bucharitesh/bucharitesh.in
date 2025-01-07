@@ -13,8 +13,8 @@ import { cn } from "@/lib/utils";
 
 const MobileDrawer = dynamic(() =>
   import("@/components/navigation/mobile-drawer").then(
-    (mod) => mod.MobileDrawer
-  )
+    (mod) => mod.MobileDrawer,
+  ),
 );
 
 export const MOBILE_SCROLL_THRESHOLD = 20;
@@ -44,9 +44,9 @@ export const FloatingHeader = memo(
               MOBILE_SCROLL_THRESHOLD *
                 (MOBILE_SCROLL_THRESHOLD / (scrollY ** 2 / 100))) /
               100,
-            0
+            0,
           ),
-          1
+          1,
         );
 
         setTransformValues({ translateY, opacity });
@@ -64,7 +64,7 @@ export const FloatingHeader = memo(
       <header
         className={cn(
           "sticky inset-x-0 top-0 z-50 mx-auto flex h-12 w-full shrink-0 items-center overflow-hidden border-b border-b-gray-200 dark:border-b-neutral-800 bg-white dark:bg-neutral-900 text-sm font-medium",
-          className
+          className,
         )}
       >
         <div className="flex size-full items-center px-3">
@@ -113,5 +113,5 @@ export const FloatingHeader = memo(
         </div>
       </header>
     );
-  }
+  },
 );

@@ -71,7 +71,7 @@ export default function DownloadButton({
         0,
         0,
         210, // A4 width in mm
-        297 // A4 height in mm
+        297, // A4 height in mm
       );
 
       // Save the PDF

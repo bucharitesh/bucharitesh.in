@@ -4,15 +4,15 @@ import { Icons } from "./icons";
 import { getCurrentSeason } from "@/lib/utils";
 
 export const SelfImage = () => (
-    <Image
-      src={meta.image.animated}
-      quality={95}
-      width={64}
-      height={64}
-      priority={true}
-      className="rounded-full bg-white"
-      alt={`A photo of ${meta.name}`}
-    />
+  <Image
+    src={meta.image.animated}
+    quality={95}
+    width={64}
+    height={64}
+    priority={true}
+    className="rounded-full bg-white"
+    alt={`A photo of ${meta.name}`}
+  />
 );
 
 export const ProfileImage = async () => {
@@ -58,4 +58,3 @@ export const ProfileImage = async () => {
     </div>
   );
 };
-

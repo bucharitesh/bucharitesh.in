@@ -16,7 +16,7 @@ export const ListItem = ({ title, description, path, shortcutNumber }: any) => {
       className={cn(
         "flex justify-between items-center rounded-lg px-4 py-2 transition-colors duration-300 [&>*]:transition-colors [&>*]:duration-300 bg-nautral-200",
         isActive && "bg-neutral-700",
-        !isActive && "hover:bg-neutral-300/50"
+        !isActive && "hover:bg-neutral-300/50",
       )}
     >
       <div className="flex flex-col gap-0">
@@ -34,7 +34,7 @@ export const ListItem = ({ title, description, path, shortcutNumber }: any) => {
           className={cn(
             "hidden h-5 w-5 place-content-center rounded border border-neutral-600 bg-neutral-700 text-neutral-200 group-hover:border-neutral-600 text-xs font-medium transition-colors duration-200 lg:grid",
             isActive &&
-              "border-neutral-200 bg-neutral-100 text-neutral-500 group-hover:border-neutral-300"
+              "border-neutral-200 bg-neutral-100 text-neutral-500 group-hover:border-neutral-300",
           )}
           title={`Shortcut key: ${shortcutNumber}`}
         >

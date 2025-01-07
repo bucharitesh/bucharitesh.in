@@ -49,7 +49,7 @@ export async function GET() {
   const sortedBookmarks = bookmarkList.sort(
     (a, b) =>
       new Date(b.updated || b.created).getTime() -
-      new Date(a.updated || a.created).getTime()
+      new Date(a.updated || a.created).getTime(),
   );
 
   sortedBookmarks.forEach((bookmark) => {

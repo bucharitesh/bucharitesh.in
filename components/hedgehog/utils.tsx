@@ -30,7 +30,7 @@ export function shouldIgnoreInput(e: KeyboardEvent): boolean {
 }
 
 export const randomChoiceList: string[] = Object.keys(
-  standardAnimations
+  standardAnimations,
 ).reduce((acc: string[], key: string) => {
   return [
     ...acc,

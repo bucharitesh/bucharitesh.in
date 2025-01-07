@@ -38,19 +38,21 @@ export function TableOfContents({ toc }: TocProps) {
             .filter(Boolean)
             .map((id) => id?.split("#")[1])
         : [],
-    [refinedToc]
+    [refinedToc],
   ) as string[];
 
   // Initialize activeId based on initial viewport position
   const initialActiveId = useMemo(() => {
-    if (typeof window === 'undefined') return null;
-    
-    return itemIds.find((id) => {
-      const element = document.getElementById(id);
-      if (!element) return false;
-      const rect = element.getBoundingClientRect();
-      return rect.top <= window.innerHeight * 0.2;
-    }) || itemIds[0];
+    if (typeof window === "undefined") return null;
+
+    return (
+      itemIds.find((id) => {
+        const element = document.getElementById(id);
+        if (!element) return false;
+        const rect = element.getBoundingClientRect();
+        return rect.top <= window.innerHeight * 0.2;
+      }) || itemIds[0]
+    );
   }, [itemIds]);
 
   const [activeId, setActiveId] = useState(initialActiveId);
@@ -66,7 +68,7 @@ export function TableOfContents({ toc }: TocProps) {
           }
         });
       },
-      { rootMargin: `0% 0% -80% 0%` }
+      { rootMargin: `0% 0% -80% 0%` },
     );
 
     itemIds?.forEach((id) => {
@@ -126,7 +128,7 @@ function Tree({ tree, level = 1, activeItem }: TreeProps) {
                 "inline-block text-sm transition-colors duration-200",
                 isActive
                   ? "font-medium text-foreground"
-                  : "text-muted-foreground hover:text-foreground"
+                  : "text-muted-foreground hover:text-foreground",
               )}
             >
               {item.title}

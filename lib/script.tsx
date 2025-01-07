@@ -117,7 +117,7 @@ export function BLOG_SCRIPT_ORG({
       type="application/ld+json"
       dangerouslySetInnerHTML={{
         __html: JSON.stringify(
-          createBlogJsonLd({ title, description, slug, published_at, image })
+          createBlogJsonLd({ title, description, slug, published_at, image }),
         ),
       }}
     />
@@ -143,7 +143,7 @@ export function SNIPPET_SCRIPT_ORG({
             slug,
             published_at,
             image,
-          })
+          }),
         ),
       }}
     />

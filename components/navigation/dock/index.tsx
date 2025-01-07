@@ -45,7 +45,7 @@ function BottomDock({ className }: { className: string }) {
       }}
       className={cn(
         "fixed bottom-0 h-[clamp(80px,10vh,200px)] w-full z-40 left-1/2 -translate-x-1/2",
-        className
+        className,
       )}
     >
       <div className="absolute top-0 left-0 w-full h-full backdrop-blur [mask-image:linear-gradient(to_top,#000_25%,transparent)] [-webkit-mask-image:linear-gradient(to_top,#000_25%,transparent)]"></div>
@@ -76,7 +76,7 @@ function BottomDock({ className }: { className: string }) {
         <DockIcon title={"Theme"}>
           <ModeToggle />
         </DockIcon>
-        
+
         {/* <DockIcon
           onMouseUp={async () => {
             if (session?.user?.email) {

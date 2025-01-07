@@ -52,7 +52,7 @@ export const useWeatherCommand = (): CommandGroup => {
         action: async () => {
           if (weatherData && weatherData.main && weatherData.weather) {
             await navigator.clipboard.writeText(
-              `Current weather in ${userLocation}: ${Math.round(weatherData.main.temp)}°C, ${weatherData.current.description}`
+              `Current weather in ${userLocation}: ${Math.round(weatherData.main.temp)}°C, ${weatherData.current.description}`,
             );
           }
         },

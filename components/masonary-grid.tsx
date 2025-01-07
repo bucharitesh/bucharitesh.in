@@ -73,7 +73,7 @@ export const MasonryGrid: React.FC<MasonryGridProps> = ({
 
   const columnElements = [...Array(columns)].map((_, columnIndex) => {
     const columnChildren = React.Children.toArray(children).filter(
-      (_, index) => index % columns === columnIndex
+      (_, index) => index % columns === columnIndex,
     );
 
     return (

@@ -1,4 +1,11 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode, useRef } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+  useRef,
+} from "react";
 import {
   HiCommandLine,
   HiSquare2Stack,
@@ -104,14 +111,19 @@ export const easterEggs: Record<string, EasterEgg> = {
 
 const TOTAL_POSSIBLE_POINTS = Object.values(easterEggs).reduce(
   (total, egg) => total + egg.points,
-  0
+  0,
 );
 
-const canDiscoverEgg = (eggId: string, discoveredEggs: Record<string, DiscoveredEgg>): boolean => {
+const canDiscoverEgg = (
+  eggId: string,
+  discoveredEggs: Record<string, DiscoveredEgg>,
+): boolean => {
   return easterEggs[eggId] && !discoveredEggs[eggId];
 };
 
-const EasterEggContext = createContext<EasterEggContextType>({} as EasterEggContextType);
+const EasterEggContext = createContext<EasterEggContextType>(
+  {} as EasterEggContextType,
+);
 
 export function EasterEggProvider({ children }: { children: ReactNode }) {
   const [discoveredEggs, setDiscoveredEggs] = useState<
@@ -130,7 +142,7 @@ export function EasterEggProvider({ children }: { children: ReactNode }) {
   const [totalPoints, setTotalPoints] = useState(() => {
     return Object.values(discoveredEggs).reduce(
       (sum, egg) => sum + egg.points,
-      0
+      0,
     );
   });
 
@@ -172,7 +184,7 @@ export function EasterEggProvider({ children }: { children: ReactNode }) {
     total: Object.keys(easterEggs).length,
     percentage: Math.round(
       (Object.keys(discoveredEggs).length / Object.keys(easterEggs).length) *
-        100
+        100,
     ),
     possiblePoints: TOTAL_POSSIBLE_POINTS,
     earnedPoints: totalPoints,
@@ -185,14 +197,14 @@ export function EasterEggProvider({ children }: { children: ReactNode }) {
     }
   }, [discoveredEggs]);
 
-   const resetEasterEggs = () => {
-     setDiscoveredEggs({});
-     setTotalPoints(0);
-     setCurrentTier(TIERS.EXPLORER);
-     if (typeof window !== "undefined") {
-       localStorage.removeItem("discoveredEggs");
-     }
-   };
+  const resetEasterEggs = () => {
+    setDiscoveredEggs({});
+    setTotalPoints(0);
+    setCurrentTier(TIERS.EXPLORER);
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("discoveredEggs");
+    }
+  };
 
   return (
     <EasterEggContext.Provider
@@ -258,9 +270,7 @@ export function EasterEggProvider({ children }: { children: ReactNode }) {
                   +{currentAchievement.points}
                 </span>
               </div>
-              <p
-                className={`text-sm mt-1 dark:text-gray-400 text-gray-600`}
-              >
+              <p className={`text-sm mt-1 dark:text-gray-400 text-gray-600`}>
                 {currentAchievement.description}
               </p>
             </div>

@@ -1,11 +1,11 @@
-import { Heading, Text } from "@react-email/components"
-import EmailText from "./components/email-text"
-import EmailBody from "./components/email-body"
+import { Heading, Text } from "@react-email/components";
+import EmailText from "./components/email-text";
+import EmailBody from "./components/email-body";
 
 export default function WelcomeEmail({
   email = "contact@bucharitesh.in",
 }: {
-  email: string
+  email: string;
 }) {
   return (
     <EmailBody email={email}>
@@ -31,5 +31,5 @@ export default function WelcomeEmail({
         someone leaves, I eat a tub of ice cream. Think of my waistline! 🍦
       </Text>
     </EmailBody>
-  )
+  );
 }

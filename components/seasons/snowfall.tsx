@@ -40,7 +40,7 @@ export function Snowfall({ enabled = true }: { enabled?: boolean }) {
         () => {
           setSnowflakes((prev) => prev.filter((flake) => flake.id !== id));
         },
-        duration * 1000 + delay * 1000
+        duration * 1000 + delay * 1000,
       );
     };
 

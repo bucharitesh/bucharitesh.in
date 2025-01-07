@@ -54,7 +54,7 @@ export function CommandMenu({ ...props }: DialogProps) {
 
     // Handle time results
     const timeResults = timeCommands.commands.filter((cmd) =>
-      cmd.id.startsWith("time-")
+      cmd.id.startsWith("time-"),
     );
     if (timeResults.length > 0) {
       return [
@@ -67,7 +67,7 @@ export function CommandMenu({ ...props }: DialogProps) {
 
     // Handle currency results
     const currencyResults = currencyCommands.commands.filter(
-      (cmd) => cmd.id === "currency-conversion"
+      (cmd) => cmd.id === "currency-conversion",
     );
     if (currencyResults.length > 0) {
       return [
@@ -116,7 +116,7 @@ export function CommandMenu({ ...props }: DialogProps) {
             command.description
               ?.toString()
               .toLowerCase()
-              .includes(searchQuery.toLowerCase())
+              .includes(searchQuery.toLowerCase()),
         ),
       }))
       .filter((group) => group.commands.length > 0);
@@ -143,7 +143,7 @@ export function CommandMenu({ ...props }: DialogProps) {
   const getAllCommands = () => {
     return filteredCommands.reduce(
       (acc, group) => [...acc, ...group.commands],
-      [] as any[]
+      [] as any[],
     );
   };
 
@@ -291,7 +291,7 @@ export function CommandMenu({ ...props }: DialogProps) {
                   }}
                   onMouseMove={() => handleMouseMove(groupIndex, index)}
                   className={cn(
-                    `relative w-full flex items-center group transition-all duration-75 cursor-pointer !py-10 !px-8`
+                    `relative w-full flex items-center group transition-all duration-75 cursor-pointer !py-10 !px-8`,
                   )}
                 >
                   <div className="flex items-start gap-3 sm:gap-4 min-w-0 w-full relative z-10">
@@ -299,7 +299,7 @@ export function CommandMenu({ ...props }: DialogProps) {
                       <div
                         className={cn(
                           "p-1.5 rounded-lg flex-shrink-0 flex items-center justify-center w-8 h-8 transition-colors",
-                          "bg-gray-300/60 text-gray-600/50 dark:bg-gray-600/50 dark:text-white"
+                          "bg-gray-300/60 text-gray-600/50 dark:bg-gray-600/50 dark:text-white",
                         )}
                       >
                         {React.createElement(command.icon, {
@@ -340,7 +340,10 @@ interface CommandDialogProps extends DialogProps {}
 const CommandDialog = ({ children, ...props }: CommandDialogProps) => {
   return (
     <Dialog {...props}>
-      <DialogContent noClose className="overflow-hidden p-0 max-w-2xl border-neutral-700">
+      <DialogContent
+        noClose
+        className="overflow-hidden p-0 max-w-2xl border-neutral-700"
+      >
         <DialogTitle hidden />
         <DialogDescription hidden />
         <Command>{children}</Command>
@@ -357,7 +360,7 @@ const CommandItem = React.forwardRef<
     ref={ref}
     className={cn(
       "relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm data-[disabled=true]:pointer-events-none data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground data-[disabled=true]:opacity-50",
-      className
+      className,
     )}
     {...props}
   />

@@ -6,7 +6,7 @@ import {
   HarmBlockThreshold,
 } from "@google/generative-ai";
 import { CommandGroup } from "../types";
-import ReactMarkdown from 'react-markdown';
+import ReactMarkdown from "react-markdown";
 
 // Constants and configurations
 const MAX_REQUESTS_PER_MINUTE = 10;
@@ -90,7 +90,7 @@ interface GeminiCommandProps {
 
 // Initialize Gemini with safety settings
 const genAI = new GoogleGenerativeAI(
-  process.env.NEXT_PUBLIC_GEMINI_API_KEY || ""
+  process.env.NEXT_PUBLIC_GEMINI_API_KEY || "",
 );
 
 const safetySettings = [
@@ -122,7 +122,7 @@ export const useGeminiCommand = ({
   const [requestCount, setRequestCount] = useState(0);
   const [lastRequestTime, setLastRequestTime] = useState(Date.now());
   const [thinkingMessage, setThinkingMessage] = useState(
-    () => TECH_JOKES[Math.floor(Math.random() * TECH_JOKES.length)]
+    () => TECH_JOKES[Math.floor(Math.random() * TECH_JOKES.length)],
   );
 
   // Reset response when search query changes
@@ -157,7 +157,7 @@ export const useGeminiCommand = ({
 
     const interval = setInterval(() => {
       setThinkingMessage(
-        TECH_JOKES[Math.floor(Math.random() * TECH_JOKES.length)]
+        TECH_JOKES[Math.floor(Math.random() * TECH_JOKES.length)],
       );
     }, 2000);
 
@@ -185,7 +185,7 @@ export const useGeminiCommand = ({
 
       if (
         BLOCKED_KEYWORDS.some((keyword) =>
-          userPrompt.toLowerCase().includes(keyword)
+          userPrompt.toLowerCase().includes(keyword),
         )
       ) {
         return "I keep my responses as clean as a linter-approved codebase! 🛡️";
@@ -344,7 +344,7 @@ export const useGeminiCommand = ({
 
           if (!cleanQuery) {
             setResponse(
-              "Ask me anything about development, tech, or general questions!"
+              "Ask me anything about development, tech, or general questions!",
             );
             return;
           }
@@ -358,7 +358,7 @@ export const useGeminiCommand = ({
             setResponse(generatedResponse.trim());
           } catch (error) {
             setResponse(
-              "Encountered a runtime error. Let me reboot my neural nets! 🔄"
+              "Encountered a runtime error. Let me reboot my neural nets! 🔄",
             );
           }
 

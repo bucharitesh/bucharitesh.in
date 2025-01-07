@@ -1,20 +1,20 @@
-import React from "react"
-import { useDebounce } from "react-use"
-import useSWR, { SWRConfiguration } from "swr"
+import React from "react";
+import { useDebounce } from "react-use";
+import useSWR, { SWRConfiguration } from "swr";
 
-const API_URL = (slug: string) => `/api/posts/${slug}/likes`
+const API_URL = (slug: string) => `/api/posts/${slug}/likes`;
 
 type MetricsPayload = {
-  likes: number
-  currentUserLikes: number
-}
+  likes: number;
+  currentUserLikes: number;
+};
 
 async function getPostLikes(slug: string): Promise<MetricsPayload> {
-  const res = await fetch(API_URL(slug))
+  const res = await fetch(API_URL(slug));
   if (!res.ok) {
-    throw new Error("An error occurred while fetching the data.")
+    throw new Error("An error occurred while fetching the data.");
   }
-  return res.json()
+  return res.json();
 }
 
 async function updatePostLikes(
@@ -25,13 +25,13 @@ async function updatePostLikes(
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ count }),
-  })
+  });
 
   if (!res.ok) {
-    throw new Error("An error occurred while posting the data.")
+    throw new Error("An error occurred while posting the data.");
   }
 
-  return res.json()
+  return res.json();
 }
 
 // A custom hook to abstract away fetching and updating a user's likes
@@ -43,14 +43,14 @@ export const usePostLikes = (slug: string, config?: SWRConfiguration) => {
       dedupingInterval: 60000,
       ...config,
     },
-  )
+  );
 
-  const [batchedLikes, setBatchedLikes] = React.useState(0)
+  const [batchedLikes, setBatchedLikes] = React.useState(0);
 
   const increment = () => {
     // Prevent the user from liking more than 3 times
     if (!data || data.currentUserLikes >= 3) {
-      return
+      return;
     }
 
     // Optimistic ui pattern
@@ -62,24 +62,24 @@ export const usePostLikes = (slug: string, config?: SWRConfiguration) => {
         currentUserLikes: data.currentUserLikes + 1,
       },
       false,
-    )
+    );
 
     // use local state and debounce to batch updates
-    setBatchedLikes(batchedLikes + 1)
-  }
+    setBatchedLikes(batchedLikes + 1);
+  };
 
   useDebounce(
     () => {
-      if (batchedLikes === 0) return
+      if (batchedLikes === 0) return;
 
       // update the database and use the data updatePostLikes returns to update
       // the local cache with database data
-      mutate(updatePostLikes(slug, batchedLikes))
-      setBatchedLikes(0)
+      mutate(updatePostLikes(slug, batchedLikes));
+      setBatchedLikes(0);
     },
     1000,
     [batchedLikes],
-  )
+  );
 
   return {
     currentUserLikes: data?.currentUserLikes,
@@ -87,5 +87,5 @@ export const usePostLikes = (slug: string, config?: SWRConfiguration) => {
     isLoading: !error && !data,
     isError: !!error,
     increment,
-  }
-}
+  };
+};

@@ -6,8 +6,7 @@ import { Metadata } from "next/types";
 
 export const metadata: Metadata = {
   title: "Blog",
-  description:
-    "My Blogs",
+  description: "My Blogs",
   alternates: {
     canonical: "/blog",
   },

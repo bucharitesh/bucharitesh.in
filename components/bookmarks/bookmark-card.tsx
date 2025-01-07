@@ -1,6 +1,5 @@
 import { Link2Icon } from "lucide-react";
 
-
 export const BookmarkCard = ({ bookmark, order }) => {
   return (
     <a

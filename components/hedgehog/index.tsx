@@ -22,7 +22,7 @@ const HedgehogBuddy = React.forwardRef<HTMLDivElement, HedgehogBuddyProps>(
       hedgehogConfig: userConfig,
       static: staticMode,
     },
-    ref
+    ref,
   ): JSX.Element {
     const [isMounted, setIsMounted] = useState(false);
     const actorRef = useRef<HedgehogActor>();
@@ -72,7 +72,6 @@ const HedgehogBuddy = React.forwardRef<HTMLDivElement, HedgehogBuddyProps>(
         clearTimeout(timer);
       };
     }, [isMounted]);
-
 
     // Handle static mode changes
     useEffect(() => {
@@ -154,18 +153,18 @@ const HedgehogBuddy = React.forwardRef<HTMLDivElement, HedgehogBuddyProps>(
             ];
           },
 
-          [0, 0]
+          [0, 0],
         );
 
         if (relevantPositions.length) {
           const maxVelocity = 250;
           actor.xVelocity = Math.min(
             maxVelocity,
-            xPixelsPerSecond / relevantPositions.length / FPS
+            xPixelsPerSecond / relevantPositions.length / FPS,
           );
           actor.yVelocity = Math.min(
             maxVelocity,
-            (yPixelsPerSecond / relevantPositions.length / FPS) * -1
+            (yPixelsPerSecond / relevantPositions.length / FPS) * -1,
           );
         }
 
@@ -181,7 +180,7 @@ const HedgehogBuddy = React.forwardRef<HTMLDivElement, HedgehogBuddyProps>(
       window.addEventListener("mousemove", onMove);
       window.addEventListener("mouseup", onEnd);
     };
-    
+
     return (
       <>
         <div
@@ -193,7 +192,7 @@ const HedgehogBuddy = React.forwardRef<HTMLDivElement, HedgehogBuddyProps>(
           }}
           className={clsx(
             "z-50 m-0 cursor-pointer after:absolute after:-z-10 after:w-0 after:h-0 after:overflow-hidden after:content-[attr(data-content)]",
-            {}
+            {},
           )}
           onTouchStart={actor.static ? undefined : () => onTouchOrMouseStart()}
           onMouseDown={actor.static ? undefined : () => onTouchOrMouseStart()}
@@ -218,7 +217,7 @@ const HedgehogBuddy = React.forwardRef<HTMLDivElement, HedgehogBuddyProps>(
                   width: SPRITE_SIZE,
                   height: SPRITE_SIZE,
                   backgroundImage: `url(${spriteUrl(
-                    actor.mainAnimation.spriteInfo.img
+                    actor.mainAnimation.spriteInfo.img,
                   )})`,
                   backgroundPosition: `-${(actor.mainAnimation.frame % X_FRAMES) * SPRITE_SIZE}px -${
                     Math.floor(actor.mainAnimation.frame / X_FRAMES) *
@@ -249,7 +248,7 @@ const HedgehogBuddy = React.forwardRef<HTMLDivElement, HedgehogBuddyProps>(
         </div>
       </>
     );
-  }
+  },
 );
 
 export default HedgehogBuddy;

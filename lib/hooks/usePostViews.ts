@@ -1,21 +1,21 @@
-import useSWR, { SWRConfiguration } from "swr"
+import useSWR, { SWRConfiguration } from "swr";
 
-const API_URL = (slug: string) => `/api/posts/${slug}/views`
+const API_URL = (slug: string) => `/api/posts/${slug}/views`;
 
 async function getPostViews(slug: string): Promise<number> {
-  const res = await fetch(API_URL(slug))
+  const res = await fetch(API_URL(slug));
   if (!res.ok) {
-    throw new Error("An error occurred while fetching the data.")
+    throw new Error("An error occurred while fetching the data.");
   }
-  return res.json()
+  return res.json();
 }
 
 async function updatePostViews(slug: string): Promise<number> {
-  const res = await fetch(API_URL(slug), { method: "POST" })
+  const res = await fetch(API_URL(slug), { method: "POST" });
   if (!res.ok) {
-    throw new Error("An error occurred while posting the data.")
+    throw new Error("An error occurred while posting the data.");
   }
-  return res.json()
+  return res.json();
 }
 
 export const usePostViews = (slug: string, config?: SWRConfiguration) => {
@@ -26,22 +26,22 @@ export const usePostViews = (slug: string, config?: SWRConfiguration) => {
   } = useSWR<number>([API_URL, slug], () => getPostViews(slug), {
     dedupingInterval: 60000,
     ...config,
-  })
+  });
 
   const increment = () => {
     mutate(
       updatePostViews(slug).catch((e) => {
-        console.log(e)
+        console.log(e);
 
-        return 0
+        return 0;
       }),
-    )
-  }
+    );
+  };
 
   return {
     views,
     isLoading: !error && !views,
     isError: !!error,
     increment,
-  }
-}
+  };
+};

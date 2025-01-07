@@ -27,7 +27,7 @@ function LineShadowText({
         // animation
         "after:animate-line-shadow",
 
-        className
+        className,
       )}
       data-text={text}
     >

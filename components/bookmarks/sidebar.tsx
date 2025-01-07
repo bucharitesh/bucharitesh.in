@@ -19,7 +19,13 @@ const keyCodePathnameMapping = {
   Digit6: "/bookmarks",
 };
 
-export const SideMenu = ({ children, title, isInner, rss_url, routeMapping }: any) => {
+export const SideMenu = ({
+  children,
+  title,
+  isInner,
+  rss_url,
+  routeMapping,
+}: any) => {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -36,7 +42,7 @@ export const SideMenu = ({ children, title, isInner, rss_url, routeMapping }: an
     <ScrollArea
       className={cn(
         "hidden bg-zinc-50 dark:bg-zinc-800 lg:flex lg:flex-col lg:border-r dark:lg:border-zinc-700",
-        isInner ? "lg:w-80 xl:w-96" : "lg:w-60 xl:w-72"
+        isInner ? "lg:w-80 xl:w-96" : "lg:w-60 xl:w-72",
       )}
     >
       {title && (

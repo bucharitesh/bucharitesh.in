@@ -23,7 +23,7 @@ const GameOfLife = React.forwardRef<HTMLCanvasElement, GameOfLifeProps>(
       density = 0.1,
       ...props
     },
-    ref
+    ref,
   ) => {
     const canvasRef = React.useRef<HTMLCanvasElement | null>(null);
     const frameRef = React.useRef<number>(0);
@@ -70,7 +70,7 @@ const GameOfLife = React.forwardRef<HTMLCanvasElement, GameOfLifeProps>(
 
         // Create a random initial pattern based on density prop
         const grid = Array.from({ length: cols }, () =>
-          Array.from({ length: rows }, () => Math.random() < density)
+          Array.from({ length: rows }, () => Math.random() < density),
         );
 
         return grid;
@@ -78,7 +78,7 @@ const GameOfLife = React.forwardRef<HTMLCanvasElement, GameOfLifeProps>(
 
       const updateGrid = (grid: boolean[][]): boolean[][] => {
         const next: boolean[][] = Array.from({ length: cols }, () =>
-          Array(rows).fill(false)
+          Array(rows).fill(false),
         );
 
         for (let i = 0; i < cols; i++) {
@@ -112,12 +112,7 @@ const GameOfLife = React.forwardRef<HTMLCanvasElement, GameOfLifeProps>(
 
             if (fromState || toState) {
               ctx.fillStyle = cellColor;
-              ctx.fillRect(
-                i * cellSize,
-                j * cellSize,
-                cellSize,
-                cellSize
-              );
+              ctx.fillRect(i * cellSize, j * cellSize, cellSize, cellSize);
             }
           }
         }
@@ -211,17 +206,17 @@ const GameOfLife = React.forwardRef<HTMLCanvasElement, GameOfLifeProps>(
             else if (ref) ref.current = node;
             canvasRef.current = node;
           },
-          [ref]
+          [ref],
         )}
         className={cn(
           "absolute inset-0 w-full h-full transition-opacity duration-500",
           isReady ? "opacity-100" : "opacity-0",
-          className
+          className,
         )}
         {...props}
       />
     );
-  }
+  },
 );
 
 GameOfLife.displayName = "GameOfLife";

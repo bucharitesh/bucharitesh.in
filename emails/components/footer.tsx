@@ -1,13 +1,13 @@
-import { Hr, Link, Tailwind, Text } from "@react-email/components"
+import { Hr, Link, Tailwind, Text } from "@react-email/components";
 
 export default function Footer({
   email,
   marketing,
   unsubscribe,
 }: {
-  email: string
-  marketing?: boolean
-  unsubscribe?: boolean
+  email: string;
+  marketing?: boolean;
+  unsubscribe?: boolean;
 }) {
   if (marketing) {
     return (
@@ -25,7 +25,7 @@ export default function Footer({
           </Link>
         </Text>
       </Tailwind>
-    )
+    );
   }
 
   return (
@@ -51,5 +51,5 @@ export default function Footer({
         </Text>
       )}
     </Tailwind>
-  )
+  );
 }

@@ -12,6 +12,6 @@ export const metadata: Metadata = {
 
 export default async function Page() {
   const crafts = await getCrafts();
-  
+
   return <PageClient crafts={crafts} />;
 }

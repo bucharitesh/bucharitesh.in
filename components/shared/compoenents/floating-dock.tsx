@@ -21,7 +21,7 @@ export interface DockProps extends VariantProps<typeof dockVariants> {
 }
 
 const dockVariants = cva(
-  "flex items-end w-auto h-[58px] px-2 fixed bg-white dark:bg-neutral-900 shadow-[0_30px_60px_rgba(0,0,0,0.12)] border border-gray-200 dark:border-gray-800 -bottom-2 left-1/2 rounded-full z-10 transform -translate-x-1/2 -translate-y-1/2 translate-y-20 animate-[slide-up-fade_500ms_ease_200ms_forwards]"
+  "flex items-end w-auto h-[58px] px-2 fixed bg-white dark:bg-neutral-900 shadow-[0_30px_60px_rgba(0,0,0,0.12)] border border-gray-200 dark:border-gray-800 -bottom-2 left-1/2 rounded-full z-10 transform -translate-x-1/2 -translate-y-1/2 translate-y-20 animate-[slide-up-fade_500ms_ease_200ms_forwards]",
 );
 
 const Dock = React.forwardRef<HTMLDivElement, DockProps>(
@@ -54,7 +54,7 @@ const Dock = React.forwardRef<HTMLDivElement, DockProps>(
         </div>
       </motion.footer>
     );
-  }
+  },
 );
 
 Dock.displayName = "Dock";
@@ -126,7 +126,7 @@ const DockIcon = ({
       onMouseUp={handleMouseUp}
       className={cn(
         "rounded-full cursor-pointer bg-gray-200 dark:bg-neutral-800 flex items-center justify-center relative",
-        className
+        className,
       )}
       {...props}
     >
@@ -149,7 +149,7 @@ const DockIcon = ({
               // @ts-ignore
               className: cn(
                 "w-full h-full flex items-center justify-center",
-                child.props.className
+                child.props.className,
               ),
             });
           }
@@ -183,7 +183,7 @@ const DockIconActiveDot: React.FC<DockIconActiveDotProps> = ({
       transition={{ duration: 0.2 }}
       className={cn(
         "absolute w-1 h-1 -bottom-[6px] rounded-full bg-neutral-400",
-        className
+        className,
       )}
       style={style}
     />

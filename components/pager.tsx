@@ -37,7 +37,7 @@ export async function CraftsPager({ craft }: CraftsPagerProps) {
           href={pager.next.href}
           className={cn(
             buttonVariants({ variant: "outline" }),
-            "ml-auto min-w-0 text-right"
+            "ml-auto min-w-0 text-right",
           )}
           title={pager.next.title}
         >

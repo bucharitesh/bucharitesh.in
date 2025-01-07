@@ -37,7 +37,7 @@ export interface CssVariablesThemeOptions {
  * @see https://shiki.style/guide/theme-colors#css-variables-theme
  */
 export function createCssVariablesTheme(
-  options: CssVariablesThemeOptions = {}
+  options: CssVariablesThemeOptions = {},
 ): ThemeRegistration {
   const {
     name = "css-variables",

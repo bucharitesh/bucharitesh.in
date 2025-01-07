@@ -1,11 +1,11 @@
-import Github from "next-auth/providers/github"
+import Github from "next-auth/providers/github";
 
 export type User = {
-  name: string
-  picture: string
-  sub: string
-  email?: string
-}
+  name: string;
+  picture: string;
+  sub: string;
+  email?: string;
+};
 
 const authConfig: any = {
   debug: process.env.NODE_ENV !== "production" ? true : false,

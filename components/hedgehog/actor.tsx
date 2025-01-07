@@ -1,6 +1,20 @@
-import { defaultConfig, FPS, GRAVITY_PIXELS, MAX_JUMP_COUNT, overlayAnimations, SPRITE_SIZE, standardAnimations } from "./config";
+import {
+  defaultConfig,
+  FPS,
+  GRAVITY_PIXELS,
+  MAX_JUMP_COUNT,
+  overlayAnimations,
+  SPRITE_SIZE,
+  standardAnimations,
+} from "./config";
 import { AnimationState, Box, HedgehogConfig, SpriteInfo } from "./types";
-import { elementToBox, range, sampleOne, shouldIgnoreInput, spriteUrl } from "./utils";
+import {
+  elementToBox,
+  range,
+  sampleOne,
+  shouldIgnoreInput,
+  spriteUrl,
+} from "./utils";
 
 export class HedgehogActor {
   element?: HTMLDivElement | null;
@@ -27,11 +41,11 @@ export class HedgehogActor {
   constructor() {
     this.x = Math.min(
       Math.max(0, Math.floor(Math.random() * window?.innerWidth)),
-      window.innerWidth - SPRITE_SIZE
+      window.innerWidth - SPRITE_SIZE,
     );
     this.y = Math.min(
       Math.max(0, Math.floor(Math.random() * window?.innerHeight)),
-      window?.innerHeight - SPRITE_SIZE
+      window?.innerHeight - SPRITE_SIZE,
     );
     this.preloadAnimationSprites();
     this.setAnimation("fall");
@@ -211,7 +225,7 @@ export class HedgehogActor {
     animationName: string | null,
     options?: {
       onComplete: () => boolean | void;
-    }
+    },
   ): void {
     if (!animationName) {
       this.overlayAnimation = null;
@@ -241,7 +255,7 @@ export class HedgehogActor {
             ...range(this.animations()[key].randomChance || 0).map(() => key),
           ] as any[];
         },
-        [] as any[]
+        [] as any[],
       );
 
       randomChoiceList = this.hedgehogConfig.walking_enabled
@@ -287,7 +301,7 @@ export class HedgehogActor {
         // If the ground has moved up relative to the hedgehog we need to make him jump
         this.yVelocity = Math.max(
           this.yVelocity + screenMoveY * 10,
-          -this.gravity * 20
+          -this.gravity * 20,
         );
       }
 
@@ -298,7 +312,7 @@ export class HedgehogActor {
         // Somewhat random numbers here to find what felt fun
         this.xVelocity = Math.max(
           Math.min(this.xVelocity + screenMoveX * 10, 200),
-          -200
+          -200,
         );
       }
     }
@@ -481,8 +495,8 @@ export class HedgehogActor {
     // Only calculate block bounding rects once we need to
     const blocksWithBoxes: [Element, Box][] = Array.from(
       document.querySelectorAll(
-        ".border, .border-t, .LemonButton--primary, .LemonButton--secondary:not(.LemonButton--status-alt:not(.LemonButton--active)), .LemonInput, .LemonSelect, .LemonTable, .HedgehogBuddy"
-      )
+        ".border, .border-t, .LemonButton--primary, .LemonButton--secondary:not(.LemonButton--status-alt:not(.LemonButton--active)), .LemonInput, .LemonSelect, .LemonTable, .HedgehogBuddy",
+      ),
     )
       .filter((x) => x !== this.element)
       .map((block) => [block, elementToBox(block)]);

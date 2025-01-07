@@ -161,5 +161,7 @@ export default function ResumePage() {
 }
 
 const MarginGuide = () => {
-  return <div className="absolute inset-0 border border-dotted border-neutral-400" />;
+  return (
+    <div className="absolute inset-0 border border-dotted border-neutral-400" />
+  );
 };

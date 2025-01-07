@@ -1,11 +1,17 @@
 // double escape for commas and slashes
-const e = (str: string) => encodeURIComponent(encodeURIComponent(str))
+const e = (str: string) => encodeURIComponent(encodeURIComponent(str));
 
 const overlayImageUrl =
-  "aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYnVjaGEvaW1hZ2UvdXBsb2FkL2Jfd2hpdGUvYnVjaGFfaDZ5eWtlLnBuZw=="
+  "aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYnVjaGEvaW1hZ2UvdXBsb2FkL2Jfd2hpdGUvYnVjaGFfaDZ5eWtlLnBuZw==";
 
 // TODO: Update OG image logic
-export const createOgImage = ({ title, meta }: { title: string; meta: string }) =>
+export const createOgImage = ({
+  title,
+  meta,
+}: {
+  title: string;
+  meta: string;
+}) =>
   [
     // ACCOUNT PREFIX
     `https://res.cloudinary.com/bucha/image/upload`,
@@ -26,7 +32,7 @@ export const createOgImage = ({ title, meta }: { title: string; meta: string }) 
 
     // PROFILE IMAGE
     // // dynamically fetched from my twitter profile
-    `l_fetch:${(overlayImageUrl)}`,
+    `l_fetch:${overlayImageUrl}`,
     // // Transformations
     `c_thumb,r_max,w_380,h_380,q_100`,
     // // Positioning
@@ -34,4 +40,4 @@ export const createOgImage = ({ title, meta }: { title: string; meta: string }) 
 
     // BG
     `grain-gradient_ctrjnp.png`,
-  ].join("/")
+  ].join("/");
