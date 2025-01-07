@@ -1,11 +1,13 @@
 import { allCrafts } from "content-collections";
 
 export const getCrafts = async () => {
-  const crafts = await allCrafts;
+  let crafts = await allCrafts;
 
-  const sortedCrafts = crafts.sort((a, b) => {
+  crafts = crafts.sort((a, b) => {
     return new Date(b.date).getTime() - new Date(a.date).getTime();
   });
 
-  return sortedCrafts;
+  crafts = crafts.filter((craft) => craft.published);
+
+  return crafts;
 };

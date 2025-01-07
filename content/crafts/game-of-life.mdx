@@ -1,0 +1,69 @@
+---
+title: Game of Life
+date: "2025-01-10"
+description: Game of Life
+author: bucharitesh
+published: true
+type: "component"
+theme: "light"
+image: "https://cdn.bucharitesh.in/game-of-life.png"
+video: "https://cdn.bucharitesh.in/game-of-life.mp4"
+aspect_ratio: 1.4
+---
+
+<ComponentPreview name="game-of-life-demo" />
+
+The Icon component creates customizable, interactive pixel-based icons. It supports hover effects, color changes, and pixel shape customization.
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add "https://bucharitesh.in/r/game-of-life"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="game-of-life" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Props
+
+| Prop           | Type                    | Description                                          | Default     |
+|----------------|-------------------------|------------------------------------------------------|-------------|
+| icon           | number[][]              | 2D array representing the icon's pixel layout        |             |
+| baseColor      | string                  | Base color of the icon                               |             |
+| flickerColor   | string                  | Color used for the flicker effect                    |             |
+| secondaryColor | string                  | Secondary color for additional details               | "gray"      |
+| size           | number                  | Size of the icon in pixels                           | 80          |
+| flickerChance  | number                  | Probability of pixel color change on hover (0 to 1)  | 0.3         |
+| pixelShape     | "circle" \| "square"    | Shape of individual pixels                           | "circle"    |
+| className      | string                  | Additional CSS classes for the icon container        |             |
+
+## Examples
+
+<ComponentPreview name="game-of-life-demo-2" />
+
+## Credits
+
+- Credit to [@Vercel](https://vercel.com/not-found) for the inspiration.

@@ -1,0 +1,172 @@
+---
+title: "Spotify"
+date: "2024-08-13"
+description: "Show what you're listening to."
+author: bucharitesh
+published: false
+type: "code"
+image: "https://cdn.rauno.me/spotify.png"
+video: "https://cdn.rauno.me/gooey-tooltip.mp4"
+---
+
+```bash
+npx shadcn@latest add "https://bucharitesh.in/r/spotify"
+```
+
+Let's set up a feature to show what you're currently playing on Spotify. Don't worry, it's easier than you might think!
+
+## Step 1: Set Up Your Spotify App
+
+1. Go to the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/) and log in.
+2. Click "Create an App" and give it a name.
+3. Once created, you'll see your Client ID. Click "Show Client Secret" to reveal that too.
+4. In the app settings, add `http://localhost:3000` as a Redirect URI.
+
+Remember to keep your Client ID and Secret private - they're the keys to your Spotify kingdom!
+
+## Step 2: Get Your Authorization
+
+1. Replace `YOUR_CLIENT_ID` in this URL and open it in your browser:
+   ```bash
+   https://accounts.spotify.com/authorize?client_id=YOUR_CLIENT_ID&response_type=code&redirect_uri=http%3A%2F%2Flocalhost:3000&scope=user-read-currently-playing%20user-top-read
+   ```
+
+2. After authorizing, you'll be redirected. The URL will contain a `code`. Save this.
+
+3. Now, let's get your refresh token. In your terminal, run:
+   ```bash
+   curl -H "Authorization: Basic BASE64_ENCODED_CLIENT_ID_AND_SECRET" -d grant_type=authorization_code -d code=CODE_FROM_STEP_2 -d redirect_uri=http%3A%2F%2Flocalhost:3000 https://accounts.spotify.com/api/token
+   ```
+   Replace `BASE64_ENCODED_CLIENT_ID_AND_SECRET` with your Client ID and Secret encoded in Base64 (use an online Base64 encoder), and `CODE_FROM_STEP_2` with the code you got in step 2.
+
+4. From the response, save the `refresh_token`. This is your long-term pass to access your Spotify data.
+
+## Step 3: Set Up Your Environment
+
+1. Create a file named `.env.local` in your project root.
+2. Add these lines:
+   ```bash
+   SPOTIFY_CLIENT_ID=your_client_id
+   SPOTIFY_CLIENT_SECRET=your_client_secret
+   SPOTIFY_REFRESH_TOKEN=your_refresh_token
+   ```
+   Replace the values with your actual data.
+
+## Step 4: Create the Spotify API Helper
+
+Create a file `lib/spotify.js`:
+
+```javascript
+import fetch from "isomorphic-unfetch";
+import querystring from "querystring";
+
+const {
+  SPOTIFY_CLIENT_ID: client_id,
+  SPOTIFY_CLIENT_SECRET: client_secret,
+  SPOTIFY_REFRESH_TOKEN: refresh_token,
+} = process.env;
+
+const basic = Buffer.from(`${client_id}:${client_secret}`).toString("base64");
+const NOW_PLAYING_ENDPOINT = `https://api.spotify.com/v1/me/player/currently-playing`;
+const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
+
+const getAccessToken = async () => {
+  const response = await fetch(TOKEN_ENDPOINT, {
+    method: "POST",
+    headers: {
+      Authorization: `Basic ${basic}`,
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: querystring.stringify({
+      grant_type: "refresh_token",
+      refresh_token,
+    }),
+  });
+
+  return response.json();
+};
+
+export const getNowPlaying = async () => {
+  const { access_token } = await getAccessToken();
+
+  return fetch(NOW_PLAYING_ENDPOINT, {
+    headers: {
+      Authorization: `Bearer ${access_token}`,
+    },
+  });
+};
+```
+
+## Step 5: Create the API Route
+
+Create a file `pages/api/now-playing.js`:
+
+```javascript
+import { getNowPlaying } from "../../lib/spotify";
+
+export default async (_, res) => {
+  const response = await getNowPlaying();
+
+  if (response.status === 204 || response.status > 400) {
+    return res.status(200).json({ isPlaying: false });
+  }
+
+  const song = await response.json();
+  const isPlaying = song.is_playing;
+  const title = song.item.name;
+  const artist = song.item.artists.map((_artist) => _artist.name).join(", ");
+  const album = song.item.album.name;
+  const albumImageUrl = song.item.album.images[0].url;
+  const songUrl = song.item.external_urls.spotify;
+
+  return res.status(200).json({
+    album,
+    albumImageUrl,
+    artist,
+    isPlaying,
+    songUrl,
+    title,
+  });
+};
+```
+
+## Step 6: Display Your Now Playing Info
+
+Create a React component to show your currently playing song:
+
+```jsx
+import { useState, useEffect } from 'react';
+
+export default function NowPlaying() {
+  const [nowPlaying, setNowPlaying] = useState(null);
+
+  useEffect(() => {
+    async function fetchNowPlaying() {
+      const res = await fetch('/api/now-playing');
+      const data = await res.json();
+      setNowPlaying(data);
+    }
+
+    fetchNowPlaying();
+    const interval = setInterval(fetchNowPlaying, 30000);
+    return () => clearInterval(interval);
+  }, []);
+
+  if (!nowPlaying || !nowPlaying.isPlaying) {
+    return <p>Not playing anything right now</p>;
+  }
+
+  return (
+    <div>
+      <h2>Now Playing</h2>
+      <p>{nowPlaying.title} by {nowPlaying.artist}</p>
+      <img src={nowPlaying.albumImageUrl} alt={nowPlaying.album} width="300" height="300" />
+      <a href={nowPlaying.songUrl} target="_blank" rel="noopener noreferrer">
+        Listen on Spotify
+      </a>
+    </div>
+  );
+}
+```
+
+That's it! You now have a "Now Playing" feature for your website. Happy listening!

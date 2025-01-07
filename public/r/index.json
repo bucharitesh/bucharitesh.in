@@ -28,5 +28,15 @@
         "type": "registry:ui"
       }
     ]
+  },
+  {
+    "name": "game-of-life",
+    "type": "registry:ui",
+    "files": [
+      {
+        "path": "bucharitesh/game-of-life.tsx",
+        "type": "registry:ui"
+      }
+    ]
   }
 ]

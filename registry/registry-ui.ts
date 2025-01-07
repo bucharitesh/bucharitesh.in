@@ -16,6 +16,11 @@ export const ui: Registry = [
     type: "registry:ui",
     files: ["bucharitesh/view-magnifier.tsx"],
   },
+  {
+    name: "game-of-life",
+    type: "registry:ui",
+    files: ["bucharitesh/game-of-life.tsx"],
+  },
   // {
   //   name: "book",
   //   type: "registry:ui",

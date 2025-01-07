@@ -22,9 +22,8 @@ const BREAKPOINT_WIDTHS: { [key in BreakpointName]: number } = {
   md: 768,
   lg: 1024,
   xl: 1280,
-  '2xl': 1536,
+  "2xl": 1536,
 };
-
 
 export const MasonryGrid: React.FC<MasonryGridProps> = ({
   gap = 4,
@@ -83,13 +82,23 @@ export const MasonryGrid: React.FC<MasonryGridProps> = ({
         className="bg-clip-padding"
         style={
           {
-            // "--gap": gap,
+            "--gap": gap,
             paddingLeft: gap,
+            paddingBottom: gap,
             width: `${100 / columns}%`,
           } as React.CSSProperties
         }
       >
-        {columnChildren}
+        {columnChildren.map((child, index) => (
+          <div
+            key={index}
+            style={{
+              marginBottom: index < columnChildren.length - 1 ? gap : 0,
+            }}
+          >
+            {child}
+          </div>
+        ))}
       </div>
     );
   });

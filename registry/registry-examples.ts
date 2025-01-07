@@ -37,6 +37,18 @@ export const examples: Registry = [
     registryDependencies: ["view-magnifier"],
     files: ["example/view-magnifier-demo-2.tsx"],
   },
+  {
+    name: "game-of-life-demo",
+    type: "registry:example",
+    registryDependencies: ["game-of-life"],
+    files: ["example/game-of-life-demo.tsx"],
+  },
+  {
+    name: "game-of-life-demo-2",
+    type: "registry:example",
+    registryDependencies: ["game-of-life"],
+    files: ["example/game-of-life-demo-2.tsx"],
+  },
   // {
   //   name: "vercel-grid-demo-text",
   //   type: "registry:example",

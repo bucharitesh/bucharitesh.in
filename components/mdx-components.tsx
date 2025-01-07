@@ -228,7 +228,6 @@ const components = {
     __yarnCommand__,
     __bunCommand__,
     __withMeta__,
-    __src__,
     // __event__,
     // __style__,
     __name__,
@@ -241,7 +240,6 @@ const components = {
     __yarnCommand__?: string;
     __bunCommand__?: string;
     __withMeta__?: boolean;
-    __src__?: string;
     // __event__?: Event["name"];
     __name__?: string;
   }) => {
@@ -254,10 +252,10 @@ const components = {
           )}
           {...props}
         />
-        {__rawString__ && __src__ && (
+        {__rawString__ && (
           <CopyButton
+            variant="default"
             value={__rawString__}
-            src={__src__}
             className={cn("absolute right-4 top-4", __withMeta__ && "top-16")}
           />
         )}

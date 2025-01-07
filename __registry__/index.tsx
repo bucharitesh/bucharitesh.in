@@ -38,6 +38,17 @@ export const Index: Record<string, any> = {
       subcategory: "undefined",
       chunks: []
     },
+    "game-of-life": {
+      name: "game-of-life",
+      type: "registry:ui",
+      registryDependencies: undefined,
+      files: ["registry/default/bucharitesh/game-of-life.tsx"],
+      component: React.lazy(() => import("@/registry/default/bucharitesh/game-of-life.tsx")),
+      source: "",
+      category: "undefined",
+      subcategory: "undefined",
+      chunks: []
+    },
     "pixel-icon-demo": {
       name: "pixel-icon-demo",
       type: "registry:example",
@@ -99,6 +110,28 @@ export const Index: Record<string, any> = {
       registryDependencies: ["view-magnifier"],
       files: ["registry/default/example/view-magnifier-demo-2.tsx"],
       component: React.lazy(() => import("@/registry/default/example/view-magnifier-demo-2.tsx")),
+      source: "",
+      category: "undefined",
+      subcategory: "undefined",
+      chunks: []
+    },
+    "game-of-life-demo": {
+      name: "game-of-life-demo",
+      type: "registry:example",
+      registryDependencies: ["game-of-life"],
+      files: ["registry/default/example/game-of-life-demo.tsx"],
+      component: React.lazy(() => import("@/registry/default/example/game-of-life-demo.tsx")),
+      source: "",
+      category: "undefined",
+      subcategory: "undefined",
+      chunks: []
+    },
+    "game-of-life-demo-2": {
+      name: "game-of-life-demo-2",
+      type: "registry:example",
+      registryDependencies: ["game-of-life"],
+      files: ["registry/default/example/game-of-life-demo-2.tsx"],
+      component: React.lazy(() => import("@/registry/default/example/game-of-life-demo-2.tsx")),
       source: "",
       category: "undefined",
       subcategory: "undefined",

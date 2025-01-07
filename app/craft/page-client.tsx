@@ -1,7 +1,7 @@
 "use client";
 
 import { Craft } from "content-collections";
-import { MasonryGrid } from "./masonary-grid";
+import { MasonryGrid } from "@/components/masonary-grid";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -93,7 +93,7 @@ export const Card = ({
   return (
     <div
       className={cn(
-        "block w-full bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden mb-6 transition-all duration-200",
+        "block w-full bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden transition-all duration-200",
         className,
         {
           "p-1": craft_type !== "none",
