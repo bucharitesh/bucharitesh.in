@@ -1,11 +1,9 @@
-import ViewMagnifierDemo from "@/registry/default/example/view-magnifier-demo-2";
+// import BookDemo from "@/registry/default/example/book-variant-demo";
 
 const page = () => {
   return (
-    <div className="w-full h-full py-80 flex items-center justify-center">
-      <div className="w-full h-full max-w-2xl">
-        <ViewMagnifierDemo />
-      </div>
+    <div className="w-full h-full max-w-xl mx-auto py-80 flex items-center justify-center">
+      {/* <BookDemo /> */}
     </div>
   );
 };
