@@ -47,7 +47,7 @@ const crafts = defineCollection({
     // Required fields
     title: z.string(),
     description: z.string(),
-    type: z.enum(["component", "code", "none"]).default("none").optional(),
+    type: z.enum(["component", "code", "project", "none"]).default("none").optional(),
     date: z.string(),
     published: z.boolean().default(false),
     // Optional fields
@@ -56,6 +56,7 @@ const crafts = defineCollection({
     video: z.string().nullable().optional(),
     theme: z.enum(["light", "dark"]).default("light"),
     aspect_ratio: z.number().optional(),
+    href: z.string().nullable().optional(),
   }),
   transform: async (page, context) => {
     try {

@@ -24,7 +24,7 @@ export default function PageClient({ crafts }: { crafts: Craft[] }) {
             month: "long",
             year: "numeric",
           })}
-          href={`/craft/${item.slug}`}
+          href={item.href ? item.href : `/craft/${item.slug}`}
           src={item.video ? item.video : item.image}
           type={item.video ? "video" : "image"}
           blurImage={item.blurImage}
@@ -196,6 +196,7 @@ export const Card = ({
       {craft_type !== "none" && (
         <Link
           href={href}
+          target={href?.startsWith("http") ? "_blank" : undefined}
           data-fake-button
           className="
           h-10 mt-1
@@ -208,8 +209,8 @@ export const Card = ({
           hover:bg-neutral-200 dark:hover:bg-neutral-700
           "
         >
-          {craft_type === "code"
-            ? "Get Code"
+          {craft_type === "project"
+            ? "View Live"
             : craft_type === "component"
               ? "View Prototype"
               : "Read Article"}
