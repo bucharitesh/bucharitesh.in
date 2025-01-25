@@ -96,7 +96,7 @@ const ViewMagnifier: React.FC<ViewMagnifierProps> = ({
   );
 
   return (
-    <div ref={containerRef} className="outline-none" {...props}>
+    <div ref={containerRef} className="outline-none z-40" {...props}>
       <motion.div
         className={cn(
           "fixed h-screen w-screen outline-none inset-0 pointer-events-none backdrop-blur-xl",
@@ -111,7 +111,7 @@ const ViewMagnifier: React.FC<ViewMagnifierProps> = ({
       <motion.div
         className={cn(
           "relative left-1/2 right-1/2 w-full h-auto overflow-visible my-3",
-          "z-[100] rounded-2xl",
+          "z-[60] rounded-2xl",
           "transform lg:transform-none",
           className,
         )}

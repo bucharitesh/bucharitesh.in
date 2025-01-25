@@ -38,6 +38,7 @@ const components = {
   // Tweet: ({ id }: { id: string }) => <TweetCard id={id} className="mx-auto" />,
   ComponentPreview,
   ComponentSource: (props: any) => <ComponentSource {...props} />,
+  ComponentCSS: (props: any) => <ComponentSource {...props} />,
   h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h1
       className={cn(

@@ -21,11 +21,11 @@ export const ui: Registry = [
     type: "registry:ui",
     files: ["bucharitesh/game-of-life.tsx"],
   },
-  // {
-  //   name: "book",
-  //   type: "registry:ui",
-  //   files: ["bucharitesh/book.tsx"],
-  // },
+  {
+    name: "book",
+    type: "registry:ui",
+    files: ["bucharitesh/book.tsx", "bucharitesh/book.css"],
+  },
   // {
   //   name: "vercel-grid",
   //   type: "registry:ui",

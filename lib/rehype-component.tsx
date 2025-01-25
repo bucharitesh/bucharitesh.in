@@ -14,6 +14,63 @@ export function rehypeComponent() {
     visit(tree, (node: UnistNode) => {
       const { value: srcPath } = getNodeAttributeByName(node, "src") || {};
 
+      if (node.name === "ComponentCSS") {
+        const name = getNodeAttributeByName(node, "name")?.value as string;
+
+        if (!name) {
+          return null;
+        }
+
+        try {
+          for (const style of styles) {
+            const component = Index[style.name][name];
+
+            const src = component.files.find((file: string) => {
+              return file.endsWith(`.css`);
+            });
+
+            const filePath = path.join(process.cwd(), src);
+            let source = fs.readFileSync(filePath, "utf8");
+
+            // Add code as children so that rehype can take over at build time
+            node.children?.push(
+              u("element", {
+                tagName: "pre",
+                properties: {
+                  __src__: src,
+                },
+                attributes: [
+                  {
+                    name: "styleName",
+                    type: "mdxJsxAttribute", 
+                    value: style.name,
+                  },
+                ],
+                children: [
+                  u("element", {
+                    tagName: "code",
+                    properties: {
+                      className: ["language-css"],
+                    },
+                    data: {
+                      meta: `event="copy_css_code"`,
+                    },
+                    children: [
+                      {
+                        type: "text",
+                        value: source,
+                      },
+                    ],
+                  }),
+                ],
+              }),
+            );
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
       if (node.name === "ComponentSource") {
         const name = getNodeAttributeByName(node, "name")?.value as string;
         const fileName = getNodeAttributeByName(node, "fileName")?.value as

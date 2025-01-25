@@ -49,6 +49,17 @@ export const Index: Record<string, any> = {
       subcategory: "undefined",
       chunks: []
     },
+    "book": {
+      name: "book",
+      type: "registry:ui",
+      registryDependencies: undefined,
+      files: ["registry/default/bucharitesh/book.tsx","registry/default/bucharitesh/book.css"],
+      component: React.lazy(() => import("@/registry/default/bucharitesh/book.tsx")),
+      source: "",
+      category: "undefined",
+      subcategory: "undefined",
+      chunks: []
+    },
     "pixel-icon-demo": {
       name: "pixel-icon-demo",
       type: "registry:example",
@@ -132,6 +143,28 @@ export const Index: Record<string, any> = {
       registryDependencies: ["game-of-life"],
       files: ["registry/default/example/game-of-life-demo-2.tsx"],
       component: React.lazy(() => import("@/registry/default/example/game-of-life-demo-2.tsx")),
+      source: "",
+      category: "undefined",
+      subcategory: "undefined",
+      chunks: []
+    },
+    "book-demo": {
+      name: "book-demo",
+      type: "registry:example",
+      registryDependencies: ["book"],
+      files: ["registry/default/example/book-demo.tsx"],
+      component: React.lazy(() => import("@/registry/default/example/book-demo.tsx")),
+      source: "",
+      category: "undefined",
+      subcategory: "undefined",
+      chunks: []
+    },
+    "book-variant-demo": {
+      name: "book-variant-demo",
+      type: "registry:example",
+      registryDependencies: ["book"],
+      files: ["registry/default/example/book-variant-demo.tsx"],
+      component: React.lazy(() => import("@/registry/default/example/book-variant-demo.tsx")),
       source: "",
       category: "undefined",
       subcategory: "undefined",

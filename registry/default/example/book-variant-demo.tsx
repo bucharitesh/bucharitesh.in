@@ -1,13 +1,11 @@
 import React from "react";
-// import Book from "../bucharitesh/book";
+import Book from "../bucharitesh/book";
 import { Leaf } from "lucide-react";
 
 const BookDemo = () => {
   return (
     <div className="w-full bg-white rounded-xl p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
-      {/* <Book
-        title="The user experience of the Frontend Cloud"
-      />
+      <Book title="The user experience of the Frontend Cloud" />
       <Book
         title="The user experience of the Frontend Cloud"
         variant="simple"
@@ -88,7 +86,7 @@ const BookDemo = () => {
         illustration={<Leaf />}
         title="The user experience of the Frontend Cloud"
         variant="simple"
-      /> */}
+      />
     </div>
   );
 };

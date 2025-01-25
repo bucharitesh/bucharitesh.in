@@ -55,16 +55,16 @@ export const examples: Registry = [
   //   registryDependencies: ["vercel-grid"],
   //   files: ["example/vercel-grid-demo-text.tsx"],
   // },
-  // {
-  //   name: "book-demo",
-  //   type: "registry:example",
-  //   registryDependencies: ["book"],
-  //   files: ["example/book-demo.tsx"],
-  // },
-  // {
-  //   name: "book-variant-demo",
-  //   type: "registry:example",
-  //   registryDependencies: ["book"],
-  //   files: ["example/book-variant-demo.tsx"],
-  // },
+  {
+    name: "book-demo",
+    type: "registry:example",
+    registryDependencies: ["book"],
+    files: ["example/book-demo.tsx"],
+  },
+  {
+    name: "book-variant-demo",
+    type: "registry:example",
+    registryDependencies: ["book"],
+    files: ["example/book-variant-demo.tsx"],
+  },
 ];

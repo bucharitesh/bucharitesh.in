@@ -38,5 +38,19 @@
         "type": "registry:ui"
       }
     ]
+  },
+  {
+    "name": "book",
+    "type": "registry:ui",
+    "files": [
+      {
+        "path": "bucharitesh/book.tsx",
+        "type": "registry:ui"
+      },
+      {
+        "path": "bucharitesh/book.css",
+        "type": "registry:ui"
+      }
+    ]
   }
 ]
