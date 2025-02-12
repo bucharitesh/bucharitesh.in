@@ -208,3 +208,9 @@ export const getCurrentSeason = (): SeasonsEffect => {
   if (month >= 8 && month <= 10) return "fall";
   return "none";
 };
+
+export const getRandomRotation = () => {
+  const isNegative = Math.random() < 0.5;
+  const angle = Math.floor(Math.random() * 60);
+  return isNegative ? -angle : angle;
+};

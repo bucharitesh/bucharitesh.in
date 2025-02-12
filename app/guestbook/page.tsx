@@ -1,9 +1,12 @@
 import { Metadata } from "next/types";
-import React, { Suspense } from "react";
-import { Form } from "./form";
-import GuestbookEntries from "./guestbook-entries";
-// import { getGuestbookEntries } from "@/lib/db/guestbook";
-import { ScrollArea } from "@/components/scroll-area";
+import { cn } from "@/lib/utils";
+import styles from "./notes.module.css";
+import Polaroid from "@/components/guestbook/polaroid";
+import { NextWordmark, Sticker, VercelLogo } from "@/components/guestbook/stickers";
+import GuestbookEntries from "@/components/guestbook/guestbook-entries";
+import { Provider } from "jotai";
+import WriteNoteCTA from "@/components/guestbook/write";
+
 
 export const metadata: Metadata = {
   title: "Guestbook",
@@ -14,60 +17,53 @@ export const metadata: Metadata = {
   },
 };
 
+export const dynamic = "force-dynamic";
+
+// export default async function GuestbookPage() {
+//   return (
+//     <div className="h-screen w-screen" style={{
+//       "backgroundColor": "#06c",
+//       "backgroundImage": "linear-gradient(rgba(255,255,255,0.2) 2px, transparent 2px), linear-gradient(90deg, rgba(255,255,255,0.2) 2px, transparent 1px), linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)",
+//       "backgroundSize": "100px 100px, 100px 100px, 20px 20px, 20px 20px",
+//       "backgroundPosition": "-2px -2px, -2px -2px, -1px -1px, -1px -1px",
+//     }}>
+//       hello
+//     </div>
+//   );
+// }
+
 export default async function GuestbookPage() {
-  // const entries = await getGuestbookEntries();
-  const entries = [];
-
   return (
-    <ScrollArea className="">
-      {/* Mobile Layout */}
-      <div className="xl:hidden w-full px-4 pt-6 space-y-8">
-        <div>
-          <h2 className="text-3xl sm:text-4xl font-bold font-ndot55 uppercase tracking-wider">
-            Guestbook
-          </h2>
-          <p className="mt-2 text-sm text-neutral-500 dark:text-neutral-400">
-            Leave a message for future visitors of this website.
-          </p>
-        </div>
-
-        <Form />
-
-        <Suspense
-          fallback={
-            <div className="animate-pulse space-y-4">
-              {[...Array(3)].map((_, i) => (
-                <div
-                  key={i}
-                  className="h-32 bg-neutral-100 dark:bg-neutral-800 rounded-2xl"
-                />
-              ))}
-            </div>
-          }
+    <Provider>
+      <div className={cn("h-full bg-gray-1")}>
+        <div
+          id="mat-container"
+          className={cn(
+            "relative w-full h-full overflow-hidden",
+            styles.matContainer
+          )}
         >
-          <GuestbookEntries entries={entries} />
-        </Suspense>
-      </div>
-
-      {/* Desktop Layout */}
-      <div className="hidden xl:grid layout-sm relative z-10 gap-y-8 px-4 pt-12 xl:layout-xl xl:gap-x-9 xl:px-0 [&>*]:col-start-2 xl:[&>*]:col-start-3">
-        <div className="sticky top-10 space-y-2 hidden h-0 xl:!col-start-2 xl:row-start-1 xl:block col-span-1">
-          <h2 className="text-4xl font-bold font-ndot55 uppercase tracking-wider">
-            Guestbook
-          </h2>
-          <p className="text-sm text-neutral-500 dark:text-neutral-400">
-            Leave a message for future visitors of this website.
-          </p>
-        </div>
-
-        <Suspense fallback={<div className="h-[70px]" />}>
-          <GuestbookEntries entries={entries} />
-        </Suspense>
-
-        <div className="sticky top-10 hidden h-0 xl:!col-start-4 xl:row-start-1 xl:block col-span-2 max-w-md">
-          <Form />
+          <div className="z-10">
+            <div id="mat-texture" className={styles.matTexture} />
+            <div aria-hidden className={styles.window} />
+            <div id="mat-grid" className={styles.matGrid}>
+              <div id="diagonal-lines" className={styles.diagonalLines} />
+            </div>
+          </div>
+          <main className="relative z-20 h-full w-full overflow-hidden">
+            <GuestbookEntries />
+            <Polaroid src="https://cdn.bucharitesh.in/guestbook/photo_1.jpeg" alt="kedarkantha" />
+            <Polaroid src="https://cdn.bucharitesh.in/guestbook/photo_2.jpg" alt="graduation" />
+            <Sticker>
+              <VercelLogo />
+            </Sticker>
+            <Sticker>
+              <NextWordmark />
+            </Sticker>
+            <WriteNoteCTA />
+          </main>
         </div>
       </div>
-    </ScrollArea>
+    </Provider>
   );
-}
+};

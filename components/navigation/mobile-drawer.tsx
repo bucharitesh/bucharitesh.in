@@ -2,12 +2,11 @@ import {
   ArrowUpRightIcon,
   AtSignIcon,
   CommandIcon,
-  SunIcon,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 import { DockConfig, meta } from "@/lib/config";
 import { usePathname } from "next/navigation";
 import { memo } from "react";
@@ -82,7 +81,7 @@ export function MobileDrawer() {
 
 export const NavigationLink = memo(({ href, label, icon }: any) => {
   const pathname = usePathname();
-  const iconCmp = icon;
+  const iconCmp = icon ?? <AtSignIcon size={16} />;
 
   const isInternal = href.startsWith("/");
   if (!isInternal) {

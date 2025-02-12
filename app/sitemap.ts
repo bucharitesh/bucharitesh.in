@@ -1,6 +1,7 @@
 import { getBookmarks } from "@/lib/services/raindrop";
 import { MetadataRoute } from "next";
 import { headers } from "next/headers";
+import { allCrafts } from "content-collections";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const headersList = headers();
@@ -13,10 +14,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const addPathToBaseURL = (path: string) => `https://${domain}${path}`;
 
-  // const crafts = allCrafts.map((post) => ({
-  //   url: addPathToBaseURL(`/craft/${post.slug}`),
-  //   lastModified: post.publishedAt, // date format should be YYYY-MM
-  // }));
+  const crafts = allCrafts.map((post) => ({
+    url: addPathToBaseURL(`/craft/${post.slug}`),
+    lastModified: post.date, // date format should be YYYY-MM
+  }));
 
   // const blogs = allPosts.map((post) => ({
   //   url: addPathToBaseURL(`/blog/${post.slug}`),
@@ -36,7 +37,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // "/guestbook",
     "/bookmarks",
     // "/blog",
-    // "/craft",
+    "/craft",
     //  "/project",
     // "/design-inspiration",
     // "/uses",
@@ -45,5 +46,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: new Date(),
   }));
 
-  return [...routes, ...bookmarks];
+  return [...routes, ...bookmarks, ...crafts];
 }

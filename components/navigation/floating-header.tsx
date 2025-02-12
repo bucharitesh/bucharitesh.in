@@ -63,7 +63,7 @@ export const FloatingHeader = memo(
     return (
       <header
         className={cn(
-          "sticky inset-x-0 top-0 z-50 mx-auto flex h-12 w-full shrink-0 items-center overflow-hidden border-b border-b-gray-200 dark:border-b-neutral-800 bg-white dark:bg-neutral-900 text-sm font-medium",
+          "fixed top-0 z-50 mx-auto flex h-12 w-full shrink-0 items-center overflow-hidden border-b border-b-gray-200 dark:border-b-neutral-800 bg-white dark:bg-neutral-900 text-sm font-medium",
           className,
         )}
       >

@@ -58,7 +58,7 @@ export default async function RootLayout({
       <html lang="en" suppressHydrationWarning>
         <body
           className={cn(
-            "font-x overscroll-y-none z-0 h-screen w-screen antialiased selection:bg-blue-400/90 selection:text-white",
+            "font-x overscroll-y-none z-0 h-[100dvh] w-screen antialiased selection:bg-blue-400/90 selection:text-white",
             fontX.variable,
             fontMono.variable,
             fontNdot55.variable,
@@ -69,7 +69,7 @@ export default async function RootLayout({
             <Seasons />
             <main
               vaul-drawer-wrapper=""
-              className="relative h-full w-full flex-1 overflow-y-auto"
+              className="relative pt-10 md:pt-0 h-full w-full flex-1 overflow-y-auto bg-[#f9f9f9] dark:bg-[#161616]"
             >
               <Navigation />
               {children}

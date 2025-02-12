@@ -10,7 +10,6 @@ import { Metadata } from "next";
 import { Link } from "next-view-transitions";
 import { notFound } from "next/navigation";
 import { CraftsPager } from "@/components/pager";
-import { Contribute } from "@/components/contribute";
 
 export const generateStaticParams = () => {
   return allCrafts.map((p) => ({ slug: p.slug }));
