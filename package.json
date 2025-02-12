@@ -9,7 +9,7 @@
     "email:dev": "email dev --port 3333",
     "prebuild": "pnpm build:docs && pnpm build:registry",
     "build": "next build",
-    "build:registry": "tsx --tsconfig ./tsconfig.scripts.json ./scripts/build-registry.mts && prettier --loglevel silent --write \"registry/**/*.{ts,tsx,mdx}\" --cache",
+    "build:registry": "tsx --tsconfig ./tsconfig.scripts.json ./scripts/build-registry.mts && prettier --log-level silent --write \"registry/**/*.{ts,tsx,mdx}\" --cache",
     "build:docs": "content-collections build",
     "typecheck": "pnpm build:docs && tsc --noEmit",
     "start": "next start",

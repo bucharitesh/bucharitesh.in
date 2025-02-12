@@ -86,7 +86,7 @@ export const NavigationLink = memo(({ href, label, icon }: any) => {
   const isInternal = href.startsWith("/");
   if (!isInternal) {
     return (
-      <a
+      <Link
         key={href}
         href={href}
         target="_blank"
@@ -98,7 +98,7 @@ export const NavigationLink = memo(({ href, label, icon }: any) => {
           {label}
         </span>
         <ArrowUpRightIcon size={16} />
-      </a>
+      </Link>
     );
   }
 

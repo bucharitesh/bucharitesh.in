@@ -1,4 +1,3 @@
-import { getBookmarks } from "@/lib/services/raindrop";
 import { MetadataRoute } from "next";
 import { headers } from "next/headers";
 import { allCrafts } from "content-collections";
@@ -24,18 +23,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   //   lastModified: post.publishedAt, // date format should be YYYY-MM-DD
   // }));
 
-  const allBookmarks = await getBookmarks();
+  // const allBookmarks = await getBookmarks();
 
-  const bookmarks = allBookmarks.map((post) => ({
-    url: addPathToBaseURL(`/bookmarks/${post.slug}`),
-    lastModified: post.lastUpdate, // date format should be YYYY-MM
-  }));
+  // const bookmarks = allBookmarks.map((post) => ({
+  //   url: addPathToBaseURL(`/bookmarks/${post.slug}`),
+  //   lastModified: post.lastUpdate, // date format should be YYYY-MM
+  // }));
 
   const routes = [
     "/",
     "/cal",
     "/guestbook",
-    "/bookmarks",
+    // "/bookmarks",
     "/craft",
     // "/blog",
     //  "/project",
@@ -46,5 +45,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: new Date(),
   }));
 
-  return [...routes, ...bookmarks, ...crafts];
+  return [...routes, ...crafts];
 }

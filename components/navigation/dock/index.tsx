@@ -67,7 +67,7 @@ function BottomDock({ className }: { className: string }) {
         <DockSeperator />
         {Object.entries(DockConfig.contact.social).map(([name, social]) => (
           <DockIcon key={name} title={name}>
-            <Link href={social.url}>
+            <Link href={social.url} target="_blank">
               <social.icon className="size-4" />
             </Link>
           </DockIcon>

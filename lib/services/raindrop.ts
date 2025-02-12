@@ -36,9 +36,11 @@ export const getBookmarks = cache(async () => {
   try {
     const response = await fetch(`${RAINDROP_API_URL}/collections`, options);
     const bookmarks = await response.json();
+
     const filteredBookmarks = bookmarks.items.filter((bookmark) =>
       COLLECTION_IDS.includes(bookmark._id),
     );
+
     return filteredBookmarks;
   } catch (error) {
     console.info(error);

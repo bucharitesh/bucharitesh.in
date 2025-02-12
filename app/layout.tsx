@@ -3,7 +3,7 @@ import { createOgImage } from "@/lib/createOgImage";
 import { Metadata, Viewport } from "next";
 import { cn } from "@/lib/utils";
 import { ViewTransitions } from "next-view-transitions";
-import { fontMono, fontNdot55, fontX } from "@/lib/fonts";
+import { fontMono, fontX } from "@/lib/fonts";
 
 import "@/styles/globals.css";
 import "@/styles/mdx.css";
@@ -61,7 +61,6 @@ export default async function RootLayout({
             "font-x overscroll-y-none z-0 h-[100dvh] w-screen antialiased selection:bg-blue-400/90 selection:text-white",
             fontX.variable,
             fontMono.variable,
-            fontNdot55.variable,
           )}
           suppressHydrationWarning
         >

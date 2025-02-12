@@ -64,7 +64,7 @@ export default async function Writing() {
               fill="currentColor"
             ></path>
           </svg>
-          <span className="whitespace-nowrap -rotate-[20deg] inline-block absolute left-full top-full -translate-x-1/4 translate-y-1/2 font-ndot55 font-bold tracking-widest">
+          <span className="whitespace-nowrap -rotate-[20deg] inline-block absolute left-full top-full -translate-x-1/4 translate-y-1/2 font-bold tracking-widest">
             Click to view bookmarks
           </span>
         </span>

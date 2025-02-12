@@ -8,10 +8,10 @@ import { BookmarkList } from "@/components/bookmarks/bookmark-list";
 import { meta } from "@/lib/config";
 import { createOgImage } from "@/lib/createOgImage";
 
-export async function generateStaticParams() {
-  const bookmarks = await getBookmarks();
-  return bookmarks.map((bookmark) => ({ slug: bookmark.slug }));
-}
+// export async function generateStaticParams() {
+//   const bookmarks = await getBookmarks();
+//   return bookmarks.map((bookmark) => ({ slug: bookmark.slug }));
+// }
 
 async function fetchData(slug) {
   const bookmarks = await getBookmarks();
@@ -38,7 +38,7 @@ export default async function CollectionPage({ params }) {
         <div className="content container">
           <div
             className={cn(
-              "mb-6 text-4xl font-bold font-ndot55 tracking-widest",
+              "mb-6 text-4xl font-bold tracking-widest",
             )}
           >
             <Balancer as="h1">{currentBookmark.title}</Balancer>
