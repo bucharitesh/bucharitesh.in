@@ -35,12 +35,17 @@ export const dynamic = "force-dynamic";
 export default async function GuestbookPage() {
   return (
     <Provider>
-      <div className={cn("h-full bg-gray-1")}>
+      <div className={cn("h-full bg-gray-1")} style={{
+      "backgroundColor": "#06c",
+      // "backgroundImage": "linear-gradient(rgba(255,255,255,0.2) 2px, transparent 2px), linear-gradient(90deg, rgba(255,255,255,0.2) 2px, transparent 1px), linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)",
+      "backgroundSize": "100px 100px, 100px 100px, 20px 20px, 20px 20px",
+      "backgroundPosition": "-2px -2px, -2px -2px, -1px -1px, -1px -1px",
+    }}>
         <div
           id="mat-container"
           className={cn(
             "relative w-full h-full overflow-hidden",
-            styles.matContainer
+            // styles.matContainer
           )}
         >
           <div className="z-10">

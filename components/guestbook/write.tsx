@@ -15,6 +15,7 @@ import {
   localEntriesAtom,
 } from "@/lib/atoms/guestbook";
 import { ArrowBigDown } from "lucide-react";
+import useClickOutside from "@/lib/hooks/use-click-outside";
 
 const transition = {
   type: "spring",
@@ -225,9 +226,9 @@ export default function WriteNoteCTA() {
     setHasCreatedEntryBefore(true);
   };
 
-//   useClickOutside(ref, () => {
-//     setIsOpen(false);
-//   });
+  useClickOutside(ref, () => {
+    setIsOpen(false);
+  });
 
   useEffect(() => {
     if (!widthContainer || maxWidth > 0) return;
@@ -238,7 +239,7 @@ export default function WriteNoteCTA() {
     <div className="bottom-10 left-1/2 -translate-x-1/2 md:left-auto md:right-20 md:top-40 md:-translate-x-0 absolute z-300">
       <div
         className={cn(
-          "rounded-md bg-[#F04F1F] border border-gray-800/40 transition text-[1.5rem] flex gap-x-1.5 items-center justify-center text-gray-100 font-medium h-fit w-72 shadow-lg",
+          "rounded-md bg-black border border-gray-800/40 transition text-[1.5rem] flex gap-x-1.5 items-center justify-center text-gray-100 font-medium h-fit w-72 shadow-lg",
         )}
       >
         <MotionConfig transition={transition}>
