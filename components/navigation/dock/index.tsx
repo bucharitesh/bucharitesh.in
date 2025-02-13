@@ -8,7 +8,7 @@ import {
   DockIcon,
   DockIconActiveDot,
 } from "@/components/shared/compoenents/floating-dock";
-import { ModeToggle } from "./mode-toggle";
+import ModeToggle from "./mode-toggle";
 import { usePathname } from "next/navigation";
 import { DockConfig } from "@/lib/config";
 import { cn } from "@/lib/utils";
