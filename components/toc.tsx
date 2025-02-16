@@ -92,7 +92,7 @@ export function TableOfContents({ toc }: TocProps) {
 
   return (
     <div className="space-y-2">
-      <p className="-ml-0.5 flex items-center gap-1.5 text-sm text-gray-500">
+      <p className="-ml-0.5 flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400">
         <AlignLeftIcon className="size-4" />
         On this page
       </p>
@@ -114,7 +114,7 @@ function Tree({ tree, level = 1, activeItem }: TreeProps) {
 
   return (
     <ul
-      className={cn("mt-4 grid gap-4 border-l-2 border-gray-200", {
+      className={cn("mt-4 grid gap-4 border-l-2 border-gray-200 dark:border-gray-800", {
         "pl-4": level !== 1,
       })}
     >
@@ -128,13 +128,13 @@ function Tree({ tree, level = 1, activeItem }: TreeProps) {
                 "inline-block text-sm transition-colors duration-200",
                 isActive
                   ? "font-medium text-foreground"
-                  : "text-muted-foreground hover:text-foreground",
+                  : "text-muted-foreground hover:text-foreground dark:text-muted-foreground dark:hover:text-foreground",
               )}
             >
               {item.title}
             </a>
             <div
-              className="absolute left-0 top-0 h-full w-0.5 bg-black transition-all duration-200 ease-in-out"
+              className="absolute left-0 top-0 h-full w-0.5 bg-black dark:bg-white transition-all duration-200 ease-in-out"
               style={{
                 opacity: isActive ? 1 : 0,
                 transform: `translateY(${isActive ? "0" : "-100%"})`,

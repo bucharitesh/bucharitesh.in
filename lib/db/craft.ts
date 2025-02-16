@@ -11,3 +11,11 @@ export const getCrafts = async () => {
 
   return crafts;
 };
+
+export const getInlineCrafts = async () => {
+  let crafts = await allCrafts;
+
+  crafts = crafts.filter((craft) => craft.type === "code" || craft.type === "component");
+
+  return crafts;
+};

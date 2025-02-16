@@ -4,7 +4,7 @@ import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Craft } from "content-collections";
-import { getCrafts } from "@/lib/db/craft";
+import { getCrafts, getInlineCrafts } from "@/lib/db/craft";
 
 interface CraftsPagerProps {
   craft: Craft;
@@ -53,7 +53,8 @@ export async function CraftsPager({ craft }: CraftsPagerProps) {
 }
 
 export async function getPagerForDoc(doc: Craft) {
-  const allCrafts = await getCrafts();
+  const allCrafts = await getInlineCrafts();
+
   // Get all crafts and sort them by date or any other criteria
   const currentIndex = allCrafts.findIndex((craft) => craft.slug === doc.slug);
 
