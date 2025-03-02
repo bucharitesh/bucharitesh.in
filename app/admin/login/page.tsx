@@ -1,7 +1,7 @@
 "use client";
 
 import { signIn, useSession } from "next-auth/react";
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import React, { memo } from 'react'
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { redirect } from "next/navigation";
@@ -15,7 +15,10 @@ const LoginPage = () => {
 
     return (
         <div className="flex flex-col items-center justify-center h-screen">
+        {/* Framer motion wrapper */}
+        <AnimatePresence>
             <LoginButton />
+        </AnimatePresence>
         </div>
     );
 }

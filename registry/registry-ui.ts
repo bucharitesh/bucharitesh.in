@@ -26,6 +26,19 @@ export const ui: Registry = [
     type: "registry:ui",
     files: ["bucharitesh/book.tsx", "bucharitesh/book.css"],
   },
+  {
+    name: "magical-mouse",
+    type: "registry:ui",
+    files: ["bucharitesh/magical-mouse.tsx", "bucharitesh/magical-mouse.css"],
+  },
+  {
+    name: "modern-progress",
+    type: "registry:ui",
+    files: [
+      "bucharitesh/modern-progress.tsx",
+      "bucharitesh/modern-progress.css",
+    ],
+  },
   // {
   //   name: "vercel-grid",
   //   type: "registry:ui",

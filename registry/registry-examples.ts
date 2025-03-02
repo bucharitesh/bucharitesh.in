@@ -67,4 +67,16 @@ export const examples: Registry = [
     registryDependencies: ["book"],
     files: ["example/book-variant-demo.tsx"],
   },
+  {
+    name: "magical-mouse-demo",
+    type: "registry:example",
+    registryDependencies: ["magical-mouse"],
+    files: ["example/magical-mouse-demo.tsx"],
+  },
+  {
+    name: "modern-progress-demo",
+    type: "registry:example",
+    registryDependencies: ["modern-progress"],
+    files: ["example/modern-progress-demo.tsx"],
+  },
 ];

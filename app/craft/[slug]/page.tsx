@@ -5,11 +5,10 @@ import { createOgImage } from "@/lib/createOgImage";
 import { getTableOfContents } from "@/lib/toc";
 import { cn } from "@/lib/utils";
 import { allCrafts } from "content-collections";
-import { ChevronRightIcon } from "lucide-react";
 import { Metadata } from "next";
-import { Link } from "next-view-transitions";
 import { notFound } from "next/navigation";
 import { CraftsPager } from "@/components/pager";
+import { CopyLinkButton } from "./copy-button";
 
 export const generateStaticParams = () => {
   return allCrafts.map((p) => ({ slug: p.slug }));
@@ -52,9 +51,9 @@ export default async function PostPage({ params }: Props) {
   const toc = await getTableOfContents(craft.body.raw || "");
 
   return (
-    <div className="layout-sm mb-40 relative z-10 grid gap-y-2 px-4 pt-12 xl:layout-craft xl:gap-x-9 xl:px-0 [&>*]:col-start-2 xl:[&>*]:col-start-3">
+    <div className="layout-sm mb-40 relative z-10 grid gap-y-2 px-4 pt-12 lg:layout-craft lg:gap-x-9 lg:px-0 [&>*]:col-start-2 lg:[&>*]:col-start-3">
       <div className="mx-auto w-full">
-        <div className="mb-4 flex items-center space-x-1 text-sm text-muted-foreground">
+        {/* <div className="mb-4 flex items-center space-x-1 text-sm text-muted-foreground">
           <Link
             href="/craft"
             className="truncate hover:underline underline-offset-4 transition-all duration-300"
@@ -63,8 +62,8 @@ export default async function PostPage({ params }: Props) {
           </Link>
           <ChevronRightIcon className="size-4" />
           <div className="font-medium text-foreground">{craft.title}</div>
-        </div>
-        <div className="space-y-2">
+        </div> */}
+        {/* <div className="space-y-2">
           <h1 className={cn("scroll-m-20 text-4xl font-bold tracking-tight")}>
             {craft.title}
           </h1>
@@ -74,14 +73,34 @@ export default async function PostPage({ params }: Props) {
             </p>
           )}
         </div>
-        <div className="pb-12 pt-8">
+        <div className="flex items-center gap-2">
+            <CopyLinkButton />
+        </div> */}
+
+        <div className="mb-8 justify-start flex-nowrap items-center flex">
+            <div className="w-full">
+              <h1 className={cn("scroll-m-20 text-xl font-bold tracking-tight")}>
+                {craft.title}
+              </h1>
+              <p className="text-balance text-sm text-muted-foreground">
+                {craft.date.toLocaleDateString("en-US", {
+                  month: "long",
+                  year: "numeric",
+                })}
+              </p>
+            </div>
+            <div className="flex items-center gap-2">
+                <CopyLinkButton />
+            </div>
+        </div>
+
+        <div className="pb-12">
           <Mdx code={craft.body.code || ""} />
         </div>
       </div>
 
-      <div className="sticky space-y-4 top-14 pt-4 hidden h-0 xl:!col-start-4 xl:row-start-1 xl:block col-span-2 max-w-md">
+      <div className="sticky space-y-4 top-14 right-0 hidden h-0 lg:!col-start-2 lg:row-start-1 lg:block col-span-1 max-w-md">
         <TableOfContents toc={toc} />
-        {/* TODO: Add Contribute component */}
         {/* <Contribute craft={craft} /> */}
       </div>
 

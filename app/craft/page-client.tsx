@@ -9,6 +9,7 @@ import { Link } from "next-view-transitions";
 
 export default function PageClient({ crafts }: { crafts: Craft[] }) {
   return (
+    <>
     <MasonryGrid
       breakpoints={{
         sm: 1,
@@ -34,6 +35,7 @@ export default function PageClient({ crafts }: { crafts: Craft[] }) {
         />
       ))}
     </MasonryGrid>
+    </>
   );
 }
 

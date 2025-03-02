@@ -52,5 +52,33 @@
         "type": "registry:ui"
       }
     ]
+  },
+  {
+    "name": "magical-mouse",
+    "type": "registry:ui",
+    "files": [
+      {
+        "path": "bucharitesh/magical-mouse.tsx",
+        "type": "registry:ui"
+      },
+      {
+        "path": "bucharitesh/magical-mouse.css",
+        "type": "registry:ui"
+      }
+    ]
+  },
+  {
+    "name": "modern-progress",
+    "type": "registry:ui",
+    "files": [
+      {
+        "path": "bucharitesh/modern-progress.tsx",
+        "type": "registry:ui"
+      },
+      {
+        "path": "bucharitesh/modern-progress.css",
+        "type": "registry:ui"
+      }
+    ]
   }
 ]

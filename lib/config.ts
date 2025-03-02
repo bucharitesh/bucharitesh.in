@@ -27,6 +27,7 @@ export const DockConfig = {
     { href: "/", icon: Icons.home, label: "Home" },
     { href: "/craft", icon: Icons.craft, label: "Crafts" },
     { href: "/guestbook", icon: Icons.guestbook, label: "Guestbook" },
+    // { href: "/blog", icon: Icons.guestbook, label: "Blog" },
     // { href: "/bookmarks", icon: Icons.bookmark, label: "Bookmarks" },
     { href: "/cal", icon: Icons.calendar, label: "Book a Meeting" },
     // { href: "/resume", icon: Icons.resume, label: "Resume" },

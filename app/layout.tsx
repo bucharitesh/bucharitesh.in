@@ -12,7 +12,10 @@ import { auth } from "@/lib/auth";
 import DevTools from "@/components/dev-tools";
 import Navigation from "@/components/navigation";
 import { Providers } from "@/lib/providers";
-import { Seasons } from "@/components/seasons";
+
+// import { EasterEggs } from "@/components/layout/info";
+// import ConsoleEasterEgg from "@/components/layout/console-easter-egg";
+// import DartImpact from "@/components/layout/dart-easter-egg";
 
 export const viewport: Viewport = {
   themeColor: "#1c1917",
@@ -58,19 +61,18 @@ export default async function RootLayout({
       <html lang="en" suppressHydrationWarning>
         <body
           className={cn(
-            "font-x overscroll-y-none z-0 h-[100dvh] w-screen antialiased selection:bg-blue-400/90 selection:text-white",
+            "flex font-x overscroll-y-none z-0 h-[100dvh] w-[100dvw] antialiased selection:bg-blue-400/90 selection:text-white",
             fontX.variable,
             fontMono.variable,
           )}
-          suppressHydrationWarning
         >
           <Providers session={session}>
-            <Seasons />
+            <Navigation />
             <main
+              id="main-content"
               vaul-drawer-wrapper=""
-              className="relative pt-10 md:pt-0 h-full w-full flex-1 overflow-y-auto bg-[#f9f9f9] dark:bg-[#161616]"
+              className="relative mt-12 md:mt-0 h-[calc(100dvh-3rem)] md:h-full w-full flex-1 overflow-y-auto bg-[#f9f9f9] dark:bg-[#161616]"
             >
-              <Navigation />
               {children}
             </main>
             <DevTools />

@@ -1,6 +1,19 @@
 import React, { useMemo } from "react";
-// import "./style.css";
+import "./style.css";
 import { cn } from "@/lib/utils";
+
+function calculateDifference(input: string | number): any {
+  if (typeof input === "number") {
+    return input;
+  }
+
+  if (typeof input === "string") {
+    const [numerator, denominator] = input.split("/").map(Number);
+    return denominator - numerator;
+  }
+
+  return "NaN";
+}
 
 const Guide = ({ x, y, borderRight, borderBottom, classNames }: any) => {
   return (
@@ -27,24 +40,8 @@ const Grid = ({
   hideGuides,
 }: {
   height?: string;
-  columns:
-    | {
-        xs?: number;
-        sm?: number;
-        smd?: number;
-        md?: number;
-        lg?: number;
-      }
-    | number;
-  rows:
-    | {
-        xs?: number;
-        sm?: number;
-        smd?: number;
-        md?: number;
-        lg?: number;
-      }
-    | number;
+  columns: number;
+  rows: number;
   children?: any;
   hideGuides?: "row" | "column";
 }) => {
@@ -56,6 +53,7 @@ const Grid = ({
           guides.push(
             <Guide
               key={`${x}-${y}`}
+              id={`${x}-${y}`}
               x={x}
               y={y}
               borderRight={
@@ -77,67 +75,8 @@ const Grid = ({
       );
     }
 
-    if (typeof columns === "object" && typeof rows === "object") {
-      const breakpointGuide: React.ReactNode[] = [];
-      const breakpoints = ["xs", "sm", "smd", "md", "lg"] as const;
-
-      const getNextAvailableValue = (
-        obj: typeof columns | typeof rows,
-        currentBreakpoint: string,
-      ): number => {
-        const index = breakpoints.indexOf(currentBreakpoint as any);
-        for (let i = index; i < breakpoints.length; i++) {
-          const value = obj[breakpoints[i] as keyof typeof obj];
-          if (typeof value === "number") {
-            return value;
-          }
-        }
-        return 1; // Default to 1 if no value is found
-      };
-
-      breakpoints.forEach((breakpoint) => {
-        const guides: React.ReactNode[] = [];
-
-        const colCount = getNextAvailableValue(columns, breakpoint);
-        const rowCount = getNextAvailableValue(rows, breakpoint);
-
-        for (let y = 1; y < rowCount + 1; y++) {
-          for (let x = 1; x < colCount + 1; x++) {
-            guides.push(
-              <Guide
-                key={`${breakpoint}-${x}-${y}`}
-                x={x}
-                y={y}
-                borderRight={colCount === x}
-                borderBottom={rowCount === y}
-                classNames={cn("", {
-                  grid_xsGuide__Xupsz: breakpoint === "xs",
-                  grid_smGuide__dhwwf: breakpoint === "sm",
-                  grid_smdGuide__pWYK7: breakpoint === "smd",
-                  grid_mdGuide__Kf1OM: breakpoint === "md",
-                  grid_lgGuide__2OXaB: breakpoint === "lg",
-                })}
-              />,
-            );
-          }
-        }
-
-        breakpointGuide.push(
-          <div
-            aria-hidden="true"
-            className="grid_guides__XbybQ"
-            data-grid-guides="true"
-          >
-            {guides}
-          </div>,
-        );
-      });
-
-      return breakpointGuide;
-    }
-
     return null;
-  }, [columns, rows]);
+  }, [columns, rows, hideGuides]);
 
   const getStyle = () => {
     let style = {};
@@ -159,17 +98,17 @@ const Grid = ({
       };
     }
 
-    if (typeof rows === "object" && typeof columns === "object") {
-      style = {
-        ...style,
-        "--sm-grid-rows": rows.sm,
-        "--md-grid-rows": rows.md,
-        "--lg-grid-rows": rows.lg,
-        "--sm-grid-columns": columns.sm,
-        "--md-grid-columns": columns.md,
-        "--lg-grid-columns": columns.lg,
-      } as React.CSSProperties;
-    }
+    // if (typeof rows === "object" && typeof columns === "object") {
+    //   style = {
+    //     ...style,
+    //     "--sm-grid-rows": rows.sm,
+    //     "--md-grid-rows": rows.md,
+    //     "--lg-grid-rows": rows.lg,
+    //     "--sm-grid-columns": columns.sm,
+    //     "--md-grid-columns": columns.md,
+    //     "--lg-grid-columns": columns.lg,
+    //   } as React.CSSProperties;
+    // }
 
     if (typeof rows === "number" && typeof columns === "number") {
       style = {
@@ -242,8 +181,8 @@ Grid.Cross = GridCross;
 
 interface GridCellProps {
   children: React.ReactNode;
-  column?: any;
-  row?: any;
+  column?: number | string;
+  row?: number | string;
   solid?: boolean;
 }
 
@@ -252,45 +191,13 @@ const GridCell: React.FC<GridCellProps> = ({
   column,
   row,
   solid = true,
-}: {
-  children: any;
-  solid?: boolean;
-  column?:
-    | {
-        sm: string;
-        md: string;
-        lg: string;
-      }
-    | string;
-  row?:
-    | {
-        sm: string;
-        md: string;
-        lg: string;
-      }
-    | string;
-}) => {
+}: GridCellProps) => {
   const css = (_a: string | number) => {
     if (typeof _a === "number") {
       return `${_a} / span 1`;
     }
     return _a;
   };
-
-  function calculateDifference(input: string | number): any {
-    if (typeof input === "number") {
-      return input;
-    }
-
-    if (typeof input === "string") {
-      const [numerator, denominator] = input.split("/").map(Number);
-
-      // Calculate the difference (denominator - numerator)
-      return denominator - numerator;
-    }
-
-    return "NaN";
-  }
 
   const getStyle = () => {
     if (typeof row === "string" && typeof column === "string") {
@@ -303,43 +210,43 @@ const GridCell: React.FC<GridCellProps> = ({
       } as React.CSSProperties;
     }
 
-    if (typeof row === "object" && typeof column === "object") {
-      return {
-        "--sm-grid-row": css(row.sm),
-        "--sm-grid-column": css(column.sm),
+    // if (typeof row === "object" && typeof column === "object") {
+    //   return {
+    //     "--sm-grid-row": css(row.sm),
+    //     "--sm-grid-column": css(column.sm),
 
-        "--smd-grid-row": css(row.md),
-        "--smd-grid-column": css(column.md),
+    //     "--smd-grid-row": css(row.md),
+    //     "--smd-grid-column": css(column.md),
 
-        "--lg-grid-row": css(row.lg),
-        "--lg-grid-column": css(column.lg),
+    //     "--lg-grid-row": css(row.lg),
+    //     "--lg-grid-column": css(column.lg),
 
-        "--sm-cell-rows": calculateDifference(row.sm),
-        "--sm-cell-columns": calculateDifference(column.sm),
+    //     "--sm-cell-rows": calculateDifference(row.sm),
+    //     "--sm-cell-columns": calculateDifference(column.sm),
 
-        "--smd-cell-rows": calculateDifference(row.sm),
-        "--smd-cell-columns": calculateDifference(column.sm),
+    //     "--smd-cell-rows": calculateDifference(row.sm),
+    //     "--smd-cell-columns": calculateDifference(column.sm),
 
-        // "--sm-cell-rows": "2",
-        // "--smd-cell-rows": "1",
+    //     // "--sm-cell-rows": "2",
+    //     // "--smd-cell-rows": "1",
 
-        // "--sm-cell-columns": "1",
-        // "--smd-cell-columns": "",
+    //     // "--sm-cell-columns": "1",
+    //     // "--smd-cell-columns": "",
 
-        // column={{ sm: "1", md: "1/3" }}
-        // row={{ sm: "1/3", md: 1 }}
+    //     // column={{ sm: "1", md: "1/3" }}
+    //     // row={{ sm: "1/3", md: 1 }}
 
-        // "--xs-cell-columns": "NaN",
-        // "--sm-cell-columns": "NaN",
-        // "--smd-cell-columns": "",
+    //     // "--xs-cell-columns": "NaN",
+    //     // "--sm-cell-columns": "NaN",
+    //     // "--smd-cell-columns": "",
 
-        // column={{ sm: 1, md: "1/3", lg: "2/4" }}
-        // row={{ sm: "5/7", md: 3, lg: 2 }}
+    //     // column={{ sm: 1, md: "1/3", lg: "2/4" }}
+    //     // row={{ sm: "5/7", md: 3, lg: 2 }}
 
-        // "--sm-cell-columns": "1",
-        // "--smd-cell-columns": "",
-      } as React.CSSProperties;
-    }
+    //     // "--sm-cell-columns": "1",
+    //     // "--smd-cell-columns": "",
+    //   } as React.CSSProperties;
+    // }
 
     return {
       "--sm-grid-row": "auto",
@@ -350,7 +257,11 @@ const GridCell: React.FC<GridCellProps> = ({
   };
 
   return (
-    <div className={`grid_block__lyImu`} data-grid-cell style={getStyle()}>
+    <div 
+      className={`grid_block__lyImu`} 
+      data-grid-cell 
+      style={getStyle()}
+    >
       {children}
     </div>
   );

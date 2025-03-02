@@ -60,6 +60,28 @@ export const Index: Record<string, any> = {
       subcategory: "undefined",
       chunks: []
     },
+    "magical-mouse": {
+      name: "magical-mouse",
+      type: "registry:ui",
+      registryDependencies: undefined,
+      files: ["registry/default/bucharitesh/magical-mouse.tsx","registry/default/bucharitesh/magical-mouse.css"],
+      component: React.lazy(() => import("@/registry/default/bucharitesh/magical-mouse.tsx")),
+      source: "",
+      category: "undefined",
+      subcategory: "undefined",
+      chunks: []
+    },
+    "modern-progress": {
+      name: "modern-progress",
+      type: "registry:ui",
+      registryDependencies: undefined,
+      files: ["registry/default/bucharitesh/modern-progress.tsx","registry/default/bucharitesh/modern-progress.css"],
+      component: React.lazy(() => import("@/registry/default/bucharitesh/modern-progress.tsx")),
+      source: "",
+      category: "undefined",
+      subcategory: "undefined",
+      chunks: []
+    },
     "pixel-icon-demo": {
       name: "pixel-icon-demo",
       type: "registry:example",
@@ -165,6 +187,28 @@ export const Index: Record<string, any> = {
       registryDependencies: ["book"],
       files: ["registry/default/example/book-variant-demo.tsx"],
       component: React.lazy(() => import("@/registry/default/example/book-variant-demo.tsx")),
+      source: "",
+      category: "undefined",
+      subcategory: "undefined",
+      chunks: []
+    },
+    "magical-mouse-demo": {
+      name: "magical-mouse-demo",
+      type: "registry:example",
+      registryDependencies: ["magical-mouse"],
+      files: ["registry/default/example/magical-mouse-demo.tsx"],
+      component: React.lazy(() => import("@/registry/default/example/magical-mouse-demo.tsx")),
+      source: "",
+      category: "undefined",
+      subcategory: "undefined",
+      chunks: []
+    },
+    "modern-progress-demo": {
+      name: "modern-progress-demo",
+      type: "registry:example",
+      registryDependencies: ["modern-progress"],
+      files: ["registry/default/example/modern-progress-demo.tsx"],
+      component: React.lazy(() => import("@/registry/default/example/modern-progress-demo.tsx")),
       source: "",
       category: "undefined",
       subcategory: "undefined",

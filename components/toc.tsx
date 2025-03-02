@@ -4,7 +4,8 @@ import { useEffect, useMemo, useState } from "react";
 import type { TableOfContents } from "@/lib/toc";
 import { useMounted } from "@/lib/hooks";
 import { cn } from "@/lib/utils";
-import { AlignLeftIcon } from "lucide-react";
+import { AlignLeftIcon, ArrowLeftIcon, CornerLeftUp, CornerUpLeft } from "lucide-react";
+import { Link } from "next-view-transitions";
 
 interface TocProps {
   toc: TableOfContents;
@@ -91,14 +92,20 @@ export function TableOfContents({ toc }: TocProps) {
   if (!toc?.items) return null;
 
   return (
-    <div className="space-y-2">
-      <p className="-ml-0.5 flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400">
-        <AlignLeftIcon className="size-4" />
-        On this page
-      </p>
-      <nav aria-label="Table of contents">
-        <Tree tree={refinedToc} activeItem={activeId} />
-      </nav>
+    <div className="space-y-14">
+      <Link href="/craft" className="flex items-baseline gap-1.5 text-sm text-muted-foreground">
+        <CornerUpLeft className="size-3" />
+        Crafts
+      </Link>
+      <div>
+        <p className="-ml-0.5 flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400">
+          <AlignLeftIcon className="size-4" />
+          On this page
+        </p>
+        <nav aria-label="Table of contents">
+          <Tree tree={refinedToc} activeItem={activeId} />
+        </nav>
+      </div>
     </div>
   );
 }

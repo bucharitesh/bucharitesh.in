@@ -105,7 +105,7 @@ export const MasonryGrid: React.FC<MasonryGridProps> = ({
 
   return (
     <div
-      className={`flex pt-2 pl-1 flex-col relative min-h-screen my-auto mx-0 ${className}`}
+      className={`flex pt-2 pl-1 flex-col relative mb-20 my-auto mx-0 ${className}`}
     >
       <div
         style={
@@ -114,7 +114,7 @@ export const MasonryGrid: React.FC<MasonryGridProps> = ({
             marginLeft: `calc(${gap}*-1)`,
           } as React.CSSProperties
         }
-        className="flex pl-1 pr-2 w-auto h-screen"
+        className="flex pl-1 pr-2 w-auto"
       >
         {columnElements}
       </div>
