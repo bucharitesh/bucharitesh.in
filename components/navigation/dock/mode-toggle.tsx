@@ -3,11 +3,11 @@
 import * as React from "react";
 import { useTheme } from "next-themes";
 import { motion as m } from "framer-motion";
-import { useEasterEggs } from "@/lib/providers/easter-egg-provider";
+// import { useEasterEggs } from "@/lib/providers/easter-egg-provider";
 
 export default function ModeToggle() {
   const { setTheme, theme } = useTheme();
-  const { discoverEgg } = useEasterEggs();
+  // const { discoverEgg } = useEasterEggs();
 
   const raysVariants = {
     hidden: {
@@ -74,7 +74,7 @@ export default function ModeToggle() {
   return (
       <div className="flex h-full w-full items-center justify-center" onClick={() => {
         setTheme(theme === "dark" ? "light" : "dark");
-        discoverEgg("THEME_TOGGLE");
+        // discoverEgg("THEME_TOGGLE");
       }}>
         <m.svg
           strokeWidth="4"

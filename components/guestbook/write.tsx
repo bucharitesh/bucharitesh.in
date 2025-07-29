@@ -16,7 +16,7 @@ import {
 } from "@/lib/atoms/guestbook";
 import { ArrowBigDown } from "lucide-react";
 import useClickOutside from "@/lib/hooks/use-click-outside";
-import { useEasterEggs } from "@/lib/providers/easter-egg-provider";
+// import { useEasterEggs } from "@/lib/providers/easter-egg-provider";
 
 const transition = {
   type: "spring",
@@ -43,7 +43,7 @@ export default function WriteNoteCTA() {
   );
   const [localCreatedById, setLocalCreatedById] = useAtom(localCreatedByIdAtom);
 
-  const { discoverEgg } = useEasterEggs();
+  // const { discoverEgg } = useEasterEggs();
 
   const buttonText = ["Write me a note", "Next", "Submit", "Thanks!"][step];
 
@@ -153,7 +153,7 @@ export default function WriteNoteCTA() {
   };
 
   const handleClick = async () => {
-    discoverEgg("FIND_A_NOTE");
+    // discoverEgg("FIND_A_NOTE");
     if (!localCreatedById) setLocalCreatedById(crypto.randomUUID());
     if (step === 3) {
       return;
@@ -230,7 +230,7 @@ export default function WriteNoteCTA() {
     setLoading(false);
     formRef.current?.reset();
     setHasCreatedEntryBefore(true);
-    discoverEgg("SUBMIT_A_ENTRY");
+    // discoverEgg("SUBMIT_A_ENTRY");
   };
 
   useClickOutside(ref, () => {

@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect } from 'react'
-import { useEasterEggs } from '@/lib/providers/easter-egg-provider'
+// import { useEasterEggs } from '@/lib/providers/easter-egg-provider'
 
 declare global {
     interface Window {
@@ -10,7 +10,7 @@ declare global {
 }
 
 const ConsoleEasterEgg = () => {
-    const { discoverEgg } = useEasterEggs()
+    // const { discoverEgg } = useEasterEggs()
 
     useEffect(() => {
         if (typeof window !== "undefined") {
@@ -54,7 +54,7 @@ const ConsoleEasterEgg = () => {
                         setTimeout(() => {
                             console.log(`%c${message}`, 'color: #6b7280; font-size: 12px;');
                             if (message === messages[messages.length - 1]) {
-                                discoverEgg("CONSOLE_MASTER");
+                                // discoverEgg("CONSOLE_MASTER");
                             }
                         }, delay);
                         delay += 800;
