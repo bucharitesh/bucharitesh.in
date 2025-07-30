@@ -9,12 +9,14 @@ import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 import Link from "next/link";
 import { DockConfig, meta } from "@/lib/config";
 import { usePathname } from "next/navigation";
-import { memo } from "react";
+import { memo, useState } from "react";
 import { cn } from "@/lib/utils";
 
 export function MobileDrawer() {
+  const [open, setOpen] = useState(false);
+
   return (
-    <Drawer>
+    <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
         <Button variant="ghost" size="icon" title="Toggle drawer">
           <CommandIcon size={16} />
@@ -27,6 +29,7 @@ export function MobileDrawer() {
               <Link
                 href="/"
                 className="link-card inline-flex items-center gap-2 p-2"
+                onClick={() => setOpen(false)}
               >
                 <img
                   src={meta.image.animated}
@@ -52,6 +55,7 @@ export function MobileDrawer() {
                     href={link.href}
                     label={link.label}
                     icon={<link.icon className="h-4 w-4" />}
+                    onClose={() => setOpen(false)}
                   />
                 ))}
               </div>
@@ -68,6 +72,7 @@ export function MobileDrawer() {
                     href={profile.url}
                     label={profile.name}
                     icon={<profile.icon className="h-4 w-4" />}
+                    onClose={() => setOpen(false)}
                   />
                 ))}
               </div>
@@ -79,7 +84,7 @@ export function MobileDrawer() {
   );
 }
 
-export const NavigationLink = memo(({ href, label, icon }: any) => {
+export const NavigationLink = memo(({ href, label, icon, onClose }: any) => {
   const pathname = usePathname();
   const iconCmp = icon ?? <AtSignIcon size={16} />;
 
@@ -92,6 +97,7 @@ export const NavigationLink = memo(({ href, label, icon }: any) => {
         target="_blank"
         rel="noopener noreferrer"
         className="flex items-center justify-between gap-2 rounded-lg p-2 hover:bg-gray-200 dark:hover:bg-gray-800"
+        onClick={onClose}
       >
         <span className="inline-flex items-center gap-2 font-medium">
           {iconCmp}
@@ -119,6 +125,7 @@ export const NavigationLink = memo(({ href, label, icon }: any) => {
           ? "bg-black text-white dark:bg-neutral-800"
           : "hover:bg-neutral-200 dark:hover:bg-neutral-800",
       )}
+      onClick={onClose}
     >
       <span className="flex items-center gap-2">
         {iconCmp}
