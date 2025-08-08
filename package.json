@@ -92,6 +92,7 @@
     "postprocessing": "^6.36.3",
     "qss": "^2.0.3",
     "react": "^18.3.1",
+    "react-activity-calendar": "^2.7.13",
     "react-dom": "^18.3.1",
     "react-email": "3.0.1",
     "react-hook-form": "^7.53.0",
@@ -114,7 +115,6 @@
     "styled-components": "^6.1.13",
     "swr": "^2.2.5",
     "three": "^0.169.0",
-    "use-sound": "^4.0.3",
     "vaul": "^1.1.1",
     "zod": "^3.19.1"
   },

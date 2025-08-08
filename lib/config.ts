@@ -25,7 +25,7 @@ export const meta = {
 export const DockConfig = {
   navbar: [
     { href: "/", icon: Icons.home, label: "Home" },
-    { href: "/craft", icon: Icons.craft, label: "Crafts" },
+    { href: "/craft", icon: Icons.craft, label: "Crafts", new: true },
     { href: "/guestbook", icon: Icons.guestbook, label: "Guestbook" },
     // { href: "/blog", icon: Icons.guestbook, label: "Blog" },
     // { href: "/bookmarks", icon: Icons.bookmark, label: "Bookmarks" },

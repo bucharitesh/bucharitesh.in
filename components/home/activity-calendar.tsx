@@ -1,0 +1,49 @@
+"use client";
+
+import { useState } from "react";
+import {
+  Activity,
+  ActivityCalendar,
+  Props as CalendarProps,
+} from "react-activity-calendar";
+
+const Labels = {
+  totalCount: "Total {{count}} contributions in lifetime",
+} satisfies CalendarProps["labels"];
+
+export default function MyActivityCalendar({
+  data,
+}: {
+  data: Activity[];
+}) {
+  const [date, setDate] = useState<Activity | null>(null);
+
+  return (
+    <div className="w-full h-full font-mono">
+      <ActivityCalendar
+        data={data}
+        blockSize={9}
+        blockMargin={3}
+        labels={{
+          totalCount: date
+            ? `${date.count} contributions on ${new Date(date.date).toLocaleDateString("en-US", {
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+              })}`
+            : "Total {{count}} contributions in lifetime",
+        }}
+        hideColorLegend
+        fontSize={10}
+        eventHandlers={{
+          onMouseEnter: (event) => (activity) => {
+            setDate(activity);
+          },
+          onMouseLeave: () => () => {
+            setDate(null);
+          },
+        }}
+      />
+    </div>
+  );
+}

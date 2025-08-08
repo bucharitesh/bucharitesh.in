@@ -45,3 +45,11 @@ export function getGitHubIssueUrl(params: GitHubIssueUrlParams): string {
 export function getGithubFileUrl(slug: string) {
   return `https://github.com/magicuidesign/magicui/blob/main/content${slug === "/docs" ? "/docs/index" : slug}.mdx`;
 }
+
+export async function getGithubContributions(username: string) {
+  const response = await fetch(
+    `https://github-contributions-api.jogruber.de/v4/${username}?y=last`
+  );
+  const data = await response.json();
+  return data.contributions;
+};
