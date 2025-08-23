@@ -1,4 +1,4 @@
-import { meta } from "@/lib/config";
+import { meta, META_THEME_COLORS } from "@/lib/config";
 import { createOgImage } from "@/lib/createOgImage";
 import { Metadata, Viewport } from "next";
 import { cn } from "@/lib/utils";
@@ -12,10 +12,18 @@ import { auth } from "@/lib/auth";
 import DevTools from "@/components/dev-tools";
 import Navigation from "@/components/navigation";
 import { Providers } from "@/lib/providers";
+import Script from "next/script";
+import { WebSite, WithContext } from "schema-dts";
 
-// import { EasterEggs } from "@/components/layout/info";
-// import ConsoleEasterEgg from "@/components/layout/console-easter-egg";
-// import DartImpact from "@/components/layout/dart-easter-egg";
+function getWebSiteJsonLd(): WithContext<WebSite> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: meta.name,
+    url: `https://${meta.domain}`,
+    alternateName: [meta.username],
+  };
+}
 
 export const viewport: Viewport = {
   themeColor: "#1c1917",
@@ -49,6 +57,21 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+// Thanks @shadcn-ui, @tailwindcss
+const darkModeScript = String.raw`
+  try {
+    if (localStorage.theme === 'dark' || ((!('theme' in localStorage) || localStorage.theme === 'system') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '${META_THEME_COLORS.dark}')
+    }
+  } catch (_) {}
+
+  try {
+    if (/(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+      document.documentElement.classList.add('os-macos')
+    }
+  } catch (_) {}
+`;
+
 export default async function RootLayout({
   children,
 }: {
@@ -59,11 +82,27 @@ export default async function RootLayout({
   return (
     <ViewTransitions>
       <html lang="en" suppressHydrationWarning>
+        <head>
+          <script
+            type="text/javascript"
+            dangerouslySetInnerHTML={{ __html: darkModeScript }}
+          />
+          <Script src={`data:text/javascript;base64,${btoa(darkModeScript)}`} />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(getWebSiteJsonLd()).replace(
+                /</g,
+                "\\u003c"
+              ),
+            }}
+          />
+        </head>
         <body
           className={cn(
             "flex font-x overscroll-y-none z-0 h-[100dvh] w-[100dvw] antialiased selection:bg-blue-400/90 selection:text-white",
             fontX.variable,
-            fontMono.variable,
+            fontMono.variable
           )}
         >
           <Providers session={session}>
@@ -71,7 +110,7 @@ export default async function RootLayout({
             <main
               id="main-content"
               vaul-drawer-wrapper=""
-              className="relative mt-12 md:mt-0 h-[calc(100dvh-3rem)] md:h-full w-full flex-1 overflow-y-auto bg-[#f9f9f9] dark:bg-[#161616]"
+              className="relative mt-12 md:mt-0 h-[calc(100dvh-3rem)] md:h-full w-full flex-1 overflow-y-auto"
             >
               {children}
             </main>

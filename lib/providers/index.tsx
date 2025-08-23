@@ -3,7 +3,6 @@
 import { Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
-// import { EasterEggProvider } from "./easter-egg-provider";
 
 export function Providers({
   children,
@@ -16,14 +15,14 @@ export function Providers({
   return (
     <SessionProvider session={session}>
       <NextThemesProvider
-        attribute="class"
-        defaultTheme="system"
         enableSystem
-        {...props}
+        disableTransitionOnChange
+        enableColorScheme
+        storageKey="theme"
+        defaultTheme="system"
+        attribute="class"
       >
-        {/* <EasterEggProvider> */}
           {children}
-        {/* </EasterEggProvider> */}
       </NextThemesProvider>
     </SessionProvider>
   );

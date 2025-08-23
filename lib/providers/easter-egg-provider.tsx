@@ -11,7 +11,7 @@ import {
 } from "react-icons/hi2";
 import { IconType } from "react-icons";
 import { AnimatePresence, motion } from "framer-motion";
-import useSound from "use-sound";
+// import useSound from "use-sound";
 import { Palette } from "lucide-react";
 
 // Types remain the same as before
@@ -56,11 +56,11 @@ interface EasterEggContextType {
 
 // Toast component
 const Toast = ({ achievement, onClose }: { achievement: EasterEgg; onClose: () => void }) => {
-  const [playSound] = useSound("/assets/achievement.mp3", { volume: 0.3 });
+  // const [playSound] = useSound("/assets/achievement.mp3", { volume: 0.3 });
 
-  useEffect(() => {
-    playSound();
-  }, [playSound]);
+  // useEffect(() => {
+  //   playSound();
+  // }, [playSound]);
 
   return (
     <motion.div

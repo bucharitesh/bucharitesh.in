@@ -10,6 +10,7 @@ export const meta = {
   },
   email: "bucharitesh@gmail.com",
   twitterHandle: "@bucha.ritesh",
+  username: "bucharitesh",
   domain: "bucharitesh.in",
   tagline: "User Experience at Flam",
   description:
@@ -20,6 +21,21 @@ export const meta = {
     animated:
       "https://res.cloudinary.com/bucha/image/upload/c_thumb,q_100/download_1_ksk2zu.png",
   },
+};
+
+export const META_THEME_COLORS = {
+  light: "#ffffff",
+  dark: "#09090b",
+};
+
+export const SOURCE_CODE_GITHUB_REPO = "bucharitesh/bucharitesh.in";
+export const SOURCE_CODE_GITHUB_URL =
+  "https://github.com/bucharitesh/bucharitesh.in";
+
+export const UTM_PARAMS = {
+  utm_source: "bucharitesh.in",
+  utm_medium: "portfolio_website",
+  utm_campaign: "referral",
 };
 
 export const DockConfig = {

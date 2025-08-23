@@ -45,7 +45,7 @@ const Page = () => {
         </Grid.System>
       </Wrapper>
 
-      <Wrapper
+      {/* <Wrapper
         title="Responsive Grid with responsive guide clipping cells"
         description="Grid component with responsive rows and columns props at all 3 breakpoints as well as guide clipping on specific cells."
       >
@@ -72,7 +72,7 @@ const Page = () => {
             </Grid.Cell>
           </Grid>
         </Grid.System>
-      </Wrapper>
+      </Wrapper> */}
 
       <Wrapper title="Grid with hidden row guides">
         <Grid.System>
@@ -150,7 +150,7 @@ const Page = () => {
   );
 };
 
-export const Wrapper = ({
+const Wrapper = ({
   title,
   description,
   children,

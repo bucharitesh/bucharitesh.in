@@ -1,8 +1,6 @@
 import { meta } from "@/lib/config";
 import { COMMON_SCRIPT_ORG } from "@/lib/script";
 import { Metadata } from "next/types";
-import MapLocation from "@/components/home/map";
-import ViewMagnifier from "@/components/bucharitesh/view-magnifier";
 import Info from "@/components/home/info";
 import { ProfileImage } from "@/components/profile-image";
 import { PronounceMyName } from "@/components/home/pronounce-my-name";
@@ -62,12 +60,12 @@ export default async function Page() {
           <MyActivityCalendar data={data} />
         </section>
 
-        <section className="mt-12">
+        {/* <section className="mt-12">
           <h2 className="mb-3 text-lg font-medium">Where</h2>
           <ViewMagnifier>
             <MapLocation />
           </ViewMagnifier>
-        </section>
+        </section> */}
       </div>
     </>
   );
