@@ -1,35 +1,39 @@
 {
   "display": "Next.js",
   "compilerOptions": {
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
-    "module": "ESNext",
+    "target": "ES2017",
+    "module": "esnext",
     "moduleResolution": "Bundler",
     "allowJs": true,
     "jsx": "preserve",
     "noEmit": true,
     "baseUrl": ".",
-    "paths": {
-      "@/*": ["./*"],
-      "content-collections": ["./.content-collections/generated"],
-      "@/components/bucharitesh/*": ["./registry/default/bucharitesh/*"],
-      "@/components/example/*": ["./registry/default/example/*"]
-    },
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "skipLibCheck": true,
-    "strict": false,
     "incremental": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "forceConsistentCasingInFileNames": true,
     "moduleDetection": "force",
-    "target": "ES2022",
     "strictNullChecks": true,
-    "declaration": false
+    "declaration": false,
+    "strict": false,
+    "paths": {
+      "@/*": ["./*"],
+      "content-collections": ["./.content-collections/generated"],
+      "@/components/bucharitesh/*": ["./registry/default/bucharitesh/*"],
+      "@/components/example/*": ["./registry/default/example/*"]
+    },
   },
   "exclude": [
     "node_modules",

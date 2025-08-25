@@ -15,7 +15,7 @@ const options = {
 
 const RAINDROP_API_URL = "https://api.raindrop.io/rest/v1";
 
-export const getBookmarkItems = cache(async (id, pageIndex = 0) => {
+export const getBookmarkItems = cache(async (id: string, pageIndex = 0) => {
   try {
     const response = await fetch(
       `${RAINDROP_API_URL}/raindrops/${id}?` +
@@ -37,7 +37,7 @@ export const getBookmarks = cache(async () => {
     const response = await fetch(`${RAINDROP_API_URL}/collections`, options);
     const bookmarks = await response.json();
 
-    const filteredBookmarks = bookmarks.items.filter((bookmark) =>
+    const filteredBookmarks = bookmarks.items.filter((bookmark: any) =>
       COLLECTION_IDS.includes(bookmark._id),
     );
 
@@ -48,7 +48,7 @@ export const getBookmarks = cache(async () => {
   }
 });
 
-export const getBookmark = cache(async (id) => {
+export const getBookmark = cache(async (id: string) => {
   try {
     const response = await fetch(
       `${RAINDROP_API_URL}/collection/${id}`,

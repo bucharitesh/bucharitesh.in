@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 export async function generateStaticParams() {
   const bookmarks = await getBookmarks();
-  return bookmarks.map((bookmark) => ({ slug: bookmark.slug }));
+  return bookmarks.map((bookmark: any) => ({ slug: bookmark.slug }));
 }
 
 async function fetchData() {
@@ -32,7 +32,7 @@ export default async function Writing() {
     <>
       <ScrollArea className="lg:hidden">
         <Suspense fallback={<p>...</p>}>
-          {bookmarks?.map((bookmark) => {
+          {bookmarks?.map((bookmark: any) => {
             return (
               <Link
                 key={bookmark._id}

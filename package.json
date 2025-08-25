@@ -164,7 +164,8 @@
     "crypto": false
   },
   "engines": {
-    "node": ">=20.6.1",
+    "node": "20 || >=22",
     "pnpm": ">=9"
-  }
+  },
+  "packageManager": "pnpm@10.10.0"
 }
