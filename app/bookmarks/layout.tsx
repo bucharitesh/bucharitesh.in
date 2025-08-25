@@ -5,7 +5,7 @@ import { sortByProperty } from "@/lib/utils";
 import React, { Suspense } from "react";
 
 // Revalidate all routes every 2 days
-export const revalidate = 60 * 60 * 24 * 2; // 2 days
+// export const revalidate = 60 * 60 * 24 * 2; // 2 days
 
 async function fetchData() {
   const bookmarks = await getBookmarks();

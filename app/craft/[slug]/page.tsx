@@ -1,5 +1,4 @@
 import { Mdx } from "@/components/mdx-components";
-import { TableOfContents } from "@/components/toc";
 import { meta } from "@/lib/config";
 import { createOgImage } from "@/lib/createOgImage";
 import { getTableOfContents } from "@/lib/toc";
@@ -14,12 +13,13 @@ export const generateStaticParams = () => {
   return allCrafts.map((p) => ({ slug: p.slug }));
 };
 
-type Props = {
-  params: { slug: string };
-};
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const post = allCrafts.find((post) => post.slug === params?.slug);
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const slug = (await params).slug;
+  const post = allCrafts.find((post) => post.slug === slug);
 
   if (!post) {
     notFound();
@@ -41,8 +41,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function PostPage({ params }: Props) {
-  const craft = allCrafts.find((post) => post.slug === params?.slug);
+export default async function Page({
+  params,
+}: {
+  params: Promise<{
+    slug: string;
+  }>;
+}) {
+  const slug = (await params).slug;
+  const craft = await allCrafts.find((post) => post.slug === slug);
 
   if (!craft) {
     notFound();

@@ -14,11 +14,6 @@ import Navigation from "@/components/navigation";
 import { Providers } from "@/lib/providers";
 import Script from "next/script";
 import { WebSite, WithContext } from "schema-dts";
-import dynamic from "next/dynamic";
-
-const ScrollTop = dynamic(() =>
-  import("@/components/scroll-top").then((mod) => mod.ScrollTop)
-);
 
 function getWebSiteJsonLd(): WithContext<WebSite> {
   return {

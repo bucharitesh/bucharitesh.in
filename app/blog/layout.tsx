@@ -4,7 +4,7 @@
 import React from "react";
 
 // Revalidate all routes every 2 days
-export const revalidate = 60 * 60 * 24 * 2; // 2 days
+// export const revalidate = 60 * 60 * 24 * 2; // 2 days
 
 // async function fetchData() {
 //   return { posts: allPosts };

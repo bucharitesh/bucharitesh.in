@@ -1,9 +1,10 @@
+import dayjs from "dayjs";
 import { MetadataRoute } from "next";
 import { headers } from "next/headers";
 import { allCrafts } from "content-collections";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const headersList = headers();
+  const headersList = await headers();
   let domain = headersList.get("host") as string;
 
   if (domain === "localhost:6969" || domain.endsWith(".vercel.app")) {
@@ -15,7 +16,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const crafts = allCrafts.map((post) => ({
     url: addPathToBaseURL(`/craft/${post.slug}`),
-    lastModified: post.date, // date format should be YYYY-MM
+    lastModified: dayjs(post.date).toISOString(), // date format should be YYYY-MM-DD
   }));
 
   // const blogs = allPosts.map((post) => ({
@@ -34,15 +35,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/",
     "/cal",
     "/guestbook",
-    // "/bookmarks",
     "/craft",
+    // "/bookmarks",
     // "/blog",
     //  "/project",
     // "/design-inspiration",
     // "/uses",
   ].map((route) => ({
     url: addPathToBaseURL(route),
-    lastModified: new Date(),
+    lastModified: dayjs().toISOString(),
   }));
 
   return [...routes, ...crafts];

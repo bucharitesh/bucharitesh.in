@@ -2,8 +2,8 @@ import { EyeIcon } from "lucide-react";
 import { draftMode } from "next/headers";
 import React from "react";
 
-const DraftModeIndicator = () => {
-  const { isEnabled } = draftMode();
+const DraftModeIndicator = async () => {
+  const { isEnabled } = await draftMode();
 
   if (!isEnabled) return null;
 

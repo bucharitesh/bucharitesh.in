@@ -10,13 +10,13 @@ const nextConfig = {
   },
   trailingSlash: false,
   transpilePackages: ["shiki", "jimp"],
+  serverExternalPackages: [
+    "@react-email/components",
+    "@react-email/render",
+    "@react-email/tailwind",
+  ],
   experimental: {
-    serverComponentsExternalPackages: [
-      "@react-email/components",
-      "@react-email/render",
-      "@react-email/tailwind",
-    ],
-    optimizePackageImports: ["framer-motion"],
+    optimizePackageImports: ["motion"],
     webVitalsAttribution: ["FCP", "LCP", "CLS", "FID", "TTFB", "INP"],
   },
   webpack: (config, { webpack, isServer }) => {
