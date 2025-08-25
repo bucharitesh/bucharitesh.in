@@ -79,7 +79,7 @@ html {
   }
 
   body {
-    @apply text-black dark:text-white bg-[#f9f9f9] dark:bg-[#161616];
+    @apply text-black dark:text-white bg-[#f9f9f9] dark:bg-[#161616] font-x selection:bg-blue-400/90 selection:text-white;
     font-feature-settings:
       "rlig" 1,
       "calt" 1;
@@ -209,4 +209,11 @@ html {
   /* -webkit-mask: radial-gradient(circle at 50% 50%,transparent 0,#fff calc(100% - var(--mask-offset)),transparent 100%); */
   -webkit-mask-composite: source-in, xor;
   mask-composite: intersect;
+}
+
+/* Hide Cal.com logo */
+[data-cal-namespace] a.text-subtle,
+.cal-embed a.text-subtle,
+a.text-subtle[href*="cal.com"] {
+  display: none !important;
 }

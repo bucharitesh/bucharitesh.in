@@ -105,7 +105,7 @@ export default async function RootLayout({
         </head>
         <body
           className={cn(
-            "flex font-x overscroll-y-none z-0 min-h-screen w-full antialiased selection:bg-blue-400/90 selection:text-white",
+            "antialiased",
             fontX.variable,
             fontMono.variable
           )}
