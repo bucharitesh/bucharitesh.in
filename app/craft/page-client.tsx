@@ -1,43 +1,9 @@
 "use client";
 
-import { Craft } from "content-collections";
-import { MasonryGrid } from "@/components/masonary-grid";
-import { useEffect, useRef, useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Link } from "next-view-transitions";
-
-export default function PageClient({ crafts }: { crafts: Craft[] }) {
-  return (
-    <>
-    <MasonryGrid
-      breakpoints={{
-        sm: 1,
-        lg: 2,
-        xl: 3,
-      }}
-    >
-      {crafts.map((item, index) => (
-        <Card
-          key={`${item.title}-${index}`}
-          title={item.title}
-          date={item.date.toLocaleDateString("en-US", {
-            month: "long",
-            year: "numeric",
-          })}
-          href={item.href ? item.href : `/craft/${item.slug}`}
-          src={item.video ? item.video : item.image}
-          type={item.video ? "video" : "image"}
-          blurImage={item.blurImage}
-          craft_type={item.type}
-          theme={item.theme}
-          aspectRatio={item.aspect_ratio}
-        />
-      ))}
-    </MasonryGrid>
-    </>
-  );
-}
 
 export interface MediaContentProps {
   src: string;

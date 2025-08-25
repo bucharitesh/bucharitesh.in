@@ -67,7 +67,7 @@
 }
 
 html {
-  @apply overflow-hidden scroll-smooth antialiased;
+  @apply scroll-smooth antialiased;
   text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;

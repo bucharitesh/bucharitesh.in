@@ -131,20 +131,20 @@ function Tree({ tree, level = 1, activeItem }: TreeProps) {
           <li key={index} className="relative -ml-0.5 pl-4">
             <a
               href={item.url}
-              className={cn(
-                "inline-block text-sm transition-colors duration-200",
-                isActive
-                  ? "font-medium text-foreground"
-                  : "text-muted-foreground hover:text-foreground dark:text-muted-foreground dark:hover:text-foreground",
-              )}
+              // className={cn(
+              //   "inline-block text-sm transition-colors duration-200",
+              //   isActive
+              //     ? "font-medium text-foreground"
+              //     : "text-muted-foreground hover:text-foreground dark:text-muted-foreground dark:hover:text-foreground",
+              // )}
             >
               {item.title}
             </a>
             <div
               className="absolute left-0 top-0 h-full w-0.5 bg-black dark:bg-white transition-all duration-200 ease-in-out"
               style={{
-                opacity: isActive ? 1 : 0,
-                transform: `translateY(${isActive ? "0" : "-100%"})`,
+                // opacity: isActive ? 1 : 0,
+                // transform: `translateY(${isActive ? "0" : "-100%"})`,
               }}
             />
             {item.items?.length ? (

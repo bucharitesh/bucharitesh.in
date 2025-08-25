@@ -100,7 +100,7 @@ export default async function PostPage({ params }: Props) {
       </div>
 
       <div className="sticky space-y-4 top-14 right-0 hidden h-0 lg:!col-start-2 lg:row-start-1 lg:block col-span-1 max-w-md">
-        <TableOfContents toc={toc} />
+        {/* <TableOfContents toc={toc} /> */}
         {/* <Contribute craft={craft} /> */}
       </div>
 

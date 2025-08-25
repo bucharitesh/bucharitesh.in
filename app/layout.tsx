@@ -14,6 +14,11 @@ import Navigation from "@/components/navigation";
 import { Providers } from "@/lib/providers";
 import Script from "next/script";
 import { WebSite, WithContext } from "schema-dts";
+import dynamic from "next/dynamic";
+
+const ScrollTop = dynamic(() =>
+  import("@/components/scroll-top").then((mod) => mod.ScrollTop)
+);
 
 function getWebSiteJsonLd(): WithContext<WebSite> {
   return {
@@ -100,7 +105,7 @@ export default async function RootLayout({
         </head>
         <body
           className={cn(
-            "flex font-x overscroll-y-none z-0 h-[100dvh] w-[100dvw] antialiased selection:bg-blue-400/90 selection:text-white",
+            "flex font-x overscroll-y-none z-0 min-h-screen w-full antialiased selection:bg-blue-400/90 selection:text-white",
             fontX.variable,
             fontMono.variable
           )}
@@ -110,7 +115,7 @@ export default async function RootLayout({
             <main
               id="main-content"
               vaul-drawer-wrapper=""
-              className="relative mt-12 md:mt-0 h-[calc(100dvh-3rem)] md:h-full w-full flex-1 overflow-y-auto"
+              className="relative mt-12 md:mt-0 h-full w-full flex-1"
             >
               {children}
             </main>
