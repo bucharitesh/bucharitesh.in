@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import styles from "@/app/guestbook/notes.module.css";
 import Drag from "@/components/guestbook/drag";
 import React from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 const Note = React.memo(
   ({

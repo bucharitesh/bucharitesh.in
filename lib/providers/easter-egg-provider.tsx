@@ -10,7 +10,7 @@ import {
   HiDocumentText,
 } from "react-icons/hi2";
 import { IconType } from "react-icons";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion } from "motion/react";
 // import useSound from "use-sound";
 import { Palette } from "lucide-react";
 

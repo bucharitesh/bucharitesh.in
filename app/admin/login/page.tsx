@@ -1,7 +1,7 @@
 "use client";
 
 import { signIn, useSession } from "next-auth/react";
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'motion/react';
 import React, { memo } from 'react'
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { redirect } from "next/navigation";

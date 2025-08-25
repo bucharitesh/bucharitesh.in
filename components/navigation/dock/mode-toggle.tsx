@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { useTheme } from "next-themes";
-import { motion as m } from "framer-motion";
+import { motion as m, Variants } from "motion/react";
 import soundManager from "@/lib/sound-manager";
 // import { useEasterEggs } from "@/lib/providers/easter-egg-provider";
 
@@ -26,7 +26,7 @@ export default function ModeToggle() {
     },
   };
 
-  const rayVariant = {
+  const rayVariant : Variants = {
     hidden: {
       pathLength: 0,
       opacity: 0,
@@ -48,7 +48,7 @@ export default function ModeToggle() {
     },
   };
 
-  const shineVariant = {
+  const shineVariant : Variants = {
     hidden: {
       opacity: 0,
       scale: 2,

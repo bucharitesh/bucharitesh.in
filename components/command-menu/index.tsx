@@ -20,7 +20,7 @@ import { useCurrencyCommand } from "./apps/currency";
 import { useGeminiCommand } from "./apps/gemini";
 import { useSocialsCommand } from "./apps/socials";
 import { useCraftsCommand } from "./apps/crafts";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 
 export function CommandMenu({ ...props }: DialogProps) {

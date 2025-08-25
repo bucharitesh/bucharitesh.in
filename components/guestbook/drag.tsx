@@ -2,7 +2,7 @@
 
 import useMaxZIndex from "@/lib/hooks/use-max-z-index";
 import { cn, getRandomRotation } from "@/lib/utils";
-import { motion, type PanInfo, useAnimation } from "framer-motion";
+import { motion, type PanInfo, useAnimation } from "motion/react";
 import React, { useEffect, useState } from "react";
 
 const Drag = React.memo(

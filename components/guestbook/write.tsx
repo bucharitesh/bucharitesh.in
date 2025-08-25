@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useFormStatus } from "react-dom";
 import useMeasure from "react-use-measure";
-import { AnimatePresence, motion, MotionConfig } from "framer-motion";
+import { AnimatePresence, motion, MotionConfig, Transition } from "motion/react";
 import { cn } from "@/lib/utils";
 import Signature, { type SignatureRef } from "@uiw/react-signature";
 import { validateAndSaveEntry } from "@/lib/actions";
@@ -18,8 +18,8 @@ import { ArrowBigDown } from "lucide-react";
 import useClickOutside from "@/lib/hooks/use-click-outside";
 // import { useEasterEggs } from "@/lib/providers/easter-egg-provider";
 
-const transition = {
-  type: "spring",
+const transition: Transition = {
+  type: "spring" as const,
   bounce: 0.1,
   duration: 0.25,
 };

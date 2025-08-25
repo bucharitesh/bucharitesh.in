@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { motion, useSpring, useTransform } from "framer-motion";
+import { motion, useSpring, useTransform } from "motion/react";
 import { cn } from "@/lib/utils";
 
 interface CrossProps extends React.HTMLAttributes<HTMLDivElement> {

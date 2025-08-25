@@ -1,10 +1,14 @@
 "use client";
 
 import { useTime, useScreenSize } from "@/lib/hooks";
-import { motion } from "framer-motion";
+import { motion, TargetAndTransition, Transition } from "motion/react";
 import { cn } from "@/lib/utils";
 
-const fadeIn = {
+const fadeIn : {
+  initial: TargetAndTransition;
+  animate: TargetAndTransition;
+  transition: Transition;
+} = {
   initial: { opacity: 0, x: -20 },
   animate: { opacity: 1, x: 0 },
   transition: { duration: 0.6, ease: "easeOut" },
