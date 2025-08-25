@@ -2,13 +2,13 @@ import { withContentCollections } from "@content-collections/next";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: false,
+  reactStrictMode: true,
   logging: {
     fetches: {
       fullUrl: process.env.NODE_ENV === "development",
     },
   },
-  trailingSlash: false,
+  devIndicators: false,
   transpilePackages: ["shiki", "jimp"],
   serverExternalPackages: [
     "@react-email/components",
@@ -89,18 +89,5 @@ const nextConfig = {
     ];
   },
 };
-
-// const millionConfig = {
-//   auto: {
-//     rsc: true,
-//   },
-//   server: true,
-//   rsc: true,
-// }
-
-// const config = withContentlayer(nextConfig)
-// module.exports = million.next(config, millionConfig);
-
-// module.exports = withContentlayer(nextConfig);
 
 export default withContentCollections(nextConfig);

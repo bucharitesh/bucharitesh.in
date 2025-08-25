@@ -13,7 +13,7 @@ import { usePathname } from "next/navigation";
 import { DockConfig } from "@/lib/config";
 import { cn } from "@/lib/utils";
 
-const DOCK_AUTOHIDE_TIMEOUT = 10_000;
+const DOCK_AUTOHIDE_TIMEOUT = 5_000;
 
 function BottomDock({ className }: { className: string }) {
   const [active, setActive] = useState(true);

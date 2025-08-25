@@ -214,14 +214,18 @@ export default function WriteNoteCTA() {
       return;
     }
 
+    // Get viewport dimensions safely on client-side
+    const viewportWidth = typeof window !== 'undefined' ? window.innerWidth : 1300;
+    const viewportHeight = typeof window !== 'undefined' ? window.innerHeight : 900;
+
     const newEntry = {
       id: crypto.randomUUID(),
       local_entry_id: formData.get("local_entry_id") as string,
       created_by: formData.get("created_by") as string,
       body: formData.get("entry") as string,
       signature: formData.get("signature") as string,
-      initialX: getRandomPosition(100, window.innerWidth - 100),
-      initialY: getRandomPosition(100, window.innerHeight - 100),
+      initialX: getRandomPosition(100, viewportWidth - 100),
+      initialY: getRandomPosition(100, viewportHeight - 100),
     };
     setLocalEntries((prev) => [newEntry, ...prev]);
 

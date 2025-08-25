@@ -11,9 +11,20 @@ import { DockConfig, meta } from "@/lib/config";
 import { usePathname } from "next/navigation";
 import { memo, useState } from "react";
 import { cn } from "@/lib/utils";
+import { useMounted } from "@/lib/hooks/use-mounted";
 
 export function MobileDrawer() {
   const [open, setOpen] = useState(false);
+  const mounted = useMounted();
+
+  // Prevent hydration mismatch by not rendering until mounted
+  if (!mounted) {
+    return (
+      <Button variant="ghost" size="icon" title="Toggle drawer">
+        <CommandIcon size={16} />
+      </Button>
+    );
+  }
 
   return (
     <Drawer open={open} onOpenChange={setOpen}>

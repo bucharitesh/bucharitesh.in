@@ -3,7 +3,7 @@
 import useMaxZIndex from "@/lib/hooks/use-max-z-index";
 import { cn, getRandomRotation } from "@/lib/utils";
 import { motion, type PanInfo, useAnimation } from "framer-motion";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const Drag = React.memo(
   ({
@@ -22,12 +22,22 @@ const Drag = React.memo(
   }) => {
     const [zIndex, updateZIndex] = useMaxZIndex();
     const controls = useAnimation();
-    // const r = getRandomRotation();
-    // const [initialRotate] = useState(r);
-    const [x, y] = [
-      initialX ?? Math.floor(Math.random() * 1300),
-      initialY ?? Math.floor(Math.random() * 900),
-    ];
+    const [isClient, setIsClient] = useState(false);
+    const [initialRotate, setInitialRotate] = useState(0);
+    const [position, setPosition] = useState({ x: initialX ?? 0, y: initialY ?? 0 });
+
+    useEffect(() => {
+      setIsClient(true);
+      if (initialX === undefined || initialY === undefined) {
+        setPosition({
+          x: initialX ?? Math.floor(Math.random() * 1300),
+          y: initialY ?? Math.floor(Math.random() * 900),
+        });
+      }
+      if (rotation) {
+        setInitialRotate(getRandomRotation());
+      }
+    }, [initialX, initialY, rotation]);
 
     const handleDragEnd = (event: MouseEvent, info: PanInfo) => {
     //   const direction = info.offset.x > 0 ? 1 : -1;
@@ -44,6 +54,11 @@ const Drag = React.memo(
       });
     };
 
+    // Don't render until client-side to avoid hydration mismatch
+    if (!isClient) {
+      return null;
+    }
+
     return (
       <motion.div
         drag
@@ -58,9 +73,9 @@ const Drag = React.memo(
         onDragEnd={handleDragEnd}
         animate={controls}
         initial={{
-          rotate: rotation ? getRandomRotation() : 0,
-          x,
-          y,
+          rotate: initialRotate,
+          x: position.x,
+          y: position.y,
         }}
         style={{
           zIndex,

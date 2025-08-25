@@ -6,7 +6,6 @@ import { getCurrentSeason } from "@/lib/utils";
 export const SelfImage = () => (
   <Image
     src={meta.image.animated}
-    quality={95}
     width={64}
     height={64}
     priority={true}
@@ -33,7 +32,6 @@ export const ProfileImage = async () => {
           <div className="absolute inset-0 rounded-full [backface-visibility:hidden]">
             <Image
               src={meta.image.animated}
-              quality={95}
               width={64}
               height={64}
               priority={true}
@@ -45,7 +43,6 @@ export const ProfileImage = async () => {
           <div className="absolute inset-0 rounded-full [transform:rotateY(180deg)] [backface-visibility:hidden]">
             <Image
               src={meta.image.profile}
-              quality={95}
               width={64}
               height={64}
               priority={true}
