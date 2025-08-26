@@ -2,31 +2,12 @@
 
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { useWindowSize } from "@/lib/hooks";
 
 // Core configs
 const WEATHER_CYCLE_DURATION = 10000;
 const TRANSITION_SPEED = 0.05;
 const INTENSITY_INTERVAL = 100;
-
-// Window resize hook
-const useWindowSize = () => {
-  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
-
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  return windowSize;
-};
 
 // Utils
 const getRandomDirection = () => {

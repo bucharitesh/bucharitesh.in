@@ -1,6 +1,6 @@
 "use client";
 
-import { useTime, useScreenSize } from "@/lib/hooks";
+import { useTime, useWindowSize } from "@/lib/hooks";
 import { motion, TargetAndTransition, Transition } from "motion/react";
 import { cn } from "@/lib/utils";
 
@@ -15,7 +15,7 @@ const fadeIn : {
 };
 
 export default function Info({ show }: { show: string[] }) {
-  const { width } = useScreenSize();
+  const { width } = useWindowSize();
 
   if (width < 1000) return null;
 
@@ -46,7 +46,7 @@ export function Time({ className }: { className?: string }) {
 }
 
 export function ScreenSize({ className }: { className?: string }) {
-  const { width, height } = useScreenSize();
+  const { width, height } = useWindowSize();
 
   return (
     <motion.div

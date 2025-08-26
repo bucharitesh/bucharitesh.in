@@ -6,6 +6,7 @@ import { ProfileImage } from "@/components/profile-image";
 import { PronounceMyName } from "@/components/home/pronounce-my-name";
 import MyActivityCalendar from "@/components/home/activity-calendar";
 import { getGithubContributions } from "@/lib/github";
+import { RaycastBackground } from "@/components/backgrounds/raycast";
 
 export const metadata: Metadata = {
   title: meta.tagline,
