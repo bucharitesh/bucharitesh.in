@@ -13,7 +13,7 @@ import { usePathname } from "next/navigation";
 import { DockConfig } from "@/lib/config";
 import { cn } from "@/lib/utils";
 import { useHedgehogStore } from "@/archive/components/hedgehog/buddy-logic";
-import { Squirrel } from "lucide-react";
+import { HedgehogBuddyStatic } from "@/archive/components/hedgehog/renderer";
 
 const DOCK_AUTOHIDE_TIMEOUT = 5_000;
 
@@ -23,6 +23,7 @@ function BottomDock({ className }: { className: string }) {
   const timeoutRef = useRef<NodeJS.Timeout>();
   const enabled = useHedgehogStore((s) => s.hedgehogConfig.enabled);
   const setHedgehogModeEnabled = useHedgehogStore((s) => s.setHedgehogModeEnabled);
+  const hedgehogConfig = useHedgehogStore((s) => s.hedgehogConfig);
 
   // const { data: session } = useSession();
 
@@ -78,7 +79,7 @@ function BottomDock({ className }: { className: string }) {
         ))}
         <DockSeperator />
         <DockIcon title={"Hedgehog"} onMouseUp={() => setHedgehogModeEnabled(!enabled)}>
-          <Squirrel className="size-4" />
+          <HedgehogBuddyStatic {...hedgehogConfig} />
           {enabled && <DockIconActiveDot isActive />}
         </DockIcon>
         

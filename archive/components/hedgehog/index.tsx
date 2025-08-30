@@ -966,7 +966,7 @@ export class HedgehogActor {
         </div>
         {this.renderRope()}
 
-        {(typeof window !== "undefined" && (window as any)._posthogDebugHedgehog) && (
+        {(typeof window !== "undefined" && this.hedgehogConfig.debug) && (
           <>
             {[
               this.element && elementToBox(this.element),
@@ -986,6 +986,7 @@ export class HedgehogActor {
                     left: box.x,
                     width: box.width,
                     height: box.height,
+                    zIndex: 10000,
                   }}
                 />
               );

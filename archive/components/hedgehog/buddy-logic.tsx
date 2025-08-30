@@ -25,6 +25,7 @@
      removeAccessory: (accessory: string) => void
      patchHedgehogConfig: (config: Partial<HedgehogConfig>) => void
      clearLocalConfig: () => void
+     setDebug: (debug: boolean) => void
  }
 
  const defaultConfig: HedgehogConfig = {
@@ -34,6 +35,7 @@
      walking_enabled: true,
      interactions_enabled: true,
      controls_enabled: true,
+     debug: false,
  }
 
  export const useHedgehogStore = create<HedgehogState>()((set, get) => ({
@@ -57,5 +59,8 @@
      removeAccessory: (accessory) => {
          const current = get().hedgehogConfig.accessories ?? []
          get().patchHedgehogConfig({ accessories: current.filter((acc) => acc !== accessory) })
+     },
+     setDebug: (debug) => {
+         get().patchHedgehogConfig({ debug })
      },
  }))
