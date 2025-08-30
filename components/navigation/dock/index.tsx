@@ -12,6 +12,8 @@ import ModeToggle from "./mode-toggle";
 import { usePathname } from "next/navigation";
 import { DockConfig } from "@/lib/config";
 import { cn } from "@/lib/utils";
+import { useHedgehogStore } from "@/archive/components/hedgehog/buddy-logic";
+import { Squirrel } from "lucide-react";
 
 const DOCK_AUTOHIDE_TIMEOUT = 5_000;
 
@@ -19,6 +21,8 @@ function BottomDock({ className }: { className: string }) {
   const [active, setActive] = useState(true);
   const pathname = usePathname();
   const timeoutRef = useRef<NodeJS.Timeout>();
+  const enabled = useHedgehogStore((s) => s.hedgehogConfig.enabled);
+  const setHedgehogModeEnabled = useHedgehogStore((s) => s.setHedgehogModeEnabled);
 
   // const { data: session } = useSession();
 
@@ -73,6 +77,11 @@ function BottomDock({ className }: { className: string }) {
           </DockIcon>
         ))}
         <DockSeperator />
+        <DockIcon title={"Hedgehog"} onMouseUp={() => setHedgehogModeEnabled(!enabled)}>
+          <Squirrel className="size-4" />
+          {enabled && <DockIconActiveDot isActive />}
+        </DockIcon>
+        
         <DockIcon title={"Theme"}>
           <ModeToggle />
         </DockIcon>

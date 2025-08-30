@@ -1,45 +1,38 @@
-import { HedgehogActor } from "./actor";
+export type Optional<T, K extends string | number | symbol> = Omit<T, K> & { [K in keyof T]?: T[K] }
 
-export type HedgehogConfig = {
-  skin?: string;
-  color?: string;
-  accessories?: string[];
-  controls_enabled?: boolean;
-  walking_enabled?: boolean;
-  interactions_enabled?: boolean;
-  party_mode_enabled?: boolean;
-};
+/** Make all keys of T required except those in K */
+export type RequiredExcept<T, K extends keyof T> = {
+    [P in Exclude<keyof T, K>]-?: T[P]
+} & {
+    [P in K]?: T[P]
+}
 
-export type SpriteInfo = {
-  frames: number;
-  img: string;
-  maxIteration?: number;
-  forceDirection?: "left" | "right";
-  randomChance?: number;
-  accessoryPositions?: [number, number][];
-  style?: React.CSSProperties;
-};
+export type HedgehogColorOptions =
+    | 'green'
+    | 'red'
+    | 'blue'
+    | 'purple'
+    | 'dark'
+    | 'light'
+    | 'sepia'
+    | 'invert'
+    | 'invert-hue'
+    | 'greyscale'
 
-export type Box = {
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-};
+export interface MinimalHedgehogConfig {
+    color: HedgehogColorOptions | null
+    accessories: string[]
+}
 
-export type AnimationState = {
-  name: string;
-  frame: number;
-  iterations: number | null;
-  spriteInfo: SpriteInfo;
-  onComplete?: () => boolean | void;
-};
+export type HedgehogSkin = 'default' | 'spiderhog' | 'robohog'
 
-export type HedgehogBuddyProps = {
-  onActorLoaded?: (actor: HedgehogActor) => void;
-  onClose?: () => void;
-  onClick?: (actor: HedgehogActor) => void;
-  onPositionChange?: (actor: HedgehogActor) => void;
-  hedgehogConfig?: HedgehogConfig;
-  static?: boolean;
-};
+export interface HedgehogConfig extends MinimalHedgehogConfig {
+    enabled: boolean
+    color: HedgehogColorOptions | null
+    skin?: HedgehogSkin
+    accessories: string[]
+    walking_enabled: boolean
+    interactions_enabled: boolean
+    controls_enabled: boolean
+    fixed_direction?: 'left' | 'right'
+}

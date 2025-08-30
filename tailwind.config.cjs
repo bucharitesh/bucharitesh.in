@@ -9,6 +9,7 @@ module.exports = {
     "./components/**/*.{ts,tsx}",
     "./content/**/*.mdx",
     "./registry/**/*.{ts,tsx}",
+    "./archive/**/*.{ts,tsx}",
   ],
   darkMode: "class",
   theme: {

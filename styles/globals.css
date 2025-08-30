@@ -41,6 +41,14 @@
     --color-3: 210 100% 63%;
     --color-4: 195 100% 63%;
     --color-5: 90 100% 63%;
+
+    /* Z-index for floating Hedgehog buddy, must be above dock (z-40) */
+    --z-hedgehog-buddy: 9999;
+    --color-bg-fill-scroll-thumb: color-mix(
+      in oklab,
+      var(--color-black) 20%,
+      transparent
+    );
   }
 
   .dark {
@@ -63,6 +71,12 @@
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
+
+    --color-bg-fill-scroll-thumb: color-mix(
+      in oklab,
+      var(--color-white) 20%,
+      transparent
+    );
   }
 }
 
@@ -84,9 +98,44 @@ html {
       "rlig" 1,
       "calt" 1;
     scroll-behavior: smooth;
+    touch-action: manipulation; /* Disable double-tap-to-zoom on mobile, making taps slightly snappier */
+  }
+
+  .rendering-pixelated {
+    image-rendering: pixelated;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--muted-foreground) / 0.4) transparent;
+  }
+
+  *::-webkit-scrollbar {
+      background: transparent;
+    }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground) / 0.4);
+    border-radius: var(--radius);
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.55);
+  }
+
+  .hide-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 }
-
 
 @layer components {
   .content-wrapper {
@@ -133,7 +182,8 @@ html {
 
   .lab-bg {
     --mask-offset: 100px;
-    -webkit-mask: linear-gradient(
+    -webkit-mask:
+      linear-gradient(
         to bottom,
         transparent,
         #fff var(--mask-offset) calc(100% - var(--mask-offset)),
@@ -145,7 +195,8 @@ html {
         #fff var(--mask-offset) calc(100% - var(--mask-offset)),
         transparent
       );
-    mask: linear-gradient(
+    mask:
+      linear-gradient(
         to bottom,
         transparent,
         #fff var(--mask-offset) calc(100% - var(--mask-offset)),
@@ -182,7 +233,8 @@ html {
 
 .lab-bg {
   --mask-offset: 100px;
-  -webkit-mask: linear-gradient(
+  -webkit-mask:
+    linear-gradient(
       to bottom,
       transparent,
       #fff var(--mask-offset) calc(100% - var(--mask-offset)),
@@ -194,7 +246,8 @@ html {
       #fff var(--mask-offset) calc(100% - var(--mask-offset)),
       transparent
     );
-  mask: linear-gradient(
+  mask:
+    linear-gradient(
       to bottom,
       transparent,
       #fff var(--mask-offset) calc(100% - var(--mask-offset)),
