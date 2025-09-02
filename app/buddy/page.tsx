@@ -3,9 +3,7 @@ import React from 'react'
 
 const Page = () => {
   return (
-    <div>
-      <HedgehogOptions />
-    </div>
+    <HedgehogOptions />
   )
 }
 
