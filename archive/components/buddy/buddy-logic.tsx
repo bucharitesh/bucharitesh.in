@@ -1,9 +1,9 @@
  'use client'
 
  import { create } from 'zustand'
- import { HedgehogColorOptions, HedgehogConfig } from './types'
+ import { BuddyColorOptions, BuddyConfig } from './types'
 
- export const COLOR_TO_FILTER_MAP: Record<HedgehogColorOptions, string> = {
+ export const COLOR_TO_FILTER_MAP: Record<BuddyColorOptions, string> = {
     red: 'hue-rotate(340deg) saturate(300%) brightness(90%)',
     green: 'hue-rotate(60deg) saturate(100%)',
     blue: 'hue-rotate(210deg) saturate(300%) brightness(90%)',
@@ -16,19 +16,19 @@
     greyscale: 'saturate(0%)',
  }
 
- type HedgehogState = {
-     localConfig: Partial<HedgehogConfig> | null
-     hedgehogConfig: HedgehogConfig
+ type BuddyState = {
+     localConfig: Partial<BuddyConfig> | null
+     hedgehogConfig: BuddyConfig
      hedgehogModeEnabled: boolean
-     setHedgehogModeEnabled: (enabled: boolean) => void
+     setBuddyModeEnabled: (enabled: boolean) => void
      addAccessory: (accessory: string) => void
      removeAccessory: (accessory: string) => void
-     patchHedgehogConfig: (config: Partial<HedgehogConfig>) => void
+     patchBuddyConfig: (config: Partial<BuddyConfig>) => void
      clearLocalConfig: () => void
      setDebug: (debug: boolean) => void
  }
 
- const defaultConfig: HedgehogConfig = {
+ const defaultConfig: BuddyConfig = {
      enabled: false,
      color: null,
      accessories: [],
@@ -38,29 +38,29 @@
      debug: false,
  }
 
- export const useHedgehogStore = create<HedgehogState>()((set, get) => ({
+ export const useBuddyStore = create<BuddyState>()((set, get) => ({
      localConfig: null,
      hedgehogConfig: defaultConfig,
      hedgehogModeEnabled: false,
      clearLocalConfig: () => set({ localConfig: null }),
-     patchHedgehogConfig: (config) => {
+     patchBuddyConfig: (config) => {
          const existing = get().hedgehogConfig
          const patchedLocal = { ...(get().localConfig ?? {}), ...config }
          const hedgehogConfig = { ...existing, ...patchedLocal }
          set({ localConfig: patchedLocal, hedgehogConfig, hedgehogModeEnabled: !!hedgehogConfig.enabled })
      },
-     setHedgehogModeEnabled: (enabled) => {
-         get().patchHedgehogConfig({ enabled })
+     setBuddyModeEnabled: (enabled) => {
+         get().patchBuddyConfig({ enabled })
      },
      addAccessory: (accessory) => {
          const current = get().hedgehogConfig.accessories ?? []
-         get().patchHedgehogConfig({ accessories: [...current, accessory] })
+         get().patchBuddyConfig({ accessories: [...current, accessory] })
      },
      removeAccessory: (accessory) => {
          const current = get().hedgehogConfig.accessories ?? []
-         get().patchHedgehogConfig({ accessories: current.filter((acc) => acc !== accessory) })
+         get().patchBuddyConfig({ accessories: current.filter((acc) => acc !== accessory) })
      },
      setDebug: (debug) => {
-         get().patchHedgehogConfig({ debug })
+         get().patchBuddyConfig({ debug })
      },
  }))

@@ -23,6 +23,8 @@ export const meta = {
   },
 };
 
+export const ENABLE_BUDDY = false;
+
 export const META_THEME_COLORS = {
   light: "#ffffff",
   dark: "#09090b",

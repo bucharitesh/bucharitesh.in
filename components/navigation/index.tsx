@@ -1,8 +1,8 @@
-import { HedgehogBuddyWithLogic } from "@/archive/components/hedgehog/buddy-with-logic";
+import { BuddyBuddyWithLogic } from "@/archive/components/buddy/buddy-with-logic";
 import { ScrollTop } from "../scroll-top";
 import BottomDock from "./dock";
 import { FloatingHeader } from "./floating-header";
-import HedgehogConfig from "../layout/hedge-hog-config";
+import BuddyConfig from "../layout/hedge-hog-config";
 
 export default function Navigation() {
   return (
@@ -10,8 +10,8 @@ export default function Navigation() {
       <FloatingHeader className="block md:hidden" />
       <BottomDock className="hidden md:block " />
       <ScrollTop />
-      <HedgehogBuddyWithLogic />
-      <HedgehogConfig />
+      <BuddyBuddyWithLogic />
+      <BuddyConfig />
     </>
   );
 }

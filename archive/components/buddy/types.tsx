@@ -7,7 +7,7 @@ export type RequiredExcept<T, K extends keyof T> = {
     [P in K]?: T[P]
 }
 
-export type HedgehogColorOptions =
+export type BuddyColorOptions =
     | 'green'
     | 'red'
     | 'blue'
@@ -19,17 +19,17 @@ export type HedgehogColorOptions =
     | 'invert-hue'
     | 'greyscale'
 
-export interface MinimalHedgehogConfig {
-    color: HedgehogColorOptions | null
+export interface MinimalBuddyConfig {
+    color: BuddyColorOptions | null
     accessories: string[]
 }
 
-export type HedgehogSkin = 'default' | 'spiderhog' | 'robohog'
+export type BuddySkin = 'default' | 'spiderhog' | 'robohog'
 
-export interface HedgehogConfig extends MinimalHedgehogConfig {
+export interface BuddyConfig extends MinimalBuddyConfig {
     enabled: boolean
-    color: HedgehogColorOptions | null
-    skin?: HedgehogSkin
+    color: BuddyColorOptions | null
+    skin?: BuddySkin
     accessories: string[]
     walking_enabled: boolean
     interactions_enabled: boolean

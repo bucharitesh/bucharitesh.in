@@ -3,10 +3,10 @@
 import React from "react";
 import { capitalizeFirstLetter } from "./utils";
 
-import { HedgehogSkin } from "./types";
+import { BuddySkin } from "./types";
 
-import { HedgehogBuddyProfile, HedgehogBuddyStatic } from "./renderer";
-import { COLOR_TO_FILTER_MAP, useHedgehogStore } from "./buddy-logic";
+import { BuddyBuddyProfile, BuddyBuddyStatic } from "./renderer";
+import { COLOR_TO_FILTER_MAP, useBuddyStore } from "./buddy-logic";
 import { accessoryGroups, standardAccessories } from "./sprites/sprites";
 import { Switch } from "@/components/ui/switch";
 import { Separator } from "@/components/ui/separator";
@@ -14,15 +14,15 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { meta } from "@/lib/config";
 
-export function HedgehogOptions(): JSX.Element {
-  const hedgehogConfig = useHedgehogStore((s) => s.hedgehogConfig);
-  const patchHedgehogConfig = useHedgehogStore((s) => s.patchHedgehogConfig);
+export function BuddyOptions(): JSX.Element {
+  const hedgehogConfig = useBuddyStore((s) => s.hedgehogConfig);
+  const patchBuddyConfig = useBuddyStore((s) => s.patchBuddyConfig);
 
   return (
     <div className="layout-sm mb-40 relative z-10 grid gap-y-2 px-4 pt-12 lg:layout-craft lg:gap-x-9 lg:px-0 [&>*]:col-start-2 lg:[&>*]:col-start-3">
         <div className="w-full mx-auto space-y-6">
         <div className="grid grid-cols-1 gap-4 md:gap-6 items-start">
-          <HedgehogBuddyProfile {...hedgehogConfig} size={100} />
+          <BuddyBuddyProfile {...hedgehogConfig} size={100} />
           <div className="flex-1 min-w-0">
             <h3 className="text-base font-semibold">Hi, I'm {meta.name}'s buddy!</h3>
             <p className="mt-1 text-sm text-muted-foreground">
@@ -53,7 +53,7 @@ export function HedgehogOptions(): JSX.Element {
                 id="enabled"
                 checked={!!hedgehogConfig.enabled}
                 onCheckedChange={(val) =>
-                  patchHedgehogConfig({
+                  patchBuddyConfig({
                     enabled: val,
                   })
                 }
@@ -74,7 +74,7 @@ export function HedgehogOptions(): JSX.Element {
                 id="walking_enabled"
                 checked={hedgehogConfig.walking_enabled}
                 onCheckedChange={(val) =>
-                  patchHedgehogConfig({
+                  patchBuddyConfig({
                     walking_enabled: val,
                   })
                 }
@@ -97,7 +97,7 @@ export function HedgehogOptions(): JSX.Element {
                 id="interactions_enabled"
                 checked={hedgehogConfig.interactions_enabled}
                 onCheckedChange={(val) =>
-                  patchHedgehogConfig({
+                  patchBuddyConfig({
                     interactions_enabled: val,
                   })
                 }
@@ -118,7 +118,7 @@ export function HedgehogOptions(): JSX.Element {
                 id="controls_enabled"
                 checked={hedgehogConfig.controls_enabled}
                 onCheckedChange={(val) =>
-                  patchHedgehogConfig({
+                  patchBuddyConfig({
                     controls_enabled: val,
                   })
                 }
@@ -128,8 +128,8 @@ export function HedgehogOptions(): JSX.Element {
         </div>
 
         <Separator className="my-6" />
-        <HedgehogColor />
-        <HedgehogAccessories />
+        <BuddyColor />
+        <BuddyAccessories />
       </div>
       <div className="sticky space-y-4 top-14 right-0 hidden h-0 lg:!col-start-2 lg:row-start-1 lg:block col-span-1 max-w-md">
         <Link href="/">Back</Link>
@@ -138,9 +138,9 @@ export function HedgehogOptions(): JSX.Element {
   );
 }
 
-function HedgehogAccessories(): JSX.Element {
-  const hedgehogConfig = useHedgehogStore((s) => s.hedgehogConfig);
-  const patchHedgehogConfig = useHedgehogStore((s) => s.patchHedgehogConfig);
+function BuddyAccessories(): JSX.Element {
+  const hedgehogConfig = useBuddyStore((s) => s.hedgehogConfig);
+  const patchBuddyConfig = useBuddyStore((s) => s.patchBuddyConfig);
 
   const accessories = hedgehogConfig.accessories;
 
@@ -149,11 +149,11 @@ function HedgehogAccessories(): JSX.Element {
     // If it isn't in the list, remove all accessories of the same group and add the new one
 
     if (accessories.includes(accessory)) {
-      patchHedgehogConfig({
+      patchBuddyConfig({
         accessories: accessories.filter((acc) => acc !== accessory),
       });
     } else {
-      patchHedgehogConfig({
+      patchBuddyConfig({
         accessories: accessories
           .filter(
             (acc) =>
@@ -188,7 +188,7 @@ function HedgehogAccessories(): JSX.Element {
                     )}
                     title={capitalizeFirstLetter(acc)}
                   >
-                    <HedgehogBuddyStatic accessories={[acc]} size={56} />
+                    <BuddyBuddyStatic accessories={[acc]} size={56} />
                   </div>
                 );
               })}
@@ -199,11 +199,11 @@ function HedgehogAccessories(): JSX.Element {
   );
 }
 
-function HedgehogColor(): JSX.Element {
-  const hedgehogConfig = useHedgehogStore((s) => s.hedgehogConfig);
-  const patchHedgehogConfig = useHedgehogStore((s) => s.patchHedgehogConfig);
+function BuddyColor(): JSX.Element {
+  const hedgehogConfig = useBuddyStore((s) => s.hedgehogConfig);
+  const patchBuddyConfig = useBuddyStore((s) => s.patchBuddyConfig);
 
-  const skins: HedgehogSkin[] = ["default", "robohog", "spiderhog"];
+  const skins: BuddySkin[] = ["default", "robohog", "spiderhog"];
 
   return (
     <>
@@ -218,7 +218,7 @@ function HedgehogColor(): JSX.Element {
               key={option}
               aria-pressed={selected}
               onClick={() =>
-                patchHedgehogConfig({ skin: option as any, color: null })
+                patchBuddyConfig({ skin: option as any, color: null })
               }
               className={cn(
                 "relative flex items-center justify-center rounded-md p-1 transition",
@@ -230,7 +230,7 @@ function HedgehogColor(): JSX.Element {
                 "Hog"
               )}
             >
-              <HedgehogBuddyStatic skin={option} size={56} />
+              <BuddyBuddyStatic skin={option} size={56} />
             </div>
           );
         })}
@@ -242,7 +242,7 @@ function HedgehogColor(): JSX.Element {
               key={option}
               aria-pressed={selected}
               onClick={() =>
-                patchHedgehogConfig({ color: option as any, skin: "default" })
+                patchBuddyConfig({ color: option as any, skin: "default" })
               }
               className={cn(
                 "relative flex items-center justify-center rounded-md p-1 transition",
@@ -251,7 +251,7 @@ function HedgehogColor(): JSX.Element {
               )}
               title={capitalizeFirstLetter(option ?? "default")}
             >
-              <HedgehogBuddyStatic color={option as any} size={56} />
+              <BuddyBuddyStatic color={option as any} size={56} />
             </button>
           );
         })}

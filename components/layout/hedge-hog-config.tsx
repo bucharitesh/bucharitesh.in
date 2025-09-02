@@ -5,10 +5,10 @@ import React from "react";
 import { Button } from "../ui/button";
 import { Settings, Squirrel } from "lucide-react";
 import Link from "next/link";
-import { useHedgehogStore } from "@/archive/components/hedgehog/buddy-logic";
+import { useBuddyStore } from "@/archive/components/buddy/buddy-logic";
 
-const HedgehogConfig = () => {
-  const { enabled } = useHedgehogStore((s) => s.hedgehogConfig);
+const BuddyConfig = () => {
+  const { enabled } = useBuddyStore((s) => s.hedgehogConfig);
 
   return (
     <Link href="/buddy">
@@ -29,4 +29,4 @@ const HedgehogConfig = () => {
   );
 };
 
-export default HedgehogConfig;
+export default BuddyConfig;

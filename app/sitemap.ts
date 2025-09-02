@@ -2,6 +2,7 @@ import dayjs from "dayjs";
 import { MetadataRoute } from "next";
 import { headers } from "next/headers";
 import { allCrafts } from "content-collections";
+import { ENABLE_BUDDY } from "@/lib/config";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const headersList = await headers();
@@ -41,10 +42,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     //  "/project",
     // "/design-inspiration",
     // "/uses",
-  ].map((route) => ({
+  ].concat(ENABLE_BUDDY ? ["/buddy"] : []);
+
+  let routesArray = routes.map((route) => ({
     url: addPathToBaseURL(route),
     lastModified: dayjs().toISOString(),
   }));
 
-  return [...routes, ...crafts];
+  return [...routesArray, ...crafts];
 }

@@ -10,10 +10,10 @@ import {
 } from "@/components/shared/compoenents/floating-dock";
 import ModeToggle from "./mode-toggle";
 import { usePathname } from "next/navigation";
-import { DockConfig } from "@/lib/config";
+import { DockConfig, ENABLE_BUDDY } from "@/lib/config";
 import { cn } from "@/lib/utils";
-import { useHedgehogStore } from "@/archive/components/hedgehog/buddy-logic";
-import { HedgehogBuddyStatic } from "@/archive/components/hedgehog/renderer";
+import { useBuddyStore } from "@/archive/components/buddy/buddy-logic";
+import { BuddyBuddyStatic } from "@/archive/components/buddy/renderer";
 
 const DOCK_AUTOHIDE_TIMEOUT = 5_000;
 
@@ -21,9 +21,9 @@ function BottomDock({ className }: { className: string }) {
   const [active, setActive] = useState(true);
   const pathname = usePathname();
   const timeoutRef = useRef<NodeJS.Timeout>();
-  const enabled = useHedgehogStore((s) => s.hedgehogConfig.enabled);
-  const setHedgehogModeEnabled = useHedgehogStore((s) => s.setHedgehogModeEnabled);
-  const hedgehogConfig = useHedgehogStore((s) => s.hedgehogConfig);
+  const enabled = useBuddyStore((s) => s.hedgehogConfig.enabled);
+  const setBuddyModeEnabled = useBuddyStore((s) => s.setBuddyModeEnabled);
+  const hedgehogConfig = useBuddyStore((s) => s.hedgehogConfig);
 
   // const { data: session } = useSession();
 
@@ -78,10 +78,10 @@ function BottomDock({ className }: { className: string }) {
           </DockIcon>
         ))}
         <DockSeperator />
-        <DockIcon title={"Hedgehog"} onMouseUp={() => setHedgehogModeEnabled(!enabled)}>
-          <HedgehogBuddyStatic {...hedgehogConfig} />
+        {ENABLE_BUDDY && <DockIcon title={"Buddy"} onMouseUp={() => setBuddyModeEnabled(!enabled)}>
+          <BuddyBuddyStatic {...hedgehogConfig} />
           {enabled && <DockIconActiveDot isActive />}
-        </DockIcon>
+        </DockIcon>}
         
         <DockIcon title={"Theme"}>
           <ModeToggle />

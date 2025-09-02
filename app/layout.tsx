@@ -14,7 +14,6 @@ import Navigation from "@/components/navigation";
 import { Providers } from "@/lib/providers";
 import Script from "next/script";
 import { WebSite, WithContext } from "schema-dts";
-import { HedgehogBuddyWithLogic } from "@/archive/components/hedgehog/buddy-with-logic";
 
 function getWebSiteJsonLd(): WithContext<WebSite> {
   return {

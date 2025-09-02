@@ -1,17 +1,17 @@
-import { HedgehogConfig } from './types'
+import { BuddyConfig } from './types'
 
 import { COLOR_TO_FILTER_MAP } from './buddy-logic'
 import { spriteAccessoryUrl, spriteUrl, standardAccessories } from './sprites/sprites'
 
-export type HedgehogBuddyStaticProps = Partial<HedgehogConfig> & { size?: number | string }
+export type BuddyBuddyStaticProps = Partial<BuddyConfig> & { size?: number | string }
 
-// Takes a range of options and renders a static hedgehog
-export function HedgehogBuddyStatic({
+// Takes a range of options and renders a static buddy
+export function BuddyBuddyStatic({
     accessories,
     color,
     size,
     skin = 'default',
-}: HedgehogBuddyStaticProps): JSX.Element {
+}: BuddyBuddyStaticProps): JSX.Element {
     const imgSize = size ?? 60
 
     const accessoryInfos = accessories?.map((x) => standardAccessories[x])
@@ -54,7 +54,7 @@ export function HedgehogBuddyStatic({
     )
 }
 
-export function HedgehogBuddyProfile({ size, ...props }: HedgehogBuddyStaticProps): JSX.Element {
+export function BuddyBuddyProfile({ size, ...props }: BuddyBuddyStaticProps): JSX.Element {
     return (
         <div
             className="relative rounded-full overflow-hidden"
@@ -65,7 +65,7 @@ export function HedgehogBuddyProfile({ size, ...props }: HedgehogBuddyStaticProp
             }}
         >
             <div className="absolute top-0 left-0 w-full h-full transform translate-x-[-3%] translate-y-[10%] scale-[1.8]">
-                <HedgehogBuddyStatic {...props} size={size} />
+                <BuddyBuddyStatic {...props} size={size} />
             </div>
         </div>
     )

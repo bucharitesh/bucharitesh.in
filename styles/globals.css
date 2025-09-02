@@ -42,8 +42,8 @@
     --color-4: 195 100% 63%;
     --color-5: 90 100% 63%;
 
-    /* Z-index for floating Hedgehog buddy, must be above dock (z-40) */
-    --z-hedgehog-buddy: 9999;
+    /* Z-index for floating Buddy buddy, must be above dock (z-40) */
+    --z-buddy: 9999;
     --color-bg-fill-scroll-thumb: color-mix(
       in oklab,
       var(--color-black) 20%,

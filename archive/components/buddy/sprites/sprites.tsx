@@ -1,4 +1,4 @@
-import { HedgehogSkin } from '../types'
+import { BuddySkin } from '../types'
 
 export const SPRITE_SIZE = 80
 export const SHADOW_HEIGHT = SPRITE_SIZE / 8
@@ -28,11 +28,11 @@ export type AccessoryInfo = {
     group: (typeof accessoryGroups)[number]
 }
 
-const baseSpritePath = (): string => `/assets/hedgehog/sprites`;
+const baseSpritePath = (): string => `/assets/buddy/sprites`;
 
 const baseSpriteAccessoriesPath = (): string => `${baseSpritePath()}/accessories`
 
-export const spriteUrl = (skin: HedgehogSkin, img: string): string => {
+export const spriteUrl = (skin: BuddySkin, img: string): string => {
     return `${baseSpritePath()}/skins/${skin}/${img}.png`
 }
 
@@ -206,7 +206,7 @@ export const standardAccessories: { [key: string]: AccessoryInfo } = {
     },
 }
 
-export const skins: Record<HedgehogSkin, { [key: string]: SpriteInfo }> = {
+export const skins: Record<BuddySkin, { [key: string]: SpriteInfo }> = {
     default: standardAnimations,
     spiderhog: {
         stop: standardAnimations.stop,

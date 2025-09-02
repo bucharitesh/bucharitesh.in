@@ -6,8 +6,8 @@ import clsx from "clsx";
 import { ForwardedRef, useEffect, useRef, useState } from "react";
 import React from "react";
 import { range, sampleOne, shouldIgnoreInput } from "./utils";
-import { HedgehogConfig } from "./types";
-import { COLOR_TO_FILTER_MAP, useHedgehogStore } from "./buddy-logic";
+import { BuddyConfig } from "./types";
+import { COLOR_TO_FILTER_MAP, useBuddyStore } from "./buddy-logic";
 import {
   AccessoryInfo,
   AnimationName,
@@ -30,12 +30,12 @@ export const FPS = 24;
 const GRAVITY_PIXELS = 10;
 const MAX_JUMP_COUNT = 2;
 
-export type HedgehogBuddyProps = {
-  onActorLoaded?: (actor: HedgehogActor) => void;
-  onClose?: (actor: HedgehogActor) => void;
-  onClick?: (actor: HedgehogActor) => void;
-  onPositionChange?: (actor: HedgehogActor) => void;
-  hedgehogConfig?: HedgehogConfig;
+export type BuddyBuddyProps = {
+  onActorLoaded?: (actor: BuddyActor) => void;
+  onClose?: (actor: BuddyActor) => void;
+  onClick?: (actor: BuddyActor) => void;
+  onPositionChange?: (actor: BuddyActor) => void;
+  hedgehogConfig?: BuddyConfig;
   tooltip?: JSX.Element;
   static?: boolean;
 };
@@ -61,13 +61,13 @@ const elementToBox = (element: Element): Box => {
       height: 1000,
     };
   }
-  const isHedgehog = element.classList.contains("HedgehogBuddy");
+  const isBuddy = element.classList.contains("BuddyBuddy");
   const rect = element.getBoundingClientRect();
   return {
-    x: rect.left + (isHedgehog ? 20 : 0),
-    y: window.innerHeight - rect.bottom + (isHedgehog ? 5 : 0),
-    width: rect.width - (isHedgehog ? 40 : 0),
-    height: rect.height - (isHedgehog ? 30 : 0),
+    x: rect.left + (isBuddy ? 20 : 0),
+    y: window.innerHeight - rect.bottom + (isBuddy ? 5 : 0),
+    width: rect.width - (isBuddy ? 40 : 0),
+    height: rect.height - (isBuddy ? 30 : 0),
   };
 };
 
@@ -79,7 +79,7 @@ type AnimationState = {
   onComplete?: () => boolean | void;
 };
 
-export class HedgehogActor {
+export class BuddyActor {
   element?: HTMLDivElement | null;
   direction: "left" | "right" = "right";
   x = 0;
@@ -101,11 +101,11 @@ export class HedgehogActor {
   static = false;
 
   // properties synced with the logic
-  hedgehogConfig: Partial<HedgehogConfig> = {};
+  hedgehogConfig: Partial<BuddyConfig> = {};
   tooltip?: JSX.Element;
 
   constructor() {
-    console.log("Created new HedgehogActor");
+    console.log("Created new BuddyActor");
 
     if (typeof window !== "undefined") {
       this.lastScreenPosition = [window.screenX, window.screenY + window.innerHeight];
@@ -307,8 +307,8 @@ export class HedgehogActor {
         return;
       }
 
-      // Whilst the mouse is down we will move the hedgehog towards it
-      // First check that we haven't clicked the hedgehog
+      // Whilst the mouse is down we will move the buddy towards it
+      // First check that we haven't clicked the buddy
       const elementBounds = this.element?.getBoundingClientRect();
       if (
         elementBounds &&
@@ -460,15 +460,15 @@ export class HedgehogActor {
 
     if (screenMoveX || screenMoveY) {
       this.ground = null;
-      // Offset the hedgehog by the screen movement
+      // Offset the buddy by the screen movement
       this.x -= screenMoveX;
       // Add the screen movement to the y velocity
       this.y += screenMoveY;
-      // Bit of a hack but it works to avoid the moving screen affecting the hedgehog
+      // Bit of a hack but it works to avoid the moving screen affecting the buddy
       this.ignoreGroundAboveY = -10000;
 
       if (screenMoveY < 0) {
-        // If the ground has moved up relative to the hedgehog we need to make him jump
+        // If the ground has moved up relative to the buddy we need to make him jump
         this.yVelocity = Math.max(
           this.yVelocity + screenMoveY * 10,
           -this.gravity * 20
@@ -606,7 +606,7 @@ export class HedgehogActor {
     this.ground = this.findGround();
     this.yVelocity -= this.gravity;
 
-    // We decelerate the x velocity if the hedgehog is stopped
+    // We decelerate the x velocity if the buddy is stopped
     if (
       !this.isControlledByUser &&
       this.mainAnimation?.name !== "walk" &&
@@ -671,7 +671,7 @@ export class HedgehogActor {
     // Only calculate block bounding rects once we need to
     const blocksWithBoxes: [Element, Box][] = Array.from(
       document.querySelectorAll(
-        ".border, .border-t, .HedgehogBuddy"
+        ".border, .border-t, .BuddyBuddy"
       )
     )
       .filter((x) => x !== this.element)
@@ -863,7 +863,7 @@ export class HedgehogActor {
               ref?.(r);
             }
           }}
-          className="HedgehogBuddy"
+          className="BuddyBuddy"
           data-content={preloadContent}
           onTouchStart={this.static ? undefined : () => onTouchOrMouseStart()}
           onMouseDown={this.static ? undefined : () => onTouchOrMouseStart()}
@@ -875,7 +875,7 @@ export class HedgehogActor {
             position: this.static ? "relative" : "fixed",
             left: this.static ? undefined : this.x,
             bottom: this.static ? undefined : this.y - SHADOW_HEIGHT * 0.5,
-            zIndex: !this.static ? "var(--z-hedgehog-buddy)" : undefined,
+            zIndex: !this.static ? "var(--z-buddy)" : undefined,
             transition: !(this.isDragging || this.followMouse)
               ? `all ${1000 / FPS}ms`
               : undefined,
@@ -998,10 +998,10 @@ export class HedgehogActor {
   }
 }
 
-export const HedgehogBuddy = React.forwardRef<
+export const BuddyBuddy = React.forwardRef<
   HTMLDivElement,
-  HedgehogBuddyProps
->(function HedgehogBuddy(
+  BuddyBuddyProps
+>(function BuddyBuddy(
   {
     onActorLoaded,
     onClick: _onClick,
@@ -1012,9 +1012,9 @@ export const HedgehogBuddy = React.forwardRef<
   },
   ref
 ): JSX.Element {
-  const actorRef = useRef<HedgehogActor>();
+  const actorRef = useRef<BuddyActor>();
   if (!actorRef.current) {
-    actorRef.current = new HedgehogActor();
+    actorRef.current = new BuddyActor();
   }
 
   useEffect(() => {
@@ -1082,19 +1082,19 @@ export const HedgehogBuddy = React.forwardRef<
   return actor.render({ onClick, ref });
 });
 
-export function MyHedgehogBuddy({
+export function MyBuddyBuddy({
   onActorLoaded,
   onPositionChange,
-}: HedgehogBuddyProps): JSX.Element {
-  const [actor, setActor] = useState<HedgehogActor | null>(null);
-  const hedgehogConfig = useHedgehogStore((s) => s.hedgehogConfig);
+}: BuddyBuddyProps): JSX.Element {
+  const [actor, setActor] = useState<BuddyActor | null>(null);
+  const hedgehogConfig = useBuddyStore((s) => s.hedgehogConfig);
 
   useEffect(() => {
     return actor?.setupKeyboardListeners();
   }, [actor]);
 
   return (
-    <HedgehogBuddy
+    <BuddyBuddy
       onActorLoaded={(actor) => {
         setActor(actor);
         onActorLoaded?.(actor);
