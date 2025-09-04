@@ -4,12 +4,7 @@ import { useState } from "react";
 import {
   Activity,
   ActivityCalendar,
-  Props as CalendarProps,
 } from "react-activity-calendar";
-
-const Labels = {
-  totalCount: "Total {{count}} contributions in lifetime",
-} satisfies CalendarProps["labels"];
 
 export default function MyActivityCalendar({
   data,
@@ -17,6 +12,10 @@ export default function MyActivityCalendar({
   data: Activity[];
 }) {
   const [date, setDate] = useState<Activity | null>(null);
+
+  if (data.length === 0) {
+    return null;
+  }
 
   return (
     <div className="w-full h-full font-mono">
@@ -31,7 +30,7 @@ export default function MyActivityCalendar({
                 month: "long",
                 year: "numeric",
               })}`
-            : "Total {{count}} contributions in lifetime",
+            : "Total {{count}} contributions in {{year}}",
         }}
         hideColorLegend
         fontSize={10}

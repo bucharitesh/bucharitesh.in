@@ -21,6 +21,13 @@ export const meta = {
     animated:
       "https://res.cloudinary.com/bucha/image/upload/c_thumb,q_100/download_1_ksk2zu.png",
   },
+  flipSentences: [
+    "Creating with code. Small details matter.",
+    "Design Engineer",
+    "Open Source Contributor",
+    "Frontend Developer",
+    "Researching and building",
+  ],
 };
 
 export const ENABLE_BUDDY = false;

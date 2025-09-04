@@ -7,6 +7,7 @@ import { PronounceMyName } from "@/components/home/pronounce-my-name";
 import MyActivityCalendar from "@/components/home/activity-calendar";
 import { getGithubContributions } from "@/lib/github";
 import { RaycastBackground } from "@/components/backgrounds/raycast";
+import { FlipSentences } from "@/components/ui/flip-sentences";
 
 export const metadata: Metadata = {
   title: meta.tagline,
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  const data = await getGithubContributions('bucharitesh');
+  const data = await getGithubContributions("bucharitesh");
   return (
     <>
       <COMMON_SCRIPT_ORG />
@@ -27,16 +28,14 @@ export default async function Page() {
           <ProfileImage />
           <div className="space-y-2">
             <div className="flex space-x-2">
-              <h1 className="text-base sm:text-l">
-                <span className="font-bold">Ritesh Bucha</span>
+              <h1 className="text-3xl font-semibold sm:text-l">
+                Ritesh Bucha
               </h1>
               <PronounceMyName namePronunciationUrl="./assets/ritesh-bucha.mp3" />
             </div>
-            <span
-              className={`font-normal text-neutral-800 dark:text-neutral-300/80`}
-            >
-              {meta.description}
-            </span>
+            <div className="">
+              <FlipSentences sentences={meta.flipSentences} />
+            </div>
           </div>
         </header>
 
