@@ -3,17 +3,11 @@
 import { useCommandState } from "cmdk";
 import type { LucideProps } from "lucide-react";
 import {
-  BriefcaseBusinessIcon,
-  CircleUserIcon,
   CornerDownLeftIcon,
-  DownloadIcon,
   LetterTextIcon,
   MoonStarIcon,
   RssIcon,
   SunIcon,
-  TextIcon,
-  TriangleIcon,
-  TypeIcon,
 } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -29,12 +23,11 @@ import {
     CommandItem,
     CommandList,
     CommandSeparator,
-  } from "@/components/ui/command-menu";
+  } from "@/components/ui/command";
 // import type { Post } from "@/features/blog/types/post";
 // import { SOCIAL_LINKS } from "@/features/profile/data/social-links";
 import { cn } from "@/lib/utils";
 // import { copyText } from "@/utils/copy";
-import { Icons } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 

@@ -2,8 +2,13 @@
 
 import React, { useEffect, useMemo, useState } from "react";
 import { DialogProps } from "@radix-ui/react-dialog";
-import { HiOutlineCommandLine, HiCalculator } from "react-icons/hi2";
-import { Command } from "cmdk";
+import {
+  Command,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
 import {
   Dialog,
   DialogContent,
@@ -19,8 +24,6 @@ import { useWeatherCommand } from "./apps/weather";
 import { useCurrencyCommand } from "./apps/currency";
 import { useGeminiCommand } from "./apps/gemini";
 import { useSocialsCommand } from "./apps/socials";
-import { useCraftsCommand } from "./apps/crafts";
-import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 
 export function CommandMenu({ ...props }: DialogProps) {
@@ -43,7 +46,6 @@ export function CommandMenu({ ...props }: DialogProps) {
     setSearchQuery,
   });
   const socialsCommands = useSocialsCommand({ setOpen });
-  const craftCommands = useCraftsCommand({ setOpen, searchQuery });
 
   // Filter and organize commands based on search query and active results
   const filteredCommands = useMemo(() => {
@@ -54,7 +56,7 @@ export function CommandMenu({ ...props }: DialogProps) {
 
     // Handle time results
     const timeResults = timeCommands.commands.filter((cmd) =>
-      cmd.id.startsWith("time-"),
+      cmd.id.startsWith("time-")
     );
     if (timeResults.length > 0) {
       return [
@@ -67,7 +69,7 @@ export function CommandMenu({ ...props }: DialogProps) {
 
     // Handle currency results
     const currencyResults = currencyCommands.commands.filter(
-      (cmd) => cmd.id === "currency-conversion",
+      (cmd) => cmd.id === "currency-conversion"
     );
     if (currencyResults.length > 0) {
       return [
@@ -92,7 +94,6 @@ export function CommandMenu({ ...props }: DialogProps) {
             ...geminiCommands.commands.slice(0, 1),
           ],
         },
-        craftCommands,
         socialsCommands,
       ];
     }
@@ -101,7 +102,6 @@ export function CommandMenu({ ...props }: DialogProps) {
     const filteredGroups = [
       themeCommands,
       socialsCommands,
-      craftCommands,
       calculatorCommands,
       timeCommands,
       weatherCommands,
@@ -116,7 +116,7 @@ export function CommandMenu({ ...props }: DialogProps) {
             command.description
               ?.toString()
               .toLowerCase()
-              .includes(searchQuery.toLowerCase()),
+              .includes(searchQuery.toLowerCase())
         ),
       }))
       .filter((group) => group.commands.length > 0);
@@ -136,14 +136,13 @@ export function CommandMenu({ ...props }: DialogProps) {
     weatherCommands,
     geminiCommands,
     socialsCommands,
-    craftCommands,
   ]);
 
   // Helper functions
   const getAllCommands = () => {
     return filteredCommands.reduce(
       (acc, group) => [...acc, ...group.commands],
-      [] as any[],
+      [] as any[]
     );
   };
 
@@ -232,56 +231,35 @@ export function CommandMenu({ ...props }: DialogProps) {
   // Render component
   return (
     <CommandDialog open={open} onOpenChange={setOpen} {...props}>
-      <motion.div className="p-4 border-b border-neutral-700">
-        <div className="flex items-center gap-3 px-3 py-2 rounded-lg">
-          {calculatorCommands.name === "Result" ? (
-            <HiCalculator className="w-5 h-5 text-gray-400" />
-          ) : (
-            <HiOutlineCommandLine className="w-5 h-5 text-gray-400" />
-          )}
-          <input
-            type="text"
-            placeholder={
-              calculatorCommands.name === "Result"
-                ? "Calculate anything..."
-                : "Type a command or search..."
-            }
-            className="w-full bg-transparent border-none outline-none placeholder-gray-400 text-lg py-1 sm:py-0"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                e.preventDefault();
-                const allCommands = getAllCommands();
-                if (allCommands.length > 0) {
-                  const commandToExecute = allCommands[selectedIndex];
-                  if (commandToExecute?.action) {
-                    commandToExecute.action();
-                  }
-                }
+      <CommandInput
+        placeholder={
+          calculatorCommands.name === "Result"
+            ? "Calculate anything..."
+            : "Type a command or search..."
+        }
+        className="w-full bg-transparent border-none outline-none placeholder-gray-400 text-lg py-1 sm:py-0"
+        value={searchQuery}
+        onValueChange={(value) => setSearchQuery(value)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            const allCommands = getAllCommands();
+            if (allCommands.length > 0) {
+              const commandToExecute = allCommands[selectedIndex];
+              if (commandToExecute?.action) {
+                commandToExecute.action();
               }
-            }}
-            autoFocus
-          />
-          <div className="flex items-center gap-2">
-            <kbd className="hidden sm:flex items-center justify-center px-2 py-1 text-xs font-medium rounded bg-gray-400">
-              ESC
-            </kbd>
-          </div>
-        </div>
-      </motion.div>
-
-      {/* Command List */}
-      <Command.List>
-        <Command.Empty>No results found.</Command.Empty>
+            }
+          }
+        }}
+        autoFocus
+      />
+      <CommandList className="min-h-80">
         {filteredCommands.map((group, groupIndex) => (
-          <Command.Group key={group.name} className="my-4">
-            <div className="px-4 sm:px-6 py-2 text-xs font-medium tracking-wider">
-              {group.name.toUpperCase()}
-            </div>
+          <CommandGroup key={group.name} heading={group.name}>
             {group.commands.map((command, index) => (
               <CommandItem key={command.id} asChild>
-                <motion.button
+                <button
                   onClick={() => {
                     if (command.id === "gemini-input" && !searchQuery) {
                       setSearchQuery("@");
@@ -291,15 +269,15 @@ export function CommandMenu({ ...props }: DialogProps) {
                   }}
                   onMouseMove={() => handleMouseMove(groupIndex, index)}
                   className={cn(
-                    `relative w-full flex items-center group transition-all duration-75 cursor-pointer !py-10 !px-8`,
+                    `relative w-full flex items-center group transition-all duration-75 cursor-pointer`
                   )}
                 >
-                  <div className="flex items-start gap-3 sm:gap-4 min-w-0 w-full relative z-10">
+                  <div className="flex items-center gap-3 sm:gap-4 min-w-0 w-full relative z-10">
                     {command.icon && (
                       <div
                         className={cn(
-                          "p-1.5 rounded-lg flex-shrink-0 flex items-center justify-center w-8 h-8 transition-colors",
-                          "bg-gray-300/60 text-gray-600/50 dark:bg-gray-600/50 dark:text-white",
+                          "rounded-lg flex-shrink-0 flex items-center justify-center w-8 h-8 transition-colors",
+                          "bg-gray-300/60 text-gray-600/50 dark:bg-gray-600/50 dark:text-white"
                         )}
                       >
                         {React.createElement(command.icon, {
@@ -325,12 +303,12 @@ export function CommandMenu({ ...props }: DialogProps) {
                       </div>
                     )}
                   </div>
-                </motion.button>
+                </button>
               </CommandItem>
             ))}
-          </Command.Group>
+          </CommandGroup>
         ))}
-      </Command.List>
+      </CommandList>
     </CommandDialog>
   );
 }
@@ -352,16 +330,15 @@ const CommandDialog = ({ children, ...props }: CommandDialogProps) => {
   );
 };
 
-const CommandItem = React.forwardRef<
-  React.ElementRef<typeof Command.Item>,
-  React.ComponentPropsWithoutRef<typeof Command.Item>
->(({ className, ...props }, ref) => (
-  <Command.Item
-    ref={ref}
-    className={cn(
-      "relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm data-[disabled=true]:pointer-events-none data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground data-[disabled=true]:opacity-50",
-      className,
-    )}
-    {...props}
-  />
-));
+
+function CommandMenuKbd({ className, ...props }: React.ComponentProps<"kbd">) {
+  return (
+    <kbd
+      className={cn(
+        "pointer-events-none flex h-5 min-w-6 items-center justify-center gap-1 rounded-sm bg-black/5 px-1 font-sans text-[13px] font-normal text-muted-foreground shadow-[inset_0_-1px_2px] shadow-black/10 select-none dark:bg-white/10 dark:shadow-white/10 dark:text-shadow-xs [&_svg:not([class*='size-'])]:size-3",
+        className
+      )}
+      {...props}
+    />
+  );
+}

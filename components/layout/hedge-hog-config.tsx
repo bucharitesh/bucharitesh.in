@@ -5,7 +5,7 @@ import React from "react";
 import { Button } from "../ui/button";
 import { Settings, Squirrel } from "lucide-react";
 import Link from "next/link";
-import { useBuddyStore } from "@/archive/components/buddy/buddy-logic";
+import { useBuddyStore } from "@/components/buddy/buddy-logic";
 
 const BuddyConfig = () => {
   const { enabled } = useBuddyStore((s) => s.hedgehogConfig);

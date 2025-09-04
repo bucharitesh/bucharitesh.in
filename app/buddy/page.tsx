@@ -1,4 +1,4 @@
-import { BuddyOptions } from '@/archive/components/buddy/options'
+import { BuddyOptions } from '@/components/buddy/options'
 import React from 'react'
 import { ENABLE_BUDDY } from '@/lib/config'
 import { notFound } from 'next/navigation';
