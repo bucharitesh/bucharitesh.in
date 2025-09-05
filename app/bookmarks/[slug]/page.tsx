@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { getBookmarkItems, getBookmarks } from "@/lib/services/raindrop";
 import { cn, sortByProperty } from "@/lib/utils";
-import { ScrollArea } from "@/components/scroll-area";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import Balancer from "react-wrap-balancer";
 import { BookmarkList } from "@/components/bookmarks/bookmark-list";
 import { meta } from "@/lib/config";
@@ -29,11 +29,11 @@ async function fetchData(slug) {
 }
 
 export default async function CollectionPage({ params }) {
-  const { slug } = params;
+  const { slug } = await params;
   const { currentBookmark, bookmarkItems } = await fetchData(slug);
 
   return (
-    <ScrollArea className="bg-grid" useScrollAreaId>
+    <ScrollArea className="bg-grid" useScrollAreaId={true}>
       <div className="content-wrapper">
         <div className="content container">
           <div
@@ -56,7 +56,7 @@ export default async function CollectionPage({ params }) {
 }
 
 export async function generateMetadata({ params }) {
-  const { slug } = params;
+  const { slug } = await params;
   const bookmarks = await getBookmarks();
   const currentBookmark = bookmarks.find((bookmark) => bookmark.slug === slug);
   if (!currentBookmark) return null;

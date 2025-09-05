@@ -100,18 +100,18 @@ export default async function RootLayout({
         </head>
         <body
           className={cn(
-            "antialiased overflow-x-hidden",
+            "antialiased",
             fontX.variable,
             fontMono.variable
           )}
         >
           <Providers session={session}>
-            <Navigation />
             <main
               id="main-content"
               vaul-drawer-wrapper=""
-              className="relative mt-12 md:mt-0 h-full w-full flex-1"
+              className="relative min-h-screen w-full bg-background"
             >
+              <Navigation />
               {children}
             </main>
             <DevTools />

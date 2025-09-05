@@ -1,6 +1,7 @@
-// import PageWrapper from "@/old/ui/layout/page-wrapper";
 import { Metadata } from "next/types";
 import CalEmbed from "./cal-embed";
+import { FloatingHeader } from "@/components/navigation/floating-header";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 export const metadata: Metadata = {
   title: "Book a Meeting",
@@ -13,10 +14,13 @@ export const metadata: Metadata = {
 
 export default function BookingPage() {
   return (
-    <div className="flex flex-col items-center justify-center h-screen w-screen space-y-12 select-none">
-      <div className="z-10 w-full mx-auto overflow-y-auto pb-20 pt-12 md:pt-0 px-12">
-        <CalEmbed />
+    <ScrollArea useScrollAreaId className="h-full">
+      <FloatingHeader title="Book a Meeting" />
+      <div className="flex h-full content-wrapper p-0 lg:px-8 lg:pt-12 lg:pb-20 md:min-h-dvh items-center justify-center space-y-12 select-none">
+        <div className="flex items-center justify-center z-10 w-full h-full mx-auto">
+          <CalEmbed />
+        </div>
       </div>
-    </div>
+    </ScrollArea>
   );
 }

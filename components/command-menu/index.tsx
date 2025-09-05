@@ -15,6 +15,7 @@ import {
   DialogDescription,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { VisuallyHidden } from "@/components/ui/visually-hidden";
 
 // Import command hooks
 import { useThemeCommand } from "./apps/theme-command";
@@ -322,8 +323,14 @@ const CommandDialog = ({ children, ...props }: CommandDialogProps) => {
         noClose
         className="overflow-hidden p-0 max-w-2xl border-neutral-700"
       >
-        <DialogTitle hidden />
-        <DialogDescription hidden />
+        <VisuallyHidden asChild>
+          <DialogTitle>Command Menu</DialogTitle>
+        </VisuallyHidden>
+        <VisuallyHidden asChild>
+          <DialogDescription>
+            Search for commands and tools
+          </DialogDescription>
+        </VisuallyHidden>
         <Command>{children}</Command>
       </DialogContent>
     </Dialog>

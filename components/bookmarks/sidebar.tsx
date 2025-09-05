@@ -1,75 +1,67 @@
-"use client";
+'use client'
 
-import { RadioIcon } from "lucide-react";
+import { RadioIcon } from 'lucide-react'
+import dynamic from 'next/dynamic'
+import { usePathname, useRouter } from 'next/navigation'
+import { useMemo } from 'react'
 
-import { ScrollArea } from "@/components/scroll-area";
+import { LoadingSpinner } from '@/components/ui/loading'
+import { ScrollArea } from '@/components/ui/scroll-area'
+import { Button } from '@/components/ui/button'
 
-import { useKeyPress } from "@/lib/hooks";
-import { cn } from "@/lib/utils";
-import { Button } from "../ui/button";
-import { useRouter } from "next/navigation";
-import { usePathname } from "next/navigation";
-
-const keyCodePathnameMapping = {
-  Digit1: "/",
-  Digit2: "/writing",
-  Digit3: "/journey",
-  Digit4: "/stack",
-  Digit5: "/workspace",
-  Digit6: "/bookmarks",
-};
-
-export const SideMenu = ({
-  children,
-  title,
-  isInner,
-  rss_url,
-  routeMapping,
-}: any) => {
-  const router = useRouter();
-  const pathname = usePathname();
-
-  function onKeyPress(event) {
-    const key = event.code;
-    const targetPathname = routeMapping[key];
-    if (targetPathname && targetPathname !== pathname)
-      router.push(targetPathname);
+const SubmitBookmarkDialog = dynamic(
+  () => import('@/components/bookmarks/submit-bookmark/dialog').then((mod) => mod.SubmitBookmarkDialog),
+  {
+    loading: () => <LoadingSpinner />,
+    ssr: false
   }
+)
 
-  routeMapping && useKeyPress(onKeyPress, Object.keys(routeMapping));
+import { cn } from '@/lib/utils'
 
-  return (
-    <ScrollArea
-      className={cn(
-        "hidden bg-zinc-50 dark:bg-zinc-800 lg:flex lg:flex-col lg:border-r dark:lg:border-zinc-700",
-        isInner ? "lg:w-80 xl:w-96" : "lg:w-60 xl:w-72",
-      )}
-    >
-      {title && (
-        <div className="sticky top-0 z-10 border-b dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 px-5 py-3">
-          <div className="flex items-center justify-between">
-            <span className="text-sm font-semibold tracking-tight">
-              {title}
-            </span>
-            <div className="flex items-center gap-2">
-              {rss_url && (
-                <Button variant="outline" size="xs" asChild>
-                  <a
-                    href={rss_url}
-                    title="RSS feed"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <RadioIcon size={16} className="mr-2" />
-                    RSS feed
-                  </a>
-                </Button>
-              )}
+export const SideMenu = ({ children, title, bookmarks = [], isInner } : { children: React.ReactNode, title: string, bookmarks: any[], isInner: boolean }) => {
+  const pathname = usePathname()
+
+  const isWritingPath = pathname.startsWith('/writing')
+  const isBookmarksPath = pathname.startsWith('/bookmarks')
+  const currentBookmark = bookmarks.find((bookmark : any) => `/bookmarks/${bookmark.slug}` === pathname)
+
+  const memoizedScrollArea = useMemo(
+    () => (
+      <ScrollArea
+        className={cn(
+          'hidden bg-zinc-50 lg:flex lg:flex-col lg:border-r',
+          isInner ? 'lg:w-80 xl:w-96' : 'lg:w-60 xl:w-72'
+        )}
+      >
+        {title && (
+          <div className="sticky top-0 z-10 border-b bg-zinc-50 px-5 py-3">
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-semibold tracking-tight">{title}</span>
+              <div className="flex items-center gap-2">
+                {(isWritingPath || isBookmarksPath) && (
+                  <Button variant="outline" size="xs" asChild>
+                    <a
+                      href={isWritingPath ? '/writing.xml' : '/bookmarks.xml'}
+                      title="RSS feed"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <RadioIcon size={16} className="mr-2" />
+                      RSS feed
+                    </a>
+                  </Button>
+                )}
+                {isBookmarksPath && <SubmitBookmarkDialog bookmarks={bookmarks} currentBookmark={currentBookmark} />}
+              </div>
             </div>
           </div>
-        </div>
-      )}
-      <div className="bg-zinc-50 dark:bg-zinc-800 p-3">{children}</div>
-    </ScrollArea>
-  );
-};
+        )}
+        <div className="bg-zinc-50 p-3">{children}</div>
+      </ScrollArea>
+    ),
+    [isInner, title, isWritingPath, isBookmarksPath, bookmarks, currentBookmark, children]
+  )
+
+  return memoizedScrollArea
+}

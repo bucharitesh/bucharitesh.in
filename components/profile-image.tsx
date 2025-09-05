@@ -15,7 +15,7 @@ export const SelfImage = () => (
 export const ProfileImage = () => {
   return (
     <div
-      className="relative size-14 rounded-full ring-1 ring-border ring-offset-2 ring-offset-background select-none sm:size-20 flex-shrink-0"
+      className="relative size-10 rounded-full ring-1 ring-border ring-offset-2 ring-offset-background select-none sm:size-20 flex-shrink-0"
       style={{ aspectRatio: "1 / 1" }}
     >
       <Image

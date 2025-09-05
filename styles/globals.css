@@ -81,7 +81,7 @@
 }
 
 html {
-  @apply scroll-smooth antialiased;
+  @apply overflow-hidden scroll-smooth antialiased;
   text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
@@ -139,7 +139,7 @@ html {
 
 @layer components {
   .content-wrapper {
-    @apply z-[1] w-full px-6 pb-8 pt-8 lg:px-8 lg:pb-16 lg:pt-24;
+    @apply z-[1] w-full px-6 pt-8 pb-8 lg:px-8 lg:pt-12 lg:pb-20;
   }
 
   .content {
@@ -147,7 +147,7 @@ html {
   }
 
   .scrollable-area {
-    @apply h-full max-h-dynamic-screen min-h-dynamic-screen overflow-y-auto overflow-x-hidden;
+    @apply h-full max-h-dvh min-h-dvh overflow-x-hidden overflow-y-auto;
   }
 
   .horizontal-scroll-area {
@@ -155,7 +155,13 @@ html {
   }
 
   .thumbnail-shadow {
-    @apply shadow-[0_0_0_0.5px] shadow-neutral-200 dark:shadow-neutral-800 ring-1 ring-neutral-200/50 dark:ring-neutral-800/50 ring-offset-2 ring-offset-neutral-50 dark:ring-offset-neutral-900;
+    box-shadow:
+    0 0 0 0.5px #e2e8f0,
+    0 0 0 1px rgba(226, 232, 240, 0.5),
+    0 0 0 3px #f8fafc,
+    0 0 0 3.5px #f1f5f9,
+    0 10px 15px -3px rgb(59 130 246/5%),
+    0 4px 6px -4px rgb(59 130 246/5%);
   }
 }
 

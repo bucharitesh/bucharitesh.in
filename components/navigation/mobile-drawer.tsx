@@ -5,7 +5,14 @@ import {
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
+import { 
+  Drawer, 
+  DrawerContent, 
+  DrawerDescription, 
+  DrawerTitle, 
+  DrawerTrigger 
+} from "@/components/ui/drawer";
+import { VisuallyHidden } from "@/components/ui/visually-hidden";
 import Link from "next/link";
 import { DockConfig, meta } from "@/lib/config";
 import { usePathname } from "next/navigation";
@@ -34,6 +41,14 @@ export function MobileDrawer() {
         </Button>
       </DrawerTrigger>
       <DrawerContent className="h-4/5">
+        <VisuallyHidden asChild>
+          <DrawerTitle>Navigation Menu</DrawerTitle>
+        </VisuallyHidden>
+        <VisuallyHidden asChild>
+          <DrawerDescription>
+            Navigate through the website sections and social links
+          </DrawerDescription>
+        </VisuallyHidden>
         <div className="overflow-y-auto p-4">
           <div className="flex w-full flex-col text-sm space-y-4">
             <div className="flex flex-col gap-4">

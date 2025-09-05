@@ -2,11 +2,16 @@ import { Metadata } from "next/types";
 import { cn } from "@/lib/utils";
 import styles from "./notes.module.css";
 import Polaroid from "@/components/guestbook/polaroid";
-import { NextWordmark, Sticker, VercelLogo } from "@/components/guestbook/stickers";
+import {
+  NextWordmark,
+  Sticker,
+  VercelLogo,
+} from "@/components/guestbook/stickers";
 import GuestbookEntries from "@/components/guestbook/guestbook-entries";
 import { Provider } from "jotai";
 import WriteNoteCTA from "@/components/guestbook/write";
-
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { FloatingHeader } from "@/components/navigation/floating-header";
 
 export const metadata: Metadata = {
   title: "Guestbook",
@@ -35,40 +40,52 @@ export const dynamic = "force-dynamic";
 export default async function GuestbookPage() {
   return (
     <Provider>
-      <div className={cn("h-screen w-screen bg-gray-1")} style={{
-      "backgroundColor": "#06c",
-      // "backgroundImage": "linear-gradient(rgba(255,255,255,0.2) 2px, transparent 2px), linear-gradient(90deg, rgba(255,255,255,0.2) 2px, transparent 1px), linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)",
-      "backgroundSize": "100px 100px, 100px 100px, 20px 20px, 20px 20px",
-      "backgroundPosition": "-2px -2px, -2px -2px, -1px -1px, -1px -1px",
-    }}>
+      <ScrollArea useScrollAreaId>
+        <FloatingHeader title="Guestbook" />
         <div
-          id="mat-container"
-          className={cn(
-            "relative w-full h-full overflow-hidden",
-            // styles.matContainer
-          )}
+          className={cn("h-screen w-screen bg-gray-1")}
+          style={{
+            backgroundColor: "#06c",
+            // "backgroundImage": "linear-gradient(rgba(255,255,255,0.2) 2px, transparent 2px), linear-gradient(90deg, rgba(255,255,255,0.2) 2px, transparent 1px), linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)",
+            backgroundSize: "100px 100px, 100px 100px, 20px 20px, 20px 20px",
+            backgroundPosition: "-2px -2px, -2px -2px, -1px -1px, -1px -1px",
+          }}
         >
-          <div className="z-10">
-            <div id="mat-texture" className={styles.matTexture} />
-            <div aria-hidden className={styles.window} />
-            <div id="mat-grid" className={styles.matGrid}>
-              <div id="diagonal-lines" className={styles.diagonalLines} />
+          <div
+            id="mat-container"
+            className={cn(
+              "relative w-full h-full overflow-hidden"
+              // styles.matContainer
+            )}
+          >
+            <div className="z-10">
+              <div id="mat-texture" className={styles.matTexture} />
+              <div aria-hidden className={styles.window} />
+              <div id="mat-grid" className={styles.matGrid}>
+                <div id="diagonal-lines" className={styles.diagonalLines} />
+              </div>
             </div>
+            <main className="relative z-20 h-full w-full overflow-hidden">
+              <GuestbookEntries />
+              <Polaroid
+                src="https://cdn.bucharitesh.in/guestbook/photo_1.jpeg"
+                alt="kedarkantha"
+              />
+              <Polaroid
+                src="https://cdn.bucharitesh.in/guestbook/photo_2.jpg"
+                alt="graduation"
+              />
+              <Sticker>
+                <VercelLogo />
+              </Sticker>
+              <Sticker>
+                <NextWordmark />
+              </Sticker>
+              <WriteNoteCTA />
+            </main>
           </div>
-          <main className="relative z-20 h-full w-full overflow-hidden">
-            <GuestbookEntries />
-            <Polaroid src="https://cdn.bucharitesh.in/guestbook/photo_1.jpeg" alt="kedarkantha" />
-            <Polaroid src="https://cdn.bucharitesh.in/guestbook/photo_2.jpg" alt="graduation" />
-            <Sticker>
-              <VercelLogo />
-            </Sticker>
-            <Sticker>
-              <NextWordmark />
-            </Sticker>
-            <WriteNoteCTA />
-          </main>
         </div>
-      </div>
+      </ScrollArea>
     </Provider>
   );
-};
+}

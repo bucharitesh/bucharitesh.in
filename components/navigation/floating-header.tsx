@@ -1,32 +1,31 @@
 "use client";
 
-import { memo, useEffect, useState } from "react";
+import { memo, useEffect, useMemo, useState } from "react";
 import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
-import { ArrowLeftIcon } from "lucide-react";
+import { ArrowLeftIcon, RadioIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { SCROLL_AREA_ID } from "@/components/scroll-area";
-import { cn } from "@/lib/utils";
+import { MOBILE_SCROLL_THRESHOLD, SCROLL_AREA_ID } from "@/lib/config";
+import { SubmitBookmarkDrawer } from "../bookmarks/submit-bookmark/drawer";
 
 const MobileDrawer = dynamic(() =>
   import("@/components/navigation/mobile-drawer").then(
-    (mod) => mod.MobileDrawer,
-  ),
+    (mod) => mod.MobileDrawer
+  )
 );
 
-export const MOBILE_SCROLL_THRESHOLD = 20;
-
 export const FloatingHeader = memo(
-  ({ className, scrollTitle, title, children }: any) => {
+  ({ className, scrollTitle, title, bookmarks, currentBookmark, children }: any) => {
     const [transformValues, setTransformValues] = useState({
       translateY: 0,
       opacity: scrollTitle ? 0 : 1,
     });
     const pathname = usePathname();
-    const isWritingPath = pathname.startsWith("/writing");
+    const isBookmarksIndexPage = pathname === '/bookmarks'
+    const isBookmarkPath = pathname.startsWith('/bookmarks')
 
     const goBack = pathname.split("/").length > 2;
     const goBackLink = pathname.split("/").slice(0, -1).join("/") || "/";
@@ -44,9 +43,9 @@ export const FloatingHeader = memo(
               MOBILE_SCROLL_THRESHOLD *
                 (MOBILE_SCROLL_THRESHOLD / (scrollY ** 2 / 100))) /
               100,
-            0,
+            0
           ),
-          1,
+          1
         );
 
         setTransformValues({ translateY, opacity });
@@ -60,13 +59,24 @@ export const FloatingHeader = memo(
       return () => scrollAreaElem?.removeEventListener("scroll", onScroll);
     }, [scrollTitle]);
 
+    const memoizedSubmitBookmarkDrawer = useMemo(
+      () => <SubmitBookmarkDrawer bookmarks={bookmarks} currentBookmark={currentBookmark} />,
+      [bookmarks, currentBookmark]
+    )
+
+    const memoizedBalancer = useMemo(
+      () => (
+        <Balancer ratio={0.35}>
+          <span className="line-clamp-2 font-semibold tracking-tight">
+            {title}
+          </span>
+        </Balancer>
+      ),
+      [title]
+    );
+
     return (
-      <header
-        className={cn(
-          "fixed top-0 z-50 mx-auto flex h-12 w-full shrink-0 items-center overflow-hidden border-b border-b-gray-200 dark:border-b-neutral-800 bg-white dark:bg-neutral-900 text-sm font-medium",
-          className,
-        )}
-      >
+      <header className="sticky inset-x-0 top-0 z-[999999] mx-auto flex h-12 w-full shrink-0 items-center overflow-hidden border-b bg-background text-sm font-medium lg:hidden">
         <div className="flex size-full items-center px-3">
           <div className="flex w-full items-center justify-between gap-2">
             <div className="flex flex-1 items-center gap-1">
@@ -96,22 +106,28 @@ export const FloatingHeader = memo(
                     {scrollTitle}
                   </span>
                 )}
-                {title && (
-                  <Balancer ratio={0.35}>
-                    <span className="line-clamp-2 font-semibold tracking-tight">
-                      {title}
-                    </span>
-                  </Balancer>
+                {title && memoizedBalancer}
+              </div>
+              <div className="flex items-center gap-2">
+                {(isBookmarksIndexPage) && (
+                  <Button variant="outline" size="xs" asChild>
+                    <a
+                      href={'/bookmarks/feed.xml'}
+                      title="RSS feed"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <RadioIcon size={16} className="mr-2" />
+                      RSS feed
+                    </a>
+                  </Button>
                 )}
+                {isBookmarkPath && memoizedSubmitBookmarkDrawer}
               </div>
             </div>
-            {/* This is a hack to show writing views with framer motion reveal effect */}
-            {scrollTitle && isWritingPath && (
-              <div className="flex min-w-[50px] justify-end">{children}</div>
-            )}
           </div>
         </div>
       </header>
     );
-  },
+  }
 );
