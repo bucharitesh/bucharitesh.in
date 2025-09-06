@@ -21,7 +21,7 @@ export interface DockProps extends VariantProps<typeof dockVariants> {
 }
 
 const dockVariants = cva(
-  "flex items-end w-auto h-[58px] px-2 fixed bg-white dark:bg-neutral-900 shadow-[0_30px_60px_rgba(0,0,0,0.12)] border border-gray-200 dark:border-gray-800 -bottom-2 left-1/2 rounded-full z-10 transform -translate-x-1/2 -translate-y-1/2 translate-y-20 animate-[slide-up-fade_500ms_ease_200ms_forwards]",
+  "flex items-end w-auto h-[58px] px-2 fixed bg-white dark:bg-neutral-900 shadow-[0_30px_60px_rgba(0,0,0,0.12)] border border-gray-200 dark:border-gray-800 -bottom-2 left-1/2 rounded-full z-10 transform -translate-x-1/2 -translate-y-1/2",
 );
 
 const Dock = React.forwardRef<HTMLDivElement, DockProps>(
@@ -48,7 +48,7 @@ const Dock = React.forwardRef<HTMLDivElement, DockProps>(
         {...props}
         className={cn(dockVariants({ className }))}
       >
-        <div className="absolute top-[-1px] w-[95%] h-[1px] opacity-20 z-[-1] bg-gradient-to-r from-transparent via-neutral-200 to-transparent dark:via-neutral-700 dark:to-transparent"></div>
+        <div className="absolute -top-px w-[95%] h-px opacity-20 -z-1 bg-linear-to-r from-transparent via-neutral-200 to-transparent dark:via-neutral-700 dark:to-transparent"></div>
         <div className="flex items-end gap-2 w-full py-2 md:h-auto md:overflow-visible sm:h-[72px] sm:overflow-x-auto sm:overflow-y-hidden">
           {renderChildren()}
         </div>

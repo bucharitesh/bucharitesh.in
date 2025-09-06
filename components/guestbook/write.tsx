@@ -285,7 +285,7 @@ export default function WriteNoteCTA() {
                               {step === 1 && (
                                 <motion.div
                                   className={cn(
-                                    "absolute -top-[4.5rem] w-full left-0 bg-[#101B1D] text-[1rem] rounded-md shadow-lg px-4 py-2 font-medium text-center border border-gray-800/40",
+                                    "absolute -top-18 w-full left-0 bg-[#101B1D] text-[1rem] rounded-md shadow-lg px-4 py-2 font-medium text-center border border-gray-800/40",
                                     errors
                                       ? "ring-2 ring-red-500/60"
                                       : "text-gray-100"
@@ -318,7 +318,7 @@ export default function WriteNoteCTA() {
                               )}
                               {step === 2 && (
                                 <motion.div
-                                  className="absolute -top-[4.5rem] w-full left-0 bg-[#101B1D] text-[1rem] rounded-6 shadow-lg px-4 py-2 font-medium text-center transition"
+                                  className="absolute -top-18 w-full left-0 bg-[#101B1D] text-[1rem] rounded-6 shadow-lg px-4 py-2 font-medium text-center transition"
                                   style={{
                                     textWrap: "balance",
                                   }}

@@ -5,7 +5,7 @@ import Grid from "./grid";
 
 const Page = () => {
   return (
-    <div className="w-full max-w-screen-lg p-6 mx-auto space-y-10 flex items-center justify-center flex-col pb-20">
+    <div className="w-full max-w-(--breakpoint-lg) p-6 mx-auto space-y-10 flex items-center justify-center flex-col pb-20">
       <Wrapper title="Grid" description="A non-responsive grid with no cells.">
         <Grid.System>
           <Grid height={"preserve-aspect-ratio"} columns={5} rows={2} />

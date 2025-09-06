@@ -31,7 +31,7 @@ const LoginButton = memo(function LoginButton() {
           text-neutral-900 dark:text-neutral-100
           border border-neutral-200 dark:border-neutral-700
           hover:border-neutral-300 dark:hover:border-neutral-600
-          shadow-sm hover:shadow-md
+          shadow-xs hover:shadow-md
           transition-all duration-300"
             onClick={() => signIn("github")}
             whileHover={{ scale: 1.02 }}
@@ -41,7 +41,7 @@ const LoginButton = memo(function LoginButton() {
             exit={{ opacity: 0, y: -20 }}
         >
             <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-neutral-100/0 via-neutral-100/50 dark:from-neutral-700/0 dark:via-neutral-700/50 to-transparent"
+                className="absolute inset-0 bg-linear-to-r from-neutral-100/0 via-neutral-100/50 dark:from-neutral-700/0 dark:via-neutral-700/50 to-transparent"
                 initial={{ x: "-100%" }}
                 whileHover={{ x: "100%" }}
                 transition={{ duration: 0.5, ease: "easeInOut" }}

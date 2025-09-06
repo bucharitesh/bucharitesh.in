@@ -316,7 +316,7 @@ export const useGeminiCommand = ({
                         setCopiedId("gemini-copy");
                         setTimeout(() => setCopiedId(null), 1000);
                       }}
-                      className="flex items-center gap-1.5 px-1.5 py-0.5 rounded text-xs bg-black/5 dark:bg-white/5 text-gray-500 dark:text-gray-400 transition-colors duration-200 hover:bg-black/10 dark:hover:bg-white/10"
+                      className="flex items-center gap-1.5 px-1.5 py-0.5 rounded-sm text-xs bg-black/5 dark:bg-white/5 text-gray-500 dark:text-gray-400 transition-colors duration-200 hover:bg-black/10 dark:hover:bg-white/10"
                     >
                       {copiedId === "gemini-copy" ? (
                         <HiCheck className="w-3 h-3" />

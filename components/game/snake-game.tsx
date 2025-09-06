@@ -256,7 +256,7 @@ const SnakeGame = React.forwardRef<HTMLDivElement, SnakeGameProps>(
       window.addEventListener("focus", handleWindowFocus);
 
       return () => {
-        window.removeEventListener("blur", handleWindowBlur);
+        window.removeEventListener("blur-sm", handleWindowBlur);
         window.removeEventListener("focus", handleWindowFocus);
       };
     }, []);
@@ -272,7 +272,7 @@ const SnakeGame = React.forwardRef<HTMLDivElement, SnakeGameProps>(
           ref={containerRef}
           tabIndex={0}
           className={cn(
-            "relative rounded-lg flex flex-col items-center cursor-pointer bg-muted border outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+            "relative rounded-lg flex flex-col items-center cursor-pointer bg-muted border outline-hidden focus:ring-2 focus:ring-ring focus:ring-offset-2",
             className,
           )}
           style={containerStyle}
@@ -300,7 +300,7 @@ const SnakeGame = React.forwardRef<HTMLDivElement, SnakeGameProps>(
         ref={containerRef}
         tabIndex={0}
         className={cn(
-          "relative rounded-lg bg-muted border outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+          "relative rounded-lg bg-muted border outline-hidden focus:ring-2 focus:ring-ring focus:ring-offset-2",
           className,
         )}
         style={containerStyle}
@@ -338,7 +338,7 @@ const SnakeGame = React.forwardRef<HTMLDivElement, SnakeGameProps>(
         {/* Game Over Overlay */}
         {gameOver && (
           <div
-            className="absolute inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center cursor-pointer"
+            className="absolute inset-0 bg-background/80 backdrop-blur-xs flex items-center justify-center cursor-pointer"
             onClick={resetGame}
           >
             <div className="text-center">
@@ -356,7 +356,7 @@ const SnakeGame = React.forwardRef<HTMLDivElement, SnakeGameProps>(
 
         {/* Pause Overlay */}
         {(isPaused || !isFocused) && !gameOver && (
-          <div className="absolute inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center">
+          <div className="absolute inset-0 bg-background/80 backdrop-blur-xs flex items-center justify-center">
             <div className="text-center">
               <div className="text-2xl font-bold text-foreground mb-2">
                 PAUSED

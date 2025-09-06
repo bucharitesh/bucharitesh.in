@@ -535,7 +535,7 @@ async function buildThemes() {
     --destructive-foreground: <%- colors.light["destructive-foreground"] %>;
     --border: <%- colors.light["border"] %>;
     --input: <%- colors.light["input"] %>;
-    --ring: <%- colors.light["ring"] %>;
+    --ring: <%- colors.light["ring-3"] %>;
     --radius: 0.5rem;
     --chart-1: <%- colors.light["chart-1"] %>;
     --chart-2: <%- colors.light["chart-2"] %>;
@@ -563,7 +563,7 @@ async function buildThemes() {
     --destructive-foreground: <%- colors.dark["destructive-foreground"] %>;
     --border: <%- colors.dark["border"] %>;
     --input: <%- colors.dark["input"] %>;
-    --ring: <%- colors.dark["ring"] %>;
+    --ring: <%- colors.dark["ring-3"] %>;
     --chart-1: <%- colors.dark["chart-1"] %>;
     --chart-2: <%- colors.dark["chart-2"] %>;
     --chart-3: <%- colors.dark["chart-3"] %>;
@@ -657,7 +657,7 @@ async function buildThemes() {
   --destructive: <%- colors.light["destructive"] %>;
   --destructive-foreground: <%- colors.light["destructive-foreground"] %>;
 
-  --ring: <%- colors.light["ring"] %>;
+  --ring: <%- colors.light["ring-3"] %>;
 
   --radius: <%- colors.light["radius"] %>;
 }
@@ -690,7 +690,7 @@ async function buildThemes() {
   --destructive: <%- colors.dark["destructive"] %>;
   --destructive-foreground: <%- colors.dark["destructive-foreground"] %>;
 
-  --ring: <%- colors.dark["ring"] %>;
+  --ring: <%- colors.dark["ring-3"] %>;
 }`;
 
     const themeCSS = [];

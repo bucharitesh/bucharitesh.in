@@ -84,7 +84,7 @@ export default function DownloadButton({
   return (
     <button
       onClick={downloadPDF}
-      className="hidden md:block fixed z-40 top-12 right-4 lg:top-12 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow-lg transition-colors duration-200"
+      className="hidden md:block fixed z-40 top-12 right-4 lg:top-12 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-sm shadow-lg transition-colors duration-200"
     >
       Download PDF
     </button>

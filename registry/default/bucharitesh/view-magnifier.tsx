@@ -96,10 +96,10 @@ const ViewMagnifier: React.FC<ViewMagnifierProps> = ({
   );
 
   return (
-    <div ref={containerRef} className="outline-none z-40" {...props}>
+    <div ref={containerRef} className="outline-hidden z-40" {...props}>
       <motion.div
         className={cn(
-          "fixed h-screen w-screen outline-none inset-0 pointer-events-none backdrop-blur-xl",
+          "fixed h-screen w-screen outline-hidden inset-0 pointer-events-none backdrop-blur-xl",
           "after:content-[''] after:rounded-[inherit] after:w-full after:h-full after:inset-0",
           "after:absolute after:pointer-events-none dark:after:block",
           "dark:after:shadow-[inset_0_0_0_1px_hsla(0,0%,100%,0.2)]",
@@ -111,7 +111,7 @@ const ViewMagnifier: React.FC<ViewMagnifierProps> = ({
       <motion.div
         className={cn(
           "relative left-1/2 right-1/2 w-full h-auto overflow-visible my-3",
-          "z-[60] rounded-2xl",
+          "z-60 rounded-2xl",
           "transform lg:transform-none",
           className,
         )}
@@ -154,7 +154,7 @@ const ViewMagnifier: React.FC<ViewMagnifierProps> = ({
             "bg-gray-400 dark:bg-gray-600",
             "hover:bg-gray-500 dark:hover:bg-gray-500",
             "transition-colors duration-300",
-            "focus-visible:outline-none focus-visible:ring-2",
+            "focus-visible:outline-hidden focus-visible:ring-2",
             "focus-visible:ring-gray-400 dark:focus-visible:ring-gray-500",
             "focus-visible:ring-offset-2",
             "focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900",

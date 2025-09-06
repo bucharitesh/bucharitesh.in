@@ -26,7 +26,7 @@ export default async function Page() {
       <Info show={["time", "screen"]} />
       <ScrollArea useScrollAreaId>
         <FloatingHeader scrollTitle="Ritesh Bucha" />
-        <div className="layout-sm relative z-10 grid gap-y-2 content-wrapper xl:layout-xl xl:gap-x-9 xl:px-0 [&>*]:col-start-2 xl:[&>*]:col-start-3">
+        <div className="layout relative z-10 content-wrapper">
           <header className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
             <ProfileImage />
             <div className="space-y-2">

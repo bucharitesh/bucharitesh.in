@@ -33,7 +33,7 @@ export function Time({ className }: { className?: string }) {
   return (
     <motion.div
       className={cn(
-        "z-[50] fixed top-4 left-4 text-xs font-x tracking-wider text-gray-600 dark:text-gray-300",
+        "z-50 fixed top-4 left-4 text-xs font-x tracking-wider text-gray-600 dark:text-gray-300",
         className,
       )}
       initial={fadeIn.initial}
@@ -51,7 +51,7 @@ export function ScreenSize({ className }: { className?: string }) {
   return (
     <motion.div
       className={cn(
-        "z-[50] fixed bottom-4 left-4 text-xs font-x tracking-wider text-gray-600 dark:text-gray-300",
+        "z-50 fixed bottom-4 left-4 text-xs font-x tracking-wider text-gray-600 dark:text-gray-300",
         className,
       )}
       initial={fadeIn.initial}

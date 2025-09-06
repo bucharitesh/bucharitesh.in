@@ -71,7 +71,7 @@ export const Card = ({
       <div
         className={cn(
           "relative overflow-hidden",
-          "after:content-[''] after:absolute after:w-full after:h-[200px] after:bottom-[-64px] after:transition-opacity after:duration-200 after:pointer-events-none after:bg-gradient-to-t after:via-transparent after:to-transparent after:from-black/90",
+          "after:content-[''] after:absolute after:w-full after:h-[200px] after:bottom-[-64px] after:transition-opacity after:duration-200 after:pointer-events-none after:bg-linear-to-t after:via-transparent after:to-transparent after:from-black/90",
           {
             "rounded-lg": craft_type !== "none",
           },
@@ -137,7 +137,7 @@ export const Card = ({
         >
           <div
             className={cn(
-              "whitespace-nowrap overflow-ellipsis overflow-hidden text-sm",
+              "whitespace-nowrap text-ellipsis overflow-hidden text-sm",
               {
                 "text-neutral-100": theme === "light",
                 "text-neutral-900": theme === "dark",
@@ -148,7 +148,7 @@ export const Card = ({
           </div>
           <div
             className={cn(
-              "whitespace-nowrap overflow-ellipsis overflow-hidden text-sm",
+              "whitespace-nowrap text-ellipsis overflow-hidden text-sm",
               {
                 "text-neutral-400": theme === "light",
                 "text-neutral-800/60": theme === "dark",

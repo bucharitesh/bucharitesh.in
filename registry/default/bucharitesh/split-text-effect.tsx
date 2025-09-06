@@ -12,10 +12,10 @@ interface CrossProps extends React.HTMLAttributes<HTMLDivElement> {
 const Cross = React.forwardRef<HTMLDivElement, CrossProps>(
   ({ position, className, color, ...props }, ref) => {
     const positionClasses = {
-      "top-left": "top-[-1px] left-[-1px] rotate-0",
-      "top-right": "top-[-1px] right-[-1px] rotate-90",
-      "bottom-left": "bottom-[-2px] left-[-1px] -rotate-90",
-      "bottom-right": "bottom-[-2px] right-[-1px] -rotate-180",
+      "top-left": "-top-px -left-px rotate-0",
+      "top-right": "-top-px -right-px rotate-90",
+      "bottom-left": "bottom-[-2px] -left-px -rotate-90",
+      "bottom-right": "bottom-[-2px] -right-px -rotate-180",
     };
 
     return (
@@ -31,11 +31,11 @@ const Cross = React.forwardRef<HTMLDivElement, CrossProps>(
         {...props}
       >
         <div
-          className="absolute left-0 top-0 w-[15px] h-[1px]"
+          className="absolute left-0 top-0 w-[15px] h-px"
           style={{ backgroundColor: color }}
         />
         <div
-          className="absolute left-0 bottom-0 w-[1px] h-[15px]"
+          className="absolute left-0 bottom-0 w-px h-[15px]"
           style={{ backgroundColor: color }}
         />
       </div>

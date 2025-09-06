@@ -22,7 +22,7 @@ export async function CraftsPager({ craft }: CraftsPagerProps) {
       {pager?.prev?.href && (
         <Link
           href={pager.prev.href}
-          className={cn(buttonVariants({ variant: "outline" }), "min-w-0")}
+          className={cn(buttonVariants({ variant: "outline-solid" }), "min-w-0")}
           title={pager.prev.title}
         >
           <ChevronLeftIcon
@@ -36,7 +36,7 @@ export async function CraftsPager({ craft }: CraftsPagerProps) {
         <Link
           href={pager.next.href}
           className={cn(
-            buttonVariants({ variant: "outline" }),
+            buttonVariants({ variant: "outline-solid" }),
             "ml-auto min-w-0 text-right",
           )}
           title={pager.next.title}

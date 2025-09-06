@@ -290,8 +290,8 @@ const GridSystem = ({
         <div className="grid_gridSystemLazyContent__qAuyX"></div>
         {debug && (
           <div
-            className="before:flex before:border before:border-dashed before:border-[var(--guide-color)] before:bg-black before:text-white before:text-xs before:absolute before:right-2 before:top-2 before:p-1 before:px-2
-                    before:xs:content-['xs'] before:sm:content-['smd'] before:md:content-['md'] before:lg:content-['lg'] before:animate-[disappear_2s_ease-out_forwards]"
+            className="before:flex before:border before:border-dashed before:border-(--guide-color) before:bg-black before:text-white before:text-xs before:absolute before:right-2 before:top-2 before:p-1 before:px-2
+                    before:xs:content-['xs'] sm:before:content-['smd'] md:before:content-['md'] lg:before:content-['lg'] before:animate-[disappear_2s_ease-out_forwards]"
           />
         )}
       </div>

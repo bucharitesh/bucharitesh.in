@@ -37,7 +37,7 @@ export const Ruler: React.FC<{
         }
       >
         {/* All lines container */}
-        <div className="relative w-full h-full [--ruler-line-color:theme(colors.neutral.400)] dark:[--ruler-line-color:theme(colors.neutral.500)]">
+        <div className="relative w-full h-full [--ruler-line-color:var(--color-neutral-400)] dark:[--ruler-line-color:var(--color-neutral-500)]">
           {/* Short lines - rendered every mm except at 10mm intervals */}
           {Array.from(
             { length: 120 * 10 },

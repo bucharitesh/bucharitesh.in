@@ -23,7 +23,7 @@ export default function ResumePage() {
       <DownloadButton contentId="resume" fileName="resume.pdf" />
 
       {/* Corner square */}
-      <div className="hidden z-[21] lg:block fixed top-0 left-0 w-8 h-8 border-r border-b" />
+      <div className="hidden z-21 lg:block fixed top-0 left-0 w-8 h-8 border-r border-b" />
 
       {/* Rulers */}
       <Ruler orientation="horizontal" scrollPosition={scrollX} />

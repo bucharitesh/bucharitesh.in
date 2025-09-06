@@ -17,6 +17,8 @@ export const meta = {
     "What I'm learning about shipping great products, becoming a better developer, and growing a career in tech.",
   image: {
     profile:
+      "https://res.cloudinary.com/bucha/image/upload/c_thumb,q_100/bucharitesh_u1v1rt.png",
+    profile_old:
       "https://res.cloudinary.com/bucha/image/upload/c_thumb,q_100/bucha_h6yyke.png",
     animated:
       "https://res.cloudinary.com/bucha/image/upload/c_thumb,q_100/download_1_ksk2zu.png",
@@ -30,7 +32,7 @@ export const meta = {
   ],
 };
 
-export const ENABLE_BUDDY = false;
+export const ENABLE_BUDDY = true;
 
 export const META_THEME_COLORS = {
   light: "#ffffff",

@@ -238,7 +238,7 @@ export function CommandMenu({ ...props }: DialogProps) {
             ? "Calculate anything..."
             : "Type a command or search..."
         }
-        className="w-full bg-transparent border-none outline-none placeholder-gray-400 text-lg py-1 sm:py-0"
+        className="w-full bg-transparent border-none outline-hidden placeholder-gray-400 text-lg py-1 sm:py-0"
         value={searchQuery}
         onValueChange={(value) => setSearchQuery(value)}
         onKeyDown={(e) => {
@@ -277,7 +277,7 @@ export function CommandMenu({ ...props }: DialogProps) {
                     {command.icon && (
                       <div
                         className={cn(
-                          "rounded-lg flex-shrink-0 flex items-center justify-center w-8 h-8 transition-colors",
+                          "rounded-lg shrink-0 flex items-center justify-center w-8 h-8 transition-colors",
                           "bg-gray-300/60 text-gray-600/50 dark:bg-gray-600/50 dark:text-white"
                         )}
                       >
@@ -297,7 +297,7 @@ export function CommandMenu({ ...props }: DialogProps) {
                       )}
                     </div>
                     {command.rightIcon && (
-                      <div className="flex-shrink-0">
+                      <div className="shrink-0">
                         {React.createElement(command.rightIcon, {
                           className: "w-4 h-4",
                         })}
@@ -342,7 +342,7 @@ function CommandMenuKbd({ className, ...props }: React.ComponentProps<"kbd">) {
   return (
     <kbd
       className={cn(
-        "pointer-events-none flex h-5 min-w-6 items-center justify-center gap-1 rounded-sm bg-black/5 px-1 font-sans text-[13px] font-normal text-muted-foreground shadow-[inset_0_-1px_2px] shadow-black/10 select-none dark:bg-white/10 dark:shadow-white/10 dark:text-shadow-xs [&_svg:not([class*='size-'])]:size-3",
+        "pointer-events-none flex h-5 min-w-6 items-center justify-center gap-1 rounded-xs bg-black/5 px-1 font-sans text-[13px] font-normal text-muted-foreground shadow-[inset_0_-1px_2px] shadow-black/10 select-none dark:bg-white/10 dark:shadow-white/10 dark:text-shadow-xs [&_svg:not([class*='size-'])]:size-3",
         className
       )}
       {...props}

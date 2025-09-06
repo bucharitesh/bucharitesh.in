@@ -28,7 +28,7 @@ const Cloud = ({ delay = 0 }) => (
     height="100%"
     alt=""
     draggable="false"
-    className="absolute opacity-75 blur-sm z-[18]"
+    className="absolute opacity-75 blur-xs z-18"
     initial={{ x: -350, y: -350 }}
     animate={{
       x: [-350, 350, 600, -400, -350],
@@ -91,7 +91,7 @@ const Plane = ({ delay = 0 }) => {
         height={56}
         alt=""
         draggable="false"
-        className="absolute z-[19]"
+        className="absolute z-19"
         initial={{ x: movement.start.x, y: movement.start.y }}
         animate={{
           x: [movement.start.x, movement.end.x],
@@ -111,7 +111,7 @@ const Plane = ({ delay = 0 }) => {
         height={24}
         alt=""
         draggable="false"
-        className="absolute opacity-30 z-[19]"
+        className="absolute opacity-30 z-19"
         initial={{
           x: movement.start.x + 20,
           y: movement.start.y + 20,
@@ -257,7 +257,7 @@ const WeatherInfo = ({ isNight, isRaining }) => (
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
-    className="absolute bottom-0 left-0 mb-3 ml-3 z-[21]"
+    className="absolute bottom-0 left-0 mb-3 ml-3 z-21"
   >
     <motion.div
       className="group relative bg-black/40 backdrop-blur-md rounded-lg px-2.5 py-1.5 flex items-center gap-2 text-white text-[0.6rem]"
@@ -363,12 +363,12 @@ const WeatherInfo = ({ isNight, isRaining }) => (
 
 //       {/* Night effects */}
 //       <motion.div
-//         className="absolute inset-0 bg-[#0A1431] pointer-events-none z-[21]"
+//         className="absolute inset-0 bg-[#0A1431] pointer-events-none z-21"
 //         animate={{ opacity: nightIntensity * 0.75 }}
 //         transition={{ duration: 1, ease: "easeInOut" }}
 //       />
 //       <motion.div
-//         className="absolute inset-0 pointer-events-none z-[22]"
+//         className="absolute inset-0 pointer-events-none z-22"
 //         animate={{ opacity: nightIntensity * 0.4 }}
 //         transition={{ duration: 1, ease: "easeInOut" }}
 //         style={{
@@ -377,7 +377,7 @@ const WeatherInfo = ({ isNight, isRaining }) => (
 //         }}
 //       />
 //       <motion.div
-//         className="absolute inset-0 pointer-events-none z-[22]"
+//         className="absolute inset-0 pointer-events-none z-22"
 //         animate={{ opacity: nightIntensity * 0.15 }}
 //         transition={{ duration: 1, ease: "easeInOut" }}
 //         style={{
@@ -412,7 +412,7 @@ const WeatherInfo = ({ isNight, isRaining }) => (
 //         href="https://en.wikipedia.org/wiki/Bangalore"
 //         target="_blank"
 //         rel="noreferrer"
-//         className="absolute bottom-0 right-0 mb-3 mr-3 select-none rounded-md border border-neutral-300 bg-neutral-50 px-2 py-1.5 text-[0.6rem] text-neutral-600 z-[21]"
+//         className="absolute bottom-0 right-0 mb-3 mr-3 select-none rounded-md border border-neutral-300 bg-neutral-50 px-2 py-1.5 text-[0.6rem] text-neutral-600 z-21"
 //         whileHover={{ scale: 1.05 }}
 //         whileTap={{ scale: 0.95 }}
 //       >
@@ -483,7 +483,7 @@ const Map = () => {
         className="rounded-xl relative z-10"
       />
       <motion.div
-        className="absolute inset-0 pointer-events-none z-[22]"
+        className="absolute inset-0 pointer-events-none z-22"
         animate={{ opacity: nightIntensity * 0.15 }}
         transition={{ duration: 1, ease: "easeInOut" }}
         style={{

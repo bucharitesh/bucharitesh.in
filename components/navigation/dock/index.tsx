@@ -53,10 +53,10 @@ function BottomDock({ className }: { className: string }) {
         className,
       )}
     >
-      <div className="absolute top-0 left-0 w-full h-full backdrop-blur [mask-image:linear-gradient(to_top,#000_25%,transparent)] [-webkit-mask-image:linear-gradient(to_top,#000_25%,transparent)]"></div>
+      <div className="absolute top-0 left-0 w-full h-full backdrop-blur-sm mask-[linear-gradient(to_top,#000_25%,transparent)] [-webkit-mask-image:linear-gradient(to_top,#000_25%,transparent)]"></div>
       <Dock
-        className={cn("transition-all", {
-          "-bottom-[4.5rem]": !active,
+        className={cn("transition-all duration-300", {
+          "-bottom-18": !active,
         })}
       >
         {DockConfig.navbar.map((item) => (

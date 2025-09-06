@@ -1,42 +1,72 @@
 "use client";
 
 import { ArrowUpIcon } from "lucide-react";
-import { useMotionValueEvent, useScroll } from "motion/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { SCROLL_AREA_ID } from "@/lib/config";
 
 export function ScrollTop({
   className,
   ...props
 }: React.ComponentProps<"button">) {
-  const { scrollY } = useScroll();
-
   const [visible, setVisible] = useState(false);
   const [scrollDirection, setScrollDirection] = useState<"up" | "down">("down");
 
-  useMotionValueEvent(scrollY, "change", (latestValue) => {
-    setVisible(latestValue >= 400);
+  useEffect(() => {
+    let lastScrollTop = 0;
 
-    const prev = scrollY.getPrevious() ?? 0;
-    const diff = latestValue - prev;
-    setScrollDirection(diff > 0 ? "down" : "up");
-  });
+    const handleScroll = () => {
+      // Try to get the scroll area element first, fallback to window
+      const scrollAreaElem = document.querySelector(`#${SCROLL_AREA_ID}`);
+      const scrollTop = scrollAreaElem?.scrollTop ?? window.scrollY;
+      
+      setVisible(scrollTop >= 400);
+
+      const diff = scrollTop - lastScrollTop;
+      setScrollDirection(diff > 0 ? "down" : "up");
+      lastScrollTop = scrollTop;
+    };
+
+    // Add event listeners to both scroll area and window
+    const scrollAreaElem = document.querySelector(`#${SCROLL_AREA_ID}`);
+    
+    if (scrollAreaElem) {
+      scrollAreaElem.addEventListener("scroll", handleScroll, { passive: true });
+    } else {
+      window.addEventListener("scroll", handleScroll, { passive: true });
+    }
+
+    return () => {
+      if (scrollAreaElem) {
+        scrollAreaElem.removeEventListener("scroll", handleScroll);
+      } else {
+        window.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, []);
 
   return (
     <Button
       data-visible={visible}
       data-scroll-direction={scrollDirection}
       className={cn(
-        "[--bottom:1rem] lg:[--bottom:2rem]",
-        "fixed right-4 rounded-full transition-all duration-300 bottom-[calc(var(--bottom,1rem)+env(safe-area-inset-bottom,0px))] z-50 lg:right-8",
-        "duration-300 data-[scroll-direction=down]:opacity-30 data-[scroll-direction=up]:opacity-100 data-[visible=false]:opacity-0",
+        "[--bottom:1rem] lg:[--bottom:2rem] z-100",
+        "fixed right-4 rounded-full transition-all duration-300 bottom-[calc(var(--bottom,1rem)+env(safe-area-inset-bottom,0px))] lg:right-8",
+        "duration-300 data-[scroll-direction=down]:opacity-80 data-[scroll-direction=up]:opacity-100 data-[visible=false]:opacity-0",
         className
       )}
       variant="secondary"
       size={"icon"}
-      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      onClick={() => {
+        const scrollAreaElem = document.querySelector(`#${SCROLL_AREA_ID}`);
+        if (scrollAreaElem) {
+          scrollAreaElem.scrollTo({ top: 0, behavior: "smooth" });
+        } else {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+      }}
       {...props}
     >
       <ArrowUpIcon className="size-5" />

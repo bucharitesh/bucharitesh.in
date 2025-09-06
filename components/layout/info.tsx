@@ -35,7 +35,7 @@ export function EasterEggs({ className }: { className?: string }) {
     <>
       <motion.div
         className={cn(
-          "z-[50] fixed top-4 right-4 text-xs font-x tracking-wider text-gray-600 dark:text-gray-300",
+          "z-50 fixed top-4 right-4 text-xs font-x tracking-wider text-gray-600 dark:text-gray-300",
           allEggsDiscovered && "text-green-400 font-semibold dark:text-green-400",
           className,
         )}

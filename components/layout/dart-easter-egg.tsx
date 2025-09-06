@@ -46,7 +46,7 @@ const DartEffect = () => {
 
   return (
     <>
-      <div className="fixed z-[10000] inset-0 pointer-events-none">
+      <div className="fixed z-10000 inset-0 pointer-events-none">
         {/* Only show these elements before explosion */}
         {!hasExploded && (
           <>

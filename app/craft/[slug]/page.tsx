@@ -62,7 +62,7 @@ export default async function Page({
   return (
     <ScrollArea useScrollAreaId>
       <FloatingHeader scrollTitle={craft.title} />
-      <div className="layout-sm relative z-10 grid gap-y-2 content-wrapper lg:layout-craft lg:gap-x-9 [&>*]:col-start-2 lg:[&>*]:col-start-3">
+      <div className="layout relative z-10 content-wrapper">
         <div className="mx-auto w-full">
           {/* <div className="mb-4 flex items-center space-x-1 text-sm text-muted-foreground">
           <Link
@@ -112,7 +112,7 @@ export default async function Page({
           </div>
         </div>
 
-        <div className="sticky space-y-4 top-14 right-0 hidden h-0 lg:!col-start-2 lg:row-start-1 lg:block col-span-1 max-w-md">
+        <div className="sticky space-y-4 top-14 right-0 hidden h-0 lg:col-start-2! lg:row-start-1 lg:block col-span-1 max-w-md">
           {/* <TableOfContents toc={toc} /> */}
           {/* <Contribute craft={craft} /> */}
         </div>

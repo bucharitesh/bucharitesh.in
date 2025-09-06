@@ -23,7 +23,7 @@ export function BuddyOptions(): JSX.Element {
   return (
     <ScrollArea useScrollAreaId>
       <FloatingHeader scrollTitle="Buddy" />
-      <div className="layout-sm relative z-10 grid gap-y-2 content-wrapper lg:layout-craft lg:gap-x-9 [&>*]:col-start-2 lg:[&>*]:col-start-3">
+      <div className="layout relative z-10 content-wrapper">
         <div className="w-full mx-auto space-y-6">
           <div className="grid grid-cols-1 gap-4 md:gap-6 items-start">
             <BuddyBuddyProfile {...hedgehogConfig} size={100} />
@@ -137,7 +137,7 @@ export function BuddyOptions(): JSX.Element {
           <BuddyColor />
           <BuddyAccessories />
         </div>
-        <div className="sticky space-y-4 top-14 right-0 hidden h-0 lg:!col-start-2 lg:row-start-1 lg:block col-span-1 max-w-md">
+        <div className="sticky space-y-4 top-14 right-0 hidden h-0 lg:col-start-2! lg:row-start-1 lg:block col-span-1 max-w-md">
           <Link href="/">Back</Link>
         </div>
       </div>
@@ -192,7 +192,7 @@ function BuddyAccessories(): JSX.Element {
                     onClick={() => onClick(acc)}
                     className={cn(
                       "relative flex items-center justify-center rounded-md p-1 transition",
-                      "hover:bg-primary/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary cursor-pointer",
+                      "hover:bg-primary/10 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-primary cursor-pointer",
                       selected && "ring-2 ring-primary bg-primary/5"
                     )}
                     title={capitalizeFirstLetter(acc)}
@@ -231,7 +231,7 @@ function BuddyColor(): JSX.Element {
               }
               className={cn(
                 "relative flex items-center justify-center rounded-md p-1 transition",
-                "hover:bg-primary/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary cursor-pointer",
+                "hover:bg-primary/10 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-primary cursor-pointer",
                 selected && "ring-2 ring-primary"
               )}
               title={capitalizeFirstLetter(option ?? "default").replace(
@@ -255,7 +255,7 @@ function BuddyColor(): JSX.Element {
               }
               className={cn(
                 "relative flex items-center justify-center rounded-md p-1 transition",
-                "hover:bg-primary/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary cursor-pointer",
+                "hover:bg-primary/10 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-primary cursor-pointer",
                 selected && "ring-2 ring-primary"
               )}
               title={capitalizeFirstLetter(option ?? "default")}

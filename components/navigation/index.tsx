@@ -6,7 +6,7 @@ import BuddyConfig from "../layout/hedge-hog-config";
 export default function Navigation() {
   return (
     <>
-      <BottomDock className="hidden lg:block " />
+      <BottomDock className="hidden lg:block" />
       <ScrollTop />
       <BuddyBuddyWithLogic />
       <BuddyConfig />

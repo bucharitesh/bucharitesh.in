@@ -286,7 +286,7 @@ function CommandLinkGroup({
           >
             {link?.iconImage ? (
               <Image
-                className="rounded-sm"
+                className="rounded-xs"
                 src={link.iconImage}
                 alt={link.title}
                 width={16}
@@ -379,7 +379,7 @@ function CommandMenuKbd({ className, ...props }: React.ComponentProps<"kbd">) {
   return (
     <kbd
       className={cn(
-        "pointer-events-none flex h-5 min-w-6 items-center justify-center gap-1 rounded-sm bg-black/5 px-1 font-sans text-[13px] font-normal text-muted-foreground shadow-[inset_0_-1px_2px] shadow-black/10 select-none dark:bg-white/10 dark:shadow-white/10 dark:text-shadow-xs [&_svg:not([class*='size-'])]:size-3",
+        "pointer-events-none flex h-5 min-w-6 items-center justify-center gap-1 rounded-xs bg-black/5 px-1 font-sans text-[13px] font-normal text-muted-foreground shadow-[inset_0_-1px_2px] shadow-black/10 select-none dark:bg-white/10 dark:shadow-white/10 dark:text-shadow-xs [&_svg:not([class*='size-'])]:size-3",
         className
       )}
       {...props}

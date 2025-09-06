@@ -58,12 +58,12 @@ export function MobileDrawer() {
                 onClick={() => setOpen(false)}
               >
                 <img
-                  src={meta.image.animated}
+                  src={meta.image.profile}
                   alt="Ritesh"
                   width={40}
                   height={40}
                   loading="lazy"
-                  className="rounded-full border shadow-sm"
+                  className="rounded-full border shadow-xs"
                 />
                 <div className="flex flex-col">
                   <span className="font-semibold tracking-tight">

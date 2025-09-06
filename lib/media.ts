@@ -30,7 +30,7 @@ export async function generateBlurUrl(
 
     return blurDataURL;
   } catch (error) {
-    console.error(`Error generating blur URL for ${mediaPath}:`, error);
+    console.error(`Error generating blur-sm URL for ${mediaPath}:`, error);
     return null;
   }
 }

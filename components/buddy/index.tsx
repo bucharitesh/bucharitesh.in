@@ -738,7 +738,7 @@ export class BuddyActor {
 
     return (
       <div
-        className="border rounded bg-white pointer-events-none fixed z-[1000] origin-top-left"
+        className="border rounded-sm bg-white pointer-events-none fixed z-1000 origin-top-left"
         // eslint-disable-next-line react/forbid-dom-props
         style={{
           left: x,
@@ -884,7 +884,7 @@ export class BuddyActor {
           {this.tooltip && !this.isDragging && (
             <div
               className={clsx(
-                "rounded transition-all absolute -top-10 left-1/2 -translate-x-1/2 pointer-events-none",
+                "rounded-sm transition-all absolute -top-10 left-1/2 -translate-x-1/2 pointer-events-none",
                 this.showTooltip ? "opacity-100" : "opacity-0  translate-y-10"
               )}
               // eslint-disable-next-line react/forbid-dom-props
