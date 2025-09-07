@@ -15,14 +15,12 @@ export const SelfImage = () => (
 export const ProfileImage = () => {
   return (
     <div
-      className="relative size-10 rounded-full ring-1 ring-border ring-offset-2 ring-offset-background select-none sm:size-20 shrink-0"
-      style={{ aspectRatio: "1 / 1" }}
+      className="relative size-20 mx-[2px] my-[3px]"
     >
-      <Image
+      <img
         src={meta.image.profile}
-        fill
-        priority={true}
-        className="rounded-full bg-secondary"
+        fetchPriority="high"
+        className="h-full w-full rounded-full ring-1 ring-border ring-offset-2 ring-offset-background select-none"
         alt={`A photo of ${meta.name}`}
       />
     </div>

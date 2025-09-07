@@ -44,7 +44,7 @@
     "scripts/**/*"
   ],
   "include": [
-    "next-env.d.ts",
+    "types/next-env.d.ts",
     "next.config.ts",
     "**/*.ts",
     "**/*.tsx",

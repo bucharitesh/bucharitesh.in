@@ -4,7 +4,7 @@ import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Craft } from "content-collections";
-import { getCrafts, getInlineCrafts } from "@/lib/db/craft";
+import { getInlineCrafts } from "@/lib/db/craft";
 
 interface CraftsPagerProps {
   craft: Craft;

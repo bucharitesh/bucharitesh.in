@@ -27,7 +27,7 @@
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 0 0% 98%;
 
-  --ring: 240 5.9% 10%;
+  --ring: ;
 
   --radius: 0.5rem;
 }
@@ -60,7 +60,7 @@
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 0 0% 98%;
 
-  --ring: 240 4.9% 83.9%;
+  --ring: ;
 }
 
 .theme-slate {
@@ -91,7 +91,7 @@
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 210 40% 98%;
 
-  --ring: 222.2 84% 4.9%;
+  --ring: ;
 
   --radius: 0.5rem;
 }
@@ -124,7 +124,7 @@
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 210 40% 98%;
 
-  --ring: 212.7 26.8% 83.9;
+  --ring: ;
 }
 
 .theme-stone {
@@ -155,7 +155,7 @@
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 60 9.1% 97.8%;
 
-  --ring: 20 14.3% 4.1%;
+  --ring: ;
 
   --radius: 0.95rem;
 }
@@ -188,7 +188,7 @@
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 60 9.1% 97.8%;
 
-  --ring: 24 5.7% 82.9%;
+  --ring: ;
 }
 
 .theme-gray {
@@ -219,7 +219,7 @@
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 210 20% 98%;
 
-  --ring: 224 71.4% 4.1%;
+  --ring: ;
 
   --radius: 0.35rem;
 }
@@ -252,7 +252,7 @@
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 210 20% 98%;
 
-  --ring: 216 12.2% 83.9%;
+  --ring: ;
 }
 
 .theme-neutral {
@@ -283,7 +283,7 @@
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 0 0% 98%;
 
-  --ring: 0 0% 3.9%;
+  --ring: ;
 
   --radius: ;
 }
@@ -316,7 +316,7 @@
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 0 0% 98%;
 
-  --ring: 0 0% 83.1%;
+  --ring: ;
 }
 
 .theme-red {
@@ -347,7 +347,7 @@
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 0 0% 98%;
 
-  --ring: 0 72.2% 50.6%;
+  --ring: ;
 
   --radius: 0.4rem;
 }
@@ -380,7 +380,7 @@
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 0 0% 98%;
 
-  --ring: 0 72.2% 50.6%;
+  --ring: ;
 }
 
 .theme-rose {
@@ -411,7 +411,7 @@
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 0 0% 98%;
 
-  --ring: 346.8 77.2% 49.8%;
+  --ring: ;
 
   --radius: 0.5rem;
 }
@@ -444,7 +444,7 @@
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 0 85.7% 97.3%;
 
-  --ring: 346.8 77.2% 49.8%;
+  --ring: ;
 }
 
 .theme-orange {
@@ -475,7 +475,7 @@
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 60 9.1% 97.8%;
 
-  --ring: 24.6 95% 53.1%;
+  --ring: ;
 
   --radius: 0.95rem;
 }
@@ -508,7 +508,7 @@
   --destructive: 0 72.2% 50.6%;
   --destructive-foreground: 60 9.1% 97.8%;
 
-  --ring: 20.5 90.2% 48.2%;
+  --ring: ;
 }
 
 .theme-green {
@@ -539,7 +539,7 @@
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 0 0% 98%;
 
-  --ring: 142.1 76.2% 36.3%;
+  --ring: ;
 
   --radius: ;
 }
@@ -572,7 +572,7 @@
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 0 85.7% 97.3%;
 
-  --ring: 142.4 71.8% 29.2%;
+  --ring: ;
 }
 
 .theme-blue {
@@ -603,7 +603,7 @@
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 210 40% 98%;
 
-  --ring: 221.2 83.2% 53.3%;
+  --ring: ;
 
   --radius: ;
 }
@@ -636,7 +636,7 @@
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 210 40% 98%;
 
-  --ring: 224.3 76.3% 48%;
+  --ring: ;
 }
 
 .theme-yellow {
@@ -667,7 +667,7 @@
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 60 9.1% 97.8%;
 
-  --ring: 20 14.3% 4.1%;
+  --ring: ;
 
   --radius: 0.95rem;
 }
@@ -700,7 +700,7 @@
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 60 9.1% 97.8%;
 
-  --ring: 35.5 91.7% 32.9%;
+  --ring: ;
 }
 
 .theme-violet {
@@ -731,7 +731,7 @@
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 210 20% 98%;
 
-  --ring: 262.1 83.3% 57.8%;
+  --ring: ;
 
   --radius: ;
 }
@@ -764,5 +764,5 @@
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 210 20% 98%;
 
-  --ring: 263.4 70% 50.4%;
+  --ring: ;
 }
