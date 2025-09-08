@@ -1,15 +1,15 @@
 import { MDX } from "@/components/mdx-components";
-import { meta } from "@/lib/config";
+
 import { createOgImage } from "@/lib/createOgImage";
-import { getTableOfContents } from "@/lib/toc";
 import { cn } from "@/lib/utils";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { CopyLinkButton } from "./copy-button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { FloatingHeader } from "@/components/navigation/floating-header";
 import { getAllCrafts, getCraftBySlug } from "@/features/craft/data/posts";
 import { Prose } from "@/components/ui/typography";
+import { CopyLink } from "@/components/copy-button";
+import { USER } from "@/config/user";
 
 export const generateStaticParams = () => {
   return getAllCrafts().map((p) => ({ slug: p.slug }));
@@ -33,7 +33,7 @@ export async function generateMetadata({
 
   const ogImage = createOgImage({
     title: title,
-    meta: meta.domain + " · " + date,
+    meta: USER.domain + " · " + date,
   });
 
   return {
@@ -105,18 +105,23 @@ export default async function Page({
               </p>
             </div>
             <div className="flex items-center gap-2">
-              <CopyLinkButton />
+              <CopyLink value={`https://${USER.domain}/craft/${post.slug}`} />
             </div>
           </div>
 
           <Prose className="pb-12">
+            <p className="lead mt-6 mb-6">{post.metadata.description}</p>
+
             <MDX code={post.content} />
           </Prose>
         </div>
 
         <div className="sticky space-y-4 top-14 right-0 hidden h-0 lg:col-start-2! lg:row-start-1 lg:block col-span-1 max-w-md">
           {/* <TableOfContents toc={toc} /> */}
-          {/* <Contribute craft={craft} /> */}
+        </div>
+
+        <div className="sticky space-y-4 top-14 left-0 hidden h-0 lg:col-start-4! lg:row-start-1 lg:block col-span-1 max-w-md">
+          {/* <Contribute craft={post} /> */}
         </div>
 
         {/* <CraftsPager craft={craft} /> */}

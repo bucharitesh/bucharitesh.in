@@ -12,9 +12,9 @@ import { Switch } from "@/components/ui/switch";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { meta } from "@/lib/config";
 import { ScrollArea } from "../ui/scroll-area";
 import { FloatingHeader } from "../navigation/floating-header";
+import { USER } from "@/config/user";
 
 export function BuddyOptions(): JSX.Element {
   const hedgehogConfig = useBuddyStore((s) => s.hedgehogConfig);
@@ -29,7 +29,7 @@ export function BuddyOptions(): JSX.Element {
             <BuddyBuddyProfile {...hedgehogConfig} size={100} />
             <div className="flex-1 min-w-0">
               <h3 className="text-base font-semibold">
-                Hi, I'm {meta.name}'s buddy!
+                Hi, I'm {USER.name}'s buddy!
               </h3>
               <p className="mt-1 text-sm text-muted-foreground">
                 Don't mind me. I'm just here to keep you company.

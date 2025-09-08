@@ -5,6 +5,9 @@
   "title": "Magical Mouse",
   "author": "bucharitesh <contact@bucharitesh.in>",
   "description": "A magical mouse component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
+  "dependencies": [
+    "lucide-react"
+  ],
   "registryDependencies": [
     "@bucharitesh/utils"
   ],

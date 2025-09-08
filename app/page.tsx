@@ -1,4 +1,4 @@
-import { meta } from "@/lib/config";
+import { USER } from "@/config/user";
 import { COMMON_SCRIPT_ORG } from "@/lib/script";
 import { Metadata } from "next/types";
 import Info from "@/components/home/info";
@@ -11,8 +11,8 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { FloatingHeader } from "@/components/navigation/floating-header";
 
 export const metadata: Metadata = {
-  title: meta.tagline,
-  description: meta.description,
+  title: USER.tagline,
+  description: USER.description,
   alternates: {
     canonical: "/",
   },
@@ -37,7 +37,7 @@ export default async function Page() {
                 <PronounceMyName namePronunciationUrl="./assets/ritesh-bucha.mp3" />
               </div>
               <div className="">
-                <FlipSentences sentences={meta.flipSentences} />
+                <FlipSentences sentences={USER.flipSentences} />
               </div>
             </div>
           </header>

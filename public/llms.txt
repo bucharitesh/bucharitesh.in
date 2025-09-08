@@ -1,0 +1,46 @@
+# Ritesh Bucha
+
+> What I'm learning about shipping great products, becoming a better developer, and growing a career in tech.
+
+## Craft
+
+- [Modern Progress](https://bucharitesh.in/craft/modern-progress)
+- [Game of Life](https://bucharitesh.in/craft/game-of-life)
+- [Magical Mouse](https://bucharitesh.in/craft/magical-mouse)
+- [Book](https://bucharitesh.in/craft/book)
+- [Icon Maker](https://icon-maker.bucharitesh.in)
+- [View Magnifier](https://bucharitesh.in/craft/view-magnifier)
+- [Split Text Effect](https://bucharitesh.in/craft/split-text-effect)
+- [Pixel Icon](https://bucharitesh.in/craft/pixel-icon)
+
+This file provides LLM-friendly entry points to documentation and examples.
+
+## Components
+
+- [Book](https://bucharitesh.in/craft/book): A book component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.
+- [Game of Life](https://bucharitesh.in/craft/game-of-life): A game of life component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.
+- [Magical Mouse](https://bucharitesh.in/craft/magical-mouse): A magical mouse component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.
+- [Modern Progress](https://bucharitesh.in/craft/modern-progress): A modern progress component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.
+- [Pixel Icon](https://bucharitesh.in/craft/pixel-icon): A pixel icon component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.
+- [Split Text Effect](https://bucharitesh.in/craft/split-text-effect): A split text effect component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.
+- [View Magnifier](https://bucharitesh.in/craft/view-magnifier): A view magnifier component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.
+
+## Examples
+
+- [book-demo](https://github.com/bucharitesh/portfolio/blob/main/registry/default/example/book-demo.tsx): Example usage
+- [book-variant-demo](https://github.com/bucharitesh/portfolio/blob/main/registry/default/example/book-variant-demo.tsx): Example usage
+- [game-of-life-demo](https://github.com/bucharitesh/portfolio/blob/main/registry/default/example/game-of-life-demo.tsx): Example usage
+- [game-of-life-demo-2](https://github.com/bucharitesh/portfolio/blob/main/registry/default/example/game-of-life-demo-2.tsx): Example usage
+- [magical-mouse-demo](https://github.com/bucharitesh/portfolio/blob/main/registry/default/example/magical-mouse-demo.tsx): Example usage
+- [modern-progress-demo](https://github.com/bucharitesh/portfolio/blob/main/registry/default/example/modern-progress-demo.tsx): Example usage
+- [pixel-icon-demo](https://github.com/bucharitesh/portfolio/blob/main/registry/default/example/pixel-icon-demo.tsx): Example usage
+- [split-text-effect-demo](https://github.com/bucharitesh/portfolio/blob/main/registry/default/example/split-text-effect-demo.tsx): Example usage
+- [split-text-effect-demo-2](https://github.com/bucharitesh/portfolio/blob/main/registry/default/example/split-text-effect-demo-2.tsx): Example usage
+- [split-text-effect-demo-3](https://github.com/bucharitesh/portfolio/blob/main/registry/default/example/split-text-effect-demo-3.tsx): Example usage
+- [view-magnifier-demo](https://github.com/bucharitesh/portfolio/blob/main/registry/default/example/view-magnifier-demo.tsx): Example usage
+- [view-magnifier-demo-2](https://github.com/bucharitesh/portfolio/blob/main/registry/default/example/view-magnifier-demo-2.tsx): Example usage
+
+## Optional
+
+- [Repository](https://github.com/bucharitesh): Source code and issues
+- [Sitemap](https://bucharitesh.in/sitemap.xml): Indexable pages

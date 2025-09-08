@@ -3,6 +3,9 @@
 import { Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
+import { Provider as JotaiProvider } from "jotai";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export function Providers({
   children,
@@ -14,16 +17,20 @@ export function Providers({
 }) {
   return (
     <SessionProvider session={session}>
-      <NextThemesProvider
-        enableSystem
-        disableTransitionOnChange
-        enableColorScheme
-        storageKey="theme"
-        defaultTheme="system"
-        attribute="class"
-      >
-        {children}
-      </NextThemesProvider>
+      <JotaiProvider>
+        <NextThemesProvider
+          enableSystem
+          disableTransitionOnChange
+          enableColorScheme
+          storageKey="theme"
+          defaultTheme="system"
+          attribute="class"
+        >
+          {children}
+          <Analytics />
+          <SpeedInsights />
+        </NextThemesProvider>
+      </JotaiProvider>
     </SessionProvider>
   );
 }

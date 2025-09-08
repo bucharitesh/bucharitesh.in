@@ -1,4 +1,4 @@
-import { meta } from "@/lib/config";
+
 import { createOgImage } from "@/lib/createOgImage";
 import { Metadata, Viewport } from "next";
 import { cn } from "@/lib/utils";
@@ -14,14 +14,15 @@ import { Providers } from "@/lib/providers";
 import Script from "next/script";
 import { WebSite, WithContext } from "schema-dts";
 import { META_THEME_COLORS } from "@/config/site";
+import { USER } from "@/config/user";
 
 function getWebSiteJsonLd(): WithContext<WebSite> {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: meta.name,
-    url: `https://${meta.domain}`,
-    alternateName: [meta.username],
+    name: USER.name,
+    url: `https://${USER.domain}`,
+    alternateName: [USER.username],
   };
 }
 
@@ -33,24 +34,24 @@ export const viewport: Viewport = {
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: { template: `%s | ${meta.name}`, default: `${meta.name}` },
-    metadataBase: new URL(`https://${meta.domain}`),
+    title: { template: `%s | ${USER.name}`, default: `${USER.name}` },
+    metadataBase: new URL(`https://${USER.domain}`),
     openGraph: {
-      title: meta.name,
-      siteName: meta.name,
+      title: USER.name,
+      siteName: USER.name,
       type: "website",
-      url: `https://${meta.domain}`,
+      url: `https://${USER.domain}`,
       images: [
         {
-          url: createOgImage({ title: meta.name, meta: meta.tagline }),
+          url: createOgImage({ title: USER.name, meta: USER.tagline }),
           width: 1600,
           height: 836,
-          alt: meta.name,
+          alt: USER.name,
         },
       ],
     },
     twitter: {
-      creator: meta.twitterHandle,
+      creator: USER.twitterHandle,
       card: "summary_large_image",
     },
   };

@@ -5,17 +5,17 @@ import { cn, sortByProperty } from "@/lib/utils";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import Balancer from "react-wrap-balancer";
 import { BookmarkList } from "@/components/bookmarks/bookmark-list";
-import { meta } from "@/lib/config";
 import { createOgImage } from "@/lib/createOgImage";
+import { USER } from "@/config/user";
 
 // export async function generateStaticParams() {
 //   const bookmarks = await getBookmarks();
 //   return bookmarks.map((bookmark) => ({ slug: bookmark.slug }));
 // }
 
-async function fetchData(slug) {
+async function fetchData(slug: string) {
   const bookmarks = await getBookmarks();
-  const currentBookmark = bookmarks.find((bookmark) => bookmark.slug === slug);
+  const currentBookmark = bookmarks.find((bookmark: any) => bookmark.slug === slug);
   if (!currentBookmark) notFound();
 
   const sortedBookmarks = sortByProperty(bookmarks, "title");
@@ -28,7 +28,7 @@ async function fetchData(slug) {
   };
 }
 
-export default async function CollectionPage({ params }) {
+export default async function CollectionPage({ params }: { params: { slug: string } }) {
   const { slug } = await params;
   const { currentBookmark, bookmarkItems } = await fetchData(slug);
 
@@ -55,15 +55,15 @@ export default async function CollectionPage({ params }) {
   );
 }
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata({ params }: { params: { slug: string } }) {
   const { slug } = await params;
   const bookmarks = await getBookmarks();
-  const currentBookmark = bookmarks.find((bookmark) => bookmark.slug === slug);
+  const currentBookmark = bookmarks.find((bookmark: any) => bookmark.slug === slug);
   if (!currentBookmark) return null;
 
   const siteUrl = `/bookmarks/${currentBookmark.slug}`;
   const seoTitle = `${currentBookmark.title} | Bookmarks`;
-  const seoDescription = `A curated selection of various handpicked ${currentBookmark.title.toLowerCase()} bookmarks by ${meta.name}`;
+  const seoDescription = `A curated selection of various handpicked ${currentBookmark.title.toLowerCase()} bookmarks by ${USER.name}`;
 
   const ogImage = createOgImage({
     title: seoTitle,

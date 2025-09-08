@@ -5,6 +5,9 @@
   "title": "Modern Progress",
   "author": "bucharitesh <contact@bucharitesh.in>",
   "description": "A modern progress component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
+  "dependencies": [
+    "class-variance-authority"
+  ],
   "registryDependencies": [
     "@bucharitesh/utils"
   ],

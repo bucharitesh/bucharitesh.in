@@ -43,7 +43,8 @@ export function getGitHubIssueUrl(params: GitHubIssueUrlParams): string {
 }
 
 export function getGithubFileUrl(slug: string) {
-  return `https://github.com/magicuidesign/magicui/blob/main/content${slug === "/docs" ? "/docs/index" : slug}.mdx`;
+  console.log(slug);
+  return `https://github.com/bucharitesh/portfolio/blob/main/content${slug === "/docs" ? "/docs/index" : slug}.mdx`;
 }
 
 export async function getGithubContributions(username: string) {

@@ -5,9 +5,11 @@
   "title": "Book",
   "author": "bucharitesh <contact@bucharitesh.in>",
   "description": "A book component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
-  "registryDependencies": [
-    "@bucharitesh/utils",
+  "dependencies": [
     "@radix-ui/react-icons"
+  ],
+  "registryDependencies": [
+    "@bucharitesh/utils"
   ],
   "files": [
     {

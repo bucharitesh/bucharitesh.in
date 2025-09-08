@@ -1,15 +1,15 @@
 import { Feed } from 'feed'
 
 import { getBookmarkItems, getBookmarks } from '@/lib/services/raindrop'
-import { meta } from '@/lib/config'
+import { USER } from '@/config/user'
 
 export async function GET() {
   const bookmarks = await getBookmarks()
   const date = new Date()
-  const siteURL = `https://${meta.domain}`
+  const siteURL = `https://${USER.domain}`
   const author = {
-    name: meta.name,
-    link: `https://${meta.domain}`
+    name: USER.name,
+    link: `https://${USER.domain}`
   }
 
   const feed = new Feed({

@@ -1,38 +1,5 @@
 import { Icons } from "@/components/icons";
-
-export const meta = {
-  name: "Ritesh Bucha",
-  social: {
-    twitter: "https://twitter.com/bucha_ritesh",
-    github: "https://github.com/bucharitesh",
-    linkedin: "https://www.linkedin.com/in/bucharitesh/",
-    bluesky: "https://bsky.app/profile/bucharitesh.in",
-  },
-  email: "bucharitesh@gmail.com",
-  twitterHandle: "@bucha.ritesh",
-  username: "bucharitesh",
-  domain: "bucharitesh.in",
-  tagline: "User Experience at Flam",
-  description:
-    "What I'm learning about shipping great products, becoming a better developer, and growing a career in tech.",
-  image: {
-    profile:
-      "https://res.cloudinary.com/bucha/image/upload/c_thumb,q_100/bucharitesh_u1v1rt.png",
-    profile_old:
-      "https://res.cloudinary.com/bucha/image/upload/c_thumb,q_100/bucha_h6yyke.png",
-    animated:
-      "https://res.cloudinary.com/bucha/image/upload/c_thumb,q_100/download_1_ksk2zu.png",
-  },
-  flipSentences: [
-    "Creating with code. Small details matter.",
-    "Design Engineer",
-    "Open Source Contributor",
-    "Frontend Developer",
-    "Researching and building",
-  ],
-};
-
-export const ENABLE_BUDDY = false;
+import { USER } from "@/config/user";
 
 export const DockConfig = {
   navbar: [
@@ -48,27 +15,27 @@ export const DockConfig = {
     social: {
       GitHub: {
         name: "GitHub",
-        url: meta.social.github,
+        url: USER.social.github,
         icon: Icons.github,
       },
       LinkedIn: {
         name: "LinkedIn",
-        url: meta.social.linkedin,
+        url: USER.social.linkedin,
         icon: Icons.linkedin,
       },
       X: {
         name: "X",
-        url: meta.social.twitter,
+        url: USER.social.twitter,
         icon: Icons.x,
       },
       email: {
         name: "Send Email",
-        url: `mailto:${meta.email}`,
+        url: `mailto:${USER.email}`,
         icon: Icons.email,
       },
       Bluesky: {
         name: "Bluesky",
-        url: meta.social.bluesky,
+        url: USER.social.bluesky,
         icon: Icons.bluesky,
       },
     },

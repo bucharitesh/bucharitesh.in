@@ -9,7 +9,7 @@ import {
   Img,
 } from "@react-email/components";
 import Footer from "./footer";
-import { meta } from "@/lib/config";
+import { USER } from "@/config/user";
 
 export default function EmailBody({
   email,
@@ -33,9 +33,9 @@ export default function EmailBody({
 
             <Section className="mt-8 z-50">
               <Img
-                src={meta.image.animated}
+                src={USER.image.profile}
                 height="60"
-                alt={meta.name}
+                alt={USER.name}
                 className="mx-auto my-0 rounded-full bg-white"
               />
 
@@ -45,7 +45,7 @@ export default function EmailBody({
                 <Img
                   src="https://res.cloudinary.com/bucha/image/upload/c_thumb,q_40,h_100/signature-light_sbltch.png"
                   height="40"
-                  alt={meta.name}
+                  alt={USER.name}
                   className="my-0"
                 />
               </Section>

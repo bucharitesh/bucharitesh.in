@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { resumeData } from "@/lib/resume-data";
-import { meta } from "@/lib/config";
+import { USER } from "@/config/user";
 import { A4_HEIGHT_MM, A4_WIDTH_MM, MM_TO_PX, Ruler } from "./ruler";
 import DownloadButton from "./download-button";
 
@@ -49,20 +49,20 @@ export default function ResumePage() {
               {/* Header */}
               <div>
                 <h1 className="font-bold text-3xl mb-1 text-black">
-                  {meta.name}
+                  {USER.name}
                 </h1>
                 <h2 className="tracking-wide text-sm text-black">
-                  {meta.tagline} |{" "}
+                  {USER.tagline} |{" "}
                   <a
-                    href={`https://${meta.domain}`}
+                    href={`https://${USER.domain}`}
                     className="text-[#ad1d1d] hover:underline"
                   >
-                    {meta.domain}
+                    {USER.domain}
                   </a>
                 </h2>
                 <div className="prose prose-sm mt-4 text-[#939598]">
                   <p className="text-sm whitespace-pre-wrap">
-                    {meta.description}
+                    {USER.description}
                   </p>
                 </div>
               </div>

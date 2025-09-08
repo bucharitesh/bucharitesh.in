@@ -14,11 +14,12 @@ import {
 } from "@/components/ui/drawer";
 import { VisuallyHidden } from "@/components/ui/visually-hidden";
 import Link from "next/link";
-import { DockConfig, meta } from "@/lib/config";
+import { DockConfig } from "@/lib/config";
 import { usePathname } from "next/navigation";
 import { memo, useState } from "react";
 import { cn } from "@/lib/utils";
 import { useMounted } from "@/lib/hooks/use-mounted";
+import { USER } from "@/config/user";
 
 export function MobileDrawer() {
   const [open, setOpen] = useState(false);
@@ -58,7 +59,7 @@ export function MobileDrawer() {
                 onClick={() => setOpen(false)}
               >
                 <img
-                  src={meta.image.profile}
+                  src={USER.image.profile}
                   alt="Ritesh"
                   width={40}
                   height={40}
@@ -67,10 +68,10 @@ export function MobileDrawer() {
                 />
                 <div className="flex flex-col">
                   <span className="font-semibold tracking-tight">
-                    {meta.name}
+                    {USER.name}
                   </span>
                   <span className="text-neutral-600 dark:text-neutral-400">
-                    {meta.tagline}
+                    {USER.tagline}
                   </span>
                 </div>
               </Link>

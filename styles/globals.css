@@ -276,26 +276,20 @@
     image-rendering: pixelated;
   }
 
+  /* Custom scrollbar styling. Thanks @shadcn-ui */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 5px;
+  }
   * {
     scrollbar-width: thin;
-    scrollbar-color: hsl(var(--muted-foreground) / 0.4) transparent;
-  }
-
-  *::-webkit-scrollbar {
-    background: transparent;
-  }
-
-  *::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  *::-webkit-scrollbar-thumb {
-    background: hsl(var(--muted-foreground) / 0.4);
-    border-radius: var(--radius);
-  }
-
-  *::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--muted-foreground) / 0.55);
+    scrollbar-color: var(--border) transparent;
   }
 
   .hide-scrollbar {

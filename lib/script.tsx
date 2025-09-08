@@ -5,7 +5,7 @@ import {
   TechArticle,
   WithContext,
 } from "schema-dts";
-import { meta } from "@/lib/config";
+import { USER } from "@/config/user";
 import { formatSchemaOrgDate } from "@/lib/formatShortDate";
 
 function createBlogJsonLd(data: {
@@ -22,18 +22,18 @@ function createBlogJsonLd(data: {
     description: data.description,
     author: {
       "@type": "Person",
-      name: meta.name,
-      url: `https://${meta.domain}`,
+      name: USER.name,
+      url: `https://${USER.domain}`,
     },
-    url: `https://${meta.domain}/blog/${data.slug}/`,
+    url: `https://${USER.domain}/blog/${data.slug}/`,
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://${meta.domain}/blog/${data.slug}/`,
+      "@id": `https://${USER.domain}/blog/${data.slug}/`,
     },
     image: data.image,
     publisher: {
       "@type": "Person",
-      name: meta.name,
+      name: USER.name,
     },
     datePublished: formatSchemaOrgDate(data.published_at),
     dateModified: formatSchemaOrgDate(data.published_at),
@@ -54,21 +54,21 @@ function createCodeSnippetJsonLd(data: {
     description: data.description,
     author: {
       "@type": "Person",
-      name: meta.name,
-      url: `https://${meta.domain}`,
+      name: USER.name,
+      url: `https://${USER.domain}`,
     },
     datePublished: formatSchemaOrgDate(data.published_at),
     dateModified: formatSchemaOrgDate(data.published_at),
     publisher: {
       "@type": "Person",
-      name: meta.name,
+      name: USER.name,
     },
     image: data.image,
     articleBody: data.description,
-    url: `https://${meta.domain}/craft/${data.slug}/`,
+    url: `https://${USER.domain}/craft/${data.slug}/`,
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://${meta.domain}/craft/${data.slug}/`,
+      "@id": `https://${USER.domain}/craft/${data.slug}/`,
     },
   };
 }
@@ -76,12 +76,12 @@ function createCodeSnippetJsonLd(data: {
 const CommonJsonLd: WithContext<Organization> = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  email: meta.email,
-  image: meta.image.animated,
-  description: meta.description,
-  name: meta.name,
+  email: USER.email,
+  image: USER.image.profile,
+  description: USER.description,
+  name: USER.name,
   telephone: "+91 93651 80200",
-  url: `https://${meta.domain}`,
+  url: `https://${USER.domain}`,
   sameAs: [
     "https://www.facebook.com/bucharitesh",
     "https://twitter.com/bucha_ritesh",
@@ -110,6 +110,12 @@ export function BLOG_SCRIPT_ORG({
   slug,
   published_at,
   image,
+}: {
+  title: string;
+  description: string;
+  slug: string;
+  published_at: string;
+  image: string;
 }) {
   return (
     <Script
@@ -130,6 +136,12 @@ export function SNIPPET_SCRIPT_ORG({
   slug,
   published_at,
   image,
+}: {
+  title: string;
+  description: string;
+  slug: string;
+  published_at: string;
+  image: string;
 }) {
   return (
     <Script
