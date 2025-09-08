@@ -1,18 +1,18 @@
-import { Mdx } from "@/components/mdx-components";
+import { MDX } from "@/components/mdx-components";
 import { meta } from "@/lib/config";
 import { createOgImage } from "@/lib/createOgImage";
 import { getTableOfContents } from "@/lib/toc";
 import { cn } from "@/lib/utils";
-import { allCrafts } from "content-collections";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { CraftsPager } from "@/components/pager";
 import { CopyLinkButton } from "./copy-button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { FloatingHeader } from "@/components/navigation/floating-header";
+import { getAllCrafts, getCraftBySlug } from "@/features/craft/data/posts";
+import { Prose } from "@/components/ui/typography";
 
 export const generateStaticParams = () => {
-  return allCrafts.map((p) => ({ slug: p.slug }));
+  return getAllCrafts().map((p) => ({ slug: p.slug }));
 };
 
 export async function generateMetadata({
@@ -21,24 +21,26 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const slug = (await params).slug;
-  const post = allCrafts.find((post) => post.slug === slug);
+  const post = await getCraftBySlug(slug);
 
   if (!post) {
     notFound();
   }
 
+  const { title, date } = post.metadata;
+
   const url = `/craft/${post.slug}`;
 
   const ogImage = createOgImage({
-    title: post.title,
-    meta: meta.domain + " · " + post.date,
+    title: title,
+    meta: meta.domain + " · " + date,
   });
 
   return {
-    title: post.title,
+    title: title,
     alternates: { canonical: url },
     openGraph: {
-      images: [{ url: ogImage, width: 1600, height: 836, alt: post.title }],
+      images: [{ url: ogImage, width: 1600, height: 836, alt: title }],
     },
   };
 }
@@ -51,17 +53,17 @@ export default async function Page({
   }>;
 }) {
   const slug = (await params).slug;
-  const craft = await allCrafts.find((post) => post.slug === slug);
+  const post = await getCraftBySlug(slug);
 
-  if (!craft) {
-    notFound();
+  if (!post) {
+    return notFound();
   }
 
-  const toc = await getTableOfContents(craft.body.raw || "");
+  const { title, date } = post.metadata;
 
   return (
     <ScrollArea useScrollAreaId>
-      <FloatingHeader scrollTitle={craft.title} />
+      <FloatingHeader scrollTitle={title} />
       <div className="layout relative z-10 content-wrapper">
         <div className="mx-auto w-full">
           {/* <div className="mb-4 flex items-center space-x-1 text-sm text-muted-foreground">
@@ -93,10 +95,10 @@ export default async function Page({
               <h1
                 className={cn("scroll-m-20 text-xl font-bold tracking-tight")}
               >
-                {craft.title}
+                {title}
               </h1>
               <p className="text-balance text-sm text-muted-foreground">
-                {craft.date.toLocaleDateString("en-US", {
+                {new Date(date).toLocaleDateString("en-US", {
                   month: "long",
                   year: "numeric",
                 })}
@@ -107,9 +109,9 @@ export default async function Page({
             </div>
           </div>
 
-          <div className="pb-12">
-            <Mdx code={craft.body.code || ""} />
-          </div>
+          <Prose className="pb-12">
+            <MDX code={post.content} />
+          </Prose>
         </div>
 
         <div className="sticky space-y-4 top-14 right-0 hidden h-0 lg:col-start-2! lg:row-start-1 lg:block col-span-1 max-w-md">
@@ -117,7 +119,7 @@ export default async function Page({
           {/* <Contribute craft={craft} /> */}
         </div>
 
-        <CraftsPager craft={craft} />
+        {/* <CraftsPager craft={craft} /> */}
       </div>
     </ScrollArea>
   );

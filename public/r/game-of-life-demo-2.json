@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "game-of-life-demo-2",
+  "type": "registry:block",
+  "registryDependencies": [
+    "@bucharitesh/game-of-life"
+  ],
+  "files": [
+    {
+      "path": "registry/default/example/game-of-life-demo-2.tsx",
+      "content": "import { GameOfLife } from \"@/registry/default/bucharitesh/game-of-life/game-of-life\";\n\nexport default function SplitTextEffectDemo() {\n  return (\n    <div className=\"w-full relative h-[500px] z-20 rounded-lg bg-black overflow-hidden border\">\n      <GameOfLife\n        size={20}\n        interval={500}\n        backgroundColor=\"#000000\"\n        cellColor=\"#ff0000\"\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ]
+}

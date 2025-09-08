@@ -6,7 +6,6 @@ import { ViewTransitions } from "next-view-transitions";
 import { fontMono, fontX } from "@/lib/fonts";
 
 import "@/styles/globals.css";
-import "@/styles/mdx.css";
 
 import { auth } from "@/lib/auth";
 import DevTools from "@/components/dev-tools";

@@ -1,26 +1,23 @@
-"use client";
-
-import * as React from "react";
-
-import { cn } from "@/lib/utils";
-import { CodeBlockWrapper } from "@/components/code-block-wrapper";
-
-interface ComponentSourceProps extends React.HTMLAttributes<HTMLDivElement> {
-  src: string;
-}
+import { CodeCollapsibleWrapper } from "./code-collapsible-wrapper";
 
 export function ComponentSource({
-  children,
   className,
-  ...props
-}: ComponentSourceProps) {
+  collapsible = true,
+  children,
+}: React.ComponentProps<"div"> & {
+  name: string;
+  src?: string;
+  title?: string;
+  showLineNumbers?: boolean;
+  collapsible?: boolean;
+}) {
+  if (!collapsible) {
+    return <div className={className}>{children}</div>;
+  }
+
   return (
-    <CodeBlockWrapper
-      expandButtonTitle="Expand"
-      className={cn("my-6 overflow-hidden rounded-md", className)}
-      {...props}
-    >
+    <CodeCollapsibleWrapper className={className}>
       {children}
-    </CodeBlockWrapper>
+    </CodeCollapsibleWrapper>
   );
 }

@@ -1,0 +1,75 @@
+---
+title: Book
+date: 2025-01-25
+description: A vercel inspired Book card component
+author: bucharitesh
+published: true
+type: "component"
+theme: "light"
+image: "https://cdn.bucharitesh.in/book.png"
+video: "https://cdn.bucharitesh.in/book.mp4"
+aspect_ratio: 1.333
+---
+
+<ComponentPreview 
+  name="book-demo" 
+  openInV0Url="https://bucharitesh.in/r/book.json" 
+/>
+
+## Installation
+
+<CodeTabs className="gap-0">
+
+<TabsList>
+  <TabsTriggerShadcnCLI />
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli" className="[&>figure]:mb-0">
+
+```bash
+npx shadcn@latest add "https://bucharitesh.in/r/book"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource 
+  name="book" 
+  title="components/book/book.tsx"
+  showLineNumbers
+/>
+
+<Step>Copy the css and name it book.css</Step>
+
+<ComponentCSS 
+  name="book" 
+  title="components/book/book.css"
+  showLineNumbers
+/>
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## More Designs
+
+<ComponentPreview name="book-variant-demo" />
+
+## Props
+
+| Prop      | Type   | Description                                    | Default                                                                                      |
+| --------- | ------ | ---------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| className | string | The class name to be applied to the component  |                                                                                              |
+| duration  | number | Durations (seconds) for the animation          | 1                                                                                            |
+| word      | string | The word to be animated                        |                                                                                              |
+| variant   | object | Custom animation variants for motion component | `hidden: { filter: "blur(10px)", opacity: 0 }, visible: { filter: "blur(0px)", opacity: 1 }` |

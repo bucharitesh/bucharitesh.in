@@ -1,4 +1,4 @@
-import { GameOfLife } from "@/components/bucharitesh/game-of-life";
+import { GameOfLife } from "@/registry/default/bucharitesh/game-of-life/game-of-life";
 
 export default function SplitTextEffectDemo() {
   return (

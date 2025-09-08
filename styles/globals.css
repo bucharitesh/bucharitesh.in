@@ -349,12 +349,22 @@
     0 4px 6px -4px rgb(59 130 246/5%);
 }
 
+@utility link {
+  @apply font-medium underline underline-offset-4;
+}
+
+@utility screen-line-before {
+  @apply relative before:absolute before:top-0 before:-left-[100vw] before:-z-1 before:h-px before:w-[200vw] before:bg-edge;
+}
+
+@utility screen-line-after {
+  @apply relative after:absolute after:bottom-0 after:-left-[100vw] after:-z-1 after:h-px after:w-[200vw] after:bg-edge;
+}
+
 @utility step {
   counter-increment: step;
-
-  &:before {
-    @apply absolute inline-flex h-9 w-9 items-center justify-center rounded-full border-4 border-transparent bg-muted text-center -indent-px font-mono text-base font-medium;
-    @apply ml-[-50px] mt-[-4px];
+  &::before {
+    @apply mr-2 inline-flex size-7 items-center justify-center rounded-full bg-muted text-center -indent-px text-sm font-medium text-muted-foreground md:absolute md:-mt-0.5 md:-ml-11.5 md:size-8;
     content: counter(step);
   }
 }
@@ -656,5 +666,49 @@
   }
   100% {
     transform: translate(300px, -20px) rotate(30deg);
+  }
+}
+
+@layer components {
+  [data-rehype-pretty-code-figure] {
+    @apply relative my-6 rounded-lg bg-code text-code-foreground;
+
+    pre {
+      @apply overflow-x-auto px-4 py-4 has-data-line-numbers:px-0;
+    }
+
+    code {
+      @apply font-mono text-sm;
+    }
+  }
+
+  [data-line] {
+    @apply py-0.5;
+  }
+
+  [data-line] span {
+    @apply text-(--shiki-light) dark:text-(--shiki-dark);
+  }
+
+  [data-rehype-pretty-code-title] {
+    @apply flex items-center gap-2 border-b px-4 py-2.5 text-sm text-muted-foreground [&_svg]:size-4 [&_svg]:text-muted-foreground;
+  }
+
+  [data-line-numbers] {
+    counter-reset: line;
+  }
+
+  [data-line-numbers] > [data-line]::before {
+    counter-increment: line;
+    content: counter(line);
+    @apply sticky left-0 inline-block w-16 bg-code pr-6 text-right text-sm text-code-number;
+  }
+
+  [data-line-numbers] [data-highlighted-line][data-line]::before {
+    @apply bg-code-highlight;
+  }
+
+  [data-highlighted-line] {
+    @apply bg-code-highlight;
   }
 }

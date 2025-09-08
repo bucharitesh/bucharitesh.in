@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import PixelIcon from "@/components/bucharitesh/pixel-icon";
+import PixelIcon from "@/registry/default/bucharitesh/pixel-icon/pixel-icon";
 
 export const PixelIconData = [
   {

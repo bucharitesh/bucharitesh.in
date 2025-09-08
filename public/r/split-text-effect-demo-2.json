@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "split-text-effect-demo-2",
+  "type": "registry:block",
+  "registryDependencies": [
+    "@bucharitesh/split-text-effect"
+  ],
+  "files": [
+    {
+      "path": "registry/default/example/split-text-effect-demo-2.tsx",
+      "content": "import { SplitTextEffect } from \"@/registry/default/bucharitesh/split-text-effect/split-text-effect\";\n\nexport default function SplitTextEffectDemo() {\n  return (\n    <div className=\"relative w-full bg-black\">\n      <div className=\"h-96\">\n        <SplitTextEffect\n          text={\n            <>\n              MAKE AN\n              <br />\n              IMPACT\n            </>\n          }\n          accent=\"#ed8936\"\n          className=\"font-black tracking-tight\"\n        />\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ]
+}

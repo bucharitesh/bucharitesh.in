@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "view-magnifier-demo-2",
+  "type": "registry:block",
+  "registryDependencies": [
+    "@bucharitesh/view-magnifier"
+  ],
+  "files": [
+    {
+      "path": "registry/default/example/view-magnifier-demo-2.tsx",
+      "content": "\"use client\";\n\nimport React from \"react\";\nimport ViewMagnifier from \"@/registry/default/bucharitesh/view-magnifier/view-magnifier\";\nimport Image from \"next/image\";\nexport default function ViewMagnifierDemo() {\n  return (\n    <div className=\"relative grid grid-cols-1 gap-20 w-full\">\n      <ViewMagnifier>\n        <div className=\"relative w-full h-[400px]\">\n          <Image\n            src=\"https://images.unsplash.com/photo-1554080353-a576cf803bda?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3387&q=80&w=828&q=75\"\n            alt=\"random\"\n            fill\n            className=\"object-cover\"\n          />\n        </div>\n      </ViewMagnifier>\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ]
+}

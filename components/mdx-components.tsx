@@ -1,313 +1,212 @@
+import type { MDXRemoteProps } from "next-mdx-remote/rsc";
+import { MDXRemote } from "next-mdx-remote/rsc";
+import rehypeExternalLinks from "rehype-external-links";
+import type { LineElement } from "rehype-pretty-code";
+import rehypePrettyCode from "rehype-pretty-code";
+import rehypeSlug from "rehype-slug";
+import remarkGfm from "remark-gfm";
+import { visit } from "unist-util-visit";
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { cn } from "@/lib/utils";
-import { useMDXComponent } from "@content-collections/mdx/react";
-import Image from "next/image";
-import Link from "next/link";
 import { ComponentPreview } from "./component-preview";
 import { ComponentSource } from "./component-source";
-import { CopyButton, CopyNpmCommandButton } from "./copy-button";
+import { ComponentCSS } from "./component-css";
+import { CopyButton } from "./copy-button";
 
-const CustomLink = (props: any) => {
-  const href = props.href;
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
-  if (href.startsWith("/")) {
+
+import { UTM_PARAMS } from "@/lib/config";
+import { rehypeAddQueryParams } from "@/lib/rehype-add-query-params";
+import { rehypeComponent } from "@/lib/rehype-component";
+import { rehypeNpmCommand } from "@/lib/rehype-npm-command";
+import { remarkCodeImport } from "@/lib/remark-code-import";
+import { cn } from "@/lib/utils";
+import type { NpmCommands } from "@/types/unist";
+import { Heading, Code } from "@/components/ui/typography";
+import { getIconForLanguageExtension, Icons } from "./icons";
+import { CodeCollapsibleWrapper } from "./code-collapsible-wrapper";
+import { CodeTabs } from "./code-tabs";
+import { CodeBlockCommand } from "./code-block-wrapper";
+
+const components: MDXRemoteProps["components"] = {
+  h1: (props: React.ComponentProps<"h1">) => <Heading as="h1" {...props} />,
+  h2: (props: React.ComponentProps<"h2">) => <Heading as="h2" {...props} />,
+  h3: (props: React.ComponentProps<"h3">) => <Heading as="h3" {...props} />,
+  h4: (props: React.ComponentProps<"h4">) => <Heading as="h4" {...props} />,
+  h5: (props: React.ComponentProps<"h5">) => <Heading as="h5" {...props} />,
+  h6: (props: React.ComponentProps<"h6">) => <Heading as="h6" {...props} />,
+  table: Table,
+  thead: TableHeader,
+  tbody: TableBody,
+  tr: TableRow,
+  th: TableHead,
+  td: TableCell,
+  figure({ className, ...props }: React.ComponentProps<"figure">) {
+    const hasPrettyCode = "data-rehype-pretty-code-figure" in props;
+
     return (
-      <Link {...props} href={href}>
-        {props.children}
-      </Link>
-    );
-  }
-
-  if (href.startsWith("#")) {
-    return <a {...props} />;
-  }
-
-  return <a target="_blank" rel="noopener noreferrer" {...props} />;
-};
-
-const components = {
-  // Accordion,
-  // AccordionContent,
-  // AccordionItem,
-  // AccordionTrigger,
-  // Callout,
-  // TechStack,
-  // RepoDownload,
-  // TemplatePreview,
-  Image,
-  // Tweet: ({ id }: { id: string }) => <TweetCard id={id} className="mx-auto" />,
-  ComponentPreview,
-  ComponentSource: (props: any) => <ComponentSource {...props} />,
-  ComponentCSS: (props: any) => <ComponentSource {...props} />,
-  h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h1
-      className={cn(
-        "font-heading mt-2 scroll-m-20 text-4xl font-bold",
-        className,
-      )}
-      {...props}
-    />
-  ),
-  h2: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h2
-      className={cn(
-        "font-heading mt-12 scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0",
-        className,
-      )}
-      {...props}
-    />
-  ),
-  h3: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h3
-      className={cn(
-        "font-heading mt-8 scroll-m-20 text-xl font-semibold tracking-tight",
-        className,
-      )}
-      {...props}
-    />
-  ),
-  h4: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h4
-      className={cn(
-        "font-heading mt-8 scroll-m-20 text-lg font-semibold tracking-tight",
-        className,
-      )}
-      {...props}
-    />
-  ),
-  h5: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h5
-      className={cn(
-        "mt-8 scroll-m-20 text-lg font-semibold tracking-tight",
-        className,
-      )}
-      {...props}
-    />
-  ),
-  h6: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h6
-      className={cn(
-        "mt-8 scroll-m-20 text-base font-semibold tracking-tight",
-        className,
-      )}
-      {...props}
-    />
-  ),
-  a: ({ className, ...props }: React.HTMLAttributes<HTMLAnchorElement>) => (
-    <CustomLink
-      className={cn("font-medium underline underline-offset-4", className)}
-      {...props}
-    />
-  ),
-  p: ({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
-    <p
-      className={cn("leading-7 not-first:mt-6", className)}
-      {...props}
-    />
-  ),
-  ul: ({ className, ...props }: React.HTMLAttributes<HTMLUListElement>) => (
-    <ul className={cn("ml-6 list-disc", className)} {...props} />
-  ),
-  ol: ({ className, ...props }: React.HTMLAttributes<HTMLOListElement>) => (
-    <ol className={cn("ml-6 list-decimal", className)} {...props} />
-  ),
-  li: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
-    <li className={cn("mt-2", className)} {...props} />
-  ),
-  blockquote: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
-    <blockquote
-      className={cn("mt-6 border-l-2 pl-6 italic", className)}
-      {...props}
-    />
-  ),
-  table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
-    <div className="my-6 w-full overflow-y-auto rounded-lg border border-border">
-      <table
-        className={cn("my-0 w-full overflow-hidden", className)}
+      <figure
+        className={cn(hasPrettyCode && "not-prose", className)}
         {...props}
       />
-    </div>
-  ),
-  thead: ({
-    className,
+    );
+  },
+  figcaption: ({ children, ...props }: React.ComponentProps<"figcaption">) => {
+    const iconExtension =
+      "data-language" in props && typeof props["data-language"] === "string"
+        ? getIconForLanguageExtension(props["data-language"])
+        : null;
+
+    return (
+      <figcaption {...props}>
+        {iconExtension}
+        {children}
+      </figcaption>
+    );
+  },
+  pre({
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    __withMeta__,
+    __rawString__,
+
+    __pnpm__,
+    __yarn__,
+    __npm__,
+    __bun__,
+
     ...props
-  }: React.HTMLAttributes<HTMLTableSectionElement>) => (
-    <thead
-      className={cn(
-        "border-b last:border-b-0 odd:bg-background even:bg-background/50",
-        className,
-      )}
-      {...props}
-    />
-  ),
-  tr: ({ className, ...props }: React.HTMLAttributes<HTMLTableRowElement>) => (
-    <tr
-      className={cn(
-        "border-b last:border-b-0 odd:bg-background even:bg-background/50",
-        className,
-      )}
-      {...props}
-    />
-  ),
-  th: ({ className, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
-    <th
-      className={cn(
-        "text-balance border-r border-border bg-neutral-50 px-6 py-3 text-left font-mono text-sm font-semibold tracking-tight text-secondary-foreground last:border-r-0 dark:bg-neutral-950",
-        className,
-      )}
-      {...props}
-    />
-  ),
-  td: ({ className, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
-    <td
-      className={cn(
-        "border-r border-border px-6 py-4 text-sm text-secondary-foreground last:border-r-0 [&[align=center]]:text-center [&[align=right]]:text-right",
-        className,
-      )}
+  }: React.ComponentProps<"pre"> & {
+    __withMeta__?: boolean;
+    __rawString__?: string;
+  } & NpmCommands) {
+    const isNpmCommand = __pnpm__ && __yarn__ && __npm__ && __bun__;
+
+    if (isNpmCommand) {
+      return (
+        <CodeBlockCommand
+          __pnpm__={__pnpm__}
+          __yarn__={__yarn__}
+          __npm__={__npm__}
+          __bun__={__bun__}
+        />
+      );
+    }
+
+    return (
+      <>
+        <pre {...props} />
+
+        {__rawString__ && (
+          <CopyButton
+            className="absolute top-2 right-2"
+            value={__rawString__}
+          />
+        )}
+      </>
+    );
+  },
+  code: Code,
+  ComponentPreview,
+  ComponentSource,
+  ComponentCSS,
+  CodeCollapsibleWrapper,
+  CodeTabs,
+  Steps: (props) => (
+    <div
+      className="md:ml-3.5 md:border-l md:pl-7.5 prose-h3:text-wrap"
       {...props}
     />
   ),
   Step: ({ className, ...props }: React.ComponentProps<"h3">) => (
-    <h3
-      className={cn(
-        "font-heading mt-8 scroll-m-20 text-xl font-semibold tracking-tight",
-        className,
-      )}
-      {...props}
-    />
+    <h3 className={cn("step", className)} {...props} />
   ),
-  Steps: ({ ...props }) => (
-    <div
-      className="[&>h3]:step steps mb-12 ml-4 border-l pl-8 [counter-reset:step]"
-      {...props}
-    />
-  ),
-  Tabs: ({ className, ...props }: React.ComponentProps<typeof Tabs>) => (
-    <Tabs className={cn("relative mt-6 w-full", className)} {...props} />
-  ),
-  TabsList: ({
-    className,
-    ...props
-  }: React.ComponentProps<typeof TabsList>) => (
-    <TabsList
-      className={cn(
-        "w-full justify-start rounded-none border-b bg-transparent p-0",
-        className,
-      )}
-      {...props}
-    />
-  ),
-  TabsTrigger: ({
-    className,
-    ...props
-  }: React.ComponentProps<typeof TabsTrigger>) => (
-    <TabsTrigger
-      className={cn(
-        "relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none data-[state=active]:bg-transparent",
-        className,
-      )}
-      {...props}
-    />
-  ),
-  TabsContent: ({
-    className,
-    ...props
-  }: React.ComponentProps<typeof TabsContent>) => (
-    <TabsContent
-      className={cn(
-        "relative [&_h3.font-heading]:text-base [&_h3.font-heading]:font-semibold",
-        className,
-      )}
-      {...props}
-    />
-  ),
-  pre: ({
-    className,
-    __rawString__,
-    __npmCommand__,
-    __pnpmCommand__,
-    __yarnCommand__,
-    __bunCommand__,
-    __withMeta__,
-    // __event__,
-    // __style__,
-    __name__,
-    ...props
-  }: React.HTMLAttributes<HTMLPreElement> & {
-    // __style__?: Style["name"]
-    __rawString__?: string;
-    __npmCommand__?: string;
-    __pnpmCommand__?: string;
-    __yarnCommand__?: string;
-    __bunCommand__?: string;
-    __withMeta__?: boolean;
-    // __event__?: Event["name"];
-    __name__?: string;
-  }) => {
-    return (
-      <>
-        <pre
-          className={cn(
-            "mb-4 mt-6 max-h-[650px] overflow-x-auto rounded-lg border bg-zinc-950 py-4 dark:bg-zinc-900",
-            className,
-          )}
-          {...props}
-        />
-        {__rawString__ && (
-          <CopyButton
-            variant="default"
-            value={__rawString__}
-            className={cn("absolute right-4 top-4", __withMeta__ && "top-16")}
-          />
-        )}
-        {__npmCommand__ &&
-          __yarnCommand__ &&
-          __pnpmCommand__ &&
-          __bunCommand__ && (
-            <CopyNpmCommandButton
-              commands={{
-                __npmCommand__,
-                __pnpmCommand__,
-                __yarnCommand__,
-                __bunCommand__,
-              }}
-              className={cn("absolute right-4 top-4", __withMeta__ && "top-16")}
-            />
-          )}
-      </>
-    );
-  },
-  code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
-    <code
-      className={cn(
-        "relative rounded-sm bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm",
-        className,
-      )}
-      {...props}
-    />
-  ),
-  LinkedCard: ({ className, ...props }: React.ComponentProps<typeof Link>) => (
-    <Link
-      className={cn(
-        "flex w-full flex-col items-center rounded-xl border bg-card p-6 text-card-foreground shadow-sm transition-colors hover:bg-muted/50 sm:p-10",
-        className,
-      )}
-      {...props}
-    />
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+  TabsTriggerShadcnCLI: () => (
+    <TabsTrigger className="pl-2" value="cli">
+      <Icons.shadcn />
+      shadcn CLI
+    </TabsTrigger>
   ),
 };
 
-interface MDXProps {
-  code: string;
-  className?: string;
-}
+const options: MDXRemoteProps["options"] = {
+  mdxOptions: {
+    remarkPlugins: [remarkGfm, remarkCodeImport],
+    rehypePlugins: [
+      [
+        rehypeExternalLinks,
+        { target: "_blank", rel: "nofollow noopener noreferrer" },
+      ],
+      rehypeSlug,
+      rehypeComponent,
+      () => (tree) => {
+        visit(tree, (node) => {
+          if (node?.type === "element" && node?.tagName === "pre") {
+            const [codeEl] = node.children;
+            if (codeEl.tagName !== "code") {
+              return;
+            }
 
-export function Mdx({ code, className }: MDXProps) {
-  const Component = useMDXComponent(code);
+            node.__rawString__ = codeEl.children?.[0].value;
+          }
+        });
+      },
+      [
+        rehypePrettyCode,
+        {
+          theme: {
+            dark: "github-dark",
+            light: "github-light",
+          },
+          keepBackground: false,
+          onVisitLine(node: LineElement) {
+            // Prevent lines from collapsing in `display: grid` mode, and allow empty
+            // lines to be copy/pasted
+            if (node.children.length === 0) {
+              node.children = [{ type: "text", value: " " }];
+            }
+          },
+        },
+      ],
+      () => (tree) => {
+        visit(tree, (node) => {
+          if (node?.type === "element" && node?.tagName === "figure") {
+            if (!("data-rehype-pretty-code-figure" in node.properties)) {
+              return;
+            }
 
+            const preElement = node.children.at(-1);
+            if (preElement.tagName !== "pre") {
+              return;
+            }
+
+            preElement.properties["__withMeta__"] =
+              node.children.at(0).tagName === "figcaption";
+            preElement.properties["__rawString__"] = node.__rawString__;
+          }
+        });
+      },
+      rehypeNpmCommand,
+      [rehypeAddQueryParams, UTM_PARAMS],
+    ],
+  },
+};
+
+export function MDX({ code, className }: { code: string, className?: string }) {
   return (
-    <article className={cn("mx-auto max-w-[120ch]", className)}>
-      <Component components={components} />
+    <article className={cn("", className)}>
+      <MDXRemote source={code} components={components} options={options} />
     </article>
   );
 }

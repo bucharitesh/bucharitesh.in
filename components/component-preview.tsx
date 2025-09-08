@@ -1,128 +1,104 @@
 "use client";
 
-import * as React from "react";
-import { Index } from "__registry__";
-import { RotateCcw } from "lucide-react";
+import { RepeatIcon } from "lucide-react";
+import React, { useMemo, useState } from "react";
 
-import { useConfig } from "@/lib/hooks/use-config";
+import { Index } from "@/__registry__/index";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import ComponentWrapper from "@/components/component-wrapper";
-import { Icons } from "@/components/icons";
-import { styles } from "@/registry/registry-styles";
 
-interface ComponentPreviewProps extends React.HTMLAttributes<HTMLDivElement> {
-  name: string;
-  align?: "center" | "start" | "end";
-  preview?: boolean;
-}
+import { CodeCollapsibleWrapper } from "./code-collapsible-wrapper";
+import { OpenInV0Button } from "./open-in-v0";
+import { Button } from "./ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
+import { Code as CodeInline } from "./ui/typography";
 
 export function ComponentPreview({
-  name,
-  children,
   className,
-  align = "center",
-  preview = false,
+  name,
+  openInV0Url,
+  canReplay = false,
+  notProse = true,
+  codeCollapsible = false,
+  children,
   ...props
-}: ComponentPreviewProps) {
-  const [key, setKey] = React.useState(0);
-  const [config] = useConfig();
-  const index = styles.findIndex((style) => style.name === config.style);
+}: React.ComponentProps<"div"> & {
+  name: string;
+  openInV0Url?: string;
+  canReplay?: boolean;
+  notProse?: boolean;
+  codeCollapsible?: boolean;
+}) {
+  const [replay, setReplay] = useState(0);
 
   const Codes = React.Children.toArray(children) as React.ReactElement[];
-  const Code = Codes[index];
+  const Code = Codes[0];
 
-  const Preview = React.useMemo(() => {
-    const Component = Index[config.style][name]?.component;
+  const Preview = useMemo(() => {
+    const Component = Index[name]?.component;
 
     if (!Component) {
-      console.error(`Component with name "${name}" not found in registry.`);
       return (
         <p className="text-sm text-muted-foreground">
-          Component{" "}
-          <code className="relative rounded-sm bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm">
-            {name}
-          </code>{" "}
-          not found in registry.
+          Component <CodeInline>{name}</CodeInline> not found in registry.
         </p>
       );
     }
 
     return <Component />;
-  }, [name, config.style]);
+  }, [name]);
 
   return (
-    <div
-      className={cn(
-        "relative my-4 flex flex-col space-y-2 lg:max-w-[120ch]",
-        className,
-      )}
-      {...props}
-    >
-      <svg
-        role='img'
-        xmlns='http://www.w3.org/2000/svg'
-        viewBox='0 0 70 70'
-        aria-label='MP Logo'
-        width='70'
-        height='70'
-        className='absolute bottom-4 right-4 z-40 h-8 w-8'
-        fill='none'
-      >
-        <path
-          stroke='currentColor'
-          strokeLinecap='round'
-          strokeWidth='3'
-          d='M51.883 26.495c-7.277-4.124-18.08-7.004-26.519-7.425-2.357-.118-4.407-.244-6.364 1.06M59.642 51c-10.47-7.25-26.594-13.426-39.514-15.664-3.61-.625-6.744-1.202-9.991.263'
-        ></path>
-      </svg>
-      <Tabs defaultValue="preview" className="relative mr-auto w-full">
-        {!preview && (
-          <div className="flex items-center justify-between pb-3">
-            <TabsList className="w-full justify-start rounded-none border-b bg-transparent p-0">
-              <TabsTrigger
-                value="preview"
-                className="relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none data-[state=active]:bg-transparent"
-              >
-                Preview
-              </TabsTrigger>
-              <TabsTrigger
-                value="code"
-                className="relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
-              >
-                Code
-              </TabsTrigger>
-            </TabsList>
-          </div>
-        )}
-        <TabsContent value="preview" className="relative rounded-md" key={key}>
-          <ComponentWrapper>
-            <Button
-              onClick={() => setKey((prev) => prev + 1)}
-              className="absolute right-1.5 top-1.5 z-10 ml-4 flex items-center rounded-lg px-3 py-1"
-              variant="ghost"
+    <div className={cn("my-6", notProse && "not-prose", className)} {...props}>
+      <Tabs defaultValue="preview" className="gap-4">
+        <TabsList>
+          <TabsTrigger value="preview">Preview</TabsTrigger>
+          <TabsTrigger value="code">Code</TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="preview">
+          <div className="rounded-lg border border-edge bg-zinc-950/0.75 bg-[radial-gradient(var(--pattern-foreground)_1px,transparent_0)] bg-size-[10px_10px] bg-center p-4 [--pattern-foreground:var(--color-zinc-950)]/5 dark:bg-white/0.75 dark:[--pattern-foreground:var(--color-white)]/5">
+            {(canReplay || openInV0Url) && (
+              <div className="mb-4 flex justify-end gap-2">
+                {canReplay && (
+                  // <SimpleTooltip content="Replay">
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      onClick={() => setReplay((v) => v + 1)}
+                    >
+                      <RepeatIcon />
+                    </Button>
+                )}
+
+                {openInV0Url && <OpenInV0Button url={openInV0Url} />}
+              </div>
+            )}
+
+            <div
+              key={replay}
+              className="flex min-h-80 items-center justify-center font-sans"
             >
-              <RotateCcw aria-label="restart-btn" size={16} />
-            </Button>
-            <React.Suspense
-              fallback={
-                <div className="flex items-center text-sm text-muted-foreground">
-                  <Icons.spinner className="mr-2 size-4 animate-spin" />
-                  Loading...
-                </div>
-              }
-            >
-              {Preview}
-            </React.Suspense>
-          </ComponentWrapper>
-        </TabsContent>
-        <TabsContent value="code">
-          <div className="flex flex-col space-y-4">
-            <div className="w-full rounded-md [&_pre]:my-0 [&_pre]:max-h-[350px] [&_pre]:overflow-auto">
-              {Code}
+              <React.Suspense
+                fallback={
+                  <div className="flex items-center justify-center text-sm text-muted-foreground">
+                    Loading...
+                  </div>
+                }
+              >
+                {Preview}
+              </React.Suspense>
             </div>
           </div>
+        </TabsContent>
+
+        <TabsContent value="code" className="[&>figure]:m-0">
+          {codeCollapsible ? (
+            <CodeCollapsibleWrapper className="my-0">
+              {Code}
+            </CodeCollapsibleWrapper>
+          ) : (
+            Code
+          )}
         </TabsContent>
       </Tabs>
     </div>

@@ -1,0 +1,71 @@
+---
+title: Magical Mouse
+date: "2025-02-20"
+description: Magical Mouse
+author: bucharitesh
+published: true
+type: "component"
+theme: "light"
+image: "https://cdn.bucharitesh.in/magical-mouse.png"
+video: "https://cdn.bucharitesh.in/magical-mouse.mp4"
+aspect_ratio: 1.6
+---
+
+<ComponentPreview name="magical-mouse-demo" />
+
+The Magical Mouse component creates a magical mouse effect. It supports hover effects, color changes, and pixel shape customization.
+
+## Installation
+
+<CodeTabs className="gap-0">
+
+<TabsList>
+  <TabsTriggerShadcnCLI />
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli" className="[&>figure]:mb-0">
+
+```bash
+npx shadcn@latest add "https://bucharitesh.in/r/magical-mouse"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="magical-mouse" />
+
+<Step>Copy the css and name it magical-mouse.css</Step>
+
+<ComponentCSS name="magical-mouse" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Props
+
+| Prop                        | Type            | Description                                      | Default                        |
+| --------------------------- | --------------- | ------------------------------------------------ | -----------------------------  |
+| icon                        | React.ReactNode | Icon to be used in the component                 | Sparkle from lucide-react      |
+| starAnimationDuration       | number          | Duration of the star animation in milliseconds   | 1500                           |
+| minimumTimeBetweenStars     | number          | Minimum time between star spawns in milliseconds | 250                            |
+| minimumDistanceBetweenStars | number          | Minimum distance between star spawns in pixels   | 75                             |
+| glowDuration                | number          | Duration of the glow effect in milliseconds      | 75                             |
+| maximumGlowPointSpacing     | number          | Maximum spacing between glow points in pixels    | 10                             |
+| colors                      | string[]        | Colors for the stars in RGB format               | ["249 146 253", "252 254 255"] |
+| sizes                       | string[]        | Sizes for the stars                              | ["1.4rem", "1rem", "0.6rem"]   |
+| className                   | string          | Custom class name                                | ""                             |
+
+## Credits
+
+- Credit to [@Hyperplexed](https://youtu.be/G9207EJySaA?si=SkJAYhfNCvxMcYWr) for the video.

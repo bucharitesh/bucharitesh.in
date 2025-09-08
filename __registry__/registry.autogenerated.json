@@ -1,0 +1,311 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "bucharitesh",
+  "homepage": "https://bucharitesh.in/craft",
+  "items": [
+    {
+      "name": "utils",
+      "type": "registry:lib",
+      "title": "Utility Functions",
+      "author": "bucharitesh <contact@bucharitesh.in>",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "files": [
+        {
+          "path": "registry/default/lib/utils.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "book",
+      "type": "registry:component",
+      "title": "Book",
+      "author": "bucharitesh <contact@bucharitesh.in>",
+      "description": "A book component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
+      "registryDependencies": [
+        "@bucharitesh/utils",
+        "@radix-ui/react-icons"
+      ],
+      "files": [
+        {
+          "path": "registry/default/bucharitesh/book/book.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/bucharitesh/book/book.css",
+          "type": "registry:style"
+        }
+      ],
+      "docs": "https://bucharitesh.in/craft/book"
+    },
+    {
+      "name": "modern-progress",
+      "type": "registry:component",
+      "title": "Modern Progress",
+      "author": "bucharitesh <contact@bucharitesh.in>",
+      "description": "A modern progress component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
+      "registryDependencies": [
+        "@bucharitesh/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/bucharitesh/modern-progress/modern-progress.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/bucharitesh/modern-progress/modern-progress.css",
+          "type": "registry:style"
+        }
+      ],
+      "docs": "https://bucharitesh.in/craft/modern-progress"
+    },
+    {
+      "name": "pixel-icon",
+      "type": "registry:component",
+      "title": "Pixel Icon",
+      "author": "bucharitesh <contact@bucharitesh.in>",
+      "description": "A pixel icon component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
+      "registryDependencies": [
+        "@bucharitesh/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/bucharitesh/pixel-icon/pixel-icon.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "docs": "https://bucharitesh.in/craft/pixel-icon"
+    },
+    {
+      "name": "split-text-effect",
+      "type": "registry:component",
+      "title": "Split Text Effect",
+      "author": "bucharitesh <contact@bucharitesh.in>",
+      "description": "A split text effect component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
+      "registryDependencies": [
+        "@bucharitesh/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/bucharitesh/split-text-effect/split-text-effect.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "docs": "https://bucharitesh.in/craft/split-text-effect"
+    },
+    {
+      "name": "view-magnifier",
+      "type": "registry:component",
+      "title": "View Magnifier",
+      "author": "bucharitesh <contact@bucharitesh.in>",
+      "description": "A view magnifier component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
+      "registryDependencies": [
+        "@bucharitesh/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/bucharitesh/view-magnifier/view-magnifier.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "docs": "https://bucharitesh.in/craft/view-magnifier"
+    },
+    {
+      "name": "game-of-life",
+      "type": "registry:component",
+      "title": "Game of Life",
+      "author": "bucharitesh <contact@bucharitesh.in>",
+      "description": "A game of life component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
+      "registryDependencies": [
+        "@bucharitesh/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/bucharitesh/game-of-life/game-of-life.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "docs": "https://bucharitesh.in/craft/game-of-life"
+    },
+    {
+      "name": "magical-mouse",
+      "type": "registry:component",
+      "title": "Magical Mouse",
+      "author": "bucharitesh <contact@bucharitesh.in>",
+      "description": "A magical mouse component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
+      "registryDependencies": [
+        "@bucharitesh/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/bucharitesh/magical-mouse/magical-mouse.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/bucharitesh/magical-mouse/magical-mouse.css",
+          "type": "registry:style"
+        }
+      ],
+      "docs": "https://bucharitesh.in/craft/magical-mouse"
+    },
+    {
+      "name": "book-demo",
+      "type": "registry:block",
+      "registryDependencies": [
+        "@bucharitesh/book"
+      ],
+      "files": [
+        {
+          "path": "registry/default/example/book-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "book-variant-demo",
+      "type": "registry:block",
+      "registryDependencies": [
+        "@bucharitesh/book"
+      ],
+      "files": [
+        {
+          "path": "registry/default/example/book-variant-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "game-of-life-demo",
+      "type": "registry:block",
+      "registryDependencies": [
+        "@bucharitesh/game-of-life"
+      ],
+      "files": [
+        {
+          "path": "registry/default/example/game-of-life-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "game-of-life-demo-2",
+      "type": "registry:block",
+      "registryDependencies": [
+        "@bucharitesh/game-of-life"
+      ],
+      "files": [
+        {
+          "path": "registry/default/example/game-of-life-demo-2.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "magical-mouse-demo",
+      "type": "registry:block",
+      "registryDependencies": [
+        "@bucharitesh/magical-mouse"
+      ],
+      "files": [
+        {
+          "path": "registry/default/example/magical-mouse-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "modern-progress-demo",
+      "type": "registry:block",
+      "registryDependencies": [
+        "@bucharitesh/modern-progress"
+      ],
+      "files": [
+        {
+          "path": "registry/default/example/modern-progress-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "pixel-icon-demo",
+      "type": "registry:block",
+      "registryDependencies": [
+        "@bucharitesh/pixel-icon"
+      ],
+      "files": [
+        {
+          "path": "registry/default/example/pixel-icon-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "split-text-effect-demo",
+      "type": "registry:block",
+      "registryDependencies": [
+        "@bucharitesh/split-text-effect"
+      ],
+      "files": [
+        {
+          "path": "registry/default/example/split-text-effect-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "split-text-effect-demo-2",
+      "type": "registry:block",
+      "registryDependencies": [
+        "@bucharitesh/split-text-effect"
+      ],
+      "files": [
+        {
+          "path": "registry/default/example/split-text-effect-demo-2.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "split-text-effect-demo-3",
+      "type": "registry:block",
+      "registryDependencies": [
+        "@bucharitesh/split-text-effect"
+      ],
+      "files": [
+        {
+          "path": "registry/default/example/split-text-effect-demo-3.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "view-magnifier-demo",
+      "type": "registry:block",
+      "registryDependencies": [
+        "@bucharitesh/view-magnifier"
+      ],
+      "files": [
+        {
+          "path": "registry/default/example/view-magnifier-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "view-magnifier-demo-2",
+      "type": "registry:block",
+      "registryDependencies": [
+        "@bucharitesh/view-magnifier"
+      ],
+      "files": [
+        {
+          "path": "registry/default/example/view-magnifier-demo-2.tsx",
+          "type": "registry:component"
+        }
+      ]
+    }
+  ]
+}

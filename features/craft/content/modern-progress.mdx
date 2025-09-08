@@ -1,0 +1,69 @@
+---
+title: Modern Progress
+date: "2025-02-21"
+description: Modern Progress
+author: bucharitesh
+published: true
+type: "component"
+theme: "light"
+image: "https://cdn.bucharitesh.in/modern-progress.png"
+video: "https://cdn.bucharitesh.in/modern-progress.mp4"
+aspect_ratio: 1.6
+---
+
+<ComponentPreview name="modern-progress-demo" />
+
+The Modern Progress component creates a modern progress bar. It supports hover effects, color changes, and pixel shape customization.
+
+## Installation
+
+<CodeTabs className="gap-0">
+
+<TabsList>
+  <TabsTriggerShadcnCLI />
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli" className="[&>figure]:mb-0">
+
+```bash
+npx shadcn@latest add "https://bucharitesh.in/r/modern-progress"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="modern-progress" />
+
+<Step>Copy the css and name it modern-progress.css</Step>
+
+<ComponentCSS name="modern-progress" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Props
+
+| Prop                        | Type            | Description                                      | Default                        |
+| --------------------------- | --------------- | ------------------------------------------------ | -----------------------------  |
+| className                   | string          | Custom class name                                | ""                             |
+| value                       | number          | Value of the progress bar                        | 0                              |
+| max                         | number          | Maximum value of the progress bar                | 100                            |
+| variant                     | string          | Variant of the progress bar                      | "default"                      |
+| radius                      | string          | Radius of the progress bar                       | "default"                      |
+| striped                     | boolean         | Whether the progress bar is striped              | true                           |
+| indicatorClassName          | string          | Custom class name for the indicator              | ""                             |
+
+## Credits
+
+- Credit to [@Hyperplexed](https://hyperplexed.io) for the video.

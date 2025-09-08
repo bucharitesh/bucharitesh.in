@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import ViewMagnifier from "@/components/bucharitesh/view-magnifier";
+import ViewMagnifier from "@/registry/default/bucharitesh/view-magnifier/view-magnifier";
 import Image from "next/image";
 
 export default function ViewMagnifierDemo() {

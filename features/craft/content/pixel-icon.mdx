@@ -1,0 +1,92 @@
+---
+title: Pixel Icon
+date: "2024-07-07"
+description: Customizable and interactive pixel-based icons
+author: bucharitesh
+published: true
+type: "component"
+theme: "dark"
+image: "https://cdn.bucharitesh.in/pixel-icon.png?v=1"
+video: "https://cdn.bucharitesh.in/pixel-icon.mp4?v=1"
+aspect_ratio: 1.56
+---
+
+<ComponentPreview name="pixel-icon-demo" />
+
+The Icon component creates customizable, interactive pixel-based icons. It supports hover effects, color changes, and pixel shape customization.
+
+## Installation
+
+<CodeTabs className="gap-0">
+
+<TabsList>
+  <TabsTriggerShadcnCLI />
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli" className="[&>figure]:mb-0">
+
+```bash
+npx shadcn@latest add "https://bucharitesh.in/r/pixel-icon"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="pixel-icon" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Props
+
+| Prop           | Type                 | Description                                         | Default  |
+| -------------- | -------------------- | --------------------------------------------------- | -------- |
+| icon           | number[][]           | 2D array representing the icon's pixel layout       |          |
+| baseColor      | string               | Base color of the icon                              |          |
+| flickerColor   | string               | Color used for the flicker effect                   |          |
+| secondaryColor | string               | Secondary color for additional details              | "gray"   |
+| size           | number               | Size of the icon in pixels                          | 80       |
+| flickerChance  | number               | Probability of pixel color change on hover (0 to 1) | 0.3      |
+| pixelShape     | "circle" \| "square" | Shape of individual pixels                          | "circle" |
+| className      | string               | Additional CSS classes for the icon container       |          |
+
+## Usage
+
+```jsx
+import PixelIcon from "./PixelIcon";
+
+const MyComponent = () => {
+  const iconData = [
+    [1, 1, 1],
+    [1, 0, 1],
+    [1, 1, 1],
+  ];
+
+  return (
+    <PixelIcon
+      icon={iconData}
+      baseColor="#ff0000"
+      flickerColor="#ffff00"
+      secondaryColor="#0000ff"
+      size={100}
+      flickerChance={0.5}
+      pixelShape="square"
+    />
+  );
+};
+```
+
+## Credits
+
+- Credit to [@rauno](https://rauno.me/craft/vercel#pixelated-iconography) for this beautiful blog :)

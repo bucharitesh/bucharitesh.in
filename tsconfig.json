@@ -1,54 +1,43 @@
 {
-  "display": "Next.js",
   "compilerOptions": {
     "target": "ES2017",
-    "module": "esnext",
-    "moduleResolution": "Bundler",
-    "allowJs": true,
-    "jsx": "preserve",
-    "noEmit": true,
-    "baseUrl": ".",
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
     "lib": [
       "dom",
       "dom.iterable",
       "esnext"
     ],
+    "allowJs": true,
     "skipLibCheck": true,
-    "incremental": true,
+    "strict": true,
+    "noEmit": true,
     "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "forceConsistentCasingInFileNames": true,
-    "moduleDetection": "force",
-    "strictNullChecks": true,
-    "declaration": false,
-    "strict": false,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
     "paths": {
       "@/*": ["./*"],
-      "content-collections": ["./.content-collections/generated"],
       "@/components/bucharitesh/*": ["./registry/default/bucharitesh/*"],
-      "@/components/example/*": ["./registry/default/example/*"]
+      "@/components/example/*": ["./registry/default/example/*"],
+      "@/registry/*": ["./registry/*"]
     },
   },
-  "exclude": [
-    "node_modules",
-    "old",
-    "scripts/build-registry.ts",
-    "__registry__",
-    "packages/**/*",
-    "scripts/**/*"
-  ],
   "include": [
-    "types/next-env.d.ts",
-    "next.config.ts",
+    "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    ".content-colletions/generated"
+    "./scripts/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "./__registry__"
   ]
 }

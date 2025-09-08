@@ -1,4 +1,4 @@
-import type { Node } from "unist";
+import type { Node } from "unist-builder";
 export interface UnistNode extends Node {
   type: string;
   name?: string;
@@ -6,8 +6,6 @@ export interface UnistNode extends Node {
   value?: string;
   properties?: {
     __rawString__?: string;
-    __className__?: string;
-    __event__?: string;
     [key: string]: unknown;
   } & NpmCommands;
   attributes?: {
@@ -18,13 +16,13 @@ export interface UnistNode extends Node {
   children?: UnistNode[];
 }
 
-export interface UnistTree extends UnistNode {
+export interface UnistTree extends Node {
   children: UnistNode[];
 }
 
 export interface NpmCommands {
-  __npmCommand__?: string;
-  __yarnCommand__?: string;
-  __pnpmCommand__?: string;
-  __bunCommand__?: string;
+  __pnpm__?: string;
+  __yarn__?: string;
+  __npm__?: string;
+  __bun__?: string;
 }

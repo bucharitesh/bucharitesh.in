@@ -1,5 +1,5 @@
 import React from "react";
-import { MouseSparkles } from "../bucharitesh/magical-mouse";
+import { MouseSparkles } from "../bucharitesh/magical-mouse/magical-mouse";
 
 const MagicalMouseDemo = () => {
   return (

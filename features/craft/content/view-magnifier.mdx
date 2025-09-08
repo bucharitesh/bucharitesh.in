@@ -1,0 +1,63 @@
+---
+title: View Magnifier
+date: "2025-01-07"
+description: View Magnifier
+author: bucharitesh
+published: true
+type: "component"
+theme: "dark"
+image: "https://cdn.bucharitesh.in/view-magnifier.png"
+video: "https://cdn.bucharitesh.in/view-magnifier.mp4"
+aspect_ratio: 2
+---
+
+<ComponentPreview name="view-magnifier-demo" />
+
+A dynamic image magnifier component that creates an interactive zoom effect on hover. Features customizable magnification level, smooth transitions, and responsive behavior for enhanced image viewing experience.
+
+## Installation
+
+<CodeTabs className="gap-0">
+
+<TabsList>
+  <TabsTriggerShadcnCLI />
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli" className="[&>figure]:mb-0">
+
+```bash
+npx shadcn@latest add "https://bucharitesh.in/r/view-magnifier"
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="view-magnifier" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Props
+
+| Prop              | Type                        | Description                                         | Default |
+| ----------------- | --------------------------- | --------------------------------------------------- | ------- |
+| children          | React.ReactNode             | Children to be magnified                            |         |
+| className         | string                      | Additional classes for the container                |         |
+| maxScale          | number                      | Maximum scale of the magnifier                      | 1.8     |
+| onScaleChange     | (isActive: boolean) => void | Callback function when the scale changes            |         |
+| onMaxScaleReached | (isAtMax: boolean) => void  | Callback function when the maximum scale is reached |         |
+
+## Examples
+
+<ComponentPreview name="view-magnifier-demo-2" />

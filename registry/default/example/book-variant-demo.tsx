@@ -1,5 +1,5 @@
 import React from "react";
-import Book from "../bucharitesh/book";
+import Book from "../bucharitesh/book/book";
 import { Leaf } from "lucide-react";
 
 const BookDemo = () => {

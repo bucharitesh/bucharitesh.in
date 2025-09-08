@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useEffect } from "react";
-import { Progress } from "../bucharitesh/modern-progress";
+import { Progress } from "../bucharitesh/modern-progress/modern-progress";
 
 const ProgressDemo = () => {
   const [progress, setProgress] = useState(0);

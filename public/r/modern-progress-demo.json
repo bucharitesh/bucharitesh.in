@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "modern-progress-demo",
+  "type": "registry:block",
+  "registryDependencies": [
+    "@bucharitesh/modern-progress"
+  ],
+  "files": [
+    {
+      "path": "registry/default/example/modern-progress-demo.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { useEffect } from \"react\";\nimport { Progress } from \"../bucharitesh/modern-progress/modern-progress\";\n\nconst ProgressDemo = () => {\n  const [progress, setProgress] = useState(0);\n\n  useEffect(() => {\n    const interval = setInterval(() => {\n      setProgress(progress + 1);\n    }, 100);\n    return () => clearInterval(interval);\n  }, [progress]);\n\n  return (\n    <div className=\"w-full h-full p-10 flex items-center justify-center\">\n      <Progress\n        value={progress}\n        className=\"border-purple-500\"\n        indicatorClassName=\"bg-purple-500\"\n        showText\n      />\n    </div>\n  );\n};\n\nexport default ProgressDemo;\n",
+      "type": "registry:component"
+    }
+  ]
+}

@@ -1,9 +1,9 @@
 import { Metadata } from "next";
-import { getCrafts } from "@/lib/db/craft";
 import { MasonryGrid } from "@/components/masonary-grid";
 import { Card } from "./page-client";
 import { FloatingHeader } from "@/components/navigation/floating-header";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { getAllPosts } from "@/features/craft/data/posts";
 
 export const metadata: Metadata = {
   title: "Craft",
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  const crafts = await getCrafts();
+  const allCrafts = await getAllPosts();
 
   return (
     <ScrollArea useScrollAreaId>
@@ -26,21 +26,21 @@ export default async function Page() {
           xl: 3,
         }}
       >
-        {crafts.map((item, index) => (
+        {allCrafts.map((item, index) => (
           <Card
-            key={`${item.title}-${index}`}
-            title={item.title}
-            date={item.date.toLocaleDateString("en-US", {
+            key={`${item.metadata.title}-${index}`}
+            title={item.metadata.title}
+            date={new Date(item.metadata.date).toLocaleDateString("en-US", {
               month: "long",
               year: "numeric",
             })}
-            href={item.href ? item.href : `/craft/${item.slug}`}
-            src={item.video ? item.video : item.image}
-            type={item.video ? "video" : "image"}
-            blurImage={item.blurImage}
-            craft_type={item.type}
-            theme={item.theme}
-            aspectRatio={item.aspect_ratio}
+            href={item.metadata.href ? item.metadata.href : `/craft/${item.slug}`}
+            src={item.metadata.video ? item.metadata.video : item.metadata.image}
+            type={item.metadata.video ? "video" : "image"}
+            blurImage={item.metadata.blurImage}
+            craft_type={item.metadata.type}
+            theme={item.metadata.theme}
+            aspectRatio={item.metadata.aspect_ratio}
           />
         ))}
       </MasonryGrid>

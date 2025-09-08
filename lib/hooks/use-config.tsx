@@ -1,19 +1,17 @@
 import { useAtom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
 
-import { BaseColor } from "@/registry/registry-base-colors";
-import { Style } from "@/registry/registry-styles";
+export type PackageManager = "pnpm" | "yarn" | "npm" | "bun";
+export type InstallationType = "cli" | "manual";
 
 type Config = {
-  style: Style["name"];
-  theme: BaseColor["name"];
-  radius: number;
+  packageManager: PackageManager;
+  installationType: InstallationType;
 };
 
-const configAtom = atomWithStorage<Config>("config", {
-  style: "default",
-  theme: "zinc",
-  radius: 0.5,
+const configAtom = atomWithStorage<Config>("bucharitesh.config", {
+  packageManager: "pnpm",
+  installationType: "cli",
 });
 
 export function useConfig() {

@@ -1,82 +1,136 @@
-import { Registry } from "@/registry/schema";
+import type { Registry } from "shadcn/schema";
 
-export const examples: Registry = [
-  {
-    name: "pixel-icon-demo",
-    type: "registry:example",
-    registryDependencies: ["pixel-icon"],
-    files: ["example/pixel-icon-demo.tsx"],
-  },
-  {
-    name: "split-text-effect-demo",
-    type: "registry:example",
-    registryDependencies: ["split-text-effect"],
-    files: ["example/split-text-effect-demo.tsx"],
-  },
-  {
-    name: "split-text-effect-demo-2",
-    type: "registry:example",
-    registryDependencies: ["split-text-effect"],
-    files: ["example/split-text-effect-demo-2.tsx"],
-  },
-  {
-    name: "split-text-effect-demo-3",
-    type: "registry:example",
-    registryDependencies: ["split-text-effect"],
-    files: ["example/split-text-effect-demo-3.tsx"],
-  },
-  {
-    name: "view-magnifier-demo",
-    type: "registry:example",
-    registryDependencies: ["view-magnifier"],
-    files: ["example/view-magnifier-demo.tsx"],
-  },
-  {
-    name: "view-magnifier-demo-2",
-    type: "registry:example",
-    registryDependencies: ["view-magnifier"],
-    files: ["example/view-magnifier-demo-2.tsx"],
-  },
-  {
-    name: "game-of-life-demo",
-    type: "registry:example",
-    registryDependencies: ["game-of-life"],
-    files: ["example/game-of-life-demo.tsx"],
-  },
-  {
-    name: "game-of-life-demo-2",
-    type: "registry:example",
-    registryDependencies: ["game-of-life"],
-    files: ["example/game-of-life-demo-2.tsx"],
-  },
-  // {
-  //   name: "vercel-grid-demo-text",
-  //   type: "registry:example",
-  //   registryDependencies: ["vercel-grid"],
-  //   files: ["example/vercel-grid-demo-text.tsx"],
-  // },
+export const examples: Registry["items"] = [
   {
     name: "book-demo",
     type: "registry:example",
-    registryDependencies: ["book"],
-    files: ["example/book-demo.tsx"],
+    registryDependencies: ["@bucharitesh/book"],
+    files: [
+      {
+        path: "examples/book-demo.tsx",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "book-variant-demo",
     type: "registry:example",
-    registryDependencies: ["book"],
-    files: ["example/book-variant-demo.tsx"],
+    registryDependencies: ["@bucharitesh/book"],
+    files: [
+      {
+        path: "examples/book-variant-demo.tsx",
+        type: "registry:component",
+      },
+    ],
+  },
+  {
+    name: "game-of-life-demo",
+    type: "registry:example",
+    registryDependencies: ["@bucharitesh/game-of-life"],
+    files: [
+      {
+        path: "examples/game-of-life-demo.tsx",
+        type: "registry:component",
+      },
+    ],
+  },
+  {
+    name: "game-of-life-demo-2",
+    type: "registry:example",
+    registryDependencies: ["@bucharitesh/game-of-life"],
+    files: [
+      {
+        path: "examples/game-of-life-demo-2.tsx",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "magical-mouse-demo",
     type: "registry:example",
-    registryDependencies: ["magical-mouse"],
-    files: ["example/magical-mouse-demo.tsx"],
+    registryDependencies: ["@bucharitesh/magical-mouse"],
+    files: [
+      {
+        path: "examples/magical-mouse-demo.tsx",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "modern-progress-demo",
     type: "registry:example",
-    registryDependencies: ["modern-progress"],
-    files: ["example/modern-progress-demo.tsx"],
+    registryDependencies: ["@bucharitesh/modern-progress"],
+    files: [
+      {
+        path: "examples/modern-progress-demo.tsx",
+        type: "registry:component",
+      },
+    ],
+  },
+  {
+    name: "pixel-icon-demo",
+    type: "registry:example",
+    registryDependencies: ["@bucharitesh/pixel-icon"],
+    files: [
+      {
+        path: "examples/pixel-icon-demo.tsx",
+        type: "registry:component",
+      },
+    ],
+  },
+  {
+    name: "split-text-effect-demo",
+    type: "registry:example",
+    registryDependencies: ["@bucharitesh/split-text-effect"],
+    files: [
+      {
+        path: "examples/split-text-effect-demo.tsx",
+        type: "registry:component",
+      },
+    ],
+  },
+  {
+    name: "split-text-effect-demo-2",
+    type: "registry:example",
+    registryDependencies: ["@bucharitesh/split-text-effect"],
+    files: [
+      {
+        path: "examples/split-text-effect-demo-2.tsx",
+        type: "registry:component",
+      },
+    ],
+  },
+  {
+    name: "split-text-effect-demo-3",
+    type: "registry:example",
+    registryDependencies: ["@bucharitesh/split-text-effect"],
+    files: [
+      {
+        path: "examples/split-text-effect-demo-3.tsx",
+        type: "registry:component",
+      },
+    ],
+  },
+  {
+    name: "view-magnifier-demo",
+    type: "registry:example",
+    registryDependencies: ["@bucharitesh/view-magnifier"],
+    files: [
+      {
+        path: "examples/view-magnifier-demo.tsx",
+        type: "registry:component",
+      },
+    ],
+  },
+  {
+    name: "view-magnifier-demo-2",
+    type: "registry:example",
+    registryDependencies: ["@bucharitesh/view-magnifier"],
+    files: [
+      {
+        path: "examples/view-magnifier-demo-2.tsx",
+        type: "registry:component",
+      },
+    ],
   },
 ];
