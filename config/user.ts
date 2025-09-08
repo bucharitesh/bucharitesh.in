@@ -1,8 +1,11 @@
 import { Experience, experiences } from "./experience";
 
 export type User = {
+  firstName: string;
+  lastName: string;
   name: string;
   email: string;
+  location: string;
   domain: string;
   website: string;
   description: string;
@@ -25,6 +28,8 @@ export type User = {
 };
 
 export const USER: User = {
+  firstName: "Ritesh",
+  lastName: "Bucha",
   name: "Ritesh Bucha",
   email: "bucharitesh@gmail.com",
   domain: "bucharitesh.in",
@@ -33,6 +38,7 @@ export const USER: User = {
   username: "bucharitesh",
   tagline: "User Experience at Flam",
   twitterHandle: "@bucha.ritesh",
+  location: "Bengaluru, India",
   description:
     "What I'm learning about shipping great products, becoming a better developer, and growing a career in tech.",
   namePronunciationUrl: "https://bucharitesh.in/assets/ritesh-bucha.mp3",
@@ -53,5 +59,5 @@ export const USER: User = {
     profile:
       "https://res.cloudinary.com/bucha/image/upload/c_thumb,q_100/bucharitesh_u1v1rt.png",
   },
-  ...experiences,
+  experiences: experiences,
 };

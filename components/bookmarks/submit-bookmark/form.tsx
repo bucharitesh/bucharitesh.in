@@ -35,7 +35,7 @@ export const SubmitBookmarkForm = memo(({ className, setFormOpen, bookmarks, cur
   const hasErrors = useMemo(() => Object.keys(errors).length > 0, [errors])
 
   const onSubmit = useCallback(
-    async (values) => {
+    async (values: any) => {
       try {
         const response = await fetch('/api/submit-bookmark', {
           method: 'POST',
@@ -59,7 +59,7 @@ export const SubmitBookmarkForm = memo(({ className, setFormOpen, bookmarks, cur
             </span>
           )
         })
-      } catch (error) {
+      } catch (error: any) {
         toast.error(error.message)
       } finally {
         setFormOpen(false)
@@ -69,7 +69,7 @@ export const SubmitBookmarkForm = memo(({ className, setFormOpen, bookmarks, cur
   )
 
   const renderUrlField = useCallback(
-    ({ field }) => (
+    ({ field }: { field: any }) => (
       <FormItem>
         <FormLabel>Website URL</FormLabel>
         <FormControl>
@@ -82,7 +82,7 @@ export const SubmitBookmarkForm = memo(({ className, setFormOpen, bookmarks, cur
   )
 
   const renderEmailField = useCallback(
-    ({ field }) => (
+    ({ field }: { field: any }) => (
       <FormItem>
         <FormLabel>Email</FormLabel>
         <FormControl>
@@ -95,7 +95,7 @@ export const SubmitBookmarkForm = memo(({ className, setFormOpen, bookmarks, cur
   )
 
   const renderTypeField = useCallback(
-    ({ field }) => (
+    ({ field }: { field: any }) => (
       <FormItem>
         <FormLabel>Type</FormLabel>
         <Select onValueChange={field.onChange} defaultValue={field.value}>

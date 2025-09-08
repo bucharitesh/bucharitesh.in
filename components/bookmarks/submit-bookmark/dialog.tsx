@@ -21,7 +21,7 @@ export const SubmitBookmarkDialog = ({ bookmarks, currentBookmark } : { bookmark
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button size="xs" className="relative">
+        <Button size="sm" className="relative">
           <SendIcon size={16} className="mr-2" />
           Submit
         </Button>

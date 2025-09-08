@@ -16,7 +16,7 @@ export default function NotFound() {
       />
       <p className="text-4xl font-bold">Oops!</p>
       <SnakeGame />
-      <Info show={["time", "screen"]} />
+      <Info show={["time", "screen", "llms"]} />
       <Link href="/">
         <Button variant="outline">Go Home</Button>
       </Link>

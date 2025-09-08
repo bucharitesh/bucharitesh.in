@@ -167,7 +167,7 @@ const PixelIcon: React.FC<PixelIconProps> = ({
               pixel.type === 1 ? memoizedColors.base : memoizedColors.secondary;
           }
 
-          ctx.fillStyle = color;
+          ctx.fillStyle = color as string ?? "";
 
           if (pixelShape === "circle") {
             ctx.beginPath();

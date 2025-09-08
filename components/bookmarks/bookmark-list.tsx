@@ -8,7 +8,7 @@ import { BookmarkCard } from '@/components/bookmarks/bookmark-card'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
-export const BookmarkList = ({ initialData, id }) => {
+export const BookmarkList = ({ initialData, id }: { initialData: any, id: string }) => {
   const [data, setData] = useState(initialData?.result ? initialData?.items : [])
   const [pageIndex, setPageIndex] = useState(0)
   const [isLoading, setIsLoading] = useState(false)
@@ -20,7 +20,7 @@ export const BookmarkList = ({ initialData, id }) => {
   const fetchInfiniteData = useCallback(async () => {
     setIsLoading(true)
     const newData = await getBookmarkItemsByPageIndex(id, pageIndex)
-    if (newData.result) setData((prevData) => [...prevData, ...newData.items])
+    if (newData.result) setData((prevData: any) => [...prevData, ...newData.items])
     setIsLoading(false)
   }, [id, pageIndex])
 
@@ -31,7 +31,7 @@ export const BookmarkList = ({ initialData, id }) => {
   const getChunks = useCallback(() => {
     const firstChunk: any = []
     const lastChunk: any = []
-    data.forEach((element, index) => {
+    data.forEach((element: any, index: number) => {
       if (index % 2 === 0) {
         firstChunk.push(element)
       } else {
@@ -47,7 +47,7 @@ export const BookmarkList = ({ initialData, id }) => {
   const isTweetCollection = false;
 
   const memoizedBookmarks = useMemo(() => {
-    return data.map((bookmark, bookmarkIndex) => (
+    return data.map((bookmark: any, bookmarkIndex: number) => (
       <div
         key={`bookmark_${bookmarkIndex}`}
         className={cn('grid gap-4', isTweetCollection ? 'h-fit' : 'place-content-start')}

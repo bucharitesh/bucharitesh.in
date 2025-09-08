@@ -1,5 +1,5 @@
 import { SideMenu } from "@/components/bookmarks/sidebar";
-import { ListItem } from "@/components/bookmarks/list-item";
+// import { ListItem } from "@/components/bookmarks/list-item";
 import { getBookmarks } from "@/lib/services/raindrop";
 import { sortByProperty } from "@/lib/utils";
 import React, { Suspense } from "react";
@@ -24,7 +24,7 @@ export default async function BookmarksLayout({
         <SideMenu title="Bookmarks" bookmarks={bookmarks} isInner>
           <Suspense fallback={<ScreenLoadingSpinner />}>
             <div className="flex flex-col gap-1 text-sm">
-              {bookmarks?.map((bookmark) => {
+              {/* {bookmarks?.map((bookmark) => {
                 return (
                   <ListItem
                     key={bookmark._id}
@@ -33,7 +33,7 @@ export default async function BookmarksLayout({
                     description={`${bookmark.count} bookmarks`}
                   />
                 );
-              })}
+              })} */}
             </div>
           </Suspense>
         </SideMenu>

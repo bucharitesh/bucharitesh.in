@@ -2,9 +2,9 @@
 
 import { useEffect } from "react";
 
-export function useKeyPress(callback, keyCodes) {
+export function useKeyPress(callback: any, keyCodes: any) {
   useEffect(() => {
-    const handler = (event) => {
+    const handler = (event: any) => {
       if (
         keyCodes.includes(event.code) &&
         !event.shiftKey &&

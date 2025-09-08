@@ -34,7 +34,7 @@ export default async function Writing() {
     <ScrollArea className="lg:hidden">
       <FloatingHeader title="Bookmarks" bookmarks={bookmarks} />
       <Suspense fallback={<ScreenLoadingSpinner />}>
-        {bookmarks?.map((bookmark) => {
+        {/* {bookmarks?.map((bookmark) => {
           return (
             <Link
               key={bookmark._id}
@@ -45,7 +45,7 @@ export default async function Writing() {
               <span className="text-slate-500">{bookmark.count} bookmarks</span>
             </Link>
           )
-        })}
+        })} */}
       </Suspense>
     </ScrollArea>
   )

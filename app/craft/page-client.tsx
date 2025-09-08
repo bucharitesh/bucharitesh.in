@@ -8,6 +8,13 @@ import { Link } from "next-view-transitions";
 export interface MediaContentProps {
   src: string;
   title: string;
+  date: string;
+  href: string;
+  craft_type: string;
+  theme: string;
+  position?: string;
+  className?: string;
+  blurImage: string | null;
   type?: "image" | "video";
   aspectRatio?: number;
 }
@@ -24,7 +31,7 @@ export const Card = ({
   className = "",
   blurImage,
   type = "video",
-}) => {
+}: MediaContentProps) => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -89,7 +96,7 @@ export const Card = ({
                   "opacity-100": !showContent,
                 },
               )}
-              src={blurImage}
+              src={blurImage ?? ""}
               style={{
                 filter: "blur(32px)",
                 transform: "scale(1) translateZ(0px)",

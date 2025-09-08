@@ -30,7 +30,7 @@ export function getAPI() {
  * @param href - The href attribute value of the link to be checked.
  * @returns - A boolean value indicating whether the link is an external link.
  */
-export const isExternalLink = (href) => {
+export const isExternalLink = (href: string) => {
   if (!href) return false;
   return !href.startsWith("/") && !href.startsWith("#");
 };
@@ -43,7 +43,7 @@ export const isExternalLink = (href) => {
  * @param date - The date string to be formatted.
  * @returns - A localized date string representation formatted as 'Month Day, Year'.
  */
-export const getDateTimeFormat = (date) => {
+export const getDateTimeFormat = (date: string) => {
   const dateObj = new Date(date);
   return Intl.DateTimeFormat("en-US", {
     year: "numeric",
@@ -60,7 +60,7 @@ export const getDateTimeFormat = (date) => {
  * @param text - The input text to be dasherized.
  * @returns - The dasherized version of the input text.
  */
-export const dasherize = (text) =>
+export const dasherize = (text: string) =>
   String(text).replace(/ +/g, "-").toLowerCase();
 
 /**
@@ -71,8 +71,8 @@ export const dasherize = (text) =>
  * @param prop - The property name used for sorting the objects.
  * @returns - The sorted array in ascending order based on the specified property.
  */
-export const sortByProperty = (arr, prop) => {
-  return arr?.sort((a, b) => {
+export const sortByProperty = (arr: any, prop: string) => {
+  return arr?.sort((a: any, b: any) => {
     const itemA = a[prop].toUpperCase();
     const itemB = b[prop].toUpperCase();
 
@@ -141,10 +141,10 @@ export const viewCountFormatter = new Intl.NumberFormat("nl-NL");
  * @param items - The array of items to be grouped by year.
  * @returns - An array of arrays, each containing items grouped by year.
  */
-export const getItemsByYear = (items) => {
-  return items.reduce((acc, item) => {
+export const getItemsByYear = (items: any) => {
+  return items.reduce((acc: any, item: any) => {
     const year = new Date(item.date || item.sys.firstPublishedAt).getFullYear();
-    const yearArr = acc.find((item) => item[0] === year);
+    const yearArr = acc.find((item: any) => item[0] === year);
     if (!yearArr) {
       acc.push([year, [item]]);
     } else {

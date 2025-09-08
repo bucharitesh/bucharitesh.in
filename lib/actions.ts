@@ -5,7 +5,7 @@ import { sql } from "@vercel/postgres";
 import { revalidatePath } from "next/cache";
 import { getBookmarkItems } from "./services/raindrop";
 
-export async function getBookmarkItemsByPageIndex(id, pageIndex) {
+export async function getBookmarkItemsByPageIndex(id: string, pageIndex: number) {
   return await getBookmarkItems(id, pageIndex);
 }
 

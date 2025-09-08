@@ -15,13 +15,13 @@ import {
 } from '@/components/ui/drawer'
 import { SUBMIT_BOOKMARK_FORM_DESCRIPTION, SUBMIT_BOOKMARK_FORM_TITLE } from '@/lib/config'
 
-export const SubmitBookmarkDrawer = ({ bookmarks, currentBookmark }) => {
+export const SubmitBookmarkDrawer = ({ bookmarks, currentBookmark }: { bookmarks: any[], currentBookmark: any }) => {
   const [open, setOpen] = useState(false)
 
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
-        <Button size="xs" className="relative">
+        <Button size="sm" className="relative">
           <SendIcon size={16} className="mr-2" />
           Submit
         </Button>

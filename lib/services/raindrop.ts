@@ -17,7 +17,7 @@ const options = {
 
 const RAINDROP_API_URL = 'https://api.raindrop.io/rest/v1'
 
-export const getBookmarkItems = async (id, pageIndex = 0) => {
+export const getBookmarkItems = async (id: string, pageIndex = 0) => {
   if (!id) throw new Error('Bookmark ID is required')
   if (typeof pageIndex !== 'number' || pageIndex < 0) {
     throw new Error('Invalid page index')
@@ -38,7 +38,7 @@ export const getBookmarkItems = async (id, pageIndex = 0) => {
     }
 
     return await response.json()
-  } catch (error) {
+  } catch (error: any) {
     console.error(`Failed to fetch bookmark items: ${error.message}`)
     return null
   }
@@ -53,18 +53,18 @@ export const getBookmarks = async () => {
     }
 
     const bookmarks = await response.json()
-    return bookmarks.items.filter((bookmark) => COLLECTION_IDS.includes(bookmark._id))
-  } catch (error) {
+    return bookmarks.items.filter((bookmark: any) => COLLECTION_IDS.includes(bookmark._id))
+  } catch (error: any) {
     console.error(`Failed to fetch bookmarks: ${error.message}`)
     return null
   }
 }
 
-export const getBookmark = async (id) => {
+export const getBookmark = async (id: string) => {
   try {
     const response = await fetch(`${RAINDROP_API_URL}/collection/${id}`, options)
     return await response.json()
-  } catch (error) {
+  } catch (error: any) {
     console.info(error)
     return null
   }

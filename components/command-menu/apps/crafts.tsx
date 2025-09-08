@@ -23,7 +23,7 @@ export const useCraftsCommand = ({
     const sortedPosts: any = [];
 
     // Filter posts based on search query
-    const filteredPosts = sortedPosts.filter((post) => {
+    const filteredPosts = sortedPosts.filter((post: any) => {
       if (!searchQuery) return true;
 
       const searchLower = searchQuery.toLowerCase();
@@ -36,7 +36,7 @@ export const useCraftsCommand = ({
     // Take top 5 if no search query, otherwise show all matches
     const postsToShow = searchQuery ? filteredPosts : filteredPosts.slice(0, 5);
 
-    return postsToShow.map((post) => ({
+    return postsToShow.map((post: any) => ({
       id: post._id,
       name: post.title,
       description: (

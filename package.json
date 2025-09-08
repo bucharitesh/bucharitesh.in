@@ -140,6 +140,7 @@
     "@types/lodash.template": "^4.5.3",
     "@types/node": "^16.18.120",
     "@types/react": "^18.3.12",
+    "@types/react-dom": "^19.1.9",
     "@types/rss": "^0.0.32",
     "@types/unist": "^3.0.3",
     "contentlayer": "0.3.4",

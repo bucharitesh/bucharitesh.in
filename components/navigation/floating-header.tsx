@@ -33,7 +33,7 @@ export const FloatingHeader = memo(
     useEffect(() => {
       const scrollAreaElem = document.querySelector(`#${SCROLL_AREA_ID}`);
 
-      const onScroll = (e) => {
+      const onScroll = (e: any) => {
         const scrollY = e.target.scrollTop;
 
         const translateY = Math.max(100 - scrollY, 0);
@@ -110,7 +110,7 @@ export const FloatingHeader = memo(
               </div>
               <div className="flex items-center gap-2">
                 {(isBookmarksIndexPage) && (
-                  <Button variant="outline" size="xs" asChild>
+                  <Button variant="outline" size="sm" asChild>
                     <a
                       href={'/bookmarks/feed.xml'}
                       title="RSS feed"

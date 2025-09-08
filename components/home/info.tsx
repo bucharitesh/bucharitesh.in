@@ -3,8 +3,9 @@
 import { useTime, useWindowSize } from "@/lib/hooks";
 import { motion, TargetAndTransition, Transition } from "motion/react";
 import { cn } from "@/lib/utils";
+import { USER } from "@/config/user";
 
-const fadeIn : {
+const fadeIn: {
   initial: TargetAndTransition;
   animate: TargetAndTransition;
   transition: Transition;
@@ -23,6 +24,9 @@ export default function Info({ show }: { show: string[] }) {
     <>
       {show.includes("time") && <Time className="top-4 left-4" />}
       {show.includes("screen") && <ScreenSize className="bottom-4 left-4" />}
+      {show.includes("llms") && (
+        <LLMS className="bottom-4 right-4" />
+      )}
     </>
   );
 }
@@ -34,7 +38,7 @@ export function Time({ className }: { className?: string }) {
     <motion.div
       className={cn(
         "z-50 fixed top-4 left-4 text-xs font-x tracking-wider text-gray-600 dark:text-gray-300",
-        className,
+        className
       )}
       initial={fadeIn.initial}
       animate={fadeIn.animate}
@@ -52,7 +56,7 @@ export function ScreenSize({ className }: { className?: string }) {
     <motion.div
       className={cn(
         "z-50 fixed bottom-4 left-4 text-xs font-x tracking-wider text-gray-600 dark:text-gray-300",
-        className,
+        className
       )}
       initial={fadeIn.initial}
       animate={fadeIn.animate}
@@ -60,5 +64,24 @@ export function ScreenSize({ className }: { className?: string }) {
     >
       {width} x {height}
     </motion.div>
+  );
+}
+
+export function LLMS({ className }: { className?: string }) {
+  return (
+    <motion.a
+      className={cn(
+        "z-50 fixed bottom-4 right-4 text-xs font-x tracking-wider text-gray-600 dark:text-gray-300",
+        className
+      )}
+      href={`${USER.website}/llms.txt`}
+      target="_blank"
+      rel="noopener noreferrer"
+      initial={fadeIn.initial}
+      animate={fadeIn.animate}
+      transition={fadeIn.transition}
+    >
+        llms.txt
+    </motion.a>
   );
 }

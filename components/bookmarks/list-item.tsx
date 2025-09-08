@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 
 import { cn } from '@/lib/utils'
 
-export const ListItem = ({ title, description, path }) => {
+export const ListItem = ({ title, description, path }: { title: string, description: string, path: string }) => {
   const pathname = usePathname()
   const isActive = pathname === path
 

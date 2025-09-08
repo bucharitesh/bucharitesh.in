@@ -221,17 +221,17 @@ const RainIcon = () => (
   </motion.svg>
 );
 
-const WeatherIcon = ({ type }) => {
+const WeatherIcon = ({ type }: { type: string }) => {
   const icons = {
     sun: <SunIcon />,
     moon: <MoonIcon />,
     rain: <RainIcon />,
   };
-  return icons[type] || icons.sun;
+  return icons[type as keyof typeof icons] || icons.sun;
 };
 
 // Weather components
-const RainDrop = ({ intensity }) => {
+const RainDrop = ({ intensity }: { intensity: number }) => {
   const width = Math.random() * 2 + 2;
   const height = Math.random() * 20 + 20;
   const left = `${Math.random() * 100}%`;
@@ -252,7 +252,7 @@ const RainDrop = ({ intensity }) => {
   );
 };
 
-const WeatherInfo = ({ isNight, isRaining }) => (
+const WeatherInfo = ({ isNight, isRaining }: { isNight: boolean, isRaining: boolean }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
@@ -429,7 +429,7 @@ const Map = () => {
   const [rainIntensity, setRainIntensity] = useState(0);
 
   useEffect(() => {
-    let interval;
+    let interval: any;
     if (isNight && nightIntensity < 1) {
       interval = setInterval(() => {
         setNightIntensity((prev) => Math.min(prev + TRANSITION_SPEED, 1));
@@ -443,7 +443,7 @@ const Map = () => {
   }, [isNight, nightIntensity]);
 
   useEffect(() => {
-    let interval;
+    let interval: any;
     if (isRaining && rainIntensity < 1) {
       interval = setInterval(() => {
         setRainIntensity((prev) => Math.min(prev + TRANSITION_SPEED, 1));
@@ -457,7 +457,7 @@ const Map = () => {
   }, [isRaining, rainIntensity]);
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    const interval: any = setInterval(() => {
       setIsNight((prev) => !prev);
       setIsRaining(Math.random() < 0.3);
     }, WEATHER_CYCLE_DURATION);

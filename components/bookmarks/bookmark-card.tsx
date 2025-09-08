@@ -1,6 +1,6 @@
 import { Link2Icon } from 'lucide-react'
 
-export const BookmarkCard = ({ bookmark, order }) => {
+export const BookmarkCard = ({ bookmark, order }: { bookmark: any, order: number }) => {
   return (
     <a
       key={bookmark._id}

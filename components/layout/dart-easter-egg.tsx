@@ -8,11 +8,11 @@ const DartEffect = () => {
   const [hasExploded, setHasExploded] = useState(false);
 
   useEffect(() => {
-    let timeoutId;
+    let timeoutId: any;
 
     const mainContent = document.getElementById('main-content');
 
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: any) => {
       const newTyped = typed + e.key.toLowerCase();
       setTyped(newTyped);
 

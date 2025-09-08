@@ -23,7 +23,7 @@ export default async function Page() {
   return (
     <>
       <COMMON_SCRIPT_ORG />
-      <Info show={["time", "screen"]} />
+      <Info show={["time", "screen", "llms"]} />
       <ScrollArea useScrollAreaId>
         <FloatingHeader scrollTitle="Ritesh Bucha" />
         <div className="layout relative z-10 content-wrapper">

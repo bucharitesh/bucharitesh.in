@@ -1,6 +1,6 @@
 import { BuddyOptions } from '@/components/buddy/options'
 import React from 'react'
-import { ENABLE_BUDDY } from '@/lib/config'
+import { ENABLE_BUDDY } from '@/config/site'
 import { notFound } from 'next/navigation';
 
 const Page = () => {
