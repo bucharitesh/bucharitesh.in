@@ -1,4 +1,4 @@
-import { meta, META_THEME_COLORS } from "@/lib/config";
+import { meta } from "@/lib/config";
 import { createOgImage } from "@/lib/createOgImage";
 import { Metadata, Viewport } from "next";
 import { cn } from "@/lib/utils";
@@ -13,6 +13,7 @@ import Navigation from "@/components/navigation";
 import { Providers } from "@/lib/providers";
 import Script from "next/script";
 import { WebSite, WithContext } from "schema-dts";
+import { META_THEME_COLORS } from "@/config/site";
 
 function getWebSiteJsonLd(): WithContext<WebSite> {
   return {
@@ -25,8 +26,7 @@ function getWebSiteJsonLd(): WithContext<WebSite> {
 }
 
 export const viewport: Viewport = {
-  themeColor: "#1c1917",
-  colorScheme: "dark",
+  themeColor: META_THEME_COLORS.light,
   width: "device-width",
   initialScale: 1,
 };
@@ -86,6 +86,10 @@ export default async function RootLayout({
             type="text/javascript"
             dangerouslySetInnerHTML={{ __html: darkModeScript }}
           />
+          {/*
+          Thanks @tailwindcss. We inject the script via the `<Script/>` tag again,
+          since we found the regular `<script>` tag to not execute when rendering a not-found page.
+         */}
           <Script src={`data:text/javascript;base64,${btoa(darkModeScript)}`} />
           <script
             type="application/ld+json"
@@ -97,12 +101,7 @@ export default async function RootLayout({
             }}
           />
         </head>
-        <body
-          className={cn(
-            fontX.variable,
-            fontMono.variable
-          )}
-        >
+        <body className={cn(fontX.variable, fontMono.variable)}>
           <Providers session={session}>
             <Navigation />
             <main

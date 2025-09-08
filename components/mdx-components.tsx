@@ -23,7 +23,7 @@ import {
 } from "@/components/ui/table";
 
 
-import { UTM_PARAMS } from "@/lib/config";
+import { UTM_PARAMS } from "@/config/site";
 import { rehypeAddQueryParams } from "@/lib/rehype-add-query-params";
 import { rehypeComponent } from "@/lib/rehype-component";
 import { rehypeNpmCommand } from "@/lib/rehype-npm-command";

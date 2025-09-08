@@ -22,7 +22,7 @@ export function Providers({
         defaultTheme="system"
         attribute="class"
       >
-          {children}
+        {children}
       </NextThemesProvider>
     </SessionProvider>
   );
