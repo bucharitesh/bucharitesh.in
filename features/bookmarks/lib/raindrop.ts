@@ -46,7 +46,7 @@ export const getBookmarkItems = async (id: string, pageIndex = 0) => {
 
 export const getBookmarks = async () => {
   try {
-    const response = await fetch(`${RAINDROP_API_URL}/collections`, options)
+    const response = await fetch(`${RAINDROP_API_URL}/collections`, options);
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)

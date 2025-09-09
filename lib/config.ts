@@ -44,9 +44,5 @@ export const DockConfig = {
 
 export const COLLECTION_IDS = [48069938, 48073561];
 
-export const SUBMIT_BOOKMARK_FORM_TITLE = 'Submit a bookmark'
-export const SUBMIT_BOOKMARK_FORM_DESCRIPTION =
-  "Send me a website you like and if I like it too, you'll see it in the bookmarks list. With respect, please do not submit more than 5 websites a day."
-
 export const SCROLL_AREA_ID = 'scroll-area-id'
 export const MOBILE_SCROLL_THRESHOLD = 20

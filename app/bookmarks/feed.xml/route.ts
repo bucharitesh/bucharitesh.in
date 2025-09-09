@@ -1,6 +1,6 @@
 import { Feed } from 'feed'
 
-import { getBookmarkItems, getBookmarks } from '@/lib/services/raindrop'
+import { getBookmarkItems, getBookmarks } from '@/features/bookmarks/lib/raindrop'
 import { USER } from '@/config/user'
 
 export async function GET() {

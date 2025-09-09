@@ -3,8 +3,8 @@
 import { ArrowDownIcon } from 'lucide-react'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 
-import { getBookmarkItemsByPageIndex } from '@/lib/actions'
-import { BookmarkCard } from '@/components/bookmarks/bookmark-card'
+import { getBookmarkItemsByPageIndex } from '@/features/bookmarks/lib/actions'
+import { BookmarkCard } from '@/features/bookmarks/components/bookmark-card'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 

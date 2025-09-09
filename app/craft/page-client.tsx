@@ -86,7 +86,7 @@ export const Card = ({
       >
         <div className="relative w-full" style={{ aspectRatio: aspectRatio }}>
           {/* Blur image - only show for videos */}
-          {isVideo && (
+          {isVideo && blurImage && (
             <img
               aria-hidden="true"
               className={cn(

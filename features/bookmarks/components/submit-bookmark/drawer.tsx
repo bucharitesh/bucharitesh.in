@@ -13,7 +13,6 @@ import {
   DrawerTitle,
   DrawerTrigger
 } from '@/components/ui/drawer'
-import { SUBMIT_BOOKMARK_FORM_DESCRIPTION, SUBMIT_BOOKMARK_FORM_TITLE } from '@/lib/config'
 
 export const SubmitBookmarkDrawer = ({ bookmarks, currentBookmark }: { bookmarks: any[], currentBookmark: any }) => {
   const [open, setOpen] = useState(false)
@@ -28,8 +27,8 @@ export const SubmitBookmarkDrawer = ({ bookmarks, currentBookmark }: { bookmarks
       </DrawerTrigger>
       <DrawerContent className="px-6">
         <DrawerHeader className="sm:text-center">
-          <DrawerTitle>{SUBMIT_BOOKMARK_FORM_TITLE}</DrawerTitle>
-          <DrawerDescription className="m-0">{SUBMIT_BOOKMARK_FORM_DESCRIPTION}</DrawerDescription>
+          <DrawerTitle>{"Submit a bookmark"}</DrawerTitle>
+          <DrawerDescription className="m-0">{"Send me a website you like and if I like it too, you'll see it in the bookmarks list. With respect, please do not submit more than 5 websites a day."}</DrawerDescription>
         </DrawerHeader>
         <SubmitBookmarkForm
           setFormOpen={setOpen}

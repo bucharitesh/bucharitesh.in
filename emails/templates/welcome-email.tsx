@@ -1,6 +1,6 @@
 import { Heading, Text } from "@react-email/components";
-import EmailText from "./components/email-text";
-import EmailBody from "./components/email-body";
+import EmailText from "../components/email-text";
+import EmailBody from "../components/email-body";
 
 export default function WelcomeEmail({
   email = "contact@bucharitesh.in",

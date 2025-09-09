@@ -9,7 +9,7 @@ import { ArrowLeftIcon, RadioIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { MOBILE_SCROLL_THRESHOLD, SCROLL_AREA_ID } from "@/lib/config";
-import { SubmitBookmarkDrawer } from "../bookmarks/submit-bookmark/drawer";
+import { SubmitBookmarkDrawer } from "../../features/bookmarks/components/submit-bookmark/drawer";
 
 const MobileDrawer = dynamic(() =>
   import("@/components/navigation/mobile-drawer").then(

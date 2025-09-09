@@ -15,11 +15,11 @@ export const ListItem = ({ title, description, path }: { title: string, descript
       href={path}
       className={cn(
         'flex flex-col gap-1 rounded-lg p-2 transition-colors duration-300 *:transition-colors *:duration-300',
-        isActive ? 'bg-black' : 'hover:bg-gray-200'
+        isActive ? 'bg-foreground' : 'hover:bg-muted'
       )}
     >
-      <span className={cn('font-medium', isActive && 'text-foreground')}>{title}</span>
-      {description && <span className={cn(isActive ? 'text-slate-300' : 'text-slate-500')}>{description}</span>}
+      <span className={cn('font-medium', isActive && 'text-background')}>{title}</span>
+      {description && <span className={cn(isActive ? 'text-background/70' : 'text-muted-foreground')}>{description}</span>}
     </Link>
   )
 }
