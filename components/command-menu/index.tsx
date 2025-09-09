@@ -320,7 +320,7 @@ const CommandDialog = ({ children, ...props }: CommandDialogProps) => {
   return (
     <Dialog {...props}>
       <DialogContent
-        noClose
+        // noClose
         className="overflow-hidden p-0 max-w-2xl border-neutral-700"
       >
         <VisuallyHidden asChild>

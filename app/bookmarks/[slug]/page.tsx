@@ -30,7 +30,7 @@ async function fetchData(slug: string) {
   };
 }
 
-export default async function CollectionPage({ params }: { params: { slug: string } }) {
+export default async function CollectionPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const { currentBookmark, bookmarkItems } = await fetchData(slug);
 
@@ -58,7 +58,7 @@ export default async function CollectionPage({ params }: { params: { slug: strin
   );
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const bookmarks = await getBookmarks();
   const currentBookmark = bookmarks.find((bookmark: any) => bookmark.slug === slug);

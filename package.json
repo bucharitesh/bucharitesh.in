@@ -16,6 +16,7 @@
     "capture": "tsx --tsconfig ./tsconfig.scripts.json ./scripts/capture.mts",
     "typecheck": "tsc --noEmit",
     "start": "next start",
+    "clean": "tsx --tsconfig ./tsconfig.scripts.json ./scripts/clean.mts",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "test": "vitest -no-file-parallelism",
     "clear-cache": "rm -rf .next",
