@@ -1,6 +1,6 @@
 // Load environment variables FIRST, before any imports
 import dotenv from "dotenv";
-dotenv.config({ path: '.env.development' });
+dotenv.config({ path: '.env.local' });
 
 import { promises as fs } from "node:fs";
 import path from "node:path";
