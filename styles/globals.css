@@ -276,6 +276,24 @@
     image-rendering: pixelated;
   }
 
+  a,
+  button {
+    @apply cursor-pointer outline-hidden;
+  }
+
+  a {
+    @apply transition-colors duration-300;
+  }
+
+  button:focus {
+    @apply outline-hidden;
+  }
+
+  button:disabled,
+  button[disabled] {
+    @apply cursor-not-allowed;
+  }
+
   /* Custom scrollbar styling. Thanks @shadcn-ui */
   ::-webkit-scrollbar {
     width: 5px;
@@ -660,6 +678,23 @@
   }
   100% {
     transform: translate(300px, -20px) rotate(30deg);
+  }
+}
+
+@keyframes reveal {
+  0% {
+    opacity: 0;
+    filter: brightness(1) blur(15px);
+    scale: 1.0125;
+  }
+  10% {
+    opacity: 1;
+    filter: brightness(1.25) blur(10px);
+  }
+  100% {
+    opacity: 1;
+    filter: brightness(1) blur(0);
+    scale: 1;
   }
 }
 

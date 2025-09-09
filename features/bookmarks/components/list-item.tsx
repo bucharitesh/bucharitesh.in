@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 
 import { cn } from '@/lib/utils'
 
-export const ListItem = ({ title, description, path }: { title: string, description: string, path: string }) => {
+export const ListItem = ({ title, description, path, className }: { title: string, description: string, path: string, className?: string }) => {
   const pathname = usePathname()
   const isActive = pathname === path
 
@@ -15,7 +15,8 @@ export const ListItem = ({ title, description, path }: { title: string, descript
       href={path}
       className={cn(
         'flex flex-col gap-1 rounded-lg p-2 transition-colors duration-300 *:transition-colors *:duration-300',
-        isActive ? 'bg-foreground' : 'hover:bg-muted'
+        isActive ? 'bg-foreground' : 'hover:bg-muted',
+        className
       )}
     >
       <span className={cn('font-medium', isActive && 'text-background')}>{title}</span>

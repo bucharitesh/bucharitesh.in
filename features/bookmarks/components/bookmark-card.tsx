@@ -1,11 +1,13 @@
+import { UTM_PARAMS } from '@/config/site'
 import { Link2Icon } from 'lucide-react'
+import { cn } from '@/lib/utils'
 
-export const BookmarkCard = ({ bookmark, order }: { bookmark: any, order: number }) => {
+export const BookmarkCard = ({ bookmark, order, className }: { bookmark: any, order: number, className?: string }) => {
   return (
     <a
       key={bookmark._id}
-      className="thumbnail-shadow flex aspect-auto min-w-0 cursor-pointer flex-col gap-4 overflow-hidden rounded-xl bg-white p-4 transition-colors duration-300 hover:bg-gray-100"
-      href={`${bookmark.link}?ref=onur.dev`}
+      className={cn("thumbnail-shadow flex aspect-auto min-w-0 cursor-pointer flex-col gap-4 overflow-hidden rounded-xl bg-white p-4 transition-colors duration-300", className)}
+      href={`${bookmark.link}?utm_source=${UTM_PARAMS.utm_source}&utm_medium=${UTM_PARAMS.utm_medium}&utm_campaign=${UTM_PARAMS.utm_campaign}`}
       target="_blank"
       rel="noopener noreferrer"
       data-bookmark-order={order}

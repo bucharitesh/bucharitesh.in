@@ -2,7 +2,8 @@ import dayjs from "dayjs";
 import { MetadataRoute } from "next";
 import { ENABLE_BUDDY } from "@/config/site";
 import { getAllCrafts } from "@/features/craft/data/posts";
-import { addPathToBaseURL, getDomain } from "@/lib/url";
+import { addPathToBaseURL } from "@/lib/url";
+import { getBookmarks } from "@/features/bookmarks/lib/raindrop";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const routes = [
@@ -10,7 +11,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/cal",
     "/guestbook",
     "/craft",
-    // "/bookmarks",
+    "/bookmarks",
     // "/blog",
     //  "/project",
     // "/design-inspiration",
@@ -30,5 +31,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const craftsResolved = await Promise.all(crafts);
   const routesArrayResolved = await Promise.all(routesArray);
 
-  return [...routesArrayResolved, ...craftsResolved];
+  const [bookmarks] = await Promise.all([getBookmarks()])
+
+  const mappedBookmarks = bookmarks.map(async (bookmark: any) => {
+    return {
+      url: await addPathToBaseURL(`/bookmarks/${bookmark.slug}`),
+      lastModified: dayjs().toISOString(),
+      changeFrequency: 'daily',
+      priority: 1
+    }
+  })
+
+  const mappedBookmarksResolved = await Promise.all(mappedBookmarks);
+
+  return [...routesArrayResolved, ...craftsResolved, ...mappedBookmarksResolved];
 }

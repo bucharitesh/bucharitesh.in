@@ -2,6 +2,14 @@
 
 > What I'm learning about shipping great products, becoming a better developer, and growing a career in tech.
 
+- [About](https://bucharitesh.in/me/about.md): A quick intro to me, my tech stack, and how to connect.
+- [Experience](https://bucharitesh.in/me/experience.md): Highlights from my career and key roles I've taken on.
+
+## Bookmarks
+
+- [3D](https://bucharitesh.in/bookmarks/3-d)
+- [Portfolio](https://bucharitesh.in/bookmarks/portfolio)
+
 ## Craft
 
 - [Modern Progress](https://bucharitesh.in/craft/modern-progress)
@@ -12,6 +20,8 @@
 - [View Magnifier](https://bucharitesh.in/craft/view-magnifier)
 - [Split Text Effect](https://bucharitesh.in/craft/split-text-effect)
 - [Pixel Icon](https://bucharitesh.in/craft/pixel-icon)
+
+## Bookmarks
 
 This file provides LLM-friendly entry points to documentation and examples.
 

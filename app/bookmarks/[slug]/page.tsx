@@ -7,7 +7,8 @@ import Balancer from "react-wrap-balancer";
 import { BookmarkList } from "@/features/bookmarks/components/bookmark-list";
 import { createOgImage } from "@/lib/createOgImage";
 import { USER } from "@/config/user";
-import { Bookmark } from "@/features/bookmarks/types/types";
+import { FloatingHeader } from "@/components/navigation/floating-header";
+import { Heading } from "@/components/ui/typography";
 
 export async function generateStaticParams() {
   const bookmarks = await getBookmarks();
@@ -35,6 +36,7 @@ export default async function CollectionPage({ params }: { params: { slug: strin
 
   return (
     <ScrollArea className="bg-grid" useScrollAreaId={true}>
+      <FloatingHeader scrollTitle={currentBookmark.title} />
       <div className="content-wrapper">
         <div className="content container">
           <div
@@ -42,7 +44,7 @@ export default async function CollectionPage({ params }: { params: { slug: strin
               "mb-6 text-4xl font-bold tracking-widest",
             )}
           >
-            <Balancer as="h1">{currentBookmark.title}</Balancer>
+            <Balancer><Heading as="h2">{currentBookmark.title}</Heading></Balancer>
           </div>
           <Suspense fallback={<p>...</p>}>
             <BookmarkList

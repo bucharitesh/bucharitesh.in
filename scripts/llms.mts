@@ -1,3 +1,7 @@
+// Load environment variables FIRST, before any imports
+import dotenv from "dotenv";
+dotenv.config({ path: '.env.development' });
+
 import { promises as fs } from "node:fs";
 import path from "node:path";
 
@@ -9,6 +13,7 @@ import { components as registryComponents } from "../registry/registry-component
 import { USER } from "../config/user";
 
 import { getAllPosts } from "../features/craft/data/posts";
+import { getBookmarks } from "../features/bookmarks/lib/raindrop";
 
 type RegistryItem = Registry["items"][number];
 
@@ -18,7 +23,7 @@ async function readRegistryFilesContents(item: RegistryItem): Promise<string> {
   if (!item.files?.length) return "";
 
   const paths = item.files
-    .map((f: FileEntry) => typeof f === "string" ? f : f?.path)
+    .map((f: FileEntry) => (typeof f === "string" ? f : f?.path))
     .filter(Boolean)
     .sort() as string[];
 
@@ -29,15 +34,26 @@ async function readRegistryFilesContents(item: RegistryItem): Promise<string> {
         // Check if it's a component or example path and resolve correctly
         let fullPath: string;
         if (filePath.startsWith("examples/")) {
-          fullPath = path.join(process.cwd(), "registry/default/example", filePath.replace("examples/", ""));
+          fullPath = path.join(
+            process.cwd(),
+            "registry/default/example",
+            filePath.replace("examples/", "")
+          );
         } else {
-          fullPath = path.join(process.cwd(), "registry/default/bucharitesh", filePath);
+          fullPath = path.join(
+            process.cwd(),
+            "registry/default/bucharitesh",
+            filePath
+          );
         }
-        
+
         const content = await fs.readFile(fullPath, "utf8");
         return `--- file: ${filePath} ---\n${content.endsWith("\n") ? content : content + "\n"}`;
       } catch (error) {
-        console.warn(`Warning: Could not read file ${filePath}:`, error instanceof Error ? error.message : 'Unknown error');
+        console.warn(
+          `Warning: Could not read file ${filePath}:`,
+          error instanceof Error ? error.message : "Unknown error"
+        );
         return null; // Skip missing files
       }
     })
@@ -71,7 +87,8 @@ async function generateLlmsContent() {
     .sort((a, b) => a.name.localeCompare(b.name))
     .map((component) => {
       const title = (component as any).title || component.name;
-      const description = (component as any).description || `The ${title} component.`;
+      const description =
+        (component as any).description || `The ${title} component.`;
       return `- [${title}](${USER.website}/craft/${component.name}): ${description}`;
     });
 
@@ -85,9 +102,13 @@ async function generateLlmsContent() {
     .map((example) => {
       const title = (example as any).title || example.name;
       const firstFile = example.files?.[0]?.path || "";
-      const url = firstFile ? `${USER.social.github}/portfolio/blob/main/registry/default/${firstFile.replace("examples/", "example/")}` : USER.social.github;
+      const url = firstFile
+        ? `${USER.social.github}/portfolio/blob/main/registry/default/${firstFile.replace("examples/", "example/")}`
+        : USER.social.github;
       return `- [${title}](${url}): Example usage`;
     });
+
+  const [bookmarks] = await Promise.all([getBookmarks()])
 
   return [
     `# ${USER.name}`,
@@ -96,11 +117,25 @@ async function generateLlmsContent() {
     "",
     `- [About](${USER.website}/me/about.md): A quick intro to me, my tech stack, and how to connect.`,
     `- [Experience](${USER.website}/me/experience.md): Highlights from my career and key roles I've taken on.`,
+    `- [Craft](${USER.website}/me/craft.md): A collection of my work.`,
+    `- [Bookmarks](${USER.website}/me/bookmarks.md): Bookmarks from my collections.`,
+    "",
+    "## Bookmarks",
+    "",
+    `${bookmarks.map((bookmark) => `- [${bookmark.title}](https://${USER.domain}/bookmarks/${bookmark.slug})`).join("\n")}`,
     "",
     "## Craft",
     "",
-    `${await getAllPosts().map((post) => `- [${post.metadata.title}](${post.metadata.href ? post.metadata.href : `https://${USER.domain}/craft/${post.slug}`})`).join("\n")}`,
+    `${await getAllPosts()
+      .map(
+        (post) =>
+          `- [${post.metadata.title}](${post.metadata.href ? post.metadata.href : `https://${USER.domain}/craft/${post.slug}`})`
+      )
+      .join("\n")}`,
     "",
+    "## Bookmarks",
+    "",
+    // `${(await getBookmarks()).map((bookmark) => `- [${bookmark.title}](${bookmark.link})`).join("\n")}`,
     "This file provides LLM-friendly entry points to documentation and examples.",
     "",
     "## Components",
@@ -118,14 +153,18 @@ async function generateLlmsContent() {
   ].join("\n");
 }
 
-
-async function generateLlmsFullContent(examplesByComponent: Map<string, string[]>) {
-  const components = registryComponents.filter((item) => item.type === "registry:component").sort((a, b) => a.name.localeCompare(b.name));
+async function generateLlmsFullContent(
+  examplesByComponent: Map<string, string[]>
+) {
+  const components = registryComponents
+    .filter((item) => item.type === "registry:component")
+    .sort((a, b) => a.name.localeCompare(b.name));
 
   const componentContents = await Promise.all(
     components.map(async (component) => {
       const title = (component as any).title || component.name;
-      const description = (component as any).description || `The ${title} component.`;
+      const description =
+        (component as any).description || `The ${title} component.`;
 
       let content = [
         `===== COMPONENT: ${component.name} =====`,
@@ -164,7 +203,7 @@ export async function buildLlmsFiles() {
 
   const [minContent, fullContent] = await Promise.all([
     generateLlmsContent(),
-    generateLlmsFullContent(examplesByComponent)
+    generateLlmsFullContent(examplesByComponent),
   ]);
 
   const publicDir = path.join(process.cwd(), "public");
@@ -172,7 +211,7 @@ export async function buildLlmsFiles() {
 
   await Promise.all([
     fs.writeFile(path.join(publicDir, "llms.txt"), minContent, "utf8"),
-    fs.writeFile(path.join(publicDir, "llms-full.txt"), fullContent, "utf8")
+    fs.writeFile(path.join(publicDir, "llms-full.txt"), fullContent, "utf8"),
   ]);
 }
 

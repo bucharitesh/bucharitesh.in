@@ -29,8 +29,8 @@ export const BookmarkList = ({ initialData, id }: { initialData: any, id: string
   }, [pageIndex, fetchInfiniteData])
 
   const getChunks = useCallback(() => {
-    const firstChunk: any = []
-    const lastChunk: any = []
+    const firstChunk: any[] = []
+    const lastChunk: any[] = []
     data.forEach((element: any, index: number) => {
       if (index % 2 === 0) {
         firstChunk.push(element)
@@ -44,36 +44,34 @@ export const BookmarkList = ({ initialData, id }: { initialData: any, id: string
   const chunks = useMemo(() => getChunks(), [getChunks])
   const isReachingEnd = data.length >= (initialData?.count ?? 0)
 
-  const isTweetCollection = false;
-
   const memoizedBookmarks = useMemo(() => {
     return data.map((bookmark: any, bookmarkIndex: number) => (
       <div
         key={`bookmark_${bookmarkIndex}`}
-        className={cn('grid gap-4', isTweetCollection ? 'h-fit' : 'place-content-start')}
+        className={cn('grid gap-4 place-content-start')}
       >
         <BookmarkCard key={bookmark._id} bookmark={bookmark} order={bookmarkIndex} />
       </div>
     ))
-  }, [data, isTweetCollection])
+  }, [data])
 
   const memoizedChunks = useMemo(() => {
     return chunks.map((chunk, chunkIndex) => (
       <div
         key={`chunk_${chunkIndex}`}
-        className={cn('grid gap-4', isTweetCollection ? 'h-fit' : 'place-content-start')}
+        className={cn('grid gap-4 place-content-start')}
       >
         {chunk.map((bookmark, bookmarkIndex) => (
-          <BookmarkCard key={bookmark._id} bookmark={bookmark} order={bookmarkIndex} />
+          <BookmarkCard key={bookmark._id} bookmark={bookmark} order={bookmarkIndex} className='' />
         ))}
       </div>
     ))
-  }, [chunks, isTweetCollection])
+  }, [chunks])
 
   return (
-    <div>
-      <div className="flex flex-col gap-4 @lg:hidden">{memoizedBookmarks}</div>
-      <div className="hidden @lg:grid @lg:grid-cols-2 @lg:gap-4">{memoizedChunks}</div>
+    <div className=''>
+      <div className="flex flex-col gap-4 lg:hidden">{memoizedBookmarks}</div>
+      <div className="hidden lg:grid lg:grid-cols-2 lg:gap-4">{memoizedChunks}</div>
       {data.length > 0 ? (
         <div className="mt-8 flex min-h-16 items-center justify-center text-sm lg:mt-12">
           {!isReachingEnd ? (

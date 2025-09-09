@@ -32,4 +32,5 @@ export const getDomain = async () => {
 
   return domain;
 }
+
 export const addPathToBaseURL = async (path: string) => `https://${await getDomain()}${path}`;

@@ -7,7 +7,7 @@ export const DockConfig = {
     { href: "/craft", icon: Icons.craft, label: "Crafts", new: true },
     { href: "/guestbook", icon: Icons.guestbook, label: "Guestbook" },
     // { href: "/blog", icon: Icons.guestbook, label: "Blog" },
-    // { href: "/bookmarks", icon: Icons.bookmark, label: "Bookmarks" },
+    { href: "/bookmarks", icon: Icons.bookmark, label: "Bookmarks" },
     { href: "/cal", icon: Icons.calendar, label: "Book a Meeting" },
     // { href: "/resume", icon: Icons.resume, label: "Resume" },
   ],
@@ -42,7 +42,7 @@ export const DockConfig = {
   },
 };
 
-export const COLLECTION_IDS = [48069938, 48073561];
+export const COLLECTION_IDS = [48073561, 59718740];
 
 export const SCROLL_AREA_ID = 'scroll-area-id'
 export const MOBILE_SCROLL_THRESHOLD = 20
