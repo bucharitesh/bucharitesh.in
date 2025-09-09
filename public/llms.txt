@@ -4,6 +4,8 @@
 
 - [About](https://bucharitesh.in/me/about.md): A quick intro to me, my tech stack, and how to connect.
 - [Experience](https://bucharitesh.in/me/experience.md): Highlights from my career and key roles I've taken on.
+- [Craft](https://bucharitesh.in/me/craft.md): A collection of my work.
+- [Bookmarks](https://bucharitesh.in/me/bookmarks.md): Bookmarks from my collections.
 
 ## Bookmarks
 

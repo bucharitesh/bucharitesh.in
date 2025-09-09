@@ -4,7 +4,7 @@ import { ResendEmailOptions } from "./resend/types";
 
 // Send email using Resend (Recommended for production)
 export const sendEmailViaResend = async (opts: ResendEmailOptions) => {
-  if (!resend) {
+  if (!process.env.RESEND_API_KEY) {
     console.info(
       "RESEND_API_KEY is not set in the .env. Skipping sending email.",
     );
@@ -23,19 +23,24 @@ export const sendEmailViaResend = async (opts: ResendEmailOptions) => {
     scheduledAt,
   } = opts;
 
-  return await resend.emails.send({
-    to: email,
-    from: from || VARIANT_TO_FROM_MAP[variant],
-    bcc: bcc,
-    replyTo: replyTo || "contact@bucharitesh.in",
-    subject,
-    text,
-    react,
-    scheduledAt,
-    // ...(variant === "marketing" && {
-    //   headers: {
-    //     "List-Unsubscribe": "https://app.dub.co/account/settings",
-    //   },
-    // }),
-  });
+  try {
+    return await resend.emails.send({
+      to: email,
+      from: from || VARIANT_TO_FROM_MAP[variant],
+      bcc: bcc,
+      replyTo: replyTo || "contact@bucharitesh.in",
+      subject,
+      text,
+      react,
+      scheduledAt,
+      // ...(variant === "marketing" && {
+      //   headers: {
+      //     "List-Unsubscribe": "https://app.dub.co/account/settings",
+      //   },
+      // }),
+    });
+  } catch (error) {
+    console.error("Failed to send email via Resend:", error);
+    throw error;
+  }
 };

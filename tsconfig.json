@@ -38,6 +38,7 @@
   ],
   "exclude": [
     "node_modules",
-    "./__registry__"
+    "./__registry__",
+    "archive",
   ]
 }

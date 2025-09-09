@@ -27,8 +27,6 @@ export const SubmitBookmarkForm = memo(({ className, setFormOpen, bookmarks, cur
     [currentBookmark]
   )
 
-  console.log("bookmarks", bookmarks);
-
   const form = useForm(memoizedFormOptions)
   const formState = useMemo(() => form.formState, [form.formState])
   const { isSubmitting, errors, isValid } = formState as any

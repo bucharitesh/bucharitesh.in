@@ -1,5 +1,9 @@
+
+import bundleAnalyzer from '@next/bundle-analyzer';
+const withBundleAnalyzer = bundleAnalyzer;
+
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+let nextConfig = {
   reactStrictMode: true,
   logging: {
     fetches: {
@@ -7,7 +11,6 @@ const nextConfig = {
     },
   },
   devIndicators: false,
-  transpilePackages: ["shiki", "jimp"],
   serverExternalPackages: [
     "@react-email/components",
     "@react-email/render",
@@ -87,5 +90,9 @@ const nextConfig = {
     ];
   },
 };
+
+if (process.env.ANALYZE === 'true') {
+  nextConfig = withBundleAnalyzer(nextConfig);
+}
 
 export default nextConfig;

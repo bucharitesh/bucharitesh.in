@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { formSchema } from "@/features/bookmarks/components/submit-bookmark/utils";
 import { sendEmail } from "@/emails";
-import WelcomeEmail from "@/emails/templates/welcome-email";
 import BookMarkSubmittedEmail from "@/emails/templates/bookmark-submitted-email";
 // import rateLimit from '@/lib/rate-limit' // TODO: Add rate limit
 
@@ -39,42 +38,18 @@ export async function POST(req: NextRequest) {
   try {
     const { url, email, type } = data.data;
 
-    try {
-      await sendEmail({
-        email: "bucharitesh@gmail.com",
-        react: BookMarkSubmittedEmail({ url, email, type }),
-        subject: "New bookmark submitted",
-        text: `New bookmark submitted: ${url} of type ${type || "Other"}`,
-      });
-      console.info("Email sent successfully");
-    } catch (emailError) {
-      console.error("Failed to send email:", emailError);
-      // Don't fail the entire request if email fails
-    }
-
-    // const response = await fetch(
-    //   `https://api.airtable.com/v0/${process.env.AIRTABLE_BASE_ID}/${process.env.AIRTABLE_BOOKMARKS_TABLE_ID}`,
-    //   {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //       Authorization: `Bearer ${process.env.AIRTABLE_PERSONAL_ACCESS_TOKEN}`
-    //     },
-    //     body: JSON.stringify({
-    //       fields: {
-    //         URL: url,
-    //         Email: email,
-    //         Date: new Date().toISOString(),
-    //         Type: type || 'Other'
-    //       }
-    //     })
-    //   }
-    // )
+    await sendEmail({
+      email: "bucharitesh@gmail.com",
+      react: BookMarkSubmittedEmail({ url, email, type }),
+      subject: "New bookmark submitted",
+      text: `New bookmark submitted: ${url} of type ${type || "Other"}`,
+    });
+    console.info("Email sent successfully");
 
     // const res = await response.json()
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.info(error);
+    console.error("Failed to send email:");
     return NextResponse.json(
       { error: "Error submitting bookmark." },
       { status: 500 }

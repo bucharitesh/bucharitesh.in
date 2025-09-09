@@ -58,7 +58,7 @@ export const getBookmarks = async () => {
     return bookmarks.items.filter((bookmark: any) => COLLECTION_IDS.includes(bookmark._id))
   } catch (error: any) {
     console.error(`Failed to fetch bookmarks: ${error.message}`)
-    return null
+    return [];
   }
 }
 

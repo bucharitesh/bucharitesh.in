@@ -122,7 +122,7 @@ async function generateLlmsContent() {
     "",
     "## Bookmarks",
     "",
-    `${bookmarks.map((bookmark) => `- [${bookmark.title}](https://${USER.domain}/bookmarks/${bookmark.slug})`).join("\n")}`,
+    `${bookmarks ? bookmarks.map((bookmark) => `- [${bookmark.title}](https://${USER.domain}/bookmarks/${bookmark.slug})`).join("\n") : "No bookmarks available (API authentication required)"}`,
     "",
     "## Craft",
     "",

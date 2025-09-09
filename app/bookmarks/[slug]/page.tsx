@@ -61,6 +61,7 @@ export default async function CollectionPage({ params }: { params: Promise<{ slu
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const bookmarks = await getBookmarks();
+
   const currentBookmark = bookmarks.find((bookmark: any) => bookmark.slug === slug);
   if (!currentBookmark) return null;
 

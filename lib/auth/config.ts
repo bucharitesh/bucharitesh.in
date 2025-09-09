@@ -9,14 +9,14 @@ export type User = {
 
 const authConfig: any = {
   debug: process.env.NODE_ENV !== "production" ? true : false,
-  secret: process.env.AUTH_SECRET as string,
+  secret: process.env.AUTH_SECRET! as string,
   // session: {
   //   strategy: "jwt",
   // },
   providers: [
     Github({
-      clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET,
+      clientId: process.env.GITHUB_ID!,
+      clientSecret: process.env.GITHUB_SECRET!,
       authorization: {
         params: {
           prompt: "consent",
