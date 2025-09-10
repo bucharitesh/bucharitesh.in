@@ -51,9 +51,9 @@ export default async function CollectionPage({
       <div className="content-wrapper">
         <div className="content container">
           <div className={cn('mb-6 font-bold text-4xl tracking-widest')}>
-            <Balancer>
-              <Heading as="h2">{currentBookmark.title}</Heading>
-            </Balancer>
+            <Heading as="h2">
+              <Balancer>{currentBookmark.title}</Balancer>
+            </Heading>
           </div>
           <Suspense fallback={<p>...</p>}>
             <BookmarkList

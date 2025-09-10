@@ -1,6 +1,6 @@
 'use server';
 
-import { COLLECTION_IDS } from '@/lib/config';
+import { COLLECTION_IDS } from '@/config/site';
 
 const getOptions = () => ({
   cache: 'force-cache' as RequestCache,

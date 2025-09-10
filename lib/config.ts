@@ -41,8 +41,3 @@ export const DockConfig = {
     },
   },
 };
-
-export const COLLECTION_IDS = [48073561, 59718740];
-
-export const SCROLL_AREA_ID = 'scroll-area-id';
-export const MOBILE_SCROLL_THRESHOLD = 20;

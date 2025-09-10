@@ -8,7 +8,7 @@ import { memo, useEffect, useMemo, useState } from 'react';
 import Balancer from 'react-wrap-balancer';
 
 import { Button } from '@/components/ui/button';
-import { MOBILE_SCROLL_THRESHOLD, SCROLL_AREA_ID } from '@/lib/config';
+import { MOBILE_SCROLL_THRESHOLD, SCROLL_AREA_ID } from '@/config/site';
 import { SubmitBookmarkDrawer } from '../../features/bookmarks/components/submit-bookmark/drawer';
 
 const MobileDrawer = dynamic(() =>

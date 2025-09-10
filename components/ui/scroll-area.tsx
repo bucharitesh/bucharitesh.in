@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { SCROLL_AREA_ID } from "@/lib/config";
+import { SCROLL_AREA_ID } from "@/config/site";
 
 interface ScrollAreaProps extends React.HTMLAttributes<HTMLDivElement> {
   useScrollAreaId?: boolean;
