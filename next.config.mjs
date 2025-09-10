@@ -38,7 +38,7 @@ let nextConfig = {
     return config;
   },
   images: {
-    // allow next/image to serve remote images from safelisted domains
+    deviceSizes: [390, 435, 768, 1024, 1280],
     remotePatterns: [
       {
         protocol: 'https',

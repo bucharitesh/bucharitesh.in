@@ -1,10 +1,11 @@
+import { USER } from '@/config/user';
 import { Heading, Link, Text } from '@react-email/components';
 import EmailBody from '../components/email-body';
 import EmailText from '../components/email-text';
 
 export default function BookMarkSubmittedEmail({
   url = 'https://example.com',
-  email = 'contact@bucharitesh.in',
+  email = USER.email,
   type = 'Other',
 }: {
   url: string;

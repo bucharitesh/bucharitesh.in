@@ -1,5 +1,7 @@
+import { USER } from '@/config/user';
+
 export const VARIANT_TO_FROM_MAP = {
-  primary: 'Ritesh Bucha <me@bucharitesh.in>',
+  primary: `${USER.name} <${USER.email}>`,
 };
 
 export const RESEND_AUDIENCES = {

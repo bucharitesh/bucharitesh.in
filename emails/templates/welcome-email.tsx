@@ -1,9 +1,10 @@
+import { USER } from '@/config/user';
 import { Heading, Text } from '@react-email/components';
 import EmailBody from '../components/email-body';
 import EmailText from '../components/email-text';
 
 export default function WelcomeEmail({
-  email = 'contact@bucharitesh.in',
+  email = USER.email,
 }: {
   email: string;
 }) {

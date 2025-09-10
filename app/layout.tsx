@@ -13,17 +13,6 @@ import { USER } from '@/config/user';
 import { auth } from '@/lib/auth';
 import { Providers } from '@/lib/providers';
 import Script from 'next/script';
-import type { WebSite, WithContext } from 'schema-dts';
-
-function getWebSiteJsonLd(): WithContext<WebSite> {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    name: USER.name,
-    url: `https://${USER.domain}`,
-    alternateName: [USER.username],
-  };
-}
 
 export const viewport: Viewport = {
   themeColor: META_THEME_COLORS.light,
@@ -79,7 +68,11 @@ export default async function RootLayout({
   const session = await auth();
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      className={cn(fontX.variable, fontMono.variable, 'scroll-smooth')}
+      suppressHydrationWarning
+    >
       <head>
         <script
           type="text/javascript"
@@ -90,14 +83,8 @@ export default async function RootLayout({
           since we found the regular `<script>` tag to not execute when rendering a not-found page.
          */}
         <Script src={`data:text/javascript;base64,${btoa(darkModeScript)}`} />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(getWebSiteJsonLd()).replace(/</g, '\\u003c'),
-          }}
-        />
       </head>
-      <body className={cn(fontX.variable, fontMono.variable)}>
+      <body>
         <Providers session={session}>
           <Navigation />
           <main

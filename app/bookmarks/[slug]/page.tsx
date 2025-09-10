@@ -8,6 +8,7 @@ import {
   getBookmarks,
 } from '@/features/bookmarks/lib/raindrop';
 import { createOgImage } from '@/lib/createOgImage';
+import { createMetadata } from '@/lib/seo/metadata';
 import { cn, sortByProperty } from '@/lib/utils';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
@@ -23,6 +24,7 @@ async function fetchData(slug: string) {
   const currentBookmark = bookmarks.find(
     (bookmark: any) => bookmark.slug === slug
   );
+
   if (!currentBookmark) {
     notFound();
   }
@@ -78,7 +80,6 @@ export async function generateMetadata({
     return null;
   }
 
-  const siteUrl = `/bookmarks/${currentBookmark.slug}`;
   const seoTitle = `${currentBookmark.title} | Bookmarks`;
   const seoDescription = `A curated selection of various handpicked ${currentBookmark.title.toLowerCase()} bookmarks by ${USER.name}`;
 
@@ -87,7 +88,7 @@ export async function generateMetadata({
     meta: seoDescription,
   });
 
-  return {
+  return createMetadata({
     title: seoTitle,
     description: seoDescription,
     keywords: [
@@ -97,14 +98,6 @@ export async function generateMetadata({
       'collection',
       `${currentBookmark.title} collection`,
     ],
-    openGraph: {
-      title: seoTitle,
-      description: seoDescription,
-      url: siteUrl,
-      images: [{ url: ogImage, width: 1600, height: 836, alt: seoTitle }],
-    },
-    alternates: {
-      canonical: siteUrl,
-    },
-  };
+    image: ogImage,
+  });
 }

@@ -8,19 +8,29 @@ import {
   VercelLogo,
 } from '@/features/guestbook/stickers';
 import WriteNoteCTA from '@/features/guestbook/write';
+import { createOgImage } from '@/lib/createOgImage';
+import { createMetadata } from '@/lib/seo/metadata';
 import { cn } from '@/lib/utils';
 import { Provider } from 'jotai';
 import type { Metadata } from 'next/types';
 import styles from './notes.module.css';
 
-export const metadata: Metadata = {
-  title: 'Guestbook',
-  description:
-    "Write anything for future visitors of this website. I'd love a random joke though.",
-  alternates: {
-    canonical: '/guestbook',
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const title = 'Guestbook';
+  const description =
+    "Write anything for future visitors of this website. I'd love a random joke though.";
+
+  const image = createOgImage({
+    title: title,
+    meta: description,
+  });
+
+  return createMetadata({
+    title: title,
+    description: description,
+    image: image,
+  });
+}
 
 export const dynamic = 'force-dynamic';
 

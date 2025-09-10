@@ -6,23 +6,37 @@ import { ProfileImage } from '@/components/profile-image';
 import { FlipSentences } from '@/components/ui/flip-sentences';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { USER } from '@/config/user';
+import { createOgImage } from '@/lib/createOgImage';
 import { getGithubContributions } from '@/lib/github';
-import { COMMON_SCRIPT_ORG } from '@/lib/script';
+import { JsonLd, Organization, WithContext } from '@/lib/seo/json-ld';
+import { createMetadata } from '@/lib/seo/metadata';
 import type { Metadata } from 'next/types';
 
-export const metadata: Metadata = {
-  title: USER.tagline,
-  description: USER.description,
-  alternates: {
-    canonical: '/',
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const title = USER.tagline;
+  const description = USER.description;
+  const image = createOgImage({
+    title: title,
+    meta: description,
+  });
+  return createMetadata({
+    title: title,
+    description: description,
+    image: image,
+  });
+}
 
 export default async function Page() {
   const data = await getGithubContributions('bucharitesh');
+
+  const jsonLd: WithContext<Organization> = {
+    '@type': 'Organization',
+    '@context': 'https://schema.org',
+  };
+
   return (
     <>
-      <COMMON_SCRIPT_ORG />
+      <JsonLd code={jsonLd} />
       <Info show={['time', 'screen', 'llms']} />
       <ScrollArea useScrollAreaId>
         <FloatingHeader scrollTitle="Ritesh Bucha" />

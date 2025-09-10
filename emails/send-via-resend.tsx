@@ -1,3 +1,4 @@
+import { USER } from '@/config/user';
 import { resend } from './resend';
 import { VARIANT_TO_FROM_MAP } from './resend/constants';
 import type { ResendEmailOptions } from './resend/types';
@@ -28,7 +29,7 @@ export const sendEmailViaResend = async (opts: ResendEmailOptions) => {
       to: email,
       from: from || VARIANT_TO_FROM_MAP[variant],
       bcc: bcc,
-      replyTo: replyTo || 'contact@bucharitesh.in',
+      replyTo: replyTo || USER.email,
       subject,
       text,
       react,

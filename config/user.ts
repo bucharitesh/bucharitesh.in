@@ -7,7 +7,7 @@ export type User = {
   email: string;
   location: string;
   domain: string;
-  website: string;
+  website?: string;
   description: string;
   jobTitle: string;
   twitterHandle: string;
@@ -27,13 +27,12 @@ export type User = {
   experiences?: Experience[];
 };
 
-export const USER: User = {
+const USER: User = {
   firstName: 'Ritesh',
   lastName: 'Bucha',
   name: 'Ritesh Bucha',
-  email: 'bucharitesh@gmail.com',
+  email: 'contact@bucharitesh.in',
   domain: 'bucharitesh.in',
-  website: 'https://bucharitesh.in',
   jobTitle: 'Senior Frontend Engineer',
   username: 'bucharitesh',
   tagline: 'User Experience at Flam',
@@ -61,3 +60,7 @@ export const USER: User = {
   },
   experiences: experiences,
 };
+
+USER.website = `https://${USER.domain}`;
+
+export { USER };

@@ -168,6 +168,7 @@
     {
       "name": "book-demo",
       "type": "registry:block",
+      "author": "bucharitesh <contact@bucharitesh.in>",
       "registryDependencies": [
         "@bucharitesh/book"
       ],
@@ -181,6 +182,7 @@
     {
       "name": "book-variant-demo",
       "type": "registry:block",
+      "author": "bucharitesh <contact@bucharitesh.in>",
       "registryDependencies": [
         "@bucharitesh/book"
       ],
@@ -194,6 +196,7 @@
     {
       "name": "game-of-life-demo",
       "type": "registry:block",
+      "author": "bucharitesh <contact@bucharitesh.in>",
       "registryDependencies": [
         "@bucharitesh/game-of-life"
       ],
@@ -207,6 +210,7 @@
     {
       "name": "game-of-life-demo-2",
       "type": "registry:block",
+      "author": "bucharitesh <contact@bucharitesh.in>",
       "registryDependencies": [
         "@bucharitesh/game-of-life"
       ],
@@ -220,6 +224,7 @@
     {
       "name": "magical-mouse-demo",
       "type": "registry:block",
+      "author": "bucharitesh <contact@bucharitesh.in>",
       "registryDependencies": [
         "@bucharitesh/magical-mouse"
       ],
@@ -233,6 +238,7 @@
     {
       "name": "modern-progress-demo",
       "type": "registry:block",
+      "author": "bucharitesh <contact@bucharitesh.in>",
       "registryDependencies": [
         "@bucharitesh/modern-progress"
       ],
@@ -246,6 +252,7 @@
     {
       "name": "pixel-icon-demo",
       "type": "registry:block",
+      "author": "bucharitesh <contact@bucharitesh.in>",
       "registryDependencies": [
         "@bucharitesh/pixel-icon"
       ],
@@ -259,6 +266,7 @@
     {
       "name": "split-text-effect-demo",
       "type": "registry:block",
+      "author": "bucharitesh <contact@bucharitesh.in>",
       "registryDependencies": [
         "@bucharitesh/split-text-effect"
       ],
@@ -272,6 +280,7 @@
     {
       "name": "split-text-effect-demo-2",
       "type": "registry:block",
+      "author": "bucharitesh <contact@bucharitesh.in>",
       "registryDependencies": [
         "@bucharitesh/split-text-effect"
       ],
@@ -285,6 +294,7 @@
     {
       "name": "split-text-effect-demo-3",
       "type": "registry:block",
+      "author": "bucharitesh <contact@bucharitesh.in>",
       "registryDependencies": [
         "@bucharitesh/split-text-effect"
       ],
@@ -298,6 +308,7 @@
     {
       "name": "view-magnifier-demo",
       "type": "registry:block",
+      "author": "bucharitesh <contact@bucharitesh.in>",
       "registryDependencies": [
         "@bucharitesh/view-magnifier"
       ],
@@ -311,6 +322,7 @@
     {
       "name": "view-magnifier-demo-2",
       "type": "registry:block",
+      "author": "bucharitesh <contact@bucharitesh.in>",
       "registryDependencies": [
         "@bucharitesh/view-magnifier"
       ],

@@ -1,16 +1,26 @@
 import { FloatingHeader } from '@/components/navigation/floating-header';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { createOgImage } from '@/lib/createOgImage';
+import { createMetadata } from '@/lib/seo/metadata';
 import type { Metadata } from 'next/types';
 import CalEmbed from './cal-embed';
 
-export const metadata: Metadata = {
-  title: 'Book a Meeting',
-  description:
-    'Schedule a meeting with me to discuss anything from design to engineering to business to anything else.',
-  alternates: {
-    canonical: '/cal',
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const title = 'Book a Meeting';
+  const description =
+    'Schedule a meeting with me to discuss anything from design to engineering to business to anything else.';
+
+  const image = createOgImage({
+    title: title,
+    meta: description,
+  });
+
+  return createMetadata({
+    title: title,
+    description: description,
+    image: image,
+  });
+}
 
 export default function BookingPage() {
   return (

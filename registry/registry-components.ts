@@ -1,3 +1,4 @@
+import { USER } from '@/config/user';
 import type { Registry } from 'shadcn/schema';
 
 export const components: Registry['items'] = [
@@ -7,7 +8,7 @@ export const components: Registry['items'] = [
     description:
       'A book component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.',
     title: 'Book',
-    author: 'bucharitesh <contact@bucharitesh.in>',
+    author: `${USER.username} <${USER.email}>`,
     registryDependencies: ['@bucharitesh/utils'],
     dependencies: ['@radix-ui/react-icons'],
     files: [
@@ -28,7 +29,7 @@ export const components: Registry['items'] = [
     description:
       'A modern progress component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.',
     title: 'Modern Progress',
-    author: 'bucharitesh <contact@bucharitesh.in>',
+    author: `${USER.username} <${USER.email}>`,
     registryDependencies: ['@bucharitesh/utils'],
     dependencies: ['class-variance-authority'],
     files: [
@@ -49,7 +50,7 @@ export const components: Registry['items'] = [
     description:
       'A pixel icon component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.',
     title: 'Pixel Icon',
-    author: 'bucharitesh <contact@bucharitesh.in>',
+    author: `${USER.username} <${USER.email}>`,
     registryDependencies: ['@bucharitesh/utils'],
     files: [
       {
@@ -65,7 +66,7 @@ export const components: Registry['items'] = [
     description:
       'A split text effect component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.',
     title: 'Split Text Effect',
-    author: 'bucharitesh <contact@bucharitesh.in>',
+    author: `${USER.username} <${USER.email}>`,
     registryDependencies: ['@bucharitesh/utils'],
     dependencies: ['motion'],
     files: [
@@ -82,7 +83,7 @@ export const components: Registry['items'] = [
     description:
       'A view magnifier component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.',
     title: 'View Magnifier',
-    author: 'bucharitesh <contact@bucharitesh.in>',
+    author: `${USER.username} <${USER.email}>`,
     registryDependencies: ['@bucharitesh/utils'],
     dependencies: ['motion'],
     files: [
@@ -99,7 +100,7 @@ export const components: Registry['items'] = [
     description:
       'A game of life component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.',
     title: 'Game of Life',
-    author: 'bucharitesh <contact@bucharitesh.in>',
+    author: `${USER.username} <${USER.email}>`,
     registryDependencies: ['@bucharitesh/utils'],
     files: [
       {
@@ -115,7 +116,7 @@ export const components: Registry['items'] = [
     description:
       'A magical mouse component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.',
     title: 'Magical Mouse',
-    author: 'bucharitesh <contact@bucharitesh.in>',
+    author: `${USER.username} <${USER.email}>`,
     registryDependencies: ['@bucharitesh/utils'],
     dependencies: ['lucide-react'],
     files: [
