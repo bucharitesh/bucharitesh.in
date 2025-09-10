@@ -36,7 +36,7 @@ export type BuddyBuddyProps = {
   onClick?: (actor: BuddyActor) => void;
   onPositionChange?: (actor: BuddyActor) => void;
   hedgehogConfig?: BuddyConfig;
-  tooltip?: JSX.Element;
+  tooltip?: React.ReactElement;
   static?: boolean;
 };
 
@@ -102,7 +102,7 @@ export class BuddyActor {
 
   // properties synced with the logic
   hedgehogConfig: Partial<BuddyConfig> = {};
-  tooltip?: JSX.Element;
+  tooltip?: React.ReactElement;
 
   constructor() {
     console.log("Created new BuddyActor");
@@ -724,7 +724,7 @@ export class BuddyActor {
     return !this.onGround() && Math.abs(this.yVelocity) > 1;
   }
 
-  renderRope(): JSX.Element | null {
+  renderRope(): React.ReactElement | null {
     if (!this.lastKnownMousePosition) {
       return null;
     }
@@ -759,7 +759,7 @@ export class BuddyActor {
   }: {
     onClick: () => void;
     ref: ForwardedRef<HTMLDivElement>;
-  }): JSX.Element {
+  }): React.ReactElement {
     const accessoryPosition =
       this.mainAnimation?.spriteInfo.accessoryPositions?.[
         this.mainAnimation.frame
@@ -1011,8 +1011,8 @@ export const BuddyBuddy = React.forwardRef<
     static: staticMode,
   },
   ref
-): JSX.Element {
-  const actorRef = useRef<BuddyActor>();
+): React.ReactElement {
+  const actorRef = useRef<BuddyActor | null>(null);
   if (!actorRef.current) {
     actorRef.current = new BuddyActor();
   }
@@ -1085,7 +1085,7 @@ export const BuddyBuddy = React.forwardRef<
 export function MyBuddyBuddy({
   onActorLoaded,
   onPositionChange,
-}: BuddyBuddyProps): JSX.Element {
+}: BuddyBuddyProps): React.ReactElement {
   const [actor, setActor] = useState<BuddyActor | null>(null);
   const hedgehogConfig = useBuddyStore((s) => s.hedgehogConfig);
 

@@ -1,11 +1,12 @@
 'use client'
 
+import React from 'react'
 import './buddy.scss'
 
 import { MyBuddyBuddy } from './index'
 import { useBuddyStore } from './buddy-logic'
 
-export function BuddyBuddyWithLogic(): JSX.Element {
+export function BuddyBuddyWithLogic(): React.ReactElement {
     const hedgehogConfig = useBuddyStore((s) => s.hedgehogConfig)
     const patchBuddyConfig = useBuddyStore((s) => s.patchBuddyConfig)
 

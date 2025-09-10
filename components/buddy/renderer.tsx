@@ -1,3 +1,4 @@
+import React from 'react'
 import { BuddyConfig } from './types'
 
 import { COLOR_TO_FILTER_MAP } from './buddy-logic'
@@ -11,7 +12,7 @@ export function BuddyBuddyStatic({
     color,
     size,
     skin = 'default',
-}: BuddyBuddyStaticProps): JSX.Element {
+}: BuddyBuddyStaticProps): React.ReactElement {
     const imgSize = size ?? 60
 
     const accessoryInfos = accessories?.map((x) => standardAccessories[x])
@@ -54,7 +55,7 @@ export function BuddyBuddyStatic({
     )
 }
 
-export function BuddyBuddyProfile({ size, ...props }: BuddyBuddyStaticProps): JSX.Element {
+export function BuddyBuddyProfile({ size, ...props }: BuddyBuddyStaticProps): React.ReactElement {
     return (
         <div
             className="relative rounded-full overflow-hidden"

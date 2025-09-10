@@ -21,7 +21,7 @@ const DOCK_AUTOHIDE_TIMEOUT = 5_000;
 function BottomDock({ className }: { className: string }) {
   const [active, setActive] = useState(true);
   const pathname = usePathname();
-  const timeoutRef = useRef<NodeJS.Timeout>();
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const enabled = useBuddyStore((s) => s.hedgehogConfig.enabled);
   const setBuddyModeEnabled = useBuddyStore((s) => s.setBuddyModeEnabled);
   const hedgehogConfig = useBuddyStore((s) => s.hedgehogConfig);
@@ -29,22 +29,30 @@ function BottomDock({ className }: { className: string }) {
   // const { data: session } = useSession();
 
   const startTimeout = () => {
+    if (timeoutRef.current) {
     clearTimeout(timeoutRef.current); // Clear any existing timeout
-    timeoutRef.current = setTimeout(() => {
-      setActive(false);
-    }, DOCK_AUTOHIDE_TIMEOUT);
+      timeoutRef.current = setTimeout(() => {
+        setActive(false);
+      }, DOCK_AUTOHIDE_TIMEOUT);
+    }
   };
 
   useEffect(() => {
     startTimeout();
-    return () => clearTimeout(timeoutRef.current);
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
   }, []);
 
   return (
     <div
       onMouseEnter={() => {
         setActive(true);
-        clearTimeout(timeoutRef.current); // Clear timeout when mouse enters
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current); // Clear timeout when mouse enters
+        }
       }}
       onMouseLeave={() => {
         startTimeout(); // Start timeout when mouse leaves

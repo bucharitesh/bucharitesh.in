@@ -1,8 +1,6 @@
-
 import { createOgImage } from "@/lib/createOgImage";
 import { Metadata, Viewport } from "next";
 import { cn } from "@/lib/utils";
-import { ViewTransitions } from "next-view-transitions";
 import { fontMono, fontX } from "@/lib/fonts";
 
 import "@/styles/globals.css";
@@ -80,42 +78,37 @@ export default async function RootLayout({
   const session = await auth();
 
   return (
-    <ViewTransitions>
-      <html lang="en" suppressHydrationWarning>
-        <head>
-          <script
-            type="text/javascript"
-            dangerouslySetInnerHTML={{ __html: darkModeScript }}
-          />
-          {/*
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          type="text/javascript"
+          dangerouslySetInnerHTML={{ __html: darkModeScript }}
+        />
+        {/*
           Thanks @tailwindcss. We inject the script via the `<Script/>` tag again,
           since we found the regular `<script>` tag to not execute when rendering a not-found page.
          */}
-          <Script src={`data:text/javascript;base64,${btoa(darkModeScript)}`} />
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify(getWebSiteJsonLd()).replace(
-                /</g,
-                "\\u003c"
-              ),
-            }}
-          />
-        </head>
-        <body className={cn(fontX.variable, fontMono.variable)}>
-          <Providers session={session}>
-            <Navigation />
-            <main
-              id="main-content"
-              vaul-drawer-wrapper=""
-              className="relative min-h-screen w-full bg-background"
-            >
-              {children}
-            </main>
-            <DevTools />
-          </Providers>
-        </body>
-      </html>
-    </ViewTransitions>
+        <Script src={`data:text/javascript;base64,${btoa(darkModeScript)}`} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(getWebSiteJsonLd()).replace(/</g, "\\u003c"),
+          }}
+        />
+      </head>
+      <body className={cn(fontX.variable, fontMono.variable)}>
+        <Providers session={session}>
+          <Navigation />
+          <main
+            id="main-content"
+            vaul-drawer-wrapper=""
+            className="relative min-h-screen w-full bg-background"
+          >
+            {children}
+          </main>
+          <DevTools />
+        </Providers>
+      </body>
+    </html>
   );
 }

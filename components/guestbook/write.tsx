@@ -47,9 +47,9 @@ export default function WriteNoteCTA() {
 
   const buttonText = ["Write me a note", "Next", "Submit", "Thanks!"][step];
 
-  const ref = useRef<HTMLDivElement>(null);
-  const formRef = useRef<HTMLFormElement>(null);
-  const $svg = useRef<SignatureRef>(null);
+  const ref = useRef<HTMLDivElement>(null!);
+  const formRef = useRef<HTMLFormElement>(null!);
+  const $svg = useRef<SignatureRef>(null!);
   const { pending } = useFormStatus();
   const [loading, setLoading] = useState(false);
 

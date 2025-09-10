@@ -33,7 +33,7 @@ const SnakeGame = React.forwardRef<HTMLDivElement, SnakeGameProps>(
     const touchStartX = useRef(0);
     const touchStartY = useRef(0);
     const containerRef = useRef<HTMLDivElement>(null);
-    const gameLoopRef = useRef<NodeJS.Timer>();
+    const gameLoopRef = useRef<any>(null);
 
     const generateFood = useCallback(() => {
       const newFood = {

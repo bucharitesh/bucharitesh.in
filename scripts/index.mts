@@ -1,13 +1,8 @@
 import { buildRegistry } from "./build-registry.mts";
-import { buildLlmsFiles } from "./llms.mts";
 import { registrySchema } from "shadcn/schema";
 import { registry } from "../registry";
 
 try {
-  console.log("🧠 Building llms files...");
-  await buildLlmsFiles();
-  console.log("✅ llms-min.txt and llms.txt built successfully");
-
   console.log("💅 Building registry.json...");
   const result = registrySchema.safeParse(registry);
 

@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 
 export interface MediaContentProps {
   src: string;

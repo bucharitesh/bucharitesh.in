@@ -5,7 +5,7 @@ import type { TableOfContents } from "@/lib/toc";
 import { useMounted } from "@/lib/hooks";
 import { cn } from "@/lib/utils";
 import { AlignLeftIcon, ArrowLeftIcon, CornerLeftUp, CornerUpLeft } from "lucide-react";
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 
 interface TocProps {
   toc: TableOfContents;

@@ -16,7 +16,7 @@ import { ScrollArea } from "../ui/scroll-area";
 import { FloatingHeader } from "../navigation/floating-header";
 import { USER } from "@/config/user";
 
-export function BuddyOptions(): JSX.Element {
+export function BuddyOptions(): React.ReactElement {
   const hedgehogConfig = useBuddyStore((s) => s.hedgehogConfig);
   const patchBuddyConfig = useBuddyStore((s) => s.patchBuddyConfig);
 
@@ -145,7 +145,7 @@ export function BuddyOptions(): JSX.Element {
   );
 }
 
-function BuddyAccessories(): JSX.Element {
+function BuddyAccessories(): React.ReactElement {
   const hedgehogConfig = useBuddyStore((s) => s.hedgehogConfig);
   const patchBuddyConfig = useBuddyStore((s) => s.patchBuddyConfig);
 
@@ -208,7 +208,7 @@ function BuddyAccessories(): JSX.Element {
   );
 }
 
-function BuddyColor(): JSX.Element {
+function BuddyColor(): React.ReactElement {
   const hedgehogConfig = useBuddyStore((s) => s.hedgehogConfig);
   const patchBuddyConfig = useBuddyStore((s) => s.patchBuddyConfig);
 

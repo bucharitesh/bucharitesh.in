@@ -2,7 +2,7 @@ import { SnakeGame } from "@/components/game/snake-game";
 import Info from "@/components/home/info";
 import { Button } from "@/components/ui/button";
 import { GameOfLife } from "@/registry/default/bucharitesh/game-of-life/game-of-life";
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 import React from "react";
 
 export default function NotFound() {
