@@ -12,8 +12,8 @@ import ModeToggle from "./mode-toggle";
 import { usePathname } from "next/navigation";
 import { DockConfig } from "@/lib/config";
 import { cn } from "@/lib/utils";
-import { useBuddyStore } from "@/components/buddy/buddy-logic";
-import { BuddyBuddyStatic } from "@/components/buddy/renderer";
+import { useBuddyStore } from "@/features/buddy/buddy-logic";
+import { BuddyBuddyStatic } from "@/features/buddy/renderer";
 import { ENABLE_BUDDY } from "@/config/site";
 
 const DOCK_AUTOHIDE_TIMEOUT = 5_000;

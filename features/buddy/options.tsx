@@ -12,8 +12,8 @@ import { Switch } from "@/components/ui/switch";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { ScrollArea } from "../ui/scroll-area";
-import { FloatingHeader } from "../navigation/floating-header";
+import { ScrollArea } from "../../components/ui/scroll-area";
+import { FloatingHeader } from "../../components/navigation/floating-header";
 import { USER } from "@/config/user";
 
 export function BuddyOptions(): React.ReactElement {

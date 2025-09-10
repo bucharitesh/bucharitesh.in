@@ -1,15 +1,15 @@
 import { Metadata } from "next/types";
 import { cn } from "@/lib/utils";
 import styles from "./notes.module.css";
-import Polaroid from "@/components/guestbook/polaroid";
+import Polaroid from "@/features/guestbook/polaroid";
 import {
   NextWordmark,
   Sticker,
   VercelLogo,
-} from "@/components/guestbook/stickers";
-import GuestbookEntries from "@/components/guestbook/guestbook-entries";
+} from "@/features/guestbook/stickers";
+import GuestbookEntries from "@/features/guestbook/guestbook-entries";
 import { Provider } from "jotai";
-import WriteNoteCTA from "@/components/guestbook/write";
+import WriteNoteCTA from "@/features/guestbook/write";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { FloatingHeader } from "@/components/navigation/floating-header";
 

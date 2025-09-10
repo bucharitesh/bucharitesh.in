@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import styles from "@/app/guestbook/notes.module.css";
-import Drag from "@/components/guestbook/drag";
+import Drag from "@/features/guestbook/drag";
 import React from "react";
 import { motion } from "motion/react";
 
