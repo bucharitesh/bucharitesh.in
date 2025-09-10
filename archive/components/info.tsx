@@ -1,18 +1,22 @@
-"use client";
+'use client';
 
-import { motion, TargetAndTransition, Transition } from "motion/react";
-import { cn } from "@/lib/utils";
-import { useEasterEggs } from "@/lib/providers/easter-egg-provider";
-import { useEffect, useState } from "react";
+import { useEasterEggs } from '@/lib/providers/easter-egg-provider';
+import { cn } from '@/lib/utils';
+import {
+  type TargetAndTransition,
+  type Transition,
+  motion,
+} from 'motion/react';
+import { useEffect, useState } from 'react';
 
-const fadeIn : {
+const fadeIn: {
   initial: TargetAndTransition;
   animate: TargetAndTransition;
   transition: Transition;
 } = {
   initial: { opacity: 0, x: -20 },
   animate: { opacity: 1, x: 0 },
-  transition: { duration: 0.6, ease: "easeOut" },
+  transition: { duration: 0.6, ease: 'easeOut' },
 };
 
 export function EasterEggs({ className }: { className?: string }) {
@@ -22,7 +26,7 @@ export function EasterEggs({ className }: { className?: string }) {
 
   // Add client-side only rendering
   const [isClient, setIsClient] = useState(false);
-  
+
   useEffect(() => {
     setIsClient(true);
   }, []);
@@ -35,9 +39,10 @@ export function EasterEggs({ className }: { className?: string }) {
     <>
       <motion.div
         className={cn(
-          "z-50 fixed top-4 right-4 text-xs font-x tracking-wider text-gray-600 dark:text-gray-300",
-          allEggsDiscovered && "text-green-400 font-semibold dark:text-green-400",
-          className,
+          'fixed top-4 right-4 z-50 font-x text-gray-600 text-xs tracking-wider dark:text-gray-300',
+          allEggsDiscovered &&
+            'font-semibold text-green-400 dark:text-green-400',
+          className
         )}
         onClick={() => {
           resetEasterEggs();

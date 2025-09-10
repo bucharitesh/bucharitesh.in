@@ -1,16 +1,16 @@
-import useSWR, { SWRConfiguration } from "swr";
+import useSWR, { type SWRConfiguration } from 'swr';
 
 const API_URL = `/api/posts/most_viewed`;
 
 async function getTrendingPosts(): Promise<any> {
   const res = await fetch(API_URL);
   if (!res.ok) {
-    throw new Error("An error occurred while fetching the data.");
+    throw new Error('An error occurred while fetching the data.');
   }
 
-  let data = await res.json();
+  const data = await res.json();
 
-  let trendingPosts: any = [];
+  const trendingPosts: any = [];
 
   // if (allPosts.length > 0) {
   //   trendingPosts = allPosts.filter((post) =>
@@ -28,7 +28,7 @@ export const useTrendingPosts = (config?: SWRConfiguration) => {
     {
       dedupingInterval: 60000,
       ...config,
-    },
+    }
   );
 
   return {

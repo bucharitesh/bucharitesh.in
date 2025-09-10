@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import React from "react";
-import Grid from "./grid";
+import type React from 'react';
+import Grid from './grid';
 
 const Page = () => {
   return (
-    <div className="w-full max-w-(--breakpoint-lg) p-6 mx-auto space-y-10 flex items-center justify-center flex-col pb-20">
+    <div className="mx-auto flex w-full max-w-(--breakpoint-lg) flex-col items-center justify-center space-y-10 p-6 pb-20">
       <Wrapper title="Grid" description="A non-responsive grid with no cells.">
         <Grid.System>
-          <Grid height={"preserve-aspect-ratio"} columns={5} rows={2} />
+          <Grid height={'preserve-aspect-ratio'} columns={5} rows={2} />
         </Grid.System>
       </Wrapper>
 
@@ -160,10 +160,10 @@ const Wrapper = ({
   children: React.ReactNode;
 }) => {
   return (
-    <div className="w-full mx-auto flex items-center justify-center flex-col">
-      <div className="w-full flex flex-col items-start justify-center gap-10">
+    <div className="mx-auto flex w-full flex-col items-center justify-center">
+      <div className="flex w-full flex-col items-start justify-center gap-10">
         <div className="flex flex-col gap-2">
-          <h1 className="text-2xl text-start font-bold">{title}</h1>
+          <h1 className="text-start font-bold text-2xl">{title}</h1>
           {description && <p>{description}</p>}
         </div>
         {children}

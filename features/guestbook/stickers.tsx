@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import Drag from "./drag";
+import Drag from './drag';
 
 const NextWordmark = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 394 79"
-      className="w-24 bg-white rounded-full p-2 border border-gray-6 overflow-visible"
+      className="w-24 overflow-visible rounded-full border border-gray-6 bg-white p-2"
     >
       <title>Next.js Logo</title>
       <path d="M261.919 0.0330722H330.547V12.7H303.323V79.339H289.71V12.7H261.919V0.0330722Z" />
@@ -35,9 +35,9 @@ const VercelLogo = ({ ...props }) => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       style={{
-        shapeRendering: "crispEdges",
-        filter: "drop-shadow(0 2px 1px rgba(0,0,0,.1))",
-        overflow: "visible",
+        shapeRendering: 'crispEdges',
+        filter: 'drop-shadow(0 2px 1px rgba(0,0,0,.1))',
+        overflow: 'visible',
       }}
       aria-label="Vercel logo as sticker"
       {...props}

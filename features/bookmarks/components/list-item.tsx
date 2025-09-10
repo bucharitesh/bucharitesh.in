@@ -1,13 +1,23 @@
-'use client'
+'use client';
 
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib/utils';
 
-export const ListItem = ({ title, description, path, className }: { title: string, description: string, path: string, className?: string }) => {
-  const pathname = usePathname()
-  const isActive = pathname === path
+export const ListItem = ({
+  title,
+  description,
+  path,
+  className,
+}: {
+  title: string;
+  description: string;
+  path: string;
+  className?: string;
+}) => {
+  const pathname = usePathname();
+  const isActive = pathname === path;
 
   return (
     <Link
@@ -19,8 +29,18 @@ export const ListItem = ({ title, description, path, className }: { title: strin
         className
       )}
     >
-      <span className={cn('font-medium', isActive && 'text-background')}>{title}</span>
-      {description && <span className={cn(isActive ? 'text-background/70' : 'text-muted-foreground')}>{description}</span>}
+      <span className={cn('font-medium', isActive && 'text-background')}>
+        {title}
+      </span>
+      {description && (
+        <span
+          className={cn(
+            isActive ? 'text-background/70' : 'text-muted-foreground'
+          )}
+        >
+          {description}
+        </span>
+      )}
     </Link>
-  )
-}
+  );
+};

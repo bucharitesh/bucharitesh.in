@@ -1,23 +1,24 @@
-import { createOgImage } from "@/lib/createOgImage";
-import { Metadata, Viewport } from "next";
-import { cn } from "@/lib/utils";
-import { fontMono, fontX } from "@/lib/fonts";
+import { createOgImage } from '@/lib/createOgImage';
+import { fontMono, fontX } from '@/lib/fonts';
+import { cn } from '@/lib/utils';
+import type { Metadata, Viewport } from 'next';
+import type React from 'react';
 
-import "@/styles/globals.css";
+import '@/styles/globals.css';
 
-import { auth } from "@/lib/auth";
-import DevTools from "@/components/dev-tools";
-import Navigation from "@/components/navigation";
-import { Providers } from "@/lib/providers";
-import Script from "next/script";
-import { WebSite, WithContext } from "schema-dts";
-import { META_THEME_COLORS } from "@/config/site";
-import { USER } from "@/config/user";
+import DevTools from '@/components/dev-tools';
+import Navigation from '@/components/navigation';
+import { META_THEME_COLORS } from '@/config/site';
+import { USER } from '@/config/user';
+import { auth } from '@/lib/auth';
+import { Providers } from '@/lib/providers';
+import Script from 'next/script';
+import type { WebSite, WithContext } from 'schema-dts';
 
 function getWebSiteJsonLd(): WithContext<WebSite> {
   return {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
     name: USER.name,
     url: `https://${USER.domain}`,
     alternateName: [USER.username],
@@ -26,18 +27,18 @@ function getWebSiteJsonLd(): WithContext<WebSite> {
 
 export const viewport: Viewport = {
   themeColor: META_THEME_COLORS.light,
-  width: "device-width",
+  width: 'device-width',
   initialScale: 1,
 };
 
-export async function generateMetadata(): Promise<Metadata> {
+export function generateMetadata(): Metadata {
   return {
     title: { template: `%s | ${USER.name}`, default: `${USER.name}` },
     metadataBase: new URL(`https://${USER.domain}`),
     openGraph: {
       title: USER.name,
       siteName: USER.name,
-      type: "website",
+      type: 'website',
       url: `https://${USER.domain}`,
       images: [
         {
@@ -50,7 +51,7 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     twitter: {
       creator: USER.twitterHandle,
-      card: "summary_large_image",
+      card: 'summary_large_image',
     },
   };
 }
@@ -92,7 +93,7 @@ export default async function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(getWebSiteJsonLd()).replace(/</g, "\\u003c"),
+            __html: JSON.stringify(getWebSiteJsonLd()).replace(/</g, '\\u003c'),
           }}
         />
       </head>

@@ -1,24 +1,24 @@
-import dayjs from "dayjs";
-import { MetadataRoute } from "next";
-import { ENABLE_BUDDY } from "@/config/site";
-import { getAllCrafts } from "@/features/craft/data/posts";
-import { addPathToBaseURL } from "@/lib/url";
-import { getBookmarks } from "@/features/bookmarks/lib/raindrop";
+import { ENABLE_BUDDY } from '@/config/site';
+import { getBookmarks } from '@/features/bookmarks/lib/raindrop';
+import { getAllCrafts } from '@/features/craft/data/posts';
+import { addPathToBaseURL } from '@/lib/url';
+import dayjs from 'dayjs';
+import type { MetadataRoute } from 'next';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const routes = [
-    "/",
-    "/cal",
-    "/guestbook",
-    "/craft",
-    "/bookmarks",
+    '/',
+    '/cal',
+    '/guestbook',
+    '/craft',
+    '/bookmarks',
     // "/blog",
     //  "/project",
     // "/design-inspiration",
     // "/uses",
-  ].concat(ENABLE_BUDDY ? ["/buddy"] : []);
+  ].concat(ENABLE_BUDDY ? ['/buddy'] : []);
 
-  let routesArray = await routes.map(async (route) => ({
+  const routesArray = await routes.map(async (route) => ({
     url: await addPathToBaseURL(route),
     lastModified: dayjs().toISOString(),
   }));
@@ -31,18 +31,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const craftsResolved = await Promise.all(crafts);
   const routesArrayResolved = await Promise.all(routesArray);
 
-  const [bookmarks] = await Promise.all([getBookmarks()])
+  const [bookmarks] = await Promise.all([getBookmarks()]);
 
   const mappedBookmarks = bookmarks.map(async (bookmark: any) => {
     return {
       url: await addPathToBaseURL(`/bookmarks/${bookmark.slug}`),
       lastModified: dayjs().toISOString(),
       changeFrequency: 'daily',
-      priority: 1
-    }
-  })
+      priority: 1,
+    };
+  });
 
   const mappedBookmarksResolved = await Promise.all(mappedBookmarks);
 
-  return [...routesArrayResolved, ...craftsResolved, ...mappedBookmarksResolved];
+  return [
+    ...routesArrayResolved,
+    ...craftsResolved,
+    ...mappedBookmarksResolved,
+  ];
 }

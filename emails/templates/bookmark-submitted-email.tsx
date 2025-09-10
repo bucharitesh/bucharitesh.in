@@ -1,11 +1,11 @@
-import { Heading, Text, Link } from "@react-email/components";
-import EmailText from "../components/email-text";
-import EmailBody from "../components/email-body";
+import { Heading, Link, Text } from '@react-email/components';
+import EmailBody from '../components/email-body';
+import EmailText from '../components/email-text';
 
 export default function BookMarkSubmittedEmail({
-  url = "https://example.com",
-  email = "contact@bucharitesh.in",
-  type = "Other",
+  url = 'https://example.com',
+  email = 'contact@bucharitesh.in',
+  type = 'Other',
 }: {
   url: string;
   email: string;
@@ -13,7 +13,7 @@ export default function BookMarkSubmittedEmail({
 }) {
   return (
     <EmailBody>
-      <Heading className="mx-0 my-7 p-0 text-center text-red-300 text-xl font-semibold">
+      <Heading className="mx-0 my-7 p-0 text-center font-semibold text-red-300 text-xl">
         New Bookmark Submitted
       </Heading>
 
@@ -21,37 +21,38 @@ export default function BookMarkSubmittedEmail({
         A new bookmark has been submitted to your collection!
       </EmailText>
 
-      <div className="my-6 p-4 bg-[#44403c] rounded-lg border border-[#44403c]">
+      <div className="my-6 rounded-lg border border-[#44403c] bg-[#44403c] p-4">
         <EmailText>
-          <strong>URL:</strong>{" "}
-          <Link 
-            href={url} 
+          <strong>URL:</strong>{' '}
+          <Link
+            href={url}
             className="text-red-100 underline underline-offset-2"
           >
             {url}
           </Link>
         </EmailText>
-        
+
         <EmailText>
           <strong>Submitted by:</strong> {email}
         </EmailText>
-        
-        {type && type !== "" && (
+
+        {type && type !== '' && (
           <EmailText>
             <strong>Type:</strong> {type}
           </EmailText>
         )}
-        
+
         <EmailText>
           <strong>Submitted at:</strong> {new Date().toLocaleString()}
         </EmailText>
       </div>
 
       <EmailText>
-        Review this bookmark and consider adding it to your public collection if it's valuable content worth sharing.
+        Review this bookmark and consider adding it to your public collection if
+        it's valuable content worth sharing.
       </EmailText>
 
-      <Text className="text-xs text-gray-200 italic mt-4">
+      <Text className="mt-4 text-gray-200 text-xs italic">
         P.S. Another gem for your digital treasure chest! 💎
       </Text>
     </EmailBody>

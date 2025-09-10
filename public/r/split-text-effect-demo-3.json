@@ -2,9 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "split-text-effect-demo-3",
   "type": "registry:block",
-  "registryDependencies": [
-    "@bucharitesh/split-text-effect"
-  ],
+  "registryDependencies": ["@bucharitesh/split-text-effect"],
   "files": [
     {
       "path": "registry/default/example/split-text-effect-demo-3.tsx",

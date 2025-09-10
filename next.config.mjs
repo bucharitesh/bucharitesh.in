@@ -1,4 +1,3 @@
-
 import bundleAnalyzer from '@next/bundle-analyzer';
 const withBundleAnalyzer = bundleAnalyzer;
 
@@ -7,18 +6,18 @@ let nextConfig = {
   reactStrictMode: true,
   logging: {
     fetches: {
-      fullUrl: process.env.NODE_ENV === "development",
+      fullUrl: process.env.NODE_ENV === 'development',
     },
   },
   devIndicators: false,
   serverExternalPackages: [
-    "@react-email/components",
-    "@react-email/render",
-    "@react-email/tailwind",
+    '@react-email/components',
+    '@react-email/render',
+    '@react-email/tailwind',
   ],
   experimental: {
-    optimizePackageImports: ["motion"],
-    webVitalsAttribution: ["FCP", "LCP", "CLS", "FID", "TTFB", "INP"],
+    optimizePackageImports: ['motion'],
+    webVitalsAttribution: ['FCP', 'LCP', 'CLS', 'FID', 'TTFB', 'INP'],
   },
   webpack: (config, { webpack, isServer }) => {
     if (isServer) {
@@ -42,47 +41,47 @@ let nextConfig = {
     // allow next/image to serve remote images from safelisted domains
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "res.cloudinary.com",
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
       },
       {
-        protocol: "https",
-        hostname: "api.microlink.io",
+        protocol: 'https',
+        hostname: 'api.microlink.io',
       },
       {
-        protocol: "https",
-        hostname: "avatars.githubusercontent.com",
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.com',
       },
       {
-        protocol: "https",
-        hostname: "cdn.bucharitesh.in",
+        protocol: 'https',
+        hostname: 'cdn.bucharitesh.in',
       },
       {
-        protocol: "https",
-        hostname: "images.unsplash.com",
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
       },
     ],
   },
   async redirects() {
     return [
       {
-        source: "/r",
-        destination: "/r/index.json",
+        source: '/r',
+        destination: '/r/index.json',
         permanent: true,
       },
       {
-        source: "/r/index",
-        destination: "/r/index.json",
+        source: '/r/index',
+        destination: '/r/index.json',
         permanent: true,
       },
       {
-        source: "/r/:name((?!index\\.json|styles/).*)",
-        destination: "/r/styles/default/:name.json",
+        source: '/r/:name((?!index\\.json|styles/).*)',
+        destination: '/r/styles/default/:name.json',
         permanent: true,
         missing: [
           {
-            type: "query",
-            key: "_redirected",
+            type: 'query',
+            key: '_redirected',
             value: undefined,
           },
         ],

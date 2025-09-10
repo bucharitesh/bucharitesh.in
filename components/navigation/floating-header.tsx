@@ -1,34 +1,41 @@
-"use client";
+'use client';
 
-import { memo, useEffect, useMemo, useState } from "react";
-import dynamic from "next/dynamic";
-import { usePathname } from "next/navigation";
-import Link from "next/link";
-import Balancer from "react-wrap-balancer";
-import { ArrowLeftIcon, RadioIcon } from "lucide-react";
+import { ArrowLeftIcon, RadioIcon } from 'lucide-react';
+import dynamic from 'next/dynamic';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { memo, useEffect, useMemo, useState } from 'react';
+import Balancer from 'react-wrap-balancer';
 
-import { Button } from "@/components/ui/button";
-import { MOBILE_SCROLL_THRESHOLD, SCROLL_AREA_ID } from "@/lib/config";
-import { SubmitBookmarkDrawer } from "../../features/bookmarks/components/submit-bookmark/drawer";
+import { Button } from '@/components/ui/button';
+import { MOBILE_SCROLL_THRESHOLD, SCROLL_AREA_ID } from '@/lib/config';
+import { SubmitBookmarkDrawer } from '../../features/bookmarks/components/submit-bookmark/drawer';
 
 const MobileDrawer = dynamic(() =>
-  import("@/components/navigation/mobile-drawer").then(
+  import('@/components/navigation/mobile-drawer').then(
     (mod) => mod.MobileDrawer
   )
 );
 
 export const FloatingHeader = memo(
-  ({ className, scrollTitle, title, bookmarks, currentBookmark, children }: any) => {
+  ({
+    className,
+    scrollTitle,
+    title,
+    bookmarks,
+    currentBookmark,
+    children,
+  }: any) => {
     const [transformValues, setTransformValues] = useState({
       translateY: 0,
       opacity: scrollTitle ? 0 : 1,
     });
     const pathname = usePathname();
-    const isBookmarksIndexPage = pathname === '/bookmarks'
-    const isBookmarkPath = pathname.startsWith('/bookmarks')
+    const isBookmarksIndexPage = pathname === '/bookmarks';
+    const isBookmarkPath = pathname.startsWith('/bookmarks');
 
-    const goBack = pathname.split("/").length > 2;
-    const goBackLink = pathname.split("/").slice(0, -1).join("/") || "/";
+    const goBack = pathname.split('/').length > 2;
+    const goBackLink = pathname.split('/').slice(0, -1).join('/') || '/';
 
     useEffect(() => {
       const scrollAreaElem = document.querySelector(`#${SCROLL_AREA_ID}`);
@@ -52,17 +59,22 @@ export const FloatingHeader = memo(
       };
 
       if (scrollTitle) {
-        scrollAreaElem?.addEventListener("scroll", onScroll, {
+        scrollAreaElem?.addEventListener('scroll', onScroll, {
           passive: true,
         });
       }
-      return () => scrollAreaElem?.removeEventListener("scroll", onScroll);
+      return () => scrollAreaElem?.removeEventListener('scroll', onScroll);
     }, [scrollTitle]);
 
     const memoizedSubmitBookmarkDrawer = useMemo(
-      () => <SubmitBookmarkDrawer bookmarks={bookmarks} currentBookmark={currentBookmark} />,
+      () => (
+        <SubmitBookmarkDrawer
+          bookmarks={bookmarks}
+          currentBookmark={currentBookmark}
+        />
+      ),
       [bookmarks, currentBookmark]
-    )
+    );
 
     const memoizedBalancer = useMemo(
       () => (
@@ -76,7 +88,7 @@ export const FloatingHeader = memo(
     );
 
     return (
-      <header className="sticky inset-x-0 top-0 z-40 mx-auto flex h-12 w-full shrink-0 items-center overflow-hidden border-b bg-background text-sm font-medium lg:hidden">
+      <header className="sticky inset-x-0 top-0 z-40 mx-auto flex h-12 w-full shrink-0 items-center overflow-hidden border-b bg-background font-medium text-sm lg:hidden">
         <div className="flex size-full items-center px-3">
           <div className="flex w-full items-center justify-between gap-2">
             <div className="flex flex-1 items-center gap-1">
@@ -109,7 +121,7 @@ export const FloatingHeader = memo(
                 {title && memoizedBalancer}
               </div>
               <div className="flex items-center gap-2">
-                {(isBookmarksIndexPage) && (
+                {isBookmarksIndexPage && (
                   <Button variant="outline" size="sm" asChild>
                     <a
                       href={'/bookmarks/feed.xml'}

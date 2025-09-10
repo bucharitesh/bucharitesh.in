@@ -1,21 +1,21 @@
-"use client"
+'use client';
 
-import React, { useEffect } from 'react'
+import { useEffect } from 'react';
 // import { useEasterEggs } from '@/lib/providers/easter-egg-provider'
 
 declare global {
-    interface Window {
-        findSecrets: () => void;
-    }
+  interface Window {
+    findSecrets: () => void;
+  }
 }
 
 const ConsoleEasterEgg = () => {
-    // const { discoverEgg } = useEasterEggs()
+  // const { discoverEgg } = useEasterEggs()
 
-    useEffect(() => {
-        if (typeof window !== "undefined") {
-            // Create an ASCII art message
-            const asciiArt = `
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      // Create an ASCII art message
+      const asciiArt = `
     %c
        _____                      _       
       / ____|                    | |      
@@ -27,50 +27,56 @@ const ConsoleEasterEgg = () => {
     %cTip: Try calling %cfindSecrets()%c in the console...
           `;
 
-            const styles = [
-                'color: #3b82f6; font-family: monospace;',
-                'color: #6b7280; font-size: 12px;',
-                'color: #10b981; font-weight: bold;',
-                'color: #6b7280;'
-            ];
+      const styles = [
+        'color: #3b82f6; font-family: monospace;',
+        'color: #6b7280; font-size: 12px;',
+        'color: #10b981; font-weight: bold;',
+        'color: #6b7280;',
+      ];
 
-            console.log(asciiArt, ...styles);
+      console.log(asciiArt, ...styles);
 
-            // Add the secret function to window object
-            window.findSecrets = () => {
-                console.log('%c🎉 Congratulations! You found the secret function!', 'color: #10b981; font-size: 14px; font-weight: bold;');
-                console.log('%c⭐ Here\'s your reward...', 'color: #6b7280; font-size: 12px;');
+      // Add the secret function to window object
+      window.findSecrets = () => {
+        console.log(
+          '%c🎉 Congratulations! You found the secret function!',
+          'color: #10b981; font-size: 14px; font-weight: bold;'
+        );
+        console.log(
+          "%c⭐ Here's your reward...",
+          'color: #6b7280; font-size: 12px;'
+        );
 
-                // Small delay for dramatic effect
-                setTimeout(() => {
-                    const messages = [
-                        '🔍 Searching for treasure...',
-                        '📦 Opening chest...',
-                        '✨ Achievement unlocked!'
-                    ];
+        // Small delay for dramatic effect
+        setTimeout(() => {
+          const messages = [
+            '🔍 Searching for treasure...',
+            '📦 Opening chest...',
+            '✨ Achievement unlocked!',
+          ];
 
-                    let delay = 0;
-                    messages.forEach((message) => {
-                        setTimeout(() => {
-                            console.log(`%c${message}`, 'color: #6b7280; font-size: 12px;');
-                            if (message === messages[messages.length - 1]) {
-                                // discoverEgg("CONSOLE_MASTER");
-                            }
-                        }, delay);
-                        delay += 800;
-                    });
-                }, 500);
-            };
-            return () => {
-                // Make findSecrets optional before deletion
-                if ('findSecrets' in window) {
-                    delete (window as any).findSecrets;
-                }
-            };
+          let delay = 0;
+          for (const message of messages) {
+            setTimeout(() => {
+              console.log(`%c${message}`, 'color: #6b7280; font-size: 12px;');
+              if (message === messages.at(-1)) {
+                // discoverEgg("CONSOLE_MASTER");
+              }
+            }, delay);
+            delay += 800;
+          }
+        }, 500);
+      };
+      return () => {
+        // Make findSecrets optional before deletion
+        if ('findSecrets' in window) {
+          (window as any).findSecrets = undefined;
         }
-    }, []);
+      };
+    }
+  }, []);
 
-    return (<></>)
-}
+  return <></>;
+};
 
-export default ConsoleEasterEgg
+export default ConsoleEasterEgg;

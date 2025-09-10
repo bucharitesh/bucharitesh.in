@@ -5,12 +5,8 @@
   "title": "Split Text Effect",
   "author": "bucharitesh <contact@bucharitesh.in>",
   "description": "A split text effect component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
-  "dependencies": [
-    "motion"
-  ],
-  "registryDependencies": [
-    "@bucharitesh/utils"
-  ],
+  "dependencies": ["motion"],
+  "registryDependencies": ["@bucharitesh/utils"],
   "files": [
     {
       "path": "registry/default/bucharitesh/split-text-effect/split-text-effect.tsx",

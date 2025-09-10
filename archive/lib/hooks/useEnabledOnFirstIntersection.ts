@@ -1,5 +1,5 @@
-import React from "react";
-import { useIntersection } from "react-use";
+import React from 'react';
+import { useIntersection } from 'react-use';
 
 export const useEnabledOnFirstIntersection = () => {
   const [enabled, setEnabled] = React.useState(false);

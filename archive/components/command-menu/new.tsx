@@ -1,35 +1,35 @@
-"use client";
+'use client';
 
-import { useCommandState } from "cmdk";
-import type { LucideProps } from "lucide-react";
+import { useCommandState } from 'cmdk';
+import type { LucideProps } from 'lucide-react';
 import {
   CornerDownLeftIcon,
   LetterTextIcon,
   MoonStarIcon,
   RssIcon,
   SunIcon,
-} from "lucide-react";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { useTheme } from "next-themes";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { toast } from "sonner";
+} from 'lucide-react';
+import { useTheme } from 'next-themes';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import React, { useCallback, useEffect, useState } from 'react';
+import { toast } from 'sonner';
 
+// import { copyText } from "@/utils/copy";
+import { Button } from '@/components/ui/button';
 import {
-    CommandDialog,
-    CommandEmpty,
-    CommandGroup,
-    CommandInput,
-    CommandItem,
-    CommandList,
-    CommandSeparator,
-  } from "@/components/ui/command";
+  CommandDialog,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+} from '@/components/ui/command';
+import { Separator } from '@/components/ui/separator';
 // import type { Post } from "@/features/blog/types/post";
 // import { SOCIAL_LINKS } from "@/features/profile/data/social-links";
-import { cn } from "@/lib/utils";
-// import { copyText } from "@/utils/copy";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
+import { cn } from '@/lib/utils';
 
 type CommandLinkItem = {
   title: string;
@@ -43,26 +43,26 @@ type CommandLinkItem = {
 
 const MENU_LINKS: CommandLinkItem[] = [
   {
-    title: "Daifolio",
-    href: "/",
+    title: 'Daifolio',
+    href: '/',
     icon: RssIcon,
   },
   {
-    title: "Blog",
-    href: "/blog",
+    title: 'Blog',
+    href: '/blog',
     icon: RssIcon,
   },
   {
-    title: "Components",
-    href: "/components",
+    title: 'Components',
+    href: '/components',
     icon: RssIcon,
   },
 ];
 
 const DAIFOLIO_LINKS: CommandLinkItem[] = [
   {
-    title: "About",
-    href: "/#about",
+    title: 'About',
+    href: '/#about',
     icon: LetterTextIcon,
   },
 ];
@@ -86,9 +86,9 @@ export function CommandMenu() {
     const { signal } = abortController;
 
     document.addEventListener(
-      "keydown",
+      'keydown',
       (e: KeyboardEvent) => {
-        if ((e.key === "k" && (e.metaKey || e.ctrlKey)) || e.key === "/") {
+        if ((e.key === 'k' && (e.metaKey || e.ctrlKey)) || e.key === '/') {
           if (
             (e.target instanceof HTMLElement && e.target.isContentEditable) ||
             e.target instanceof HTMLInputElement ||
@@ -113,7 +113,7 @@ export function CommandMenu() {
       setOpen(false);
 
       if (openInNewTab) {
-        window.open(href, "_blank", "noopener");
+        window.open(href, '_blank', 'noopener');
       } else {
         router.push(href);
       }
@@ -128,32 +128,32 @@ export function CommandMenu() {
   }, []);
 
   const handleThemeChange = useCallback(
-    (theme: "light" | "dark" | "system") => {
+    (theme: 'light' | 'dark' | 'system') => {
       setOpen(false);
       setTheme(theme);
     },
     [setTheme]
   );
 
-//   const { blogLinks, componentLinks } = useMemo(
-//     () => ({
-//       blogLinks: posts
-//         .filter((post) => post.metadata?.category !== "components")
-//         .map(postToCommandLinkItem),
-//       componentLinks: posts
-//         .filter((post) => post.metadata?.category === "components")
-//         .map(postToCommandLinkItem),
-//     }),
-//     [posts]
-//   );
+  //   const { blogLinks, componentLinks } = useMemo(
+  //     () => ({
+  //       blogLinks: posts
+  //         .filter((post) => post.metadata?.category !== "components")
+  //         .map(postToCommandLinkItem),
+  //       componentLinks: posts
+  //         .filter((post) => post.metadata?.category === "components")
+  //         .map(postToCommandLinkItem),
+  //     }),
+  //     [posts]
+  //   );
 
   return (
     <>
       <Button
         variant="secondary"
         className={cn(
-          "h-8 gap-1.5 rounded-full bg-zinc-50 px-2.5 text-muted-foreground select-none hover:bg-zinc-50 dark:bg-zinc-900 dark:hover:bg-zinc-900",
-          "not-dark:border dark:inset-shadow-[1px_1px_1px,0px_0px_2px] dark:inset-shadow-white/15"
+          'h-8 select-none gap-1.5 rounded-full bg-zinc-50 px-2.5 text-muted-foreground hover:bg-zinc-50 dark:bg-zinc-900 dark:hover:bg-zinc-900',
+          'not-dark:border dark:inset-shadow-[1px_1px_1px,0px_0px_2px] dark:inset-shadow-white/15'
         )}
         onClick={() => setOpen(true)}
       >
@@ -171,7 +171,7 @@ export function CommandMenu() {
           />
         </svg>
 
-        <span className="font-sans text-sm/4 font-medium sm:hidden">
+        <span className="font-medium font-sans text-sm/4 sm:hidden">
           Search
         </span>
 
@@ -233,22 +233,22 @@ export function CommandMenu() {
 
           <CommandGroup heading="Theme">
             <CommandItem
-              keywords={["theme"]}
-              onSelect={() => handleThemeChange("light")}
+              keywords={['theme']}
+              onSelect={() => handleThemeChange('light')}
             >
               <SunIcon />
               Light
             </CommandItem>
             <CommandItem
-              keywords={["theme"]}
-              onSelect={() => handleThemeChange("dark")}
+              keywords={['theme']}
+              onSelect={() => handleThemeChange('dark')}
             >
               <MoonStarIcon />
               Dark
             </CommandItem>
             <CommandItem
-              keywords={["theme"]}
-              onSelect={() => handleThemeChange("system")}
+              keywords={['theme']}
+              onSelect={() => handleThemeChange('system')}
             >
               {/* <Icons.contrast /> */}
               Auto
@@ -304,7 +304,7 @@ function CommandLinkGroup({
   );
 }
 
-type CommandKind = "command" | "page" | "link";
+type CommandKind = 'command' | 'page' | 'link';
 
 type CommandMetaMap = Map<
   string,
@@ -316,27 +316,27 @@ type CommandMetaMap = Map<
 function buildCommandMetaMap() {
   const commandMetaMap: CommandMetaMap = new Map();
 
-  commandMetaMap.set("Download vCard", { commandKind: "command" });
+  commandMetaMap.set('Download vCard', { commandKind: 'command' });
 
-  commandMetaMap.set("Light", { commandKind: "command" });
-  commandMetaMap.set("Dark", { commandKind: "command" });
-  commandMetaMap.set("Auto", { commandKind: "command" });
+  commandMetaMap.set('Light', { commandKind: 'command' });
+  commandMetaMap.set('Dark', { commandKind: 'command' });
+  commandMetaMap.set('Auto', { commandKind: 'command' });
 
-  commandMetaMap.set("Copy Mark as SVG", {
-    commandKind: "command",
+  commandMetaMap.set('Copy Mark as SVG', {
+    commandKind: 'command',
   });
-  commandMetaMap.set("Copy Logotype as SVG", {
-    commandKind: "command",
+  commandMetaMap.set('Copy Logotype as SVG', {
+    commandKind: 'command',
   });
-  commandMetaMap.set("Download Brand Assets", {
-    commandKind: "command",
+  commandMetaMap.set('Download Brand Assets', {
+    commandKind: 'command',
   });
 
-//   SOCIAL_LINK_ITEMS.forEach((item) => {
-//     commandMetaMap.set(item.title, {
-//       commandKind: "link",
-//     });
-//   });
+  //   SOCIAL_LINK_ITEMS.forEach((item) => {
+  //     commandMetaMap.set(item.title, {
+  //       commandKind: "link",
+  //     });
+  //   });
 
   return commandMetaMap;
 }
@@ -344,20 +344,20 @@ function buildCommandMetaMap() {
 const COMMAND_META_MAP = buildCommandMetaMap();
 
 const ENTER_ACTION_LABELS: Record<CommandKind, string> = {
-  command: "Run Command",
-  page: "Go to Page",
-  link: "Open Link",
+  command: 'Run Command',
+  page: 'Go to Page',
+  link: 'Open Link',
 };
 
 function CommandMenuFooter() {
   const selectedCommandKind = useCommandState(
-    (state) => COMMAND_META_MAP.get(state.value)?.commandKind ?? "page"
+    (state) => COMMAND_META_MAP.get(state.value)?.commandKind ?? 'page'
   );
 
   return (
     <>
       <div className="flex h-10" />
-      <div className="absolute inset-x-0 bottom-0 flex h-10 items-center justify-between gap-2 border-t bg-zinc-100/30 px-4 text-xs font-medium dark:bg-zinc-800/30">
+      <div className="absolute inset-x-0 bottom-0 flex h-10 items-center justify-between gap-2 border-t bg-zinc-100/30 px-4 font-medium text-xs dark:bg-zinc-800/30">
         <div className="flex shrink-0 items-center gap-2">
           <span>{ENTER_ACTION_LABELS[selectedCommandKind]}</span>
           <CommandMenuKbd>
@@ -375,11 +375,11 @@ function CommandMenuFooter() {
   );
 }
 
-function CommandMenuKbd({ className, ...props }: React.ComponentProps<"kbd">) {
+function CommandMenuKbd({ className, ...props }: React.ComponentProps<'kbd'>) {
   return (
     <kbd
       className={cn(
-        "pointer-events-none flex h-5 min-w-6 items-center justify-center gap-1 rounded-xs bg-black/5 px-1 font-sans text-[13px] font-normal text-muted-foreground shadow-[inset_0_-1px_2px] shadow-black/10 select-none dark:bg-white/10 dark:shadow-white/10 dark:text-shadow-xs [&_svg:not([class*='size-'])]:size-3",
+        'pointer-events-none flex h-5 min-w-6 select-none items-center justify-center gap-1 rounded-xs bg-black/5 px-1 font-normal font-sans text-[13px] text-muted-foreground shadow-[inset_0_-1px_2px] shadow-black/10 [&_svg:not([class*= dark:bg-white/10 dark:text-shadow-xs dark:shadow-white/10'size-'])]:size-3',
         className
       )}
       {...props}

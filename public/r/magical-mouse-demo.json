@@ -2,9 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "magical-mouse-demo",
   "type": "registry:block",
-  "registryDependencies": [
-    "@bucharitesh/magical-mouse"
-  ],
+  "registryDependencies": ["@bucharitesh/magical-mouse"],
   "files": [
     {
       "path": "registry/default/example/magical-mouse-demo.tsx",

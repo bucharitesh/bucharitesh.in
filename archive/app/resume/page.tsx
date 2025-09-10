@@ -1,10 +1,11 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import { resumeData } from "@/lib/resume-data";
-import { USER } from "@/config/user";
-import { A4_HEIGHT_MM, A4_WIDTH_MM, MM_TO_PX, Ruler } from "./ruler";
-import DownloadButton from "./download-button";
+import { USER } from '@/config/user';
+import { resumeData } from '@/lib/resume-data';
+import type React from 'react';
+import { useState } from 'react';
+import DownloadButton from './download-button';
+import { A4_HEIGHT_MM, A4_WIDTH_MM, MM_TO_PX, Ruler } from './ruler';
 
 export default function ResumePage() {
   const { experience, education, skills } = resumeData;
@@ -23,7 +24,7 @@ export default function ResumePage() {
       <DownloadButton contentId="resume" fileName="resume.pdf" />
 
       {/* Corner square */}
-      <div className="hidden z-21 lg:block fixed top-0 left-0 w-8 h-8 border-r border-b" />
+      <div className="fixed top-0 left-0 z-21 hidden h-8 w-8 border-r border-b lg:block" />
 
       {/* Rulers */}
       <Ruler orientation="horizontal" scrollPosition={scrollX} />
@@ -32,12 +33,12 @@ export default function ResumePage() {
 
       {/* Content area */}
       <div
-        className="md:fixed md:top-8 md:left-8 md:right-0 md:bottom-0 overflow-auto"
+        className="overflow-auto md:fixed md:top-8 md:right-0 md:bottom-0 md:left-8"
         onScroll={handleScroll}
       >
-        <div className="md:min-h-full w-full flex flex-col items-center p-4 md:p-20">
+        <div className="flex w-full flex-col items-center p-4 md:min-h-full md:p-20">
           <div
-            className="relative bg-white shadow-lg rounded-md overflow-hidden scale-50 md:scale-100 border border-dotted border-neutral-400"
+            className="relative scale-50 overflow-hidden rounded-md border border-neutral-400 border-dotted bg-white shadow-lg md:scale-100"
             style={{
               width: `${A4_WIDTH_MM * MM_TO_PX}px`,
               height: `${A4_HEIGHT_MM * MM_TO_PX}px`,
@@ -45,14 +46,14 @@ export default function ResumePage() {
             id="resume"
           >
             {/* Content with margins */}
-            <div className="absolute inset-0 p-8 overflow-hidden">
+            <div className="absolute inset-0 overflow-hidden p-8">
               {/* Header */}
               <div>
-                <h1 className="font-bold text-3xl mb-1 text-black">
+                <h1 className="mb-1 font-bold text-3xl text-black">
                   {USER.name}
                 </h1>
-                <h2 className="tracking-wide text-sm text-black">
-                  {USER.tagline} |{" "}
+                <h2 className="text-black text-sm tracking-wide">
+                  {USER.tagline} |{' '}
                   <a
                     href={`https://${USER.domain}`}
                     className="text-[#ad1d1d] hover:underline"
@@ -61,7 +62,7 @@ export default function ResumePage() {
                   </a>
                 </h2>
                 <div className="prose prose-sm mt-4 text-[#939598]">
-                  <p className="text-sm whitespace-pre-wrap">
+                  <p className="whitespace-pre-wrap text-sm">
                     {USER.description}
                   </p>
                 </div>
@@ -73,7 +74,7 @@ export default function ResumePage() {
               <div className="grid grid-cols-5 gap-6">
                 {/* Left Column - Experience */}
                 <div className="col-span-3">
-                  <h3 className="text-[#70706f] font-bold text-base mb-3">
+                  <h3 className="mb-3 font-bold text-[#70706f] text-base">
                     Experience
                   </h3>
                   {experience.map((company, index) => (
@@ -88,14 +89,14 @@ export default function ResumePage() {
                               {company.company}
                             </a>
                           </h4>
-                          <h5 className="text-[#70706f] text-xs mb-1">
+                          <h5 className="mb-1 text-[#70706f] text-xs">
                             {position.title} | <time>{position.duration}</time>
                           </h5>
-                          <ul className="list-disc pl-4 space-y-0.5">
+                          <ul className="list-disc space-y-0.5 pl-4">
                             {position.points.map((point, pointIndex) => (
                               <li
                                 key={pointIndex}
-                                className="text-xs text-[#939598]"
+                                className="text-[#939598] text-xs"
                               >
                                 {point}
                               </li>
@@ -111,7 +112,7 @@ export default function ResumePage() {
                 <div className="col-span-2">
                   {/* Education Section */}
                   <div className="mb-6">
-                    <h3 className="text-[#70706f] font-bold text-base mb-3">
+                    <h3 className="mb-3 font-bold text-[#70706f] text-base">
                       Education
                     </h3>
                     {education.map((edu, index) => (
@@ -124,8 +125,8 @@ export default function ResumePage() {
                             {edu.school}
                           </a>
                         </h4>
-                        <p className="text-xs text-[#939598]">{edu.degree}</p>
-                        <p className="text-xs text-[#939598]">
+                        <p className="text-[#939598] text-xs">{edu.degree}</p>
+                        <p className="text-[#939598] text-xs">
                           Graduated {edu.graduationDate}
                         </p>
                       </div>
@@ -134,7 +135,7 @@ export default function ResumePage() {
 
                   {/* Skills Section */}
                   <div>
-                    <h3 className="text-[#70706f] font-bold text-base mb-3">
+                    <h3 className="mb-3 font-bold text-[#70706f] text-base">
                       Skills
                     </h3>
                     <ul className="space-y-1">
@@ -162,6 +163,6 @@ export default function ResumePage() {
 
 const MarginGuide = () => {
   return (
-    <div className="absolute inset-0 border border-dotted border-neutral-400" />
+    <div className="absolute inset-0 border border-neutral-400 border-dotted" />
   );
 };

@@ -1,12 +1,12 @@
-import { resend } from "./resend";
-import { VARIANT_TO_FROM_MAP } from "./resend/constants";
-import { ResendEmailOptions } from "./resend/types";
+import { resend } from './resend';
+import { VARIANT_TO_FROM_MAP } from './resend/constants';
+import type { ResendEmailOptions } from './resend/types';
 
 // Send email using Resend (Recommended for production)
 export const sendEmailViaResend = async (opts: ResendEmailOptions) => {
   if (!process.env.RESEND_API_KEY) {
     console.info(
-      "RESEND_API_KEY is not set in the .env. Skipping sending email.",
+      'RESEND_API_KEY is not set in the .env. Skipping sending email.'
     );
     return;
   }
@@ -14,7 +14,7 @@ export const sendEmailViaResend = async (opts: ResendEmailOptions) => {
   const {
     email,
     from,
-    variant = "primary",
+    variant = 'primary',
     bcc,
     replyTo,
     subject,
@@ -28,7 +28,7 @@ export const sendEmailViaResend = async (opts: ResendEmailOptions) => {
       to: email,
       from: from || VARIANT_TO_FROM_MAP[variant],
       bcc: bcc,
-      replyTo: replyTo || "contact@bucharitesh.in",
+      replyTo: replyTo || 'contact@bucharitesh.in',
       subject,
       text,
       react,
@@ -40,7 +40,7 @@ export const sendEmailViaResend = async (opts: ResendEmailOptions) => {
       // }),
     });
   } catch (error) {
-    console.error("Failed to send email via Resend:", error);
+    console.error('Failed to send email via Resend:', error);
     throw error;
   }
 };

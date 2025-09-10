@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import * as React from "react";
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils';
+import * as React from 'react';
 
 interface GameOfLifeProps
   extends React.CanvasHTMLAttributes<HTMLCanvasElement> {
@@ -18,12 +18,12 @@ const GameOfLife = React.forwardRef<HTMLCanvasElement, GameOfLifeProps>(
       className,
       size = 12,
       interval = 150,
-      backgroundColor = "#000000",
-      cellColor = "#1e1e1e",
+      backgroundColor = '#000000',
+      cellColor = '#1e1e1e',
       density = 0.1,
       ...props
     },
-    ref,
+    ref
   ) => {
     const canvasRef = React.useRef<HTMLCanvasElement | null>(null);
     const frameRef = React.useRef<number>(0);
@@ -41,7 +41,7 @@ const GameOfLife = React.forwardRef<HTMLCanvasElement, GameOfLifeProps>(
       const canvas = canvasRef.current;
       if (!canvas) return;
 
-      const ctx = canvas.getContext("2d", { alpha: false });
+      const ctx = canvas.getContext('2d', { alpha: false });
       if (!ctx) return;
 
       const parent = canvas.parentElement;
@@ -70,7 +70,7 @@ const GameOfLife = React.forwardRef<HTMLCanvasElement, GameOfLifeProps>(
 
         // Create a random initial pattern based on density prop
         const grid = Array.from({ length: cols }, () =>
-          Array.from({ length: rows }, () => Math.random() < density),
+          Array.from({ length: rows }, () => Math.random() < density)
         );
 
         return grid;
@@ -78,7 +78,7 @@ const GameOfLife = React.forwardRef<HTMLCanvasElement, GameOfLifeProps>(
 
       const updateGrid = (grid: boolean[][]): boolean[][] => {
         const next: boolean[][] = Array.from({ length: cols }, () =>
-          Array(rows).fill(false),
+          Array(rows).fill(false)
         );
 
         for (let i = 0; i < cols; i++) {
@@ -187,13 +187,13 @@ const GameOfLife = React.forwardRef<HTMLCanvasElement, GameOfLifeProps>(
       gridRef.current = createGrid();
       lastUpdateRef.current = performance.now();
       frameRef.current = requestAnimationFrame(animate);
-      window.addEventListener("resize", handleResize);
+      window.addEventListener('resize', handleResize);
       setIsReady(true);
       isInitialRender.current = false;
 
       return () => {
         cancelAnimationFrame(frameRef.current);
-        window.removeEventListener("resize", handleResize);
+        window.removeEventListener('resize', handleResize);
         clearTimeout(resizeTimeout);
       };
     }, [size, interval, backgroundColor, cellColor]);
@@ -202,24 +202,24 @@ const GameOfLife = React.forwardRef<HTMLCanvasElement, GameOfLifeProps>(
       <canvas
         ref={React.useMemo(
           () => (node: HTMLCanvasElement | null) => {
-            if (typeof ref === "function") ref(node);
+            if (typeof ref === 'function') ref(node);
             else if (ref) ref.current = node;
             canvasRef.current = node;
           },
-          [ref],
+          [ref]
         )}
         className={cn(
-          "absolute inset-0 w-full h-full transition-opacity duration-500",
-          isReady ? "opacity-100" : "opacity-0",
-          className,
+          'absolute inset-0 h-full w-full transition-opacity duration-500',
+          isReady ? 'opacity-100' : 'opacity-0',
+          className
         )}
         {...props}
       />
     );
-  },
+  }
 );
 
-GameOfLife.displayName = "GameOfLife";
+GameOfLife.displayName = 'GameOfLife';
 
 export { GameOfLife };
 export type { GameOfLifeProps };

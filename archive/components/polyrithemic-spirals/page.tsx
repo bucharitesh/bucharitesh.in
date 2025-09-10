@@ -1,9 +1,8 @@
-import React from "react";
-import PolyRithemicSpirals from "./PolyRithemicSpirals";
+import PolyRithemicSpirals from './PolyRithemicSpirals';
 
 const Page = () => {
   return (
-    <div className="h-full w-fullp-6 mx-auto space-y-10 flex items-center justify-center flex-col pb-20">
+    <div className="mx-auto flex h-full w-fullp-6 flex-col items-center justify-center space-y-10 pb-20">
       <PolyRithemicSpirals />
     </div>
   );

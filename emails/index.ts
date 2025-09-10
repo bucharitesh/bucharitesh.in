@@ -1,5 +1,5 @@
-import { ResendEmailOptions } from "./resend/types";
-import { sendEmailViaResend } from "./send-via-resend";
+import type { ResendEmailOptions } from './resend/types';
+import { sendEmailViaResend } from './send-via-resend';
 
 export const sendEmail = async (opts: ResendEmailOptions) => {
   if (process.env.RESEND_API_KEY) {
@@ -22,6 +22,6 @@ export const sendEmail = async (opts: ResendEmailOptions) => {
   // }
 
   console.info(
-    "Email sending failed: Neither SMTP nor Resend is configured. Please set up at least one email service to send emails.",
+    'Email sending failed: Neither SMTP nor Resend is configured. Please set up at least one email service to send emails.'
   );
 };

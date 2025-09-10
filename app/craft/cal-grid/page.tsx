@@ -1,18 +1,16 @@
-"use client";
-
-import React from "react";
-import { Grid, GridSmall, GridSmallCell } from "./grid";
-import "./grid.css";
+'use client';
+import { Grid } from './grid';
+import './grid.css';
 
 const Page = () => {
   return (
-    <div className="w-full bg-[#f4f4f4] space-y-10">
+    <div className="w-full space-y-10 bg-[#f4f4f4]">
       <div className="px-0 md:px-0">
         <Grid>
-          <div className="w-full h-[200px] bg-red-500" />
-          <div className="w-full h-[400px] bg-blue-500" />
-          <div className="w-full h-[100px] bg-green-500" />
-          <div className="w-full h-[400px] bg-yellow-500" />
+          <div className="h-[200px] w-full bg-red-500" />
+          <div className="h-[400px] w-full bg-blue-500" />
+          <div className="h-[100px] w-full bg-green-500" />
+          <div className="h-[400px] w-full bg-yellow-500" />
           {/* <div className="py-40">
             <GridSmall rows={2} columns={4}>
               <GridSmallCell>
@@ -42,8 +40,8 @@ const Page = () => {
               </GridSmallCell>
             </GridSmall>
           </div> */}
-          <div className="w-full h-[400px] bg-purple-500" />
-          <div className="w-full h-[400px] bg-pink-500" />
+          <div className="h-[400px] w-full bg-purple-500" />
+          <div className="h-[400px] w-full bg-pink-500" />
         </Grid>
       </div>
     </div>

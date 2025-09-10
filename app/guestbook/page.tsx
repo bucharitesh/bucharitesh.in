@@ -1,28 +1,28 @@
-import { Metadata } from "next/types";
-import { cn } from "@/lib/utils";
-import styles from "./notes.module.css";
-import Polaroid from "@/features/guestbook/polaroid";
+import { FloatingHeader } from '@/components/navigation/floating-header';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import GuestbookEntries from '@/features/guestbook/guestbook-entries';
+import Polaroid from '@/features/guestbook/polaroid';
 import {
   NextWordmark,
   Sticker,
   VercelLogo,
-} from "@/features/guestbook/stickers";
-import GuestbookEntries from "@/features/guestbook/guestbook-entries";
-import { Provider } from "jotai";
-import WriteNoteCTA from "@/features/guestbook/write";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { FloatingHeader } from "@/components/navigation/floating-header";
+} from '@/features/guestbook/stickers';
+import WriteNoteCTA from '@/features/guestbook/write';
+import { cn } from '@/lib/utils';
+import { Provider } from 'jotai';
+import type { Metadata } from 'next/types';
+import styles from './notes.module.css';
 
 export const metadata: Metadata = {
-  title: "Guestbook",
+  title: 'Guestbook',
   description:
     "Write anything for future visitors of this website. I'd love a random joke though.",
   alternates: {
-    canonical: "/guestbook",
+    canonical: '/guestbook',
   },
 };
 
-export const dynamic = "force-dynamic";
+export const dynamic = 'force-dynamic';
 
 // export default async function GuestbookPage() {
 //   return (
@@ -37,24 +37,24 @@ export const dynamic = "force-dynamic";
 //   );
 // }
 
-export default async function GuestbookPage() {
+export default function GuestbookPage() {
   return (
     <Provider>
       <ScrollArea useScrollAreaId>
         <FloatingHeader title="Guestbook" />
         <div
-          className={cn("h-screen w-screen bg-gray-1")}
+          className={cn('h-screen w-screen bg-gray-1')}
           style={{
-            backgroundColor: "#06c",
+            backgroundColor: '#06c',
             // "backgroundImage": "linear-gradient(rgba(255,255,255,0.2) 2px, transparent 2px), linear-gradient(90deg, rgba(255,255,255,0.2) 2px, transparent 1px), linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)",
-            backgroundSize: "100px 100px, 100px 100px, 20px 20px, 20px 20px",
-            backgroundPosition: "-2px -2px, -2px -2px, -1px -1px, -1px -1px",
+            backgroundSize: '100px 100px, 100px 100px, 20px 20px, 20px 20px',
+            backgroundPosition: '-2px -2px, -2px -2px, -1px -1px, -1px -1px',
           }}
         >
           <div
             id="mat-container"
             className={cn(
-              "relative w-full h-full overflow-hidden"
+              'relative h-full w-full overflow-hidden'
               // styles.matContainer
             )}
           >

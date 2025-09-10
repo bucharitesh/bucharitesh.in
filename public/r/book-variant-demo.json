@@ -2,9 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "book-variant-demo",
   "type": "registry:block",
-  "registryDependencies": [
-    "@bucharitesh/book"
-  ],
+  "registryDependencies": ["@bucharitesh/book"],
   "files": [
     {
       "path": "registry/default/example/book-variant-demo.tsx",

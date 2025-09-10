@@ -1,8 +1,8 @@
-import { GameOfLife } from "@/registry/default/bucharitesh/game-of-life/game-of-life";
+import { GameOfLife } from '@/registry/default/bucharitesh/game-of-life/game-of-life';
 
 export default function SplitTextEffectDemo() {
   return (
-    <div className="w-full relative h-[500px] z-20 rounded-lg bg-black overflow-hidden border">
+    <div className="relative z-20 h-[500px] w-full overflow-hidden rounded-lg border bg-black">
       <GameOfLife
         size={20}
         interval={500}

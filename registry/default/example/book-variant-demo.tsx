@@ -1,10 +1,9 @@
-import React from "react";
-import Book from "../bucharitesh/book/book";
-import { Leaf } from "lucide-react";
+import { Leaf } from 'lucide-react';
+import Book from '../bucharitesh/book/book';
 
 const BookDemo = () => {
   return (
-    <div className="w-full bg-white rounded-xl p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div className="grid w-full grid-cols-1 gap-8 rounded-xl bg-white p-6 md:grid-cols-2">
       <Book title="The user experience of the Frontend Cloud" />
       <Book
         title="The user experience of the Frontend Cloud"

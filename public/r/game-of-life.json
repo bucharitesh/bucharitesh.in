@@ -5,9 +5,7 @@
   "title": "Game of Life",
   "author": "bucharitesh <contact@bucharitesh.in>",
   "description": "A game of life component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
-  "registryDependencies": [
-    "@bucharitesh/utils"
-  ],
+  "registryDependencies": ["@bucharitesh/utils"],
   "files": [
     {
       "path": "registry/default/bucharitesh/game-of-life/game-of-life.tsx",

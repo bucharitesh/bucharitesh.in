@@ -1,5 +1,5 @@
-import { clsx, type ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
+import { type ClassValue, clsx } from 'clsx';
+import { twMerge } from 'tailwind-merge';
 
 /**
  * Combines and merges multiple CSS class names or values using the classix and tailwind-merge libraries.
@@ -15,11 +15,11 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function getAPI() {
-  if (process.env.NODE_ENV === "development") {
-    return "http://localhost:6969";
+  if (process.env.NODE_ENV === 'development') {
+    return 'http://localhost:6969';
   }
 
-  return "https://bucharitesh.in";
+  return 'https://bucharitesh.in';
 }
 
 /**
@@ -32,7 +32,7 @@ export function getAPI() {
  */
 export const isExternalLink = (href: string) => {
   if (!href) return false;
-  return !href.startsWith("/") && !href.startsWith("#");
+  return !href.startsWith('/') && !href.startsWith('#');
 };
 
 /**
@@ -45,11 +45,11 @@ export const isExternalLink = (href: string) => {
  */
 export const getDateTimeFormat = (date: string) => {
   const dateObj = new Date(date);
-  return Intl.DateTimeFormat("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "2-digit",
-    timeZone: "UTC",
+  return Intl.DateTimeFormat('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: '2-digit',
+    timeZone: 'UTC',
   }).format(dateObj);
 };
 
@@ -61,7 +61,7 @@ export const getDateTimeFormat = (date: string) => {
  * @returns - The dasherized version of the input text.
  */
 export const dasherize = (text: string) =>
-  String(text).replace(/ +/g, "-").toLowerCase();
+  String(text).replace(/ +/g, '-').toLowerCase();
 
 /**
  * Sorts an array of objects based on the specified property in ascending order.
@@ -107,10 +107,10 @@ export const sortByProperty = (arr: any, prop: string) => {
  * specifying the format to include the month and year in a two-digit and numeric format, respectively.
  * This formatter can be used to format date objects into a string representation with only the month and year.
  */
-export const dateWithMonthAndYearFormatter = Intl.DateTimeFormat("en-US", {
-  month: "2-digit",
-  year: "numeric",
-  timeZone: "UTC",
+export const dateWithMonthAndYearFormatter = Intl.DateTimeFormat('en-US', {
+  month: '2-digit',
+  year: 'numeric',
+  timeZone: 'UTC',
 });
 
 /**
@@ -118,10 +118,10 @@ export const dateWithMonthAndYearFormatter = Intl.DateTimeFormat("en-US", {
  * specifying the format to include the day and month in a two-digit format.
  * This formatter can be used to format date objects into a string representation with the day and month included.
  */
-export const dateWithDayAndMonthFormatter = Intl.DateTimeFormat("tr-TR", {
-  day: "2-digit",
-  month: "2-digit",
-  timeZone: "UTC",
+export const dateWithDayAndMonthFormatter = Intl.DateTimeFormat('tr-TR', {
+  day: '2-digit',
+  month: '2-digit',
+  timeZone: 'UTC',
 });
 
 /**
@@ -133,7 +133,7 @@ export const dateWithDayAndMonthFormatter = Intl.DateTimeFormat("tr-TR", {
  * const formattedCount = viewCountFormatter.format(count);
  * console.log(formattedCount); // Output: "1.000.000"
  */
-export const viewCountFormatter = new Intl.NumberFormat("nl-NL");
+export const viewCountFormatter = new Intl.NumberFormat('nl-NL');
 
 /**
  * Function to group items by year based on the provided date.
@@ -145,10 +145,10 @@ export const getItemsByYear = (items: any) => {
   return items.reduce((acc: any, item: any) => {
     const year = new Date(item.date || item.sys.firstPublishedAt).getFullYear();
     const yearArr = acc.find((item: any) => item[0] === year);
-    if (!yearArr) {
-      acc.push([year, [item]]);
-    } else {
+    if (yearArr) {
       yearArr[1].push(item);
+    } else {
+      acc.push([year, [item]]);
     }
 
     return acc;
@@ -175,7 +175,7 @@ export function formatTimeAgo(date: Date): string {
     }
   }
 
-  return "just now";
+  return 'just now';
 }
 
 /**
@@ -183,13 +183,13 @@ export function formatTimeAgo(date: Date): string {
  * The function compares the value of the `NODE_ENV` environment variable with 'development'.
  * @returns A boolean value indicating whether the current environment is set to development mode.
  */
-export const isDevelopment = process.env.NODE_ENV === "development";
+export const isDevelopment = process.env.NODE_ENV === 'development';
 
 /**
  * Determines the current season based on the current month.
  * @returns A string representing the current season ("winter", "rainy", "summer", "fall", or "none").
  */
-export type SeasonsEffect = "winter" | "rainy" | "summer" | "fall" | "none";
+export type SeasonsEffect = 'winter' | 'rainy' | 'summer' | 'fall' | 'none';
 
 /**
  * Determines the current season based on the current month.
@@ -199,14 +199,14 @@ export const getCurrentSeason = (): SeasonsEffect => {
   const month = new Date().getMonth(); // 0-11
 
   // Winter: December (11), January (0), February (1)
-  if (month === 11 || month === 0 || month === 1) return "winter";
+  if (month === 11 || month === 0 || month === 1) return 'winter';
   // Spring: March (2), April (3), May (4)
-  if (month >= 2 && month <= 4) return "rainy";
+  if (month >= 2 && month <= 4) return 'rainy';
   // Summer: June (5), July (6), August (7)
-  if (month === 5 || month === 6 || month === 7) return "summer";
+  if (month === 5 || month === 6 || month === 7) return 'summer';
   // Fall: September (8), October (9), November (10)
-  if (month >= 8 && month <= 10) return "fall";
-  return "none";
+  if (month >= 8 && month <= 10) return 'fall';
+  return 'none';
 };
 
 export const getRandomRotation = () => {

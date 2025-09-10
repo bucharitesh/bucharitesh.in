@@ -1,7 +1,7 @@
 // projects-command.ts
-import { useMemo } from "react";
-import { CommandGroup } from "../types";
-import { FaGithub, FaTwitter, FaLinkedin } from "react-icons/fa";
+import { useMemo } from 'react';
+import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import type { CommandGroup } from '../types';
 
 interface SocialLink {
   id: string;
@@ -13,24 +13,24 @@ interface SocialLink {
 
 const socialLinks: SocialLink[] = [
   {
-    id: "github",
-    name: "GitHub",
-    description: "Check out my open source projects",
-    url: "https://github.com/yourusername",
+    id: 'github',
+    name: 'GitHub',
+    description: 'Check out my open source projects',
+    url: 'https://github.com/yourusername',
     icon: FaGithub,
   },
   {
-    id: "twitter",
-    name: "Twitter",
-    description: "Follow me for updates and tech insights",
-    url: "https://twitter.com/yourusername",
+    id: 'twitter',
+    name: 'Twitter',
+    description: 'Follow me for updates and tech insights',
+    url: 'https://twitter.com/yourusername',
     icon: FaTwitter,
   },
   {
-    id: "linkedin",
-    name: "LinkedIn",
-    description: "Connect with me professionally",
-    url: "https://linkedin.com/in/yourusername",
+    id: 'linkedin',
+    name: 'LinkedIn',
+    description: 'Connect with me professionally',
+    url: 'https://linkedin.com/in/yourusername',
     icon: FaLinkedin,
   },
 ];
@@ -50,15 +50,15 @@ export const useSocialsCommand = ({
         description: social.description,
         icon: social.icon,
         action: () => {
-          window.open(social.url, "_blank");
+          window.open(social.url, '_blank');
           setOpen(false);
         },
       })),
-    [setOpen],
+    [setOpen]
   );
 
   return {
-    name: "Social Links",
+    name: 'Social Links',
     commands,
   };
 };

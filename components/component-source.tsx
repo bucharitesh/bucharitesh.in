@@ -1,10 +1,10 @@
-import { CodeCollapsibleWrapper } from "./code-collapsible-wrapper";
+import { CodeCollapsibleWrapper } from './code-collapsible-wrapper';
 
 export function ComponentSource({
   className,
   collapsible = true,
   children,
-}: React.ComponentProps<"div"> & {
+}: React.ComponentProps<'div'> & {
   name: string;
   src?: string;
   title?: string;

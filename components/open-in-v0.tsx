@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 
-import { Icons } from "./icons";
+import { Icons } from './icons';
 
 export function OpenInV0Button({ url }: { url: string }) {
   return (

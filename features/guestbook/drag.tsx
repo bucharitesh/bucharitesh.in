@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import useMaxZIndex from "@/lib/hooks/use-max-z-index";
-import { cn, getRandomRotation } from "@/lib/utils";
-import { motion, type PanInfo, useAnimation } from "motion/react";
-import React, { useEffect, useState } from "react";
+import useMaxZIndex from '@/lib/hooks/use-max-z-index';
+import { cn, getRandomRotation } from '@/lib/utils';
+import { type PanInfo, motion, useAnimation } from 'motion/react';
+import React, { useEffect, useState } from 'react';
 
 const Drag = React.memo(
   ({
@@ -24,7 +24,10 @@ const Drag = React.memo(
     const controls = useAnimation();
     const [isClient, setIsClient] = useState(false);
     const [initialRotate, setInitialRotate] = useState(0);
-    const [position, setPosition] = useState({ x: initialX ?? 0, y: initialY ?? 0 });
+    const [position, setPosition] = useState({
+      x: initialX ?? 0,
+      y: initialY ?? 0,
+    });
 
     useEffect(() => {
       setIsClient(true);
@@ -40,12 +43,12 @@ const Drag = React.memo(
     }, [initialX, initialY, rotation]);
 
     const handleDragEnd = (event: MouseEvent, info: PanInfo) => {
-    //   const direction = info.offset.x > 0 ? 1 : -1;
-    //   const velocity = Math.min(Math.abs(info.velocity.x), 1);
+      //   const direction = info.offset.x > 0 ? 1 : -1;
+      //   const velocity = Math.min(Math.abs(info.velocity.x), 1);
       controls.start({
         rotate: rotation ? getRandomRotation() : 0,
         transition: {
-          type: "spring",
+          type: 'spring',
           stiffness: 50,
           damping: 30,
           mass: 1,
@@ -64,7 +67,7 @@ const Drag = React.memo(
         drag
         dragElastic={0.2}
         className={cn(
-          "select-none w-fit h-fit drag-elements absolute",
+          'drag-elements absolute h-fit w-fit select-none',
           className
         )}
         dragTransition={{ power: 0.2, timeConstant: 200 }}

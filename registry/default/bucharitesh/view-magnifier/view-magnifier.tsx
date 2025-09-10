@@ -1,8 +1,9 @@
-"use client";
+'use client';
 
-import React, { useState, useCallback, useRef, useEffect } from "react";
-import { cn } from "@/lib/utils";
-import { motion, useMotionValue, useTransform, animate } from "motion/react";
+import { cn } from '@/lib/utils';
+import { animate, motion, useMotionValue, useTransform } from 'motion/react';
+import type React from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 interface ViewMagnifierProps {
   children: React.ReactNode;
@@ -32,7 +33,7 @@ const ViewMagnifier: React.FC<ViewMagnifierProps> = ({
 
   // Monitor scale changes for max scale callback
   useEffect(() => {
-    const unsubscribe = scale.on("change", (latestScale) => {
+    const unsubscribe = scale.on('change', (latestScale) => {
       const newIsAtMaxScale = Math.abs(latestScale - maxScale) < 0.01;
       if (newIsAtMaxScale !== isAtMaxScale) {
         setIsAtMaxScale(newIsAtMaxScale);
@@ -46,13 +47,13 @@ const ViewMagnifier: React.FC<ViewMagnifierProps> = ({
   const handleZoomAnimation = useCallback(
     (targetScale: number) => {
       animate(scale, targetScale, {
-        type: "spring",
+        type: 'spring',
         stiffness: 400,
         damping: 30,
         onUpdate: (latest) => setZoomLevel(Math.round(latest * 100)),
       });
     },
-    [scale],
+    [scale]
   );
 
   const handlePointerDown = useCallback(
@@ -63,7 +64,7 @@ const ViewMagnifier: React.FC<ViewMagnifierProps> = ({
       e.currentTarget.setPointerCapture(e.pointerId);
       onScaleChange?.(true);
     },
-    [scale, onScaleChange],
+    [scale, onScaleChange]
   );
 
   const handlePointerUp = useCallback(
@@ -75,7 +76,7 @@ const ViewMagnifier: React.FC<ViewMagnifierProps> = ({
         onScaleChange?.(false);
       }
     },
-    [isMouseDown, handleZoomAnimation, onScaleChange],
+    [isMouseDown, handleZoomAnimation, onScaleChange]
   );
 
   const handlePointerMove = useCallback(
@@ -86,22 +87,22 @@ const ViewMagnifier: React.FC<ViewMagnifierProps> = ({
       const scaleChange = deltaX * 0.005;
       const newScale = Math.max(
         0.8,
-        Math.min(maxScale, initialScale.current + scaleChange),
+        Math.min(maxScale, initialScale.current + scaleChange)
       );
 
       scale.set(newScale);
       setZoomLevel(Math.round(newScale * 100));
     },
-    [isMouseDown, maxScale, scale],
+    [isMouseDown, maxScale, scale]
   );
 
   return (
-    <div ref={containerRef} className="outline-hidden z-40" {...props}>
+    <div ref={containerRef} className='z-40 outline-hidden' {...props}>
       <motion.div
         className={cn(
-          "fixed h-screen w-screen outline-hidden inset-0 pointer-events-none backdrop-blur-xl",
-          "after:content-[''] after:rounded-[inherit] after:w-full after:h-full after:inset-0",
-          "after:absolute after:pointer-events-none dark:after:block",
+          'pointer-events-none fixed inset-0 h-screen w-screen outline-hidden backdrop-blur-xl',
+          'after:inset-0 after:h-full after:w-full after:rounded-[inherit] after:content-[""]',
+          'after:pointer-events-none after:absolute dark:after:block',
           "dark:after:shadow-[inset_0_0_0_1px_hsla(0,0%,100%,0.2)]",
         )}
         style={{ opacity }}
@@ -110,7 +111,7 @@ const ViewMagnifier: React.FC<ViewMagnifierProps> = ({
 
       <motion.div
         className={cn(
-          "relative left-1/2 right-1/2 w-full h-auto overflow-visible my-3",
+          'relative right-1/2 left-1/2 my-3 h-auto w-full overflow-visible',
           "z-60 rounded-2xl",
           "transform lg:transform-none",
           className,
@@ -123,13 +124,13 @@ const ViewMagnifier: React.FC<ViewMagnifierProps> = ({
         role="img"
         aria-label={`Content at zoom level ${zoomLevel}%`}
       >
-        <div className="relative w-full h-full rounded-2xl overflow-hidden">
+        <div className='relative h-full w-full overflow-hidden rounded-2xl'>
           {children}
         </div>
 
         <motion.div
           style={{ opacity }}
-          className="w-full h-full absolute rounded-[inherit] inset-0 shadow-[0px_1px_1px_0px_rgba(0,0,0,0.02),0px_16px_24px_-4px_rgba(0,0,0,0.04),0px_32px_48px_-8px_rgba(0,0,0,0.06)]"
+          className='absolute inset-0 h-full w-full rounded-[inherit] shadow-[0px_1px_1px_0px_rgba(0,0,0,0.02),0px_16px_24px_-4px_rgba(0,0,0,0.04),0px_32px_48px_-8px_rgba(0,0,0,0.06)]'
           aria-hidden="true"
         />
 
@@ -149,8 +150,8 @@ const ViewMagnifier: React.FC<ViewMagnifierProps> = ({
           aria-valuenow={zoomLevel}
           role="slider"
           className={cn(
-            "absolute top-1/2 -right-6",
-            "w-1 h-14 rounded-full",
+            '-right-6 absolute top-1/2',
+            'h-14 w-1 rounded-full',
             "bg-gray-400 dark:bg-gray-600",
             "hover:bg-gray-500 dark:hover:bg-gray-500",
             "transition-colors duration-300",
@@ -158,9 +159,9 @@ const ViewMagnifier: React.FC<ViewMagnifierProps> = ({
             "focus-visible:ring-gray-400 dark:focus-visible:ring-gray-500",
             "focus-visible:ring-offset-2",
             "focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900",
-            "md:block hidden",
+            'hidden md:block',
             isMouseDown ? "cursor-grabbing" : "cursor-grab",
-            "after:content-[''] after:absolute after:w-4 after:h-full after:-left-2 after:top-0",
+            'after:-left-2 after:absolute after:top-0 after:h-full after:w-4 after:content-[""]',
           )}
           touch-action="none"
         />

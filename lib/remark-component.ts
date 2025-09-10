@@ -1,25 +1,25 @@
-import fs from "node:fs";
-import path from "node:path";
+import fs from 'node:fs';
+import path from 'node:path';
 
-import { visit } from "unist-util-visit";
+import { visit } from 'unist-util-visit';
 
-import { Index } from "@/__registry__";
-import type { UnistNode, UnistTree } from "@/types/unist";
+import { Index } from '@/__registry__';
+import type { UnistNode, UnistTree } from '@/types/unist';
 
 export function remarkComponent() {
   return async (tree: UnistTree) => {
     visit(tree, (node: UnistNode, index, parent) => {
       // src prop overrides both name and fileName.
       const { value: srcPath } =
-        (getNodeAttributeByName(node, "") as {
+        (getNodeAttributeByName(node, '') as {
           name: string;
           value?: string;
           type?: string;
         }) || {};
 
-      if (node.name === "ComponentSource") {
-        const name = getNodeAttributeByName(node, "name")?.value as string;
-        const fileName = getNodeAttributeByName(node, "fileName")?.value as
+      if (node.name === 'ComponentSource') {
+        const name = getNodeAttributeByName(node, 'name')?.value as string;
+        const fileName = getNodeAttributeByName(node, 'fileName')?.value as
           | string
           | undefined;
 
@@ -36,7 +36,7 @@ export function remarkComponent() {
             const component = Index[name];
             src = fileName
               ? component.files.find((file: unknown) => {
-                  if (typeof file === "string") {
+                  if (typeof file === 'string') {
                     return (
                       file.endsWith(`${fileName}.tsx`) ||
                       file.endsWith(`${fileName}.ts`)
@@ -49,31 +49,31 @@ export function remarkComponent() {
 
           // Read the source file.
           const filePath = src;
-          let source = fs.readFileSync(filePath, "utf8");
+          let source = fs.readFileSync(filePath, 'utf8');
 
           // Replace imports.
           // TODO: Use @swc/core and a visitor to replace this.
           // For now a simple regex should do.
-          source = source.replaceAll(`@/registry/`, "@/components/");
-          source = source.replaceAll("export default", "export");
+          source = source.replaceAll(`@/registry/`, '@/components/');
+          source = source.replaceAll('export default', 'export');
 
-          const title = getNodeAttributeByName(node, "title");
+          const title = getNodeAttributeByName(node, 'title');
           const showLineNumbers = getNodeAttributeByName(
             node,
-            "showLineNumbers"
+            'showLineNumbers'
           );
 
           const codeBlock = {
-            type: "code",
+            type: 'code',
             meta: [
-              title ? `title="${title.value}"` : "",
-              showLineNumbers ? "showLineNumbers" : "",
-            ].join(" "),
+              title ? `title="${title.value}"` : '',
+              showLineNumbers ? 'showLineNumbers' : '',
+            ].join(' '),
             lang: path.extname(filePath).slice(1),
             value: source,
           };
 
-          if (parent && typeof index === "number") {
+          if (parent && typeof index === 'number') {
             parent.children.splice(index, 1, codeBlock);
           }
         } catch (error) {
@@ -81,8 +81,8 @@ export function remarkComponent() {
         }
       }
 
-      if (node.name === "ComponentPreview") {
-        const name = getNodeAttributeByName(node, "name")?.value as string;
+      if (node.name === 'ComponentPreview') {
+        const name = getNodeAttributeByName(node, 'name')?.value as string;
 
         if (!name) {
           return null;
@@ -95,21 +95,21 @@ export function remarkComponent() {
 
           // Read the source file.
           const filePath = src;
-          let source = fs.readFileSync(filePath, "utf8");
+          let source = fs.readFileSync(filePath, 'utf8');
 
           // Replace imports.
           // TODO: Use @swc/core and a visitor to replace this.
           // For now a simple regex should do.
-          source = source.replaceAll(`@/registry/`, "@/components/");
-          source = source.replaceAll("export default", "export");
+          source = source.replaceAll(`@/registry/`, '@/components/');
+          source = source.replaceAll('export default', 'export');
 
           const codeBlock = {
-            type: "code",
-            lang: "tsx",
+            type: 'code',
+            lang: 'tsx',
             value: source,
           };
 
-          if (parent && typeof index === "number") {
+          if (parent && typeof index === 'number') {
             parent.children.splice(index, 1, codeBlock);
           }
         } catch (error) {

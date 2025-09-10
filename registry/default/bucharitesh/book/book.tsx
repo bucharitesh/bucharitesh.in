@@ -1,7 +1,8 @@
-import React, { CSSProperties } from "react";
-import "./book.css";
-import { VercelLogoIcon } from "@radix-ui/react-icons";
-import { cn } from "@/lib/utils";
+import type React from 'react';
+import type { CSSProperties } from 'react';
+import './book.css';
+import { cn } from '@/lib/utils';
+import { VercelLogoIcon } from '@radix-ui/react-icons';
 
 const defaultIllustration = (
   <svg
@@ -36,14 +37,14 @@ const Book = ({
   title,
   enableTexture,
   width = 196,
-  variant = "stripe",
-  color = "#e79d13",
-  textColor = "#ffffff",
+  variant = 'stripe',
+  color = '#e79d13',
+  textColor = '#ffffff',
   illustration,
 }: {
   title: string;
   enableTexture?: boolean;
-  variant?: "stripe" | "simple";
+  variant?: 'stripe' | 'simple';
   width?: number;
   color?: string;
   textColor?: string;
@@ -52,17 +53,17 @@ const Book = ({
   return (
     <div
       className="book-perspective"
-      style={{ "--book-width": width } as React.CSSProperties}
+      style={{ '--book-width': width } as React.CSSProperties}
     >
       <div
-        className={cn("book-rotate-wrapper book-color", {
-          "book-stripe": variant === "stripe",
-          "book-simple": variant === "simple",
+        className={cn('book-rotate-wrapper book-color', {
+          'book-stripe': variant === 'stripe',
+          'book-simple': variant === 'simple',
         })}
         style={
           {
-            "--book-color": color,
-            "--book-text-color": textColor,
+            '--book-color': color,
+            '--book-text-color': textColor,
           } as React.CSSProperties
         }
       >
@@ -71,12 +72,12 @@ const Book = ({
           data-version="v1"
           style={
             {
-              "--stack-flex": "initial",
-              "--stack-direction": "column",
-              "--stack-align": "stretch",
-              "--stack-justify": "flex-start",
-              "--stack-padding": "0px",
-              "--stack-gap": "0px",
+              '--stack-flex': 'initial',
+              '--stack-direction': 'column',
+              '--stack-align': 'stretch',
+              '--stack-justify': 'flex-start',
+              '--stack-padding': '0px',
+              '--stack-gap': '0px',
             } as React.CSSProperties
           }
         >
@@ -86,16 +87,16 @@ const Book = ({
             aria-hidden="true"
             style={
               {
-                "--stack-flex": "initial",
-                "--stack-direction": "row",
-                "--stack-align": "stretch",
-                "--stack-justify": "flex-start",
-                "--stack-padding": "0px",
-                "--stack-gap": "8px",
+                '--stack-flex': 'initial',
+                '--stack-direction': 'row',
+                '--stack-align': 'stretch',
+                '--stack-justify': 'flex-start',
+                '--stack-padding': '0px',
+                '--stack-gap': '8px',
               } as React.CSSProperties
             }
           >
-            {variant === "stripe" && illustration && (
+            {variant === 'stripe' && illustration && (
               <div className="book-illustration">{illustration}</div>
             )}
             <div className="book-bind"></div>
@@ -105,12 +106,12 @@ const Book = ({
             data-version="v1"
             style={
               {
-                "--stack-flex": "initial",
-                "--stack-direction": "row",
-                "--stack-align": "stretch",
-                "--stack-justify": "flex-start",
-                "--stack-padding": "0px",
-                "--stack-gap": "0px",
+                '--stack-flex': 'initial',
+                '--stack-direction': 'row',
+                '--stack-align': 'stretch',
+                '--stack-justify': 'flex-start',
+                '--stack-padding': '0px',
+                '--stack-gap': '0px',
               } as React.CSSProperties
             }
           >
@@ -120,28 +121,28 @@ const Book = ({
               data-version="v1"
               style={
                 {
-                  "--stack-flex": "initial",
-                  "--stack-direction": "column",
-                  "--stack-align": "stretch",
-                  "--stack-justify":
-                    variant === "stripe" ? "space-between" : "flex-start",
-                  "--stack-padding": "0px",
-                  "--stack-gap": "0px",
+                  '--stack-flex': 'initial',
+                  '--stack-direction': 'column',
+                  '--stack-align': 'stretch',
+                  '--stack-justify':
+                    variant === 'stripe' ? 'space-between' : 'flex-start',
+                  '--stack-padding': '0px',
+                  '--stack-gap': '0px',
                 } as React.CSSProperties
               }
             >
               <span className="book-title" data-version="v1">
                 {title}
               </span>
-              {variant === "simple" && (
+              {variant === 'simple' && (
                 <div className="book-illustration">
                   {illustration ? illustration : defaultIllustration}
                 </div>
               )}
-              {variant === "stripe" && (
+              {variant === 'stripe' && (
                 <VercelLogoIcon
                   fill="black"
-                  className=" text-black geist-hide-on-dark"
+                  className=" geist-hide-on-dark text-black"
                 />
               )}
             </div>
@@ -152,7 +153,7 @@ const Book = ({
               className="book-texture"
               style={
                 {
-                  transform: "rotate(0deg)",
+                  transform: 'rotate(0deg)',
                 } as CSSProperties
               }
             ></div>

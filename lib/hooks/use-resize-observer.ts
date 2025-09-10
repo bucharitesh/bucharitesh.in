@@ -1,4 +1,4 @@
-import { RefObject, useEffect, useState } from "react";
+import { type RefObject, useEffect, useState } from 'react';
 
 /**
  * Use a ResizeObserver to react to changes in an element's size
@@ -6,7 +6,7 @@ import { RefObject, useEffect, useState } from "react";
  * More about ResizeObserver: https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver
  */
 export function useResizeObserver(
-  elementRef: RefObject<Element>,
+  elementRef: RefObject<Element>
 ): ResizeObserverEntry | undefined {
   const [entry, setEntry] = useState<ResizeObserverEntry>();
 
@@ -16,7 +16,9 @@ export function useResizeObserver(
 
   useEffect(() => {
     const node = elementRef?.current;
-    if (!node) return;
+    if (!node) {
+      return;
+    }
 
     const observer = new ResizeObserver(updateEntry);
 

@@ -1,20 +1,20 @@
-"use client";
+'use client';
 
-import React, { useEffect, useRef, useState } from "react";
-import Link from "next/link";
+import Link from 'next/link';
+import { useEffect, useRef, useState } from 'react';
 
 import {
   Dock,
   DockIcon,
   DockIconActiveDot,
-} from "@/components/shared/compoenents/floating-dock";
-import ModeToggle from "./mode-toggle";
-import { usePathname } from "next/navigation";
-import { DockConfig } from "@/lib/config";
-import { cn } from "@/lib/utils";
-import { useBuddyStore } from "@/features/buddy/buddy-logic";
-import { BuddyBuddyStatic } from "@/features/buddy/renderer";
-import { ENABLE_BUDDY } from "@/config/site";
+} from '@/components/shared/compoenents/floating-dock';
+import { ENABLE_BUDDY } from '@/config/site';
+import { useBuddyStore } from '@/features/buddy/buddy-logic';
+import { BuddyBuddyStatic } from '@/features/buddy/renderer';
+import { DockConfig } from '@/lib/config';
+import { cn } from '@/lib/utils';
+import { usePathname } from 'next/navigation';
+import ModeToggle from './mode-toggle';
 
 const DOCK_AUTOHIDE_TIMEOUT = 5_000;
 
@@ -30,7 +30,7 @@ function BottomDock({ className }: { className: string }) {
 
   const startTimeout = () => {
     if (timeoutRef.current) {
-    clearTimeout(timeoutRef.current); // Clear any existing timeout
+      clearTimeout(timeoutRef.current); // Clear any existing timeout
       timeoutRef.current = setTimeout(() => {
         setActive(false);
       }, DOCK_AUTOHIDE_TIMEOUT);
@@ -58,14 +58,14 @@ function BottomDock({ className }: { className: string }) {
         startTimeout(); // Start timeout when mouse leaves
       }}
       className={cn(
-        "fixed bottom-0 h-[clamp(80px,10vh,200px)] w-full z-40 left-1/2 -translate-x-1/2",
-        className,
+        '-translate-x-1/2 fixed bottom-0 left-1/2 z-40 h-[clamp(80px,10vh,200px)] w-full',
+        className
       )}
     >
-      <div className="absolute top-0 left-0 w-full h-full backdrop-blur-sm mask-[linear-gradient(to_top,#000_25%,transparent)] [-webkit-mask-image:linear-gradient(to_top,#000_25%,transparent)]"></div>
+      <div className="mask-[linear-gradient(to_top,#000_25%,transparent)] absolute top-0 left-0 h-full w-full backdrop-blur-sm [-webkit-mask-image:linear-gradient(to_top,#000_25%,transparent)]" />
       <Dock
-        className={cn("transition-all duration-300", {
-          "-bottom-18": !active,
+        className={cn('transition-all duration-300', {
+          '-bottom-18': !active,
         })}
       >
         {DockConfig.navbar.map((item) => (
@@ -87,12 +87,17 @@ function BottomDock({ className }: { className: string }) {
           </DockIcon>
         ))}
         <DockSeperator />
-        {ENABLE_BUDDY && <DockIcon title={"Buddy"} onMouseUp={() => setBuddyModeEnabled(!enabled)}>
-          <BuddyBuddyStatic {...hedgehogConfig} />
-          {enabled && <DockIconActiveDot isActive />}
-        </DockIcon>}
-        
-        <DockIcon title={"Theme"}>
+        {ENABLE_BUDDY && (
+          <DockIcon
+            title={'Buddy'}
+            onMouseUp={() => setBuddyModeEnabled(!enabled)}
+          >
+            <BuddyBuddyStatic {...hedgehogConfig} />
+            {enabled && <DockIconActiveDot isActive />}
+          </DockIcon>
+        )}
+
+        <DockIcon title={'Theme'}>
           <ModeToggle />
         </DockIcon>
 
@@ -123,7 +128,7 @@ function BottomDock({ className }: { className: string }) {
 
 function DockSeperator() {
   return (
-    <hr className="w-px h-[36px] border-0 shrink-0 bg-gray-400/50 mask-gradient" />
+    <hr className="mask-gradient h-[36px] w-px shrink-0 border-0 bg-gray-400/50" />
   );
 }
 

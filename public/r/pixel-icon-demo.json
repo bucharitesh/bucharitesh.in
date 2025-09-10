@@ -2,9 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "pixel-icon-demo",
   "type": "registry:block",
-  "registryDependencies": [
-    "@bucharitesh/pixel-icon"
-  ],
+  "registryDependencies": ["@bucharitesh/pixel-icon"],
   "files": [
     {
       "path": "registry/default/example/pixel-icon-demo.tsx",

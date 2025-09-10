@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { useEffect } from "react";
-import { Progress } from "../bucharitesh/modern-progress/modern-progress";
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { Progress } from '../bucharitesh/modern-progress/modern-progress';
 
 const ProgressDemo = () => {
   const [progress, setProgress] = useState(0);
@@ -15,7 +15,7 @@ const ProgressDemo = () => {
   }, [progress]);
 
   return (
-    <div className="w-full h-full p-10 flex items-center justify-center">
+    <div className="flex h-full w-full items-center justify-center p-10">
       <Progress
         value={progress}
         className="border-purple-500"

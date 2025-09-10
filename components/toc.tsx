@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
-import { useEffect, useMemo, useState } from "react";
-import type { TableOfContents } from "@/lib/toc";
-import { useMounted } from "@/lib/hooks";
-import { cn } from "@/lib/utils";
-import { AlignLeftIcon, ArrowLeftIcon, CornerLeftUp, CornerUpLeft } from "lucide-react";
-import Link from "next/link";
+import { useMounted } from '@/lib/hooks';
+import type { TableOfContents } from '@/lib/toc';
+import { cn } from '@/lib/utils';
+import { AlignLeftIcon, CornerUpLeft } from 'lucide-react';
+import Link from 'next/link';
+import { useEffect, useMemo, useState } from 'react';
 
 interface TocProps {
   toc: TableOfContents;
 }
 
-export function TableOfContents({ toc }: TocProps) {
+export function TOC({ toc }: TocProps) {
   const mounted = useMounted();
 
   const refinedToc = useMemo(() => {
@@ -37,19 +37,23 @@ export function TableOfContents({ toc }: TocProps) {
             .flatMap((item) => [item.url, item?.items?.map((item) => item.url)])
             .flat()
             .filter(Boolean)
-            .map((id) => id?.split("#")[1])
+            .map((id) => id?.split('#')[1])
         : [],
-    [refinedToc],
+    [refinedToc]
   ) as string[];
 
   // Initialize activeId based on initial viewport position
   const initialActiveId = useMemo(() => {
-    if (typeof window === "undefined") return null;
+    if (typeof window === 'undefined') {
+      return null;
+    }
 
     return (
       itemIds.find((id) => {
         const element = document.getElementById(id);
-        if (!element) return false;
+        if (!element) {
+          return false;
+        }
         const rect = element.getBoundingClientRect();
         return rect.top <= window.innerHeight * 0.2;
       }) || itemIds[0]
@@ -59,46 +63,53 @@ export function TableOfContents({ toc }: TocProps) {
   const [activeId, setActiveId] = useState(initialActiveId);
 
   useEffect(() => {
-    if (!mounted) return;
+    if (!mounted) {
+      return;
+    }
 
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
+        for (const entry of entries) {
           if (entry.isIntersecting) {
             setActiveId(entry.target.id);
           }
-        });
+        }
       },
-      { rootMargin: `0% 0% -80% 0%` },
+      { rootMargin: '0% 0% -80% 0%' }
     );
 
-    itemIds?.forEach((id) => {
+    for (const id of itemIds) {
       const element = document.getElementById(id);
       if (element) {
         observer.observe(element);
       }
-    });
+    }
 
     return () => {
-      itemIds?.forEach((id) => {
+      for (const id of itemIds) {
         const element = document.getElementById(id);
         if (element) {
           observer.unobserve(element);
         }
-      });
+      }
     };
   }, [itemIds, mounted]);
 
-  if (!toc?.items) return null;
+  if (!toc?.items) {
+    return null;
+  }
 
   return (
     <div className="space-y-14">
-      <Link href="/craft" className="flex items-baseline gap-1.5 text-sm text-muted-foreground">
+      <Link
+        href="/craft"
+        className="flex items-baseline gap-1.5 text-muted-foreground text-sm"
+      >
         <CornerUpLeft className="size-3" />
         Crafts
       </Link>
       <div>
-        <p className="-ml-0.5 flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400">
+        <p className="-ml-0.5 flex items-center gap-1.5 text-gray-500 text-sm dark:text-gray-400">
           <AlignLeftIcon className="size-4" />
           On this page
         </p>
@@ -117,18 +128,23 @@ interface TreeProps {
 }
 
 function Tree({ tree, level = 1, activeItem }: TreeProps) {
-  if (!tree?.items?.length || level >= 3) return null;
+  if (!tree?.items?.length || level >= 3) {
+    return null;
+  }
 
   return (
     <ul
-      className={cn("mt-4 grid gap-4 border-l-2 border-gray-200 dark:border-gray-800", {
-        "pl-4": level !== 1,
-      })}
+      className={cn(
+        'mt-4 grid gap-4 border-gray-200 border-l-2 dark:border-gray-800',
+        {
+          'pl-4': level !== 1,
+        }
+      )}
     >
       {tree.items.map((item, index) => {
         const isActive = item.url === `#${activeItem}`;
         return (
-          <li key={index} className="relative -ml-0.5 pl-4">
+          <li key={index} className="-ml-0.5 relative pl-4">
             <a
               href={item.url}
               // className={cn(
@@ -141,11 +157,13 @@ function Tree({ tree, level = 1, activeItem }: TreeProps) {
               {item.title}
             </a>
             <div
-              className="absolute left-0 top-0 h-full w-0.5 bg-black dark:bg-white transition-all duration-200 ease-in-out"
-              style={{
-                // opacity: isActive ? 1 : 0,
-                // transform: `translateY(${isActive ? "0" : "-100%"})`,
-              }}
+              className="absolute top-0 left-0 h-full w-0.5 bg-black transition-all duration-200 ease-in-out dark:bg-white"
+              style={
+                {
+                  // opacity: isActive ? 1 : 0,
+                  // transform: `translateY(${isActive ? "0" : "-100%"})`,
+                }
+              }
             />
             {item.items?.length ? (
               <Tree tree={item} level={level + 1} activeItem={activeItem} />
@@ -157,4 +175,4 @@ function Tree({ tree, level = 1, activeItem }: TreeProps) {
   );
 }
 
-export default TableOfContents;
+export default TOC;

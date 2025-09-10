@@ -1,36 +1,40 @@
-import { Feed } from 'feed'
+import { Feed } from 'feed';
 
-import { getBookmarkItems, getBookmarks } from '@/features/bookmarks/lib/raindrop'
-import { USER } from '@/config/user'
+import { USER } from '@/config/user';
+import {
+  getBookmarkItems,
+  getBookmarks,
+} from '@/features/bookmarks/lib/raindrop';
 
 export async function GET() {
-  const bookmarks = await getBookmarks()
-  const date = new Date()
-  const siteURL = `https://${USER.domain}`
+  const bookmarks = await getBookmarks();
+  const date = new Date();
+  const siteURL = `https://${USER.domain}`;
   const author = {
     name: USER.name,
-    link: `https://${USER.domain}`
-  }
+    link: `https://${USER.domain}`,
+  };
 
   const feed = new Feed({
     title: `Bookmarks RSS feed by ${author.name}`,
-    description: 'Stay up to date with my latest selection of various handpicked bookmarks',
+    description:
+      'Stay up to date with my latest selection of various handpicked bookmarks',
     id: siteURL,
     link: `${siteURL}/bookmarks`,
     language: 'en',
     copyright: `All rights reserved ${date.getFullYear()}, ${author.name}`,
     author,
     feedLinks: {
-      rss2: `${siteURL}/bookmarks/rss.xml`
-    }
-  })
+      rss2: `${siteURL}/bookmarks/rss.xml`,
+    },
+  });
 
-  const bookmarkList: any = []
+  const bookmarkList: any = [];
   for (const bookmark of bookmarks) {
-    const bookmarkItems = await getBookmarkItems(bookmark._id)
-    const { items = [] } = bookmarkItems ?? {}
+    const bookmarkItems = await getBookmarkItems(bookmark._id);
+    const { items = [] } = bookmarkItems ?? {};
 
-    items?.slice(0, 10).forEach((bookmark: any) => {
+    for (const bookmark of items.slice(0, 10)) {
       bookmarkList.push({
         id: bookmark._id,
         guid: bookmark._id,
@@ -42,9 +46,9 @@ export async function GET() {
         date: new Date(bookmark.created),
         updated: new Date(bookmark.lastUpdate),
         author: [author],
-        contributor: [author]
-      })
-    })
+        contributor: [author],
+      });
+    }
   }
 
   const sortedBookmarks = bookmarkList.sort((a: any, b: any) => {
@@ -53,13 +57,13 @@ export async function GET() {
     return dateB - dateA;
   });
 
-  sortedBookmarks.forEach((bookmark: any) => {
+  for (const bookmark of sortedBookmarks) {
     feed.addItem({ ...bookmark });
-  });
+  }
 
   return new Response(feed.rss2(), {
     headers: {
-      'Content-Type': 'application/rss+xml; charset=utf-8'
-    }
-  })
+      'Content-Type': 'application/rss+xml; charset=utf-8',
+    },
+  });
 }

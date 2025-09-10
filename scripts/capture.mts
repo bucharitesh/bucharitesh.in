@@ -1,13 +1,13 @@
-import fs from "node:fs";
-import path from "node:path";
+import fs from 'node:fs';
+import path from 'node:path';
 
-import type { Browser } from "puppeteer-core";
-import puppeteer from "puppeteer-core";
+import type { Browser } from 'puppeteer-core';
+import puppeteer from 'puppeteer-core';
 
 const executablePath =
-  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
-const url = process.env.URL || "http://localhost:6969";
-const outputDir = path.join(process.cwd(), ".bucharitesh/screenshots");
+  '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
+const url = process.env.URL || 'http://localhost:6969';
+const outputDir = path.join(process.cwd(), '.bucharitesh/screenshots');
 
 const SIZE = {
   // Full HD
@@ -21,26 +21,26 @@ const SIZE = {
     height: 956,
   },
   // Open Graph image size
-  "og-image": {
+  'og-image': {
     width: 1200,
     height: 630,
   },
 } as const;
 
-type Theme = "light" | "dark";
+type Theme = 'light' | 'dark';
 
 async function captureScreenshot({
   browser,
   url,
   size,
-  themes = ["light"],
-  type = "webp",
+  themes = ['light'],
+  type = 'webp',
 }: {
   browser: Browser;
   url: string;
   size: keyof typeof SIZE;
   themes?: Theme[];
-  type?: "webp" | "png" | "jpeg";
+  type?: 'webp' | 'png' | 'jpeg';
 }) {
   // Ensure the output directory exists
   await fs.promises.mkdir(outputDir, { recursive: true });
@@ -50,11 +50,11 @@ async function captureScreenshot({
   const { width, height } = SIZE[size];
   await page.setViewport({ width, height });
 
-  await page.goto(url, { waitUntil: "networkidle2" });
+  await page.goto(url, { waitUntil: 'networkidle2' });
 
   for (const theme of themes) {
     await page.emulateMediaFeatures([
-      { name: "prefers-color-scheme", value: theme },
+      { name: 'prefers-color-scheme', value: theme },
     ]);
 
     const filePath = path.join(
@@ -65,7 +65,7 @@ async function captureScreenshot({
     await page.screenshot({
       path: filePath,
       type,
-      quality: type !== "png" ? 90 : undefined,
+      quality: type !== 'png' ? 90 : undefined,
     });
 
     console.log(`✅ Screenshot saved:`, filePath);
@@ -83,20 +83,20 @@ async function main() {
     await captureScreenshot({
       browser,
       url,
-      size: "desktop",
-      themes: ["light", "dark"],
+      size: 'desktop',
+      themes: ['light', 'dark'],
     });
 
     await captureScreenshot({
       browser,
       url,
-      size: "mobile",
-      themes: ["light", "dark"],
+      size: 'mobile',
+      themes: ['light', 'dark'],
     });
 
-    console.log("✅ All screenshots captured successfully.");
+    console.log('✅ All screenshots captured successfully.');
   } catch (error) {
-    console.error("⛔️ Error capturing screenshots:", error);
+    console.error('⛔️ Error capturing screenshots:', error);
   } finally {
     await browser.close();
   }

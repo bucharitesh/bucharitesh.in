@@ -1,4 +1,5 @@
-import Github from "next-auth/providers/github";
+import type { NextAuthConfig } from 'next-auth';
+import Github from 'next-auth/providers/github';
 
 export type User = {
   name: string;
@@ -7,28 +8,28 @@ export type User = {
   email?: string;
 };
 
-const authConfig: any = {
-  debug: process.env.NODE_ENV !== "production" ? true : false,
-  secret: process.env.AUTH_SECRET! as string,
+const authConfig: NextAuthConfig = {
+  debug: process.env.NODE_ENV !== 'production',
+  secret: process.env.AUTH_SECRET as string,
   // session: {
   //   strategy: "jwt",
   // },
   providers: [
     Github({
-      clientId: process.env.GITHUB_ID!,
-      clientSecret: process.env.GITHUB_SECRET!,
+      clientId: process.env.GITHUB_ID,
+      clientSecret: process.env.GITHUB_SECRET,
       authorization: {
         params: {
-          prompt: "consent",
-          access_type: "offline",
-          response_type: "code",
+          prompt: 'consent',
+          access_type: 'offline',
+          response_type: 'code',
         },
       },
     }),
   ],
   callbacks: {
-    async session({ session, token }: { session: any, token: any }) {
-      if (session && session.user && token.sub) {
+    session({ session, token }) {
+      if (session?.user && token.sub) {
         session.user.sub = token.sub;
       }
       return session;

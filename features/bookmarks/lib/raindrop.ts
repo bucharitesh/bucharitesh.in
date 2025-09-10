@@ -1,48 +1,50 @@
-'use server'
+'use server';
 
-import { COLLECTION_IDS } from '@/lib/config'
+import { COLLECTION_IDS } from '@/lib/config';
 
 const getOptions = () => ({
   cache: 'force-cache' as RequestCache,
   method: 'GET',
   headers: {
     'Content-Type': 'application/json',
-    Authorization: `Bearer ${process.env.RAINDROP_ACCESS_TOKEN}`
+    Authorization: `Bearer ${process.env.RAINDROP_ACCESS_TOKEN}`,
   },
   next: {
-    revalidate: 60 * 60 * 24 * 2 // 2 days
+    revalidate: 60 * 60 * 24 * 2, // 2 days
   },
-  signal: AbortSignal.timeout(10000) // 10 second timeout to prevent hanging requests
+  signal: AbortSignal.timeout(10000), // 10 second timeout to prevent hanging requests
 });
 
-const RAINDROP_API_URL = 'https://api.raindrop.io/rest/v1'
+const RAINDROP_API_URL = 'https://api.raindrop.io/rest/v1';
 
 export const getBookmarkItems = async (id: string, pageIndex = 0) => {
-  if (!id) throw new Error('Bookmark ID is required')
+  if (!id) {
+    throw new Error('Bookmark ID is required');
+  }
+
   if (typeof pageIndex !== 'number' || pageIndex < 0) {
-    throw new Error('Invalid page index')
+    throw new Error('Invalid page index');
   }
 
   try {
     const response = await fetch(
-      `${RAINDROP_API_URL}/raindrops/${id}?` +
-        new URLSearchParams({
-          page: pageIndex.toString(),
-          perpage: '50'
-        }),
+      `${RAINDROP_API_URL}/raindrops/${id}?${new URLSearchParams({
+        page: pageIndex.toString(),
+        perpage: '50',
+      })}`,
       getOptions()
-    )
+    );
 
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`)
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    return await response.json()
+    return await response.json();
   } catch (error: any) {
-    console.error(`Failed to fetch bookmark items: ${error.message}`)
-    return null
+    console.error(`Failed to fetch bookmark items: ${error.message}`);
+    return null;
   }
-}
+};
 
 export const getBookmarks = async () => {
   try {
@@ -50,24 +52,29 @@ export const getBookmarks = async () => {
     const response = await fetch(`${RAINDROP_API_URL}/collections`, options);
 
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`)
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
 
     const bookmarks = await response.json();
 
-    return bookmarks.items.filter((bookmark: any) => COLLECTION_IDS.includes(bookmark._id))
+    return bookmarks.items.filter((bookmark: any) =>
+      COLLECTION_IDS.includes(bookmark._id)
+    );
   } catch (error: any) {
-    console.error(`Failed to fetch bookmarks: ${error.message}`)
+    console.error(`Failed to fetch bookmarks: ${error.message}`);
     return [];
   }
-}
+};
 
 export const getBookmark = async (id: string) => {
   try {
-    const response = await fetch(`${RAINDROP_API_URL}/collection/${id}`, getOptions())
-    return await response.json()
+    const response = await fetch(
+      `${RAINDROP_API_URL}/collection/${id}`,
+      getOptions()
+    );
+    return await response.json();
   } catch (error: any) {
-    console.info(error)
-    return null
+    console.info(error);
+    return null;
   }
-}
+};

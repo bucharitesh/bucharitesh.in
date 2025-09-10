@@ -2,9 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "view-magnifier-demo-2",
   "type": "registry:block",
-  "registryDependencies": [
-    "@bucharitesh/view-magnifier"
-  ],
+  "registryDependencies": ["@bucharitesh/view-magnifier"],
   "files": [
     {
       "path": "registry/default/example/view-magnifier-demo-2.tsx",

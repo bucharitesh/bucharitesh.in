@@ -1,6 +1,6 @@
-import { getPlaiceholder } from "plaiceholder";
-import path from "path";
-import fs from "fs/promises";
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import { getPlaiceholder } from 'plaiceholder';
 
 type MediaConfig = {
   quality?: number;
@@ -9,18 +9,18 @@ type MediaConfig = {
 
 export async function generateBlurUrl(
   mediaPath: string,
-  config: MediaConfig = { quality: 10, size: { width: 16, height: 16 } },
+  config: MediaConfig = { quality: 10, size: { width: 16, height: 16 } }
 ) {
   try {
     // Handle both local and remote paths
     let buffer: Buffer;
 
-    if (mediaPath.startsWith("http")) {
+    if (mediaPath.startsWith('http')) {
       const res = await fetch(mediaPath);
       buffer = Buffer.from(await res.arrayBuffer());
     } else {
       // Assuming local paths are relative to public directory
-      const fullPath = path.join(process.cwd(), "public", mediaPath);
+      const fullPath = path.join(process.cwd(), 'public', mediaPath);
       buffer = await fs.readFile(fullPath);
     }
 

@@ -1,21 +1,24 @@
-'use client'
+'use client';
 
-import { SendIcon } from 'lucide-react'
-import { useState } from 'react'
+import { SendIcon } from 'lucide-react';
+import { useState } from 'react';
 
-import { SubmitBookmarkForm } from './form'
-import { Button } from '@/components/ui/button'
+import { Button } from '@/components/ui/button';
 import {
   Drawer,
   DrawerContent,
   DrawerDescription,
   DrawerHeader,
   DrawerTitle,
-  DrawerTrigger
-} from '@/components/ui/drawer'
+  DrawerTrigger,
+} from '@/components/ui/drawer';
+import { SubmitBookmarkForm } from './form';
 
-export const SubmitBookmarkDrawer = ({ bookmarks, currentBookmark }: { bookmarks: any[], currentBookmark: any }) => {
-  const [open, setOpen] = useState(false)
+export const SubmitBookmarkDrawer = ({
+  bookmarks,
+  currentBookmark,
+}: { bookmarks: any[]; currentBookmark: any }) => {
+  const [open, setOpen] = useState(false);
 
   return (
     <Drawer open={open} onOpenChange={setOpen}>
@@ -27,8 +30,12 @@ export const SubmitBookmarkDrawer = ({ bookmarks, currentBookmark }: { bookmarks
       </DrawerTrigger>
       <DrawerContent className="px-6">
         <DrawerHeader className="sm:text-center">
-          <DrawerTitle>{"Submit a bookmark"}</DrawerTitle>
-          <DrawerDescription className="m-0">{"Send me a website you like and if I like it too, you'll see it in the bookmarks list. With respect, please do not submit more than 5 websites a day."}</DrawerDescription>
+          <DrawerTitle>{'Submit a bookmark'}</DrawerTitle>
+          <DrawerDescription className="m-0">
+            {
+              "Send me a website you like and if I like it too, you'll see it in the bookmarks list. With respect, please do not submit more than 5 websites a day."
+            }
+          </DrawerDescription>
         </DrawerHeader>
         <SubmitBookmarkForm
           setFormOpen={setOpen}
@@ -38,5 +45,5 @@ export const SubmitBookmarkDrawer = ({ bookmarks, currentBookmark }: { bookmarks
         />
       </DrawerContent>
     </Drawer>
-  )
-}
+  );
+};

@@ -1,21 +1,23 @@
-import { NextResponse } from "next/server";
-import { promises as fs } from "node:fs";
-import path from "node:path";
-import { type Registry } from "shadcn/schema";
+import { promises as fs } from 'node:fs';
+import path from 'node:path';
+import { NextResponse } from 'next/server';
+import type { Registry } from 'shadcn/schema';
 
-import { examples } from "../../../registry/registry-examples";
-import { components as registryComponents } from "../../../registry/registry-components";
-import { USER } from "../../../config/user";
-import { getAllPosts } from "../../../features/craft/data/posts";
+import { USER } from '@/config/user';
+import { getAllPosts } from '@/features/craft/data/posts';
+import { components as registryComponents } from '@/registry/registry-components';
+import { examples } from '@/registry/registry-examples';
 
-type RegistryItem = Registry["items"][number];
+type RegistryItem = Registry['items'][number];
 type FileEntry = string | { path: string; type?: string; target?: string };
 
 async function readRegistryFilesContents(item: RegistryItem): Promise<string> {
-  if (!item.files?.length) return "";
+  if (!item.files?.length) {
+    return '';
+  }
 
   const paths = item.files
-    .map((f: FileEntry) => (typeof f === "string" ? f : f?.path))
+    .map((f: FileEntry) => (typeof f === 'string' ? f : f?.path))
     .filter(Boolean)
     .sort() as string[];
 
@@ -25,26 +27,26 @@ async function readRegistryFilesContents(item: RegistryItem): Promise<string> {
       try {
         // Check if it's a component or example path and resolve correctly
         let fullPath: string;
-        if (filePath.startsWith("examples/")) {
+        if (filePath.startsWith('examples/')) {
           fullPath = path.join(
             process.cwd(),
-            "registry/default/example",
-            filePath.replace("examples/", "")
+            'registry/default/example',
+            filePath.replace('examples/', '')
           );
         } else {
           fullPath = path.join(
             process.cwd(),
-            "registry/default/bucharitesh",
+            'registry/default/bucharitesh',
             filePath
           );
         }
 
-        const content = await fs.readFile(fullPath, "utf8");
-        return `--- file: ${filePath} ---\n${content.endsWith("\n") ? content : content + "\n"}`;
+        const content = await fs.readFile(fullPath, 'utf8');
+        return `--- file: ${filePath} ---\n${content.endsWith('\n') ? content : `${content}\n`}`;
       } catch (error) {
         console.warn(
           `Warning: Could not read file ${filePath}:`,
-          error instanceof Error ? error.message : "Unknown error"
+          error instanceof Error ? error.message : 'Unknown error'
         );
         return null; // Skip missing files
       }
@@ -52,41 +54,32 @@ async function readRegistryFilesContents(item: RegistryItem): Promise<string> {
   );
 
   // Join non-null contents with blank lines between them
-  return contents.filter(Boolean).join("\n");
+  return contents.filter(Boolean).join('\n');
 }
 
 function getComponentExamples() {
   const examplesByComponent = new Map<string, string[]>();
 
-  examples.forEach((example) => {
-    example.registryDependencies?.forEach((dep) => {
-      const componentName = dep.split("/").pop();
-      if (componentName) {
-        if (!examplesByComponent.has(componentName)) {
-          examplesByComponent.set(componentName, []);
+  for (const example of examples) {
+    if (example.registryDependencies) {
+      for (const dep of example.registryDependencies) {
+        const componentName = dep.split('/').pop();
+        if (componentName) {
+          if (!examplesByComponent.has(componentName)) {
+            examplesByComponent.set(componentName, []);
+          }
+          examplesByComponent.get(componentName)?.push(example.name);
         }
-        examplesByComponent.get(componentName)!.push(example.name);
       }
-    });
-  });
+    }
+  }
 
   return examplesByComponent;
 }
 
-async function readProjectFile(filePath: string): Promise<string> {
-  try {
-    const fullPath = path.join(process.cwd(), filePath);
-    const content = await fs.readFile(fullPath, "utf8");
-    return `--- file: ${filePath} ---\n${content.endsWith("\n") ? content : content + "\n"}`;
-  } catch (error) {
-    console.warn(`Warning: Could not read file ${filePath}:`, error instanceof Error ? error.message : "Unknown error");
-    return "";
-  }
-}
-
-async function generateUserSection() {
+function generateUserSection() {
   return [
-    "===== USER INFORMATION =====",
+    '===== USER INFORMATION =====',
     `Name: ${USER.name}`,
     `Email: ${USER.email}`,
     `Location: ${USER.location}`,
@@ -94,23 +87,20 @@ async function generateUserSection() {
     `Website: ${USER.website}`,
     `Description: ${USER.description}`,
     `Tagline: ${USER.tagline}`,
-    "",
-    "Social Links:",
+    '',
+    'Social Links:',
     `- GitHub: ${USER.social.github}`,
     `- LinkedIn: ${USER.social.linkedin}`,
     `- Twitter: ${USER.social.twitter}`,
     `- Bluesky: ${USER.social.bluesky}`,
-    "",
-  ].join("\n");
+    '',
+  ].join('\n');
 }
 
 async function generateCraftPostsSection() {
   const posts = await getAllPosts();
-  
-  const content = [
-    "===== CRAFT POSTS =====",
-    "",
-  ];
+
+  const content = ['===== CRAFT POSTS =====', ''];
 
   for (const post of posts) {
     content.push(
@@ -124,32 +114,32 @@ async function generateCraftPostsSection() {
       `Image: ${post.metadata.image}`,
       `Video: ${post.metadata.video}`,
       `Aspect Ratio: ${post.metadata.aspect_ratio}`,
-      `External Link: ${post.metadata.href || "None"}`,
-      "",
-      "--- Content ---",
+      `External Link: ${post.metadata.href || 'None'}`,
+      '',
+      '--- Content ---',
       post.content,
-      "",
-      ""
+      '',
+      ''
     );
   }
 
-  return content.join("\n");
+  return content.join('\n');
 }
 
 async function generateLlmsFullContent(
   examplesByComponent: Map<string, string[]>
 ) {
-  const sections = [];
+  const sections: string[] = [];
 
   // User information section
   sections.push(await generateUserSection());
 
-  // Craft posts section  
+  // Craft posts section
   sections.push(await generateCraftPostsSection());
 
   // Components section
   const components = registryComponents
-    .filter((item) => item.type === "registry:component")
+    .filter((item) => item.type === 'registry:component')
     .sort((a, b) => a.name.localeCompare(b.name));
 
   const componentContents = await Promise.all(
@@ -162,9 +152,9 @@ async function generateLlmsFullContent(
         `===== COMPONENT: ${component.name} =====`,
         `Title: ${title}`,
         `Description: ${description}`,
-        "",
+        '',
         await readRegistryFilesContents(component as unknown as RegistryItem),
-      ].join("\n");
+      ].join('\n');
 
       // Add examples for this component
       const relatedExamples = examplesByComponent.get(component.name) || [];
@@ -173,13 +163,13 @@ async function generateLlmsFullContent(
         if (example) {
           const exTitle = (example as any).title || example.name;
           content += [
-            "",
-            "",
+            '',
+            '',
             `===== EXAMPLE: ${exampleName} =====`,
             `Title: ${exTitle}`,
-            "",
+            '',
             await readRegistryFilesContents(example as unknown as RegistryItem),
-          ].join("\n");
+          ].join('\n');
         }
       }
 
@@ -187,16 +177,16 @@ async function generateLlmsFullContent(
     })
   );
 
-  sections.push(componentContents.join("\n\n\n"));
+  sections.push(componentContents.join('\n\n\n'));
 
-  return sections.join("\n\n\n");
+  return sections.join('\n\n\n');
 }
 
 export async function GET() {
   try {
     const examplesByComponent = getComponentExamples();
     const content = await generateLlmsFullContent(examplesByComponent);
-    
+
     return new NextResponse(content, {
       status: 200,
       headers: {
@@ -206,7 +196,7 @@ export async function GET() {
     });
   } catch (error) {
     console.error('Error generating LLMS full content:', error);
-    return new NextResponse('Internal Server Error', { 
+    return new NextResponse('Internal Server Error', {
       status: 500,
       headers: {
         'Content-Type': 'text/plain; charset=utf-8',

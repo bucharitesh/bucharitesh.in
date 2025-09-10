@@ -1,0 +1,78 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "extends": ["ultracite"],
+  "files": {
+    "ignore": [
+      "components/ui/**",
+      "registry/**",
+      "__registry__/**",
+      "archive/**"
+    ]
+  },
+  "linter": {
+    "rules": {
+      "complexity": {
+        "noUselessTernary": "error",
+        "noForEach": "off",
+        "noExcessiveCognitiveComplexity": "off",
+        "useLiteralKeys": "off",
+        "noUselessFragments": "off"
+      },
+      "performance": {
+        "useTopLevelRegex": "off"
+      },
+      "suspicious": {
+        "noExplicitAny": "off",
+        "noConsole": "off",
+        "noConsoleLog": "off",
+        "noShorthandPropertyOverrides": "off",
+        "noDoubleEquals": "off",
+        "useAwait": "off",
+        "noAssignInExpressions": "off",
+        "noConfusingVoidType": "off",
+        "noDuplicateFontNames": "off"
+      },
+      "correctness": {
+        "noUnknownProperty": "off",
+        "noUndeclaredVariables": "off",
+        "noUnusedImports": "off",
+        "noUnusedVariables": "off",
+        "useExhaustiveDependencies": "off",
+        "noUnusedFunctionParameters": "off",
+        "noInvalidPositionAtImportRule": "off"
+      },
+      "a11y": {
+        "useFocusableInteractive": "off",
+        "useKeyWithClickEvents": "off",
+        "noSvgWithoutTitle": "off",
+        "useKeyWithMouseEvents": "off",
+        "useGenericFontNames": "off"
+      },
+      "nursery": {
+        "noStaticElementInteractions": "off",
+        "noUselessStringRaw": "off",
+        "noImgElement": "off",
+        "noDescendingSpecificity": "off",
+        "noNestedTernary": "off",
+        "noDuplicateProperties": "off",
+        "noUnknownPseudoClass": "off"
+      },
+      "security": {
+        "noDangerouslySetInnerHtml": "off"
+      },
+      "style": {
+        "useImportType": "off",
+        "useForOf": "off",
+        "useBlockStatements": "off",
+        "noUnusedTemplateLiteral": "off",
+        "useTemplate": "off",
+        "noNonNullAssertion": "off",
+        "useCollapsedElseIf": "off",
+        "noParameterAssign": "off",
+        "useShorthandAssign": "off",
+        "noUselessElse": "off",
+        "useFilenamingConvention": "off"
+      }
+    }
+  }
+}

@@ -1,31 +1,32 @@
-import React, { useMemo } from "react";
-import "./style.css";
-import { cn } from "@/lib/utils";
+import type React from 'react';
+import { useMemo } from 'react';
+import './style.css';
+import { cn } from '@/lib/utils';
 
 function calculateDifference(input: string | number): any {
-  if (typeof input === "number") {
+  if (typeof input === 'number') {
     return input;
   }
 
-  if (typeof input === "string") {
-    const [numerator, denominator] = input.split("/").map(Number);
+  if (typeof input === 'string') {
+    const [numerator, denominator] = input.split('/').map(Number);
     return denominator - numerator;
   }
 
-  return "NaN";
+  return 'NaN';
 }
 
 const Guide = ({ x, y, borderRight, borderBottom, classNames }: any) => {
   return (
     <div
       aria-hidden="true"
-      className={cn("grid_guide__Ei25j", classNames)}
+      className={cn('grid_guide__Ei25j', classNames)}
       style={
         {
-          "--x": x,
-          "--y": y,
-          "border-right": borderRight ? "none" : undefined,
-          "border-bottom": borderBottom ? "none" : undefined,
+          '--x': x,
+          '--y': y,
+          'border-right': borderRight ? 'none' : undefined,
+          'border-bottom': borderBottom ? 'none' : undefined,
         } as React.CSSProperties
       }
     />
@@ -43,10 +44,10 @@ const Grid = ({
   columns: number;
   rows: number;
   children?: any;
-  hideGuides?: "row" | "column";
+  hideGuides?: 'row' | 'column';
 }) => {
   const generateGuides = useMemo(() => {
-    if (typeof columns === "number" && typeof rows === "number") {
+    if (typeof columns === 'number' && typeof rows === 'number') {
       const guides: any = [];
       for (let y = 1; y < rows + 1; y++) {
         for (let x = 1; x < columns + 1; x++) {
@@ -57,10 +58,10 @@ const Grid = ({
               x={x}
               y={y}
               borderRight={
-                x === columns || (hideGuides && hideGuides === "column")
+                x === columns || (hideGuides && hideGuides === 'column')
               }
-              borderBottom={y === rows || (hideGuides && hideGuides === "row")}
-            />,
+              borderBottom={y === rows || (hideGuides && hideGuides === 'row')}
+            />
           );
         }
       }
@@ -82,19 +83,19 @@ const Grid = ({
     let style = {};
 
     if (height) {
-      if (height === "preserve-aspect-ratio") {
+      if (height === 'preserve-aspect-ratio') {
         style = {
-          "--sm-height":
-            "calc(var(--width) / var(--grid-columns) * var(--grid-rows))",
+          '--sm-height':
+            'calc(var(--width) / var(--grid-columns) * var(--grid-rows))',
         };
       } else {
         style = {
-          "--sm-height": height,
+          '--sm-height': height,
         };
       }
     } else {
       style = {
-        "--sm-height": "fit content",
+        '--sm-height': 'fit content',
       };
     }
 
@@ -110,11 +111,11 @@ const Grid = ({
     //   } as React.CSSProperties;
     // }
 
-    if (typeof rows === "number" && typeof columns === "number") {
+    if (typeof rows === 'number' && typeof columns === 'number') {
       style = {
         ...style,
-        "--grid-rows": rows,
-        "--grid-columns": columns,
+        '--grid-rows': rows,
+        '--grid-columns': columns,
       };
     }
 
@@ -148,8 +149,8 @@ const GridCross = ({ row, column }: { row: number; column: number }) => {
       data-grid-cross
       style={
         {
-          "--cross-row": row,
-          "--cross-column": column,
+          '--cross-row': row,
+          '--cross-column': column,
         } as React.CSSProperties
       }
     >
@@ -157,22 +158,22 @@ const GridCross = ({ row, column }: { row: number; column: number }) => {
         className="grid_crossLine__BTLQL"
         style={
           {
-            width: "var(--cross-half-size)",
-            height: "var(--cross-size)",
-            "border-right-width": "var(--guide-width)",
+            width: 'var(--cross-half-size)',
+            height: 'var(--cross-size)',
+            'border-right-width': 'var(--guide-width)',
           } as React.CSSProperties
         }
-      ></div>
+      />
       <div
         className="grid_crossLine__BTLQL"
         style={
           {
-            width: "var(--cross-size)",
-            height: "var(--cross-half-size)",
-            "border-bottom-width": "var(--guide-width)",
+            width: 'var(--cross-size)',
+            height: 'var(--cross-half-size)',
+            'border-bottom-width': 'var(--guide-width)',
           } as React.CSSProperties
         }
-      ></div>
+      />
     </div>
   );
 };
@@ -193,20 +194,20 @@ const GridCell: React.FC<GridCellProps> = ({
   solid = true,
 }: GridCellProps) => {
   const css = (_a: string | number) => {
-    if (typeof _a === "number") {
+    if (typeof _a === 'number') {
       return `${_a} / span 1`;
     }
     return _a;
   };
 
   const getStyle = () => {
-    if (typeof row === "string" && typeof column === "string") {
+    if (typeof row === 'string' && typeof column === 'string') {
       return {
         // 1/3 1/3
-        "--sm-grid-row": row,
-        "--sm-grid-column": column,
-        "--sm-cell-rows": calculateDifference(row),
-        "--sm-cell-columns": calculateDifference(column),
+        '--sm-grid-row': row,
+        '--sm-grid-column': column,
+        '--sm-cell-rows': calculateDifference(row),
+        '--sm-cell-columns': calculateDifference(column),
       } as React.CSSProperties;
     }
 
@@ -249,19 +250,15 @@ const GridCell: React.FC<GridCellProps> = ({
     // }
 
     return {
-      "--sm-grid-row": "auto",
-      "--sm-grid-column": "auto",
-      "--sm-cell-rows": "auto",
-      "--sm-cell-columns": "auto",
+      '--sm-grid-row': 'auto',
+      '--sm-grid-column': 'auto',
+      '--sm-cell-rows': 'auto',
+      '--sm-cell-columns': 'auto',
     } as React.CSSProperties;
   };
 
   return (
-    <div 
-      className={`grid_block__lyImu`} 
-      data-grid-cell 
-      style={getStyle()}
-    >
+    <div className={'grid_block__lyImu'} data-grid-cell style={getStyle()}>
       {children}
     </div>
   );
@@ -281,18 +278,15 @@ const GridSystem = ({
   return (
     <div className="grid_unstable_gridSystemWrapper__9OFL9">
       <div
-        className={cn("grid_gridSystem__LtQ2f", {
+        className={cn('grid_gridSystem__LtQ2f', {
           grid_systemDebug__U9mKm: debug,
         })}
-        style={{ "--guide-width": `${guideWidth}px` } as React.CSSProperties}
+        style={{ '--guide-width': `${guideWidth}px` } as React.CSSProperties}
       >
         {children}
-        <div className="grid_gridSystemLazyContent__qAuyX"></div>
+        <div className="grid_gridSystemLazyContent__qAuyX" />
         {debug && (
-          <div
-            className="before:flex before:border before:border-dashed before:border-(--guide-color) before:bg-black before:text-white before:text-xs before:absolute before:right-2 before:top-2 before:p-1 before:px-2
-                    before:xs:content-['xs'] sm:before:content-['smd'] md:before:content-['md'] lg:before:content-['lg'] before:animate-[disappear_2s_ease-out_forwards]"
-          />
+          <div className="before:absolute before:top-2 before:right-2 before:flex before:animate-[disappear_2s_ease-out_forwards] before:border before:border-(--guide-color) before:border-dashed before:bg-black before:p-1 before:px-2 before:text-white before:text-xs before:xs:content-['xs'] sm:before:content-['smd'] md:before:content-['md'] lg:before:content-['lg']" />
         )}
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { USER } from "@/config/user";
+import { USER } from '@/config/user';
 
 const content = `# About
 
@@ -14,16 +14,18 @@ ${USER.description.trim()}
 
 ## Social Links
 
-${Object.entries(USER.social).map(([key, value]) => `- [${key}](${value})`).join("\n")}
+${Object.entries(USER.social)
+  .map(([key, value]) => `- [${key}](${value})`)
+  .join('\n')}
 
 \n`;
 
-export const dynamic = "force-static";
+export const dynamic = 'force-static';
 
 export async function GET() {
   return new Response(content, {
     headers: {
-      "Content-Type": "text/markdown;charset=utf-8",
+      'Content-Type': 'text/markdown;charset=utf-8',
     },
   });
 }

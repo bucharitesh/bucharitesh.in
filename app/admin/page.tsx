@@ -1,24 +1,24 @@
-import ApproveButton from "./approve-button";
+import ApproveButton from './approve-button';
 
-import { sql } from "@vercel/postgres";
-import { auth } from "@/lib/auth";
-import { redirect } from "next/navigation";
+import { auth } from '@/lib/auth';
+import { sql } from '@vercel/postgres';
+import { redirect } from 'next/navigation';
 
 export default async function ProtectedPage() {
   const session = await auth();
 
   if (!session) {
-    redirect("/admin/login");
+    redirect('/admin/login');
   }
 
   return (
-    <div className="bg-gray-1 text-gray-12 p-12 h-screen">
+    <div className="h-screen bg-gray-1 p-12 text-gray-12">
       <h1>Welcome to the gang page</h1>
       <p>Only authenticated users can access this page.</p>
       <div
-        className="grid gap-4 mt-6"
+        className="mt-6 grid gap-4"
         style={{
-          gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+          gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
         }}
       >
         <GuestbookEntries />
@@ -28,7 +28,7 @@ export default async function ProtectedPage() {
 }
 
 const colorMap = new Map();
-const colors = ["red", "green", "blue", "orange", "purple", "yellow"];
+const colors = ['red', 'green', 'blue', 'orange', 'purple', 'yellow'];
 
 // we gotta improve this a bit to be easier to scan
 function getColor(id: string) {
@@ -44,23 +44,22 @@ async function GuestbookEntries() {
     await sql`SELECT * from "guestbook" WHERE approved = false ORDER BY id DESC;`;
 
   return rows.map((entry) => (
-    <div key={entry.id} className="w-fit h-fit border border-gray-10 p-2">
-      <div className="border border-gray-6 bg-gray-3 rounded-[3px] flex items-center justify-center overflow-hidden">
+    <div key={entry.id} className="h-fit w-fit border border-gray-10 p-2">
+      <div className="flex items-center justify-center overflow-hidden rounded-[3px] border border-gray-6 bg-gray-3">
         <div
           className="object-contain"
-          // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
           dangerouslySetInnerHTML={{ __html: entry.signature }}
         />
       </div>
-      <div className="w-full text-sm break-words mt-1.5">
-        <span className="text-gray-12 text-[14px] mr-1 font-semibold">
+      <div className="mt-1.5 w-full break-words text-sm">
+        <span className="mr-1 font-semibold text-[14px] text-gray-12">
           {entry.created_by}
         </span>
-        <div className="text-[16px] font-medium">{entry.body}</div>
+        <div className="font-medium text-[16px]">{entry.body}</div>
       </div>
       <div className="flex flex-col">
         <span>
-          {entry.hascreatedentrybefore ? "has created an entry before" : "new"}
+          {entry.hascreatedentrybefore ? 'has created an entry before' : 'new'}
         </span>
 
         {entry.local_created_by_id && (

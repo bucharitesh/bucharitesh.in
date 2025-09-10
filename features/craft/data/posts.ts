@@ -1,9 +1,9 @@
-import fs from "fs";
-import matter from "gray-matter";
-import path from "path";
+import fs from 'node:fs';
+import path from 'node:path';
+import matter from 'gray-matter';
 
-import type { Post, PostMetadata } from "@/features/craft/types/post";
-import { generateBlurUrl } from "@/lib/media";
+import type { Post, PostMetadata } from '@/features/craft/types/post';
+import { generateBlurUrl } from '@/lib/media';
 
 function parseFrontmatter(fileContent: string) {
   const file = matter(fileContent);
@@ -15,11 +15,11 @@ function parseFrontmatter(fileContent: string) {
 }
 
 function getMDXFiles(dir: string) {
-  return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");
+  return fs.readdirSync(dir).filter((file) => path.extname(file) === '.mdx');
 }
 
 function readMDXFile(filePath: string) {
-  const rawContent = fs.readFileSync(filePath, "utf-8");
+  const rawContent = fs.readFileSync(filePath, 'utf-8');
   return parseFrontmatter(rawContent);
 }
 
@@ -40,7 +40,9 @@ function getMDXData(dir: string) {
 }
 
 export function getAllPosts() {
-  let posts = getMDXData(path.join(process.cwd(), "features/craft/content")).sort(
+  let posts = getMDXData(
+    path.join(process.cwd(), 'features/craft/content')
+  ).sort(
     (a, b) =>
       new Date(b.metadata.date).getTime() - new Date(a.metadata.date).getTime()
   );
@@ -55,15 +57,19 @@ export function getAllPosts() {
 }
 
 export function getAllCrafts() {
-    let posts = getMDXData(path.join(process.cwd(), "features/craft/content")).sort(
-      (a, b) =>
-        new Date(b.metadata.date).getTime() - new Date(a.metadata.date).getTime()
-    );
-  
-    posts = posts.filter((post) => post.metadata.published && post.metadata.type === "component");
-  
-    return posts;
-  }
+  let posts = getMDXData(
+    path.join(process.cwd(), 'features/craft/content')
+  ).sort(
+    (a, b) =>
+      new Date(b.metadata.date).getTime() - new Date(a.metadata.date).getTime()
+  );
+
+  posts = posts.filter(
+    (post) => post.metadata.published && post.metadata.type === 'component'
+  );
+
+  return posts;
+}
 
 export function getCraftBySlug(slug: string) {
   return getAllCrafts().find((post) => post.slug === slug);
@@ -74,14 +80,20 @@ export function findNeighbour(posts: Post[], slug: string) {
 
   for (let i = 0; i < len; ++i) {
     if (posts[i].slug === slug) {
-      const previous = i > 0 ? {
-        href: posts[i - 1].slug,
-        title: posts[i - 1].metadata.title,
-      } : null;
-      const next = i < len - 1 ? {
-        href: posts[i + 1].slug,
-        title: posts[i + 1].metadata.title,
-      } : null;
+      const previous =
+        i > 0
+          ? {
+              href: posts[i - 1].slug,
+              title: posts[i - 1].metadata.title,
+            }
+          : null;
+      const next =
+        i < len - 1
+          ? {
+              href: posts[i + 1].slug,
+              title: posts[i + 1].metadata.title,
+            }
+          : null;
 
       return {
         previous,

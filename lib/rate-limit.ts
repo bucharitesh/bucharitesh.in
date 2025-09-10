@@ -1,26 +1,26 @@
-import { LRUCache } from 'lru-cache'
+import { LRUCache } from 'lru-cache';
 
 export default function rateLimit(options: any) {
   const tokenCache = new LRUCache({
     max: options?.uniqueTokenPerInterval || 500,
-    ttl: options?.interval || 60000
-  })
+    ttl: options?.interval || 60000,
+  });
 
   return {
     check: (limit: any, token: any) => {
       if (!token) {
-        return Promise.reject(new Error('Token is required'))
+        return Promise.reject(new Error('Token is required'));
       }
 
-      const tokenCount = tokenCache.get(token) || [0] as any
+      const tokenCount = tokenCache.get(token) || ([0] as any);
       if (tokenCount[0] === 0) {
-        tokenCache.set(token, tokenCount)
+        tokenCache.set(token, tokenCount);
       }
-      tokenCount[0] += 1
+      tokenCount[0] += 1;
 
-      const currentUsage = tokenCount[0]
-      const isRateLimited = currentUsage >= limit
-      const remaining = Math.max(0, limit - currentUsage)
+      const currentUsage = tokenCount[0];
+      const isRateLimited = currentUsage >= limit;
+      const remaining = Math.max(0, limit - currentUsage);
 
       return isRateLimited
         ? Promise.reject({
@@ -28,14 +28,14 @@ export default function rateLimit(options: any) {
             limit,
             currentUsage,
             remaining,
-            timeWindow: options?.interval || 60000
+            timeWindow: options?.interval || 60000,
           })
         : Promise.resolve({
             limit,
             currentUsage,
             remaining,
-            timeWindow: options?.interval || 60000
-          })
-    }
-  }
+            timeWindow: options?.interval || 60000,
+          });
+    },
+  };
 }

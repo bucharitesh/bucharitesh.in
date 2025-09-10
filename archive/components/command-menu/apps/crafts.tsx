@@ -1,7 +1,7 @@
-import { useMemo } from "react";
-import { CommandGroup } from "../types";
-import { HiNewspaper } from "react-icons/hi2";
-import { useRouter } from "next/navigation";
+import { useRouter } from 'next/navigation';
+import { useMemo } from 'react';
+import { HiNewspaper } from 'react-icons/hi2';
+import type { CommandGroup } from '../types';
 
 interface CraftCommandProps {
   setOpen: (open: boolean) => void;
@@ -40,7 +40,7 @@ export const useCraftsCommand = ({
       id: post._id,
       name: post.title,
       description: (
-        <div className="truncate line-clamp-1">{post.description}</div>
+        <div className="line-clamp-1 truncate">{post.description}</div>
       ),
       icon: HiNewspaper,
       action: () => {
@@ -51,7 +51,7 @@ export const useCraftsCommand = ({
   }, [setOpen, searchQuery]);
 
   return {
-    name: "Crafts",
+    name: 'Crafts',
     commands,
   };
 };

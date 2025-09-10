@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import { Snowfall } from "./snowfall";
-import { getCurrentSeason } from "@/lib/utils";
-import { SeasonsEffect } from "@/lib/utils";
+import { getCurrentSeason } from '@/lib/utils';
+import type { SeasonsEffect } from '@/lib/utils';
+import { useEffect, useState } from 'react';
+import { Snowfall } from './snowfall';
 
 export function Seasons() {
   const [mounted, setMounted] = useState(false);
-  const [effect, setEffect] = useState<SeasonsEffect>("none");
+  const [effect, setEffect] = useState<SeasonsEffect>('none');
 
   useEffect(() => {
     setMounted(true);
@@ -17,7 +17,7 @@ export function Seasons() {
   if (!mounted) return null;
 
   switch (effect) {
-    case "winter":
+    case 'winter':
       return <Snowfall enabled={true} />;
     default:
       return null;

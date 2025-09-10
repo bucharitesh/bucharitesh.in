@@ -1,22 +1,21 @@
-import { SnakeGame } from "@/features/game/snake-game";
-import Info from "@/components/home/info";
-import { Button } from "@/components/ui/button";
-import { GameOfLife } from "@/registry/default/bucharitesh/game-of-life/game-of-life";
-import Link from "next/link";
-import React from "react";
+import Info from '@/components/home/info';
+import { Button } from '@/components/ui/button';
+import { SnakeGame } from '@/features/game/snake-game';
+import { GameOfLife } from '@/registry/default/bucharitesh/game-of-life/game-of-life';
+import Link from 'next/link';
 
 export default function NotFound() {
   return (
-    <div className="flex justify-center items-center flex-col gap-8 h-screen">
+    <div className="flex h-screen flex-col items-center justify-center gap-8">
       <GameOfLife
         size={20}
         interval={200}
         backgroundColor="#000000"
         cellColor="#1e1e1e"
       />
-      <p className="text-4xl font-bold">Oops!</p>
+      <p className="font-bold text-4xl">Oops!</p>
       <SnakeGame />
-      <Info show={["time", "screen", "llms"]} />
+      <Info show={['time', 'screen', 'llms']} />
       <Link href="/">
         <Button variant="outline">Go Home</Button>
       </Link>

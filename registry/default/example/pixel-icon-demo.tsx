@@ -1,12 +1,10 @@
-"use client";
-
-import React from "react";
-import PixelIcon from "@/registry/default/bucharitesh/pixel-icon/pixel-icon";
+'use client';
+import PixelIcon from '@/registry/default/bucharitesh/pixel-icon/pixel-icon';
 
 export const PixelIconData = [
   {
-    name: "nextjs",
-    color: "#005738",
+    name: 'nextjs',
+    color: '#005738',
     code: [
       [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0],
@@ -35,8 +33,8 @@ export const PixelIconData = [
     ],
   },
   {
-    name: "astro",
-    color: "#005738",
+    name: 'astro',
+    color: '#005738',
     code: [
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -65,8 +63,8 @@ export const PixelIconData = [
     ],
   },
   {
-    name: "angular",
-    color: "#B8032B",
+    name: 'angular',
+    color: '#B8032B',
     code: [
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0],
@@ -95,8 +93,8 @@ export const PixelIconData = [
     ],
   },
   {
-    name: "svelte",
-    color: "#FF3801",
+    name: 'svelte',
+    color: '#FF3801',
     code: [
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0],
@@ -125,8 +123,8 @@ export const PixelIconData = [
     ],
   },
   {
-    name: "mic",
-    color: "#FF3801",
+    name: 'mic',
+    color: '#FF3801',
     code: [
       [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0],
@@ -155,8 +153,8 @@ export const PixelIconData = [
     ],
   },
   {
-    name: "test",
-    color: "#B8032B",
+    name: 'test',
+    color: '#B8032B',
     code: [
       [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -188,13 +186,13 @@ export const PixelIconData = [
 
 const PixelIconDemo = () => {
   return (
-    <div className="relative flex bg-white w-full items-center justify-center overflow-hidden rounded-lg p-10">
-      <div className="grid grid-cols-3 gap-4 w-full place-items-center">
+    <div className="relative flex w-full items-center justify-center overflow-hidden rounded-lg bg-white p-10">
+      <div className="grid w-full grid-cols-3 place-items-center gap-4">
         {PixelIconData.map((icon) => {
           return (
             <div
               key={icon.name}
-              className="relative group p-4 flex items-center justify-center"
+              className="group relative flex items-center justify-center p-4"
             >
               <PixelIcon
                 icon={icon.code}

@@ -1,19 +1,19 @@
-import useSWR, { SWRConfiguration } from "swr";
+import useSWR, { type SWRConfiguration } from 'swr';
 
 const API_URL = (slug: string) => `/api/posts/${slug}/views`;
 
 async function getPostViews(slug: string): Promise<number> {
   const res = await fetch(API_URL(slug));
   if (!res.ok) {
-    throw new Error("An error occurred while fetching the data.");
+    throw new Error('An error occurred while fetching the data.');
   }
   return res.json();
 }
 
 async function updatePostViews(slug: string): Promise<number> {
-  const res = await fetch(API_URL(slug), { method: "POST" });
+  const res = await fetch(API_URL(slug), { method: 'POST' });
   if (!res.ok) {
-    throw new Error("An error occurred while posting the data.");
+    throw new Error('An error occurred while posting the data.');
   }
   return res.json();
 }
@@ -34,7 +34,7 @@ export const usePostViews = (slug: string, config?: SWRConfiguration) => {
         console.log(e);
 
         return 0;
-      }),
+      })
     );
   };
 

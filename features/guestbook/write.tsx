@@ -1,25 +1,30 @@
-"use client";
+'use client';
 
-import { useEffect, useRef, useState } from "react";
-import { useFormStatus } from "react-dom";
-import useMeasure from "react-use-measure";
-import { AnimatePresence, motion, MotionConfig, Transition } from "motion/react";
-import { cn } from "@/lib/utils";
-import Signature, { type SignatureRef } from "@uiw/react-signature";
-import { validateAndSaveEntry } from "@/lib/actions";
-import Field from "./field";
-import { useAtom, useSetAtom } from "jotai";
+import { validateAndSaveEntry } from '@/lib/actions';
 import {
   hasCreatedEntryBeforeAtom,
   localCreatedByIdAtom,
   localEntriesAtom,
-} from "@/lib/atoms/guestbook";
-import { ArrowBigDown } from "lucide-react";
-import useClickOutside from "@/lib/hooks/use-click-outside";
+} from '@/lib/atoms/guestbook';
+import useClickOutside from '@/lib/hooks/use-click-outside';
+import { cn } from '@/lib/utils';
+import Signature, { type SignatureRef } from '@uiw/react-signature';
+import { useAtom, useSetAtom } from 'jotai';
+import { ArrowBigDown } from 'lucide-react';
+import {
+  AnimatePresence,
+  MotionConfig,
+  type Transition,
+  motion,
+} from 'motion/react';
+import { useEffect, useRef, useState } from 'react';
+import { useFormStatus } from 'react-dom';
+import useMeasure from 'react-use-measure';
+import Field from './field';
 // import { useEasterEggs } from "@/lib/providers/easter-egg-provider";
 
 const transition: Transition = {
-  type: "spring" as const,
+  type: 'spring' as const,
   bounce: 0.1,
   duration: 0.25,
 };
@@ -30,9 +35,9 @@ export default function WriteNoteCTA() {
   const [menuRef, { width: widthContainer }] = useMeasure();
   const [maxWidth, setMaxWidth] = useState(0);
   const [formInfo, setFormInfo] = useState({
-    created_by: "",
-    entry: "",
-    signature: "",
+    created_by: '',
+    entry: '',
+    signature: '',
   });
   const [isOpen, setIsOpen] = useState(false);
   const [errors, setErrors] = useState<Record<string, string[]> | null>(null);
@@ -45,7 +50,7 @@ export default function WriteNoteCTA() {
 
   // const { discoverEgg } = useEasterEggs();
 
-  const buttonText = ["Write me a note", "Next", "Submit", "Thanks!"][step];
+  const buttonText = ['Write me a note', 'Next', 'Submit', 'Thanks!'][step];
 
   const ref = useRef<HTMLDivElement>(null!);
   const formRef = useRef<HTMLFormElement>(null!);
@@ -71,10 +76,10 @@ export default function WriteNoteCTA() {
     const svgelm = $svg.current?.svg?.cloneNode(true) as SVGSVGElement;
     const clientWidth = $svg.current?.svg?.clientWidth;
     const clientHeight = $svg.current?.svg?.clientHeight;
-    svgelm.removeAttribute("style");
-    svgelm.setAttribute("width", `${clientWidth}px`);
-    svgelm.setAttribute("height", `${clientHeight}px`);
-    svgelm.setAttribute("viewbox", `${clientWidth} ${clientHeight}`);
+    svgelm.removeAttribute('style');
+    svgelm.setAttribute('width', `${clientWidth}px`);
+    svgelm.setAttribute('height', `${clientHeight}px`);
+    svgelm.setAttribute('viewbox', `${clientWidth} ${clientHeight}`);
     setFormInfo((prev) => ({
       ...prev,
       signature: svgelm.outerHTML,
@@ -105,7 +110,7 @@ export default function WriteNoteCTA() {
         );
       case 2:
         return (
-          <div className="rounded-6 overflow-hidden bg-gray-1 p-0.5 flex flex-col relative h-36">
+          <div className="relative flex h-36 flex-col overflow-hidden rounded-6 bg-gray-1 p-0.5">
             <Signature
               ref={svgRef}
               options={{
@@ -116,11 +121,11 @@ export default function WriteNoteCTA() {
             <input type="hidden" value={formInfo.signature} />
             <button
               aria-label="clear signature"
-              className="rounded-[4px] text-gray-11 font-medium self-end absolute bottom-1 left-1 bg-gray-6 p-1 group hover:bg-gray-8 hover:text-gray-12 transition duration-200"
+              className="group absolute bottom-1 left-1 self-end rounded-[4px] bg-gray-6 p-1 font-medium text-gray-11 transition duration-200 hover:bg-gray-8 hover:text-gray-12"
               type="button"
               onClick={() => svgRef.current?.clear()}
             >
-              <ArrowBigDown className="group-hover:rotate-180 transition duration-200 " />
+              <ArrowBigDown className="transition duration-200 group-hover:rotate-180 " />
             </button>
           </div>
         );
@@ -133,8 +138,8 @@ export default function WriteNoteCTA() {
     setLoading(true);
     if (currentStep === 1) {
       const formData = new FormData();
-      formData.append("created_by", formInfo.created_by);
-      formData.append("entry", formInfo.entry);
+      formData.append('created_by', formInfo.created_by);
+      formData.append('entry', formInfo.entry);
 
       const result = await validateAndSaveEntry(formData, true);
 
@@ -170,8 +175,6 @@ export default function WriteNoteCTA() {
       return;
     }
 
-    
-
     if (step === 1) {
       const isValid = await validateStep(step);
       if (!isValid) return;
@@ -186,15 +189,15 @@ export default function WriteNoteCTA() {
       }
 
       const formData = new FormData();
-      formData.append("local_entry_id", crypto.randomUUID());
-      formData.append("created_by", formInfo.created_by);
-      formData.append("entry", formInfo.entry);
-      formData.append("signature", s);
+      formData.append('local_entry_id', crypto.randomUUID());
+      formData.append('created_by', formInfo.created_by);
+      formData.append('entry', formInfo.entry);
+      formData.append('signature', s);
       formData.append(
-        "hasCreatedEntryBefore",
+        'hasCreatedEntryBefore',
         hasCreatedEntryBefore.toString()
       );
-      formData.append("local_created_by_id", localCreatedById);
+      formData.append('local_created_by_id', localCreatedById);
       await handleSubmit(formData);
       return;
     }
@@ -215,15 +218,17 @@ export default function WriteNoteCTA() {
     }
 
     // Get viewport dimensions safely on client-side
-    const viewportWidth = typeof window !== 'undefined' ? window.innerWidth : 1300;
-    const viewportHeight = typeof window !== 'undefined' ? window.innerHeight : 900;
+    const viewportWidth =
+      typeof window !== 'undefined' ? window.innerWidth : 1300;
+    const viewportHeight =
+      typeof window !== 'undefined' ? window.innerHeight : 900;
 
     const newEntry = {
       id: crypto.randomUUID(),
-      local_entry_id: formData.get("local_entry_id") as string,
-      created_by: formData.get("created_by") as string,
-      body: formData.get("entry") as string,
-      signature: formData.get("signature") as string,
+      local_entry_id: formData.get('local_entry_id') as string,
+      created_by: formData.get('created_by') as string,
+      body: formData.get('entry') as string,
+      signature: formData.get('signature') as string,
       initialX: getRandomPosition(100, viewportWidth - 100),
       initialY: getRandomPosition(100, viewportHeight - 100),
     };
@@ -247,16 +252,16 @@ export default function WriteNoteCTA() {
   }, [widthContainer, maxWidth]);
 
   return (
-    <div className="bottom-10 h-max w-max left-1/2 -translate-x-1/2 md:left-auto md:right-20 md:top-40 md:-translate-x-0 absolute z-300">
+    <div className="-translate-x-1/2 md:-translate-x-0 absolute bottom-10 left-1/2 z-300 h-max w-max md:top-40 md:right-20 md:left-auto">
       <div
         className={cn(
-          "rounded-md bg-black border border-gray-800/40 transition text-[1.5rem] flex gap-x-1.5 items-center justify-center text-gray-100 font-medium h-fit w-72 shadow-lg",
+          'flex h-fit w-72 items-center justify-center gap-x-1.5 rounded-md border border-gray-800/40 bg-black font-medium text-[1.5rem] text-gray-100 shadow-lg transition'
         )}
       >
         <MotionConfig transition={transition}>
           <div className="h-full w-full" ref={ref}>
             <form ref={formRef}>
-              <div className="overflow-hidden w-full">
+              <div className="w-full overflow-hidden">
                 <AnimatePresence initial={false} mode="sync">
                   {isOpen ? (
                     <motion.div
@@ -270,28 +275,28 @@ export default function WriteNoteCTA() {
                     >
                       <div ref={contentRef} className="w-full">
                         <motion.div
-                          key={"notes"}
+                          key={'notes'}
                           initial={{ opacity: 0 }}
                           animate={{ opacity: isOpen ? 1 : 0 }}
                           exit={{ opacity: 0 }}
                         >
                           <div
                             className={cn(
-                              "px-4 pt-3 text-sm",
-                              isOpen ? "block" : "hidden"
+                              'px-4 pt-3 text-sm',
+                              isOpen ? 'block' : 'hidden'
                             )}
                           >
                             <AnimatePresence>
                               {step === 1 && (
                                 <motion.div
                                   className={cn(
-                                    "absolute -top-18 w-full left-0 bg-[#101B1D] text-[1rem] rounded-md shadow-lg px-4 py-2 font-medium text-center border border-gray-800/40",
+                                    '-top-18 absolute left-0 w-full rounded-md border border-gray-800/40 bg-[#101B1D] px-4 py-2 text-center font-medium text-[1rem] shadow-lg',
                                     errors
-                                      ? "ring-2 ring-red-500/60"
-                                      : "text-gray-100"
+                                      ? 'ring-2 ring-red-500/60'
+                                      : 'text-gray-100'
                                   )}
                                   style={{
-                                    textWrap: "balance",
+                                    textWrap: 'balance',
                                   }}
                                   initial={{ opacity: 0, y: -20 }}
                                   animate={{ opacity: 1, y: 0 }}
@@ -301,8 +306,8 @@ export default function WriteNoteCTA() {
                                     <motion.p
                                       key={
                                         errors?.created_by || errors?.entry
-                                          ? "error"
-                                          : "default"
+                                          ? 'error'
+                                          : 'default'
                                       }
                                       initial={{ opacity: 0, y: -10 }}
                                       animate={{ opacity: 1, y: 0 }}
@@ -318,9 +323,9 @@ export default function WriteNoteCTA() {
                               )}
                               {step === 2 && (
                                 <motion.div
-                                  className="absolute -top-18 w-full left-0 bg-[#101B1D] text-[1rem] rounded-6 shadow-lg px-4 py-2 font-medium text-center transition"
+                                  className="-top-18 absolute left-0 w-full rounded-6 bg-[#101B1D] px-4 py-2 text-center font-medium text-[1rem] shadow-lg transition"
                                   style={{
-                                    textWrap: "balance",
+                                    textWrap: 'balance',
                                   }}
                                   initial={{ opacity: 0, y: -20 }}
                                   animate={{ opacity: 1, y: 0 }}
@@ -332,7 +337,7 @@ export default function WriteNoteCTA() {
                                     },
                                   }}
                                 >
-                                  why not a little drawing as well!{" "}
+                                  why not a little drawing as well!{' '}
                                   <span>be creative!!</span>
                                 </motion.div>
                               )}
@@ -348,16 +353,16 @@ export default function WriteNoteCTA() {
 
               <button
                 ref={menuRef}
-                aria-label={"notes"}
+                aria-label={'notes'}
                 className={cn(
-                  "relative flex py-4 w-full shrink-0 scale-100 select-none appearance-none items-center justify-center text-gray-100 hover:text-gray-300 transition focus-visible:ring-2 focus-visible:ring-gray-500 active:scale-[0.98] lowercase",
-                  loading ? "cursor-not-allowed opacity-50" : "cursor-pointer"
+                  'relative flex w-full shrink-0 scale-100 select-none appearance-none items-center justify-center py-4 text-gray-100 lowercase transition hover:text-gray-300 focus-visible:ring-2 focus-visible:ring-gray-500 active:scale-[0.98]',
+                  loading ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
                 )}
                 type="button"
                 disabled={pending || loading}
                 onClick={handleClick}
               >
-                {isOpen || step === 3 ? buttonText : "write me a note"}
+                {isOpen || step === 3 ? buttonText : 'write me a note'}
               </button>
             </form>
           </div>

@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const DartEffect = () => {
   const [isActive, setIsActive] = useState(false);
@@ -23,7 +23,7 @@ const DartEffect = () => {
 
       if (newTyped.includes('boom') && !isActive) {
         setIsActive(true);
-        
+
         // Trigger explosion after spacecraft animation
         setTimeout(() => {
           setHasExploded(true);
@@ -42,25 +42,27 @@ const DartEffect = () => {
     };
   }, [typed, isActive]);
 
-  if (!isActive) return null;
+  if (!isActive) {
+    return null;
+  }
 
   return (
     <>
-      <div className="fixed z-10000 inset-0 pointer-events-none">
+      <div className="pointer-events-none fixed inset-0 z-10000">
         {/* Only show these elements before explosion */}
         {!hasExploded && (
           <>
             {/* Spacecraft */}
-            <div className="absolute w-10 h-5 bg-gray-300 -left-10 top-1/2 -translate-y-1/2 animate-spacecraft" />
-            
+            <div className="-left-10 -translate-y-1/2 absolute top-1/2 h-5 w-10 animate-spacecraft bg-gray-300" />
+
             {/* Asteroid */}
-            <div className="absolute w-24 h-24 bg-gray-600 right-24 top-1/2 -translate-y-1/2 rounded-full" />
-            
+            <div className="-translate-y-1/2 absolute top-1/2 right-24 h-24 w-24 rounded-full bg-gray-600" />
+
             {/* Initial explosion */}
-            <div className="absolute w-48 h-48 right-12 top-1/2 -translate-y-1/2 animate-explosion bg-gradient-radial from-orange-500 to-transparent opacity-0" />
-            
+            <div className="-translate-y-1/2 absolute top-1/2 right-12 h-48 w-48 animate-explosion bg-gradient-radial from-orange-500 to-transparent opacity-0" />
+
             {/* Screen flash */}
-            <div className="fixed inset-0 bg-white animate-flash opacity-0" />
+            <div className="fixed inset-0 animate-flash bg-white opacity-0" />
           </>
         )}
       </div>

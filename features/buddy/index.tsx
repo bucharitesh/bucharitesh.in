@@ -1,29 +1,29 @@
-"use client";
+'use client';
 
-import "./buddy.scss";
+import './buddy.scss';
 
-import clsx from "clsx";
-import { ForwardedRef, useEffect, useRef, useState } from "react";
-import React from "react";
-import { range, sampleOne, shouldIgnoreInput } from "./utils";
-import { BuddyConfig } from "./types";
-import { COLOR_TO_FILTER_MAP, useBuddyStore } from "./buddy-logic";
+import clsx from 'clsx';
+import { type ForwardedRef, useEffect, useRef, useState } from 'react';
+import React from 'react';
+import { toast } from 'sonner';
+import { COLOR_TO_FILTER_MAP, useBuddyStore } from './buddy-logic';
 import {
-  AccessoryInfo,
-  AnimationName,
-  OverlayAnimationName,
+  type AccessoryInfo,
+  type AnimationName,
+  type OverlayAnimationName,
   SHADOW_HEIGHT,
   SPRITE_SHEET_WIDTH,
   SPRITE_SIZE,
-  SpriteInfo,
+  type SpriteInfo,
   overlayAnimations,
   skins,
   spriteAccessoryUrl,
   spriteOverlayUrl,
   spriteUrl,
   standardAccessories,
-} from "./sprites/sprites";
-import { toast } from "sonner";
+} from './sprites/sprites';
+import type { BuddyConfig } from './types';
+import { range, sampleOne, shouldIgnoreInput } from './utils';
 
 export const X_FRAMES = SPRITE_SHEET_WIDTH / SPRITE_SIZE;
 export const FPS = 24;
@@ -49,7 +49,7 @@ type Box = {
 };
 
 const elementToBox = (element: Element): Box => {
-  if (typeof window === "undefined" || typeof document === "undefined") {
+  if (typeof window === 'undefined' || typeof document === 'undefined') {
     return { x: 0, y: 0, width: 0, height: 0 };
   }
   if (element === document.body) {
@@ -61,7 +61,7 @@ const elementToBox = (element: Element): Box => {
       height: 1000,
     };
   }
-  const isBuddy = element.classList.contains("BuddyBuddy");
+  const isBuddy = element.classList.contains('BuddyBuddy');
   const rect = element.getBoundingClientRect();
   return {
     x: rect.left + (isBuddy ? 20 : 0),
@@ -81,7 +81,7 @@ type AnimationState = {
 
 export class BuddyActor {
   element?: HTMLDivElement | null;
-  direction: "left" | "right" = "right";
+  direction: 'left' | 'right' = 'right';
   x = 0;
   y = 0;
   followMouse = false;
@@ -105,10 +105,13 @@ export class BuddyActor {
   tooltip?: React.ReactElement;
 
   constructor() {
-    console.log("Created new BuddyActor");
+    console.log('Created new BuddyActor');
 
-    if (typeof window !== "undefined") {
-      this.lastScreenPosition = [window.screenX, window.screenY + window.innerHeight];
+    if (typeof window !== 'undefined') {
+      this.lastScreenPosition = [
+        window.screenX,
+        window.screenY + window.innerHeight,
+      ];
       this.x = Math.min(
         Math.max(0, Math.floor(Math.random() * window.innerWidth)),
         window.innerWidth - SPRITE_SIZE
@@ -122,24 +125,24 @@ export class BuddyActor {
       this.y = 0;
     }
     this.preloadAnimationSprites();
-    this.setAnimation("fall");
+    this.setAnimation('fall');
   }
 
   animations(): { [key: string]: SpriteInfo } {
-    const animations = skins[this.hedgehogConfig.skin || "default"];
+    const animations = skins[this.hedgehogConfig.skin || 'default'];
     return animations;
   }
 
   preloadAnimationSprites(): void {
-    if (typeof document === "undefined") {
+    if (typeof document === 'undefined') {
       return;
     }
     for (const animation of Object.values(this.animations())) {
-      const preload = document.createElement("link");
-      preload.rel = "preload";
-      preload.as = "image";
+      const preload = document.createElement('link');
+      preload.rel = 'preload';
+      preload.as = 'image';
       preload.href = spriteUrl(
-        this.hedgehogConfig.skin || "default",
+        this.hedgehogConfig.skin || 'default',
         animation.img
       );
       document.head.appendChild(preload);
@@ -154,8 +157,8 @@ export class BuddyActor {
   }
 
   setOnFire(times = 3): void {
-    console.log("setting on fire, iterations remaining:", times);
-    this.setOverlayAnimation("fire", {
+    console.log('setting on fire, iterations remaining:', times);
+    this.setOverlayAnimation('fire', {
       onComplete: () => {
         if (times == 1) {
           this.setOverlayAnimation(null);
@@ -165,10 +168,10 @@ export class BuddyActor {
       },
     });
 
-    this.setAnimation("stop", {});
+    this.setAnimation('stop', {});
     this.direction =
-      this.hedgehogConfig.fixed_direction || sampleOne(["left", "right"]);
-    this.xVelocity = this.direction === "left" ? -5 : 5;
+      this.hedgehogConfig.fixed_direction || sampleOne(['left', 'right']);
+    this.xVelocity = this.direction === 'left' ? -5 : 5;
     this.jump();
   }
 
@@ -180,43 +183,43 @@ export class BuddyActor {
       action: () => void;
     }[] = [
       {
-        keys: ["f", "f", "f"],
+        keys: ['f', 'f', 'f'],
         action: () => this.setOnFire(),
       },
       {
-        keys: ["f", "i", "r", "e"],
+        keys: ['f', 'i', 'r', 'e'],
         action: () => this.setOnFire(),
       },
       {
-        keys: ["s", "p", "i", "d", "e", "r", "h", "o", "g"],
+        keys: ['s', 'p', 'i', 'd', 'e', 'r', 'h', 'o', 'g'],
         action: () => {
-          this.hedgehogConfig.skin = "spiderhog";
+          this.hedgehogConfig.skin = 'spiderhog';
         },
       },
       {
-        keys: ["r", "o", "b", "o", "h", "o", "g"],
+        keys: ['r', 'o', 'b', 'o', 'h', 'o', 'g'],
         action: () => {
-          this.hedgehogConfig.skin = "robohog";
+          this.hedgehogConfig.skin = 'robohog';
         },
       },
       {
         keys: [
-          "arrowup",
-          "arrowup",
-          "arrowdown",
-          "arrowdown",
-          "arrowleft",
-          "arrowright",
-          "arrowleft",
-          "arrowright",
-          "b",
-          "a",
+          'arrowup',
+          'arrowup',
+          'arrowdown',
+          'arrowdown',
+          'arrowleft',
+          'arrowright',
+          'arrowleft',
+          'arrowright',
+          'b',
+          'a',
         ],
         action: () => {
           this.setOnFire();
           this.gravity = -2;
 
-          toast.info("I must leave. My people need me!");
+          toast.info('I must leave. My people need me!');
           setTimeout(() => {
             this.gravity = GRAVITY_PIXELS;
           }, 2000);
@@ -236,50 +239,50 @@ export class BuddyActor {
         lastKeys.shift();
       }
 
-      if ([" ", "w", "arrowup"].includes(key)) {
+      if ([' ', 'w', 'arrowup'].includes(key)) {
         this.jump();
       }
 
       secretMap.forEach((secret) => {
         if (
-          lastKeys.slice(-secret.keys.length).join("") === secret.keys.join("")
+          lastKeys.slice(-secret.keys.length).join('') === secret.keys.join('')
         ) {
           secret.action();
           lastKeys.splice(-secret.keys.length);
         }
       });
 
-      if (["arrowdown", "s"].includes(key)) {
+      if (['arrowdown', 's'].includes(key)) {
         if (this.ground === document.body) {
-          if (this.mainAnimation?.name !== "wave") {
-            this.setAnimation("wave");
+          if (this.mainAnimation?.name !== 'wave') {
+            this.setAnimation('wave');
           }
         } else if (this.ground) {
           const box = elementToBox(this.ground);
           this.ignoreGroundAboveY = box.y + box.height - SPRITE_SIZE;
           this.ground = null;
-          this.setAnimation("fall");
+          this.setAnimation('fall');
         }
       }
 
-      if (["arrowleft", "a", "arrowright", "d"].includes(key)) {
+      if (['arrowleft', 'a', 'arrowright', 'd'].includes(key)) {
         this.isControlledByUser = true;
-        if (this.mainAnimation?.name !== "walk") {
-          this.setAnimation("walk");
+        if (this.mainAnimation?.name !== 'walk') {
+          this.setAnimation('walk');
         }
 
-        if (!this.hedgehogConfig.fixed_direction) {
-          this.direction = ["arrowleft", "a"].includes(key) ? "left" : "right";
-          this.xVelocity = this.direction === "left" ? -5 : 5;
+        if (this.hedgehogConfig.fixed_direction) {
+          this.xVelocity = ['arrowleft', 'a'].includes(key) ? -5 : 5;
+        } else {
+          this.direction = ['arrowleft', 'a'].includes(key) ? 'left' : 'right';
+          this.xVelocity = this.direction === 'left' ? -5 : 5;
 
           const moonwalk = e.shiftKey;
           if (moonwalk) {
-            this.direction = this.direction === "left" ? "right" : "left";
+            this.direction = this.direction === 'left' ? 'right' : 'left';
             // Moonwalking is hard so he moves slightly slower of course
             this.xVelocity *= 0.8;
           }
-        } else {
-          this.xVelocity = ["arrowleft", "a"].includes(key) ? -5 : 5;
         }
       }
     };
@@ -291,8 +294,8 @@ export class BuddyActor {
 
       const key = e.key.toLowerCase();
 
-      if (["arrowleft", "a", "arrowright", "d"].includes(key)) {
-        this.setAnimation("stop", {
+      if (['arrowleft', 'a', 'arrowright', 'd'].includes(key)) {
+        this.setAnimation('stop', {
           iterations: FPS * 2,
         });
         this.isControlledByUser = false;
@@ -302,7 +305,7 @@ export class BuddyActor {
     const onMouseDown = (e: MouseEvent): void => {
       if (
         !this.hedgehogConfig.controls_enabled ||
-        this.hedgehogConfig.skin !== "spiderhog"
+        this.hedgehogConfig.skin !== 'spiderhog'
       ) {
         return;
       }
@@ -320,7 +323,7 @@ export class BuddyActor {
         return;
       }
 
-      this.setAnimation("fall");
+      this.setAnimation('fall');
       this.followMouse = true;
       this.lastKnownMousePosition = [e.clientX, e.clientY];
 
@@ -330,23 +333,23 @@ export class BuddyActor {
 
       const onMouseUp = (): void => {
         this.followMouse = false;
-        window.removeEventListener("mousemove", onMouseMove);
+        window.removeEventListener('mousemove', onMouseMove);
       };
 
-      window.addEventListener("mousemove", onMouseMove);
-      window.addEventListener("mouseup", onMouseUp);
+      window.addEventListener('mousemove', onMouseMove);
+      window.addEventListener('mouseup', onMouseUp);
     };
 
-    if (typeof window !== "undefined") {
-      window.addEventListener("keydown", keyDownListener);
-      window.addEventListener("keyup", keyUpListener);
-      window.addEventListener("mousedown", onMouseDown);
+    if (typeof window !== 'undefined') {
+      window.addEventListener('keydown', keyDownListener);
+      window.addEventListener('keyup', keyUpListener);
+      window.addEventListener('mousedown', onMouseDown);
     }
 
     return () => {
-      if (typeof window !== "undefined") {
-        window.removeEventListener("keydown", keyDownListener);
-        window.removeEventListener("keyup", keyUpListener);
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('keydown', keyDownListener);
+        window.removeEventListener('keyup', keyUpListener);
       }
     };
   }
@@ -356,7 +359,7 @@ export class BuddyActor {
     options?: Partial<AnimationState>
   ): void {
     const availableAnimations = this.animations();
-    animationName = availableAnimations[animationName] ? animationName : "stop";
+    animationName = availableAnimations[animationName] ? animationName : 'stop';
     const spriteInfo = availableAnimations[animationName];
 
     this.mainAnimation = {
@@ -374,16 +377,16 @@ export class BuddyActor {
         ? Math.max(1, Math.floor(Math.random() * spriteInfo.maxIteration))
         : null);
 
-    if (this.mainAnimation.name !== "stop") {
+    if (this.mainAnimation.name !== 'stop') {
       this.direction =
         this.hedgehogConfig.fixed_direction ||
         this.mainAnimation.spriteInfo.forceDirection ||
-        sampleOne(["left", "right"]);
+        sampleOne(['left', 'right']);
     }
 
-    if (animationName === "walk") {
-      this.xVelocity = this.direction === "left" ? -1 : 1;
-    } else if (animationName === "stop" && !this.isControlledByUser) {
+    if (animationName === 'walk') {
+      this.xVelocity = this.direction === 'left' ? -1 : 1;
+    } else if (animationName === 'stop' && !this.isControlledByUser) {
       this.xVelocity = 0;
     }
   }
@@ -414,8 +417,8 @@ export class BuddyActor {
   }
 
   setRandomAnimation(exclude: AnimationName[] = []): void {
-    if (this.mainAnimation?.name !== "stop") {
-      this.setAnimation("stop");
+    if (this.mainAnimation?.name !== 'stop') {
+      this.setAnimation('stop');
     } else {
       let randomChoiceList = Object.keys(this.animations()).reduce(
         (acc, key) => {
@@ -430,7 +433,7 @@ export class BuddyActor {
 
       randomChoiceList = this.hedgehogConfig.walking_enabled
         ? randomChoiceList
-        : randomChoiceList.filter((x) => x !== "walk");
+        : randomChoiceList.filter((x) => x !== 'walk');
       randomChoiceList = randomChoiceList.filter((x) => !exclude.includes(x));
       this.setAnimation(sampleOne(randomChoiceList));
     }
@@ -447,9 +450,10 @@ export class BuddyActor {
 
   update(): void {
     // Get the velocity of the screen changing
-    const screenPosition = typeof window !== "undefined"
-      ? [window.screenX, window.screenY + window.innerHeight]
-      : [0, 0];
+    const screenPosition =
+      typeof window !== 'undefined'
+        ? [window.screenX, window.screenY + window.innerHeight]
+        : [0, 0];
 
     const [screenMoveX, screenMoveY] = [
       screenPosition[0] - this.lastScreenPosition[0],
@@ -476,8 +480,8 @@ export class BuddyActor {
       }
 
       if (screenMoveX !== 0) {
-        if (this.mainAnimation?.name !== "stop") {
-          this.setAnimation("stop");
+        if (this.mainAnimation?.name !== 'stop') {
+          this.setAnimation('stop');
         }
         // Somewhat random numbers here to find what felt fun
         this.xVelocity = Math.max(
@@ -491,8 +495,8 @@ export class BuddyActor {
 
     if (this.mainAnimation) {
       // Ensure we are falling or not
-      if (this.mainAnimation.name === "fall" && !this.isFalling()) {
-        this.setAnimation("stop");
+      if (this.mainAnimation.name === 'fall' && !this.isFalling()) {
+        this.setAnimation('stop');
       }
 
       this.mainAnimation.frame++;
@@ -512,7 +516,7 @@ export class BuddyActor {
 
           if (!preventNextAnimation) {
             if (this.static) {
-              this.setAnimation("stop");
+              this.setAnimation('stop');
             } else {
               this.setRandomAnimation();
             }
@@ -551,17 +555,20 @@ export class BuddyActor {
       if (!this.isControlledByUser) {
         this.xVelocity = -this.xVelocity;
         if (!this.hedgehogConfig.fixed_direction) {
-          this.direction = "right";
+          this.direction = 'right';
         }
       }
     }
 
-    if (typeof window !== "undefined" && this.x > window.innerWidth - SPRITE_SIZE) {
+    if (
+      typeof window !== 'undefined' &&
+      this.x > window.innerWidth - SPRITE_SIZE
+    ) {
       this.x = window.innerWidth - SPRITE_SIZE;
       if (!this.isControlledByUser) {
         this.xVelocity = -this.xVelocity;
         if (!this.hedgehogConfig.fixed_direction) {
-          this.direction = "left";
+          this.direction = 'left';
         }
       }
     }
@@ -590,14 +597,14 @@ export class BuddyActor {
 
       this.yVelocity += yDiff * ratio;
       this.xVelocity += xDiff * ratio;
-      this.y = this.y + this.yVelocity;
+      this.y += this.yVelocity;
       if (this.y < 0) {
         this.y = 0;
         this.yVelocity = -this.yVelocity * 0.4;
       }
-      this.x = this.x + this.xVelocity;
+      this.x += this.xVelocity;
       if (!this.hedgehogConfig.fixed_direction) {
-        this.direction = this.xVelocity > 0 ? "right" : "left";
+        this.direction = this.xVelocity > 0 ? 'right' : 'left';
       }
 
       return;
@@ -609,7 +616,7 @@ export class BuddyActor {
     // We decelerate the x velocity if the buddy is stopped
     if (
       !this.isControlledByUser &&
-      this.mainAnimation?.name !== "walk" &&
+      this.mainAnimation?.name !== 'walk' &&
       this.onGround()
     ) {
       this.xVelocity = this.xVelocity * 0.6;
@@ -646,7 +653,7 @@ export class BuddyActor {
       !this.element ||
       this.y <= 0
     ) {
-      return typeof document !== "undefined" ? document.body : (null as any);
+      return typeof document !== 'undefined' ? document.body : (null as any);
     }
 
     const hedgehogBox = elementToBox(this.element);
@@ -670,9 +677,7 @@ export class BuddyActor {
 
     // Only calculate block bounding rects once we need to
     const blocksWithBoxes: [Element, Box][] = Array.from(
-      document.querySelectorAll(
-        ".border, .border-t, .BuddyBuddy"
-      )
+      document.querySelectorAll('.border, .border-t, .BuddyBuddy')
     )
       .filter((x) => x !== this.element)
       .map((block) => [block, elementToBox(block)]);
@@ -697,14 +702,15 @@ export class BuddyActor {
         hedgehogBox.x < box.x + box.width &&
         hedgehogBox.y >= box.y + box.height;
 
-      if (isAboveOrOn) {
-        if (!highestCandidate || box.y > highestCandidate[1].y) {
-          highestCandidate = [block, box];
-        }
+      if (isAboveOrOn && (!highestCandidate || box.y > highestCandidate[1].y)) {
+        highestCandidate = [block, box];
       }
     });
 
-    return highestCandidate?.[0] ?? (typeof document !== "undefined" ? document.body : (null as any));
+    return (
+      highestCandidate?.[0] ??
+      (typeof document !== 'undefined' ? document.body : (null as any))
+    );
   }
 
   private onGround(): boolean {
@@ -734,11 +740,13 @@ export class BuddyActor {
     const y = this.y + SPRITE_SIZE / 2;
     const mouseX = this.lastKnownMousePosition[0];
     // Y coords are inverted
-    const mouseY = (typeof window !== "undefined" ? window.innerHeight : 0) - this.lastKnownMousePosition[1];
+    const mouseY =
+      (typeof window !== 'undefined' ? window.innerHeight : 0) -
+      this.lastKnownMousePosition[1];
 
     return (
       <div
-        className="border rounded-sm bg-white pointer-events-none fixed z-1000 origin-top-left"
+        className="pointer-events-none fixed z-1000 origin-top-left rounded-sm border bg-white"
         // eslint-disable-next-line react/forbid-dom-props
         style={{
           left: x,
@@ -768,13 +776,13 @@ export class BuddyActor {
       Object.values(this.animations())
         .map(
           (x) =>
-            `url(${spriteUrl(this.hedgehogConfig.skin ?? "default", x.img)})`
+            `url(${spriteUrl(this.hedgehogConfig.skin ?? 'default', x.img)})`
         )
-        .join(" ") +
-      " " +
+        .join(' ') +
+      ' ' +
       this.accessories()
         .map((accessory) => `url(${spriteAccessoryUrl(accessory.img)})`)
-        .join(" ");
+        .join(' ');
 
     const imageFilter = this.hedgehogConfig.color
       ? COLOR_TO_FILTER_MAP[this.hedgehogConfig.color]
@@ -790,13 +798,16 @@ export class BuddyActor {
       const onMove = (e: TouchEvent | MouseEvent): void => {
         moved = true;
         this.isDragging = true;
-        this.setAnimation("fall");
+        this.setAnimation('fall');
 
-        const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
-        const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
+        const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+        const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
 
         this.x = clientX - SPRITE_SIZE / 2;
-        this.y = (typeof window !== "undefined" ? window.innerHeight : 0) - clientY - SPRITE_SIZE / 2;
+        this.y =
+          (typeof window !== 'undefined' ? window.innerHeight : 0) -
+          clientY -
+          SPRITE_SIZE / 2;
 
         lastPositions.push([clientX, clientY, Date.now()]);
       };
@@ -841,17 +852,17 @@ export class BuddyActor {
           );
         }
 
-        this.setAnimation("fall");
-        window.removeEventListener("touchmove", onMove);
-        window.removeEventListener("touchend", onEnd);
-        window.removeEventListener("mousemove", onMove);
-        window.removeEventListener("mouseup", onEnd);
+        this.setAnimation('fall');
+        window.removeEventListener('touchmove', onMove);
+        window.removeEventListener('touchend', onEnd);
+        window.removeEventListener('mousemove', onMove);
+        window.removeEventListener('mouseup', onEnd);
       };
 
-      window.addEventListener("touchmove", onMove);
-      window.addEventListener("touchend", onEnd);
-      window.addEventListener("mousemove", onMove);
-      window.addEventListener("mouseup", onEnd);
+      window.addEventListener('touchmove', onMove);
+      window.addEventListener('touchend', onEnd);
+      window.addEventListener('mousemove', onMove);
+      window.addEventListener('mouseup', onEnd);
     };
 
     return (
@@ -859,7 +870,7 @@ export class BuddyActor {
         <div
           ref={(r) => {
             this.element = r;
-            if (r && typeof ref === "function") {
+            if (r && typeof ref === 'function') {
               ref?.(r);
             }
           }}
@@ -872,26 +883,27 @@ export class BuddyActor {
           onClick={this.static ? onClick : undefined}
           // eslint-disable-next-line react/forbid-dom-props
           style={{
-            position: this.static ? "relative" : "fixed",
+            position: this.static ? 'relative' : 'fixed',
             left: this.static ? undefined : this.x,
             bottom: this.static ? undefined : this.y - SHADOW_HEIGHT * 0.5,
-            zIndex: !this.static ? "var(--z-buddy)" : undefined,
-            transition: !(this.isDragging || this.followMouse)
-              ? `all ${1000 / FPS}ms`
-              : undefined,
+            zIndex: this.static ? undefined : 'var(--z-buddy)',
+            transition:
+              this.isDragging || this.followMouse
+                ? undefined
+                : `all ${1000 / FPS}ms`,
           }}
         >
           {this.tooltip && !this.isDragging && (
             <div
               className={clsx(
-                "rounded-sm transition-all absolute -top-10 left-1/2 -translate-x-1/2 pointer-events-none",
-                this.showTooltip ? "opacity-100" : "opacity-0  translate-y-10"
+                '-top-10 -translate-x-1/2 pointer-events-none absolute left-1/2 rounded-sm transition-all',
+                this.showTooltip ? 'opacity-100' : 'translate-y-10 opacity-0'
               )}
               // eslint-disable-next-line react/forbid-dom-props
               style={{
                 // NOTE: Some styles done here to avoid it showing as an interactable element (via border)
-                border: "1px solid var(--color-border-primary)",
-                backgroundColor: "var(--color-bg-surface-primary)",
+                border: '1px solid var(--color-border-primary)',
+                backgroundColor: 'var(--color-bg-surface-primary)',
               }}
             >
               {this.tooltip}
@@ -900,7 +912,7 @@ export class BuddyActor {
           <div
             // eslint-disable-next-line react/forbid-dom-props
             style={{
-              transform: `scaleX(${this.direction === "right" ? 1 : -1})`,
+              transform: `scaleX(${this.direction === 'right' ? 1 : -1})`,
             }}
           >
             {this.mainAnimation ? (
@@ -911,7 +923,7 @@ export class BuddyActor {
                   width: SPRITE_SIZE,
                   height: SPRITE_SIZE,
                   backgroundImage: `url(${spriteUrl(
-                    this.hedgehogConfig.skin ?? "default",
+                    this.hedgehogConfig.skin ?? 'default',
                     this.mainAnimation.spriteInfo.img
                   )})`,
                   backgroundPosition: `-${(this.mainAnimation.frame % X_FRAMES) * SPRITE_SIZE}px -${
@@ -919,7 +931,7 @@ export class BuddyActor {
                     SPRITE_SIZE
                   }px`,
                   backgroundSize:
-                    (SPRITE_SIZE / SPRITE_SIZE) * X_FRAMES * 100 + "%",
+                    (SPRITE_SIZE / SPRITE_SIZE) * X_FRAMES * 100 + '%',
                   filter: imageFilter as any,
                   ...this.mainAnimation.spriteInfo.style,
                 }}
@@ -928,7 +940,7 @@ export class BuddyActor {
 
             {this.accessories().map((accessory, index) => (
               <div
-                className="absolute rendering-pixelated"
+                className="rendering-pixelated absolute"
                 key={index}
                 // eslint-disable-next-line react/forbid-dom-props
                 style={{
@@ -947,7 +959,7 @@ export class BuddyActor {
             ))}
             {this.overlayAnimation ? (
               <div
-                className="absolute rendering-pixelated"
+                className="rendering-pixelated absolute"
                 // eslint-disable-next-line react/forbid-dom-props
                 style={{
                   top: 0,
@@ -966,7 +978,7 @@ export class BuddyActor {
         </div>
         {this.renderRope()}
 
-        {(typeof window !== "undefined" && this.hedgehogConfig.debug) && (
+        {typeof window !== 'undefined' && this.hedgehogConfig.debug && (
           <>
             {[
               this.element && elementToBox(this.element),
@@ -978,10 +990,10 @@ export class BuddyActor {
               return (
                 <div
                   key={i}
-                  className="fixed pointer-events-none"
+                  className="pointer-events-none fixed"
                   // eslint-disable-next-line react/forbid-dom-props
                   style={{
-                    outline: "1px solid red",
+                    outline: '1px solid red',
                     top: window.innerHeight - box.y - box.height,
                     left: box.x,
                     width: box.width,
@@ -998,89 +1010,88 @@ export class BuddyActor {
   }
 }
 
-export const BuddyBuddy = React.forwardRef<
-  HTMLDivElement,
-  BuddyBuddyProps
->(function BuddyBuddy(
-  {
-    onActorLoaded,
-    onClick: _onClick,
-    onPositionChange,
-    hedgehogConfig,
-    tooltip,
-    static: staticMode,
-  },
-  ref
-): React.ReactElement {
-  const actorRef = useRef<BuddyActor | null>(null);
-  if (!actorRef.current) {
-    actorRef.current = new BuddyActor();
-  }
-
-  useEffect(() => {
-    if (actorRef.current) {
-      onActorLoaded?.(actorRef.current);
+export const BuddyBuddy = React.forwardRef<HTMLDivElement, BuddyBuddyProps>(
+  function BuddyBuddy(
+    {
+      onActorLoaded,
+      onClick: _onClick,
+      onPositionChange,
+      hedgehogConfig,
+      tooltip,
+      static: staticMode,
+    },
+    ref
+  ): React.ReactElement {
+    const actorRef = useRef<BuddyActor | null>(null);
+    if (!actorRef.current) {
+      actorRef.current = new BuddyActor();
     }
-    // We intentionally only call this once on mount when the actor is created
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
-  const actor = actorRef.current;
-  const [_, setTimerLoop] = useState(0);
-
-  useEffect(() => {
-    if (hedgehogConfig) {
-      actor.hedgehogConfig = hedgehogConfig;
-      actor.setAnimation(hedgehogConfig.walking_enabled ? "walk" : "stop");
-      if (hedgehogConfig.fixed_direction) {
-        actor.direction = hedgehogConfig.fixed_direction;
+    useEffect(() => {
+      if (actorRef.current) {
+        onActorLoaded?.(actorRef.current);
       }
-    }
-  }, [hedgehogConfig, actor, actor.hedgehogConfig, actor.direction]);
+      // We intentionally only call this once on mount when the actor is created
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
-  useEffect(() => {
-    actor.tooltip = tooltip;
-  }, [tooltip, actor.tooltip]);
+    const actor = actorRef.current;
+    const [_, setTimerLoop] = useState(0);
 
-  useEffect(() => {
-    actor.static = staticMode ?? false;
-  }, [staticMode, actor.static]);
+    useEffect(() => {
+      if (hedgehogConfig) {
+        actor.hedgehogConfig = hedgehogConfig;
+        actor.setAnimation(hedgehogConfig.walking_enabled ? 'walk' : 'stop');
+        if (hedgehogConfig.fixed_direction) {
+          actor.direction = hedgehogConfig.fixed_direction;
+        }
+      }
+    }, [hedgehogConfig, actor, actor.hedgehogConfig, actor.direction]);
 
-  useEffect(() => {
-    let timer: any = null;
+    useEffect(() => {
+      actor.tooltip = tooltip;
+    }, [tooltip, actor.tooltip]);
 
-    const loop = (): void => {
-      actor.update();
-      setTimerLoop((x) => x + 1);
-      timer = setTimeout(loop, 1000 / FPS);
+    useEffect(() => {
+      actor.static = staticMode ?? false;
+    }, [staticMode, actor.static]);
+
+    useEffect(() => {
+      let timer: any = null;
+
+      const loop = (): void => {
+        actor.update();
+        setTimerLoop((x) => x + 1);
+        timer = setTimeout(loop, 1000 / FPS);
+      };
+
+      loop();
+      return () => {
+        clearTimeout(timer);
+      };
+    }, [actor]);
+
+    useEffect(() => {
+      if (actor.isDragging) {
+        document.body.classList.add('select-none');
+      } else {
+        document.body.classList.remove('select-none');
+      }
+
+      return () => document.body.classList.remove('select-none');
+    }, [actor.isDragging]);
+
+    useEffect(() => {
+      onPositionChange?.(actor);
+    }, [actor.x, actor.y, actor.direction, onPositionChange, actor]);
+
+    const onClick = (): void => {
+      !actor.isDragging && _onClick?.(actor);
     };
 
-    loop();
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [actor]);
-
-  useEffect(() => {
-    if (actor.isDragging) {
-      document.body.classList.add("select-none");
-    } else {
-      document.body.classList.remove("select-none");
-    }
-
-    return () => document.body.classList.remove("select-none");
-  }, [actor.isDragging]);
-
-  useEffect(() => {
-    onPositionChange?.(actor);
-  }, [actor.x, actor.y, actor.direction, onPositionChange, actor]);
-
-  const onClick = (): void => {
-    !actor.isDragging && _onClick?.(actor);
-  };
-
-  return actor.render({ onClick, ref });
-});
+    return actor.render({ onClick, ref });
+  }
+);
 
 export function MyBuddyBuddy({
   onActorLoaded,

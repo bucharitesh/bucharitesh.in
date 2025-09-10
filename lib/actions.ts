@@ -1,18 +1,18 @@
-"use server";
+'use server';
 
-import { z } from "zod";
-import { sql } from "@vercel/postgres";
-import { revalidatePath } from "next/cache";
+import { sql } from '@vercel/postgres';
+import { revalidatePath } from 'next/cache';
+import { z } from 'zod';
 
 export async function saveGuestbookEntry(state: unknown, formData: FormData) {
-  const local_entry_id = formData.get("local_entry_id")?.toString();
-  const created_by = formData.get("created_by")?.toString() || "";
-  const signature = formData.get("signature")?.toString() || "";
+  const local_entry_id = formData.get('local_entry_id')?.toString();
+  const created_by = formData.get('created_by')?.toString() || '';
+  const signature = formData.get('signature')?.toString() || '';
   const hasCreatedEntryBefore = formData
-    .get("hasCreatedEntryBefore")
+    .get('hasCreatedEntryBefore')
     ?.toString();
-  const local_created_by_id = formData.get("local_created_by_id")?.toString();
-  const entry = formData.get("entry")?.toString() || "";
+  const local_created_by_id = formData.get('local_created_by_id')?.toString();
+  const entry = formData.get('entry')?.toString() || '';
   const body = entry.slice(0, 500);
 
   await sql`
@@ -20,7 +20,7 @@ export async function saveGuestbookEntry(state: unknown, formData: FormData) {
     VALUES (${created_by}, ${body}, ${new Date().toISOString()}, ${signature}, ${hasCreatedEntryBefore}, ${local_created_by_id}, ${local_entry_id}, false);
   `;
 
-  revalidatePath("/guestbook");
+  revalidatePath('/guestbook');
 }
 
 export async function approveGuestbookEntry(id: string) {
@@ -28,7 +28,7 @@ export async function approveGuestbookEntry(id: string) {
     UPDATE "guestbook" SET approved = true WHERE id = ${id};
   `;
 
-  revalidatePath("/guestbook");
+  revalidatePath('/guestbook');
 }
 
 export async function declineGuestbookEntry(id: string) {
@@ -36,18 +36,18 @@ export async function declineGuestbookEntry(id: string) {
     DELETE FROM "guestbook" WHERE id = ${id};
   `;
 
-  revalidatePath("/guestbook");
+  revalidatePath('/guestbook');
 }
 
 const GuestbookEntrySchema = z.object({
   created_by: z
     .string()
-    .min(1, "pls fill out all fields")
-    .max(50, "ur name is too long"),
+    .min(1, 'pls fill out all fields')
+    .max(50, 'ur name is too long'),
   entry: z
     .string()
-    .min(1, "pls fill out all fields")
-    .max(200, "love ur long entry, but can u make it shorter?"),
+    .min(1, 'pls fill out all fields')
+    .max(200, 'love ur long entry, but can u make it shorter?'),
 
   signature: z.string().optional(),
   local_entry_id: z.string().optional(),
@@ -71,7 +71,7 @@ export async function validateAndSaveEntry(
       return { success: true };
     }
 
-    await saveGuestbookEntry("", formData);
+    await saveGuestbookEntry('', formData);
 
     // sendEmail(formData);
 
@@ -82,7 +82,7 @@ export async function validateAndSaveEntry(
     }
     return {
       success: false,
-      errors: { form: ["An unexpected error occurred"] },
+      errors: { form: ['An unexpected error occurred'] },
     };
   }
 }

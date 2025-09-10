@@ -1,10 +1,10 @@
-import { resend } from "./client";
-import { RESEND_AUDIENCES } from "./constants";
+import { resend } from './client';
+import { RESEND_AUDIENCES } from './constants';
 
 export async function subscribe({
   email,
   name,
-  audience = "bucharitesh.in",
+  audience = 'bucharitesh.in',
 }: {
   email: string;
   name?: string | null;
@@ -12,12 +12,12 @@ export async function subscribe({
 }) {
   if (!process.env.RESEND_API_KEY) {
     console.error(
-      "No RESEND_API_KEY is set in the environment variables. Skipping.",
+      'No RESEND_API_KEY is set in the environment variables. Skipping.'
     );
     return;
   }
 
-  if (email.endsWith("@dub-internal-test.com")) {
+  if (email.endsWith('@dub-internal-test.com')) {
     // don't subscribe internal test emails
     return;
   }
@@ -27,8 +27,8 @@ export async function subscribe({
   return await resend.contacts.create({
     email,
     ...(name && {
-      firstName: name.split(" ")[0],
-      lastName: name.split(" ").slice(1).join(" "),
+      firstName: name.split(' ')[0],
+      lastName: name.split(' ').slice(1).join(' '),
     }),
     audienceId,
   });

@@ -1,15 +1,15 @@
+import { USER } from '@/config/user';
 import {
   Body,
   Container,
   Head,
   Html,
-  Preview,
-  Tailwind,
-  Section,
   Img,
-} from "@react-email/components";
-import Footer from "./footer";
-import { USER } from "@/config/user";
+  Preview,
+  Section,
+  Tailwind,
+} from '@react-email/components';
+import Footer from './footer';
 
 export default function EmailBody({
   email,
@@ -26,12 +26,12 @@ export default function EmailBody({
       <Preview>Welcome to Bucharitesh.in</Preview>
       <Tailwind>
         <Body className="mx-auto my-auto bg-white font-sans text-white">
-          <Container className="relative mx-auto my-10 overflow-hidden bg-[#1c1917] max-w-[500px] rounded-sm border border-solid border-gray-200 px-10 py-5 z-20">
+          <Container className="relative z-20 mx-auto my-10 max-w-[500px] overflow-hidden rounded-sm border border-gray-200 border-solid bg-[#1c1917] px-10 py-5">
             {/* <div className="pointer-events-none h-full w-full top-0 left-0 absolute overflow-hidden -z-10">
               <div className="h-full bg-[url('https://res.cloudinary.com/bucha/image/upload/h_500/bg_gradient_fmgwrc')] bg-top bg-no-repeat bg-opacity-[0.3]" />
             </div> */}
 
-            <Section className="mt-8 z-50">
+            <Section className="z-50 mt-8">
               <Img
                 src={USER.image.profile}
                 height="60"

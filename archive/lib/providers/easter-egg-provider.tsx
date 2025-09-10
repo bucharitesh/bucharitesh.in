@@ -1,18 +1,15 @@
-import React, {
+// import useSound from "use-sound";
+import { Palette } from 'lucide-react';
+import { AnimatePresence, motion } from 'motion/react';
+import {
+  type ReactNode,
   createContext,
   useContext,
-  useState,
   useEffect,
-  ReactNode,
-} from "react";
-import {
-  HiCommandLine,
-  HiDocumentText,
-} from "react-icons/hi2";
-import { IconType } from "react-icons";
-import { AnimatePresence, motion } from "motion/react";
-// import useSound from "use-sound";
-import { Palette } from "lucide-react";
+  useState,
+} from 'react';
+import type { IconType } from 'react-icons';
+import { HiCommandLine } from 'react-icons/hi2';
 
 // Types remain the same as before
 interface Tier {
@@ -55,7 +52,10 @@ interface EasterEggContextType {
 }
 
 // Toast component
-const Toast = ({ achievement, onClose }: { achievement: EasterEgg; onClose: () => void }) => {
+const Toast = ({
+  achievement,
+  onClose,
+}: { achievement: EasterEgg; onClose: () => void }) => {
   // const [playSound] = useSound("/assets/achievement.mp3", { volume: 0.3 });
 
   // useEffect(() => {
@@ -67,23 +67,29 @@ const Toast = ({ achievement, onClose }: { achievement: EasterEgg; onClose: () =
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
-      className="absolute bottom-6 w-full max-w-xs right-6 flex justify-center md:justify-end items-center z-50"
+      className="absolute right-6 bottom-6 z-50 flex w-full max-w-xs items-center justify-center md:justify-end"
     >
-      <div className="flex items-center gap-3 px-4 py-3 rounded-lg w-full border bg-neutral-100/90 text-black dark:bg-neutral-800/90 dark:text-white backdrop-blur-xl border-neutral-200 dark:border-neutral-800 shadow-2xl">
-        <div className="p-2 rounded-lg bg-white/10 dark:bg-black/10">
-          {achievement.icon && <achievement.icon className="w-4 h-4" />}
+      <div className="flex w-full items-center gap-3 rounded-lg border border-neutral-200 bg-neutral-100/90 px-4 py-3 text-black shadow-2xl backdrop-blur-xl dark:border-neutral-800 dark:bg-neutral-800/90 dark:text-white">
+        <div className="rounded-lg bg-white/10 p-2 dark:bg-black/10">
+          {achievement.icon && <achievement.icon className="h-4 w-4" />}
         </div>
         <div className="flex flex-col">
-          <span className="text-sm font-medium tracking-tight">{achievement.name}</span>
-          <span className="text-xs text-gray-800 dark:text-gray-400">{achievement.description}</span>
-          <span className="text-xs text-green-600 dark:text-green-400 mt-0.5">+{achievement.points} points</span>
+          <span className="font-medium text-sm tracking-tight">
+            {achievement.name}
+          </span>
+          <span className="text-gray-800 text-xs dark:text-gray-400">
+            {achievement.description}
+          </span>
+          <span className="mt-0.5 text-green-600 text-xs dark:text-green-400">
+            +{achievement.points} points
+          </span>
         </div>
       </div>
       <button
         onClick={onClose}
-        className="absolute top-2 right-2 p-1 rounded-full dark:hover:bg-white/10 hover:bg-black/10 transition-colors"
+        className="absolute top-2 right-2 rounded-full p-1 transition-colors hover:bg-black/10 dark:hover:bg-white/10"
       >
-        <svg className="w-3 h-3 opacity-50" viewBox="0 0 24 24">
+        <svg className="h-3 w-3 opacity-50" viewBox="0 0 24 24">
           <path
             fill="currentColor"
             d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
@@ -95,15 +101,15 @@ const Toast = ({ achievement, onClose }: { achievement: EasterEgg; onClose: () =
 };
 
 const TIERS: Record<string, Tier> = {
-  EXPLORER: { name: "Explorer", multiplier: 1, minPoints: 0 },
-  DISCOVERER: { name: "Discoverer", multiplier: 1.5, minPoints: 50 },
-  MASTER: { name: "Master", multiplier: 2, minPoints: 100 },
+  EXPLORER: { name: 'Explorer', multiplier: 1, minPoints: 0 },
+  DISCOVERER: { name: 'Discoverer', multiplier: 1.5, minPoints: 50 },
+  MASTER: { name: 'Master', multiplier: 2, minPoints: 100 },
 };
 
 export const easterEggs: Record<string, EasterEgg> = {
   THEME_TOGGLE: {
-    id: "THEME_TOGGLE",
-    name: "Theme warrior",
+    id: 'THEME_TOGGLE',
+    name: 'Theme warrior',
     description: 'Toggled the theme',
     points: 15,
     tier: TIERS.EXPLORER,
@@ -126,9 +132,9 @@ export const easterEggs: Record<string, EasterEgg> = {
   //   icon: HiDocumentText,
   // },
   CONSOLE_MASTER: {
-    id: "CONSOLE_MASTER",
-    name: "Console Explorer",
-    description: "Found the secret console command",
+    id: 'CONSOLE_MASTER',
+    name: 'Console Explorer',
+    description: 'Found the secret console command',
     points: 25,
     tier: TIERS.DISCOVERER,
     icon: HiCommandLine,
@@ -147,12 +153,16 @@ const canDiscoverEgg = (
   return easterEggs[eggId] && !discoveredEggs[eggId];
 };
 
-const EasterEggContext = createContext<EasterEggContextType>({} as EasterEggContextType);
+const EasterEggContext = createContext<EasterEggContextType>(
+  {} as EasterEggContextType
+);
 
 export function EasterEggProvider({ children }: { children: ReactNode }) {
-  const [discoveredEggs, setDiscoveredEggs] = useState<Record<string, DiscoveredEgg>>(() => {
-    if (typeof window !== "undefined") {
-      const saved = localStorage.getItem("discoveredEggs");
+  const [discoveredEggs, setDiscoveredEggs] = useState<
+    Record<string, DiscoveredEgg>
+  >(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('discoveredEggs');
       return saved ? JSON.parse(saved) : {};
     }
     return {};
@@ -214,8 +224,8 @@ export function EasterEggProvider({ children }: { children: ReactNode }) {
   };
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("discoveredEggs", JSON.stringify(discoveredEggs));
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('discoveredEggs', JSON.stringify(discoveredEggs));
     }
   }, [discoveredEggs]);
 
@@ -224,8 +234,8 @@ export function EasterEggProvider({ children }: { children: ReactNode }) {
     setTotalPoints(0);
     setCurrentTier(TIERS.EXPLORER);
     setActiveToasts([]);
-    if (typeof window !== "undefined") {
-      localStorage.removeItem("discoveredEggs");
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('discoveredEggs');
     }
   };
 
@@ -247,9 +257,11 @@ export function EasterEggProvider({ children }: { children: ReactNode }) {
           <Toast
             key={achievement.id}
             achievement={achievement}
-            onClose={() => setActiveToasts((prev) => 
-              prev.filter((toast) => toast.id !== achievement.id)
-            )}
+            onClose={() =>
+              setActiveToasts((prev) =>
+                prev.filter((toast) => toast.id !== achievement.id)
+              )
+            }
           />
         ))}
       </AnimatePresence>

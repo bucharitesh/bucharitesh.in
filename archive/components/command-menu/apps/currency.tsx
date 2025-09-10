@@ -1,7 +1,7 @@
+import { useEffect, useMemo, useState } from 'react';
 // apps/currency/CurrencyCommand.tsx
-import { HiCurrencyDollar } from "react-icons/hi2";
-import { CommandGroup } from "../types";
-import { useEffect, useState, useMemo } from "react";
+import { HiCurrencyDollar } from 'react-icons/hi2';
+import type { CommandGroup } from '../types';
 
 interface CurrencyCommandProps {
   searchQuery: string;
@@ -21,12 +21,12 @@ export const useCurrencyCommand = ({
     const fetchRates = async () => {
       try {
         const response = await fetch(
-          "https://api.exchangerate-api.com/v4/latest/USD",
+          'https://api.exchangerate-api.com/v4/latest/USD'
         );
         const data = await response.json();
         setExchangeRates(data.rates);
       } catch (error) {
-        console.error("Error fetching exchange rates:", error);
+        console.error('Error fetching exchange rates:', error);
       }
     };
     fetchRates();
@@ -44,12 +44,12 @@ export const useCurrencyCommand = ({
       const toRate = exchangeRates[toCurrency.toUpperCase()];
 
       if (fromRate && toRate) {
-        const inUSD = parseFloat(amount) / fromRate;
+        const inUSD = Number.parseFloat(amount) / fromRate;
         const result = inUSD * toRate;
 
         return [
           {
-            id: "currency-conversion",
+            id: 'currency-conversion',
             name: `${amount} ${fromCurrency.toUpperCase()} = ${result.toFixed(2)} ${toCurrency.toUpperCase()}`,
             description: `Currency conversion (${new Date().toLocaleDateString()})`,
             icon: HiCurrencyDollar,
@@ -65,11 +65,11 @@ export const useCurrencyCommand = ({
 
   const commands = useMemo(() => {
     const baseCommand = {
-      id: "currency",
-      name: "Convert currency",
-      description: "Try: 100 usd to eur",
+      id: 'currency',
+      name: 'Convert currency',
+      description: 'Try: 100 usd to eur',
       icon: HiCurrencyDollar,
-      action: () => setSearchQuery("100 usd to eur"),
+      action: () => setSearchQuery('100 usd to eur'),
     };
 
     const conversionResults = parseCurrencyQuery(searchQuery);
@@ -77,7 +77,7 @@ export const useCurrencyCommand = ({
   }, [searchQuery, setSearchQuery, exchangeRates]);
 
   return {
-    name: "Currency",
+    name: 'Currency',
     commands,
   };
 };

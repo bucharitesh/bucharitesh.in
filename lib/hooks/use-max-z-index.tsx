@@ -1,18 +1,18 @@
-"use client";
+'use client';
 
-import { useState, useCallback } from "react";
+import { useCallback, useState } from 'react';
 
 const useMaxZIndex = () => {
   const [zIndex, setZIndex] = useState(0);
 
   const updateZIndex = useCallback(() => {
-    const els = document.querySelectorAll(".drag-elements");
+    const els = document.querySelectorAll('.drag-elements');
 
     let maxZIndex = Number.NEGATIVE_INFINITY;
-    for (let i = 0; i < els.length; i++) {
+    for (let i = 0; i < els.length; i += 1) {
       const el = els[i];
       const zIndex = Number.parseInt(
-        window.getComputedStyle(el).getPropertyValue("z-index")
+        window.getComputedStyle(el).getPropertyValue('z-index')
       );
 
       if (!Number.isNaN(zIndex) && zIndex > maxZIndex) {

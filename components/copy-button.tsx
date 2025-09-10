@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import { CheckIcon, CircleXIcon, CopyIcon, Link2 } from "lucide-react";
-import React, { useOptimistic, useTransition } from "react";
+import { CheckIcon, CircleXIcon, CopyIcon, Link2 } from 'lucide-react';
+import { useOptimistic, useTransition } from 'react';
 
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils';
 
-import { Button } from "./ui/button";
-import { TooltipWrapper } from "./ui/tooltip";
+import { Button } from './ui/button';
+import { TooltipWrapper } from './ui/tooltip';
 
 export function CopyButton({
   value,
@@ -16,7 +16,7 @@ export function CopyButton({
   value: string;
   className?: string;
 }) {
-  const [state, setState] = useOptimistic<"idle" | "copied" | "failed">("idle");
+  const [state, setState] = useOptimistic<'idle' | 'copied' | 'failed'>('idle');
   const [, startTransition] = useTransition();
 
   return (
@@ -24,25 +24,25 @@ export function CopyButton({
       <Button
         size="icon"
         variant="secondary"
-        className={cn("z-10 size-6 rounded-md", className)}
+        className={cn('z-10 size-6 rounded-md', className)}
         onClick={() => {
           startTransition(async () => {
             try {
               await navigator.clipboard.writeText(value);
-              setState("copied");
+              setState('copied');
             } catch {
-              setState("failed");
+              setState('failed');
             }
             await new Promise((resolve) => setTimeout(resolve, 2000));
           });
         }}
         {...props}
       >
-        {state === "idle" ? (
+        {state === 'idle' ? (
           <CopyIcon className="size-3" />
-        ) : state === "copied" ? (
+        ) : state === 'copied' ? (
           <CheckIcon className="size-3" />
-        ) : state === "failed" ? (
+        ) : state === 'failed' ? (
           <CircleXIcon className="size-3" />
         ) : null}
         <span className="sr-only">Copy</span>
@@ -59,7 +59,7 @@ export function CopyLink({
   value: string;
   className?: string;
 }) {
-  const [state, setState] = useOptimistic<"idle" | "copied" | "failed">("idle");
+  const [state, setState] = useOptimistic<'idle' | 'copied' | 'failed'>('idle');
   const [, startTransition] = useTransition();
 
   return (
@@ -67,25 +67,25 @@ export function CopyLink({
       <Button
         size="icon"
         variant="outline"
-        className={cn("z-10 px-2 py-1 size-8 rounded-full", className)}
+        className={cn('z-10 size-8 rounded-full px-2 py-1', className)}
         onClick={() => {
           startTransition(async () => {
             try {
               await navigator.clipboard.writeText(value);
-              setState("copied");
+              setState('copied');
             } catch {
-              setState("failed");
+              setState('failed');
             }
             await new Promise((resolve) => setTimeout(resolve, 2000));
           });
         }}
         {...props}
       >
-        {state === "idle" ? (
+        {state === 'idle' ? (
           <Link2 className="size-4" />
-        ) : state === "copied" ? (
+        ) : state === 'copied' ? (
           <CheckIcon className="size-4" />
-        ) : state === "failed" ? (
+        ) : state === 'failed' ? (
           <CircleXIcon className="size-4" />
         ) : null}
         <span className="sr-only">Copy</span>

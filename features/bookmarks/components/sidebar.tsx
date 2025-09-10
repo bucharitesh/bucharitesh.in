@@ -1,28 +1,43 @@
-'use client'
+'use client';
 
-import { RadioIcon } from 'lucide-react'
-import dynamic from 'next/dynamic'
-import { usePathname, useRouter } from 'next/navigation'
-import { useMemo } from 'react'
+import { RadioIcon } from 'lucide-react';
+import dynamic from 'next/dynamic';
+import { usePathname } from 'next/navigation';
+import { useMemo } from 'react';
 
-import { LoadingSpinner } from '@/components/ui/loading'
-import { ScrollArea } from '@/components/ui/scroll-area'
-import { Button } from '@/components/ui/button'
+import { Button } from '@/components/ui/button';
+import { LoadingSpinner } from '@/components/ui/loading';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 const SubmitBookmarkDialog = dynamic(
-  () => import('@/features/bookmarks/components/submit-bookmark/dialog').then((mod) => mod.SubmitBookmarkDialog),
+  () =>
+    import('@/features/bookmarks/components/submit-bookmark/dialog').then(
+      (mod) => mod.SubmitBookmarkDialog
+    ),
   {
     loading: () => <LoadingSpinner />,
-    ssr: false
+    ssr: false,
   }
-)
+);
 
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib/utils';
 
-export const SideMenu = ({ children, title, bookmarks = [], isInner } : { children: React.ReactNode, title: string, bookmarks: any[], isInner: boolean }) => {
-  const pathname = usePathname()
-  const isBookmarksPath = pathname.startsWith('/bookmarks')
-  const currentBookmark = bookmarks.find((bookmark : any) => `/bookmarks/${bookmark.slug}` === pathname)
+export const SideMenu = ({
+  children,
+  title,
+  bookmarks = [],
+  isInner,
+}: {
+  children: React.ReactNode;
+  title: string;
+  bookmarks: any[];
+  isInner: boolean;
+}) => {
+  const pathname = usePathname();
+  const isBookmarksPath = pathname.startsWith('/bookmarks');
+  const currentBookmark = bookmarks.find(
+    (bookmark: any) => `/bookmarks/${bookmark.slug}` === pathname
+  );
 
   const memoizedScrollArea = useMemo(
     () => (
@@ -35,9 +50,11 @@ export const SideMenu = ({ children, title, bookmarks = [], isInner } : { childr
         {title && (
           <div className="sticky top-0 z-10 border-b bg-background px-5 py-3">
             <div className="flex items-center justify-between">
-              <span className="text-sm font-semibold tracking-tight">{title}</span>
+              <span className="font-semibold text-sm tracking-tight">
+                {title}
+              </span>
               <div className="flex items-center gap-2">
-                {(isBookmarksPath) && (
+                {isBookmarksPath && (
                   <Button variant="outline" size="sm" asChild>
                     <a
                       href={'/bookmarks/feed.xml'}
@@ -50,7 +67,12 @@ export const SideMenu = ({ children, title, bookmarks = [], isInner } : { childr
                     </a>
                   </Button>
                 )}
-                {isBookmarksPath && <SubmitBookmarkDialog bookmarks={bookmarks} currentBookmark={currentBookmark} />}
+                {isBookmarksPath && (
+                  <SubmitBookmarkDialog
+                    bookmarks={bookmarks}
+                    currentBookmark={currentBookmark}
+                  />
+                )}
               </div>
             </div>
           </div>
@@ -59,7 +81,7 @@ export const SideMenu = ({ children, title, bookmarks = [], isInner } : { childr
       </ScrollArea>
     ),
     [isInner, title, isBookmarksPath, bookmarks, currentBookmark, children]
-  )
+  );
 
-  return memoizedScrollArea
-}
+  return memoizedScrollArea;
+};

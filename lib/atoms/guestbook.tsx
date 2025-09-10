@@ -1,10 +1,8 @@
-import { atom } from "jotai";
-import { atomWithStorage } from "jotai/utils";
+import { atom } from 'jotai';
+import { atomWithStorage } from 'jotai/utils';
 
 export type Entry = {
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   initialX?: any;
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   initialY?: any;
   id: string;
   created_by: string;
@@ -17,15 +15,15 @@ export type Entry = {
 
 export const serverEntriesAtom = atom<Entry[]>([]);
 export const localEntriesAtom = atomWithStorage<Entry[]>(
-  "localGuestbookEntries",
+  'localGuestbookEntries',
   []
 );
 
 export const hasCreatedEntryBeforeAtom = atomWithStorage(
-  "hasCreatedEntryBefore",
+  'hasCreatedEntryBefore',
   false
 );
-export const localCreatedByIdAtom = atomWithStorage("localCreatedById", "");
+export const localCreatedByIdAtom = atomWithStorage('localCreatedById', '');
 
 export const allEntriesAtom = atom((get) => {
   const serverEntries = get(serverEntriesAtom);

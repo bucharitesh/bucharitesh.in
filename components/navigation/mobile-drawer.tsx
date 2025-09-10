@@ -1,25 +1,21 @@
-import {
-  ArrowUpRightIcon,
-  AtSignIcon,
-  CommandIcon,
-} from "lucide-react";
+import { ArrowUpRightIcon, AtSignIcon, CommandIcon } from 'lucide-react';
 
-import { Button } from "@/components/ui/button";
-import { 
-  Drawer, 
-  DrawerContent, 
-  DrawerDescription, 
-  DrawerTitle, 
-  DrawerTrigger 
-} from "@/components/ui/drawer";
-import { VisuallyHidden } from "@/components/ui/visually-hidden";
-import Link from "next/link";
-import { DockConfig } from "@/lib/config";
-import { usePathname } from "next/navigation";
-import { memo, useState } from "react";
-import { cn } from "@/lib/utils";
-import { useMounted } from "@/lib/hooks/use-mounted";
-import { USER } from "@/config/user";
+import { Button } from '@/components/ui/button';
+import {
+  Drawer,
+  DrawerContent,
+  DrawerDescription,
+  DrawerTitle,
+  DrawerTrigger,
+} from '@/components/ui/drawer';
+import { VisuallyHidden } from '@/components/ui/visually-hidden';
+import { USER } from '@/config/user';
+import { DockConfig } from '@/lib/config';
+import { useMounted } from '@/lib/hooks/use-mounted';
+import { cn } from '@/lib/utils';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { memo, useState } from 'react';
 
 export function MobileDrawer() {
   const [open, setOpen] = useState(false);
@@ -51,7 +47,7 @@ export function MobileDrawer() {
           </DrawerDescription>
         </VisuallyHidden>
         <div className="overflow-y-auto p-4">
-          <div className="flex w-full flex-col text-sm space-y-4">
+          <div className="flex w-full flex-col space-y-4 text-sm">
             <div className="flex flex-col gap-4">
               <Link
                 href="/"
@@ -87,9 +83,9 @@ export function MobileDrawer() {
                 ))}
               </div>
             </div>
-            <hr className="dark:border-neutral-800 border-neutral-200" />
+            <hr className="border-neutral-200 dark:border-neutral-800" />
             <div className="flex flex-col gap-2 text-sm">
-              <span className="px-2 text-xs font-medium leading-relaxed text-neutral-600 dark:text-neutral-400">
+              <span className="px-2 font-medium text-neutral-600 text-xs leading-relaxed dark:text-neutral-400">
                 Social
               </span>
               <div className="flex flex-col gap-1">
@@ -115,7 +111,7 @@ export const NavigationLink = memo(({ href, label, icon, onClose }: any) => {
   const pathname = usePathname();
   const iconCmp = icon ?? <AtSignIcon size={16} />;
 
-  const isInternal = href.startsWith("/");
+  const isInternal = href.startsWith('/');
   if (!isInternal) {
     return (
       <Link
@@ -137,9 +133,9 @@ export const NavigationLink = memo(({ href, label, icon, onClose }: any) => {
 
   let isActive = false;
   if (pathname?.length > 0) {
-    const splittedPathname = pathname.split("/");
-    const currentPathname = splittedPathname[1] ?? "";
-    isActive = currentPathname === href.split("/")[1];
+    const splittedPathname = pathname.split('/');
+    const currentPathname = splittedPathname[1] ?? '';
+    isActive = currentPathname === href.split('/')[1];
   }
 
   return (
@@ -147,10 +143,10 @@ export const NavigationLink = memo(({ href, label, icon, onClose }: any) => {
       key={href}
       href={href}
       className={cn(
-        "group flex items-center justify-between rounded-lg p-2",
+        'group flex items-center justify-between rounded-lg p-2',
         isActive
-          ? "bg-black text-white dark:bg-neutral-800"
-          : "hover:bg-neutral-200 dark:hover:bg-neutral-800",
+          ? 'bg-black text-white dark:bg-neutral-800'
+          : 'hover:bg-neutral-200 dark:hover:bg-neutral-800'
       )}
       onClick={onClose}
     >
@@ -158,8 +154,8 @@ export const NavigationLink = memo(({ href, label, icon, onClose }: any) => {
         {iconCmp}
         <span
           className={cn(
-            "font-medium",
-            isActive && "text-white dark:text-neutral-400",
+            'font-medium',
+            isActive && 'text-white dark:text-neutral-400'
           )}
         >
           {label}

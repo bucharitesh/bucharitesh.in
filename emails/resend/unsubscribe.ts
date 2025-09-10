@@ -1,16 +1,16 @@
-import { resend } from "./client";
-import { RESEND_AUDIENCES } from "./constants";
+import { resend } from './client';
+import { RESEND_AUDIENCES } from './constants';
 
 export async function unsubscribe({
   email,
-  audience = "bucharitesh.in",
+  audience = 'bucharitesh.in',
 }: {
   email: string;
   audience?: keyof typeof RESEND_AUDIENCES;
 }) {
   if (!process.env.RESEND_API_KEY) {
     console.error(
-      "No RESEND_API_KEY is set in the environment variables. Skipping.",
+      'No RESEND_API_KEY is set in the environment variables. Skipping.'
     );
     return;
   }

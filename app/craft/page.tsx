@@ -1,15 +1,15 @@
-import { Metadata } from "next";
-import { MasonryGrid } from "@/components/masonary-grid";
-import { Card } from "./page-client";
-import { FloatingHeader } from "@/components/navigation/floating-header";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { getAllPosts } from "@/features/craft/data/posts";
+import { MasonryGrid } from '@/components/masonary-grid';
+import { FloatingHeader } from '@/components/navigation/floating-header';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { getAllPosts } from '@/features/craft/data/posts';
+import type { Metadata } from 'next';
+import { Card } from './page-client';
 
 export const metadata: Metadata = {
-  title: "Craft",
+  title: 'Craft',
   description: "A collection of craft that I've written.",
   alternates: {
-    canonical: "/craft",
+    canonical: '/craft',
   },
 };
 
@@ -30,13 +30,17 @@ export default async function Page() {
           <Card
             key={`${item.metadata.title}-${index}`}
             title={item.metadata.title}
-            date={new Date(item.metadata.date).toLocaleDateString("en-US", {
-              month: "long",
-              year: "numeric",
+            date={new Date(item.metadata.date).toLocaleDateString('en-US', {
+              month: 'long',
+              year: 'numeric',
             })}
-            href={item.metadata.href ? item.metadata.href : `/craft/${item.slug}`}
-            src={item.metadata.video ? item.metadata.video : item.metadata.image}
-            type={item.metadata.video ? "video" : "image"}
+            href={
+              item.metadata.href ? item.metadata.href : `/craft/${item.slug}`
+            }
+            src={
+              item.metadata.video ? item.metadata.video : item.metadata.image
+            }
+            type={item.metadata.video ? 'video' : 'image'}
             blurImage={item.metadata.blurImage}
             craft_type={item.metadata.type}
             theme={item.metadata.theme}

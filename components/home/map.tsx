@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
-import { useWindowSize } from "@/lib/hooks";
+import { useWindowSize } from '@/lib/hooks';
+import { AnimatePresence, motion } from 'motion/react';
+import { useEffect, useState } from 'react';
 
 // Core configs
 const WEATHER_CYCLE_DURATION = 10000;
@@ -12,10 +12,10 @@ const INTENSITY_INTERVAL = 100;
 // Utils
 const getRandomDirection = () => {
   const directions = [
-    { start: "left", end: "right" },
-    { start: "right", end: "left" },
-    { start: "top", end: "bottom" },
-    { start: "bottom", end: "top" },
+    { start: 'left', end: 'right' },
+    { start: 'right', end: 'left' },
+    { start: 'top', end: 'bottom' },
+    { start: 'bottom', end: 'top' },
   ];
   return directions[Math.floor(Math.random() * directions.length)];
 };
@@ -28,7 +28,7 @@ const Cloud = ({ delay = 0 }) => (
     height="100%"
     alt=""
     draggable="false"
-    className="absolute opacity-75 blur-xs z-18"
+    className="absolute z-18 opacity-75 blur-xs"
     initial={{ x: -350, y: -350 }}
     animate={{
       x: [-350, 350, 600, -400, -350],
@@ -37,8 +37,8 @@ const Cloud = ({ delay = 0 }) => (
     transition={{
       duration: 120,
       delay,
-      repeat: Infinity,
-      ease: "linear",
+      repeat: Number.POSITIVE_INFINITY,
+      ease: 'linear',
     }}
   />
 );
@@ -58,26 +58,36 @@ const Plane = ({ delay = 0 }) => {
     let angle = 0;
 
     switch (direction.start) {
-      case "left":
+      case 'left': {
         start = { x: width / 2, y: 0 };
         end = { x: width, y: height };
         angle = 150;
         break;
-      case "right":
+      }
+      case 'right': {
         start = { x: width, y: height };
         end = { x: 0, y: 0 };
         angle = -45;
         break;
-      case "top":
+      }
+      case 'top': {
         start = { x: width / 2, y: height / 2 };
         end = { x: width, y: height };
         angle = 0;
         break;
-      case "bottom":
+      }
+      case 'bottom': {
         start = { x: width, y: height };
         end = { x: width / 2, y: 0 };
         angle = -30;
         break;
+      }
+      default: {
+        start = { x: 0, y: 0 };
+        end = { x: 0, y: 0 };
+        angle = 0;
+        break;
+      }
     }
 
     setMovement({ start, end, angle });
@@ -101,8 +111,8 @@ const Plane = ({ delay = 0 }) => {
         transition={{
           duration: 10,
           delay,
-          repeat: Infinity,
-          ease: "linear",
+          repeat: Number.POSITIVE_INFINITY,
+          ease: 'linear',
         }}
       />
       <motion.img
@@ -111,7 +121,7 @@ const Plane = ({ delay = 0 }) => {
         height={24}
         alt=""
         draggable="false"
-        className="absolute opacity-30 z-19"
+        className="absolute z-19 opacity-30"
         initial={{
           x: movement.start.x + 20,
           y: movement.start.y + 20,
@@ -124,8 +134,8 @@ const Plane = ({ delay = 0 }) => {
         transition={{
           duration: 10,
           delay,
-          repeat: Infinity,
-          ease: "linear",
+          repeat: Number.POSITIVE_INFINITY,
+          ease: 'linear',
         }}
       />
     </motion.div>
@@ -136,7 +146,7 @@ const Plane = ({ delay = 0 }) => {
 const SunIcon = () => (
   <motion.svg
     viewBox="0 0 24 24"
-    className="w-4 h-4"
+    className="h-4 w-4"
     fill="none"
     stroke="currentColor"
     strokeWidth="2"
@@ -147,9 +157,13 @@ const SunIcon = () => (
       r="4"
       initial={{ scale: 0.8 }}
       animate={{ scale: [0.8, 1, 0.8] }}
-      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+      transition={{
+        duration: 3,
+        repeat: Number.POSITIVE_INFINITY,
+        ease: 'easeInOut',
+      }}
     />
-    {[...Array(8)].map((_, i) => (
+    {[...new Array(8)].map((_, i) => (
       <motion.line
         key={i}
         x1="12"
@@ -160,11 +174,11 @@ const SunIcon = () => (
         animate={{ opacity: [0.4, 1, 0.4] }}
         transition={{
           duration: 2,
-          repeat: Infinity,
-          ease: "easeInOut",
+          repeat: Number.POSITIVE_INFINITY,
+          ease: 'easeInOut',
           delay: i * 0.2,
         }}
-        style={{ transformOrigin: "center", transform: `rotate(${i * 45}deg)` }}
+        style={{ transformOrigin: 'center', transform: `rotate(${i * 45}deg)` }}
       />
     ))}
   </motion.svg>
@@ -173,7 +187,7 @@ const SunIcon = () => (
 const MoonIcon = () => (
   <motion.svg
     viewBox="0 0 24 24"
-    className="w-4 h-4"
+    className="h-4 w-4"
     fill="none"
     stroke="currentColor"
     strokeWidth="2"
@@ -182,7 +196,11 @@ const MoonIcon = () => (
       d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
       initial={{ rotate: -20 }}
       animate={{ rotate: [-20, 0, -20] }}
-      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+      transition={{
+        duration: 4,
+        repeat: Number.POSITIVE_INFINITY,
+        ease: 'easeInOut',
+      }}
     />
   </motion.svg>
 );
@@ -190,7 +208,7 @@ const MoonIcon = () => (
 const RainIcon = () => (
   <motion.svg
     viewBox="0 0 24 24"
-    className="w-4 h-4"
+    className="h-4 w-4"
     fill="none"
     stroke="currentColor"
     strokeWidth="2"
@@ -199,9 +217,13 @@ const RainIcon = () => (
       d="M3 13.6C3 13.6 7 13.6 7 9.6C7 6.6 9.6 4 12.6 4C15.6 4 18.2 6.6 18.2 9.6C18.2 13.6 22.2 13.6 22.2 13.6"
       initial={{ pathLength: 0 }}
       animate={{ pathLength: 1 }}
-      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+      transition={{
+        duration: 2,
+        repeat: Number.POSITIVE_INFINITY,
+        ease: 'easeInOut',
+      }}
     />
-    {[...Array(3)].map((_, i) => (
+    {[...new Array(3)].map((_, i) => (
       <motion.line
         key={i}
         x1={8 + i * 6}
@@ -212,8 +234,8 @@ const RainIcon = () => (
         animate={{ y1: [16, 16], y2: [16, 20] }}
         transition={{
           duration: 1,
-          repeat: Infinity,
-          ease: "easeOut",
+          repeat: Number.POSITIVE_INFINITY,
+          ease: 'easeOut',
           delay: i * 0.2,
         }}
       />
@@ -241,49 +263,56 @@ const RainDrop = ({ intensity }: { intensity: number }) => {
       className="absolute bg-blue-400"
       style={{ width, height, left, opacity: intensity * 0.5 }}
       initial={{ y: -20 }}
-      animate={{ y: "120vh" }}
+      animate={{ y: '120vh' }}
       transition={{
         duration: 0.7,
-        repeat: Infinity,
-        ease: "linear",
+        repeat: Number.POSITIVE_INFINITY,
+        ease: 'linear',
         delay: Math.random(),
       }}
     />
   );
 };
 
-const WeatherInfo = ({ isNight, isRaining }: { isNight: boolean, isRaining: boolean }) => (
+const WeatherInfo = ({
+  isNight,
+  isRaining,
+}: { isNight: boolean; isRaining: boolean }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
-    className="absolute bottom-0 left-0 mb-3 ml-3 z-21"
+    className="absolute bottom-0 left-0 z-21 mb-3 ml-3"
   >
     <motion.div
-      className="group relative bg-black/40 backdrop-blur-md rounded-lg px-2.5 py-1.5 flex items-center gap-2 text-white text-[0.6rem]"
+      className="group relative flex items-center gap-2 rounded-lg bg-black/40 px-2.5 py-1.5 text-[0.6rem] text-white backdrop-blur-md"
       whileHover={{ scale: 1.05 }}
     >
       <motion.div
-        className="absolute inset-0 -z-10 rounded-lg opacity-50"
+        className="-z-10 absolute inset-0 rounded-lg opacity-50"
         style={{
           background:
-            "radial-gradient(circle at center, rgba(59, 130, 246, 0.2), rgba(147, 51, 234, 0.2))",
-          filter: "blur(8px)",
+            'radial-gradient(circle at center, rgba(59, 130, 246, 0.2), rgba(147, 51, 234, 0.2))',
+          filter: 'blur(8px)',
         }}
         animate={{ scale: [1, 1.05, 1] }}
-        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        transition={{
+          duration: 3,
+          repeat: Number.POSITIVE_INFINITY,
+          ease: 'easeInOut',
+        }}
       />
 
       <AnimatePresence mode="wait">
         <motion.div
-          key={isRaining ? "rain" : isNight ? "moon" : "sun"}
+          key={isRaining ? 'rain' : isNight ? 'moon' : 'sun'}
           initial={{ opacity: 0, scale: 0.5, rotate: -30 }}
           animate={{ opacity: 1, scale: 1, rotate: 0 }}
           exit={{ opacity: 0, scale: 0.5, rotate: 30 }}
           transition={{ duration: 0.5 }}
           className="text-white"
         >
-          <WeatherIcon type={isRaining ? "rain" : isNight ? "moon" : "sun"} />
+          <WeatherIcon type={isRaining ? 'rain' : isNight ? 'moon' : 'sun'} />
         </motion.div>
       </AnimatePresence>
 
@@ -293,7 +322,7 @@ const WeatherInfo = ({ isNight, isRaining }: { isNight: boolean, isRaining: bool
         animate={{ opacity: 0.9, x: 0 }}
         transition={{ duration: 0.3 }}
       >
-        {isRaining ? "Rainy" : isNight ? "Night" : "Day"}
+        {isRaining ? 'Rainy' : isNight ? 'Night' : 'Day'}
       </motion.span>
     </motion.div>
   </motion.div>
@@ -422,7 +451,7 @@ const WeatherInfo = ({ isNight, isRaining }: { isNight: boolean, isRaining: bool
 //   );
 // };
 
-const Map = () => {
+export const Maps = () => {
   const [isNight, setIsNight] = useState(false);
   const [isRaining, setIsRaining] = useState(false);
   const [nightIntensity, setNightIntensity] = useState(0);
@@ -474,26 +503,26 @@ const Map = () => {
       <motion.img
         initial={{ scale: 1.1 }}
         animate={{ scale: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
         width="100%"
         height="100%"
         src="/assets/map/map.webp"
         alt="Map with marker of Bengaluru, India"
         draggable="false"
-        className="rounded-xl relative z-10"
+        className="relative z-10 rounded-xl"
       />
       <motion.div
-        className="absolute inset-0 pointer-events-none z-22"
+        className="pointer-events-none absolute inset-0 z-22"
         animate={{ opacity: nightIntensity * 0.15 }}
-        transition={{ duration: 1, ease: "easeInOut" }}
+        transition={{ duration: 1, ease: 'easeInOut' }}
         style={{
-          backdropFilter: "blur(1px)",
+          backdropFilter: 'blur(1px)',
           background:
-            "radial-gradient(circle at center, rgba(147, 197, 253, 0.1) 0%, transparent 70%)",
+            'radial-gradient(circle at center, rgba(147, 197, 253, 0.1) 0%, transparent 70%)',
         }}
       />
     </motion.div>
   );
 };
 
-export default Map;
+export default Maps;

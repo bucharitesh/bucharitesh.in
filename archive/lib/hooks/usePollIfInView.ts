@@ -1,11 +1,11 @@
-import React from "react";
-import { useIntersection, useInterval } from "react-use";
+import React from 'react';
+import { useIntersection, useInterval } from 'react-use';
 
 // 1. only poll when intersecting (in view)
 // 2. stop polling after `max` polls (before novelty has wears off and it
 //    becomes distracting)
 // todo: move to useReducer
-export const usePollIfInView = (interval: number = 1000, max: number = 3) => {
+export const usePollIfInView = (interval = 1000, max = 3) => {
   const intersectionRef = React.useRef(null);
   const intersection = useIntersection(intersectionRef, {});
 
@@ -22,7 +22,7 @@ export const usePollIfInView = (interval: number = 1000, max: number = 3) => {
         setPolledCount(polledCount + 1);
       }
     },
-    shouldPoll ? interval : null,
+    shouldPoll ? interval : null
   );
 
   React.useEffect(() => {

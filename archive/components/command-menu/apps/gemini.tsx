@@ -1,33 +1,33 @@
-import { useEffect, useState } from "react";
-import { HiSparkles, HiCheck, HiClipboard } from "react-icons/hi2";
 import {
   GoogleGenerativeAI,
-  HarmCategory,
   HarmBlockThreshold,
-} from "@google/generative-ai";
-import { CommandGroup } from "../types";
-import ReactMarkdown from "react-markdown";
+  HarmCategory,
+} from '@google/generative-ai';
+import { useEffect, useState } from 'react';
+import { HiSparkles } from 'react-icons/hi2';
+import ReactMarkdown from 'react-markdown';
+import type { CommandGroup } from '../types';
 
 // Constants and configurations
 const MAX_REQUESTS_PER_MINUTE = 10;
 const MAX_TOKENS = 250;
-const BLOCKED_KEYWORDS = ["hack", "exploit", "attack", "malware", "password"];
+const BLOCKED_KEYWORDS = ['hack', 'exploit', 'attack', 'malware', 'password'];
 
 const TECH_JOKES = [
   "Running git commit -m 'thinking hard'...",
-  "npm installing brain.js...",
-  "Compiling witty responses in O(1)...",
-  "await Promise.resolve(clever_answer)...",
-  "Converting caffeine to code...",
-  "Checking StackOverflow just in case...",
-  "sudo generate smart_response...",
-  "Rehydrating my component state...",
-  "yarn add intelligence@latest",
-  "Fighting with TypeScript errors...",
-  "docker run thinking-container...",
-  "webpack bundling thoughts...",
-  "prettier --write response...",
-  "jest --watchAll brain-cells",
+  'npm installing brain.js...',
+  'Compiling witty responses in O(1)...',
+  'await Promise.resolve(clever_answer)...',
+  'Converting caffeine to code...',
+  'Checking StackOverflow just in case...',
+  'sudo generate smart_response...',
+  'Rehydrating my component state...',
+  'yarn add intelligence@latest',
+  'Fighting with TypeScript errors...',
+  'docker run thinking-container...',
+  'webpack bundling thoughts...',
+  'prettier --write response...',
+  'jest --watchAll brain-cells',
 ];
 
 const PERSONALITY_CONTEXT = `
@@ -90,7 +90,7 @@ interface GeminiCommandProps {
 
 // Initialize Gemini with safety settings
 const genAI = new GoogleGenerativeAI(
-  process.env.NEXT_PUBLIC_GEMINI_API_KEY || "",
+  process.env.NEXT_PUBLIC_GEMINI_API_KEY || ''
 );
 
 const safetySettings = [
@@ -116,19 +116,19 @@ export const useGeminiCommand = ({
   searchQuery,
   setSearchQuery,
 }: GeminiCommandProps): CommandGroup => {
-  const [response, setResponse] = useState("");
-  const [displayedResponse, setDisplayedResponse] = useState("");
+  const [response, setResponse] = useState('');
+  const [displayedResponse, setDisplayedResponse] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [requestCount, setRequestCount] = useState(0);
   const [lastRequestTime, setLastRequestTime] = useState(Date.now());
   const [thinkingMessage, setThinkingMessage] = useState(
-    () => TECH_JOKES[Math.floor(Math.random() * TECH_JOKES.length)],
+    () => TECH_JOKES[Math.floor(Math.random() * TECH_JOKES.length)]
   );
 
   // Reset response when search query changes
   useEffect(() => {
-    setResponse("");
-    setDisplayedResponse("");
+    setResponse('');
+    setDisplayedResponse('');
     setIsLoading(false);
   }, [searchQuery]);
 
@@ -157,7 +157,7 @@ export const useGeminiCommand = ({
 
     const interval = setInterval(() => {
       setThinkingMessage(
-        TECH_JOKES[Math.floor(Math.random() * TECH_JOKES.length)],
+        TECH_JOKES[Math.floor(Math.random() * TECH_JOKES.length)]
       );
     }, 2000);
 
@@ -170,7 +170,7 @@ export const useGeminiCommand = ({
       const now = Date.now();
       if (now - lastRequestTime < 60000) {
         if (requestCount >= MAX_REQUESTS_PER_MINUTE) {
-          return "Whoa! My CPU is running hot. Give me a moment to cool down! 🌡️";
+          return 'Whoa! My CPU is running hot. Give me a moment to cool down! 🌡️';
         }
         setRequestCount((prev) => prev + 1);
       } else {
@@ -185,10 +185,10 @@ export const useGeminiCommand = ({
 
       if (
         BLOCKED_KEYWORDS.some((keyword) =>
-          userPrompt.toLowerCase().includes(keyword),
+          userPrompt.toLowerCase().includes(keyword)
         )
       ) {
-        return "I keep my responses as clean as a linter-approved codebase! 🛡️";
+        return 'I keep my responses as clean as a linter-approved codebase! 🛡️';
       }
 
       // Check if it's a simple math expression
@@ -202,14 +202,14 @@ export const useGeminiCommand = ({
       }
 
       const model = genAI.getGenerativeModel({
-        model: "gemini-1.5-pro",
+        model: 'gemini-1.5-pro',
         safetySettings,
       });
 
       const result = await model.generateContent({
         contents: [
           {
-            role: "user",
+            role: 'user',
             parts: [
               { text: `${PERSONALITY_CONTEXT}\n\nUser Query: ${userPrompt}` },
             ],
@@ -227,41 +227,41 @@ export const useGeminiCommand = ({
 
       // Clean up response formatting
       responseText = responseText
-        .replace(/^\d+\.\s+/gm, "")
-        .replace(/^[-*•]\s+/gm, "")
-        .replace(/\\n/g, "\n")
-        .replace(/\n\n+/g, "\n\n")
+        .replace(/^\d+\.\s+/gm, '')
+        .replace(/^[-*•]\s+/gm, '')
+        .replace(/\\n/g, '\n')
+        .replace(/\n\n+/g, '\n\n')
         .trim();
 
       return responseText;
     } catch (error) {
-      console.error("Error generating content:", error);
-      return "Oops! Even AI has its moments. Let me try that again! 🔄";
+      console.error('Error generating content:', error);
+      return 'Oops! Even AI has its moments. Let me try that again! 🔄';
     }
   };
 
   const ThinkingAnimation = () => (
-    <div className="flex flex-col space-y-2 items-start text-gray-500 dark:text-gray-400">
-      <span className="text-xs italic font-mono">{thinkingMessage}</span>
+    <div className="flex flex-col items-start space-y-2 text-gray-500 dark:text-gray-400">
+      <span className="font-mono text-xs italic">{thinkingMessage}</span>
     </div>
   );
 
   const EmptyState = () => (
-    <div className="text-sm text-gray-500 dark:text-gray-400">
+    <div className="text-gray-500 text-sm dark:text-gray-400">
       Get AI Assistant for any questions
     </div>
   );
 
   return {
-    name: "AI Assistant",
+    name: 'AI Assistant',
     commands: [
       {
-        id: "gemini-input",
+        id: 'gemini-input',
         name: searchQuery
-          ? `Ask: "${searchQuery.replace(/^@\s*/, "").trim()}"`
-          : "Ask AI",
+          ? `Ask: "${searchQuery.replace(/^@\s*/, '').trim()}"`
+          : 'Ask AI',
         description: (
-          <div className="flex flex-col space-y-2 w-full max-w-full">
+          <div className="flex w-full max-w-full flex-col space-y-2">
             {!response && !isLoading ? (
               <EmptyState />
             ) : (
@@ -293,11 +293,7 @@ export const useGeminiCommand = ({
                           <li className={`my-1 text-gray-200`}>{children}</li>
                         ),
                         code: ({ children }) => (
-                          <code
-                            className={`
-                                rounded px-1 py-0.5
-                              `}
-                          >
+                          <code className={`rounded px-1 py-0.5 `}>
                             {children}
                           </code>
                         ),
@@ -335,30 +331,30 @@ export const useGeminiCommand = ({
         action: async () => {
           // If search is empty or doesn't start with @, set it to @ and return
           if (!searchQuery) {
-            setSearchQuery("@");
+            setSearchQuery('@');
             return;
           }
 
           // Trim @ from the start of the query
-          const cleanQuery = searchQuery.replace(/^@\s*/, "").trim();
+          const cleanQuery = searchQuery.replace(/^@\s*/, '').trim();
 
           if (!cleanQuery) {
             setResponse(
-              "Ask me anything about development, tech, or general questions!",
+              'Ask me anything about development, tech, or general questions!'
             );
             return;
           }
 
           setIsLoading(true);
-          setResponse("");
-          setDisplayedResponse("");
+          setResponse('');
+          setDisplayedResponse('');
 
           try {
             const generatedResponse = await generateContent(cleanQuery);
             setResponse(generatedResponse.trim());
           } catch (error) {
             setResponse(
-              "Encountered a runtime error. Let me reboot my neural nets! 🔄",
+              'Encountered a runtime error. Let me reboot my neural nets! 🔄'
             );
           }
 

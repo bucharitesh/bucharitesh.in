@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { AnimatePresence, motion } from 'motion/react';
+import { useEffect, useState } from 'react';
 
 interface Snowflake {
   id: number;
@@ -16,11 +16,11 @@ export function Snowfall({ enabled = true }: { enabled?: boolean }) {
   const [width, setWidth] = useState(0);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (typeof window !== 'undefined') {
       setWidth(window.innerWidth);
       const handleResize = () => setWidth(window.innerWidth);
-      window.addEventListener("resize", handleResize);
-      return () => window.removeEventListener("resize", handleResize);
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
     }
   }, []);
 
@@ -40,7 +40,7 @@ export function Snowfall({ enabled = true }: { enabled?: boolean }) {
         () => {
           setSnowflakes((prev) => prev.filter((flake) => flake.id !== id));
         },
-        duration * 1000 + delay * 1000,
+        duration * 1000 + delay * 1000
       );
     };
 
@@ -52,14 +52,14 @@ export function Snowfall({ enabled = true }: { enabled?: boolean }) {
   if (!enabled) return null;
 
   return (
-    <div className="fixed inset-0 pointer-events-none" style={{ zIndex: 1000 }}>
+    <div className="pointer-events-none fixed inset-0" style={{ zIndex: 1000 }}>
       <AnimatePresence>
         {snowflakes.map((flake) => (
           <motion.div
             key={flake.id}
             initial={{ y: -20, x: flake.x, opacity: 0 }}
             animate={{
-              y: "100vh",
+              y: '100vh',
               x: flake.x + Math.sin(flake.duration) * 100, // More horizontal movement
               opacity: 0.8,
             }}
@@ -67,16 +67,16 @@ export function Snowfall({ enabled = true }: { enabled?: boolean }) {
             transition={{
               duration: flake.duration,
               delay: flake.delay,
-              ease: "linear",
+              ease: 'linear',
             }}
             style={{
-              position: "absolute",
+              position: 'absolute',
               width: flake.size,
               height: flake.size,
-              backgroundColor: "rgb(255, 255, 255)",
-              borderRadius: "50%",
-              filter: "blur(0.5px)",
-              boxShadow: "0 0 2px rgba(255, 255, 255, 0.8)", // Add glow effect
+              backgroundColor: 'rgb(255, 255, 255)',
+              borderRadius: '50%',
+              filter: 'blur(0.5px)',
+              boxShadow: '0 0 2px rgba(255, 255, 255, 0.8)', // Add glow effect
             }}
           />
         ))}

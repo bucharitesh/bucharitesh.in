@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import { useEffect } from "react";
-import { useAtom } from "jotai";
-import Note from "./note";
+import { getGuestbookEntries } from '@/lib/actions';
 import {
   allEntriesAtom,
   localEntriesAtom,
   serverEntriesAtom,
-} from "@/lib/atoms/guestbook";
-import { getGuestbookEntries } from "@/lib/actions";
+} from '@/lib/atoms/guestbook';
+import { useAtom } from 'jotai';
+import { useEffect } from 'react';
+import Note from './note';
 
 function GuestbookEntries() {
   const [allEntries] = useAtom(allEntriesAtom);

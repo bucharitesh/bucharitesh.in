@@ -1,15 +1,15 @@
-import { MDX } from "@/components/mdx-components";
+import { MDX } from '@/components/mdx-components';
 
-import { createOgImage } from "@/lib/createOgImage";
-import { cn } from "@/lib/utils";
-import { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { FloatingHeader } from "@/components/navigation/floating-header";
-import { getAllCrafts, getCraftBySlug } from "@/features/craft/data/posts";
-import { Prose } from "@/components/ui/typography";
-import { CopyLink } from "@/components/copy-button";
-import { USER } from "@/config/user";
+import { CopyLink } from '@/components/copy-button';
+import { FloatingHeader } from '@/components/navigation/floating-header';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { Prose } from '@/components/ui/typography';
+import { USER } from '@/config/user';
+import { getAllCrafts, getCraftBySlug } from '@/features/craft/data/posts';
+import { createOgImage } from '@/lib/createOgImage';
+import { cn } from '@/lib/utils';
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 
 export const generateStaticParams = () => {
   return getAllCrafts().map((p) => ({ slug: p.slug }));
@@ -33,7 +33,7 @@ export async function generateMetadata({
 
   const ogImage = createOgImage({
     title: title,
-    meta: USER.domain + " · " + date,
+    meta: USER.domain + ' · ' + date,
   });
 
   return {
@@ -90,17 +90,17 @@ export default async function Page({
             <CopyLinkButton />
         </div> */}
 
-          <div className="mb-8 justify-start flex-nowrap items-center flex">
+          <div className="mb-8 flex flex-nowrap items-center justify-start">
             <div className="w-full">
               <h1
-                className={cn("scroll-m-20 text-xl font-bold tracking-tight")}
+                className={cn('scroll-m-20 font-bold text-xl tracking-tight')}
               >
                 {title}
               </h1>
-              <p className="text-balance text-sm text-muted-foreground">
-                {new Date(date).toLocaleDateString("en-US", {
-                  month: "long",
-                  year: "numeric",
+              <p className="text-balance text-muted-foreground text-sm">
+                {new Date(date).toLocaleDateString('en-US', {
+                  month: 'long',
+                  year: 'numeric',
                 })}
               </p>
             </div>
@@ -116,11 +116,11 @@ export default async function Page({
           </Prose>
         </div>
 
-        <div className="sticky space-y-4 top-14 right-0 hidden h-0 lg:col-start-2! lg:row-start-1 lg:block col-span-1 max-w-md">
+        <div className="sticky top-14 right-0 col-span-1 hidden h-0 max-w-md space-y-4 lg:col-start-2! lg:row-start-1 lg:block">
           {/* <TableOfContents toc={toc} /> */}
         </div>
 
-        <div className="sticky space-y-4 top-14 left-0 hidden h-0 lg:col-start-4! lg:row-start-1 lg:block col-span-1 max-w-md">
+        <div className="sticky top-14 left-0 col-span-1 hidden h-0 max-w-md space-y-4 lg:col-start-4! lg:row-start-1 lg:block">
           {/* <Contribute craft={post} /> */}
         </div>
 

@@ -265,9 +265,7 @@
 
   body {
     @apply overscroll-y-none bg-background font-x text-foreground antialiased;
-    font-feature-settings:
-      "rlig" 1,
-      "calt" 1;
+    font-feature-settings: "rlig" 1, "calt" 1;
     scroll-behavior: smooth;
     touch-action: manipulation; /* Disable double-tap-to-zoom on mobile, making taps slightly snappier */
   }
@@ -321,7 +319,7 @@
 }
 
 @utility layout {
-    @apply grid layout-sm xl:layout-xl gap-y-2 xl:gap-x-9 xl:px-0 *:col-start-2 xl:*:col-start-3;
+  @apply grid layout-sm xl:layout-xl gap-y-2 xl:gap-x-9 xl:px-0 *:col-start-2 xl:*:col-start-3;
 }
 
 @utility layout-sm {
@@ -329,10 +327,10 @@
 }
 
 @utility layout-xl {
-  grid-template-columns: 1fr minmax(auto, 10rem) min(
-      var(--breakpoint-sm),
-      100%
-    ) minmax(auto, 10rem) 1fr;
+  grid-template-columns: 1fr minmax(auto, 10rem) min(var(--breakpoint-sm), 100%) minmax(
+      auto,
+      10rem
+    ) 1fr;
 }
 
 @utility content-wrapper {
@@ -357,8 +355,8 @@
     0 0 0 1px rgba(226, 232, 240, 0.5),
     0 0 0 3px #f8fafc,
     0 0 0 3.5px #f1f5f9,
-    0 10px 15px -3px rgb(59 130 246/5%),
-    0 4px 6px -4px rgb(59 130 246/5%);
+    0 10px 15px -3px rgb(59 130 246 / 5%),
+    0 4px 6px -4px rgb(59 130 246 / 5%);
 }
 
 @utility link {
@@ -393,8 +391,7 @@
 
 @utility lab-bg {
   --mask-offset: 100px;
-  -webkit-mask:
-    linear-gradient(
+  -webkit-mask: linear-gradient(
       to bottom,
       transparent,
       #fff var(--mask-offset) calc(100% - var(--mask-offset)),
@@ -406,8 +403,7 @@
       #fff var(--mask-offset) calc(100% - var(--mask-offset)),
       transparent
     );
-  mask:
-    linear-gradient(
+  mask: linear-gradient(
       to bottom,
       transparent,
       #fff var(--mask-offset) calc(100% - var(--mask-offset)),

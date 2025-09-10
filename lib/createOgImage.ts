@@ -2,7 +2,7 @@
 const e = (str: string) => encodeURIComponent(encodeURIComponent(str));
 
 const overlayImageUrl =
-  "aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYnVjaGEvaW1hZ2UvdXBsb2FkL2Jfd2hpdGUvYnVjaGFfaDZ5eWtlLnBuZw==";
+  'aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYnVjaGEvaW1hZ2UvdXBsb2FkL2Jfd2hpdGUvYnVjaGFfaDZ5eWtlLnBuZw==';
 
 // TODO: Update OG image logic
 export const createOgImage = ({
@@ -40,4 +40,4 @@ export const createOgImage = ({
 
     // BG
     `grain-gradient_ctrjnp.png`,
-  ].join("/");
+  ].join('/');

@@ -1,6 +1,6 @@
-import React from "react";
-import { useDebounce } from "react-use";
-import useSWR, { SWRConfiguration } from "swr";
+import React from 'react';
+import { useDebounce } from 'react-use';
+import useSWR, { type SWRConfiguration } from 'swr';
 
 const API_URL = (slug: string) => `/api/posts/${slug}/likes`;
 
@@ -12,23 +12,23 @@ type MetricsPayload = {
 async function getPostLikes(slug: string): Promise<MetricsPayload> {
   const res = await fetch(API_URL(slug));
   if (!res.ok) {
-    throw new Error("An error occurred while fetching the data.");
+    throw new Error('An error occurred while fetching the data.');
   }
   return res.json();
 }
 
 async function updatePostLikes(
   slug: string,
-  count: number,
+  count: number
 ): Promise<MetricsPayload> {
   const res = await fetch(API_URL(slug), {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ count }),
   });
 
   if (!res.ok) {
-    throw new Error("An error occurred while posting the data.");
+    throw new Error('An error occurred while posting the data.');
   }
 
   return res.json();
@@ -42,7 +42,7 @@ export const usePostLikes = (slug: string, config?: SWRConfiguration) => {
     {
       dedupingInterval: 60000,
       ...config,
-    },
+    }
   );
 
   const [batchedLikes, setBatchedLikes] = React.useState(0);
@@ -61,7 +61,7 @@ export const usePostLikes = (slug: string, config?: SWRConfiguration) => {
         likes: data.likes + 1,
         currentUserLikes: data.currentUserLikes + 1,
       },
-      false,
+      false
     );
 
     // use local state and debounce to batch updates
@@ -78,7 +78,7 @@ export const usePostLikes = (slug: string, config?: SWRConfiguration) => {
       setBatchedLikes(0);
     },
     1000,
-    [batchedLikes],
+    [batchedLikes]
   );
 
   return {

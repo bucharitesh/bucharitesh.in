@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect, useCallback, useRef } from "react";
-import { Crown } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils';
+import { Crown } from 'lucide-react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 
 const GRID_SIZE = 20;
 const CELL_SIZE = 20;
@@ -12,7 +12,7 @@ const INITIAL_SNAKE = [
   { x: 9, y: 10 },
   { x: 8, y: 10 },
 ];
-const INITIAL_DIRECTION = "RIGHT";
+const INITIAL_DIRECTION = 'RIGHT';
 const GAME_SPEED = 150;
 
 interface SnakeGameProps extends React.HTMLAttributes<HTMLDivElement> {}
@@ -42,7 +42,7 @@ const SnakeGame = React.forwardRef<HTMLDivElement, SnakeGameProps>(
       };
 
       const isOnSnake = snake.some(
-        (segment) => segment.x === newFood.x && segment.y === newFood.y,
+        (segment) => segment.x === newFood.x && segment.y === newFood.y
       );
 
       if (isOnSnake) {
@@ -54,30 +54,39 @@ const SnakeGame = React.forwardRef<HTMLDivElement, SnakeGameProps>(
 
     const handleKeyPress = useCallback(
       (event: KeyboardEvent) => {
-        if (!isFocused || !gameStarted || gameOver || !document.hasFocus())
+        if (!isFocused || !gameStarted || gameOver || !document.hasFocus()) {
           return;
+        }
 
         switch (event.key) {
-          case "ArrowUp":
-            if (direction !== "DOWN") setDirection("UP");
+          case 'ArrowUp':
+            if (direction !== 'DOWN') {
+              setDirection('UP');
+            }
             break;
-          case "ArrowDown":
-            if (direction !== "UP") setDirection("DOWN");
+          case 'ArrowDown':
+            if (direction !== 'UP') {
+              setDirection('DOWN');
+            }
             break;
-          case "ArrowLeft":
-            if (direction !== "RIGHT") setDirection("LEFT");
+          case 'ArrowLeft':
+            if (direction !== 'RIGHT') {
+              setDirection('LEFT');
+            }
             break;
-          case "ArrowRight":
-            if (direction !== "LEFT") setDirection("RIGHT");
+          case 'ArrowRight':
+            if (direction !== 'LEFT') {
+              setDirection('RIGHT');
+            }
             break;
-          case " ":
+          case ' ':
             setIsPaused((prev) => !prev);
             break;
           default:
             break;
         }
       },
-      [direction, gameOver, gameStarted, isFocused],
+      [direction, gameOver, gameStarted, isFocused]
     );
 
     const handleTouchStart = (e: React.TouchEvent) => {
@@ -107,17 +116,17 @@ const SnakeGame = React.forwardRef<HTMLDivElement, SnakeGameProps>(
 
       if (Math.abs(deltaX) > Math.abs(deltaY)) {
         // Horizontal swipe
-        if (deltaX > 0 && direction !== "LEFT") {
-          setDirection("RIGHT");
-        } else if (deltaX < 0 && direction !== "RIGHT") {
-          setDirection("LEFT");
+        if (deltaX > 0 && direction !== 'LEFT') {
+          setDirection('RIGHT');
+        } else if (deltaX < 0 && direction !== 'RIGHT') {
+          setDirection('LEFT');
         }
       } else {
         // Vertical swipe
-        if (deltaY > 0 && direction !== "UP") {
-          setDirection("DOWN");
-        } else if (deltaY < 0 && direction !== "DOWN") {
-          setDirection("UP");
+        if (deltaY > 0 && direction !== 'UP') {
+          setDirection('DOWN');
+        } else if (deltaY < 0 && direction !== 'DOWN') {
+          setDirection('UP');
         }
       }
     };
@@ -129,16 +138,16 @@ const SnakeGame = React.forwardRef<HTMLDivElement, SnakeGameProps>(
       const head = { ...newSnake[0] };
 
       switch (direction) {
-        case "UP":
+        case 'UP':
           head.y -= 1;
           break;
-        case "DOWN":
+        case 'DOWN':
           head.y += 1;
           break;
-        case "LEFT":
+        case 'LEFT':
           head.x -= 1;
           break;
-        case "RIGHT":
+        case 'RIGHT':
           head.x += 1;
           break;
         default:
@@ -234,8 +243,8 @@ const SnakeGame = React.forwardRef<HTMLDivElement, SnakeGameProps>(
 
     // Handle keyboard events
     useEffect(() => {
-      window.addEventListener("keydown", handleKeyPress);
-      return () => window.removeEventListener("keydown", handleKeyPress);
+      window.addEventListener('keydown', handleKeyPress);
+      return () => window.removeEventListener('keydown', handleKeyPress);
     }, [handleKeyPress]);
 
     // Handle window focus/blur
@@ -252,12 +261,12 @@ const SnakeGame = React.forwardRef<HTMLDivElement, SnakeGameProps>(
         }
       };
 
-      window.addEventListener("blur", handleWindowBlur);
-      window.addEventListener("focus", handleWindowFocus);
+      window.addEventListener('blur', handleWindowBlur);
+      window.addEventListener('focus', handleWindowFocus);
 
       return () => {
-        window.removeEventListener("blur-sm", handleWindowBlur);
-        window.removeEventListener("focus", handleWindowFocus);
+        window.removeEventListener('blur-sm', handleWindowBlur);
+        window.removeEventListener('focus', handleWindowFocus);
       };
     }, []);
 
@@ -270,10 +279,9 @@ const SnakeGame = React.forwardRef<HTMLDivElement, SnakeGameProps>(
       return (
         <div
           ref={containerRef}
-          tabIndex={0}
           className={cn(
-            "relative rounded-lg flex flex-col items-center cursor-pointer bg-muted border outline-hidden focus:ring-2 focus:ring-ring focus:ring-offset-2",
-            className,
+            'relative flex cursor-pointer flex-col items-center rounded-lg border bg-muted outline-hidden focus:ring-2 focus:ring-ring focus:ring-offset-2',
+            className
           )}
           style={containerStyle}
           onClick={startGame}
@@ -283,12 +291,12 @@ const SnakeGame = React.forwardRef<HTMLDivElement, SnakeGameProps>(
         >
           <div className="absolute top-1/4 flex flex-col items-center gap-2">
             <Crown className="text-yellow-400" size={32} />
-            <div className="text-xl font-bold text-foreground">
+            <div className="font-bold text-foreground text-xl">
               High Score: {highScore}
             </div>
           </div>
 
-          <div className="absolute bottom-1/4 text-lg font-medium text-foreground">
+          <div className="absolute bottom-1/4 font-medium text-foreground text-lg">
             Tap to start
           </div>
         </div>
@@ -298,10 +306,9 @@ const SnakeGame = React.forwardRef<HTMLDivElement, SnakeGameProps>(
     return (
       <div
         ref={containerRef}
-        tabIndex={0}
         className={cn(
-          "relative rounded-lg bg-muted border outline-hidden focus:ring-2 focus:ring-ring focus:ring-offset-2",
-          className,
+          'relative rounded-lg border bg-muted outline-hidden focus:ring-2 focus:ring-ring focus:ring-offset-2',
+          className
         )}
         style={containerStyle}
         onFocus={handleFocus}
@@ -312,7 +319,7 @@ const SnakeGame = React.forwardRef<HTMLDivElement, SnakeGameProps>(
       >
         {/* Food */}
         <div
-          className="absolute bg-destructive rounded-full"
+          className="absolute rounded-full bg-destructive"
           style={{
             width: CELL_SIZE - 2,
             height: CELL_SIZE - 2,
@@ -325,7 +332,7 @@ const SnakeGame = React.forwardRef<HTMLDivElement, SnakeGameProps>(
         {snake.map((segment, index) => (
           <div
             key={index}
-            className="absolute bg-foreground rounded-full"
+            className="absolute rounded-full bg-foreground"
             style={{
               width: CELL_SIZE - 4,
               height: CELL_SIZE - 4,
@@ -338,15 +345,15 @@ const SnakeGame = React.forwardRef<HTMLDivElement, SnakeGameProps>(
         {/* Game Over Overlay */}
         {gameOver && (
           <div
-            className="absolute inset-0 bg-background/80 backdrop-blur-xs flex items-center justify-center cursor-pointer"
+            className="absolute inset-0 flex cursor-pointer items-center justify-center bg-background/80 backdrop-blur-xs"
             onClick={resetGame}
           >
             <div className="text-center">
-              <h2 className="text-2xl font-bold mb-4 text-foreground">
+              <h2 className="mb-4 font-bold text-2xl text-foreground">
                 Game Over!
               </h2>
-              <p className="text-xl mb-4 text-foreground">Score: {score}</p>
-              <p className="text-xl mb-4 text-foreground">
+              <p className="mb-4 text-foreground text-xl">Score: {score}</p>
+              <p className="mb-4 text-foreground text-xl">
                 High Score: {highScore}
               </p>
               <p className="text-lg text-muted-foreground">Tap to play again</p>
@@ -356,13 +363,13 @@ const SnakeGame = React.forwardRef<HTMLDivElement, SnakeGameProps>(
 
         {/* Pause Overlay */}
         {(isPaused || !isFocused) && !gameOver && (
-          <div className="absolute inset-0 bg-background/80 backdrop-blur-xs flex items-center justify-center">
+          <div className="absolute inset-0 flex items-center justify-center bg-background/80 backdrop-blur-xs">
             <div className="text-center">
-              <div className="text-2xl font-bold text-foreground mb-2">
+              <div className="mb-2 font-bold text-2xl text-foreground">
                 PAUSED
               </div>
               {!isFocused && (
-                <div className="text-sm text-muted-foreground">
+                <div className="text-muted-foreground text-sm">
                   Click to resume
                 </div>
               )}
@@ -371,9 +378,9 @@ const SnakeGame = React.forwardRef<HTMLDivElement, SnakeGameProps>(
         )}
       </div>
     );
-  },
+  }
 );
 
-SnakeGame.displayName = "SnakeGame";
+SnakeGame.displayName = 'SnakeGame';
 
 export { SnakeGame };

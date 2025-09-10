@@ -1,73 +1,82 @@
-import React from 'react'
-import { BuddyConfig } from './types'
+import type React from 'react';
+import type { BuddyConfig } from './types';
 
-import { COLOR_TO_FILTER_MAP } from './buddy-logic'
-import { spriteAccessoryUrl, spriteUrl, standardAccessories } from './sprites/sprites'
+import { COLOR_TO_FILTER_MAP } from './buddy-logic';
+import {
+  spriteAccessoryUrl,
+  spriteUrl,
+  standardAccessories,
+} from './sprites/sprites';
 
-export type BuddyBuddyStaticProps = Partial<BuddyConfig> & { size?: number | string }
+export type BuddyBuddyStaticProps = Partial<BuddyConfig> & {
+  size?: number | string;
+};
 
 // Takes a range of options and renders a static buddy
 export function BuddyBuddyStatic({
-    accessories,
-    color,
-    size,
-    skin = 'default',
+  accessories,
+  color,
+  size,
+  skin = 'default',
 }: BuddyBuddyStaticProps): React.ReactElement {
-    const imgSize = size ?? 60
+  const imgSize = size ?? 60;
 
-    const accessoryInfos = accessories?.map((x) => standardAccessories[x])
-    const filter = color ? COLOR_TO_FILTER_MAP[color] : null
+  const accessoryInfos = accessories?.map((x) => standardAccessories[x]);
+  const filter = color ? COLOR_TO_FILTER_MAP[color] : null;
 
-    return (
-        <div
-            className="relative overflow-hidden select-none flex-none m-[-2px]"
-            // eslint-disable-next-line react/forbid-dom-props
-            style={{
-                width: imgSize,
-                height: imgSize,
-            }}
-        >
-            <div
-                className="object-cover absolute inset-0 rendering-pixelated bg-cover"
-                // eslint-disable-next-line react/forbid-dom-props
-                style={{
-                    filter: filter as any,
-                    backgroundImage: `url(${spriteUrl(skin, 'wave')})`,
-                    width: skin === 'robohog' ? '300%' : '400%', // RoboHog sprite is 3 tiles tall, while others are 4
-                    height: skin === 'robohog' ? '300%' : '400%',
-                }}
-            />
+  return (
+    <div
+      className="relative m-[-2px] flex-none select-none overflow-hidden"
+      // eslint-disable-next-line react/forbid-dom-props
+      style={{
+        width: imgSize,
+        height: imgSize,
+      }}
+    >
+      <div
+        className="rendering-pixelated absolute inset-0 bg-cover object-cover"
+        // eslint-disable-next-line react/forbid-dom-props
+        style={{
+          filter: filter as any,
+          backgroundImage: `url(${spriteUrl(skin, 'wave')})`,
+          width: skin === 'robohog' ? '300%' : '400%', // RoboHog sprite is 3 tiles tall, while others are 4
+          height: skin === 'robohog' ? '300%' : '400%',
+        }}
+      />
 
-            {accessoryInfos?.map((accessory, index) => (
-                <img
-                    key={index}
-                    src={`${spriteAccessoryUrl(accessory.img)}`}
-                    className="object-cover absolute inset-0 rendering-pixelated pointer-events-none"
-                    // eslint-disable-next-line react/forbid-dom-props
-                    style={{
-                        width: imgSize,
-                        height: imgSize,
-                        filter: filter as any,
-                    }}
-                />
-            ))}
-        </div>
-    )
+      {accessoryInfos?.map((accessory, index) => (
+        <img
+          key={index}
+          src={`${spriteAccessoryUrl(accessory.img)}`}
+          className="rendering-pixelated pointer-events-none absolute inset-0 object-cover"
+          alt="buddy accessory"
+          style={{
+            width: imgSize,
+            height: imgSize,
+            filter: filter as any,
+          }}
+        />
+      ))}
+    </div>
+  );
 }
 
-export function BuddyBuddyProfile({ size, ...props }: BuddyBuddyStaticProps): React.ReactElement {
-    return (
-        <div
-            className="relative rounded-full overflow-hidden"
-            // eslint-disable-next-line react/forbid-dom-props
-            style={{
-                width: size,
-                height: size,
-            }}
-        >
-            <div className="absolute top-0 left-0 w-full h-full transform translate-x-[-3%] translate-y-[10%] scale-[1.8]">
-                <BuddyBuddyStatic {...props} size={size} />
-            </div>
-        </div>
-    )
+export function BuddyBuddyProfile({
+  size,
+  ...props
+}: BuddyBuddyStaticProps): React.ReactElement {
+  return (
+    <div
+      className="relative overflow-hidden rounded-full"
+      // eslint-disable-next-line react/forbid-dom-props
+      style={{
+        width: size,
+        height: size,
+      }}
+    >
+      <div className="absolute top-0 left-0 h-full w-full translate-x-[-3%] translate-y-[10%] scale-[1.8] transform">
+        <BuddyBuddyStatic {...props} size={size} />
+      </div>
+    </div>
+  );
 }

@@ -1,36 +1,36 @@
-"use client";
+'use client';
 
-import React, { useEffect, useMemo, useState } from "react";
-import { DialogProps } from "@radix-ui/react-dialog";
 import {
   Command,
   CommandGroup,
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command";
+} from '@/components/ui/command';
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { VisuallyHidden } from "@/components/ui/visually-hidden";
+} from '@/components/ui/dialog';
+import { VisuallyHidden } from '@/components/ui/visually-hidden';
+import type { DialogProps } from '@radix-ui/react-dialog';
+import React, { useEffect, useMemo, useState } from 'react';
 
+import { cn } from '@/lib/utils';
+import { useCalculatorCommand } from './apps/calculator';
+import { useCurrencyCommand } from './apps/currency';
+import { useGeminiCommand } from './apps/gemini';
+import { useSocialsCommand } from './apps/socials';
 // Import command hooks
-import { useThemeCommand } from "./apps/theme-command";
-import { useCalculatorCommand } from "./apps/calculator";
-import { useTimeCommand } from "./apps/time";
-import { useWeatherCommand } from "./apps/weather";
-import { useCurrencyCommand } from "./apps/currency";
-import { useGeminiCommand } from "./apps/gemini";
-import { useSocialsCommand } from "./apps/socials";
-import { cn } from "@/lib/utils";
+import { useThemeCommand } from './apps/theme-command';
+import { useTimeCommand } from './apps/time';
+import { useWeatherCommand } from './apps/weather';
 
 export function CommandMenu({ ...props }: DialogProps) {
   // State management
   const [open, setOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   // Initialize command hooks
@@ -51,18 +51,18 @@ export function CommandMenu({ ...props }: DialogProps) {
   // Filter and organize commands based on search query and active results
   const filteredCommands = useMemo(() => {
     // Handle calculator results
-    if (calculatorCommands.name === "Result") {
+    if (calculatorCommands.name === 'Result') {
       return [calculatorCommands];
     }
 
     // Handle time results
     const timeResults = timeCommands.commands.filter((cmd) =>
-      cmd.id.startsWith("time-")
+      cmd.id.startsWith('time-')
     );
     if (timeResults.length > 0) {
       return [
         {
-          name: "Time",
+          name: 'Time',
           commands: timeResults,
         },
       ];
@@ -70,12 +70,12 @@ export function CommandMenu({ ...props }: DialogProps) {
 
     // Handle currency results
     const currencyResults = currencyCommands.commands.filter(
-      (cmd) => cmd.id === "currency-conversion"
+      (cmd) => cmd.id === 'currency-conversion'
     );
     if (currencyResults.length > 0) {
       return [
         {
-          name: "Currency",
+          name: 'Currency',
           commands: currencyResults,
         },
       ];
@@ -86,7 +86,7 @@ export function CommandMenu({ ...props }: DialogProps) {
       return [
         themeCommands,
         {
-          name: "Tools",
+          name: 'Tools',
           commands: [
             ...calculatorCommands.commands,
             ...timeCommands.commands.slice(0, 1),
@@ -171,7 +171,7 @@ export function CommandMenu({ ...props }: DialogProps) {
   // Keyboard shortcuts for opening/closing
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
-      if ((e.key === "k" && (e.metaKey || e.ctrlKey)) || e.key === "/") {
+      if ((e.key === 'k' && (e.metaKey || e.ctrlKey)) || e.key === '/') {
         if (
           (e.target instanceof HTMLElement && e.target.isContentEditable) ||
           e.target instanceof HTMLInputElement ||
@@ -186,8 +186,8 @@ export function CommandMenu({ ...props }: DialogProps) {
       }
     };
 
-    document.addEventListener("keydown", down);
-    return () => document.removeEventListener("keydown", down);
+    document.addEventListener('keydown', down);
+    return () => document.removeEventListener('keydown', down);
   }, []);
 
   // Handle keyboard navigation
@@ -196,10 +196,10 @@ export function CommandMenu({ ...props }: DialogProps) {
 
     const handleKeyDown = (e: KeyboardEvent) => {
       switch (e.key) {
-        case "Escape":
+        case 'Escape':
           setOpen(false);
           break;
-        case "ArrowDown":
+        case 'ArrowDown':
           e.preventDefault();
           const allCommands = getAllCommands();
           setSelectedIndex((prev) => {
@@ -208,7 +208,7 @@ export function CommandMenu({ ...props }: DialogProps) {
             return newIndex;
           });
           break;
-        case "ArrowUp":
+        case 'ArrowUp':
           e.preventDefault();
           const commands = getAllCommands();
           setSelectedIndex((prev) => {
@@ -220,8 +220,8 @@ export function CommandMenu({ ...props }: DialogProps) {
       }
     };
 
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
   }, [open, getAllCommands]);
 
   // Reset selected index when search query changes
@@ -234,15 +234,15 @@ export function CommandMenu({ ...props }: DialogProps) {
     <CommandDialog open={open} onOpenChange={setOpen} {...props}>
       <CommandInput
         placeholder={
-          calculatorCommands.name === "Result"
-            ? "Calculate anything..."
-            : "Type a command or search..."
+          calculatorCommands.name === 'Result'
+            ? 'Calculate anything...'
+            : 'Type a command or search...'
         }
-        className="w-full bg-transparent border-none outline-hidden placeholder-gray-400 text-lg py-1 sm:py-0"
+        className="w-full border-none bg-transparent py-1 text-lg placeholder-gray-400 outline-hidden sm:py-0"
         value={searchQuery}
         onValueChange={(value) => setSearchQuery(value)}
         onKeyDown={(e) => {
-          if (e.key === "Enter") {
+          if (e.key === 'Enter') {
             e.preventDefault();
             const allCommands = getAllCommands();
             if (allCommands.length > 0) {
@@ -262,36 +262,36 @@ export function CommandMenu({ ...props }: DialogProps) {
               <CommandItem key={command.id} asChild>
                 <button
                   onClick={() => {
-                    if (command.id === "gemini-input" && !searchQuery) {
-                      setSearchQuery("@");
+                    if (command.id === 'gemini-input' && !searchQuery) {
+                      setSearchQuery('@');
                     } else {
                       command.action();
                     }
                   }}
                   onMouseMove={() => handleMouseMove(groupIndex, index)}
                   className={cn(
-                    `relative w-full flex items-center group transition-all duration-75 cursor-pointer`
+                    `group relative flex w-full cursor-pointer items-center transition-all duration-75`
                   )}
                 >
-                  <div className="flex items-center gap-3 sm:gap-4 min-w-0 w-full relative z-10">
+                  <div className="relative z-10 flex w-full min-w-0 items-center gap-3 sm:gap-4">
                     {command.icon && (
                       <div
                         className={cn(
-                          "rounded-lg shrink-0 flex items-center justify-center w-8 h-8 transition-colors",
-                          "bg-gray-300/60 text-gray-600/50 dark:bg-gray-600/50 dark:text-white"
+                          'flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-colors',
+                          'bg-gray-300/60 text-gray-600/50 dark:bg-gray-600/50 dark:text-white'
                         )}
                       >
                         {React.createElement(command.icon, {
-                          className: "w-4 h-4",
+                          className: 'w-4 h-4',
                         })}
                       </div>
                     )}
-                    <div className="flex flex-col min-w-0 flex-1">
-                      <span className={cn("font-medium text-base text-left")}>
+                    <div className="flex min-w-0 flex-1 flex-col">
+                      <span className={cn('text-left font-medium text-base')}>
                         {command.name}
                       </span>
                       {command.description && (
-                        <div className={cn("text-sm text-left text-gray-500")}>
+                        <div className={cn('text-left text-gray-500 text-sm')}>
                           {command.description}
                         </div>
                       )}
@@ -299,7 +299,7 @@ export function CommandMenu({ ...props }: DialogProps) {
                     {command.rightIcon && (
                       <div className="shrink-0">
                         {React.createElement(command.rightIcon, {
-                          className: "w-4 h-4",
+                          className: 'w-4 h-4',
                         })}
                       </div>
                     )}
@@ -321,15 +321,13 @@ const CommandDialog = ({ children, ...props }: CommandDialogProps) => {
     <Dialog {...props}>
       <DialogContent
         // noClose
-        className="overflow-hidden p-0 max-w-2xl border-neutral-700"
+        className="max-w-2xl overflow-hidden border-neutral-700 p-0"
       >
         <VisuallyHidden asChild>
           <DialogTitle>Command Menu</DialogTitle>
         </VisuallyHidden>
         <VisuallyHidden asChild>
-          <DialogDescription>
-            Search for commands and tools
-          </DialogDescription>
+          <DialogDescription>Search for commands and tools</DialogDescription>
         </VisuallyHidden>
         <Command>{children}</Command>
       </DialogContent>
@@ -337,12 +335,11 @@ const CommandDialog = ({ children, ...props }: CommandDialogProps) => {
   );
 };
 
-
-function CommandMenuKbd({ className, ...props }: React.ComponentProps<"kbd">) {
+function CommandMenuKbd({ className, ...props }: React.ComponentProps<'kbd'>) {
   return (
     <kbd
       className={cn(
-        "pointer-events-none flex h-5 min-w-6 items-center justify-center gap-1 rounded-xs bg-black/5 px-1 font-sans text-[13px] font-normal text-muted-foreground shadow-[inset_0_-1px_2px] shadow-black/10 select-none dark:bg-white/10 dark:shadow-white/10 dark:text-shadow-xs [&_svg:not([class*='size-'])]:size-3",
+        'pointer-events-none flex h-5 min-w-6 select-none items-center justify-center gap-1 rounded-xs bg-black/5 px-1 font-normal font-sans text-[13px] text-muted-foreground shadow-[inset_0_-1px_2px] shadow-black/10 [&_svg:not([class*= dark:bg-white/10 dark:text-shadow-xs dark:shadow-white/10'size-'])]:size-3',
         className
       )}
       {...props}

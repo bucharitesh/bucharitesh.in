@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
 export function useKeyPress(callback: any, keyCodes: any) {
   useEffect(() => {
@@ -16,9 +16,9 @@ export function useKeyPress(callback: any, keyCodes: any) {
       }
     };
 
-    window.addEventListener("keydown", handler, { passive: true });
+    window.addEventListener('keydown', handler, { passive: true });
     return () => {
-      window.removeEventListener("keydown", handler);
+      window.removeEventListener('keydown', handler);
     };
   }, [callback, keyCodes]);
 }

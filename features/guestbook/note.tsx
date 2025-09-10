@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { cn } from "@/lib/utils";
-import styles from "@/app/guestbook/notes.module.css";
-import Drag from "@/features/guestbook/drag";
-import React from "react";
-import { motion } from "motion/react";
+import styles from '@/app/guestbook/notes.module.css';
+import Drag from '@/features/guestbook/drag';
+import { cn } from '@/lib/utils';
+import { motion } from 'motion/react';
+import React from 'react';
 
 const Note = React.memo(
   ({
@@ -22,28 +22,27 @@ const Note = React.memo(
   }) => {
     return (
       <Drag
-        className={cn("z-10 max-w-[200px]")}
+        className={cn('z-10 max-w-[200px]')}
         initialX={initialX}
         initialY={initialY}
       >
         <motion.div
           initial={{ opacity: 0, y: 2 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
+          transition={{ duration: 0.3, ease: 'easeOut' }}
           className={cn(
-            "bg-gray-200 text-gray-900 w-fit max-w-[165px] scale-75! px-1.5 pt-1.5 pb-2 transition-shadow duration-300 ease-out hover:shadow-md note-item",
+            'note-item w-fit max-w-[165px] scale-75! bg-gray-200 px-1.5 pt-1.5 pb-2 text-gray-900 transition-shadow duration-300 ease-out hover:shadow-md',
             styles.note
           )}
         >
           {signature ? (
             <div
               className={cn(
-                "border border-gray-500/50 bg-gray-200 rounded-[4px] flex items-center justify-center overflow-hidden relative"
+                'relative flex items-center justify-center overflow-hidden rounded-[4px] border border-gray-500/50 bg-gray-200'
               )}
             >
               <div
-                className="object-contain z-10"
-                // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
+                className="z-10 object-contain"
                 dangerouslySetInnerHTML={{ __html: signature }}
               />
               {/* <Image
@@ -56,11 +55,11 @@ const Note = React.memo(
               /> */}
             </div>
           ) : null}
-          <div className="w-full text-sm break-words mt-1.5">
-            <span className="text-gray-600 text-[12px] mr-1 font-semibold">
+          <div className="mt-1.5 w-full break-words text-sm">
+            <span className="mr-1 font-semibold text-[12px] text-gray-600">
               {name}
             </span>
-            <div className="text-[16px] font-medium leading-tight">
+            <div className="font-medium text-[16px] leading-tight">
               {content}
             </div>
           </div>

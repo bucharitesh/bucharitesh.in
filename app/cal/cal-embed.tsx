@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import Cal from "@calcom/embed-react";
+import Cal from '@calcom/embed-react';
 // import { useEffect } from "react";
 // import { getCalApi } from "@calcom/embed-react";
 
@@ -14,7 +14,7 @@ export default function CalEmbed() {
   //     })
   //   })();
   // }, []);
-  
+
   return (
     <div className="cal-embed">
       <Cal namespace="30min" calLink="bucharitesh/30min" />

@@ -1,14 +1,15 @@
-import { SideMenu } from "@/features/bookmarks/components/sidebar";
-import { ListItem } from "@/features/bookmarks/components/list-item";
-import { getBookmarks } from "@/features/bookmarks/lib/raindrop";
-import { sortByProperty } from "@/lib/utils";
-import React, { Suspense } from "react";
-import { ScreenLoadingSpinner } from "@/components/ui/loading";
+import { ScreenLoadingSpinner } from '@/components/ui/loading';
+import { ListItem } from '@/features/bookmarks/components/list-item';
+import { SideMenu } from '@/features/bookmarks/components/sidebar';
+import { getBookmarks } from '@/features/bookmarks/lib/raindrop';
+import { sortByProperty } from '@/lib/utils';
+import type React from 'react';
+import { Suspense } from 'react';
 
 async function fetchData() {
-  const bookmarks = await getBookmarks()
-  const sortedBookmarks = sortByProperty(bookmarks, 'title')
-  return { bookmarks: sortedBookmarks }
+  const bookmarks = await getBookmarks();
+  const sortedBookmarks = sortByProperty(bookmarks, 'title');
+  return { bookmarks: sortedBookmarks };
 }
 
 export default async function BookmarksLayout({
@@ -45,5 +46,5 @@ export default async function BookmarksLayout({
 
 export const viewport = {
   //  To fix the zoom issue on mobile for the bookmark submit form
-  maximumScale: 1
-}
+  maximumScale: 1,
+};

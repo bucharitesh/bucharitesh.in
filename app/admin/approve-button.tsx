@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { approveGuestbookEntry, declineGuestbookEntry } from "@/lib/actions";
-import { localEntriesAtom } from "@/lib/atoms/guestbook";
-import { useSetAtom } from "jotai";
+import { approveGuestbookEntry, declineGuestbookEntry } from '@/lib/actions';
+import { localEntriesAtom } from '@/lib/atoms/guestbook';
+import { useSetAtom } from 'jotai';
 
 const ApproveButton = ({ id }: { id: string }) => {
   const setLocalEntries = useSetAtom(localEntriesAtom);
@@ -15,7 +15,7 @@ const ApproveButton = ({ id }: { id: string }) => {
         }}
       >
         <button
-          className="bg-[#267E5C] text-white rounded-[6px] px-2 py-1 text-gray-1 font-medium mt-2 hover:bg-[#267E5C]/80"
+          className="mt-2 rounded-[6px] bg-[#267E5C] px-2 py-1 font-medium text-gray-1 text-white hover:bg-[#267E5C]/80"
           type="submit"
         >
           Approve
@@ -28,7 +28,7 @@ const ApproveButton = ({ id }: { id: string }) => {
         }}
       >
         <button
-          className="bg-[#F74F00] text-white rounded-[6px] px-2 py-1 text-gray-1 font-medium mt-2 hover:bg-[#F74F00]/80"
+          className="mt-2 rounded-[6px] bg-[#F74F00] px-2 py-1 font-medium text-gray-1 text-white hover:bg-[#F74F00]/80"
           type="submit"
         >
           Decline

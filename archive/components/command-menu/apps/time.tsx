@@ -1,9 +1,9 @@
-import { HiClock } from "react-icons/hi2";
-import { format } from "date-fns";
-import { toZonedTime } from "date-fns-tz";
-import cityTimezones from "city-timezones";
-import { useMemo } from "react";
-import { CommandGroup, CommandItem } from "../types";
+import cityTimezones from 'city-timezones';
+import { format } from 'date-fns';
+import { toZonedTime } from 'date-fns-tz';
+import { useMemo } from 'react';
+import { HiClock } from 'react-icons/hi2';
+import type { CommandGroup, CommandItem } from '../types';
 
 interface TimeCommandProps {
   searchQuery: string;
@@ -17,16 +17,16 @@ export const useTimeCommand = ({
   const getTimeInTimezone = (timezone: string) => {
     const now = new Date();
     const zonedTime = toZonedTime(now, timezone);
-    return format(zonedTime, "h:mm a");
+    return format(zonedTime, 'h:mm a');
   };
 
   const parseTimeQuery = (query: string): CommandItem[] => {
     const normalizedQuery = query.toLowerCase().trim();
 
-    if (normalizedQuery.includes("time")) {
+    if (normalizedQuery.includes('time')) {
       const cityQuery = normalizedQuery
-        .replace("time in", "")
-        .replace("time at", "")
+        .replace('time in', '')
+        .replace('time at', '')
         .trim();
 
       if (!cityQuery) {
@@ -39,7 +39,7 @@ export const useTimeCommand = ({
         .filter(
           (city) =>
             city.city.toLowerCase().includes(cityQuery) ||
-            city.country.toLowerCase().includes(cityQuery),
+            city.country.toLowerCase().includes(cityQuery)
         )
         .slice(0, 5);
 
@@ -69,7 +69,7 @@ export const useTimeCommand = ({
           icon: HiClock,
           action: async () => {
             await navigator.clipboard.writeText(
-              getTimeInTimezone(city.timezone),
+              getTimeInTimezone(city.timezone)
             );
           },
         }));
@@ -80,11 +80,11 @@ export const useTimeCommand = ({
 
   const commands = useMemo(() => {
     const baseCommand: CommandItem = {
-      id: "time",
-      name: "Check time anywhere",
-      description: "Try: time in tokyo or time in berlin",
+      id: 'time',
+      name: 'Check time anywhere',
+      description: 'Try: time in tokyo or time in berlin',
       icon: HiClock,
-      action: () => setSearchQuery("time in tokyo"),
+      action: () => setSearchQuery('time in tokyo'),
     };
 
     const timeResults = parseTimeQuery(searchQuery);
@@ -92,7 +92,7 @@ export const useTimeCommand = ({
   }, [searchQuery, setSearchQuery]);
 
   return {
-    name: "Time",
+    name: 'Time',
     commands,
   };
 };

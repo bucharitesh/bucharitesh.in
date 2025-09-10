@@ -1,8 +1,8 @@
 // /app/api/weather/route.ts
-import { headers } from "next/headers";
-import { NextRequest } from "next/server";
+import { headers } from 'next/headers';
+import type { NextRequest } from 'next/server';
 
-export const dynamic = "force-dynamic";
+export const dynamic = 'force-dynamic';
 
 interface WeatherResponse {
   location: {
@@ -36,27 +36,27 @@ interface WeatherResponse {
 }
 
 const WEATHER_CODES = new Map([
-  [0, { description: "Clear sky", icon: "01d" }],
-  [1, { description: "Mainly clear", icon: "02d" }],
-  [2, { description: "Partly cloudy", icon: "03d" }],
-  [3, { description: "Overcast", icon: "04d" }],
-  [45, { description: "Foggy", icon: "50d" }],
-  [51, { description: "Light drizzle", icon: "09d" }],
-  [61, { description: "Light rain", icon: "10d" }],
-  [63, { description: "Moderate rain", icon: "10d" }],
-  [65, { description: "Heavy rain", icon: "10d" }],
-  [71, { description: "Light snow", icon: "13d" }],
-  [95, { description: "Thunderstorm", icon: "11d" }],
+  [0, { description: 'Clear sky', icon: '01d' }],
+  [1, { description: 'Mainly clear', icon: '02d' }],
+  [2, { description: 'Partly cloudy', icon: '03d' }],
+  [3, { description: 'Overcast', icon: '04d' }],
+  [45, { description: 'Foggy', icon: '50d' }],
+  [51, { description: 'Light drizzle', icon: '09d' }],
+  [61, { description: 'Light rain', icon: '10d' }],
+  [63, { description: 'Moderate rain', icon: '10d' }],
+  [65, { description: 'Heavy rain', icon: '10d' }],
+  [71, { description: 'Light snow', icon: '13d' }],
+  [95, { description: 'Thunderstorm', icon: '11d' }],
 ]);
 
 function getWindDirection(degrees: number): string {
-  const directions = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
+  const directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
   return directions[Math.round(degrees / 45) % 8];
 }
 
 async function getCityCoordinates(city: string) {
   const url = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(
-    city,
+    city
   )}&count=1`;
 
   try {
@@ -72,23 +72,23 @@ async function getCityCoordinates(city: string) {
 
     return data.results[0];
   } catch (error) {
-    console.error("Error fetching city data:", error);
-    throw new Error("Failed to get city coordinates");
+    console.error('Error fetching city data:', error);
+    throw new Error('Failed to get city coordinates');
   }
 }
 
 async function getWeatherData(lat: number, lon: number, timezone: string) {
-  const url = new URL("https://api.open-meteo.com/v1/forecast");
-  url.searchParams.append("latitude", lat.toString());
-  url.searchParams.append("longitude", lon.toString());
-  url.searchParams.append("timezone", timezone);
+  const url = new URL('https://api.open-meteo.com/v1/forecast');
+  url.searchParams.append('latitude', lat.toString());
+  url.searchParams.append('longitude', lon.toString());
+  url.searchParams.append('timezone', timezone);
   url.searchParams.append(
-    "current",
-    "temperature_2m,relative_humidity_2m,apparent_temperature,pressure_msl,wind_speed_10m,wind_direction_10m,weather_code",
+    'current',
+    'temperature_2m,relative_humidity_2m,apparent_temperature,pressure_msl,wind_speed_10m,wind_direction_10m,weather_code'
   );
   url.searchParams.append(
-    "daily",
-    "temperature_2m_max,temperature_2m_min,weather_code,precipitation_probability_max",
+    'daily',
+    'temperature_2m_max,temperature_2m_min,weather_code,precipitation_probability_max'
   );
 
   try {
@@ -98,8 +98,8 @@ async function getWeatherData(lat: number, lon: number, timezone: string) {
     }
     return response.json();
   } catch (error) {
-    console.error("Error fetching weather data:", error);
-    throw new Error("Failed to fetch weather data");
+    console.error('Error fetching weather data:', error);
+    throw new Error('Failed to fetch weather data');
   }
 }
 
@@ -107,14 +107,14 @@ export async function GET(request: NextRequest) {
   try {
     // Get headers
     const headersList = await headers();
-    const clientIp = headersList.get("x-forwarded-for") || "localhost";
-    const clientLocation = headersList.get("x-vercel-ip-country") || "LOCAL";
+    const clientIp = headersList.get('x-forwarded-for') || 'localhost';
+    const clientLocation = headersList.get('x-vercel-ip-country') || 'LOCAL';
 
-    const city = request.nextUrl.searchParams.get("city");
+    const city = request.nextUrl.searchParams.get('city');
     if (!city) {
       return Response.json(
-        { error: "City parameter is required" },
-        { status: 400 },
+        { error: 'City parameter is required' },
+        { status: 400 }
       );
     }
 
@@ -124,7 +124,7 @@ export async function GET(request: NextRequest) {
     weatherData = await getWeatherData(
       cityData.latitude,
       cityData.longitude,
-      cityData.timezone || "UTC",
+      cityData.timezone || 'UTC'
     );
 
     // Format response
@@ -142,13 +142,13 @@ export async function GET(request: NextRequest) {
         pressure: Math.round(weatherData.current.pressure_msl),
         wind_speed: Math.round(weatherData.current.wind_speed_10m),
         wind_direction: getWindDirection(
-          weatherData.current.wind_direction_10m,
+          weatherData.current.wind_direction_10m
         ),
         description:
           WEATHER_CODES.get(weatherData.current.weather_code)?.description ||
-          "Unknown",
+          'Unknown',
         icon:
-          WEATHER_CODES.get(weatherData.current.weather_code)?.icon || "01d",
+          WEATHER_CODES.get(weatherData.current.weather_code)?.icon || '01d',
       },
       forecast: weatherData.daily.time.map((date: string, i: number) => ({
         date,
@@ -156,7 +156,7 @@ export async function GET(request: NextRequest) {
         temp_max: Math.round(weatherData.daily.temperature_2m_max[i]),
         description:
           WEATHER_CODES.get(weatherData.daily.weather_code[i])?.description ||
-          "Unknown",
+          'Unknown',
         precipitation_chance:
           weatherData.daily.precipitation_probability_max[i],
       })),
@@ -169,27 +169,27 @@ export async function GET(request: NextRequest) {
 
     return new Response(JSON.stringify(response), {
       headers: {
-        "Content-Type": "application/json",
-        "Cache-Control": "public, max-age=300",
-        "X-Client-Ip": clientIp,
-        "X-Client-Location": clientLocation,
+        'Content-Type': 'application/json',
+        'Cache-Control': 'public, max-age=300',
+        'X-Client-Ip': clientIp,
+        'X-Client-Location': clientLocation,
       },
     });
   } catch (error) {
-    console.error("Weather API error:", error);
+    console.error('Weather API error:', error);
     return Response.json(
       {
         error:
           error instanceof Error
             ? error.message
-            : "Failed to fetch weather data",
+            : 'Failed to fetch weather data',
       },
       {
         status:
-          error instanceof Error && error.message.includes("not found")
+          error instanceof Error && error.message.includes('not found')
             ? 404
             : 500,
-      },
+      }
     );
   }
 }

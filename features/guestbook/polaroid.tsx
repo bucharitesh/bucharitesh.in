@@ -1,26 +1,25 @@
-"use client";
+'use client';
 
-import { cn } from "@/lib/utils";
-import React from "react";
-import Drag from "./drag";
-import styles from "@/app/guestbook/notes.module.css";
-import Image from "next/image";
+import styles from '@/app/guestbook/notes.module.css';
+import { cn } from '@/lib/utils';
+import Image from 'next/image';
+import Drag from './drag';
 
 const Polaroid = ({ src, alt }: { src: string; alt: string }) => {
   return (
     <Drag
       className={cn(
-        "p-1 pb-6 bg-gray-300 rounded-[8px] transition-all duration-300 ease-out hover:shadow-md",
+        'rounded-[8px] bg-gray-300 p-1 pb-6 transition-all duration-300 ease-out hover:shadow-md',
         styles.polaroid
       )}
     >
-      <div className="h-full overflow-hidden relative">
+      <div className="relative h-full overflow-hidden">
         <Image
           src={src}
           alt={alt}
           fill
           sizes="(max-width: 768px) 20vw, 35vw"
-          className="max-w-full h-fit object-contain"
+          className="h-fit max-w-full object-contain"
           draggable={false}
           quality={5}
         />

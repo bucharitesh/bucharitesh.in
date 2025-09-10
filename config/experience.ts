@@ -1,6 +1,6 @@
 export type ExperiencePositionIcon =
   /** Icon key used to render the position category in the UI. */
-  "code" | "design" | "education" | "business" | "idea";
+  'code' | 'design' | 'education' | 'business' | 'idea';
 
 export type ExperiencePosition = {
   id: string;
@@ -40,61 +40,69 @@ export type Experience = {
 
 export const experiences: Experience[] = [
   {
-    id: "flam",
-    companyName: "Flam",
-    companyUrl: "https://flamapp.com",
-    city: "Bengaluru",
-    companyLogo: "https://flamapp.com/logo.png",
+    id: 'flam',
+    companyName: 'Flam',
+    companyUrl: 'https://flamapp.com',
+    city: 'Bengaluru',
+    companyLogo: 'https://flamapp.com/logo.png',
     positions: [
       {
-        id: "senior-frontend-developer",
-        title: "Senior Frontend Developer",
-        employmentType: "Full-time",
+        id: 'senior-frontend-developer',
+        title: 'Senior Frontend Developer',
+        employmentType: 'Full-time',
         employmentPeriod: {
-          start: "Nov 2022",
-          end: "Present",
+          start: 'Nov 2022',
+          end: 'Present',
         },
       },
       {
-        id: "frontend-developer",
-        title: "Frontend Developer",
-        employmentType: "Full-time",
+        id: 'frontend-developer',
+        title: 'Frontend Developer',
+        employmentType: 'Full-time',
         employmentPeriod: {
-          start: "May 2022",
-          end: "Oct 2022",
+          start: 'May 2022',
+          end: 'Oct 2022',
         },
       },
       {
-        id: "frontend-developer-intern",
-        title: "Frontend Developer Intern",
-        employmentType: "Internship",
+        id: 'frontend-developer-intern',
+        title: 'Frontend Developer Intern',
+        employmentType: 'Internship',
         employmentPeriod: {
-          start: "Dec 2021",
-          end: "Apr 2022",
+          start: 'Dec 2021',
+          end: 'Apr 2022',
         },
       },
     ],
     isCurrentEmployer: true,
   },
   {
-    id: "athenasquare",
-    companyName: "Athenasquare",
-    companyUrl: "https://athenasquare.org",
-    city: "Bhopal",
-    companyLogo: "https://athenasquare.org/logo.png",
+    id: 'athenasquare',
+    companyName: 'Athenasquare',
+    companyUrl: 'https://athenasquare.org',
+    city: 'Bhopal',
+    companyLogo: 'https://athenasquare.org/logo.png',
     positions: [
       {
-        id: "frontend-developer",
-        title: "Frontend Developer",
-        employmentType: "Internship",
+        id: 'frontend-developer',
+        title: 'Frontend Developer',
+        employmentType: 'Internship',
         employmentPeriod: {
-          start: "Sep 2021",
-          end: "Mar 2022",
+          start: 'Sep 2021',
+          end: 'Mar 2022',
         },
-        skills: ["JavaScript", "React", "Node.js", "TypeScript", "Next.js", "User Interface Design"],
-        description: "Built and managed internal design systems with scalability at the centre stage",
-        icon: "code",
+        skills: [
+          'JavaScript',
+          'React',
+          'Node.js',
+          'TypeScript',
+          'Next.js',
+          'User Interface Design',
+        ],
+        description:
+          'Built and managed internal design systems with scalability at the centre stage',
+        icon: 'code',
       },
     ],
-  }
-]; 
+  },
+];

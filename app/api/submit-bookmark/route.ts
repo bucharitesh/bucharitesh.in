@@ -1,8 +1,8 @@
-import { NextRequest, NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from 'next/server';
 
-import { formSchema } from "@/features/bookmarks/components/submit-bookmark/utils";
-import { sendEmail } from "@/emails";
-import BookMarkSubmittedEmail from "@/emails/templates/bookmark-submitted-email";
+import { sendEmail } from '@/emails';
+import BookMarkSubmittedEmail from '@/emails/templates/bookmark-submitted-email';
+import { formSchema } from '@/features/bookmarks/components/submit-bookmark/utils';
 // import rateLimit from '@/lib/rate-limit' // TODO: Add rate limit
 
 // const limiter = rateLimit({
@@ -39,19 +39,19 @@ export async function POST(req: NextRequest) {
     const { url, email, type } = data.data;
 
     await sendEmail({
-      email: "bucharitesh@gmail.com",
+      email: 'bucharitesh@gmail.com',
       react: BookMarkSubmittedEmail({ url, email, type }),
-      subject: "New bookmark submitted",
-      text: `New bookmark submitted: ${url} of type ${type || "Other"}`,
+      subject: 'New bookmark submitted',
+      text: `New bookmark submitted: ${url} of type ${type || 'Other'}`,
     });
-    console.info("Email sent successfully");
+    console.info('Email sent successfully');
 
     // const res = await response.json()
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("Failed to send email:");
+    console.error('Failed to send email:');
     return NextResponse.json(
-      { error: "Error submitting bookmark." },
+      { error: 'Error submitting bookmark.' },
       { status: 500 }
     );
   }

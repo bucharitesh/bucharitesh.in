@@ -1,12 +1,7 @@
-"use client";
+'use client';
 
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import type React from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 interface PixelIconProps {
   icon: number[][];
@@ -15,7 +10,7 @@ interface PixelIconProps {
   secondaryColor?: string;
   size?: number;
   flickerChance?: number;
-  pixelShape?: "circle" | "square";
+  pixelShape?: 'circle' | 'square';
   className?: string;
 }
 
@@ -23,10 +18,10 @@ const PixelIcon: React.FC<PixelIconProps> = ({
   icon,
   baseColor,
   flickerColor,
-  secondaryColor = "gray",
+  secondaryColor = 'gray',
   size = 80,
   flickerChance = 0.3,
-  pixelShape = "circle",
+  pixelShape = 'circle',
   className,
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -35,12 +30,12 @@ const PixelIcon: React.FC<PixelIconProps> = ({
 
   const memoizedColors = useMemo(() => {
     const toRGB = (color: string): [number, number, number] => {
-      if (typeof window === "undefined") {
+      if (typeof window === 'undefined') {
         return [0, 0, 0];
       }
-      const canvas = document.createElement("canvas");
+      const canvas = document.createElement('canvas');
       canvas.width = canvas.height = 1;
-      const ctx = canvas.getContext("2d");
+      const ctx = canvas.getContext('2d');
       if (!ctx) return [255, 0, 0];
       ctx.fillStyle = color;
       ctx.fillRect(0, 0, 1, 1);
@@ -50,19 +45,15 @@ const PixelIcon: React.FC<PixelIconProps> = ({
 
     const createShades = (
       color: [number, number, number],
-      isDarker: boolean,
+      isDarker: boolean
     ) => {
       const shades: any = [];
       if (isDarker) {
         // Create more distinct dark shades
         const darkFactors = [0.7, 0.8, 0.9, 1.0];
-        for (let factor of darkFactors) {
+        for (const factor of darkFactors) {
           shades.push(
-            color.map((c) => Math.floor(c * factor)) as [
-              number,
-              number,
-              number,
-            ],
+            color.map((c) => Math.floor(c * factor)) as [number, number, number]
           );
         }
       } else {
@@ -74,7 +65,7 @@ const PixelIcon: React.FC<PixelIconProps> = ({
               number,
               number,
               number,
-            ],
+            ]
           );
         }
       }
@@ -86,10 +77,10 @@ const PixelIcon: React.FC<PixelIconProps> = ({
     const secondaryRGB = toRGB(secondaryColor);
 
     return {
-      base: `rgb(${baseRGB.join(",")})`,
+      base: `rgb(${baseRGB.join(',')})`,
       flickerDark: createShades(flickerRGB, true),
       flickerLight: createShades(flickerRGB, false),
-      secondary: `rgb(${secondaryRGB.join(",")})`,
+      secondary: `rgb(${secondaryRGB.join(',')})`,
     };
   }, [baseColor, flickerColor, secondaryColor]);
 
@@ -106,7 +97,7 @@ const PixelIcon: React.FC<PixelIconProps> = ({
         row.map((pixel) => ({
           type: pixel,
           shadeIndex: 3, // Start with the brightest shade
-        })),
+        }))
       );
 
       return {
@@ -115,13 +106,13 @@ const PixelIcon: React.FC<PixelIconProps> = ({
         dpr,
       };
     },
-    [icon, size],
+    [icon, size]
   );
 
   const updatePixels = useCallback(
     (
       pixelStates: { type: number; shadeIndex: number }[][],
-      deltaTime: number,
+      deltaTime: number
     ) => {
       if (!isHovering) return;
 
@@ -139,7 +130,7 @@ const PixelIcon: React.FC<PixelIconProps> = ({
         });
       });
     },
-    [isHovering, flickerChance],
+    [isHovering, flickerChance]
   );
 
   const drawIcon = useCallback(
@@ -147,7 +138,7 @@ const PixelIcon: React.FC<PixelIconProps> = ({
       ctx: CanvasRenderingContext2D,
       pixelSize: number,
       pixelStates: { type: number; shadeIndex: number }[][],
-      dpr: number,
+      dpr: number
     ) => {
       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
@@ -158,25 +149,25 @@ const PixelIcon: React.FC<PixelIconProps> = ({
           let color;
           if (isHovering) {
             if (pixel.type === 2) {
-              color = `rgb(${memoizedColors.flickerDark[pixel.shadeIndex].join(",")})`;
+              color = `rgb(${memoizedColors.flickerDark[pixel.shadeIndex].join(',')})`;
             } else if (pixel.type === 1) {
-              color = `rgb(${memoizedColors.flickerLight[pixel.shadeIndex].join(",")})`;
+              color = `rgb(${memoizedColors.flickerLight[pixel.shadeIndex].join(',')})`;
             }
           } else {
             color =
               pixel.type === 1 ? memoizedColors.base : memoizedColors.secondary;
           }
 
-          ctx.fillStyle = color as string ?? "";
+          ctx.fillStyle = (color as string) ?? '';
 
-          if (pixelShape === "circle") {
+          if (pixelShape === 'circle') {
             ctx.beginPath();
             ctx.arc(
               (x * pixelSize + pixelSize / 2) * dpr,
               (y * pixelSize + pixelSize / 2) * dpr,
               (pixelSize / 2) * dpr,
               0,
-              Math.PI * 2,
+              Math.PI * 2
             );
             ctx.fill();
           } else {
@@ -184,24 +175,24 @@ const PixelIcon: React.FC<PixelIconProps> = ({
               x * pixelSize * dpr,
               y * pixelSize * dpr,
               pixelSize * dpr,
-              pixelSize * dpr,
+              pixelSize * dpr
             );
           }
         });
       });
     },
-    [memoizedColors, isHovering, pixelShape],
+    [memoizedColors, isHovering, pixelShape]
   );
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
     let animationFrameId: number;
-    let { pixelSize, pixelStates, dpr } = setupCanvas(canvas);
+    const { pixelSize, pixelStates, dpr } = setupCanvas(canvas);
 
     let lastTime = 0;
     const animate = (time: number) => {
@@ -219,7 +210,7 @@ const PixelIcon: React.FC<PixelIconProps> = ({
       ([entry]) => {
         setIsInView(entry.isIntersecting);
       },
-      { threshold: 0 },
+      { threshold: 0 }
     );
 
     observer.observe(canvas);
@@ -246,7 +237,7 @@ const PixelIcon: React.FC<PixelIconProps> = ({
       <canvas
         ref={canvasRef}
         aria-hidden="true"
-        className="w-full h-full"
+        className="h-full w-full"
         width={size}
         height={size}
       />

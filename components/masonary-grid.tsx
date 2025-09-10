@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import React from "react";
-import { useEffect, useState } from "react";
+import React from 'react';
+import { useEffect, useState } from 'react';
 
-export type BreakpointName = "sm" | "md" | "lg" | "xl" | "2xl";
+export type BreakpointName = 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 
 export type BreakpointConfig = {
   [key in BreakpointName]?: number;
@@ -22,13 +22,13 @@ const BREAKPOINT_WIDTHS: { [key in BreakpointName]: number } = {
   md: 768,
   lg: 1024,
   xl: 1280,
-  "2xl": 1536,
+  '2xl': 1536,
 };
 
 export const MasonryGrid: React.FC<MasonryGridProps> = ({
   gap = 4,
   breakpoints,
-  className = "",
+  className = '',
   children,
 }) => {
   const [columns, setColumns] = useState(3);
@@ -65,15 +65,15 @@ export const MasonryGrid: React.FC<MasonryGridProps> = ({
     const handleResize = () => {
       setColumns(calculateColumns());
     };
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
 
     // Cleanup
-    return () => window.removeEventListener("resize", handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, [breakpoints]);
 
-  const columnElements = [...Array(columns)].map((_, columnIndex) => {
+  const columnElements = [...new Array(columns)].map((_, columnIndex) => {
     const columnChildren = React.Children.toArray(children).filter(
-      (_, index) => index % columns === columnIndex,
+      (_, index) => index % columns === columnIndex
     );
 
     return (
@@ -82,7 +82,7 @@ export const MasonryGrid: React.FC<MasonryGridProps> = ({
         className="bg-clip-padding"
         style={
           {
-            "--gap": gap,
+            '--gap': gap,
             paddingLeft: gap,
             paddingBottom: gap,
             width: `${100 / columns}%`,
@@ -105,16 +105,16 @@ export const MasonryGrid: React.FC<MasonryGridProps> = ({
 
   return (
     <div
-      className={`flex pt-2 pl-1 flex-col relative mb-20 my-auto mx-0 ${className}`}
+      className={`relative mx-0 my-auto mb-20 flex flex-col pt-2 pl-1 ${className}`}
     >
       <div
         style={
           {
-            "--gap": gap,
+            '--gap': gap,
             marginLeft: `calc(${gap}*-1)`,
           } as React.CSSProperties
         }
-        className="flex pl-1 pr-2 w-auto"
+        className="flex w-auto pr-2 pl-1"
       >
         {columnElements}
       </div>

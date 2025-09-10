@@ -1,20 +1,20 @@
-"use client";
+'use client';
 
-import React from "react";
-import { capitalizeFirstLetter } from "./utils";
+import React from 'react';
+import { capitalizeFirstLetter } from './utils';
 
-import { BuddySkin } from "./types";
+import type { BuddySkin } from './types';
 
-import { BuddyBuddyProfile, BuddyBuddyStatic } from "./renderer";
-import { COLOR_TO_FILTER_MAP, useBuddyStore } from "./buddy-logic";
-import { accessoryGroups, standardAccessories } from "./sprites/sprites";
-import { Switch } from "@/components/ui/switch";
-import { Separator } from "@/components/ui/separator";
-import { cn } from "@/lib/utils";
-import Link from "next/link";
-import { ScrollArea } from "../../components/ui/scroll-area";
-import { FloatingHeader } from "../../components/navigation/floating-header";
-import { USER } from "@/config/user";
+import { Separator } from '@/components/ui/separator';
+import { Switch } from '@/components/ui/switch';
+import { USER } from '@/config/user';
+import { cn } from '@/lib/utils';
+import Link from 'next/link';
+import { FloatingHeader } from '../../components/navigation/floating-header';
+import { ScrollArea } from '../../components/ui/scroll-area';
+import { COLOR_TO_FILTER_MAP, useBuddyStore } from './buddy-logic';
+import { BuddyBuddyProfile, BuddyBuddyStatic } from './renderer';
+import { accessoryGroups, standardAccessories } from './sprites/sprites';
 
 export function BuddyOptions(): React.ReactElement {
   const hedgehogConfig = useBuddyStore((s) => s.hedgehogConfig);
@@ -24,14 +24,14 @@ export function BuddyOptions(): React.ReactElement {
     <ScrollArea useScrollAreaId>
       <FloatingHeader scrollTitle="Buddy" />
       <div className="layout relative z-10 content-wrapper">
-        <div className="w-full mx-auto space-y-6">
-          <div className="grid grid-cols-1 gap-4 md:gap-6 items-start">
+        <div className="mx-auto w-full space-y-6">
+          <div className="grid grid-cols-1 items-start gap-4 md:gap-6">
             <BuddyBuddyProfile {...hedgehogConfig} size={100} />
-            <div className="flex-1 min-w-0">
-              <h3 className="text-base font-semibold">
+            <div className="min-w-0 flex-1">
+              <h3 className="font-semibold text-base">
                 Hi, I'm {USER.name}'s buddy!
               </h3>
-              <p className="mt-1 text-sm text-muted-foreground">
+              <p className="mt-1 text-muted-foreground text-sm">
                 Don't mind me. I'm just here to keep you company.
                 <br />
                 You can move me around by clicking and dragging or control me
@@ -43,15 +43,15 @@ export function BuddyOptions(): React.ReactElement {
           <Separator className="my-6" />
 
           <div className="mt-2 space-y-3">
-            <h4 className="text-sm font-semibold">Options</h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <h4 className="font-semibold text-sm">Options</h4>
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               <label
                 htmlFor="enabled"
-                className="flex items-center justify-between gap-3 rounded-md border px-3 py-2 bg-background"
+                className="flex items-center justify-between gap-3 rounded-md border bg-background px-3 py-2"
               >
                 <div className="min-w-0">
-                  <div className="text-sm font-medium">Enable buddy</div>
-                  <div className="text-xs text-muted-foreground truncate">
+                  <div className="font-medium text-sm">Enable buddy</div>
+                  <div className="truncate text-muted-foreground text-xs">
                     Show Max on the screen
                   </div>
                 </div>
@@ -68,11 +68,11 @@ export function BuddyOptions(): React.ReactElement {
 
               <label
                 htmlFor="walking_enabled"
-                className="flex items-center justify-between gap-3 rounded-md border px-3 py-2 bg-background"
+                className="flex items-center justify-between gap-3 rounded-md border bg-background px-3 py-2"
               >
                 <div className="min-w-0">
-                  <div className="text-sm font-medium">Walk around freely</div>
-                  <div className="text-xs text-muted-foreground truncate">
+                  <div className="font-medium text-sm">Walk around freely</div>
+                  <div className="truncate text-muted-foreground text-xs">
                     Let Max roam the page
                   </div>
                 </div>
@@ -89,13 +89,13 @@ export function BuddyOptions(): React.ReactElement {
 
               <label
                 htmlFor="interactions_enabled"
-                className="flex items-center justify-between gap-3 rounded-md border px-3 py-2 bg-background"
+                className="flex items-center justify-between gap-3 rounded-md border bg-background px-3 py-2"
               >
                 <div className="min-w-0">
-                  <div className="text-sm font-medium">
+                  <div className="font-medium text-sm">
                     Interact with elements
                   </div>
-                  <div className="text-xs text-muted-foreground truncate">
+                  <div className="truncate text-muted-foreground text-xs">
                     Land on blocks and UI
                   </div>
                 </div>
@@ -112,11 +112,11 @@ export function BuddyOptions(): React.ReactElement {
 
               <label
                 htmlFor="controls_enabled"
-                className="flex items-center justify-between gap-3 rounded-md border px-3 py-2 bg-background"
+                className="flex items-center justify-between gap-3 rounded-md border bg-background px-3 py-2"
               >
                 <div className="min-w-0">
-                  <div className="text-sm font-medium">Keyboard controls</div>
-                  <div className="text-xs text-muted-foreground truncate">
+                  <div className="font-medium text-sm">Keyboard controls</div>
+                  <div className="truncate text-muted-foreground text-xs">
                     WASD / arrow keys + space to jump
                   </div>
                 </div>
@@ -137,7 +137,7 @@ export function BuddyOptions(): React.ReactElement {
           <BuddyColor />
           <BuddyAccessories />
         </div>
-        <div className="sticky space-y-4 top-14 right-0 hidden h-0 lg:col-start-2! lg:row-start-1 lg:block col-span-1 max-w-md">
+        <div className="sticky top-14 right-0 col-span-1 hidden h-0 max-w-md space-y-4 lg:col-start-2! lg:row-start-1 lg:block">
           <Link href="/">Back</Link>
         </div>
       </div>
@@ -176,7 +176,7 @@ function BuddyAccessories(): React.ReactElement {
     <>
       {accessoryGroups.map((group) => (
         <React.Fragment key={group}>
-          <h4 className="text-sm font-semibold">
+          <h4 className="font-semibold text-sm">
             {capitalizeFirstLetter(group)}
           </h4>
 
@@ -191,9 +191,9 @@ function BuddyAccessories(): React.ReactElement {
                     aria-pressed={selected}
                     onClick={() => onClick(acc)}
                     className={cn(
-                      "relative flex items-center justify-center rounded-md p-1 transition",
-                      "hover:bg-primary/10 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-primary cursor-pointer",
-                      selected && "ring-2 ring-primary bg-primary/5"
+                      'relative flex items-center justify-center rounded-md p-1 transition',
+                      'cursor-pointer hover:bg-primary/10 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-primary',
+                      selected && 'bg-primary/5 ring-2 ring-primary'
                     )}
                     title={capitalizeFirstLetter(acc)}
                   >
@@ -212,13 +212,13 @@ function BuddyColor(): React.ReactElement {
   const hedgehogConfig = useBuddyStore((s) => s.hedgehogConfig);
   const patchBuddyConfig = useBuddyStore((s) => s.patchBuddyConfig);
 
-  const skins: BuddySkin[] = ["default", "robohog", "spiderhog"];
+  const skins: BuddySkin[] = ['default', 'robohog', 'spiderhog'];
 
   return (
     <>
-      <h4 className="text-sm font-semibold">Skins</h4>
+      <h4 className="font-semibold text-sm">Skins</h4>
 
-      <div className="flex flex-wrap gap-2 items-center py-1">
+      <div className="flex flex-wrap items-center gap-2 py-1">
         {skins.map((option) => {
           const selected =
             !hedgehogConfig.color && hedgehogConfig.skin === option;
@@ -230,13 +230,13 @@ function BuddyColor(): React.ReactElement {
                 patchBuddyConfig({ skin: option as any, color: null })
               }
               className={cn(
-                "relative flex items-center justify-center rounded-md p-1 transition",
-                "hover:bg-primary/10 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-primary cursor-pointer",
-                selected && "ring-2 ring-primary"
+                'relative flex items-center justify-center rounded-md p-1 transition',
+                'cursor-pointer hover:bg-primary/10 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-primary',
+                selected && 'ring-2 ring-primary'
               )}
-              title={capitalizeFirstLetter(option ?? "default").replace(
-                "hog",
-                "Hog"
+              title={capitalizeFirstLetter(option ?? 'default').replace(
+                'hog',
+                'Hog'
               )}
             >
               <BuddyBuddyStatic skin={option} size={56} />
@@ -251,14 +251,14 @@ function BuddyColor(): React.ReactElement {
               key={option}
               aria-pressed={selected}
               onClick={() =>
-                patchBuddyConfig({ color: option as any, skin: "default" })
+                patchBuddyConfig({ color: option as any, skin: 'default' })
               }
               className={cn(
-                "relative flex items-center justify-center rounded-md p-1 transition",
-                "hover:bg-primary/10 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-primary cursor-pointer",
-                selected && "ring-2 ring-primary"
+                'relative flex items-center justify-center rounded-md p-1 transition',
+                'cursor-pointer hover:bg-primary/10 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-primary',
+                selected && 'ring-2 ring-primary'
               )}
-              title={capitalizeFirstLetter(option ?? "default")}
+              title={capitalizeFirstLetter(option ?? 'default')}
             >
               <BuddyBuddyStatic color={option as any} size={56} />
             </button>
