@@ -8,10 +8,10 @@ import remarkGfm from 'remark-gfm';
 import { visit } from 'unist-util-visit';
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { ComponentCSS } from './component-css';
-import { ComponentPreview } from './component-preview';
-import { ComponentSource } from './component-source';
-import { CopyButton } from './copy-button';
+import { ComponentCSS } from '../component-css';
+import { ComponentPreview } from '../component-preview';
+import { ComponentSource } from '../component-source';
+import { CopyButton } from '../copy-button';
 
 import {
   Table,
@@ -30,10 +30,10 @@ import { rehypeNpmCommand } from '@/lib/rehype-npm-command';
 import { remarkCodeImport } from '@/lib/remark-code-import';
 import { cn } from '@/lib/utils';
 import type { NpmCommands } from '@/types/unist';
-import { CodeBlockCommand } from './code-block-wrapper';
-import { CodeCollapsibleWrapper } from './code-collapsible-wrapper';
-import { CodeTabs } from './code-tabs';
-import { Icons, getIconForLanguageExtension } from './icons';
+import { CodeBlockCommand } from '../code-block-wrapper';
+import { CodeCollapsibleWrapper } from '../code-collapsible-wrapper';
+import { CodeTabs } from '../code-tabs';
+import { Icons, getIconForLanguageExtension } from '../icons';
 
 const components: MDXRemoteProps['components'] = {
   h1: (props: React.ComponentProps<'h1'>) => <Heading as="h1" {...props} />,

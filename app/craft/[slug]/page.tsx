@@ -1,4 +1,4 @@
-import { MDX } from '@/components/mdx-components';
+import { MDX } from '@/components/markdown/mdx';
 
 import { CopyLink } from '@/components/copy-button';
 import { FloatingHeader } from '@/components/navigation/floating-header';
