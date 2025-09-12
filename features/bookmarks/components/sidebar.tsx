@@ -43,12 +43,12 @@ export const SideMenu = ({
     () => (
       <ScrollArea
         className={cn(
-          'hidden bg-background lg:flex lg:flex-col lg:border-r',
+          'hidden border-dashed bg-background lg:flex lg:flex-col lg:border-r',
           isInner ? 'lg:w-80 xl:w-96' : 'lg:w-60 xl:w-72'
         )}
       >
         {title && (
-          <div className="sticky top-0 z-10 border-b bg-background px-5 py-3">
+          <div className="sticky top-0 z-10 border-b border-dashed bg-background px-5 py-3">
             <div className="flex items-center justify-between">
               <span className="font-semibold text-sm tracking-tight">
                 {title}

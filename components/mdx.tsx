@@ -7,11 +7,11 @@ import rehypeSlug from 'rehype-slug';
 import remarkGfm from 'remark-gfm';
 import { visit } from 'unist-util-visit';
 
+import { ComponentCSS } from '@/components/component-css';
+import { ComponentPreview } from '@/components/component-preview';
+import { ComponentSource } from '@/components/component-source';
+import { CopyButton } from '@/components/copy-button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { ComponentCSS } from '../component-css';
-import { ComponentPreview } from '../component-preview';
-import { ComponentSource } from '../component-source';
-import { CopyButton } from '../copy-button';
 
 import {
   Table,
@@ -22,6 +22,10 @@ import {
   TableRow,
 } from '@/components/ui/table';
 
+import { CodeBlockCommand } from '@/components/code-block-wrapper';
+import { CodeCollapsibleWrapper } from '@/components/code-collapsible-wrapper';
+import { CodeTabs } from '@/components/code-tabs';
+import { Icons, getIconForLanguageExtension } from '@/components/icons';
 import { Code, Heading } from '@/components/ui/typography';
 import { UTM_PARAMS } from '@/config/site';
 import { rehypeAddQueryParams } from '@/lib/rehype-add-query-params';
@@ -30,10 +34,6 @@ import { rehypeNpmCommand } from '@/lib/rehype-npm-command';
 import { remarkCodeImport } from '@/lib/remark-code-import';
 import { cn } from '@/lib/utils';
 import type { NpmCommands } from '@/types/unist';
-import { CodeBlockCommand } from '../code-block-wrapper';
-import { CodeCollapsibleWrapper } from '../code-collapsible-wrapper';
-import { CodeTabs } from '../code-tabs';
-import { Icons, getIconForLanguageExtension } from '../icons';
 
 const components: MDXRemoteProps['components'] = {
   h1: (props: React.ComponentProps<'h1'>) => <Heading as="h1" {...props} />,

@@ -1,14 +1,13 @@
 'use client';
 
 import { USER } from '@/config/user';
-import { resumeData } from '@/lib/resume-data';
+// import { resumeData } from '@/lib/resume-data';
 import type React from 'react';
 import { useState } from 'react';
-import DownloadButton from './download-button';
 import { A4_HEIGHT_MM, A4_WIDTH_MM, MM_TO_PX, Ruler } from './ruler';
 
 export default function ResumePage() {
-  const { experience, education, skills } = resumeData;
+  // const { experience, education, skills } = resumeData;
   const [scrollX, setScrollX] = useState(0);
   const [scrollY, setScrollY] = useState(0);
 
@@ -20,9 +19,6 @@ export default function ResumePage() {
 
   return (
     <div className="fixed inset-0 bg-neutral-100 dark:bg-neutral-500/40">
-      {/* Download button */}
-      <DownloadButton contentId="resume" fileName="resume.pdf" />
-
       {/* Corner square */}
       <div className="fixed top-0 left-0 z-21 hidden h-8 w-8 border-r border-b lg:block" />
 
@@ -77,7 +73,7 @@ export default function ResumePage() {
                   <h3 className="mb-3 font-bold text-[#70706f] text-base">
                     Experience
                   </h3>
-                  {experience.map((company, index) => (
+                  {/* {experience.map((company, index) => (
                     <div key={index} className="mb-4">
                       {company.positions.map((position, posIndex) => (
                         <div key={posIndex} className="mb-3">
@@ -105,7 +101,7 @@ export default function ResumePage() {
                         </div>
                       ))}
                     </div>
-                  ))}
+                  ))} */}
                 </div>
 
                 {/* Right Column */}
@@ -115,7 +111,7 @@ export default function ResumePage() {
                     <h3 className="mb-3 font-bold text-[#70706f] text-base">
                       Education
                     </h3>
-                    {education.map((edu, index) => (
+                    {/* {education.map((edu, index) => (
                       <div key={index} className="mb-3">
                         <h4 className="font-bold text-sm">
                           <a
@@ -130,7 +126,7 @@ export default function ResumePage() {
                           Graduated {edu.graduationDate}
                         </p>
                       </div>
-                    ))}
+                    ))} */}
                   </div>
 
                   {/* Skills Section */}
@@ -139,7 +135,7 @@ export default function ResumePage() {
                       Skills
                     </h3>
                     <ul className="space-y-1">
-                      {skills.map((skill, index) => (
+                      {/* {skills.map((skill, index) => (
                         <li key={index} className="text-sm">
                           <a
                             href={skill.url}
@@ -148,7 +144,7 @@ export default function ResumePage() {
                             {skill.name}
                           </a>
                         </li>
-                      ))}
+                      ))} */}
                     </ul>
                   </div>
                 </div>

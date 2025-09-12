@@ -87,7 +87,7 @@ export function DocsCopyPage({ page, url }: { page: string; url: string }) {
 
   const trigger = (
     <Button
-      variant="secondary"
+      variant="ghost"
       size="sm"
       className="peer -ml-0.5 size-8 shadow-none md:size-7 md:text-[0.8rem]"
     >
@@ -100,7 +100,7 @@ export function DocsCopyPage({ page, url }: { page: string; url: string }) {
       <div className="group/buttons relative flex rounded-lg bg-secondary *:[[data-slot=button]]:focus-visible:relative *:[[data-slot=button]]:focus-visible:z-10">
         <PopoverAnchor />
         <Button
-          variant="secondary"
+          variant="ghost"
           size="sm"
           className="h-8 shadow-none md:h-7 md:text-[0.8rem]"
           onClick={() => copyToClipboard(page)}

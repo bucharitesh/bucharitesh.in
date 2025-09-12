@@ -1,7 +1,12 @@
 'use client';
 
-import { RepeatIcon } from 'lucide-react';
-import React, { useMemo, useState } from 'react';
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from '@/components/ui/resizable';
+import { RefreshCcw } from 'lucide-react';
+import React, { ReactNode, useMemo, useState } from 'react';
 
 import { Index } from '@/__registry__/index';
 import { cn } from '@/lib/utils';
@@ -16,14 +21,14 @@ export function ComponentPreview({
   className,
   name,
   openInV0Url,
-  canReplay = false,
+  canReplay = true,
   notProse = true,
   codeCollapsible = false,
   children,
   ...props
 }: React.ComponentProps<'div'> & {
   name: string;
-  openInV0Url?: string;
+  openInV0Url?: boolean;
   canReplay?: boolean;
   notProse?: boolean;
   codeCollapsible?: boolean;
@@ -56,27 +61,30 @@ export function ComponentPreview({
         </TabsList>
 
         <TabsContent value="preview">
-          <div className="rounded-lg border border-edge bg-[radial-gradient(var(--pattern-foreground)_1px,transparent_0)] bg-center bg-size-[10px_10px] bg-zinc-950/0.75 p-4 [--pattern-foreground:var(--color-zinc-950)]/5 dark:bg-white/0.75 dark:[--pattern-foreground:var(--color-white)]/5">
+          <div className="relative rounded-lg border border-edge bg-zinc-950/0.75 dark:bg-white/0.75">
             {(canReplay || openInV0Url) && (
-              <div className="mb-4 flex justify-end gap-2">
+              <div className="flex justify-end gap-2 p-4">
+                {openInV0Url && (
+                  <OpenInV0Button
+                    url={`https://bucharitesh.in/r/${name}.json`}
+                  />
+                )}
                 {canReplay && (
                   // <SimpleTooltip content="Replay">
                   <Button
-                    variant="outline"
-                    size="icon"
+                    variant="secondary"
+                    size="sm"
                     onClick={() => setReplay((v) => v + 1)}
                   >
-                    <RepeatIcon />
+                    <RefreshCcw />
                   </Button>
                 )}
-
-                {openInV0Url && <OpenInV0Button url={openInV0Url} />}
               </div>
             )}
 
             <div
               key={replay}
-              className="flex min-h-80 items-center justify-center font-sans"
+              className="relative mx-auto flex size-full items-center justify-center"
             >
               <React.Suspense
                 fallback={
@@ -85,7 +93,7 @@ export function ComponentPreview({
                   </div>
                 }
               >
-                {Preview}
+                <PreviewContent type="component">{Preview}</PreviewContent>
               </React.Suspense>
             </div>
           </div>
@@ -104,3 +112,36 @@ export function ComponentPreview({
     </div>
   );
 }
+
+type PreviewContentProps = {
+  children: ReactNode;
+  type: 'component' | 'block';
+};
+
+export const PreviewContent = ({ children, type }: PreviewContentProps) => {
+  return (
+    <ResizablePanelGroup className="size-full" direction="horizontal">
+      <ResizablePanel
+        className={cn(
+          'peer not-fumadocs-codeblock z-10 size-full',
+          type === 'component' ? 'overflow-hidden' : 'overflow-auto'
+        )}
+        defaultSize={100}
+        maxSize={100}
+        minSize={40}
+      >
+        {children}
+      </ResizablePanel>
+      <ResizableHandle
+        className="z-20 peer-data-[panel-size=100.0]:w-0"
+        withHandle
+      />
+      <ResizablePanel
+        className="border-none bg-background"
+        defaultSize={0}
+        maxSize={70}
+        minSize={0}
+      />
+    </ResizablePanelGroup>
+  );
+};

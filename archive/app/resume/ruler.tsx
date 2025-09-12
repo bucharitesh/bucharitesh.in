@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 export const A4_WIDTH_MM = 210;
 export const A4_HEIGHT_MM = 297;
@@ -69,9 +69,8 @@ export const Ruler: React.FC<{
 
           {/* Long lines - rendered every 10mm */}
           {Array.from({ length: 120 }, (_, i) => (
-            <>
+            <Fragment key={`long-${i}`}>
               <div
-                key={`long-${i}`}
                 className="absolute bg-neutral-400 dark:bg-neutral-500"
                 style={{
                   ...(isHorizontal
@@ -110,7 +109,7 @@ export const Ruler: React.FC<{
               >
                 {i * 10}
               </div>
-            </>
+            </Fragment>
           ))}
         </div>
       </div>

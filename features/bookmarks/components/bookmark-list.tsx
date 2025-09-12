@@ -102,7 +102,7 @@ export const BookmarkList = ({
             <>
               {isLoading ? (
                 <div
-                  className="inline-block size-4 animate-spin rounded-full border-2 border-current border-t-transparent text-black"
+                  className="inline-block size-4 animate-spin rounded-full border-2 border-current border-t-transparent border-dashed text-black"
                   aria-label="loading"
                 >
                   <span className="sr-only">Loading...</span>

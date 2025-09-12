@@ -2,12 +2,10 @@
 import soundManager from '@/lib/sound-manager';
 import { type Variants, motion as m } from 'motion/react';
 import { useTheme } from 'next-themes';
-// import { useEasterEggs } from "@/lib/providers/easter-egg-provider";
+import { useRef, useState } from 'react';
+import { flushSync } from 'react-dom';
 
 export default function ModeToggle() {
-  const { setTheme, theme } = useTheme();
-  // const { discoverEgg } = useEasterEggs();
-
   const raysVariants = {
     hidden: {
       strokeOpacity: 0,
@@ -70,14 +68,48 @@ export default function ModeToggle() {
   const moonPath =
     'M70 49.5C70 60.8218 60.8218 70 49.5 70C38.1782 70 29 60.8218 29 49.5C29 38.1782 38.1782 29 49.5 29C39 45 49.5 59.5 70 49.5Z';
 
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
+  const buttonRef = useRef<HTMLDivElement | null>(null);
+  const changeTheme = async () => {
+    if (!buttonRef.current) return;
+
+    await document.startViewTransition(() => {
+      flushSync(() => {
+        const dark = document.documentElement.classList.toggle('dark');
+        soundManager.playAudio('/assets/button-click.mp3');
+        setIsDarkMode(dark);
+      });
+    }).ready;
+
+    const { top, left, width, height } =
+      buttonRef.current.getBoundingClientRect();
+    const y = top + height / 2;
+    const x = left + width / 2;
+
+    const right = window.innerWidth - left;
+    const bottom = window.innerHeight - top;
+    const maxRad = Math.hypot(Math.max(left, right), Math.max(top, bottom));
+
+    document.documentElement.animate(
+      {
+        clipPath: [
+          `circle(0px at ${x}px ${y}px)`,
+          `circle(${maxRad}px at ${x}px ${y}px)`,
+        ],
+      },
+      {
+        duration: 700,
+        easing: 'ease-in-out',
+        pseudoElement: '::view-transition-new(root)',
+      }
+    );
+  };
+
   return (
     <div
+      ref={buttonRef}
       className="flex h-full w-full items-center justify-center"
-      onClick={() => {
-        setTheme(theme === 'dark' ? 'light' : 'dark');
-        soundManager.playAudio('./assets/button-click.mp3');
-        // discoverEgg("THEME_TOGGLE");
-      }}
+      onClick={changeTheme}
     >
       <m.svg
         strokeWidth="4"
@@ -94,13 +126,13 @@ export default function ModeToggle() {
           d={moonPath}
           className="absolute top-0 left-0 stroke-blue-100"
           initial="hidden"
-          animate={theme === 'dark' ? 'visible' : 'hidden'}
+          animate={isDarkMode ? 'visible' : 'hidden'}
         />
 
         <m.g
           variants={raysVariants}
           initial="hidden"
-          animate={theme === 'light' ? 'visible' : 'hidden'}
+          animate={isDarkMode ? 'hidden' : 'visible'}
           className="stroke-6 stroke-yellow-600 "
           style={{ strokeLinecap: 'round' }}
         >
@@ -124,7 +156,7 @@ export default function ModeToggle() {
           transition={{ duration: 1, type: 'spring' }}
           initial={{ fillOpacity: 0, strokeOpacity: 0 }}
           animate={
-            theme === 'dark'
+            isDarkMode
               ? {
                   d: moonPath,
                   rotate: -360,
