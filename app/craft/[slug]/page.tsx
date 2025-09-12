@@ -1,4 +1,4 @@
-import { MDX } from '@/components/markdown/mdx';
+import { MDX } from '@/components/mdx';
 
 import { FloatingHeader } from '@/components/navigation/floating-header';
 import { TOCItems, TOCProvider, TOCScrollArea } from '@/components/toc';

@@ -7,9 +7,9 @@ import { FlipSentences } from '@/components/ui/flip-sentences';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { USER } from '@/config/user';
 import { createOgImage } from '@/lib/createOgImage';
-import { getGithubContributions } from '@/lib/github';
 import { JsonLd, Organization, WithContext } from '@/lib/seo/json-ld';
 import { createMetadata } from '@/lib/seo/metadata';
+import { getGithubContributions } from '@/lib/services/github';
 import type { Metadata } from 'next/types';
 
 export async function generateMetadata(): Promise<Metadata> {
