@@ -11,6 +11,7 @@ let nextConfig = {
   },
   devIndicators: false,
   serverExternalPackages: [
+    'shiki',
     '@react-email/components',
     '@react-email/render',
     '@react-email/tailwind',

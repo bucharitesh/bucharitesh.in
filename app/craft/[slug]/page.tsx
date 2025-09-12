@@ -2,15 +2,18 @@ import { MDX } from '@/components/mdx-components';
 
 import { CopyLink } from '@/components/copy-button';
 import { FloatingHeader } from '@/components/navigation/floating-header';
+import { TOCItems, TOCProvider, TOCScrollArea } from '@/components/toc';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Prose } from '@/components/ui/typography';
 import { USER } from '@/config/user';
+import { DocsCopyPage } from '@/features/craft/components/copy-page';
 import { getAllCrafts, getCraftBySlug } from '@/features/craft/data/posts';
 import { createOgImage } from '@/lib/createOgImage';
 import { BlogPosting, JsonLd, WithContext } from '@/lib/seo/json-ld';
 import { createMetadata } from '@/lib/seo/metadata';
 import { cn } from '@/lib/utils';
 import dayjs from 'dayjs';
+import { getTableOfContents } from 'fumadocs-core/server';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
@@ -55,10 +58,12 @@ export default async function Page({
   const post = await getCraftBySlug(slug);
 
   if (!post) {
-    return notFound();
+    notFound();
   }
 
   const { title, date, description } = post.metadata;
+
+  const toc = await getTableOfContents(post.content);
 
   const jsonLd: WithContext<BlogPosting> = {
     '@type': 'BlogPosting',
@@ -77,7 +82,7 @@ export default async function Page({
   };
 
   return (
-    <>
+    <TOCProvider toc={toc}>
       <JsonLd code={jsonLd} />
       <ScrollArea useScrollAreaId>
         <FloatingHeader scrollTitle={title} />
@@ -107,7 +112,7 @@ export default async function Page({
             <CopyLinkButton />
         </div> */}
 
-            <div className="mb-8 flex flex-nowrap items-center justify-start">
+            <div className="mb-8 flex flex-nowrap items-start justify-start">
               <div className="w-full">
                 <h1
                   className={cn('scroll-m-20 font-bold text-xl tracking-tight')}
@@ -122,7 +127,10 @@ export default async function Page({
                 </p>
               </div>
               <div className="flex items-center gap-2">
-                <CopyLink value={`https://${USER.domain}/craft/${post.slug}`} />
+                <DocsCopyPage
+                  page={`https://${USER.domain}/craft/${post.slug}`}
+                  url={`https://${USER.domain}/craft/${post.slug}`}
+                />
               </div>
             </div>
 
@@ -134,16 +142,24 @@ export default async function Page({
           </div>
 
           <div className="sticky top-14 right-0 col-span-1 hidden h-0 max-w-md space-y-4 lg:col-start-2! lg:row-start-1 lg:block">
-            {/* <TableOfContents toc={toc} /> */}
+            {/* <CraftsPager craft={post} /> */}
           </div>
 
           <div className="sticky top-14 left-0 col-span-1 hidden h-0 max-w-md space-y-4 lg:col-start-4! lg:row-start-1 lg:block">
-            {/* <Contribute craft={post} /> */}
+            {/* <TableOfContents toc={toc} /> */}
+            <p className="mb-2 text-fd-muted-foreground text-sm">
+              On this page
+            </p>
+            <div className="flex flex-col">
+              <TOCScrollArea>
+                <TOCItems />
+              </TOCScrollArea>
+            </div>
           </div>
 
           {/* <CraftsPager craft={craft} /> */}
         </div>
       </ScrollArea>
-    </>
+    </TOCProvider>
   );
 }

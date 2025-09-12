@@ -57,12 +57,7 @@ export function getAllPosts() {
 }
 
 export function getAllCrafts() {
-  let posts = getMDXData(
-    path.join(process.cwd(), 'features/craft/content')
-  ).sort(
-    (a, b) =>
-      new Date(b.metadata.date).getTime() - new Date(a.metadata.date).getTime()
-  );
+  let posts = getAllPosts();
 
   posts = posts.filter(
     (post) => post.metadata.published && post.metadata.type === 'component'

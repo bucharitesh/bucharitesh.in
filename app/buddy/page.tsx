@@ -14,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const Page = () => {
   if (!ENABLE_BUDDY) {
-    return notFound();
+    notFound();
   }
 
   return (
