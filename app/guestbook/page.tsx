@@ -53,26 +53,27 @@ export default function GuestbookPage() {
       <ScrollArea useScrollAreaId>
         <FloatingHeader title="Guestbook" />
         <div
-          className={cn('h-screen w-screen bg-gray-1')}
+          className={cn('h-screen w-screen bg-[#0565c6]')}
           style={{
-            backgroundColor: '#06c',
-            // "backgroundImage": "linear-gradient(rgba(255,255,255,0.2) 2px, transparent 2px), linear-gradient(90deg, rgba(255,255,255,0.2) 2px, transparent 1px), linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)",
             backgroundSize: '100px 100px, 100px 100px, 20px 20px, 20px 20px',
             backgroundPosition: '-2px -2px, -2px -2px, -1px -1px, -1px -1px',
           }}
         >
           <div
             id="mat-container"
-            className={cn(
-              'relative h-full w-full overflow-hidden'
-              // styles.matContainer
-            )}
+            className={cn('relative h-full w-full overflow-hidden')}
           >
             <div className="z-10">
-              <div id="mat-texture" className={styles.matTexture} />
-              <div aria-hidden className={styles.window} />
               <div id="mat-grid" className={styles.matGrid}>
-                <div id="diagonal-lines" className={styles.diagonalLines} />
+                <div
+                  className={
+                    'absolute inset-0 bg-position-center bg-size-[10vmin_10vmin]'
+                  }
+                  style={{
+                    backgroundImage:
+                      'linear-gradient(45deg,transparent 49.5%,rgba(255, 255, 255, 0.2) 49.5%,rgba(255, 255, 255, 0.2) 50.5%,transparent 50.5%),linear-gradient(-45deg,transparent 49.5%,rgba(255, 255, 255, 0.2) 49.5%,rgba(255, 255, 255, 0.2) 50.5%,transparent 50.5%)',
+                  }}
+                />
               </div>
             </div>
             <main className="relative z-20 h-full w-full overflow-hidden">

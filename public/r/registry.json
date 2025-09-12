@@ -8,7 +8,10 @@
       "type": "registry:lib",
       "title": "Utility Functions",
       "author": "bucharitesh <contact@bucharitesh.in>",
-      "dependencies": ["clsx", "tailwind-merge"],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/default/lib/utils.ts",
@@ -22,8 +25,12 @@
       "title": "Book",
       "author": "bucharitesh <contact@bucharitesh.in>",
       "description": "A book component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
-      "dependencies": ["@radix-ui/react-icons"],
-      "registryDependencies": ["@bucharitesh/utils"],
+      "dependencies": [
+        "@radix-ui/react-icons"
+      ],
+      "registryDependencies": [
+        "@bucharitesh/utils"
+      ],
       "files": [
         {
           "path": "registry/default/bucharitesh/book/book.tsx",
@@ -42,8 +49,12 @@
       "title": "Modern Progress",
       "author": "bucharitesh <contact@bucharitesh.in>",
       "description": "A modern progress component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
-      "dependencies": ["class-variance-authority"],
-      "registryDependencies": ["@bucharitesh/utils"],
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@bucharitesh/utils"
+      ],
       "files": [
         {
           "path": "registry/default/bucharitesh/modern-progress/modern-progress.tsx",
@@ -62,7 +73,9 @@
       "title": "Pixel Icon",
       "author": "bucharitesh <contact@bucharitesh.in>",
       "description": "A pixel icon component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
-      "registryDependencies": ["@bucharitesh/utils"],
+      "registryDependencies": [
+        "@bucharitesh/utils"
+      ],
       "files": [
         {
           "path": "registry/default/bucharitesh/pixel-icon/pixel-icon.tsx",
@@ -77,8 +90,12 @@
       "title": "Split Text Effect",
       "author": "bucharitesh <contact@bucharitesh.in>",
       "description": "A split text effect component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
-      "dependencies": ["motion"],
-      "registryDependencies": ["@bucharitesh/utils"],
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "@bucharitesh/utils"
+      ],
       "files": [
         {
           "path": "registry/default/bucharitesh/split-text-effect/split-text-effect.tsx",
@@ -93,8 +110,12 @@
       "title": "View Magnifier",
       "author": "bucharitesh <contact@bucharitesh.in>",
       "description": "A view magnifier component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
-      "dependencies": ["motion"],
-      "registryDependencies": ["@bucharitesh/utils"],
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "@bucharitesh/utils"
+      ],
       "files": [
         {
           "path": "registry/default/bucharitesh/view-magnifier/view-magnifier.tsx",
@@ -109,7 +130,9 @@
       "title": "Game of Life",
       "author": "bucharitesh <contact@bucharitesh.in>",
       "description": "A game of life component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
-      "registryDependencies": ["@bucharitesh/utils"],
+      "registryDependencies": [
+        "@bucharitesh/utils"
+      ],
       "files": [
         {
           "path": "registry/default/bucharitesh/game-of-life/game-of-life.tsx",
@@ -124,8 +147,12 @@
       "title": "Magical Mouse",
       "author": "bucharitesh <contact@bucharitesh.in>",
       "description": "A magical mouse component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
-      "dependencies": ["lucide-react"],
-      "registryDependencies": ["@bucharitesh/utils"],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@bucharitesh/utils"
+      ],
       "files": [
         {
           "path": "registry/default/bucharitesh/magical-mouse/magical-mouse.tsx",
@@ -142,7 +169,9 @@
       "name": "book-demo",
       "type": "registry:block",
       "author": "bucharitesh <contact@bucharitesh.in>",
-      "registryDependencies": ["@bucharitesh/book"],
+      "registryDependencies": [
+        "@bucharitesh/book"
+      ],
       "files": [
         {
           "path": "registry/default/example/book-demo.tsx",
@@ -154,7 +183,9 @@
       "name": "book-variant-demo",
       "type": "registry:block",
       "author": "bucharitesh <contact@bucharitesh.in>",
-      "registryDependencies": ["@bucharitesh/book"],
+      "registryDependencies": [
+        "@bucharitesh/book"
+      ],
       "files": [
         {
           "path": "registry/default/example/book-variant-demo.tsx",
@@ -166,7 +197,9 @@
       "name": "game-of-life-demo",
       "type": "registry:block",
       "author": "bucharitesh <contact@bucharitesh.in>",
-      "registryDependencies": ["@bucharitesh/game-of-life"],
+      "registryDependencies": [
+        "@bucharitesh/game-of-life"
+      ],
       "files": [
         {
           "path": "registry/default/example/game-of-life-demo.tsx",
@@ -178,7 +211,9 @@
       "name": "game-of-life-demo-2",
       "type": "registry:block",
       "author": "bucharitesh <contact@bucharitesh.in>",
-      "registryDependencies": ["@bucharitesh/game-of-life"],
+      "registryDependencies": [
+        "@bucharitesh/game-of-life"
+      ],
       "files": [
         {
           "path": "registry/default/example/game-of-life-demo-2.tsx",
@@ -190,7 +225,9 @@
       "name": "magical-mouse-demo",
       "type": "registry:block",
       "author": "bucharitesh <contact@bucharitesh.in>",
-      "registryDependencies": ["@bucharitesh/magical-mouse"],
+      "registryDependencies": [
+        "@bucharitesh/magical-mouse"
+      ],
       "files": [
         {
           "path": "registry/default/example/magical-mouse-demo.tsx",
@@ -202,7 +239,9 @@
       "name": "modern-progress-demo",
       "type": "registry:block",
       "author": "bucharitesh <contact@bucharitesh.in>",
-      "registryDependencies": ["@bucharitesh/modern-progress"],
+      "registryDependencies": [
+        "@bucharitesh/modern-progress"
+      ],
       "files": [
         {
           "path": "registry/default/example/modern-progress-demo.tsx",
@@ -214,7 +253,9 @@
       "name": "pixel-icon-demo",
       "type": "registry:block",
       "author": "bucharitesh <contact@bucharitesh.in>",
-      "registryDependencies": ["@bucharitesh/pixel-icon"],
+      "registryDependencies": [
+        "@bucharitesh/pixel-icon"
+      ],
       "files": [
         {
           "path": "registry/default/example/pixel-icon-demo.tsx",
@@ -226,7 +267,9 @@
       "name": "split-text-effect-demo",
       "type": "registry:block",
       "author": "bucharitesh <contact@bucharitesh.in>",
-      "registryDependencies": ["@bucharitesh/split-text-effect"],
+      "registryDependencies": [
+        "@bucharitesh/split-text-effect"
+      ],
       "files": [
         {
           "path": "registry/default/example/split-text-effect-demo.tsx",
@@ -238,7 +281,9 @@
       "name": "split-text-effect-demo-2",
       "type": "registry:block",
       "author": "bucharitesh <contact@bucharitesh.in>",
-      "registryDependencies": ["@bucharitesh/split-text-effect"],
+      "registryDependencies": [
+        "@bucharitesh/split-text-effect"
+      ],
       "files": [
         {
           "path": "registry/default/example/split-text-effect-demo-2.tsx",
@@ -250,7 +295,9 @@
       "name": "split-text-effect-demo-3",
       "type": "registry:block",
       "author": "bucharitesh <contact@bucharitesh.in>",
-      "registryDependencies": ["@bucharitesh/split-text-effect"],
+      "registryDependencies": [
+        "@bucharitesh/split-text-effect"
+      ],
       "files": [
         {
           "path": "registry/default/example/split-text-effect-demo-3.tsx",
@@ -262,7 +309,9 @@
       "name": "view-magnifier-demo",
       "type": "registry:block",
       "author": "bucharitesh <contact@bucharitesh.in>",
-      "registryDependencies": ["@bucharitesh/view-magnifier"],
+      "registryDependencies": [
+        "@bucharitesh/view-magnifier"
+      ],
       "files": [
         {
           "path": "registry/default/example/view-magnifier-demo.tsx",
@@ -274,7 +323,9 @@
       "name": "view-magnifier-demo-2",
       "type": "registry:block",
       "author": "bucharitesh <contact@bucharitesh.in>",
-      "registryDependencies": ["@bucharitesh/view-magnifier"],
+      "registryDependencies": [
+        "@bucharitesh/view-magnifier"
+      ],
       "files": [
         {
           "path": "registry/default/example/view-magnifier-demo-2.tsx",

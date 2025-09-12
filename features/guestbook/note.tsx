@@ -1,6 +1,5 @@
 'use client';
 
-import styles from '@/app/guestbook/notes.module.css';
 import Drag from '@/features/guestbook/drag';
 import { cn } from '@/lib/utils';
 import { motion } from 'motion/react';
@@ -32,8 +31,12 @@ const Note = React.memo(
           transition={{ duration: 0.3, ease: 'easeOut' }}
           className={cn(
             'note-item w-fit max-w-[165px] scale-75! bg-gray-200 px-1.5 pt-1.5 pb-2 text-gray-900 transition-shadow duration-300 ease-out hover:shadow-md',
-            styles.note
+            'z-10 rounded-lg backdrop-blur-sm'
           )}
+          style={{
+            boxShadow:
+              '0 4px 8px rgba(0, 0, 0, 0.2), 0 8px 16px rgba(0, 0, 0, 0.2), 0 16px 32px rgba(0, 0, 0, 0.2)',
+          }}
         >
           {signature ? (
             <div

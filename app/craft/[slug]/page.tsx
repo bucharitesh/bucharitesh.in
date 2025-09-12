@@ -1,6 +1,5 @@
 import { MDX } from '@/components/markdown/mdx';
 
-import { CopyLink } from '@/components/copy-button';
 import { FloatingHeader } from '@/components/navigation/floating-header';
 import { TOCItems, TOCProvider, TOCScrollArea } from '@/components/toc';
 import { ScrollArea } from '@/components/ui/scroll-area';

@@ -1,9 +1,9 @@
 import { FloatingHeader } from '@/components/navigation/floating-header';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import CalEmbed from '@/features/cal/components/cal-embed';
 import { createOgImage } from '@/lib/createOgImage';
 import { createMetadata } from '@/lib/seo/metadata';
 import type { Metadata } from 'next/types';
-import CalEmbed from './cal-embed';
 
 export async function generateMetadata(): Promise<Metadata> {
   const title = 'Book a Meeting';

@@ -19,7 +19,7 @@ const Drag = React.memo(
     initialX?: number;
     initialY?: number;
     rotation?: boolean;
-  }) => {
+  } & any) => {
     const [zIndex, updateZIndex] = useMaxZIndex();
     const controls = useAnimation();
     const [isClient, setIsClient] = useState(false);
