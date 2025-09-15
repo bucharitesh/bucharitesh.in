@@ -38,7 +38,7 @@ export default async function BookmarksLayout({
             </div>
           </Suspense>
         </SideMenu>
-        <div className="flex-1">{children}</div>
+        <div className="flex-1 bg-grid">{children}</div>
       </div>
     </>
   );

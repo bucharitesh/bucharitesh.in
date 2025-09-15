@@ -15,7 +15,9 @@ export const UTM_PARAMS = {
   utm_campaign: 'referral',
 };
 
-export const COLLECTION_IDS = [48073561, 59718740, 59782917, 59843152];
+export const COLLECTION_IDS = [
+  48073561, 59718740, 59782917, 59843152, 59843461,
+];
 
 export const SCROLL_AREA_ID = 'scroll-area-id';
 export const MOBILE_SCROLL_THRESHOLD = 20;

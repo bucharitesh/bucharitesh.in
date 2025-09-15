@@ -38,7 +38,7 @@ export default async function Page() {
     <>
       <JsonLd code={jsonLd} />
       <Info show={['time', 'screen', 'llms']} />
-      <ScrollArea useScrollAreaId>
+      <ScrollArea useScrollAreaId className="bg-grid">
         <FloatingHeader scrollTitle="Ritesh Bucha" />
         <div className="layout relative z-10 content-wrapper">
           <header className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">

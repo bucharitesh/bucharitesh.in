@@ -25,21 +25,19 @@ export const ListItem = ({
       href={path}
       className={cn(
         'flex flex-col gap-1 rounded-lg p-2 transition-colors duration-300 *:transition-colors *:duration-300',
-        isActive ? 'bg-foreground' : 'hover:bg-muted',
+        isActive
+          ? 'border-1 border-black/10 border-inset border-dashed bg-grid dark:border-white/10'
+          : 'hover:bg-muted',
         className
       )}
     >
-      <span className={cn('font-medium', isActive && 'text-background')}>
+      <span
+        className={cn('font-medium', isActive && 'text-background-foreground')}
+      >
         {title}
       </span>
       {description && (
-        <span
-          className={cn(
-            isActive ? 'text-background/70' : 'text-muted-foreground'
-          )}
-        >
-          {description}
-        </span>
+        <span className={cn(isActive ? '' : 'text-muted')}>{description}</span>
       )}
     </Link>
   );

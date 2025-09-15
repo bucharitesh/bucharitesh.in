@@ -11,7 +11,7 @@ export const BookmarkCard = ({
     <a
       key={bookmark._id}
       className={cn(
-        'thumbnail-shadow flex aspect-auto min-w-0 cursor-pointer flex-col gap-4 overflow-hidden rounded-xl bg-white p-4 transition-colors duration-300',
+        'flex aspect-auto min-w-0 cursor-pointer flex-col gap-4 overflow-hidden rounded-xl bg-background p-4 ring-2 ring-black/10 ring-inset ring-offset-destructive transition-colors duration-300 dark:ring-white/10',
         className
       )}
       href={`${bookmark.link}?utm_source=${UTM_PARAMS.utm_source}&utm_medium=${UTM_PARAMS.utm_medium}&utm_campaign=${UTM_PARAMS.utm_campaign}`}
@@ -26,7 +26,7 @@ export const BookmarkCard = ({
           width={1200}
           height={630}
           loading={order < 2 ? 'eager' : 'lazy'}
-          className="aspect-1200/630 animate-reveal rounded-lg border bg-center bg-cover bg-no-repeat object-cover"
+          className="aspect-1200/630 animate-reveal rounded-lg bg-center bg-cover bg-no-repeat object-cover"
           onError={(e: any) => {
             e.target.onerror = null;
             e.target.src = '/assets/fallback.avif';
@@ -34,12 +34,14 @@ export const BookmarkCard = ({
         />
       </span>
       <div className="flex flex-col gap-1">
-        <h2 className="line-clamp-4 text-lg leading-snug">{bookmark.title}</h2>
-        <span className="line-clamp-4 inline-flex items-center gap-1 text-gray-500 text-sm">
+        <h2 className="line-clamp-4 text-lg text-muted-foreground leading-snug">
+          {bookmark.title}
+        </h2>
+        <span className="line-clamp-4 inline-flex items-center gap-1 text-muted-foreground text-sm">
           <Link2Icon size={16} />
           {bookmark.domain}
         </span>
-        <span className="line-clamp-6 text-sm">
+        <span className="line-clamp-6 text-muted-foreground/70 text-sm">
           {bookmark.excerpt || bookmark.note}
         </span>
       </div>

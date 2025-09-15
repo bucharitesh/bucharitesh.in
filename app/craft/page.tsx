@@ -35,7 +35,7 @@ export default async function Page() {
   return (
     <>
       <JsonLd code={jsonLd} />
-      <ScrollArea useScrollAreaId>
+      <ScrollArea useScrollAreaId className="bg-grid">
         <FloatingHeader scrollTitle="Craft" />
         <MasonryGrid
           breakpoints={{

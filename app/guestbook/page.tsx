@@ -38,7 +38,7 @@ export default function GuestbookPage() {
     <ScrollArea useScrollAreaId>
       <FloatingHeader title="Guestbook" />
       <div
-        className={cn('h-screen w-screen bg-[#0565c6]')}
+        className={cn('h-screen w-screen bg-[#031e39]')}
         style={{
           backgroundSize: '100px 100px, 100px 100px, 20px 20px, 20px 20px',
           backgroundPosition: '-2px -2px, -2px -2px, -1px -1px, -1px -1px',

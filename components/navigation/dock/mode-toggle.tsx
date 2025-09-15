@@ -2,7 +2,7 @@
 import soundManager from '@/lib/sound-manager';
 import { type Variants, motion as m } from 'motion/react';
 import { useTheme } from 'next-themes';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { flushSync } from 'react-dom';
 
 export default function ModeToggle() {
@@ -68,16 +68,16 @@ export default function ModeToggle() {
   const moonPath =
     'M70 49.5C70 60.8218 60.8218 70 49.5 70C38.1782 70 29 60.8218 29 49.5C29 38.1782 38.1782 29 49.5 29C39 45 49.5 59.5 70 49.5Z';
 
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
+  const { theme, setTheme } = useTheme();
   const buttonRef = useRef<HTMLDivElement | null>(null);
+
   const changeTheme = async () => {
     if (!buttonRef.current) return;
 
     await document.startViewTransition(() => {
       flushSync(() => {
-        const dark = document.documentElement.classList.toggle('dark');
+        setTheme(theme === 'dark' ? 'light' : 'dark');
         soundManager.playAudio('/assets/button-click.mp3');
-        setIsDarkMode(dark);
       });
     }).ready;
 
@@ -126,13 +126,13 @@ export default function ModeToggle() {
           d={moonPath}
           className="absolute top-0 left-0 stroke-blue-100"
           initial="hidden"
-          animate={isDarkMode ? 'visible' : 'hidden'}
+          animate={theme === 'dark' ? 'visible' : 'hidden'}
         />
 
         <m.g
           variants={raysVariants}
           initial="hidden"
-          animate={isDarkMode ? 'hidden' : 'visible'}
+          animate={theme === 'dark' ? 'hidden' : 'visible'}
           className="stroke-6 stroke-yellow-600 "
           style={{ strokeLinecap: 'round' }}
         >
@@ -156,7 +156,7 @@ export default function ModeToggle() {
           transition={{ duration: 1, type: 'spring' }}
           initial={{ fillOpacity: 0, strokeOpacity: 0 }}
           animate={
-            isDarkMode
+            theme === 'dark'
               ? {
                   d: moonPath,
                   rotate: -360,

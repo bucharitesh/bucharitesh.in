@@ -24,7 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function BookingPage() {
   return (
-    <ScrollArea useScrollAreaId className="h-full">
+    <ScrollArea useScrollAreaId className="h-full bg-grid">
       <FloatingHeader title="Book a Meeting" />
       <div className="flex h-full select-none items-center justify-center space-y-12 p-0 content-wrapper md:min-h-dvh lg:px-8 lg:pt-12 lg:pb-20">
         <div className="z-10 mx-auto flex h-full w-full items-center justify-center">

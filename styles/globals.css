@@ -434,7 +434,7 @@
 }
 
 @utility bg-grid {
-  @apply bg-white dark:bg-neutral-900 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[24px_24px];
+  @apply bg-[repeating-linear-gradient(45deg,_transparent,_transparent_2px,_var(--color-border)_4px,_var(--color-border)_1px)];
 }
 
 /* Animations moved from Tailwind config */

@@ -18,7 +18,7 @@ export const ProfileImage = () => {
       <img
         src={USER.image.profile}
         fetchPriority="high"
-        className="h-full w-full select-none rounded-full ring-1 ring-border ring-offset-2 ring-offset-background"
+        className="h-full w-full select-none rounded-full bg-secondary ring-1 ring-border ring-offset-2 ring-offset-primary"
         alt={`Profile of ${USER.name}`}
       />
     </div>
