@@ -6,7 +6,8 @@
       "components/ui/**",
       "registry/**",
       "__registry__/**",
-      "archive/**"
+      "archive/**",
+      "public/**"
     ]
   },
   "linter": {

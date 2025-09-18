@@ -1,11 +1,11 @@
-import MyActivityCalendar from '@/components/home/activity-calendar';
-import Info from '@/components/home/info';
-import { PronounceMyName } from '@/components/home/pronounce-my-name';
+import MyActivityCalendar from '@/components/activity-calendar';
 import { FloatingHeader } from '@/components/navigation/floating-header';
 import { ProfileImage } from '@/components/profile-image';
+import { PronounceMyName } from '@/components/pronounce-my-name';
 import { FlipSentences } from '@/components/ui/flip-sentences';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { USER } from '@/config/user';
+import Info from '@/features/home/components/info';
 import { createOgImage } from '@/lib/createOgImage';
 import { JsonLd, Organization, WithContext } from '@/lib/seo/json-ld';
 import { createMetadata } from '@/lib/seo/metadata';
