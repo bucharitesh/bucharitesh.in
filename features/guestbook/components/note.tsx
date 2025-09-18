@@ -1,9 +1,9 @@
 'use client';
 
-import Drag from '@/features/guestbook/drag';
 import { cn } from '@/lib/utils';
 import { motion } from 'motion/react';
 import React from 'react';
+import Drag from './drag';
 
 const Note = React.memo(
   ({
