@@ -1,11 +1,11 @@
 'use client';
 
-import { validateAndSaveEntry } from '@/lib/actions';
+import { validateAndSaveEntry } from '@/features/guestbook/actions/actions';
 import {
   hasCreatedEntryBeforeAtom,
   localCreatedByIdAtom,
   localEntriesAtom,
-} from '@/lib/atoms/guestbook';
+} from '@/features/guestbook/data/guestbook';
 import useClickOutside from '@/lib/hooks/use-click-outside';
 import { cn } from '@/lib/utils';
 import Signature, { type SignatureRef } from '@uiw/react-signature';

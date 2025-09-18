@@ -1,11 +1,11 @@
 'use client';
 
-import { getGuestbookEntries } from '@/lib/actions';
+import { getGuestbookEntries } from '@/features/guestbook/actions/actions';
 import {
   allEntriesAtom,
   localEntriesAtom,
   serverEntriesAtom,
-} from '@/lib/atoms/guestbook';
+} from '@/features/guestbook/data/guestbook';
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
 import Note from './note';

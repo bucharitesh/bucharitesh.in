@@ -1,7 +1,10 @@
 'use client';
 
-import { approveGuestbookEntry, declineGuestbookEntry } from '@/lib/actions';
-import { localEntriesAtom } from '@/lib/atoms/guestbook';
+import {
+  approveGuestbookEntry,
+  declineGuestbookEntry,
+} from '@/features/guestbook/actions/actions';
+import { localEntriesAtom } from '@/features/guestbook/data/guestbook';
 import { useSetAtom } from 'jotai';
 
 const ApproveButton = ({ id }: { id: string }) => {

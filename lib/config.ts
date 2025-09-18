@@ -4,7 +4,7 @@ import { USER } from '@/config/user';
 export const DockConfig = {
   navbar: [
     { href: '/', icon: Icons.home, label: 'Home' },
-    { href: '/craft', icon: Icons.craft, label: 'Crafts', new: true },
+    { href: '/craft', icon: Icons.craft, label: 'Craft', new: true },
     { href: '/guestbook', icon: Icons.guestbook, label: 'Guestbook' },
     // { href: "/blog", icon: Icons.guestbook, label: "Blog" },
     { href: '/bookmarks', icon: Icons.bookmark, label: 'Bookmarks' },

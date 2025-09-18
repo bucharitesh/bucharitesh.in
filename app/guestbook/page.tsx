@@ -1,13 +1,13 @@
 import { FloatingHeader } from '@/components/navigation/floating-header';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import GuestbookEntries from '@/features/guestbook/guestbook-entries';
-import Polaroid from '@/features/guestbook/polaroid';
+import GuestbookEntries from '@/features/guestbook/components/guestbook-entries';
+import Polaroid from '@/features/guestbook/components/polaroid';
 import {
   NextWordmark,
   Sticker,
   VercelLogo,
-} from '@/features/guestbook/stickers';
-import WriteNoteCTA from '@/features/guestbook/write';
+} from '@/features/guestbook/components/stickers';
+import WriteNoteCTA from '@/features/guestbook/components/write';
 import { createOgImage } from '@/lib/createOgImage';
 import { createMetadata } from '@/lib/seo/metadata';
 import { cn } from '@/lib/utils';
