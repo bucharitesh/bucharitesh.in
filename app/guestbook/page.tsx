@@ -12,7 +12,6 @@ import { createOgImage } from '@/lib/createOgImage';
 import { createMetadata } from '@/lib/seo/metadata';
 import { cn } from '@/lib/utils';
 import type { Metadata } from 'next/types';
-import styles from './notes.module.css';
 
 export async function generateMetadata(): Promise<Metadata> {
   const title = 'Guestbook';
@@ -37,27 +36,19 @@ export default function GuestbookPage() {
   return (
     <ScrollArea useScrollAreaId>
       <FloatingHeader title="Guestbook" />
-      <div
-        className={cn('h-screen w-screen bg-[#031e39]')}
-        style={{
-          backgroundSize: '100px 100px, 100px 100px, 20px 20px, 20px 20px',
-          backgroundPosition: '-2px -2px, -2px -2px, -1px -1px, -1px -1px',
-        }}
-      >
-        <div
-          id="mat-container"
-          className={cn('relative h-full w-full overflow-hidden')}
-        >
+      <div className={cn('z-0 h-screen w-screen bg-grid')}>
+        <div className={cn('relative h-full w-full overflow-hidden')}>
           <div className="z-10">
-            <div id="mat-grid" className={styles.matGrid}>
+            <div
+              className={cn(
+                'absolute inset-0 border-1 border-black/10 border-inset bg-position-center bg-size-[2vmin_2vmin] after:absolute after:inset-0 after:bg-size-[30vmin_30vmin] after:content-[""] md:bg-size-[10vmin_10vmin]',
+                'bg-[linear-gradient(to_right,var(--color-border)_1px,_transparent_1px),linear-gradient(to_bottom,_var(--color-border)_1px,_transparent_1px)]'
+              )}
+            >
               <div
                 className={
-                  'absolute inset-0 bg-position-center bg-size-[10vmin_10vmin]'
+                  'absolute inset-0 bg-[linear-gradient(45deg,transparent_49.5%,var(--color-border)_49.5%,var(--color-border)_50.5%,transparent_50.5%),linear-gradient(-45deg,transparent_49.5%,var(--color-border)_49.5%,var(--color-border)_50.5%,transparent_50.5%)] bg-position-center bg-size-[10vmin_10vmin]'
                 }
-                style={{
-                  backgroundImage:
-                    'linear-gradient(45deg,transparent 49.5%,rgba(255, 255, 255, 0.2) 49.5%,rgba(255, 255, 255, 0.2) 50.5%,transparent 50.5%),linear-gradient(-45deg,transparent 49.5%,rgba(255, 255, 255, 0.2) 49.5%,rgba(255, 255, 255, 0.2) 50.5%,transparent 50.5%)',
-                }}
               />
             </div>
           </div>

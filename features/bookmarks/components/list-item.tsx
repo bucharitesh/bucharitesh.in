@@ -24,10 +24,10 @@ export const ListItem = ({
       key={path}
       href={path}
       className={cn(
-        'flex flex-col gap-1 rounded-lg p-2 transition-colors duration-300 *:transition-colors *:duration-300',
+        'flex flex-col gap-1 rounded-lg p-2 transition-all duration-300 *:transition-all *:duration-300',
         isActive
-          ? 'border-1 border-black/10 border-inset border-dashed bg-grid dark:border-white/10'
-          : 'hover:bg-muted',
+          ? 'bg-grid ring-1 ring-black/10 ring-inset dark:ring-white/10'
+          : 'hover:ring-1 hover:ring-black/10 hover:ring-inset dark:hover:ring-white/10 ',
         className
       )}
     >
@@ -37,7 +37,9 @@ export const ListItem = ({
         {title}
       </span>
       {description && (
-        <span className={cn(isActive ? '' : 'text-muted')}>{description}</span>
+        <span className={cn(isActive ? '' : 'text-muted-foreground')}>
+          {description}
+        </span>
       )}
     </Link>
   );

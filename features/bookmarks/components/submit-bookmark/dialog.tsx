@@ -30,11 +30,11 @@ export const SubmitBookmarkDialog = ({
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{'Submit a bookmark'}</DialogTitle>
+          <DialogTitle>Submit a bookmark</DialogTitle>
           <DialogDescription>
-            {
-              "Send me a website you like and if I like it too, you'll see it in the bookmarks list. With respect, please do not submit more than 5 websites a day."
-            }
+            Send me a website you like and if I like it too, you'll see it in
+            the bookmarks list. With respect, please do not submit more than 5
+            websites a day.
           </DialogDescription>
         </DialogHeader>
         <SubmitBookmarkForm

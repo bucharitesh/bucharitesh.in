@@ -26,6 +26,16 @@ function BottomDock({ className }: { className: string }) {
   const setBuddyModeEnabled = useBuddyStore((s) => s.setBuddyModeEnabled);
   const hedgehogConfig = useBuddyStore((s) => s.hedgehogConfig);
 
+  // Helper function to determine if a dock item should be active
+  const isItemActive = (itemHref: string) => {
+    // For the home route "/", only match exactly
+    if (itemHref === '/') {
+      return pathname === '/';
+    }
+    // For all other routes, match if current path starts with the item href
+    return pathname.startsWith(itemHref);
+  };
+
   // const { data: session } = useSession();
 
   const startTimeout = () => {
@@ -73,8 +83,8 @@ function BottomDock({ className }: { className: string }) {
             <Link href={item.href}>
               <item.icon className="size-4" />
             </Link>
-            {pathname === item.href && (
-              <DockIconActiveDot isActive={pathname === item.href} />
+            {isItemActive(item.href) && (
+              <DockIconActiveDot isActive={isItemActive(item.href)} />
             )}
           </DockIcon>
         ))}
