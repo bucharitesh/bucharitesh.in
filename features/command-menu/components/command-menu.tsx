@@ -77,7 +77,7 @@ const DAIFOLIO_LINKS: CommandLinkItem[] = [
 export function CommandMenu() {
   const router = useRouter();
 
-  const { setTheme, resolvedTheme } = useTheme();
+  const { setTheme } = useTheme();
 
   const [open, setOpen] = useState(false);
 
@@ -149,7 +149,7 @@ export function CommandMenu() {
 
   return (
     <>
-      <Button
+      {/* <Button
         variant="secondary"
         className={cn(
           'h-8 select-none gap-1.5 rounded-full bg-zinc-50 px-2.5 text-muted-foreground hover:bg-zinc-50 dark:bg-zinc-900 dark:hover:bg-zinc-900',
@@ -181,7 +181,7 @@ export function CommandMenu() {
         <CommandMenuKbd className="hidden sm:not-[.os-macos_&]:flex">
           Ctrl K
         </CommandMenuKbd>
-      </Button>
+      </Button> */}
 
       <CommandDialog open={open} onOpenChange={setOpen}>
         <CommandInput placeholder="Type a command or search..." />
@@ -379,7 +379,7 @@ function CommandMenuKbd({ className, ...props }: React.ComponentProps<'kbd'>) {
   return (
     <kbd
       className={cn(
-        'pointer-events-none flex h-5 min-w-6 select-none items-center justify-center gap-1 rounded-xs bg-black/5 px-1 font-normal font-sans text-[13px] text-muted-foreground shadow-[inset_0_-1px_2px] shadow-black/10 [&_svg:not([class*= dark:bg-white/10 dark:text-shadow-xs dark:shadow-white/10'size-'])]:size-3',
+        'pointer-events-none flex h-5 min-w-6 select-none items-center justify-center gap-1 rounded-xs bg-black/5 px-1 font-normal font-sans text-[13px] text-muted-foreground shadow-[inset_0_-1px_2px] shadow-black/10 [&_svg:not([class*= dark:bg-white/10 dark:text-shadow-xs dark:shadow-white/10',
         className
       )}
       {...props}

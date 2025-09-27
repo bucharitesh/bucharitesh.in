@@ -1,7 +1,4 @@
-'use client';
-
 import React from 'react';
-import { useEffect, useState } from 'react';
 
 export type BreakpointName = 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 
@@ -31,92 +28,53 @@ export const MasonryGrid: React.FC<MasonryGridProps> = ({
   className = '',
   children,
 }) => {
-  const [columns, setColumns] = useState(3);
+  // Create a stable, deterministic class for this breakpoint configuration
+  const createHashFromInput = (input: string): string => {
+    let hashAccumulator = 0;
+    for (let i = 0; i < input.length; i++) {
+      hashAccumulator = (hashAccumulator * 31 + input.charCodeAt(i)) | 0;
+    }
+    return Math.abs(hashAccumulator).toString(36);
+  };
 
-  useEffect(() => {
-    const calculateColumns = () => {
-      const width = window.innerWidth;
+  const configKey = JSON.stringify({ breakpoints, gap });
+  const masonryClassId = `masonry-${createHashFromInput(configKey)}`;
 
-      // Convert breakpoints object to sorted array
-      const sortedBreakpoints = Object.entries(BREAKPOINT_WIDTHS)
-        .map(([breakpoint, width]) => ({
-          breakpoint: breakpoint as BreakpointName,
-          width,
-          columns: breakpoints[breakpoint as BreakpointName],
-        }))
-        .filter((bp) => bp.columns !== undefined)
-        .sort((a, b) => a.width - b.width);
+  // Build responsive CSS using Tailwind's breakpoint widths
+  const responsiveCssRules: string[] = [];
+  responsiveCssRules.push(`.${masonryClassId} { column-gap: ${gap}px; }`);
+  // Default to 1 column on very small screens
+  responsiveCssRules.push(`.${masonryClassId} { column-count: 1; }`);
 
-      // Find appropriate number of columns for current width
-      let activeColumns = 1;
-      for (const bp of sortedBreakpoints) {
-        if (width >= bp.width && bp.columns) {
-          activeColumns = bp.columns;
-        }
-      }
-
-      return activeColumns;
-    };
-
-    // Initial calculation
-    setColumns(calculateColumns());
-
-    // Add resize listener
-    const handleResize = () => {
-      setColumns(calculateColumns());
-    };
-    window.addEventListener('resize', handleResize);
-
-    // Cleanup
-    return () => window.removeEventListener('resize', handleResize);
-  }, [breakpoints]);
-
-  const columnElements = [...new Array(columns)].map((_, columnIndex) => {
-    const columnChildren = React.Children.toArray(children).filter(
-      (_, index) => index % columns === columnIndex
-    );
-
-    return (
-      <div
-        key={columnIndex}
-        className="bg-clip-padding"
-        style={
-          {
-            '--gap': gap,
-            paddingLeft: gap,
-            paddingBottom: gap,
-            width: `${100 / columns}%`,
-          } as React.CSSProperties
-        }
-      >
-        {columnChildren.map((child, index) => (
-          <div
-            key={index}
-            style={{
-              marginBottom: index < columnChildren.length - 1 ? gap : 0,
-            }}
-          >
-            {child}
-          </div>
-        ))}
-      </div>
-    );
+  (Object.keys(BREAKPOINT_WIDTHS) as BreakpointName[]).forEach((name) => {
+    const minWidth = BREAKPOINT_WIDTHS[name];
+    const cols = breakpoints[name];
+    if (typeof cols === 'number' && cols > 0) {
+      responsiveCssRules.push(
+        `@media (min-width: ${minWidth}px) { .${masonryClassId} { column-count: ${cols}; } }`
+      );
+    }
   });
+
+  const styleContent = `
+.${masonryClassId} > * { break-inside: avoid; margin-bottom: ${gap}px; }
+${responsiveCssRules.join('\n')}
+`.trim();
+
+  const wrappedChildren = React.Children.toArray(children).map(
+    (child, index) => <div key={index}>{child}</div>
+  );
 
   return (
     <div
       className={`relative mx-0 my-auto mb-20 flex flex-col pt-2 pl-1 ${className}`}
     >
-      <div
-        style={
-          {
-            '--gap': gap,
-            marginLeft: `calc(${gap}*-1)`,
-          } as React.CSSProperties
-        }
-        className="flex w-auto pr-2 pl-1"
-      >
-        {columnElements}
+      <style
+        dangerouslySetInnerHTML={{ __html: styleContent }}
+        suppressHydrationWarning
+      />
+      <div className={`${masonryClassId} w-auto pr-2 pl-1`}>
+        {wrappedChildren}
       </div>
     </div>
   );

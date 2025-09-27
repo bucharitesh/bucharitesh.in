@@ -1,4 +1,5 @@
 import { BuddyBuddyWithLogic } from '@/features/buddy/buddy-with-logic';
+// import { CommandMenu } from '@/features/command-menu/components/command-menu';
 import BuddyConfig from '../layout/hedge-hog-config';
 import { ScrollTop } from '../scroll-top';
 import BottomDock from './dock';

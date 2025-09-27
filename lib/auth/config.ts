@@ -11,9 +11,9 @@ export type User = {
 const authConfig: NextAuthConfig = {
   debug: process.env.NODE_ENV !== 'production',
   secret: process.env.AUTH_SECRET as string,
-  // session: {
-  //   strategy: "jwt",
-  // },
+  session: {
+    strategy: 'jwt',
+  },
   providers: [
     Github({
       clientId: process.env.GITHUB_ID,
