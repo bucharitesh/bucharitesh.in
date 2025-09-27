@@ -1,0 +1,12 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "modern-progress-styles",
+  "type": "registry:style",
+  "files": [
+    {
+      "path": "registry/styles/modern-progress.css",
+      "content": "body[data-pattern=\"stripes\"],\nbody [data-pattern=\"stripes\"] {\n  --rgb: 255 255 255;\n  --opacity: 0.1;\n  --size: 6px 6px;\n  background-image: linear-gradient(\n    -45deg,\n    rgb(var(--rgb) / var(--opacity)) 25%,\n    transparent 25%,\n    transparent 50%,\n    rgb(var(--rgb) / var(--opacity)) 50%,\n    rgb(var(--rgb) / var(--opacity)) 75%,\n    transparent 75%,\n    transparent 100%\n  );\n  background-size: var(--size);\n}\n",
+      "type": "registry:style"
+    }
+  ]
+}

@@ -8,7 +8,7 @@
   "files": [
     {
       "path": "registry/example/game-of-life-demo-2.tsx",
-      "content": "import { GameOfLife } from '@/registry/bucharitesh/game-of-life/game-of-life';\n\nexport default function SplitTextEffectDemo() {\n  return (\n    <div className=\"relative z-20 h-[500px] w-full overflow-hidden rounded-lg border bg-black\">\n      <GameOfLife\n        size={20}\n        interval={500}\n        backgroundColor=\"#000000\"\n        cellColor=\"#ff0000\"\n      />\n    </div>\n  );\n}\n",
+      "content": "import { GameOfLife } from '@/registry/bucharitesh/game-of-life';\n\nexport default function SplitTextEffectDemo() {\n  return (\n    <div className=\"relative z-20 h-[500px] w-full overflow-hidden rounded-lg border bg-black\">\n      <GameOfLife\n        size={20}\n        interval={500}\n        backgroundColor=\"#000000\"\n        cellColor=\"#ff0000\"\n      />\n    </div>\n  );\n}\n",
       "type": "registry:component"
     }
   ]

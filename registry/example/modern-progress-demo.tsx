@@ -1,6 +1,6 @@
 'use client';
 
-import { Progress } from '@/registry/bucharitesh/modern-progress/modern-progress';
+import { Progress } from '@/registry/bucharitesh/modern-progress';
 import { useState } from 'react';
 import { useEffect } from 'react';
 

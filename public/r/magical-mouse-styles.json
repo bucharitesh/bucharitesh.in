@@ -1,0 +1,12 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "magical-mouse-styles",
+  "type": "registry:style",
+  "files": [
+    {
+      "path": "registry/styles/magical-mouse.css",
+      "content": "/* components/ui/mouse-sparkles/mouse-sparkles.css */\n:root {\n  --mouse-sparkles-glow-rgb: 239 42 201;\n}\n\n.mouse-sparkles-glow-point {\n  position: absolute;\n  z-index: 9999;\n  box-shadow: 0rem 0rem 1.2rem 0.6rem rgb(var(--mouse-sparkles-glow-rgb));\n  pointer-events: none;\n}\n\n.mouse-sparkles-star {\n  position: absolute;\n  z-index: 10000;\n  color: white;\n  font-size: 1rem;\n  animation-duration: 1500ms;\n  animation-fill-mode: forwards;\n  pointer-events: none;\n}\n\n@keyframes fall-1 {\n  0% {\n    transform: translate(0px, 0px) rotateX(45deg) rotateY(30deg) rotateZ(0deg)\n      scale(0.25);\n    opacity: 0;\n  }\n\n  5% {\n    transform: translate(10px, -10px) rotateX(45deg) rotateY(30deg)\n      rotateZ(0deg) scale(1);\n    opacity: 1;\n  }\n\n  100% {\n    transform: translate(25px, 200px) rotateX(180deg) rotateY(270deg)\n      rotateZ(90deg) scale(1);\n    opacity: 0;\n  }\n}\n\n@keyframes fall-2 {\n  0% {\n    transform: translate(0px, 0px) rotateX(-20deg) rotateY(10deg) scale(0.25);\n    opacity: 0;\n  }\n\n  10% {\n    transform: translate(-10px, -5px) rotateX(-20deg) rotateY(10deg) scale(1);\n    opacity: 1;\n  }\n\n  100% {\n    transform: translate(-10px, 160px) rotateX(-90deg) rotateY(45deg)\n      scale(0.25);\n    opacity: 0;\n  }\n}\n\n@keyframes fall-3 {\n  0% {\n    transform: translate(0px, 0px) rotateX(0deg) rotateY(45deg) scale(0.5);\n    opacity: 0;\n  }\n\n  15% {\n    transform: translate(7px, 5px) rotateX(0deg) rotateY(45deg) scale(1);\n    opacity: 1;\n  }\n\n  100% {\n    transform: translate(20px, 120px) rotateX(-180deg) rotateY(-90deg)\n      scale(0.5);\n    opacity: 0;\n  }\n}\n",
+      "type": "registry:style"
+    }
+  ]
+}

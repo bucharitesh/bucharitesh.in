@@ -8,7 +8,7 @@
   "files": [
     {
       "path": "registry/example/modern-progress-demo.tsx",
-      "content": "'use client';\n\nimport { Progress } from '@/registry/bucharitesh/modern-progress/modern-progress';\nimport { useState } from 'react';\nimport { useEffect } from 'react';\n\nconst ProgressDemo = () => {\n  const [progress, setProgress] = useState(0);\n\n  useEffect(() => {\n    const interval = setInterval(() => {\n      setProgress(progress + 1);\n    }, 100);\n    return () => clearInterval(interval);\n  }, [progress]);\n\n  return (\n    <div className=\"flex h-full w-full items-center justify-center p-10\">\n      <Progress\n        value={progress}\n        className=\"border-purple-500\"\n        indicatorClassName=\"bg-purple-500\"\n        showText\n      />\n    </div>\n  );\n};\n\nexport default ProgressDemo;\n",
+      "content": "'use client';\n\nimport { Progress } from '@/registry/bucharitesh/modern-progress';\nimport { useState } from 'react';\nimport { useEffect } from 'react';\n\nconst ProgressDemo = () => {\n  const [progress, setProgress] = useState(0);\n\n  useEffect(() => {\n    const interval = setInterval(() => {\n      setProgress(progress + 1);\n    }, 100);\n    return () => clearInterval(interval);\n  }, [progress]);\n\n  return (\n    <div className=\"flex h-full w-full items-center justify-center p-10\">\n      <Progress\n        value={progress}\n        className=\"border-purple-500\"\n        indicatorClassName=\"bg-purple-500\"\n        showText\n      />\n    </div>\n  );\n};\n\nexport default ProgressDemo;\n",
       "type": "registry:component"
     }
   ]

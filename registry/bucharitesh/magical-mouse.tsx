@@ -5,7 +5,7 @@ import { Sparkle } from 'lucide-react';
 import * as React from 'react';
 // @ts-ignore
 import { createRoot } from 'react-dom/client';
-import './magical-mouse.css';
+import '@/registry/styles/magical-mouse.css';
 
 interface Point {
   x: number;

@@ -13,11 +13,11 @@ export const ui: Registry['items'] = [
     dependencies: ['@radix-ui/react-icons'],
     files: [
       {
-        path: 'bucharitesh/book/book.tsx',
+        path: 'bucharitesh/book.tsx',
         type: 'registry:ui',
       },
       {
-        path: 'bucharitesh/book/book.css',
+        path: 'styles/book.css',
         type: 'registry:style',
       },
     ],
@@ -34,11 +34,11 @@ export const ui: Registry['items'] = [
     dependencies: ['class-variance-authority'],
     files: [
       {
-        path: 'bucharitesh/modern-progress/modern-progress.tsx',
+        path: 'bucharitesh/modern-progress.tsx',
         type: 'registry:ui',
       },
       {
-        path: 'bucharitesh/modern-progress/modern-progress.css',
+        path: 'styles/modern-progress.css',
         type: 'registry:style',
       },
     ],
@@ -54,7 +54,7 @@ export const ui: Registry['items'] = [
     registryDependencies: ['@bucharitesh/utils'],
     files: [
       {
-        path: 'bucharitesh/pixel-icon/pixel-icon.tsx',
+        path: 'bucharitesh/pixel-icon.tsx',
         type: 'registry:ui',
       },
     ],
@@ -71,7 +71,7 @@ export const ui: Registry['items'] = [
     dependencies: ['motion'],
     files: [
       {
-        path: 'bucharitesh/split-text-effect/split-text-effect.tsx',
+        path: 'bucharitesh/split-text-effect.tsx',
         type: 'registry:ui',
       },
     ],
@@ -88,7 +88,7 @@ export const ui: Registry['items'] = [
     dependencies: ['motion'],
     files: [
       {
-        path: 'bucharitesh/view-magnifier/view-magnifier.tsx',
+        path: 'bucharitesh/view-magnifier.tsx',
         type: 'registry:ui',
       },
     ],
@@ -104,7 +104,7 @@ export const ui: Registry['items'] = [
     registryDependencies: ['@bucharitesh/utils'],
     files: [
       {
-        path: 'bucharitesh/game-of-life/game-of-life.tsx',
+        path: 'bucharitesh/game-of-life.tsx',
         type: 'registry:ui',
       },
     ],
@@ -121,11 +121,11 @@ export const ui: Registry['items'] = [
     dependencies: ['lucide-react'],
     files: [
       {
-        path: 'bucharitesh/magical-mouse/magical-mouse.tsx',
+        path: 'bucharitesh/magical-mouse.tsx',
         type: 'registry:ui',
       },
       {
-        path: 'bucharitesh/magical-mouse/magical-mouse.css',
+        path: 'styles/magical-mouse.css',
         type: 'registry:style',
       },
     ],

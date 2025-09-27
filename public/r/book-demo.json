@@ -8,7 +8,7 @@
   "files": [
     {
       "path": "registry/example/book-demo.tsx",
-      "content": "import Book from '../bucharitesh/book/book';\n\nconst BookDemo = () => {\n  return (\n    <div className=\"grid w-full grid-cols-3 gap-10 rounded-xl bg-white p-6\">\n      <Book title=\"The user experience of the Frontend Cloud\" />\n    </div>\n  );\n};\n\nexport default BookDemo;\n",
+      "content": "import Book from '../bucharitesh/book';\n\nconst BookDemo = () => {\n  return (\n    <div className=\"grid w-full grid-cols-3 gap-10 rounded-xl bg-white p-6\">\n      <Book title=\"The user experience of the Frontend Cloud\" />\n    </div>\n  );\n};\n\nexport default BookDemo;\n",
       "type": "registry:component"
     }
   ]

@@ -23,18 +23,18 @@ export const Index: Record<string, any> = {
     registryDependencies: ['@bucharitesh/utils'],
     files: [
       {
-        path: 'registry/bucharitesh/book/book.tsx',
+        path: 'registry/bucharitesh/book.tsx',
         type: 'registry:ui',
         target: '',
       },
       {
-        path: 'registry/bucharitesh/book/book.css',
+        path: 'registry/styles/book.css',
         type: 'registry:style',
         target: '',
       },
     ],
     component: React.lazy(async () => {
-      const mod = await import('@/registry/bucharitesh/book/book.tsx');
+      const mod = await import('@/registry/bucharitesh/book.tsx');
       const exportName =
         Object.keys(mod).find(
           (key) =>
@@ -52,20 +52,18 @@ export const Index: Record<string, any> = {
     registryDependencies: ['@bucharitesh/utils'],
     files: [
       {
-        path: 'registry/bucharitesh/modern-progress/modern-progress.tsx',
+        path: 'registry/bucharitesh/modern-progress.tsx',
         type: 'registry:ui',
         target: '',
       },
       {
-        path: 'registry/bucharitesh/modern-progress/modern-progress.css',
+        path: 'registry/styles/modern-progress.css',
         type: 'registry:style',
         target: '',
       },
     ],
     component: React.lazy(async () => {
-      const mod = await import(
-        '@/registry/bucharitesh/modern-progress/modern-progress.tsx'
-      );
+      const mod = await import('@/registry/bucharitesh/modern-progress.tsx');
       const exportName =
         Object.keys(mod).find(
           (key) =>
@@ -83,15 +81,13 @@ export const Index: Record<string, any> = {
     registryDependencies: ['@bucharitesh/utils'],
     files: [
       {
-        path: 'registry/bucharitesh/pixel-icon/pixel-icon.tsx',
+        path: 'registry/bucharitesh/pixel-icon.tsx',
         type: 'registry:ui',
         target: '',
       },
     ],
     component: React.lazy(async () => {
-      const mod = await import(
-        '@/registry/bucharitesh/pixel-icon/pixel-icon.tsx'
-      );
+      const mod = await import('@/registry/bucharitesh/pixel-icon.tsx');
       const exportName =
         Object.keys(mod).find(
           (key) =>
@@ -109,15 +105,13 @@ export const Index: Record<string, any> = {
     registryDependencies: ['@bucharitesh/utils'],
     files: [
       {
-        path: 'registry/bucharitesh/split-text-effect/split-text-effect.tsx',
+        path: 'registry/bucharitesh/split-text-effect.tsx',
         type: 'registry:ui',
         target: '',
       },
     ],
     component: React.lazy(async () => {
-      const mod = await import(
-        '@/registry/bucharitesh/split-text-effect/split-text-effect.tsx'
-      );
+      const mod = await import('@/registry/bucharitesh/split-text-effect.tsx');
       const exportName =
         Object.keys(mod).find(
           (key) =>
@@ -135,15 +129,13 @@ export const Index: Record<string, any> = {
     registryDependencies: ['@bucharitesh/utils'],
     files: [
       {
-        path: 'registry/bucharitesh/view-magnifier/view-magnifier.tsx',
+        path: 'registry/bucharitesh/view-magnifier.tsx',
         type: 'registry:ui',
         target: '',
       },
     ],
     component: React.lazy(async () => {
-      const mod = await import(
-        '@/registry/bucharitesh/view-magnifier/view-magnifier.tsx'
-      );
+      const mod = await import('@/registry/bucharitesh/view-magnifier.tsx');
       const exportName =
         Object.keys(mod).find(
           (key) =>
@@ -161,15 +153,13 @@ export const Index: Record<string, any> = {
     registryDependencies: ['@bucharitesh/utils'],
     files: [
       {
-        path: 'registry/bucharitesh/game-of-life/game-of-life.tsx',
+        path: 'registry/bucharitesh/game-of-life.tsx',
         type: 'registry:ui',
         target: '',
       },
     ],
     component: React.lazy(async () => {
-      const mod = await import(
-        '@/registry/bucharitesh/game-of-life/game-of-life.tsx'
-      );
+      const mod = await import('@/registry/bucharitesh/game-of-life.tsx');
       const exportName =
         Object.keys(mod).find(
           (key) =>
@@ -187,20 +177,18 @@ export const Index: Record<string, any> = {
     registryDependencies: ['@bucharitesh/utils'],
     files: [
       {
-        path: 'registry/bucharitesh/magical-mouse/magical-mouse.tsx',
+        path: 'registry/bucharitesh/magical-mouse.tsx',
         type: 'registry:ui',
         target: '',
       },
       {
-        path: 'registry/bucharitesh/magical-mouse/magical-mouse.css',
+        path: 'registry/styles/magical-mouse.css',
         type: 'registry:style',
         target: '',
       },
     ],
     component: React.lazy(async () => {
-      const mod = await import(
-        '@/registry/bucharitesh/magical-mouse/magical-mouse.tsx'
-      );
+      const mod = await import('@/registry/bucharitesh/magical-mouse.tsx');
       const exportName =
         Object.keys(mod).find(
           (key) =>
@@ -504,6 +492,75 @@ export const Index: Record<string, any> = {
     ],
     component: React.lazy(async () => {
       const mod = await import('@/registry/lib/utils.ts');
+      const exportName =
+        Object.keys(mod).find(
+          (key) =>
+            typeof mod[key] === 'function' || typeof mod[key] === 'object'
+        ) || item.name;
+      return { default: mod.default || mod[exportName] };
+    }),
+    meta: undefined,
+  },
+  'book-styles': {
+    name: 'book-styles',
+    description: '',
+    type: 'registry:style',
+    registryDependencies: undefined,
+    files: [
+      {
+        path: 'registry/styles/book.css',
+        type: 'registry:style',
+        target: '',
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = await import('@/registry/styles/book.css');
+      const exportName =
+        Object.keys(mod).find(
+          (key) =>
+            typeof mod[key] === 'function' || typeof mod[key] === 'object'
+        ) || item.name;
+      return { default: mod.default || mod[exportName] };
+    }),
+    meta: undefined,
+  },
+  'modern-progress-styles': {
+    name: 'modern-progress-styles',
+    description: '',
+    type: 'registry:style',
+    registryDependencies: undefined,
+    files: [
+      {
+        path: 'registry/styles/modern-progress.css',
+        type: 'registry:style',
+        target: '',
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = await import('@/registry/styles/modern-progress.css');
+      const exportName =
+        Object.keys(mod).find(
+          (key) =>
+            typeof mod[key] === 'function' || typeof mod[key] === 'object'
+        ) || item.name;
+      return { default: mod.default || mod[exportName] };
+    }),
+    meta: undefined,
+  },
+  'magical-mouse-styles': {
+    name: 'magical-mouse-styles',
+    description: '',
+    type: 'registry:style',
+    registryDependencies: undefined,
+    files: [
+      {
+        path: 'registry/styles/magical-mouse.css',
+        type: 'registry:style',
+        target: '',
+      },
+    ],
+    component: React.lazy(async () => {
+      const mod = await import('@/registry/styles/magical-mouse.css');
       const exportName =
         Object.keys(mod).find(
           (key) =>

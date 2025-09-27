@@ -1,4 +1,4 @@
-import { MouseSparkles } from '@/registry/bucharitesh/magical-mouse/magical-mouse';
+import { MouseSparkles } from '@/registry/bucharitesh/magical-mouse';
 
 const MagicalMouseDemo = () => {
   return (

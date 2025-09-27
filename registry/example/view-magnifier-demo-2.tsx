@@ -1,5 +1,5 @@
 'use client';
-import ViewMagnifier from '@/registry/bucharitesh/view-magnifier/view-magnifier';
+import ViewMagnifier from '@/registry/bucharitesh/view-magnifier';
 import Image from 'next/image';
 export default function ViewMagnifierDemo() {
   return (

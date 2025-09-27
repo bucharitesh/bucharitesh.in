@@ -1,5 +1,5 @@
 'use client';
-import PixelIcon from '@/registry/bucharitesh/pixel-icon/pixel-icon';
+import PixelIcon from '@/registry/bucharitesh/pixel-icon';
 
 export const PixelIconData = [
   {

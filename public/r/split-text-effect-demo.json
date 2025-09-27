@@ -8,7 +8,7 @@
   "files": [
     {
       "path": "registry/example/split-text-effect-demo.tsx",
-      "content": "import { SplitTextEffect } from '@/registry/bucharitesh/split-text-effect/split-text-effect';\n\nexport default function SplitTextEffectDemo() {\n  return (\n    <div className=\"relative w-full bg-black\">\n      <div className=\"h-72\">\n        <SplitTextEffect text=\"Grow Together\" fill={0.5} accent=\"#2ecc71\" />\n      </div>\n    </div>\n  );\n}\n",
+      "content": "import { SplitTextEffect } from '@/registry/bucharitesh/split-text-effect';\n\nexport default function SplitTextEffectDemo() {\n  return (\n    <div className=\"relative w-full bg-black\">\n      <div className=\"h-72\">\n        <SplitTextEffect text=\"Grow Together\" fill={0.5} accent=\"#2ecc71\" />\n      </div>\n    </div>\n  );\n}\n",
       "type": "registry:component"
     }
   ]

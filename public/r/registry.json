@@ -32,11 +32,11 @@
       ],
       "files": [
         {
-          "path": "registry/bucharitesh/book/book.tsx",
+          "path": "registry/bucharitesh/book.tsx",
           "type": "registry:ui"
         },
         {
-          "path": "registry/bucharitesh/book/book.css",
+          "path": "registry/styles/book.css",
           "type": "registry:style"
         }
       ],
@@ -56,11 +56,11 @@
       ],
       "files": [
         {
-          "path": "registry/bucharitesh/modern-progress/modern-progress.tsx",
+          "path": "registry/bucharitesh/modern-progress.tsx",
           "type": "registry:ui"
         },
         {
-          "path": "registry/bucharitesh/modern-progress/modern-progress.css",
+          "path": "registry/styles/modern-progress.css",
           "type": "registry:style"
         }
       ],
@@ -77,7 +77,7 @@
       ],
       "files": [
         {
-          "path": "registry/bucharitesh/pixel-icon/pixel-icon.tsx",
+          "path": "registry/bucharitesh/pixel-icon.tsx",
           "type": "registry:ui"
         }
       ],
@@ -97,7 +97,7 @@
       ],
       "files": [
         {
-          "path": "registry/bucharitesh/split-text-effect/split-text-effect.tsx",
+          "path": "registry/bucharitesh/split-text-effect.tsx",
           "type": "registry:ui"
         }
       ],
@@ -117,7 +117,7 @@
       ],
       "files": [
         {
-          "path": "registry/bucharitesh/view-magnifier/view-magnifier.tsx",
+          "path": "registry/bucharitesh/view-magnifier.tsx",
           "type": "registry:ui"
         }
       ],
@@ -134,7 +134,7 @@
       ],
       "files": [
         {
-          "path": "registry/bucharitesh/game-of-life/game-of-life.tsx",
+          "path": "registry/bucharitesh/game-of-life.tsx",
           "type": "registry:ui"
         }
       ],
@@ -154,11 +154,11 @@
       ],
       "files": [
         {
-          "path": "registry/bucharitesh/magical-mouse/magical-mouse.tsx",
+          "path": "registry/bucharitesh/magical-mouse.tsx",
           "type": "registry:ui"
         },
         {
-          "path": "registry/bucharitesh/magical-mouse/magical-mouse.css",
+          "path": "registry/styles/magical-mouse.css",
           "type": "registry:style"
         }
       ],
@@ -331,6 +331,36 @@
         {
           "path": "registry/lib/utils.ts",
           "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "book-styles",
+      "type": "registry:style",
+      "files": [
+        {
+          "path": "registry/styles/book.css",
+          "type": "registry:style"
+        }
+      ]
+    },
+    {
+      "name": "modern-progress-styles",
+      "type": "registry:style",
+      "files": [
+        {
+          "path": "registry/styles/modern-progress.css",
+          "type": "registry:style"
+        }
+      ]
+    },
+    {
+      "name": "magical-mouse-styles",
+      "type": "registry:style",
+      "files": [
+        {
+          "path": "registry/styles/magical-mouse.css",
+          "type": "registry:style"
         }
       ]
     }

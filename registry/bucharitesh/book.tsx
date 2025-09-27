@@ -1,6 +1,6 @@
 import type React from 'react';
 import type { CSSProperties } from 'react';
-import './book.css';
+import '@/registry/styles/book.css';
 import { cn } from '@/lib/utils';
 import { VercelLogoIcon } from '@radix-ui/react-icons';
 

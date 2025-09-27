@@ -1,4 +1,4 @@
-import Book from '../bucharitesh/book/book';
+import Book from '../bucharitesh/book';
 
 const BookDemo = () => {
   return (

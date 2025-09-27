@@ -6,6 +6,7 @@ import {
 
 import { examples } from '@/registry/registry-examples';
 import { lib } from '@/registry/registry-lib';
+import { styles } from '@/registry/registry-styles';
 import { ui } from '@/registry/registry-ui';
 
 const DEPRECATED_ITEMS = [''];
@@ -24,7 +25,7 @@ export const registry = {
   name: 'bucharitesh',
   homepage: 'https://bucharitesh.in',
   items: registryIndexSchema.parse(
-    [DEFAULT, ...ui, ...examples, ...lib].filter((item) => {
+    [DEFAULT, ...ui, ...examples, ...lib, ...styles].filter((item) => {
       return !DEPRECATED_ITEMS.includes(item.name);
     })
   ),

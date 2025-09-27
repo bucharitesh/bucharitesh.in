@@ -3,7 +3,7 @@ import { type VariantProps, cva } from 'class-variance-authority';
 // components/ui/progress.tsx
 import * as React from 'react';
 
-import './modern-progress.css';
+import '@/registry/styles/modern-progress.css';
 
 const progressVariants = cva(
   'relative flex w-full items-center justify-center overflow-hidden',

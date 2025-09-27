@@ -8,7 +8,7 @@
   "files": [
     {
       "path": "registry/example/magical-mouse-demo.tsx",
-      "content": "import { MouseSparkles } from '@/registry/bucharitesh/magical-mouse/magical-mouse';\n\nconst MagicalMouseDemo = () => {\n  return (\n    <div\n      className=\"h-[400px] w-full overflow-hidden rounded-xl bg-white\"\n      style={{\n        background:\n          'linear-gradient(145deg, rgb(119, 46, 195), rgb(58, 18, 153))',\n      }}\n    >\n      <MouseSparkles />\n    </div>\n  );\n};\n\nexport default MagicalMouseDemo;\n",
+      "content": "import { MouseSparkles } from '@/registry/bucharitesh/magical-mouse';\n\nconst MagicalMouseDemo = () => {\n  return (\n    <div\n      className=\"h-[400px] w-full overflow-hidden rounded-xl bg-white\"\n      style={{\n        background:\n          'linear-gradient(145deg, rgb(119, 46, 195), rgb(58, 18, 153))',\n      }}\n    >\n      <MouseSparkles />\n    </div>\n  );\n};\n\nexport default MagicalMouseDemo;\n",
       "type": "registry:component"
     }
   ]

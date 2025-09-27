@@ -2,7 +2,178 @@
 Title: Book
 Description: A book component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.
 
---- file: bucharitesh/book/book.css ---
+--- file: bucharitesh/book.tsx ---
+import type React from 'react';
+import type { CSSProperties } from 'react';
+import '@styles/book.css';
+import { cn } from '@/lib/utils';
+import { VercelLogoIcon } from '@radix-ui/react-icons';
+
+const defaultIllustration = (
+  <svg
+    fill="none"
+    height="56"
+    viewBox="0 0 36 56"
+    width="36"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      clipRule="evenodd"
+      d="M3.03113 28.0005C6.26017 23.1765 11.7592 20.0005 18 20.0005C24.2409 20.0005 29.7399 23.1765 32.9689 28.0005C29.7399 32.8244 24.2409 36.0005 18 36.0005C11.7592 36.0005 6.26017 32.8244 3.03113 28.0005Z"
+      fill="#0070F3"
+      fillRule="evenodd"
+    />
+    <path
+      clipRule="evenodd"
+      d="M32.9691 28.0012C34.8835 25.1411 36 21.7017 36 18.0015C36 8.06034 27.9411 0.00146484 18 0.00146484C8.05887 0.00146484 0 8.06034 0 18.0015C0 21.7017 1.11648 25.1411 3.03094 28.0012C6.25996 23.1771 11.7591 20.001 18 20.001C24.2409 20.001 29.74 23.1771 32.9691 28.0012Z"
+      fill="#45DEC4"
+      fillRule="evenodd"
+    />
+    <path
+      clipRule="evenodd"
+      d="M32.9692 28.0005C29.7402 32.8247 24.241 36.001 18 36.001C11.759 36.001 6.25977 32.8247 3.03077 28.0005C1.11642 30.8606 0 34.2999 0 38C0 47.9411 8.05887 56 18 56C27.9411 56 36 47.9411 36 38C36 34.2999 34.8836 30.8606 32.9692 28.0005Z"
+      fill="#E5484D"
+      fillRule="evenodd"
+    />
+  </svg>
+);
+
+const Book = ({
+  title,
+  enableTexture,
+  width = 196,
+  variant = 'stripe',
+  color = '#e79d13',
+  textColor = '#ffffff',
+  illustration,
+}: {
+  title: string;
+  enableTexture?: boolean;
+  variant?: 'stripe' | 'simple';
+  width?: number;
+  color?: string;
+  textColor?: string;
+  illustration?: React.ReactNode;
+}) => {
+  return (
+    <div
+      className="book-perspective"
+      style={{ '--book-width': width } as React.CSSProperties}
+    >
+      <div
+        className={cn('book-rotate-wrapper book-color', {
+          'book-stripe': variant === 'stripe',
+          'book-simple': variant === 'simple',
+        })}
+        style={
+          {
+            '--book-color': color,
+            '--book-text-color': textColor,
+          } as React.CSSProperties
+        }
+      >
+        <div
+          className="stack-stack stack book-book"
+          data-version="v1"
+          style={
+            {
+              '--stack-flex': 'initial',
+              '--stack-direction': 'column',
+              '--stack-align': 'stretch',
+              '--stack-justify': 'flex-start',
+              '--stack-padding': '0px',
+              '--stack-gap': '0px',
+            } as React.CSSProperties
+          }
+        >
+          <div
+            className="stack-stack stack book-stripe"
+            data-version="v1"
+            aria-hidden="true"
+            style={
+              {
+                '--stack-flex': 'initial',
+                '--stack-direction': 'row',
+                '--stack-align': 'stretch',
+                '--stack-justify': 'flex-start',
+                '--stack-padding': '0px',
+                '--stack-gap': '8px',
+              } as React.CSSProperties
+            }
+          >
+            {variant === 'stripe' && illustration && (
+              <div className="book-illustration">{illustration}</div>
+            )}
+            <div className="book-bind" />
+          </div>
+          <div
+            className="stack-stack stack book-body"
+            data-version="v1"
+            style={
+              {
+                '--stack-flex': 'initial',
+                '--stack-direction': 'row',
+                '--stack-align': 'stretch',
+                '--stack-justify': 'flex-start',
+                '--stack-padding': '0px',
+                '--stack-gap': '0px',
+              } as React.CSSProperties
+            }
+          >
+            <div aria-hidden="true" className="book-bind" />
+            <div
+              className="stack-stack stack book-content"
+              data-version="v1"
+              style={
+                {
+                  '--stack-flex': 'initial',
+                  '--stack-direction': 'column',
+                  '--stack-align': 'stretch',
+                  '--stack-justify':
+                    variant === 'stripe' ? 'space-between' : 'flex-start',
+                  '--stack-padding': '0px',
+                  '--stack-gap': '0px',
+                } as React.CSSProperties
+              }
+            >
+              <span className="book-title" data-version="v1">
+                {title}
+              </span>
+              {variant === 'simple' && (
+                <div className="book-illustration">
+                  {illustration ? illustration : defaultIllustration}
+                </div>
+              )}
+              {variant === 'stripe' && (
+                <VercelLogoIcon
+                  fill="black"
+                  className=" geist-hide-on-dark text-black"
+                />
+              )}
+            </div>
+          </div>
+          {enableTexture && (
+            <div
+              aria-hidden="true"
+              className="book-texture"
+              style={
+                {
+                  transform: 'rotate(0deg)',
+                } as CSSProperties
+              }
+            />
+          )}
+        </div>
+        <div aria-hidden="true" className="book-pages" />
+        <div aria-hidden="true" className="book-back" />
+      </div>
+    </div>
+  );
+};
+
+export default Book;
+
+--- file: styles/book.css ---
 .book-perspective {
   --book-default-width: 196;
   --book-depth: 29cqw;
@@ -384,183 +555,12 @@ Description: A book component for Next.js apps with next-themes and Tailwind CSS
     } */
 }
 
---- file: bucharitesh/book/book.tsx ---
-import type React from 'react';
-import type { CSSProperties } from 'react';
-import './book.css';
-import { cn } from '@/lib/utils';
-import { VercelLogoIcon } from '@radix-ui/react-icons';
-
-const defaultIllustration = (
-  <svg
-    fill="none"
-    height="56"
-    viewBox="0 0 36 56"
-    width="36"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      clipRule="evenodd"
-      d="M3.03113 28.0005C6.26017 23.1765 11.7592 20.0005 18 20.0005C24.2409 20.0005 29.7399 23.1765 32.9689 28.0005C29.7399 32.8244 24.2409 36.0005 18 36.0005C11.7592 36.0005 6.26017 32.8244 3.03113 28.0005Z"
-      fill="#0070F3"
-      fillRule="evenodd"
-    />
-    <path
-      clipRule="evenodd"
-      d="M32.9691 28.0012C34.8835 25.1411 36 21.7017 36 18.0015C36 8.06034 27.9411 0.00146484 18 0.00146484C8.05887 0.00146484 0 8.06034 0 18.0015C0 21.7017 1.11648 25.1411 3.03094 28.0012C6.25996 23.1771 11.7591 20.001 18 20.001C24.2409 20.001 29.74 23.1771 32.9691 28.0012Z"
-      fill="#45DEC4"
-      fillRule="evenodd"
-    />
-    <path
-      clipRule="evenodd"
-      d="M32.9692 28.0005C29.7402 32.8247 24.241 36.001 18 36.001C11.759 36.001 6.25977 32.8247 3.03077 28.0005C1.11642 30.8606 0 34.2999 0 38C0 47.9411 8.05887 56 18 56C27.9411 56 36 47.9411 36 38C36 34.2999 34.8836 30.8606 32.9692 28.0005Z"
-      fill="#E5484D"
-      fillRule="evenodd"
-    />
-  </svg>
-);
-
-const Book = ({
-  title,
-  enableTexture,
-  width = 196,
-  variant = 'stripe',
-  color = '#e79d13',
-  textColor = '#ffffff',
-  illustration,
-}: {
-  title: string;
-  enableTexture?: boolean;
-  variant?: 'stripe' | 'simple';
-  width?: number;
-  color?: string;
-  textColor?: string;
-  illustration?: React.ReactNode;
-}) => {
-  return (
-    <div
-      className="book-perspective"
-      style={{ '--book-width': width } as React.CSSProperties}
-    >
-      <div
-        className={cn('book-rotate-wrapper book-color', {
-          'book-stripe': variant === 'stripe',
-          'book-simple': variant === 'simple',
-        })}
-        style={
-          {
-            '--book-color': color,
-            '--book-text-color': textColor,
-          } as React.CSSProperties
-        }
-      >
-        <div
-          className="stack-stack stack book-book"
-          data-version="v1"
-          style={
-            {
-              '--stack-flex': 'initial',
-              '--stack-direction': 'column',
-              '--stack-align': 'stretch',
-              '--stack-justify': 'flex-start',
-              '--stack-padding': '0px',
-              '--stack-gap': '0px',
-            } as React.CSSProperties
-          }
-        >
-          <div
-            className="stack-stack stack book-stripe"
-            data-version="v1"
-            aria-hidden="true"
-            style={
-              {
-                '--stack-flex': 'initial',
-                '--stack-direction': 'row',
-                '--stack-align': 'stretch',
-                '--stack-justify': 'flex-start',
-                '--stack-padding': '0px',
-                '--stack-gap': '8px',
-              } as React.CSSProperties
-            }
-          >
-            {variant === 'stripe' && illustration && (
-              <div className="book-illustration">{illustration}</div>
-            )}
-            <div className="book-bind" />
-          </div>
-          <div
-            className="stack-stack stack book-body"
-            data-version="v1"
-            style={
-              {
-                '--stack-flex': 'initial',
-                '--stack-direction': 'row',
-                '--stack-align': 'stretch',
-                '--stack-justify': 'flex-start',
-                '--stack-padding': '0px',
-                '--stack-gap': '0px',
-              } as React.CSSProperties
-            }
-          >
-            <div aria-hidden="true" className="book-bind" />
-            <div
-              className="stack-stack stack book-content"
-              data-version="v1"
-              style={
-                {
-                  '--stack-flex': 'initial',
-                  '--stack-direction': 'column',
-                  '--stack-align': 'stretch',
-                  '--stack-justify':
-                    variant === 'stripe' ? 'space-between' : 'flex-start',
-                  '--stack-padding': '0px',
-                  '--stack-gap': '0px',
-                } as React.CSSProperties
-              }
-            >
-              <span className="book-title" data-version="v1">
-                {title}
-              </span>
-              {variant === 'simple' && (
-                <div className="book-illustration">
-                  {illustration ? illustration : defaultIllustration}
-                </div>
-              )}
-              {variant === 'stripe' && (
-                <VercelLogoIcon
-                  fill="black"
-                  className=" geist-hide-on-dark text-black"
-                />
-              )}
-            </div>
-          </div>
-          {enableTexture && (
-            <div
-              aria-hidden="true"
-              className="book-texture"
-              style={
-                {
-                  transform: 'rotate(0deg)',
-                } as CSSProperties
-              }
-            />
-          )}
-        </div>
-        <div aria-hidden="true" className="book-pages" />
-        <div aria-hidden="true" className="book-back" />
-      </div>
-    </div>
-  );
-};
-
-export default Book;
-
 
 ===== EXAMPLE: book-demo =====
 Title: book-demo
 
 --- file: example/book-demo.tsx ---
-import Book from '../bucharitesh/book/book';
+import Book from '../bucharitesh/book';
 
 const BookDemo = () => {
   return (
@@ -578,7 +578,7 @@ Title: book-variant-demo
 
 --- file: example/book-variant-demo.tsx ---
 import { Leaf } from 'lucide-react';
-import Book from '../bucharitesh/book/book';
+import Book from '../bucharitesh/book';
 
 const BookDemo = () => {
   return (
@@ -677,7 +677,7 @@ export default BookDemo;
 Title: Game of Life
 Description: A game of life component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.
 
---- file: bucharitesh/game-of-life/game-of-life.tsx ---
+--- file: bucharitesh/game-of-life.tsx ---
 'use client';
 
 import { cn } from '@/lib/utils';
@@ -911,7 +911,7 @@ export type { GameOfLifeProps };
 Title: game-of-life-demo
 
 --- file: example/game-of-life-demo.tsx ---
-import { GameOfLife } from '@/registry/bucharitesh/game-of-life/game-of-life';
+import { GameOfLife } from '@/registry/bucharitesh/game-of-life';
 
 export default function SplitTextEffectDemo() {
   return (
@@ -931,7 +931,7 @@ export default function SplitTextEffectDemo() {
 Title: game-of-life-demo-2
 
 --- file: example/game-of-life-demo-2.tsx ---
-import { GameOfLife } from '@/registry/bucharitesh/game-of-life/game-of-life';
+import { GameOfLife } from '@/registry/bucharitesh/game-of-life';
 
 export default function SplitTextEffectDemo() {
   return (
@@ -952,86 +952,7 @@ export default function SplitTextEffectDemo() {
 Title: Magical Mouse
 Description: A magical mouse component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.
 
---- file: bucharitesh/magical-mouse/magical-mouse.css ---
-/* components/ui/mouse-sparkles/mouse-sparkles.css */
-:root {
-  --mouse-sparkles-glow-rgb: 239 42 201;
-}
-
-.mouse-sparkles-glow-point {
-  position: absolute;
-  z-index: 9999;
-  box-shadow: 0rem 0rem 1.2rem 0.6rem rgb(var(--mouse-sparkles-glow-rgb));
-  pointer-events: none;
-}
-
-.mouse-sparkles-star {
-  position: absolute;
-  z-index: 10000;
-  color: white;
-  font-size: 1rem;
-  animation-duration: 1500ms;
-  animation-fill-mode: forwards;
-  pointer-events: none;
-}
-
-@keyframes fall-1 {
-  0% {
-    transform: translate(0px, 0px) rotateX(45deg) rotateY(30deg) rotateZ(0deg)
-      scale(0.25);
-    opacity: 0;
-  }
-
-  5% {
-    transform: translate(10px, -10px) rotateX(45deg) rotateY(30deg)
-      rotateZ(0deg) scale(1);
-    opacity: 1;
-  }
-
-  100% {
-    transform: translate(25px, 200px) rotateX(180deg) rotateY(270deg)
-      rotateZ(90deg) scale(1);
-    opacity: 0;
-  }
-}
-
-@keyframes fall-2 {
-  0% {
-    transform: translate(0px, 0px) rotateX(-20deg) rotateY(10deg) scale(0.25);
-    opacity: 0;
-  }
-
-  10% {
-    transform: translate(-10px, -5px) rotateX(-20deg) rotateY(10deg) scale(1);
-    opacity: 1;
-  }
-
-  100% {
-    transform: translate(-10px, 160px) rotateX(-90deg) rotateY(45deg)
-      scale(0.25);
-    opacity: 0;
-  }
-}
-
-@keyframes fall-3 {
-  0% {
-    transform: translate(0px, 0px) rotateX(0deg) rotateY(45deg) scale(0.5);
-    opacity: 0;
-  }
-
-  15% {
-    transform: translate(7px, 5px) rotateX(0deg) rotateY(45deg) scale(1);
-    opacity: 1;
-  }
-
-  100% {
-    transform: translate(20px, 120px) rotateX(-180deg) rotateY(-90deg)
-      scale(0.5);
-    opacity: 0;
-  }
-}
-
---- file: bucharitesh/magical-mouse/magical-mouse.tsx ---
+--- file: bucharitesh/magical-mouse.tsx ---
 'use client';
 
 import { cn } from '@/lib/utils';
@@ -1039,7 +960,7 @@ import { Sparkle } from 'lucide-react';
 import * as React from 'react';
 // @ts-ignore
 import { createRoot } from 'react-dom/client';
-import './magical-mouse.css';
+import '@styles/magical-mouse.css';
 
 interface Point {
   x: number;
@@ -1263,12 +1184,91 @@ MouseSparkles.displayName = 'MouseSparkles';
 
 export { MouseSparkles };
 
+--- file: styles/magical-mouse.css ---
+/* components/ui/mouse-sparkles/mouse-sparkles.css */
+:root {
+  --mouse-sparkles-glow-rgb: 239 42 201;
+}
+
+.mouse-sparkles-glow-point {
+  position: absolute;
+  z-index: 9999;
+  box-shadow: 0rem 0rem 1.2rem 0.6rem rgb(var(--mouse-sparkles-glow-rgb));
+  pointer-events: none;
+}
+
+.mouse-sparkles-star {
+  position: absolute;
+  z-index: 10000;
+  color: white;
+  font-size: 1rem;
+  animation-duration: 1500ms;
+  animation-fill-mode: forwards;
+  pointer-events: none;
+}
+
+@keyframes fall-1 {
+  0% {
+    transform: translate(0px, 0px) rotateX(45deg) rotateY(30deg) rotateZ(0deg)
+      scale(0.25);
+    opacity: 0;
+  }
+
+  5% {
+    transform: translate(10px, -10px) rotateX(45deg) rotateY(30deg)
+      rotateZ(0deg) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(25px, 200px) rotateX(180deg) rotateY(270deg)
+      rotateZ(90deg) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes fall-2 {
+  0% {
+    transform: translate(0px, 0px) rotateX(-20deg) rotateY(10deg) scale(0.25);
+    opacity: 0;
+  }
+
+  10% {
+    transform: translate(-10px, -5px) rotateX(-20deg) rotateY(10deg) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(-10px, 160px) rotateX(-90deg) rotateY(45deg)
+      scale(0.25);
+    opacity: 0;
+  }
+}
+
+@keyframes fall-3 {
+  0% {
+    transform: translate(0px, 0px) rotateX(0deg) rotateY(45deg) scale(0.5);
+    opacity: 0;
+  }
+
+  15% {
+    transform: translate(7px, 5px) rotateX(0deg) rotateY(45deg) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(20px, 120px) rotateX(-180deg) rotateY(-90deg)
+      scale(0.5);
+    opacity: 0;
+  }
+}
+
 
 ===== EXAMPLE: magical-mouse-demo =====
 Title: magical-mouse-demo
 
 --- file: example/magical-mouse-demo.tsx ---
-import { MouseSparkles } from '@/registry/bucharitesh/magical-mouse/magical-mouse';
+import { MouseSparkles } from '@/registry/bucharitesh/magical-mouse';
 
 const MagicalMouseDemo = () => {
   return (
@@ -1292,32 +1292,13 @@ export default MagicalMouseDemo;
 Title: Modern Progress
 Description: A modern progress component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.
 
---- file: bucharitesh/modern-progress/modern-progress.css ---
-body[data-pattern="stripes"],
-body [data-pattern="stripes"] {
-  --rgb: 255 255 255;
-  --opacity: 0.1;
-  --size: 6px 6px;
-  background-image: linear-gradient(
-    -45deg,
-    rgb(var(--rgb) / var(--opacity)) 25%,
-    transparent 25%,
-    transparent 50%,
-    rgb(var(--rgb) / var(--opacity)) 50%,
-    rgb(var(--rgb) / var(--opacity)) 75%,
-    transparent 75%,
-    transparent 100%
-  );
-  background-size: var(--size);
-}
-
---- file: bucharitesh/modern-progress/modern-progress.tsx ---
+--- file: bucharitesh/modern-progress.tsx ---
 import { cn } from '@/lib/utils';
 import { type VariantProps, cva } from 'class-variance-authority';
 // components/ui/progress.tsx
 import * as React from 'react';
 
-import './modern-progress.css';
+import '@styles/modern-progress.css';
 
 const progressVariants = cva(
   'relative flex w-full items-center justify-center overflow-hidden',
@@ -1431,6 +1412,25 @@ Progress.displayName = 'Progress';
 
 export { Progress };
 
+--- file: styles/modern-progress.css ---
+body[data-pattern="stripes"],
+body [data-pattern="stripes"] {
+  --rgb: 255 255 255;
+  --opacity: 0.1;
+  --size: 6px 6px;
+  background-image: linear-gradient(
+    -45deg,
+    rgb(var(--rgb) / var(--opacity)) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgb(var(--rgb) / var(--opacity)) 50%,
+    rgb(var(--rgb) / var(--opacity)) 75%,
+    transparent 75%,
+    transparent 100%
+  );
+  background-size: var(--size);
+}
+
 
 ===== EXAMPLE: modern-progress-demo =====
 Title: modern-progress-demo
@@ -1438,7 +1438,7 @@ Title: modern-progress-demo
 --- file: example/modern-progress-demo.tsx ---
 'use client';
 
-import { Progress } from '@/registry/bucharitesh/modern-progress/modern-progress';
+import { Progress } from '@/registry/bucharitesh/modern-progress';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
@@ -1472,7 +1472,7 @@ export default ProgressDemo;
 Title: Pixel Icon
 Description: A pixel icon component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.
 
---- file: bucharitesh/pixel-icon/pixel-icon.tsx ---
+--- file: bucharitesh/pixel-icon.tsx ---
 'use client';
 
 import type React from 'react';
@@ -1728,7 +1728,7 @@ Title: pixel-icon-demo
 
 --- file: example/pixel-icon-demo.tsx ---
 'use client';
-import PixelIcon from '@/registry/bucharitesh/pixel-icon/pixel-icon';
+import PixelIcon from '@/registry/bucharitesh/pixel-icon';
 
 export const PixelIconData = [
   {
@@ -1947,7 +1947,7 @@ export default PixelIconDemo;
 Title: Split Text Effect
 Description: A split text effect component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.
 
---- file: bucharitesh/split-text-effect/split-text-effect.tsx ---
+--- file: bucharitesh/split-text-effect.tsx ---
 'use client';
 
 import { cn } from '@/lib/utils';
@@ -2122,7 +2122,7 @@ export { SplitTextEffect };
 Title: split-text-effect-demo
 
 --- file: example/split-text-effect-demo.tsx ---
-import { SplitTextEffect } from '@/registry/bucharitesh/split-text-effect/split-text-effect';
+import { SplitTextEffect } from '@/registry/bucharitesh/split-text-effect';
 
 export default function SplitTextEffectDemo() {
   return (
@@ -2139,7 +2139,7 @@ export default function SplitTextEffectDemo() {
 Title: split-text-effect-demo-2
 
 --- file: example/split-text-effect-demo-2.tsx ---
-import { SplitTextEffect } from '@/registry/bucharitesh/split-text-effect/split-text-effect';
+import { SplitTextEffect } from '@/registry/bucharitesh/split-text-effect';
 
 export default function SplitTextEffectDemo() {
   return (
@@ -2166,7 +2166,7 @@ export default function SplitTextEffectDemo() {
 Title: split-text-effect-demo-3
 
 --- file: example/split-text-effect-demo-3.tsx ---
-import { SplitTextEffect } from '@/registry/bucharitesh/split-text-effect/split-text-effect';
+import { SplitTextEffect } from '@/registry/bucharitesh/split-text-effect';
 
 export default function SplitTextEffectDemo() {
   return (
@@ -2192,7 +2192,7 @@ export default function SplitTextEffectDemo() {
 Title: View Magnifier
 Description: A view magnifier component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.
 
---- file: bucharitesh/view-magnifier/view-magnifier.tsx ---
+--- file: bucharitesh/view-magnifier.tsx ---
 'use client';
 
 import { cn } from '@/lib/utils';
@@ -2373,7 +2373,7 @@ Title: view-magnifier-demo
 
 --- file: example/view-magnifier-demo.tsx ---
 'use client';
-import ViewMagnifier from '@/registry/bucharitesh/view-magnifier/view-magnifier';
+import ViewMagnifier from '@/registry/bucharitesh/view-magnifier';
 import Image from 'next/image';
 
 export default function ViewMagnifierDemo() {
@@ -2394,7 +2394,7 @@ Title: view-magnifier-demo-2
 
 --- file: example/view-magnifier-demo-2.tsx ---
 'use client';
-import ViewMagnifier from '@/registry/bucharitesh/view-magnifier/view-magnifier';
+import ViewMagnifier from '@/registry/bucharitesh/view-magnifier';
 import Image from 'next/image';
 export default function ViewMagnifierDemo() {
   return (

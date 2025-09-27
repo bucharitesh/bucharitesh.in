@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { SnakeGame } from '@/features/game/snake-game';
 import Info from '@/features/home/components/info';
-import { GameOfLife } from '@/registry/bucharitesh/game-of-life/game-of-life';
+import { GameOfLife } from '@/registry/bucharitesh/game-of-life';
 import Link from 'next/link';
 
 export default function NotFound() {

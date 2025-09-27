@@ -1,5 +1,5 @@
 import { Leaf } from 'lucide-react';
-import Book from '../bucharitesh/book/book';
+import Book from '../bucharitesh/book';
 
 const BookDemo = () => {
   return (
