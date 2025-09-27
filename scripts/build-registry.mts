@@ -4,6 +4,7 @@ import path from 'node:path';
 import { rimraf } from 'rimraf';
 import { Registry } from 'shadcn/schema';
 
+import { SOURCE_CODE_GITHUB_URL } from '../config/site';
 import { USER } from '../config/user';
 import { registry } from '../registry/index';
 
@@ -90,17 +91,17 @@ async function buildRegistryJsonFile() {
     JSON.stringify(fixedRegistry, null, 2)
   );
 
-  // 3. Copy the registry.json to the www/public/r directory.
+  // 3. Copy the registry.json to the public/r directory.
   await fs.cp(
     path.join(process.cwd(), 'registry.json'),
-    path.join(process.cwd(), '../www/public/r/registry.json'),
+    path.join(process.cwd(), './public/r/registry.json'),
     { recursive: true }
   );
 
-  // 3. Copy the registry.json to the www/public/r directory.
+  // 3. Copy the registry.json to the public/r directory.
   await fs.cp(
     path.join(process.cwd(), 'registry.json'),
-    path.join(process.cwd(), '../www/public/registry.json'),
+    path.join(process.cwd(), './public/registry.json'),
     { recursive: true }
   );
 }
@@ -164,7 +165,7 @@ async function generateLlmsContent() {
       const title = (component as any).title || component.name;
       const description =
         (component as any).description || `The ${title} component.`;
-      return `- [${title}](${USER.website}/docs/components/${component.name}): ${description}`;
+      return `- [${title}](${USER.website}/craft/${component.name}): ${description}`;
     });
 
   const exampleSet = new Set<string>();
@@ -179,8 +180,8 @@ async function generateLlmsContent() {
       const title = (example as any).title || example.name;
       const firstFile = example.files?.[0]?.path || '';
       const url = firstFile
-        ? `${USER.social.github}/blob/main/${firstFile}`
-        : USER.social.github;
+        ? `${SOURCE_CODE_GITHUB_URL}/blob/main/registry/${firstFile}`
+        : SOURCE_CODE_GITHUB_URL;
       return `- [${title}](${url}): Example usage`;
     });
 

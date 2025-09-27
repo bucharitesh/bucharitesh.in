@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "@bucharitesh/mcp": {
+      "command": "npx",
+      "args": ["-y", "@bucharitesh/mcp@latest"]
+    }
+  }
+}
