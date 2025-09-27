@@ -7,7 +7,7 @@ export const examples: Registry['items'] = [
     registryDependencies: ['@bucharitesh/book'],
     files: [
       {
-        path: 'examples/book-demo.tsx',
+        path: 'example/book-demo.tsx',
         type: 'registry:component',
       },
     ],
@@ -18,7 +18,7 @@ export const examples: Registry['items'] = [
     registryDependencies: ['@bucharitesh/book'],
     files: [
       {
-        path: 'examples/book-variant-demo.tsx',
+        path: 'example/book-variant-demo.tsx',
         type: 'registry:component',
       },
     ],
@@ -29,7 +29,7 @@ export const examples: Registry['items'] = [
     registryDependencies: ['@bucharitesh/game-of-life'],
     files: [
       {
-        path: 'examples/game-of-life-demo.tsx',
+        path: 'example/game-of-life-demo.tsx',
         type: 'registry:component',
       },
     ],
@@ -40,7 +40,7 @@ export const examples: Registry['items'] = [
     registryDependencies: ['@bucharitesh/game-of-life'],
     files: [
       {
-        path: 'examples/game-of-life-demo-2.tsx',
+        path: 'example/game-of-life-demo-2.tsx',
         type: 'registry:component',
       },
     ],
@@ -51,7 +51,7 @@ export const examples: Registry['items'] = [
     registryDependencies: ['@bucharitesh/magical-mouse'],
     files: [
       {
-        path: 'examples/magical-mouse-demo.tsx',
+        path: 'example/magical-mouse-demo.tsx',
         type: 'registry:component',
       },
     ],
@@ -62,7 +62,7 @@ export const examples: Registry['items'] = [
     registryDependencies: ['@bucharitesh/modern-progress'],
     files: [
       {
-        path: 'examples/modern-progress-demo.tsx',
+        path: 'example/modern-progress-demo.tsx',
         type: 'registry:component',
       },
     ],
@@ -73,7 +73,7 @@ export const examples: Registry['items'] = [
     registryDependencies: ['@bucharitesh/pixel-icon'],
     files: [
       {
-        path: 'examples/pixel-icon-demo.tsx',
+        path: 'example/pixel-icon-demo.tsx',
         type: 'registry:component',
       },
     ],
@@ -84,7 +84,7 @@ export const examples: Registry['items'] = [
     registryDependencies: ['@bucharitesh/split-text-effect'],
     files: [
       {
-        path: 'examples/split-text-effect-demo.tsx',
+        path: 'example/split-text-effect-demo.tsx',
         type: 'registry:component',
       },
     ],
@@ -95,7 +95,7 @@ export const examples: Registry['items'] = [
     registryDependencies: ['@bucharitesh/split-text-effect'],
     files: [
       {
-        path: 'examples/split-text-effect-demo-2.tsx',
+        path: 'example/split-text-effect-demo-2.tsx',
         type: 'registry:component',
       },
     ],
@@ -106,7 +106,7 @@ export const examples: Registry['items'] = [
     registryDependencies: ['@bucharitesh/split-text-effect'],
     files: [
       {
-        path: 'examples/split-text-effect-demo-3.tsx',
+        path: 'example/split-text-effect-demo-3.tsx',
         type: 'registry:component',
       },
     ],
@@ -117,7 +117,7 @@ export const examples: Registry['items'] = [
     registryDependencies: ['@bucharitesh/view-magnifier'],
     files: [
       {
-        path: 'examples/view-magnifier-demo.tsx',
+        path: 'example/view-magnifier-demo.tsx',
         type: 'registry:component',
       },
     ],
@@ -128,7 +128,7 @@ export const examples: Registry['items'] = [
     registryDependencies: ['@bucharitesh/view-magnifier'],
     files: [
       {
-        path: 'examples/view-magnifier-demo-2.tsx',
+        path: 'example/view-magnifier-demo-2.tsx',
         type: 'registry:component',
       },
     ],

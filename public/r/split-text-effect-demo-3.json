@@ -1,12 +1,14 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "split-text-effect-demo-3",
-  "type": "registry:block",
-  "registryDependencies": ["@bucharitesh/split-text-effect"],
+  "type": "registry:example",
+  "registryDependencies": [
+    "@bucharitesh/split-text-effect"
+  ],
   "files": [
     {
-      "path": "registry/default/example/split-text-effect-demo-3.tsx",
-      "content": "import { SplitTextEffect } from \"@/registry/default/bucharitesh/split-text-effect/split-text-effect\";\n\nexport default function SplitTextEffectDemo() {\n  return (\n    <div className=\"relative w-full bg-black\">\n      <div className=\"h-72\">\n        <SplitTextEffect\n          text={\n            <>\n              Security that <br /> scales with you.\n            </>\n          }\n          fill={0.45}\n          accent=\"#006efe\"\n        />\n      </div>\n    </div>\n  );\n}\n",
+      "path": "registry/example/split-text-effect-demo-3.tsx",
+      "content": "import { SplitTextEffect } from '@/registry/bucharitesh/split-text-effect/split-text-effect';\n\nexport default function SplitTextEffectDemo() {\n  return (\n    <div className=\"relative w-full bg-black\">\n      <div className=\"h-72\">\n        <SplitTextEffect\n          text={\n            <>\n              Security that <br /> scales with you.\n            </>\n          }\n          fill={0.45}\n          accent=\"#006efe\"\n        />\n      </div>\n    </div>\n  );\n}\n",
       "type": "registry:component"
     }
   ]

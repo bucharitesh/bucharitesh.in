@@ -2,13 +2,7 @@
   "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
   "extends": ["ultracite"],
   "files": {
-    "ignore": [
-      "components/ui/**",
-      "registry/**",
-      "__registry__/**",
-      "archive/**",
-      "public/**"
-    ]
+    "ignore": ["components/ui/**", "archive/**", "public/**"]
   },
   "linter": {
     "rules": {
@@ -56,7 +50,8 @@
         "noDescendingSpecificity": "off",
         "noNestedTernary": "off",
         "noDuplicateProperties": "off",
-        "noUnknownPseudoClass": "off"
+        "noUnknownPseudoClass": "off",
+        "useAriaPropsSupportedByRole": "off"
       },
       "security": {
         "noDangerouslySetInnerHtml": "off"

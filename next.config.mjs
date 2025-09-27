@@ -10,6 +10,9 @@ let nextConfig = {
     },
   },
   devIndicators: false,
+  outputFileTracingIncludes: {
+    '/*': ['./registry/**/*'],
+  },
   serverExternalPackages: [
     'shiki',
     '@react-email/components',

@@ -20,10 +20,7 @@
     "jsx": "preserve",
     "noEmit": true,
     "paths": {
-      "@/*": ["./*"],
-      "@/components/bucharitesh/*": ["./registry/default/bucharitesh/*"],
-      "@/components/example/*": ["./registry/default/example/*"],
-      "@/registry/*": ["./registry/*"]
+      "@/*": ["./*"]
     }
   },
   "include": [
@@ -33,5 +30,5 @@
     ".next/types/**/*.ts",
     "./scripts/**/*.ts"
   ],
-  "exclude": ["node_modules", "./__registry__", "archive"]
+  "exclude": ["node_modules", "archive"]
 }

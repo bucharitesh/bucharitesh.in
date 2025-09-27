@@ -1,12 +1,14 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "split-text-effect-demo",
-  "type": "registry:block",
-  "registryDependencies": ["@bucharitesh/split-text-effect"],
+  "type": "registry:example",
+  "registryDependencies": [
+    "@bucharitesh/split-text-effect"
+  ],
   "files": [
     {
-      "path": "registry/default/example/split-text-effect-demo.tsx",
-      "content": "import { SplitTextEffect } from \"@/registry/default/bucharitesh/split-text-effect/split-text-effect\";\n\nexport default function SplitTextEffectDemo() {\n  return (\n    <div className=\"relative w-full bg-black\">\n      <div className=\"h-72\">\n        <SplitTextEffect text=\"Grow Together\" fill={0.5} accent=\"#2ecc71\" />\n      </div>\n    </div>\n  );\n}\n",
+      "path": "registry/example/split-text-effect-demo.tsx",
+      "content": "import { SplitTextEffect } from '@/registry/bucharitesh/split-text-effect/split-text-effect';\n\nexport default function SplitTextEffectDemo() {\n  return (\n    <div className=\"relative w-full bg-black\">\n      <div className=\"h-72\">\n        <SplitTextEffect text=\"Grow Together\" fill={0.5} accent=\"#2ecc71\" />\n      </div>\n    </div>\n  );\n}\n",
       "type": "registry:component"
     }
   ]

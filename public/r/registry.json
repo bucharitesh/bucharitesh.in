@@ -1,27 +1,26 @@
 {
-  "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "bucharitesh",
-  "homepage": "https://bucharitesh.in/craft",
+  "homepage": "https://bucharitesh.in",
   "items": [
     {
-      "name": "utils",
-      "type": "registry:lib",
-      "title": "Utility Functions",
-      "author": "bucharitesh <contact@bucharitesh.in>",
+      "name": "index",
+      "type": "registry:style",
       "dependencies": [
-        "clsx",
-        "tailwind-merge"
+        "class-variance-authority",
+        "lucide-react"
       ],
-      "files": [
-        {
-          "path": "registry/default/lib/utils.ts",
-          "type": "registry:lib"
-        }
-      ]
+      "devDependencies": [
+        "tw-animate-css"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [],
+      "cssVars": {}
     },
     {
       "name": "book",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Book",
       "author": "bucharitesh <contact@bucharitesh.in>",
       "description": "A book component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
@@ -33,11 +32,11 @@
       ],
       "files": [
         {
-          "path": "registry/default/bucharitesh/book/book.tsx",
-          "type": "registry:component"
+          "path": "registry/bucharitesh/book/book.tsx",
+          "type": "registry:ui"
         },
         {
-          "path": "registry/default/bucharitesh/book/book.css",
+          "path": "registry/bucharitesh/book/book.css",
           "type": "registry:style"
         }
       ],
@@ -45,7 +44,7 @@
     },
     {
       "name": "modern-progress",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Modern Progress",
       "author": "bucharitesh <contact@bucharitesh.in>",
       "description": "A modern progress component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
@@ -57,11 +56,11 @@
       ],
       "files": [
         {
-          "path": "registry/default/bucharitesh/modern-progress/modern-progress.tsx",
-          "type": "registry:component"
+          "path": "registry/bucharitesh/modern-progress/modern-progress.tsx",
+          "type": "registry:ui"
         },
         {
-          "path": "registry/default/bucharitesh/modern-progress/modern-progress.css",
+          "path": "registry/bucharitesh/modern-progress/modern-progress.css",
           "type": "registry:style"
         }
       ],
@@ -69,7 +68,7 @@
     },
     {
       "name": "pixel-icon",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Pixel Icon",
       "author": "bucharitesh <contact@bucharitesh.in>",
       "description": "A pixel icon component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
@@ -78,15 +77,15 @@
       ],
       "files": [
         {
-          "path": "registry/default/bucharitesh/pixel-icon/pixel-icon.tsx",
-          "type": "registry:component"
+          "path": "registry/bucharitesh/pixel-icon/pixel-icon.tsx",
+          "type": "registry:ui"
         }
       ],
       "docs": "https://bucharitesh.in/craft/pixel-icon"
     },
     {
       "name": "split-text-effect",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Split Text Effect",
       "author": "bucharitesh <contact@bucharitesh.in>",
       "description": "A split text effect component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
@@ -98,15 +97,15 @@
       ],
       "files": [
         {
-          "path": "registry/default/bucharitesh/split-text-effect/split-text-effect.tsx",
-          "type": "registry:component"
+          "path": "registry/bucharitesh/split-text-effect/split-text-effect.tsx",
+          "type": "registry:ui"
         }
       ],
       "docs": "https://bucharitesh.in/craft/split-text-effect"
     },
     {
       "name": "view-magnifier",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "View Magnifier",
       "author": "bucharitesh <contact@bucharitesh.in>",
       "description": "A view magnifier component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
@@ -118,15 +117,15 @@
       ],
       "files": [
         {
-          "path": "registry/default/bucharitesh/view-magnifier/view-magnifier.tsx",
-          "type": "registry:component"
+          "path": "registry/bucharitesh/view-magnifier/view-magnifier.tsx",
+          "type": "registry:ui"
         }
       ],
       "docs": "https://bucharitesh.in/craft/view-magnifier"
     },
     {
       "name": "game-of-life",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Game of Life",
       "author": "bucharitesh <contact@bucharitesh.in>",
       "description": "A game of life component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
@@ -135,15 +134,15 @@
       ],
       "files": [
         {
-          "path": "registry/default/bucharitesh/game-of-life/game-of-life.tsx",
-          "type": "registry:component"
+          "path": "registry/bucharitesh/game-of-life/game-of-life.tsx",
+          "type": "registry:ui"
         }
       ],
       "docs": "https://bucharitesh.in/craft/game-of-life"
     },
     {
       "name": "magical-mouse",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Magical Mouse",
       "author": "bucharitesh <contact@bucharitesh.in>",
       "description": "A magical mouse component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
@@ -155,11 +154,11 @@
       ],
       "files": [
         {
-          "path": "registry/default/bucharitesh/magical-mouse/magical-mouse.tsx",
-          "type": "registry:component"
+          "path": "registry/bucharitesh/magical-mouse/magical-mouse.tsx",
+          "type": "registry:ui"
         },
         {
-          "path": "registry/default/bucharitesh/magical-mouse/magical-mouse.css",
+          "path": "registry/bucharitesh/magical-mouse/magical-mouse.css",
           "type": "registry:style"
         }
       ],
@@ -167,169 +166,171 @@
     },
     {
       "name": "book-demo",
-      "type": "registry:block",
-      "author": "bucharitesh <contact@bucharitesh.in>",
+      "type": "registry:example",
       "registryDependencies": [
         "@bucharitesh/book"
       ],
       "files": [
         {
-          "path": "registry/default/example/book-demo.tsx",
+          "path": "registry/example/book-demo.tsx",
           "type": "registry:component"
         }
       ]
     },
     {
       "name": "book-variant-demo",
-      "type": "registry:block",
-      "author": "bucharitesh <contact@bucharitesh.in>",
+      "type": "registry:example",
       "registryDependencies": [
         "@bucharitesh/book"
       ],
       "files": [
         {
-          "path": "registry/default/example/book-variant-demo.tsx",
+          "path": "registry/example/book-variant-demo.tsx",
           "type": "registry:component"
         }
       ]
     },
     {
       "name": "game-of-life-demo",
-      "type": "registry:block",
-      "author": "bucharitesh <contact@bucharitesh.in>",
+      "type": "registry:example",
       "registryDependencies": [
         "@bucharitesh/game-of-life"
       ],
       "files": [
         {
-          "path": "registry/default/example/game-of-life-demo.tsx",
+          "path": "registry/example/game-of-life-demo.tsx",
           "type": "registry:component"
         }
       ]
     },
     {
       "name": "game-of-life-demo-2",
-      "type": "registry:block",
-      "author": "bucharitesh <contact@bucharitesh.in>",
+      "type": "registry:example",
       "registryDependencies": [
         "@bucharitesh/game-of-life"
       ],
       "files": [
         {
-          "path": "registry/default/example/game-of-life-demo-2.tsx",
+          "path": "registry/example/game-of-life-demo-2.tsx",
           "type": "registry:component"
         }
       ]
     },
     {
       "name": "magical-mouse-demo",
-      "type": "registry:block",
-      "author": "bucharitesh <contact@bucharitesh.in>",
+      "type": "registry:example",
       "registryDependencies": [
         "@bucharitesh/magical-mouse"
       ],
       "files": [
         {
-          "path": "registry/default/example/magical-mouse-demo.tsx",
+          "path": "registry/example/magical-mouse-demo.tsx",
           "type": "registry:component"
         }
       ]
     },
     {
       "name": "modern-progress-demo",
-      "type": "registry:block",
-      "author": "bucharitesh <contact@bucharitesh.in>",
+      "type": "registry:example",
       "registryDependencies": [
         "@bucharitesh/modern-progress"
       ],
       "files": [
         {
-          "path": "registry/default/example/modern-progress-demo.tsx",
+          "path": "registry/example/modern-progress-demo.tsx",
           "type": "registry:component"
         }
       ]
     },
     {
       "name": "pixel-icon-demo",
-      "type": "registry:block",
-      "author": "bucharitesh <contact@bucharitesh.in>",
+      "type": "registry:example",
       "registryDependencies": [
         "@bucharitesh/pixel-icon"
       ],
       "files": [
         {
-          "path": "registry/default/example/pixel-icon-demo.tsx",
+          "path": "registry/example/pixel-icon-demo.tsx",
           "type": "registry:component"
         }
       ]
     },
     {
       "name": "split-text-effect-demo",
-      "type": "registry:block",
-      "author": "bucharitesh <contact@bucharitesh.in>",
+      "type": "registry:example",
       "registryDependencies": [
         "@bucharitesh/split-text-effect"
       ],
       "files": [
         {
-          "path": "registry/default/example/split-text-effect-demo.tsx",
+          "path": "registry/example/split-text-effect-demo.tsx",
           "type": "registry:component"
         }
       ]
     },
     {
       "name": "split-text-effect-demo-2",
-      "type": "registry:block",
-      "author": "bucharitesh <contact@bucharitesh.in>",
+      "type": "registry:example",
       "registryDependencies": [
         "@bucharitesh/split-text-effect"
       ],
       "files": [
         {
-          "path": "registry/default/example/split-text-effect-demo-2.tsx",
+          "path": "registry/example/split-text-effect-demo-2.tsx",
           "type": "registry:component"
         }
       ]
     },
     {
       "name": "split-text-effect-demo-3",
-      "type": "registry:block",
-      "author": "bucharitesh <contact@bucharitesh.in>",
+      "type": "registry:example",
       "registryDependencies": [
         "@bucharitesh/split-text-effect"
       ],
       "files": [
         {
-          "path": "registry/default/example/split-text-effect-demo-3.tsx",
+          "path": "registry/example/split-text-effect-demo-3.tsx",
           "type": "registry:component"
         }
       ]
     },
     {
       "name": "view-magnifier-demo",
-      "type": "registry:block",
-      "author": "bucharitesh <contact@bucharitesh.in>",
+      "type": "registry:example",
       "registryDependencies": [
         "@bucharitesh/view-magnifier"
       ],
       "files": [
         {
-          "path": "registry/default/example/view-magnifier-demo.tsx",
+          "path": "registry/example/view-magnifier-demo.tsx",
           "type": "registry:component"
         }
       ]
     },
     {
       "name": "view-magnifier-demo-2",
-      "type": "registry:block",
-      "author": "bucharitesh <contact@bucharitesh.in>",
+      "type": "registry:example",
       "registryDependencies": [
         "@bucharitesh/view-magnifier"
       ],
       "files": [
         {
-          "path": "registry/default/example/view-magnifier-demo-2.tsx",
+          "path": "registry/example/view-magnifier-demo-2.tsx",
           "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "utils",
+      "type": "registry:lib",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "files": [
+        {
+          "path": "registry/lib/utils.ts",
+          "type": "registry:lib"
         }
       ]
     }

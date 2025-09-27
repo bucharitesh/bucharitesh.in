@@ -1,0 +1,35 @@
+# Ritesh Bucha
+
+> What I'm learning about shipping great products, becoming a better developer, and growing a career in tech.
+
+This file provides LLM-friendly entry points to documentation and examples.
+
+## Components
+
+- [Book](https://bucharitesh.in/docs/components/book): A book component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.
+- [Game of Life](https://bucharitesh.in/docs/components/game-of-life): A game of life component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.
+- [Magical Mouse](https://bucharitesh.in/docs/components/magical-mouse): A magical mouse component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.
+- [Modern Progress](https://bucharitesh.in/docs/components/modern-progress): A modern progress component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.
+- [Pixel Icon](https://bucharitesh.in/docs/components/pixel-icon): A pixel icon component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.
+- [Split Text Effect](https://bucharitesh.in/docs/components/split-text-effect): A split text effect component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.
+- [View Magnifier](https://bucharitesh.in/docs/components/view-magnifier): A view magnifier component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.
+
+## Examples
+
+- [book-demo](https://github.com/bucharitesh/blob/main/example/book-demo.tsx): Example usage
+- [book-variant-demo](https://github.com/bucharitesh/blob/main/example/book-variant-demo.tsx): Example usage
+- [game-of-life-demo](https://github.com/bucharitesh/blob/main/example/game-of-life-demo.tsx): Example usage
+- [game-of-life-demo-2](https://github.com/bucharitesh/blob/main/example/game-of-life-demo-2.tsx): Example usage
+- [magical-mouse-demo](https://github.com/bucharitesh/blob/main/example/magical-mouse-demo.tsx): Example usage
+- [modern-progress-demo](https://github.com/bucharitesh/blob/main/example/modern-progress-demo.tsx): Example usage
+- [pixel-icon-demo](https://github.com/bucharitesh/blob/main/example/pixel-icon-demo.tsx): Example usage
+- [split-text-effect-demo](https://github.com/bucharitesh/blob/main/example/split-text-effect-demo.tsx): Example usage
+- [split-text-effect-demo-2](https://github.com/bucharitesh/blob/main/example/split-text-effect-demo-2.tsx): Example usage
+- [split-text-effect-demo-3](https://github.com/bucharitesh/blob/main/example/split-text-effect-demo-3.tsx): Example usage
+- [view-magnifier-demo](https://github.com/bucharitesh/blob/main/example/view-magnifier-demo.tsx): Example usage
+- [view-magnifier-demo-2](https://github.com/bucharitesh/blob/main/example/view-magnifier-demo-2.tsx): Example usage
+
+## Optional
+
+- [Repository](https://github.com/bucharitesh): Source code and issues
+- [Sitemap](https://bucharitesh.in/sitemap.xml): Indexable pages

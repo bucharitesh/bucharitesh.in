@@ -1,12 +1,14 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "magical-mouse-demo",
-  "type": "registry:block",
-  "registryDependencies": ["@bucharitesh/magical-mouse"],
+  "type": "registry:example",
+  "registryDependencies": [
+    "@bucharitesh/magical-mouse"
+  ],
   "files": [
     {
-      "path": "registry/default/example/magical-mouse-demo.tsx",
-      "content": "import React from \"react\";\nimport { MouseSparkles } from \"../bucharitesh/magical-mouse/magical-mouse\";\n\nconst MagicalMouseDemo = () => {\n  return (\n    <div\n      className=\"w-full h-[400px] bg-white rounded-xl overflow-hidden\"\n      style={{\n        background:\n          \"linear-gradient(145deg, rgb(119, 46, 195), rgb(58, 18, 153))\",\n      }}\n    >\n      <MouseSparkles />\n    </div>\n  );\n};\n\nexport default MagicalMouseDemo;\n",
+      "path": "registry/example/magical-mouse-demo.tsx",
+      "content": "import { MouseSparkles } from '@/registry/bucharitesh/magical-mouse/magical-mouse';\n\nconst MagicalMouseDemo = () => {\n  return (\n    <div\n      className=\"h-[400px] w-full overflow-hidden rounded-xl bg-white\"\n      style={{\n        background:\n          'linear-gradient(145deg, rgb(119, 46, 195), rgb(58, 18, 153))',\n      }}\n    >\n      <MouseSparkles />\n    </div>\n  );\n};\n\nexport default MagicalMouseDemo;\n",
       "type": "registry:component"
     }
   ]

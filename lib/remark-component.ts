@@ -3,7 +3,7 @@ import path from 'node:path';
 
 import { visit } from 'unist-util-visit';
 
-import { Index } from '@/__registry__';
+import { Index } from '@/registry/__index__';
 import type { UnistNode, UnistTree } from '@/types/unist';
 
 export function remarkComponent() {

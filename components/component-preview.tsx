@@ -8,8 +8,8 @@ import {
 import { RefreshCcw } from 'lucide-react';
 import React, { ReactNode, useMemo, useState } from 'react';
 
-import { Index } from '@/__registry__/index';
 import { cn } from '@/lib/utils';
+import { Index } from '@/registry/__index__';
 
 import { CodeCollapsibleWrapper } from './code-collapsible-wrapper';
 import { OpenInV0Button } from './open-in-v0';
