@@ -31,5 +31,5 @@ This file provides LLM-friendly entry points to documentation and examples.
 
 ## Optional
 
-- [Repository](https://github.com/bucharitesh): Source code and issues
+- [Repository](https://github.com/bucharitesh/bucharitesh.in): Source code and issues
 - [Sitemap](https://bucharitesh.in/sitemap.xml): Indexable pages

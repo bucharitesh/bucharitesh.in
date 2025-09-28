@@ -420,21 +420,9 @@
   mask-composite: intersect;
 }
 
-@utility word-break-word {
-  word-break: break-word;
-}
-
-@utility px-safe {
-  padding-left: env(safe-area-inset-left);
-  padding-right: env(safe-area-inset-right);
-}
-
-@utility bg-dots {
-  @apply bg-white dark:bg-neutral-900 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] bg-size-[16px_16px];
-}
-
 @utility bg-grid {
-  @apply bg-[repeating-linear-gradient(45deg,_transparent,_transparent_2px,_var(--color-border)_4px,_var(--color-border)_1px)];
+  @apply bg-background;
+  /* @apply bg-[repeating-linear-gradient(45deg,_transparent,_transparent_2px,_var(--color-border)_4px,_var(--color-border)_1px)]; */
 }
 
 /* Animations moved from Tailwind config */

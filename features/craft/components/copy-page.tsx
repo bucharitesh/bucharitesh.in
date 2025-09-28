@@ -15,12 +15,13 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { Separator } from '@/components/ui/separator';
+import { USER } from '@/config/user';
 import { useCopyToClipboard } from '@/lib/hooks/use-copy-to-clipboard';
 import { Check, ChevronDown, Copy } from 'lucide-react';
 
 function getPromptUrl(baseURL: string, url: string) {
   return `${baseURL}?q=${encodeURIComponent(
-    `I’m looking at this bucharitesh.in documentation: ${url}.
+    `I’m looking at this ${USER.website} documentation: ${url}.
 Help me understand how to use it. Be ready to explain concepts, give examples, or help debug based on it.
   `
   )}`;

@@ -5,7 +5,7 @@ Description: A book component for Next.js apps with next-themes and Tailwind CSS
 --- file: bucharitesh/book.tsx ---
 import type React from 'react';
 import type { CSSProperties } from 'react';
-import '@styles/book.css';
+import '@/registry/styles/book.css';
 import { cn } from '@/lib/utils';
 import { VercelLogoIcon } from '@radix-ui/react-icons';
 
@@ -960,7 +960,7 @@ import { Sparkle } from 'lucide-react';
 import * as React from 'react';
 // @ts-ignore
 import { createRoot } from 'react-dom/client';
-import '@styles/magical-mouse.css';
+import '@/registry/styles/magical-mouse.css';
 
 interface Point {
   x: number;
@@ -1298,7 +1298,7 @@ import { type VariantProps, cva } from 'class-variance-authority';
 // components/ui/progress.tsx
 import * as React from 'react';
 
-import '@styles/modern-progress.css';
+import '@/registry/styles/modern-progress.css';
 
 const progressVariants = cva(
   'relative flex w-full items-center justify-center overflow-hidden',

@@ -202,7 +202,7 @@ async function generateLlmsContent() {
     '',
     '## Optional',
     '',
-    `- [Repository](${USER.social.github}): Source code and issues`,
+    `- [Repository](${SOURCE_CODE_GITHUB_URL}): Source code and issues`,
     `- [Sitemap](${USER.website}/sitemap.xml): Indexable pages`,
   ].join('\n');
 }
@@ -283,46 +283,6 @@ async function buildRegistry() {
   });
 }
 
-async function fixCssImportPaths() {
-  const publicRDir = path.join(process.cwd(), 'public/r');
-  const publicDir = path.join(process.cwd(), 'public');
-
-  try {
-    // Fix CSS import paths in registry JSON files
-    const files = await fs.readdir(publicRDir);
-
-    for (const file of files) {
-      if (file.endsWith('.json')) {
-        const filePath = path.join(publicRDir, file);
-        let content = await fs.readFile(filePath, 'utf8');
-
-        // Replace @/registry/styles/ imports with relative paths
-        content = content.replace(
-          /@\/registry\/styles\/([^'"]+)/g,
-          '@styles/$1'
-        );
-
-        await fs.writeFile(filePath, content, 'utf8');
-      }
-    }
-
-    // Fix CSS import paths in LLMs files
-    const llmsFiles = ['llms.txt', 'llms-full.txt'];
-
-    for (const fileName of llmsFiles) {
-      const filePath = path.join(publicDir, fileName);
-      let content = await fs.readFile(filePath, 'utf8');
-
-      // Replace @/registry/styles/ imports with relative paths
-      content = content.replace(/@\/registry\/styles\/([^'"]+)/g, '@styles/$1');
-
-      await fs.writeFile(filePath, content, 'utf8');
-    }
-  } catch (error) {
-    console.warn('Warning: Could not fix CSS import paths:', error);
-  }
-}
-
 try {
   console.log('��️ Building registry/__index__.tsx...');
   await buildRegistryIndex();
@@ -339,10 +299,6 @@ try {
   console.log('🏗️ Building registry...');
   await buildRegistry();
   console.log('✅ Registry build completed');
-
-  console.log('🔧 Fixing CSS import paths...');
-  await fixCssImportPaths();
-  console.log('✅ CSS import paths fixed');
 } catch (error) {
   console.error('❌ Build failed with error:');
   console.error(error);

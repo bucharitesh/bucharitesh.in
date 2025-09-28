@@ -1,15 +1,14 @@
-import MyActivityCalendar from '@/components/activity-calendar';
 import { FloatingHeader } from '@/components/navigation/floating-header';
 import { ProfileImage } from '@/components/profile-image';
 import { PronounceMyName } from '@/components/pronounce-my-name';
 import { FlipSentences } from '@/components/ui/flip-sentences';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { USER } from '@/config/user';
+import { GitHubContribution } from '@/features/home/components/github-contribution';
 import Info from '@/features/home/components/info';
 import { createOgImage } from '@/lib/createOgImage';
 import { JsonLd, Organization, WithContext } from '@/lib/seo/json-ld';
 import { createMetadata } from '@/lib/seo/metadata';
-import { getGithubContributions } from '@/lib/services/github';
 import type { Metadata } from 'next/types';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -27,8 +26,6 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Page() {
-  const data = await getGithubContributions('bucharitesh');
-
   const jsonLd: WithContext<Organization> = {
     '@type': 'Organization',
     '@context': 'https://schema.org',
@@ -74,7 +71,7 @@ export default async function Page() {
           </section>
 
           <section className="mt-12">
-            <MyActivityCalendar data={data} />
+            <GitHubContribution />
           </section>
 
           {/* <section className="mt-12">
