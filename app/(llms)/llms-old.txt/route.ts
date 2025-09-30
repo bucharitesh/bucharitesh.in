@@ -6,8 +6,6 @@ import { getAllPosts } from '@/features/craft/data/posts';
 import { examples } from '@/registry/registry-examples';
 import { ui as registryUI } from '@/registry/registry-ui';
 
-export const cache = "force-cache";
-
 async function generateLlmsContent() {
   const components = registryUI
     .filter((item) => item.type === 'registry:ui')
