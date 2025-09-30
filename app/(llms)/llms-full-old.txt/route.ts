@@ -8,6 +8,8 @@ import { getAllPosts } from '@/features/craft/data/posts';
 import { examples } from '@/registry/registry-examples';
 import { ui as registryUI } from '@/registry/registry-ui';
 
+export const cache = "force-cache";
+
 type RegistryItem = Registry['items'][number];
 type FileEntry = string | { path: string; type?: string; target?: string };
 

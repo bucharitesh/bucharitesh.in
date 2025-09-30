@@ -73,19 +73,41 @@ export function ScreenSize({ className }: { className?: string }) {
 
 export function LLMS({ className }: { className?: string }) {
   return (
-    <motion.a
+    <motion.div
       className={cn(
-        'fixed right-4 bottom-4 z-50 font-x text-gray-600 text-xs tracking-wider dark:text-gray-300',
+        'fixed right-4 bottom-4 z-50 flex flex-col items-end gap-0 font-x',
         className
       )}
-      href={`${USER.website}/llms.txt`}
-      target="_blank"
-      rel="noopener noreferrer"
       initial={fadeIn.initial}
       animate={fadeIn.animate}
       transition={fadeIn.transition}
     >
-      llms.txt
-    </motion.a>
+      <motion.a
+        className={cn(
+          'text-gray-600 text-xs tracking-wider dark:text-gray-300'
+        )}
+        href={`${USER.website}/llms-full.txt`}
+        target="_blank"
+        rel="noopener noreferrer"
+        initial={fadeIn.initial}
+        animate={fadeIn.animate}
+        transition={fadeIn.transition}
+      >
+        llms-full.txt
+      </motion.a>
+      <motion.a
+        className={cn(
+          'text-gray-600 text-xs tracking-wider dark:text-gray-300'
+        )}
+        href={`${USER.website}/llms.txt`}
+        target="_blank"
+        rel="noopener noreferrer"
+        initial={fadeIn.initial}
+        animate={fadeIn.animate}
+        transition={fadeIn.transition}
+      >
+        llms.txt
+      </motion.a>
+    </motion.div>
   );
 }

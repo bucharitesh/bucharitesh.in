@@ -2,7 +2,24 @@
 
 > What I'm learning about shipping great products, becoming a better developer, and growing a career in tech.
 
-This file provides LLM-friendly entry points to documentation and examples.
+
+- [About](https://bucharitesh.in/me/about.md): A quick intro to me, my tech stack, and how to connect.
+- [Experience](https://bucharitesh.in/me/experience.md): Highlights from my career and key roles I've taken on.
+- [Craft](https://bucharitesh.in/me/craft.md): A collection of my work.
+- [Bookmarks](https://bucharitesh.in/me/bookmarks.md): Bookmarks from my collections.
+
+## Craft
+
+- [Modern Progress](https://bucharitesh.in/craft/modern-progress)
+- [Game of Life](https://bucharitesh.in/craft/game-of-life)
+- [Magical Mouse](https://bucharitesh.in/craft/magical-mouse)
+- [Book](https://bucharitesh.in/craft/book)
+- [Icon Maker](https://icon-maker.bucharitesh.in)
+- [View Magnifier](https://bucharitesh.in/craft/view-magnifier)
+- [Split Text Effect](https://bucharitesh.in/craft/split-text-effect)
+- [Pixel Icon](https://bucharitesh.in/craft/pixel-icon)
+
+This file provides LLM-friendly entry points to Crafts
 
 ## Components
 

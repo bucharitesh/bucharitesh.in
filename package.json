@@ -9,8 +9,9 @@
     "email:dev": "email dev --port 3333",
     "prebuild": "pnpm build:registry",
     "build": "next build",
-    "build:registry": "npx tsx ./scripts/build-registry.mts && pnpm format",
+    "build:registry": "npx tsx ./scripts/build-registry.mts",
     "shadcn:build": "npx shadcn build registry.json --output ./public/r",
+    "capture": "npx tsx ./scripts/capture.mts",
     "lint": "ultracite lint",
     "format": "ultracite format",
     "analyze": "ANALYZE=true npm run build",
@@ -19,7 +20,6 @@
   },
   "dependencies": {
     "@arcjet/ip": "1.0.0-beta.11",
-    "@biomejs/biome": "1.9.4",
     "@calcom/embed-react": "^1.5.3",
     "@google/generative-ai": "^0.21.0",
     "@hookform/resolvers": "^3.9.1",
@@ -78,7 +78,6 @@
     "next-themes": "^0.2.1",
     "plaiceholder": "^3.0.0",
     "puppeteer-core": "^24.19.0",
-    "qss": "^2.0.3",
     "radix-ui": "^1.4.2",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
@@ -118,6 +117,7 @@
     "zustand": "^5.0.8"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.2.4",
     "@tailwindcss/postcss": "^4.1.13",
     "@types/canvas-confetti": "^1.9.0",
     "@types/css-font-loading-module": "^0.0.7",
