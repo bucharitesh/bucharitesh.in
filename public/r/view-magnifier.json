@@ -3,7 +3,6 @@
   "name": "view-magnifier",
   "type": "registry:ui",
   "title": "View Magnifier",
-  "author": "bucharitesh <contact@bucharitesh.in>",
   "description": "A view magnifier component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
   "dependencies": [
     "motion"

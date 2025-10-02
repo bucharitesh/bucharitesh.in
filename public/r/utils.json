@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "utils",
   "type": "registry:lib",
+  "title": "Utility Functions",
+  "author": "bucharitesh <contact@bucharitesh.in>",
   "dependencies": [
     "clsx",
     "tailwind-merge"

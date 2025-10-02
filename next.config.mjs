@@ -20,6 +20,9 @@ let nextConfig = {
     optimizePackageImports: ['motion'],
     webVitalsAttribution: ['FCP', 'LCP', 'CLS', 'FID', 'TTFB', 'INP'],
   },
+  outputFileTracingIncludes: {
+    "/*": ["./registry/**/*"],
+  },
   webpack: (config, { webpack, isServer }) => {
     if (isServer) {
       config.plugins.push(

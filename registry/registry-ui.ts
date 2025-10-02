@@ -1,4 +1,3 @@
-import { USER } from '@/config/user';
 import { type Registry } from 'shadcn/schema';
 
 export const ui: Registry['items'] = [
@@ -9,7 +8,6 @@ export const ui: Registry['items'] = [
     description:
       'A book component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.',
     dependencies: ['@radix-ui/react-icons'],
-    author: `${USER.username} <${USER.email}>`,
     files: [
       {
         path: 'bucharitesh/book.tsx',
@@ -27,7 +25,6 @@ export const ui: Registry['items'] = [
     description:
       'A modern progress component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.',
     title: 'Modern Progress',
-    author: `${USER.username} <${USER.email}>`,
     dependencies: ['class-variance-authority'],
     files: [
       {
@@ -46,7 +43,6 @@ export const ui: Registry['items'] = [
     description:
       'A pixel icon component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.',
     title: 'Pixel Icon',
-    author: `${USER.username} <${USER.email}>`,
     files: [
       {
         path: 'bucharitesh/pixel-icon.tsx',
@@ -60,7 +56,6 @@ export const ui: Registry['items'] = [
     description:
       'A split text effect component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.',
     title: 'Split Text Effect',
-    author: `${USER.username} <${USER.email}>`,
     dependencies: ['motion'],
     files: [
       {
@@ -75,7 +70,6 @@ export const ui: Registry['items'] = [
     description:
       'A view magnifier component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.',
     title: 'View Magnifier',
-    author: `${USER.username} <${USER.email}>`,
     dependencies: ['motion'],
     files: [
       {
@@ -90,7 +84,6 @@ export const ui: Registry['items'] = [
     description:
       'A game of life component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.',
     title: 'Game of Life',
-    author: `${USER.username} <${USER.email}>`,
     files: [
       {
         path: 'bucharitesh/game-of-life.tsx',
@@ -103,8 +96,7 @@ export const ui: Registry['items'] = [
     type: 'registry:ui',
     description:
       'A magical mouse component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.',
-    title: 'Magical Mouse',
-    author: `${USER.username} <${USER.email}>`,
+    title: 'Magical Mouse', 
     dependencies: ['lucide-react'],
     files: [
       {

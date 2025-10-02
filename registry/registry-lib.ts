@@ -1,9 +1,12 @@
 import { type Registry } from 'shadcn/schema';
+import { USER } from '@/config/user';
 
 export const lib: Registry['items'] = [
   {
     name: 'utils',
     type: 'registry:lib',
+    title: "Utility Functions",
+    author: `${USER.username} <${USER.email}>`,
     dependencies: ['clsx', 'tailwind-merge'],
     files: [
       {

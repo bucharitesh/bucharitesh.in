@@ -22,7 +22,6 @@
       "name": "book",
       "type": "registry:ui",
       "title": "Book",
-      "author": "bucharitesh <contact@bucharitesh.in>",
       "description": "A book component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
       "dependencies": [
         "@radix-ui/react-icons"
@@ -42,7 +41,6 @@
       "name": "modern-progress",
       "type": "registry:ui",
       "title": "Modern Progress",
-      "author": "bucharitesh <contact@bucharitesh.in>",
       "description": "A modern progress component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
       "dependencies": [
         "class-variance-authority"
@@ -62,7 +60,6 @@
       "name": "pixel-icon",
       "type": "registry:ui",
       "title": "Pixel Icon",
-      "author": "bucharitesh <contact@bucharitesh.in>",
       "description": "A pixel icon component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
       "files": [
         {
@@ -75,7 +72,6 @@
       "name": "split-text-effect",
       "type": "registry:ui",
       "title": "Split Text Effect",
-      "author": "bucharitesh <contact@bucharitesh.in>",
       "description": "A split text effect component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
       "dependencies": [
         "motion"
@@ -91,7 +87,6 @@
       "name": "view-magnifier",
       "type": "registry:ui",
       "title": "View Magnifier",
-      "author": "bucharitesh <contact@bucharitesh.in>",
       "description": "A view magnifier component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
       "dependencies": [
         "motion"
@@ -107,7 +102,6 @@
       "name": "game-of-life",
       "type": "registry:ui",
       "title": "Game of Life",
-      "author": "bucharitesh <contact@bucharitesh.in>",
       "description": "A game of life component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
       "files": [
         {
@@ -120,7 +114,6 @@
       "name": "magical-mouse",
       "type": "registry:ui",
       "title": "Magical Mouse",
-      "author": "bucharitesh <contact@bucharitesh.in>",
       "description": "A magical mouse component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
       "dependencies": [
         "lucide-react"
@@ -319,6 +312,8 @@
     {
       "name": "utils",
       "type": "registry:lib",
+      "title": "Utility Functions",
+      "author": "bucharitesh <contact@bucharitesh.in>",
       "dependencies": [
         "clsx",
         "tailwind-merge"
