@@ -98,7 +98,7 @@ export function DocsCopyPage({ page, url }: { page: string; url: string }) {
 
   return (
     <Popover>
-      <div className="group/buttons relative flex rounded-lg bg-secondary *:[[data-slot=button]]:focus-visible:relative *:[[data-slot=button]]:focus-visible:z-10">
+      <div className="group/buttons relative flex rounded-lg bg-secondary *:data-[slot=button]:focus-visible:relative *:data-[slot=button]:focus-visible:z-10">
         <PopoverAnchor />
         <Button
           variant="ghost"
@@ -123,13 +123,13 @@ export function DocsCopyPage({ page, url }: { page: string; url: string }) {
         </DropdownMenu>
         <Separator
           orientation="vertical"
-          className="!bg-foreground/10 !h-8 sm:!h-7 absolute top-0 right-8 z-0 peer-focus-visible:opacity-0 sm:right-7"
+          className="bg-foreground/10! h-8! sm:h-7! absolute top-0 right-8 z-0 peer-focus-visible:opacity-0 sm:right-7"
         />
         <PopoverTrigger asChild className="flex sm:hidden">
           {trigger}
         </PopoverTrigger>
         <PopoverContent
-          className="!origin-center w-52 rounded-lg bg-background/70 p-1 shadow-sm backdrop-blur-sm dark:bg-background/60"
+          className="origin-center! w-52 rounded-lg bg-background/70 p-1 shadow-sm backdrop-blur-sm dark:bg-background/60"
           align="start"
         >
           {Object.entries(menuItems).map(([key, value]) => (

@@ -41,8 +41,8 @@ export default function GuestbookPage() {
           <div className="z-10">
             <div
               className={cn(
-                'absolute inset-0 border-1 border-black/10 border-inset bg-position-center bg-size-[2vmin_2vmin] after:absolute after:inset-0 after:bg-size-[30vmin_30vmin] after:content-[""] md:bg-size-[10vmin_10vmin]',
-                'bg-[linear-gradient(to_right,var(--color-border)_1px,_transparent_1px),linear-gradient(to_bottom,_var(--color-border)_1px,_transparent_1px)]'
+                'absolute inset-0 border border-black/10 border-inset bg-position-center bg-size-[2vmin_2vmin] after:absolute after:inset-0 after:bg-size-[30vmin_30vmin] after:content-[""] md:bg-size-[10vmin_10vmin]',
+                'bg-[linear-gradient(to_right,var(--color-border)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-border)_1px,transparent_1px)]'
               )}
             >
               <div
