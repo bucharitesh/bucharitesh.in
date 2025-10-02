@@ -557,7 +557,7 @@ export default Book;
 
 
 ===== EXAMPLE: book-demo =====
-Title: book-demo
+Title: Book Demo
 
 --- file: example/book-demo.tsx ---
 import Book from '../bucharitesh/book';
@@ -574,7 +574,7 @@ export default BookDemo;
 
 
 ===== EXAMPLE: book-variant-demo =====
-Title: book-variant-demo
+Title: Book Variant Demo
 
 --- file: example/book-variant-demo.tsx ---
 import { Leaf } from 'lucide-react';
@@ -908,7 +908,7 @@ export type { GameOfLifeProps };
 
 
 ===== EXAMPLE: game-of-life-demo =====
-Title: game-of-life-demo
+Title: Game of Life Demo
 
 --- file: example/game-of-life-demo.tsx ---
 import { GameOfLife } from '@/registry/bucharitesh/game-of-life';
@@ -928,7 +928,7 @@ export default function SplitTextEffectDemo() {
 
 
 ===== EXAMPLE: game-of-life-demo-2 =====
-Title: game-of-life-demo-2
+Title: Game of Life Demo 2
 
 --- file: example/game-of-life-demo-2.tsx ---
 import { GameOfLife } from '@/registry/bucharitesh/game-of-life';
@@ -1265,7 +1265,7 @@ export { MouseSparkles };
 
 
 ===== EXAMPLE: magical-mouse-demo =====
-Title: magical-mouse-demo
+Title: Magical Mouse Demo
 
 --- file: example/magical-mouse-demo.tsx ---
 import { MouseSparkles } from '@/registry/bucharitesh/magical-mouse';
@@ -1433,7 +1433,7 @@ body [data-pattern="stripes"] {
 
 
 ===== EXAMPLE: modern-progress-demo =====
-Title: modern-progress-demo
+Title: Modern Progress Demo
 
 --- file: example/modern-progress-demo.tsx ---
 'use client';
@@ -1724,7 +1724,7 @@ export default PixelIcon;
 
 
 ===== EXAMPLE: pixel-icon-demo =====
-Title: pixel-icon-demo
+Title: Pixel Icon Demo
 
 --- file: example/pixel-icon-demo.tsx ---
 'use client';
@@ -2119,7 +2119,7 @@ export { SplitTextEffect };
 
 
 ===== EXAMPLE: split-text-effect-demo =====
-Title: split-text-effect-demo
+Title: Split Text Effect Demo
 
 --- file: example/split-text-effect-demo.tsx ---
 import { SplitTextEffect } from '@/registry/bucharitesh/split-text-effect';
@@ -2136,7 +2136,7 @@ export default function SplitTextEffectDemo() {
 
 
 ===== EXAMPLE: split-text-effect-demo-2 =====
-Title: split-text-effect-demo-2
+Title: Split Text Effect Demo 2
 
 --- file: example/split-text-effect-demo-2.tsx ---
 import { SplitTextEffect } from '@/registry/bucharitesh/split-text-effect';
@@ -2163,7 +2163,7 @@ export default function SplitTextEffectDemo() {
 
 
 ===== EXAMPLE: split-text-effect-demo-3 =====
-Title: split-text-effect-demo-3
+Title: Split Text Effect Demo 3
 
 --- file: example/split-text-effect-demo-3.tsx ---
 import { SplitTextEffect } from '@/registry/bucharitesh/split-text-effect';
@@ -2369,7 +2369,7 @@ export default ViewMagnifier;
 
 
 ===== EXAMPLE: view-magnifier-demo =====
-Title: view-magnifier-demo
+Title: View Magnifier Demo
 
 --- file: example/view-magnifier-demo.tsx ---
 'use client';
@@ -2390,7 +2390,7 @@ export default function ViewMagnifierDemo() {
 
 
 ===== EXAMPLE: view-magnifier-demo-2 =====
-Title: view-magnifier-demo-2
+Title: View Magnifier Demo 2
 
 --- file: example/view-magnifier-demo-2.tsx ---
 'use client';

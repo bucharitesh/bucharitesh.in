@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "view-magnifier-demo",
   "type": "registry:example",
+  "title": "View Magnifier Demo",
+  "description": "A demo of the View Magnifier component",
   "registryDependencies": [
     "@bucharitesh/view-magnifier"
   ],
@@ -9,7 +11,7 @@
     {
       "path": "registry/example/view-magnifier-demo.tsx",
       "content": "'use client';\nimport ViewMagnifier from '@/registry/bucharitesh/view-magnifier';\nimport Image from 'next/image';\n\nexport default function ViewMagnifierDemo() {\n  return (\n    <div className=\"relative w-full\">\n      <ViewMagnifier>\n        <div className=\"h-96 w-full bg-red-500\">\n          <Image src=\"/assets/test-image.avif\" alt=\"random\" fill />\n        </div>\n      </ViewMagnifier>\n    </div>\n  );\n}\n",
-      "type": "registry:component"
+      "type": "registry:example"
     }
   ]
 }

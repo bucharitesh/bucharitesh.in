@@ -27,9 +27,6 @@
       "dependencies": [
         "@radix-ui/react-icons"
       ],
-      "registryDependencies": [
-        "@bucharitesh/utils"
-      ],
       "files": [
         {
           "path": "registry/bucharitesh/book.tsx",
@@ -39,8 +36,7 @@
           "path": "registry/styles/book.css",
           "type": "registry:style"
         }
-      ],
-      "docs": "https://bucharitesh.in/craft/book"
+      ]
     },
     {
       "name": "modern-progress",
@@ -51,9 +47,6 @@
       "dependencies": [
         "class-variance-authority"
       ],
-      "registryDependencies": [
-        "@bucharitesh/utils"
-      ],
       "files": [
         {
           "path": "registry/bucharitesh/modern-progress.tsx",
@@ -63,8 +56,7 @@
           "path": "registry/styles/modern-progress.css",
           "type": "registry:style"
         }
-      ],
-      "docs": "https://bucharitesh.in/craft/modern-progress"
+      ]
     },
     {
       "name": "pixel-icon",
@@ -72,16 +64,12 @@
       "title": "Pixel Icon",
       "author": "bucharitesh <contact@bucharitesh.in>",
       "description": "A pixel icon component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
-      "registryDependencies": [
-        "@bucharitesh/utils"
-      ],
       "files": [
         {
           "path": "registry/bucharitesh/pixel-icon.tsx",
           "type": "registry:ui"
         }
-      ],
-      "docs": "https://bucharitesh.in/craft/pixel-icon"
+      ]
     },
     {
       "name": "split-text-effect",
@@ -92,16 +80,12 @@
       "dependencies": [
         "motion"
       ],
-      "registryDependencies": [
-        "@bucharitesh/utils"
-      ],
       "files": [
         {
           "path": "registry/bucharitesh/split-text-effect.tsx",
           "type": "registry:ui"
         }
-      ],
-      "docs": "https://bucharitesh.in/craft/split-text-effect"
+      ]
     },
     {
       "name": "view-magnifier",
@@ -112,16 +96,12 @@
       "dependencies": [
         "motion"
       ],
-      "registryDependencies": [
-        "@bucharitesh/utils"
-      ],
       "files": [
         {
           "path": "registry/bucharitesh/view-magnifier.tsx",
           "type": "registry:ui"
         }
-      ],
-      "docs": "https://bucharitesh.in/craft/view-magnifier"
+      ]
     },
     {
       "name": "game-of-life",
@@ -129,16 +109,12 @@
       "title": "Game of Life",
       "author": "bucharitesh <contact@bucharitesh.in>",
       "description": "A game of life component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
-      "registryDependencies": [
-        "@bucharitesh/utils"
-      ],
       "files": [
         {
           "path": "registry/bucharitesh/game-of-life.tsx",
           "type": "registry:ui"
         }
-      ],
-      "docs": "https://bucharitesh.in/craft/game-of-life"
+      ]
     },
     {
       "name": "magical-mouse",
@@ -149,9 +125,6 @@
       "dependencies": [
         "lucide-react"
       ],
-      "registryDependencies": [
-        "@bucharitesh/utils"
-      ],
       "files": [
         {
           "path": "registry/bucharitesh/magical-mouse.tsx",
@@ -161,162 +134,185 @@
           "path": "registry/styles/magical-mouse.css",
           "type": "registry:style"
         }
-      ],
-      "docs": "https://bucharitesh.in/craft/magical-mouse"
+      ]
     },
     {
       "name": "book-demo",
       "type": "registry:example",
+      "title": "Book Demo",
+      "description": "A demo of the Book component",
       "registryDependencies": [
         "@bucharitesh/book"
       ],
       "files": [
         {
           "path": "registry/example/book-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:example"
         }
       ]
     },
     {
       "name": "book-variant-demo",
       "type": "registry:example",
+      "title": "Book Variant Demo",
+      "description": "A demo of the Book component with variants",
       "registryDependencies": [
         "@bucharitesh/book"
       ],
       "files": [
         {
           "path": "registry/example/book-variant-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:example"
         }
       ]
     },
     {
       "name": "game-of-life-demo",
       "type": "registry:example",
+      "title": "Game of Life Demo",
+      "description": "A demo of the Game of Life component",
       "registryDependencies": [
         "@bucharitesh/game-of-life"
       ],
       "files": [
         {
           "path": "registry/example/game-of-life-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:example"
         }
       ]
     },
     {
       "name": "game-of-life-demo-2",
       "type": "registry:example",
+      "title": "Game of Life Demo 2",
+      "description": "A demo of the Game of Life component with variants",
       "registryDependencies": [
         "@bucharitesh/game-of-life"
       ],
       "files": [
         {
           "path": "registry/example/game-of-life-demo-2.tsx",
-          "type": "registry:component"
+          "type": "registry:example"
         }
       ]
     },
     {
       "name": "magical-mouse-demo",
       "type": "registry:example",
+      "title": "Magical Mouse Demo",
+      "description": "A demo of the Magical Mouse component",
       "registryDependencies": [
         "@bucharitesh/magical-mouse"
       ],
       "files": [
         {
           "path": "registry/example/magical-mouse-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:example"
         }
       ]
     },
     {
       "name": "modern-progress-demo",
       "type": "registry:example",
+      "title": "Modern Progress Demo",
+      "description": "A demo of the Modern Progress component",
       "registryDependencies": [
         "@bucharitesh/modern-progress"
       ],
       "files": [
         {
           "path": "registry/example/modern-progress-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:example"
         }
       ]
     },
     {
       "name": "pixel-icon-demo",
       "type": "registry:example",
+      "title": "Pixel Icon Demo",
+      "description": "A demo of the Pixel Icon component",
       "registryDependencies": [
         "@bucharitesh/pixel-icon"
       ],
       "files": [
         {
           "path": "registry/example/pixel-icon-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:example"
         }
       ]
     },
     {
       "name": "split-text-effect-demo",
       "type": "registry:example",
+      "title": "Split Text Effect Demo",
+      "description": "A demo of the Split Text Effect component",
       "registryDependencies": [
         "@bucharitesh/split-text-effect"
       ],
       "files": [
         {
           "path": "registry/example/split-text-effect-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:example"
         }
       ]
     },
     {
       "name": "split-text-effect-demo-2",
       "type": "registry:example",
+      "title": "Split Text Effect Demo 2",
+      "description": "A demo of the Split Text Effect component with variants",
       "registryDependencies": [
         "@bucharitesh/split-text-effect"
       ],
       "files": [
         {
           "path": "registry/example/split-text-effect-demo-2.tsx",
-          "type": "registry:component"
+          "type": "registry:example"
         }
       ]
     },
     {
       "name": "split-text-effect-demo-3",
       "type": "registry:example",
+      "title": "Split Text Effect Demo 3",
+      "description": "A demo of the Split Text Effect component with variants",
       "registryDependencies": [
         "@bucharitesh/split-text-effect"
       ],
       "files": [
         {
           "path": "registry/example/split-text-effect-demo-3.tsx",
-          "type": "registry:component"
+          "type": "registry:example"
         }
       ]
     },
     {
       "name": "view-magnifier-demo",
       "type": "registry:example",
+      "title": "View Magnifier Demo",
+      "description": "A demo of the View Magnifier component",
       "registryDependencies": [
         "@bucharitesh/view-magnifier"
       ],
       "files": [
         {
           "path": "registry/example/view-magnifier-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:example"
         }
       ]
     },
     {
       "name": "view-magnifier-demo-2",
       "type": "registry:example",
+      "title": "View Magnifier Demo 2",
+      "description": "A demo of the View Magnifier component with variants",
       "registryDependencies": [
         "@bucharitesh/view-magnifier"
       ],
       "files": [
         {
           "path": "registry/example/view-magnifier-demo-2.tsx",
-          "type": "registry:component"
+          "type": "registry:example"
         }
       ]
     },

@@ -33,18 +33,18 @@ This file provides LLM-friendly entry points to Crafts
 
 ## Examples
 
-- [book-demo](https://github.com/bucharitesh/bucharitesh.in/blob/main/registry/example/book-demo.tsx): Example usage
-- [book-variant-demo](https://github.com/bucharitesh/bucharitesh.in/blob/main/registry/example/book-variant-demo.tsx): Example usage
-- [game-of-life-demo](https://github.com/bucharitesh/bucharitesh.in/blob/main/registry/example/game-of-life-demo.tsx): Example usage
-- [game-of-life-demo-2](https://github.com/bucharitesh/bucharitesh.in/blob/main/registry/example/game-of-life-demo-2.tsx): Example usage
-- [magical-mouse-demo](https://github.com/bucharitesh/bucharitesh.in/blob/main/registry/example/magical-mouse-demo.tsx): Example usage
-- [modern-progress-demo](https://github.com/bucharitesh/bucharitesh.in/blob/main/registry/example/modern-progress-demo.tsx): Example usage
-- [pixel-icon-demo](https://github.com/bucharitesh/bucharitesh.in/blob/main/registry/example/pixel-icon-demo.tsx): Example usage
-- [split-text-effect-demo](https://github.com/bucharitesh/bucharitesh.in/blob/main/registry/example/split-text-effect-demo.tsx): Example usage
-- [split-text-effect-demo-2](https://github.com/bucharitesh/bucharitesh.in/blob/main/registry/example/split-text-effect-demo-2.tsx): Example usage
-- [split-text-effect-demo-3](https://github.com/bucharitesh/bucharitesh.in/blob/main/registry/example/split-text-effect-demo-3.tsx): Example usage
-- [view-magnifier-demo](https://github.com/bucharitesh/bucharitesh.in/blob/main/registry/example/view-magnifier-demo.tsx): Example usage
-- [view-magnifier-demo-2](https://github.com/bucharitesh/bucharitesh.in/blob/main/registry/example/view-magnifier-demo-2.tsx): Example usage
+- [Book Demo](https://github.com/bucharitesh/bucharitesh.in/blob/main/registry/example/book-demo.tsx): Example usage
+- [Book Variant Demo](https://github.com/bucharitesh/bucharitesh.in/blob/main/registry/example/book-variant-demo.tsx): Example usage
+- [Game of Life Demo](https://github.com/bucharitesh/bucharitesh.in/blob/main/registry/example/game-of-life-demo.tsx): Example usage
+- [Game of Life Demo 2](https://github.com/bucharitesh/bucharitesh.in/blob/main/registry/example/game-of-life-demo-2.tsx): Example usage
+- [Magical Mouse Demo](https://github.com/bucharitesh/bucharitesh.in/blob/main/registry/example/magical-mouse-demo.tsx): Example usage
+- [Modern Progress Demo](https://github.com/bucharitesh/bucharitesh.in/blob/main/registry/example/modern-progress-demo.tsx): Example usage
+- [Pixel Icon Demo](https://github.com/bucharitesh/bucharitesh.in/blob/main/registry/example/pixel-icon-demo.tsx): Example usage
+- [Split Text Effect Demo](https://github.com/bucharitesh/bucharitesh.in/blob/main/registry/example/split-text-effect-demo.tsx): Example usage
+- [Split Text Effect Demo 2](https://github.com/bucharitesh/bucharitesh.in/blob/main/registry/example/split-text-effect-demo-2.tsx): Example usage
+- [Split Text Effect Demo 3](https://github.com/bucharitesh/bucharitesh.in/blob/main/registry/example/split-text-effect-demo-3.tsx): Example usage
+- [View Magnifier Demo](https://github.com/bucharitesh/bucharitesh.in/blob/main/registry/example/view-magnifier-demo.tsx): Example usage
+- [View Magnifier Demo 2](https://github.com/bucharitesh/bucharitesh.in/blob/main/registry/example/view-magnifier-demo-2.tsx): Example usage
 
 ## Optional
 

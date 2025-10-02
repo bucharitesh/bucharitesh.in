@@ -6,11 +6,10 @@ export const ui: Registry['items'] = [
     name: 'book',
     type: 'registry:ui',
     title: 'Book',
-    author: `${USER.username} <${USER.email}>`,
     description:
       'A book component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.',
-    registryDependencies: ['@bucharitesh/utils'],
     dependencies: ['@radix-ui/react-icons'],
+    author: `${USER.username} <${USER.email}>`,
     files: [
       {
         path: 'bucharitesh/book.tsx',
@@ -21,7 +20,6 @@ export const ui: Registry['items'] = [
         type: 'registry:style',
       },
     ],
-    docs: 'https://bucharitesh.in/craft/book',
   },
   {
     name: 'modern-progress',
@@ -30,7 +28,6 @@ export const ui: Registry['items'] = [
       'A modern progress component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.',
     title: 'Modern Progress',
     author: `${USER.username} <${USER.email}>`,
-    registryDependencies: ['@bucharitesh/utils'],
     dependencies: ['class-variance-authority'],
     files: [
       {
@@ -42,7 +39,6 @@ export const ui: Registry['items'] = [
         type: 'registry:style',
       },
     ],
-    docs: 'https://bucharitesh.in/craft/modern-progress',
   },
   {
     name: 'pixel-icon',
@@ -51,14 +47,12 @@ export const ui: Registry['items'] = [
       'A pixel icon component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.',
     title: 'Pixel Icon',
     author: `${USER.username} <${USER.email}>`,
-    registryDependencies: ['@bucharitesh/utils'],
     files: [
       {
         path: 'bucharitesh/pixel-icon.tsx',
         type: 'registry:ui',
       },
     ],
-    docs: 'https://bucharitesh.in/craft/pixel-icon',
   },
   {
     name: 'split-text-effect',
@@ -67,7 +61,6 @@ export const ui: Registry['items'] = [
       'A split text effect component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.',
     title: 'Split Text Effect',
     author: `${USER.username} <${USER.email}>`,
-    registryDependencies: ['@bucharitesh/utils'],
     dependencies: ['motion'],
     files: [
       {
@@ -75,7 +68,6 @@ export const ui: Registry['items'] = [
         type: 'registry:ui',
       },
     ],
-    docs: 'https://bucharitesh.in/craft/split-text-effect',
   },
   {
     name: 'view-magnifier',
@@ -84,7 +76,6 @@ export const ui: Registry['items'] = [
       'A view magnifier component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.',
     title: 'View Magnifier',
     author: `${USER.username} <${USER.email}>`,
-    registryDependencies: ['@bucharitesh/utils'],
     dependencies: ['motion'],
     files: [
       {
@@ -92,7 +83,6 @@ export const ui: Registry['items'] = [
         type: 'registry:ui',
       },
     ],
-    docs: 'https://bucharitesh.in/craft/view-magnifier',
   },
   {
     name: 'game-of-life',
@@ -101,14 +91,12 @@ export const ui: Registry['items'] = [
       'A game of life component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.',
     title: 'Game of Life',
     author: `${USER.username} <${USER.email}>`,
-    registryDependencies: ['@bucharitesh/utils'],
     files: [
       {
         path: 'bucharitesh/game-of-life.tsx',
         type: 'registry:ui',
       },
     ],
-    docs: 'https://bucharitesh.in/craft/game-of-life',
   },
   {
     name: 'magical-mouse',
@@ -117,7 +105,6 @@ export const ui: Registry['items'] = [
       'A magical mouse component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.',
     title: 'Magical Mouse',
     author: `${USER.username} <${USER.email}>`,
-    registryDependencies: ['@bucharitesh/utils'],
     dependencies: ['lucide-react'],
     files: [
       {
@@ -129,6 +116,5 @@ export const ui: Registry['items'] = [
         type: 'registry:style',
       },
     ],
-    docs: 'https://bucharitesh.in/craft/magical-mouse',
   },
 ];

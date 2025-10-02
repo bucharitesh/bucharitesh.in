@@ -19,7 +19,7 @@ export const Index: Record<string, any> = {
     name: "book",
     description: "A book component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
     type: "registry:ui",
-    registryDependencies: ["@bucharitesh/utils"],
+    registryDependencies: undefined,
     files: [{
       path: "registry/bucharitesh/book.tsx",
       type: "registry:ui",
@@ -40,7 +40,7 @@ export const Index: Record<string, any> = {
     name: "modern-progress",
     description: "A modern progress component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
     type: "registry:ui",
-    registryDependencies: ["@bucharitesh/utils"],
+    registryDependencies: undefined,
     files: [{
       path: "registry/bucharitesh/modern-progress.tsx",
       type: "registry:ui",
@@ -61,7 +61,7 @@ export const Index: Record<string, any> = {
     name: "pixel-icon",
     description: "A pixel icon component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
     type: "registry:ui",
-    registryDependencies: ["@bucharitesh/utils"],
+    registryDependencies: undefined,
     files: [{
       path: "registry/bucharitesh/pixel-icon.tsx",
       type: "registry:ui",
@@ -78,7 +78,7 @@ export const Index: Record<string, any> = {
     name: "split-text-effect",
     description: "A split text effect component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
     type: "registry:ui",
-    registryDependencies: ["@bucharitesh/utils"],
+    registryDependencies: undefined,
     files: [{
       path: "registry/bucharitesh/split-text-effect.tsx",
       type: "registry:ui",
@@ -95,7 +95,7 @@ export const Index: Record<string, any> = {
     name: "view-magnifier",
     description: "A view magnifier component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
     type: "registry:ui",
-    registryDependencies: ["@bucharitesh/utils"],
+    registryDependencies: undefined,
     files: [{
       path: "registry/bucharitesh/view-magnifier.tsx",
       type: "registry:ui",
@@ -112,7 +112,7 @@ export const Index: Record<string, any> = {
     name: "game-of-life",
     description: "A game of life component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
     type: "registry:ui",
-    registryDependencies: ["@bucharitesh/utils"],
+    registryDependencies: undefined,
     files: [{
       path: "registry/bucharitesh/game-of-life.tsx",
       type: "registry:ui",
@@ -129,7 +129,7 @@ export const Index: Record<string, any> = {
     name: "magical-mouse",
     description: "A magical mouse component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
     type: "registry:ui",
-    registryDependencies: ["@bucharitesh/utils"],
+    registryDependencies: undefined,
     files: [{
       path: "registry/bucharitesh/magical-mouse.tsx",
       type: "registry:ui",
@@ -148,12 +148,12 @@ export const Index: Record<string, any> = {
   },
   "book-demo": {
     name: "book-demo",
-    description: "",
+    description: "A demo of the Book component",
     type: "registry:example",
     registryDependencies: ["@bucharitesh/book"],
     files: [{
       path: "registry/example/book-demo.tsx",
-      type: "registry:component",
+      type: "registry:example",
       target: ""
     }],
     component: React.lazy(async () => {
@@ -165,12 +165,12 @@ export const Index: Record<string, any> = {
   },
   "book-variant-demo": {
     name: "book-variant-demo",
-    description: "",
+    description: "A demo of the Book component with variants",
     type: "registry:example",
     registryDependencies: ["@bucharitesh/book"],
     files: [{
       path: "registry/example/book-variant-demo.tsx",
-      type: "registry:component",
+      type: "registry:example",
       target: ""
     }],
     component: React.lazy(async () => {
@@ -182,12 +182,12 @@ export const Index: Record<string, any> = {
   },
   "game-of-life-demo": {
     name: "game-of-life-demo",
-    description: "",
+    description: "A demo of the Game of Life component",
     type: "registry:example",
     registryDependencies: ["@bucharitesh/game-of-life"],
     files: [{
       path: "registry/example/game-of-life-demo.tsx",
-      type: "registry:component",
+      type: "registry:example",
       target: ""
     }],
     component: React.lazy(async () => {
@@ -199,12 +199,12 @@ export const Index: Record<string, any> = {
   },
   "game-of-life-demo-2": {
     name: "game-of-life-demo-2",
-    description: "",
+    description: "A demo of the Game of Life component with variants",
     type: "registry:example",
     registryDependencies: ["@bucharitesh/game-of-life"],
     files: [{
       path: "registry/example/game-of-life-demo-2.tsx",
-      type: "registry:component",
+      type: "registry:example",
       target: ""
     }],
     component: React.lazy(async () => {
@@ -216,12 +216,12 @@ export const Index: Record<string, any> = {
   },
   "magical-mouse-demo": {
     name: "magical-mouse-demo",
-    description: "",
+    description: "A demo of the Magical Mouse component",
     type: "registry:example",
     registryDependencies: ["@bucharitesh/magical-mouse"],
     files: [{
       path: "registry/example/magical-mouse-demo.tsx",
-      type: "registry:component",
+      type: "registry:example",
       target: ""
     }],
     component: React.lazy(async () => {
@@ -233,12 +233,12 @@ export const Index: Record<string, any> = {
   },
   "modern-progress-demo": {
     name: "modern-progress-demo",
-    description: "",
+    description: "A demo of the Modern Progress component",
     type: "registry:example",
     registryDependencies: ["@bucharitesh/modern-progress"],
     files: [{
       path: "registry/example/modern-progress-demo.tsx",
-      type: "registry:component",
+      type: "registry:example",
       target: ""
     }],
     component: React.lazy(async () => {
@@ -250,12 +250,12 @@ export const Index: Record<string, any> = {
   },
   "pixel-icon-demo": {
     name: "pixel-icon-demo",
-    description: "",
+    description: "A demo of the Pixel Icon component",
     type: "registry:example",
     registryDependencies: ["@bucharitesh/pixel-icon"],
     files: [{
       path: "registry/example/pixel-icon-demo.tsx",
-      type: "registry:component",
+      type: "registry:example",
       target: ""
     }],
     component: React.lazy(async () => {
@@ -267,12 +267,12 @@ export const Index: Record<string, any> = {
   },
   "split-text-effect-demo": {
     name: "split-text-effect-demo",
-    description: "",
+    description: "A demo of the Split Text Effect component",
     type: "registry:example",
     registryDependencies: ["@bucharitesh/split-text-effect"],
     files: [{
       path: "registry/example/split-text-effect-demo.tsx",
-      type: "registry:component",
+      type: "registry:example",
       target: ""
     }],
     component: React.lazy(async () => {
@@ -284,12 +284,12 @@ export const Index: Record<string, any> = {
   },
   "split-text-effect-demo-2": {
     name: "split-text-effect-demo-2",
-    description: "",
+    description: "A demo of the Split Text Effect component with variants",
     type: "registry:example",
     registryDependencies: ["@bucharitesh/split-text-effect"],
     files: [{
       path: "registry/example/split-text-effect-demo-2.tsx",
-      type: "registry:component",
+      type: "registry:example",
       target: ""
     }],
     component: React.lazy(async () => {
@@ -301,12 +301,12 @@ export const Index: Record<string, any> = {
   },
   "split-text-effect-demo-3": {
     name: "split-text-effect-demo-3",
-    description: "",
+    description: "A demo of the Split Text Effect component with variants",
     type: "registry:example",
     registryDependencies: ["@bucharitesh/split-text-effect"],
     files: [{
       path: "registry/example/split-text-effect-demo-3.tsx",
-      type: "registry:component",
+      type: "registry:example",
       target: ""
     }],
     component: React.lazy(async () => {
@@ -318,12 +318,12 @@ export const Index: Record<string, any> = {
   },
   "view-magnifier-demo": {
     name: "view-magnifier-demo",
-    description: "",
+    description: "A demo of the View Magnifier component",
     type: "registry:example",
     registryDependencies: ["@bucharitesh/view-magnifier"],
     files: [{
       path: "registry/example/view-magnifier-demo.tsx",
-      type: "registry:component",
+      type: "registry:example",
       target: ""
     }],
     component: React.lazy(async () => {
@@ -335,12 +335,12 @@ export const Index: Record<string, any> = {
   },
   "view-magnifier-demo-2": {
     name: "view-magnifier-demo-2",
-    description: "",
+    description: "A demo of the View Magnifier component with variants",
     type: "registry:example",
     registryDependencies: ["@bucharitesh/view-magnifier"],
     files: [{
       path: "registry/example/view-magnifier-demo-2.tsx",
-      type: "registry:component",
+      type: "registry:example",
       target: ""
     }],
     component: React.lazy(async () => {
