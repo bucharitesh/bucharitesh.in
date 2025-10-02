@@ -22,7 +22,7 @@ const BuddyConfig = () => {
         size={'icon'}
       >
         <Settings className="size-5" />
-        <span className="sr-only">Scroll to top</span>
+        <span className="sr-only">Buddy Config</span>
       </Button>
     </Link>
   );

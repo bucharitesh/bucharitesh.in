@@ -1,8 +1,11 @@
 'use client';
-import soundManager from '@/lib/sound-manager';
+
+import { META_THEME_COLORS } from '@/config/site';
+import { useMetaColor } from '@/lib/hooks/use-meta-colors';
+import { useSound } from '@/lib/hooks/use-sound';
 import { type Variants, motion as m } from 'motion/react';
 import { useTheme } from 'next-themes';
-import { useRef } from 'react';
+import { useCallback, useRef } from 'react';
 
 export default function ModeToggle() {
   const raysVariants = {
@@ -67,20 +70,35 @@ export default function ModeToggle() {
   const moonPath =
     'M70 49.5C70 60.8218 60.8218 70 49.5 70C38.1782 70 29 60.8218 29 49.5C29 38.1782 38.1782 29 49.5 29C39 45 49.5 59.5 70 49.5Z';
 
-  const { theme, setTheme } = useTheme();
   const buttonRef = useRef<HTMLDivElement | null>(null);
 
-  const changeTheme = async () => {
-    if (!buttonRef.current) return;
-    setTheme(theme === 'dark' ? 'light' : 'dark');
-    soundManager.playAudio('/assets/button-click.mp3');
-  };
+  const { resolvedTheme, setTheme } = useTheme();
+
+  const theme = resolvedTheme === 'dark' ? 'dark' : 'light';
+
+  const { setMetaColor } = useMetaColor();
+
+  const playClick = useSound("/audio/ui-sounds/click.wav");
+
+  const switchTheme = useCallback(() => {
+    playClick();
+    setTheme(resolvedTheme === "dark" ? "light" : "dark");
+    setMetaColor(
+      resolvedTheme === "dark"
+        ? META_THEME_COLORS.light
+        : META_THEME_COLORS.dark
+    );
+  }, [resolvedTheme, setTheme, setMetaColor, playClick]);
+
 
   return (
     <div
       ref={buttonRef}
       className="flex h-full w-full items-center justify-center"
-      onClick={changeTheme}
+      onClick={() => {
+        if (!document.startViewTransition) switchTheme();
+        document.startViewTransition(switchTheme);
+      }}
     >
       <m.svg
         strokeWidth="4"
