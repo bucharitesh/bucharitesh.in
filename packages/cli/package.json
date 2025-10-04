@@ -1,0 +1,39 @@
+{
+  "name": "bucharitesh",
+  "version": "0.0.1",
+  "description": "A simple CLI wrapper for adding components from bucharitesh.in component registry using shadcn.",
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "bin": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "tsup --watch",
+    "build": "tsup",
+    "start:dev": "node dist/index.js",
+    "publish:release": "pnpm build && pnpm publish --access public",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "bucharitesh",
+    "cli",
+    "shadcn",
+    "components",
+    "registry"
+  ],
+  "author": "Bucharitesh <bucharitesh@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "tsup": "^8.5.0"
+  },
+  "packageManager": "pnpm@10.10.0"
+}

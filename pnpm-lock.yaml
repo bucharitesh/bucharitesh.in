@@ -431,6 +431,12 @@ importers:
         specifier: ^5.0.0
         version: 5.0.0
 
+  packages/cli:
+    devDependencies:
+      tsup:
+        specifier: ^8.5.0
+        version: 8.5.0(jiti@2.6.1)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)(yaml@2.7.0)
+
   packages/typescript-config: {}
 
 packages:
