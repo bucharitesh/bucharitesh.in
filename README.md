@@ -4,20 +4,6 @@ A minimal portfolio, component registry to showcase my work.
 
 Check out the live site: [bucharitesh.in](https://bucharitesh.in)
 
-<!-- <a href="https://frogdr.com/bucharitesh.in?via=bucharitesh&utm_source=bucharitesh.in">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://frogdr.com/bucharitesh.in/badge-dark.svg">
-    <source media="(prefers-color-scheme: light)" srcset="https://frogdr.com/bucharitesh.in/badge-white.svg">
-    <img src="https://frogdr.com/bucharitesh.in/badge-white.svg" alt="Monitor your Domain Rating" style="width: auto; height: 40px">
-  </picture>
-</a> -->
-
-<!-- <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://assets.bucharitesh.in/images/screenshot-desktop-dark.webp">
-  <source media="(prefers-color-scheme: light)" srcset="https://assets.bucharitesh.in/images/screenshot-desktop-light.webp">
-  <img src="https://assets.bucharitesh.in/images/screenshot-desktop-light.webp" alt="Screenshot">
-</picture> -->
-
 ## GitAds Sponsored
 
 [![Sponsored by GitAds](https://gitads.dev/v1/ad-serve?source=bucharitesh/bucharitesh.in@github)](https://gitads.dev/v1/ad-track?source=bucharitesh/bucharitesh.in@github)
@@ -70,10 +56,6 @@ Please refer to the [Development Guide](./DEVELOPMENT.md) for more details.
 Licensed under the [MIT license](./LICENSE).
 
 You're free to use my code! Just make sure to <ins>remove all my personal information</ins> before publishing your website. It's awesome to see my code being useful to someone!
-
-<!-- ## Star History
-
-[![Star History](https://starchart.cc/bucharitesh/bucharitesh.in.svg?variant=adaptive)](https://starchart.cc/bucharitesh/bucharitesh.in) -->
 
 ## Acknowledgments
 
