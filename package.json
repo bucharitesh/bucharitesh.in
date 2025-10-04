@@ -1,9 +1,6 @@
 {
   "name": "bucharitesh",
   "version": "0.0.1",
-  "bin": {
-    "next-forge": "dist/index.js"
-  },
   "files": ["dist/index.js"],
   "scripts": {
     "build": "turbo build",
