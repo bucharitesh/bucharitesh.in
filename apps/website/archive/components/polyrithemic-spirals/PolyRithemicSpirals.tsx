@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
+import { Button } from '@repo/design-system/components/ui/button';
 import { Volume2, VolumeX } from 'lucide-react';
 import type React from 'react';
 import { useEffect, useRef, useState } from 'react';

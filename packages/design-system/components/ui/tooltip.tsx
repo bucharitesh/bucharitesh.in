@@ -3,7 +3,7 @@
 import * as React from "react"
 import * as TooltipPrimitive from "@radix-ui/react-tooltip"
 
-import { cn } from "@/lib/utils"
+import { cn } from "@repo/design-system/lib/utils"
 
 const TooltipProvider = TooltipPrimitive.Provider
 
@@ -37,7 +37,6 @@ interface TooltipWrapperProps {
 
 function TooltipWrapper({ content, children, side = "top", sideOffset = 4 }: TooltipWrapperProps) {
   return (
-    <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>
           {children}
@@ -46,7 +45,6 @@ function TooltipWrapper({ content, children, side = "top", sideOffset = 4 }: Too
           <p>{content}</p>
         </TooltipContent>
       </Tooltip>
-    </TooltipProvider>
   );
 }
 

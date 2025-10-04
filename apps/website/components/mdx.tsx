@@ -11,7 +11,7 @@ import { ComponentCSS } from '@/components/component-css';
 import { ComponentPreview } from '@/components/component-preview';
 import { ComponentSource } from '@/components/component-source';
 import { CopyButton } from '@/components/copy-button';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@repo/design-system/components/ui/tabs';
 
 import {
   Table,
@@ -20,13 +20,13 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
+} from '@repo/design-system/components/ui/table';
 
 import { CodeBlockCommand } from '@/components/code-block-wrapper';
 import { CodeCollapsibleWrapper } from '@/components/code-collapsible-wrapper';
 import { CodeTabs } from '@/components/code-tabs';
 import { Icons, getIconForLanguageExtension } from '@/components/icons';
-import { Code, Heading } from '@/components/ui/typography';
+import { Code, Heading } from '@repo/design-system/components/ui/typography';
 import { UTM_PARAMS } from '@/config/site';
 import { rehypeAddQueryParams } from '@/lib/rehype-add-query-params';
 import { rehypeComponent } from '@/lib/rehype-component';

@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
+import { Button } from '@repo/design-system/components/ui/button';
 import { fontMono, fontX } from '@/lib/fonts';
 import { cn } from '@/lib/utils';
 import type NextError from 'next/error';

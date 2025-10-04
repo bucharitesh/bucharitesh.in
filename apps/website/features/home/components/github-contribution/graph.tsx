@@ -3,7 +3,7 @@
 import { LoaderIcon } from 'lucide-react';
 import { use } from 'react';
 
-import type { Activity } from '@/components/ui/contribution-graph';
+import type { Activity } from '@repo/design-system/components/ui/contribution-graph';
 import {
   ContributionGraph,
   ContributionGraphBlock,
@@ -11,7 +11,7 @@ import {
   ContributionGraphFooter,
   ContributionGraphLegend,
   ContributionGraphTotalCount,
-} from '@/components/ui/contribution-graph';
+} from '@repo/design-system/components/ui/contribution-graph';
 
 export function GitHubContributionGraph({
   contributions,

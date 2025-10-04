@@ -20,7 +20,8 @@
     "jsx": "preserve",
     "noEmit": true,
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@repo/*": ["../../packages/*"]
     }
   },
   "include": [

@@ -1,12 +1,12 @@
 import { ChevronsDownUpIcon, ChevronsUpDownIcon } from 'lucide-react';
 
-import { Button } from '@/components/ui/button';
+import { Button } from '@repo/design-system/components/ui/button';
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from '@/components/ui/collapsible';
-import { Separator } from '@/components/ui/separator';
+} from '@repo/design-system/components/ui/collapsible';
+import { Separator } from '@repo/design-system/components/ui/separator';
 import { cn } from '@/lib/utils';
 
 export function CodeCollapsibleWrapper({

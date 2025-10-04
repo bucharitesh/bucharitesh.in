@@ -16,7 +16,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
 // import { copyText } from "@/utils/copy";
-import { Button } from '@/components/ui/button';
+import { Button } from '@repo/design-system/components/ui/button';
 import {
   CommandDialog,
   CommandEmpty,
@@ -25,8 +25,8 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-} from '@/components/ui/command';
-import { Separator } from '@/components/ui/separator';
+} from '@repo/design-system/components/ui/command';
+import { Separator } from '@repo/design-system/components/ui/separator';
 // import type { Post } from "@/features/blog/types/post";
 // import { SOCIAL_LINKS } from "@/features/profile/data/social-links";
 import { cn } from '@/lib/utils';

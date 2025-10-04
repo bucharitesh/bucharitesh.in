@@ -3,7 +3,7 @@
 import { SendIcon } from 'lucide-react';
 import { useState } from 'react';
 
-import { Button } from '@/components/ui/button';
+import { Button } from '@repo/design-system/components/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -11,7 +11,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog';
+} from '@repo/design-system/components/ui/dialog';
 import { SubmitBookmarkForm } from './form';
 
 export const SubmitBookmarkDialog = ({

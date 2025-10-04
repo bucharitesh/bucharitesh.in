@@ -1,5 +1,5 @@
 import { FloatingHeader } from '@/components/navigation/floating-header';
-import { ScrollArea } from '@/components/ui/scroll-area';
+import { ScrollArea } from '@/components/scroll-area';
 import GuestbookEntries from '@/features/guestbook/components/guestbook-entries';
 import Polaroid from '@/features/guestbook/components/polaroid';
 import {

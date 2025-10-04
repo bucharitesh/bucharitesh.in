@@ -1,7 +1,7 @@
 import { FloatingHeader } from '@/components/navigation/floating-header';
-import { ScreenLoadingSpinner } from '@/components/ui/loading';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import { Toaster } from '@/components/ui/sonner';
+import { ScreenLoadingSpinner } from '@repo/design-system/components/ui/loading';
+import { ScrollArea } from '@/components/scroll-area';
+import { Toaster } from '@repo/design-system/components/ui/sonner';
 import { getBookmarks } from '@/features/bookmarks/lib/raindrop';
 import { createOgImage } from '@/lib/createOgImage';
 import { createMetadata } from '@/lib/seo/metadata';

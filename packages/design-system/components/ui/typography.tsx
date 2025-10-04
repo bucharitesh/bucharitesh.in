@@ -2,7 +2,7 @@ import { LinkIcon } from "lucide-react";
 import { Slot as SlotPrimitive } from "radix-ui";
 import React from "react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@repo/design-system/lib/utils";
 
 const Slot = SlotPrimitive.Slot;
 

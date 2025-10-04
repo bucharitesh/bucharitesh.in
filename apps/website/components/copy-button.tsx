@@ -5,8 +5,8 @@ import { useOptimistic, useTransition } from 'react';
 
 import { cn } from '@/lib/utils';
 
-import { Button } from './ui/button';
-import { TooltipWrapper } from './ui/tooltip';
+import { Button } from '@repo/design-system/components/ui/button';
+import { TooltipWrapper } from '@repo/design-system/components/ui/tooltip';
 
 export function CopyButton({
   value,

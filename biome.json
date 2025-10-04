@@ -78,7 +78,8 @@
       "packages/design-system/hooks/**",
       "apps/email/.react-email/**",
       "apps/website/archive/**",
-      "apps/website/components/**"
+      "apps/website/components/**",
+      "apps/website/features/**/*.tsx"
     ]
   }
 }

@@ -1,7 +1,7 @@
 // import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 // import Link from "next/link";
 
-// import { buttonVariants } from "@/components/ui/button";
+// import { buttonVariants } from "@repo/design-system/components/ui/button";
 // import { cn } from "@/lib/utils";
 // // import { Craft } from "content-collections";
 // import { getInlineCrafts } from "@/lib/db/craft";

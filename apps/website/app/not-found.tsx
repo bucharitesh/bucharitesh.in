@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/button';
+import { Button } from '@repo/design-system/components/ui/button';
 import { SnakeGame } from '@/features/game/snake-game';
 import Info from '@/features/home/components/info';
 import { GameOfLife } from '@/registry/bucharitesh/game-of-life';

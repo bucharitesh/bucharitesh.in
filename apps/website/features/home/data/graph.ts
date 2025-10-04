@@ -1,4 +1,4 @@
-import type { Activity } from '@/components/ui/contribution-graph';
+import type { Activity } from '@repo/design-system/components/ui/contribution-graph';
 import { USER } from '@/config/user';
 
 type GitHubContributionsResponse = {

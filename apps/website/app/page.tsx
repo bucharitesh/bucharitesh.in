@@ -1,8 +1,8 @@
 import { FloatingHeader } from '@/components/navigation/floating-header';
 import { ProfileImage } from '@/components/profile-image';
 import { PronounceMyName } from '@/components/pronounce-my-name';
-import { FlipSentences } from '@/components/ui/flip-sentences';
-import { ScrollArea } from '@/components/ui/scroll-area';
+import { FlipSentences } from '@repo/design-system/components/ui/flip-sentences';
+import { ScrollArea } from '@/components/scroll-area';
 import { USER } from '@/config/user';
 import { GitHubContribution } from '@/features/home/components/github-contribution';
 import Info from '@/features/home/components/info';

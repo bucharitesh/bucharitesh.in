@@ -1,20 +1,20 @@
 'use client';
 
 import { Icons } from '@/components/icons';
-import { Button } from '@/components/ui/button';
+import { Button } from '@repo/design-system/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+} from '@repo/design-system/components/ui/dropdown-menu';
 import {
   Popover,
   PopoverAnchor,
   PopoverContent,
   PopoverTrigger,
-} from '@/components/ui/popover';
-import { Separator } from '@/components/ui/separator';
+} from '@repo/design-system/components/ui/popover';
+import { Separator } from '@repo/design-system/components/ui/separator';
 import { USER } from '@/config/user';
 import { useCopyToClipboard } from '@/lib/hooks/use-copy-to-clipboard';
 import { Check, ChevronDown, Copy } from 'lucide-react';

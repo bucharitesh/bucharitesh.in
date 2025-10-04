@@ -2,7 +2,7 @@
 
 import { useMemo } from 'react';
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@repo/design-system/components/ui/tabs';
 import type { PackageManager } from '@/lib/hooks/use-config';
 import { useConfig } from '@/lib/hooks/use-config';
 import type { NpmCommands } from '@/types/unist';

@@ -1,4 +1,4 @@
-import { ScreenLoadingSpinner } from '@/components/ui/loading';
+import { ScreenLoadingSpinner } from '@repo/design-system/components/ui/loading';
 import { ListItem } from '@/features/bookmarks/components/list-item';
 import { SideMenu } from '@/features/bookmarks/components/sidebar';
 import { getBookmarks } from '@/features/bookmarks/lib/raindrop';

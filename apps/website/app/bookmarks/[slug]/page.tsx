@@ -1,6 +1,6 @@
 import { FloatingHeader } from '@/components/navigation/floating-header';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import { Heading } from '@/components/ui/typography';
+import { ScrollArea } from '@/components/scroll-area';
+import { Heading } from '@repo/design-system/components/ui/typography';
 import { USER } from '@/config/user';
 import { BookmarkList } from '@/features/bookmarks/components/bookmark-list';
 import {

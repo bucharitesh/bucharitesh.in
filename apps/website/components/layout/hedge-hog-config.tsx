@@ -4,7 +4,7 @@ import { useBuddyStore } from '@/features/buddy/buddy-logic';
 import { cn } from '@/lib/utils';
 import { Settings } from 'lucide-react';
 import Link from 'next/link';
-import { Button } from '../ui/button';
+import { Button } from '@repo/design-system/components/ui/button';
 
 const BuddyConfig = () => {
   const { enabled } = useBuddyStore((s) => s.hedgehogConfig);

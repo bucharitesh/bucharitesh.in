@@ -3,7 +3,7 @@
 import { ArrowUpIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
-import { Button } from '@/components/ui/button';
+import { Button } from '@repo/design-system/components/ui/button';
 import { SCROLL_AREA_ID } from '@/config/site';
 import { cn } from '@/lib/utils';
 

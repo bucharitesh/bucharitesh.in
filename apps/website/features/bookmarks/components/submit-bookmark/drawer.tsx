@@ -3,7 +3,7 @@
 import { SendIcon } from 'lucide-react';
 import { useState } from 'react';
 
-import { Button } from '@/components/ui/button';
+import { Button } from '@repo/design-system/components/ui/button';
 import {
   Drawer,
   DrawerContent,
@@ -11,7 +11,7 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from '@/components/ui/drawer';
+} from '@repo/design-system/components/ui/drawer';
 import { SubmitBookmarkForm } from './form';
 
 export const SubmitBookmarkDrawer = ({

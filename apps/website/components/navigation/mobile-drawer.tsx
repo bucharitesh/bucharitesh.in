@@ -1,14 +1,14 @@
 import { ArrowUpRightIcon, AtSignIcon, CommandIcon } from 'lucide-react';
 
-import { Button } from '@/components/ui/button';
+import { Button } from '@repo/design-system/components/ui/button';
 import {
   Drawer,
   DrawerContent,
   DrawerDescription,
   DrawerTitle,
   DrawerTrigger,
-} from '@/components/ui/drawer';
-import { VisuallyHidden } from '@/components/ui/visually-hidden';
+} from '@repo/design-system/components/ui/drawer';
+import { VisuallyHidden } from '@repo/design-system/components/ui/visually-hidden';
 import { USER } from '@/config/user';
 import { DockConfig } from '@/lib/config';
 import { useMounted } from '@/lib/hooks/use-mounted';

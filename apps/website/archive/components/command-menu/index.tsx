@@ -6,14 +6,14 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from '@/components/ui/command';
+} from '@repo/design-system/components/ui/command';
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { VisuallyHidden } from '@/components/ui/visually-hidden';
+} from '@repo/design-system/components/ui/dialog';
+import { VisuallyHidden } from '@repo/design-system/components/ui/visually-hidden';
 import type { DialogProps } from '@radix-ui/react-dialog';
 import React, { useEffect, useMemo, useState } from 'react';
 

@@ -1,6 +1,6 @@
 import { MasonryGrid } from '@/components/masonary-grid';
 import { FloatingHeader } from '@/components/navigation/floating-header';
-import { ScrollArea } from '@/components/ui/scroll-area';
+import { ScrollArea } from '@/components/scroll-area';
 import { getAllPosts } from '@/features/craft/data/posts';
 import { createOgImage } from '@/lib/createOgImage';
 import { Blog, JsonLd, WithContext } from '@/lib/seo/json-ld';

@@ -4,7 +4,7 @@ import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
-} from '@/components/ui/resizable';
+} from '@repo/design-system/components/ui/resizable';
 import { RefreshCcw } from 'lucide-react';
 import React, { ReactNode, useMemo, useState } from 'react';
 
@@ -13,9 +13,9 @@ import { Index } from '@/registry/__index__';
 
 import { CodeCollapsibleWrapper } from './code-collapsible-wrapper';
 import { OpenInV0Button } from './open-in-v0';
-import { Button } from './ui/button';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
-import { Code as CodeInline } from './ui/typography';
+import { Button } from '@repo/design-system/components/ui/button';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@repo/design-system/components/ui/tabs';
+import { Code as CodeInline } from '@repo/design-system/components/ui/typography';
 
 export function ComponentPreview({
   className,

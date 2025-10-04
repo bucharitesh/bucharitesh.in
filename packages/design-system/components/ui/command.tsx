@@ -9,8 +9,8 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { cn } from "@/lib/utils";
+} from "@repo/design-system/components/ui/dialog";
+import { cn } from "@repo/design-system/lib/utils";
 
 function Command({
   className,

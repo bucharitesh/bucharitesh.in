@@ -1,5 +1,5 @@
 import { FloatingHeader } from '@/components/navigation/floating-header';
-import { ScrollArea } from '@/components/ui/scroll-area';
+import { ScrollArea } from '@/components/scroll-area';
 import CalEmbed from '@/features/cal/components/cal-embed';
 import { createOgImage } from '@/lib/createOgImage';
 import { createMetadata } from '@/lib/seo/metadata';
