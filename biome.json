@@ -1,9 +1,6 @@
 {
   "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
   "extends": ["ultracite"],
-  "files": {
-    "ignore": ["components/ui/**", "archive/**", "public/**"]
-  },
   "linter": {
     "rules": {
       "complexity": {
@@ -51,7 +48,10 @@
         "noNestedTernary": "off",
         "noDuplicateProperties": "off",
         "noUnknownPseudoClass": "off",
-        "useAriaPropsSupportedByRole": "off"
+        "useAriaPropsSupportedByRole": "off",
+        "useSortedClasses": "off",
+        "noUnknownTypeSelector": "off",
+        "noUnknownPseudoElement": "off"
       },
       "security": {
         "noDangerouslySetInnerHtml": "off"
@@ -70,5 +70,15 @@
         "useFilenamingConvention": "off"
       }
     }
+  },
+  "files": {
+    "ignore": [
+      "packages/design-system/components/ui/**",
+      "packages/design-system/lib/**",
+      "packages/design-system/hooks/**",
+      "apps/email/.react-email/**",
+      "apps/website/archive/**",
+      "apps/website/components/**"
+    ]
   }
 }
