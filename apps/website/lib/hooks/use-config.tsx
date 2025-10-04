@@ -2,7 +2,7 @@ import { useAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
 
 export type PackageManager = 'pnpm' | 'yarn' | 'npm' | 'bun';
-export type InstallationType = 'cli' | 'manual';
+export type InstallationType = 'bucharitesh-cli' | 'shadcn-cli' | 'manual';
 
 type Config = {
   packageManager: PackageManager;
@@ -11,7 +11,7 @@ type Config = {
 
 const configAtom = atomWithStorage<Config>('bucharitesh.config', {
   packageManager: 'pnpm',
-  installationType: 'cli',
+  installationType: 'bucharitesh-cli',
 });
 
 export function useConfig() {

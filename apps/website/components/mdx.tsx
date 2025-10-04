@@ -130,11 +130,21 @@ const components: MDXRemoteProps['components'] = {
   TabsList,
   TabsTrigger,
   TabsContent,
-  TabsTriggerShadcnCLI: () => (
-    <TabsTrigger className="pl-2" value="cli">
-      <Icons.shadcn />
-      shadcn CLI
-    </TabsTrigger>
+  TabsListInstallType: () => (
+    <TabsList>
+      <TabsTrigger className="gap-1.5 px-2" value="bucharitesh-cli">
+        bucharitesh CLI
+      </TabsTrigger>
+
+      <TabsTrigger className="gap-1.5 px-2" value="shadcn-cli">
+        <Icons.shadcn />
+        shadcn CLI
+      </TabsTrigger>
+
+      <TabsTrigger className="gap-1.5 px-2" value="manual">
+        Manual
+      </TabsTrigger>
+    </TabsList>
   ),
 };
 

@@ -17,16 +17,20 @@ aspect_ratio: 1.77
 
 <CodeTabs className="gap-0">
 
-<TabsList>
-  <TabsTriggerShadcnCLI />
-  <TabsTrigger value="manual">Manual</TabsTrigger>
-</TabsList>
+<TabsListInstallType />
 
-
-<TabsContent value="cli" className="[&>figure]:mb-0">
+<TabsContent value="bucharitesh-cli" className="[&>figure]:mb-0">
 
 ```bash
-npx shadcn@latest add @bucharitesh/split-text-effect
+npx bucharitesh add split-text-effect
+```
+
+</TabsContent>
+
+<TabsContent value="shadcn-cli" className="[&>figure]:mb-0">
+
+```bash
+npx shadcn add @bucharitesh/split-text-effect
 ```
 
 </TabsContent>
