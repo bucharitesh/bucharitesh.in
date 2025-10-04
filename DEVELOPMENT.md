@@ -64,14 +64,14 @@ This project utilizes **shadcn Registry**, which allows you to manage and distri
 If you're working on a different React project and want to reuse the custom components from this repository, you can add them using the **shadcn CLI** with the following commands:
 
 ```bash
-npx shadcn@latest add https://bucharitesh/r/utils.json
-npx shadcn@latest add https://bucharitesh.in/r/book.json
-npx shadcn@latest add https://bucharitesh.in/modern-progress.json
-npx shadcn@latest add https://bucharitesh.in/pixel-icon.json
-npx shadcn@latest add https://bucharitesh.in/split-text-effect.json
-npx shadcn@latest add https://bucharitesh.in/view-magnifier.json
-npx shadcn@latest add https://bucharitesh.in/game-of-life.json
-npx shadcn@latest add https://bucharitesh.in/magical-mouse.json
+npx shadcn@latest add @bucharitesh/utils
+npx shadcn@latest add @bucharitesh/book
+npx shadcn@latest add @bucharitesh/modern-progress
+npx shadcn@latest add @bucharitesh/pixel-icon
+npx shadcn@latest add @bucharitesh/split-text-effect
+npx shadcn@latest add @bucharitesh/view-magnifier
+npx shadcn@latest add @bucharitesh/game-of-life
+npx shadcn@latest add @bucharitesh/magical-mouse
 ```
 
 > Note: These components are compatible with [Tailwind CSS v4](https://tailwindcss.com/blog/tailwindcss-v4) and [React 19](https://react.dev/blog/2024/12/05/react-19).
