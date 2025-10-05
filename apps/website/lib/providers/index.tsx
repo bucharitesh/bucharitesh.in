@@ -16,14 +16,14 @@ export function Providers({
   session: Session | null;
 }) {
   return (
-    <SessionProvider session={session}>
-      <JotaiProvider>
-        <DesignSystemProvider>
-          {children}
-          <Analytics />
-          <SpeedInsights />
-        </DesignSystemProvider>
-      </JotaiProvider>
-    </SessionProvider>
+    <DesignSystemProvider>
+      <SessionProvider session={session}>
+        <JotaiProvider>
+            {children}
+            <Analytics />
+            <SpeedInsights />
+        </JotaiProvider>
+      </SessionProvider>
+    </DesignSystemProvider>
   );
 }

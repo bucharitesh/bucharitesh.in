@@ -4,6 +4,7 @@ const withBundleAnalyzer = bundleAnalyzer;
 /** @type {import('next').NextConfig} */
 let nextConfig = {
   reactStrictMode: true,
+  transpilePackages: ['@repo/design-system'],
   logging: {
     fetches: {
       fullUrl: process.env.NODE_ENV === 'development',

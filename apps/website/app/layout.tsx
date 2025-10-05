@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 import type { Metadata, Viewport } from 'next';
 import type React from 'react';
 
-import '@/styles/globals.css';
+import '@repo/design-system/styles/globals.css';
 
 import DevTools from '@/components/dev-tools';
 import Navigation from '@/components/navigation';
