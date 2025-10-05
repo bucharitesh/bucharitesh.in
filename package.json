@@ -12,7 +12,8 @@
     "translate": "turbo translate",
     "boundaries": "turbo boundaries",
     "bump-deps": "npx npm-check-updates --deep -u -x react-day-picker",
-    "clean": "git clean -xdf node_modules"
+    "clean": "git clean -xdf node_modules",
+    "publish:release": "pnpm publish:release"
   },
   "devDependencies": {
     "@auto-it/first-time-contributor": "^11.3.0",
