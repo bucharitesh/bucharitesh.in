@@ -1,0 +1,37 @@
+{
+  "name": "@repo/mcp",
+  "version": "0.0.1",
+  "description": "Official MCP server for Magic UI.",
+  "homepage": "https://bucharitesh.in",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bucharitesh/bucharitesh.in.git"
+  },
+  "scripts": {
+    "build": "tsc && shx chmod +x dist/*.js",
+    "start": "node dist/server.js",
+    "dev": "nodemon --watch src --ext ts,json --exec \"npm run build\""
+  },
+  "type": "module",
+  "main": "./dist/server.js",
+  "module": "./dist/server.js",
+  "types": "./dist/server.d.ts",
+  "bin": {
+    "mcp": "./dist/server.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.9.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.1",
+    "nodemon": "^3.1.0",
+    "shx": "^0.4.0",
+    "typescript": "^5.8.3"
+  },
+  "author": "Beau Hayes-Pollard <bbh44@cornell.edu>",
+  "license": "ISC"
+}
