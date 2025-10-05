@@ -4,7 +4,7 @@ import { FloatingHeader } from '@/components/navigation/floating-header';
 import { ScrollArea } from '@/components/scroll-area';
 import { TOCItems, TOCProvider, TOCScrollArea } from '@/components/toc';
 import { USER } from '@/config/user';
-import { DocsCopyPage } from '@/features/craft/components/copy-page';
+import { LLMCopyButtonWithViewOptions } from '@/features/craft/components/copy-page';
 import { getAllCrafts, getCraftBySlug } from '@/features/craft/data/posts';
 import { createOgImage } from '@/lib/createOgImage';
 import { BlogPosting, JsonLd, WithContext } from '@/lib/seo/json-ld';
@@ -126,9 +126,9 @@ export default async function Page({
                 </p>
               </div>
               <div className="flex items-center gap-2">
-                <DocsCopyPage
-                  page={`https://${USER.domain}/craft/${post.slug}`}
-                  url={`https://${USER.domain}/craft/${post.slug}`}
+                <LLMCopyButtonWithViewOptions
+                  markdownUrl={`/craft/${post.slug}.mdx`}
+                  isComponent
                 />
               </div>
             </div>

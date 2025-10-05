@@ -1,6 +1,6 @@
 'use client';
 
-import { GitHubLogoIcon } from '@radix-ui/react-icons';
+import { Icons } from '@/components/icons';
 import { AnimatePresence, motion } from 'motion/react';
 import { signIn, useSession } from 'next-auth/react';
 import { redirect } from 'next/navigation';
@@ -40,7 +40,7 @@ const LoginButton = memo(function LoginButton() {
         whileHover={{ x: '100%' }}
         transition={{ duration: 0.5, ease: 'easeInOut' }}
       />
-      <GitHubLogoIcon className="h-4 w-4" />
+      <Icons.github className="h-4 w-4" />
       <span className="font-medium text-sm">Sign in with GitHub</span>
     </motion.button>
   );

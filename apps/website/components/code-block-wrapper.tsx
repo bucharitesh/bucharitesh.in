@@ -7,7 +7,7 @@ import type { PackageManager } from '@/lib/hooks/use-config';
 import { useConfig } from '@/lib/hooks/use-config';
 import type { NpmCommands } from '@/types/unist';
 
-import { CopyButton } from './copy-button';
+import { CopyButton } from '@repo/design-system/components/copy-button';
 import { getIconForPackageManager } from './icons';
 
 export function CodeBlockCommand({

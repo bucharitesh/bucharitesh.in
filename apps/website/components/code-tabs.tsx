@@ -8,7 +8,7 @@ import { Tabs } from '@repo/design-system/components/ui/tabs';
 export function CodeTabs(props: React.ComponentProps<typeof Tabs>) {
   const [config, setConfig] = useConfig();
 
-  const installationType = config.installationType || 'cli';
+  const installationType = config.installationType || 'bucharitesh-cli';
 
   return (
     <Tabs

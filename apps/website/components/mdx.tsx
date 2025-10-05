@@ -10,7 +10,7 @@ import { visit } from 'unist-util-visit';
 import { ComponentCSS } from '@/components/component-css';
 import { ComponentPreview } from '@/components/component-preview';
 import { ComponentSource } from '@/components/component-source';
-import { CopyButton } from '@/components/copy-button';
+import { CopyButton } from '@repo/design-system/components/copy-button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@repo/design-system/components/ui/tabs';
 
 import {

@@ -2,7 +2,7 @@
 
 A minimal portfolio, component registry to showcase my work.
 
-Check out the live site: [bucharitesh.in](https://bucharitesh.in)
+Check out the live site: [bucharitesh.in](https://bucharitesh.in?ref=github)
 
 ## GitAds Sponsored
 
