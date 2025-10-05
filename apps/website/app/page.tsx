@@ -1,7 +1,6 @@
 import { FloatingHeader } from '@/components/navigation/floating-header';
 import { ProfileImage } from '@/components/profile-image';
 import { PronounceMyName } from '@/components/pronounce-my-name';
-import { FlipSentences } from '@repo/design-system/components/ui/flip-sentences';
 import { ScrollArea } from '@/components/scroll-area';
 import { USER } from '@/config/user';
 import { GitHubContribution } from '@/features/home/components/github-contribution';
@@ -9,6 +8,7 @@ import Info from '@/features/home/components/info';
 import { createOgImage } from '@/lib/createOgImage';
 import { JsonLd, Organization, WithContext } from '@/lib/seo/json-ld';
 import { createMetadata } from '@/lib/seo/metadata';
+import { FlipSentences } from '@repo/design-system/components/ui/flip-sentences';
 import type { Metadata } from 'next/types';
 
 export async function generateMetadata(): Promise<Metadata> {

@@ -1,11 +1,11 @@
 'use client';
 
+import { DesignSystemProvider } from '@repo/design-system';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Provider as JotaiProvider } from 'jotai';
 import type { Session } from 'next-auth';
 import { SessionProvider } from 'next-auth/react';
-import { DesignSystemProvider } from '@repo/design-system';
 
 export function Providers({
   children,
@@ -19,9 +19,9 @@ export function Providers({
     <DesignSystemProvider>
       <SessionProvider session={session}>
         <JotaiProvider>
-            {children}
-            <Analytics />
-            <SpeedInsights />
+          {children}
+          <Analytics />
+          <SpeedInsights />
         </JotaiProvider>
       </SessionProvider>
     </DesignSystemProvider>

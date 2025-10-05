@@ -5,9 +5,9 @@ import dynamic from 'next/dynamic';
 import { usePathname } from 'next/navigation';
 import { useMemo } from 'react';
 
+import { ScrollArea } from '@/components/scroll-area';
 import { Button } from '@repo/design-system/components/ui/button';
 import { LoadingSpinner } from '@repo/design-system/components/ui/loading';
-import { ScrollArea } from '@/components/scroll-area';
 
 const SubmitBookmarkDialog = dynamic(
   () =>

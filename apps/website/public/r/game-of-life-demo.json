@@ -4,9 +4,7 @@
   "type": "registry:example",
   "title": "Game of Life Demo",
   "description": "A demo of the Game of Life component",
-  "registryDependencies": [
-    "@bucharitesh/game-of-life"
-  ],
+  "registryDependencies": ["@bucharitesh/game-of-life"],
   "files": [
     {
       "path": "registry/example/game-of-life-demo.tsx",

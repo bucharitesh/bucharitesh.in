@@ -5,13 +5,13 @@ import { capitalizeFirstLetter } from './utils';
 
 import type { BuddySkin } from './types';
 
-import { Separator } from '@repo/design-system/components/ui/separator';
-import { Switch } from '@repo/design-system/components/ui/switch';
-import { USER } from '@/config/user';
-import { cn } from '@/lib/utils';
-import Link from 'next/link';
 import { FloatingHeader } from '@/components/navigation/floating-header';
 import { ScrollArea } from '@/components/scroll-area';
+import { USER } from '@/config/user';
+import { cn } from '@/lib/utils';
+import { Separator } from '@repo/design-system/components/ui/separator';
+import { Switch } from '@repo/design-system/components/ui/switch';
+import Link from 'next/link';
 import { COLOR_TO_FILTER_MAP, useBuddyStore } from './buddy-logic';
 import { BuddyBuddyProfile, BuddyBuddyStatic } from './renderer';
 import { accessoryGroups, standardAccessories } from './sprites/sprites';

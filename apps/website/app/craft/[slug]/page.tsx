@@ -1,9 +1,8 @@
 import { MDX } from '@/components/mdx';
 
 import { FloatingHeader } from '@/components/navigation/floating-header';
-import { TOCItems, TOCProvider, TOCScrollArea } from '@/components/toc';
 import { ScrollArea } from '@/components/scroll-area';
-import { Prose } from '@repo/design-system/components/ui/typography';
+import { TOCItems, TOCProvider, TOCScrollArea } from '@/components/toc';
 import { USER } from '@/config/user';
 import { DocsCopyPage } from '@/features/craft/components/copy-page';
 import { getAllCrafts, getCraftBySlug } from '@/features/craft/data/posts';
@@ -11,6 +10,7 @@ import { createOgImage } from '@/lib/createOgImage';
 import { BlogPosting, JsonLd, WithContext } from '@/lib/seo/json-ld';
 import { createMetadata } from '@/lib/seo/metadata';
 import { cn } from '@/lib/utils';
+import { Prose } from '@repo/design-system/components/ui/typography';
 import dayjs from 'dayjs';
 import { getTableOfContents } from 'fumadocs-core/server';
 import type { Metadata } from 'next';

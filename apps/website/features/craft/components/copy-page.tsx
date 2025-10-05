@@ -1,6 +1,8 @@
 'use client';
 
 import { Icons } from '@/components/icons';
+import { USER } from '@/config/user';
+import { useCopyToClipboard } from '@/lib/hooks/use-copy-to-clipboard';
 import { Button } from '@repo/design-system/components/ui/button';
 import {
   DropdownMenu,
@@ -15,8 +17,6 @@ import {
   PopoverTrigger,
 } from '@repo/design-system/components/ui/popover';
 import { Separator } from '@repo/design-system/components/ui/separator';
-import { USER } from '@/config/user';
-import { useCopyToClipboard } from '@/lib/hooks/use-copy-to-clipboard';
 import { Check, ChevronDown, Copy } from 'lucide-react';
 
 function getPromptUrl(baseURL: string, url: string) {

@@ -4,9 +4,7 @@
   "type": "registry:example",
   "title": "Magical Mouse Demo",
   "description": "A demo of the Magical Mouse component",
-  "registryDependencies": [
-    "@bucharitesh/magical-mouse"
-  ],
+  "registryDependencies": ["@bucharitesh/magical-mouse"],
   "files": [
     {
       "path": "registry/example/magical-mouse-demo.tsx",

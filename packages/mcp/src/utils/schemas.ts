@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 // Define schema for general component
 export const ComponentSchema = z.object({
@@ -29,7 +29,7 @@ export const ComponentDetailSchema = z.object({
   files: z.array(
     z.object({
       content: z.string(),
-    }),
+    })
   ),
 });
 
@@ -49,6 +49,6 @@ export const ExampleDetailSchema = z.object({
   files: z.array(
     z.object({
       content: z.string(),
-    }),
+    })
   ),
 });

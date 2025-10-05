@@ -3,10 +3,10 @@
 import { ArrowDownIcon } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { Button } from '@repo/design-system/components/ui/button';
 import { BookmarkCard } from '@/features/bookmarks/components/bookmark-card';
 import { getBookmarkItemsByPageIndex } from '@/features/bookmarks/lib/actions';
 import { cn } from '@/lib/utils';
+import { Button } from '@repo/design-system/components/ui/button';
 
 export const BookmarkList = ({
   initialData,

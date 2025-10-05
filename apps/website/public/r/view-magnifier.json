@@ -4,9 +4,7 @@
   "type": "registry:ui",
   "title": "View Magnifier",
   "description": "A view magnifier component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
-  "dependencies": [
-    "motion"
-  ],
+  "dependencies": ["motion"],
   "files": [
     {
       "path": "registry/bucharitesh/view-magnifier.tsx",

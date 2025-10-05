@@ -1,16 +1,16 @@
 export type ValidClient =
-  | "claude"
-  | "cline"
-  | "roo-cline"
-  | "windsurf"
-  | "cursor";
+  | 'claude'
+  | 'cline'
+  | 'roo-cline'
+  | 'windsurf'
+  | 'cursor';
 
 export const VALID_CLIENTS: ValidClient[] = [
-  "claude",
-  "cline",
-  "roo-cline",
-  "windsurf",
-  "cursor",
+  'claude',
+  'cline',
+  'roo-cline',
+  'windsurf',
+  'cursor',
 ];
 
 export interface ServerConfig {

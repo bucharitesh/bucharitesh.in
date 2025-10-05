@@ -1,6 +1,5 @@
 import { FloatingHeader } from '@/components/navigation/floating-header';
 import { ScrollArea } from '@/components/scroll-area';
-import { Heading } from '@repo/design-system/components/ui/typography';
 import { USER } from '@/config/user';
 import { BookmarkList } from '@/features/bookmarks/components/bookmark-list';
 import {
@@ -10,6 +9,7 @@ import {
 import { createOgImage } from '@/lib/createOgImage';
 import { createMetadata } from '@/lib/seo/metadata';
 import { cn, sortByProperty } from '@/lib/utils';
+import { Heading } from '@repo/design-system/components/ui/typography';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 import Balancer from 'react-wrap-balancer';

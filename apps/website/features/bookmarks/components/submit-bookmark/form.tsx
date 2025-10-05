@@ -6,6 +6,7 @@ import { memo, useCallback, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 
+import { cn } from '@/lib/utils';
 import { Button } from '@repo/design-system/components/ui/button';
 import {
   Form,
@@ -24,7 +25,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@repo/design-system/components/ui/select';
-import { cn } from '@/lib/utils';
 import { formSchema } from './utils';
 
 export const SubmitBookmarkForm = memo(

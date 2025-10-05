@@ -4,9 +4,7 @@
   "type": "registry:example",
   "title": "Book Variant Demo",
   "description": "A demo of the Book component with variants",
-  "registryDependencies": [
-    "@bucharitesh/book"
-  ],
+  "registryDependencies": ["@bucharitesh/book"],
   "files": [
     {
       "path": "registry/example/book-variant-demo.tsx",

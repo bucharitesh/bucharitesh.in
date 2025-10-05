@@ -3,21 +3,21 @@ import {
   ComponentSchema,
   ExampleComponentSchema,
   ExampleDetailSchema,
-} from "./schemas.js";
+} from './schemas.js';
 
 // Function to fetch UI components
 export async function fetchUIComponents() {
   try {
-    const response = await fetch("https://bucharitesh.in/registry.json");
+    const response = await fetch('https://bucharitesh.in/registry.json');
     if (!response.ok) {
       throw new Error(
-        `Failed to fetch registry.json: ${response.statusText} (Status: ${response.status})`,
+        `Failed to fetch registry.json: ${response.statusText} (Status: ${response.status})`
       );
     }
     const data = await response.json();
 
     return data.items
-      .filter((item: any) => item.type === "registry:ui")
+      .filter((item: any) => item.type === 'registry:ui')
       .map((item: any) => {
         try {
           return ComponentSchema.parse({
@@ -40,7 +40,7 @@ export async function fetchComponentDetails(name: string) {
     const response = await fetch(`https://bucharitesh.in/r/${name}.json`);
     if (!response.ok) {
       throw new Error(
-        `Failed to fetch component ${name}: ${response.statusText}`,
+        `Failed to fetch component ${name}: ${response.statusText}`
       );
     }
     const data = await response.json();
@@ -54,11 +54,11 @@ export async function fetchComponentDetails(name: string) {
 // Function to fetch example components
 export async function fetchExampleComponents() {
   try {
-    const response = await fetch("https://bucharitesh.in/registry.json");
+    const response = await fetch('https://bucharitesh.in/registry.json');
     const data = await response.json();
 
     return data.items
-      .filter((item: any) => item.type === "registry:example")
+      .filter((item: any) => item.type === 'registry:example')
       .map((item: any) => {
         return ExampleComponentSchema.parse({
           name: item.name,
@@ -68,7 +68,7 @@ export async function fetchExampleComponents() {
         });
       });
   } catch (error) {
-    console.error("Error fetching Bucharitesh example components:", error);
+    console.error('Error fetching Bucharitesh example components:', error);
     return [];
   }
 }
@@ -76,10 +76,12 @@ export async function fetchExampleComponents() {
 // Function to fetch details for a specific example
 export async function fetchExampleDetails(exampleName: string) {
   try {
-    const response = await fetch(`https://bucharitesh.in/r/${exampleName}.json`);
+    const response = await fetch(
+      `https://bucharitesh.in/r/${exampleName}.json`
+    );
     if (!response.ok) {
       throw new Error(
-        `Failed to fetch example details for ${exampleName}: ${response.statusText}`,
+        `Failed to fetch example details for ${exampleName}: ${response.statusText}`
       );
     }
     const data = await response.json();

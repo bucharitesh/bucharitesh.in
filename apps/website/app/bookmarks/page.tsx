@@ -1,11 +1,11 @@
 import { FloatingHeader } from '@/components/navigation/floating-header';
-import { ScreenLoadingSpinner } from '@repo/design-system/components/ui/loading';
 import { ScrollArea } from '@/components/scroll-area';
-import { Toaster } from '@repo/design-system/components/ui/sonner';
 import { getBookmarks } from '@/features/bookmarks/lib/raindrop';
 import { createOgImage } from '@/lib/createOgImage';
 import { createMetadata } from '@/lib/seo/metadata';
 import { sortByProperty } from '@/lib/utils';
+import { ScreenLoadingSpinner } from '@repo/design-system/components/ui/loading';
+import { Toaster } from '@repo/design-system/components/ui/sonner';
 import Link from 'next/link';
 import type { Metadata } from 'next/types';
 import { Suspense } from 'react';

@@ -1,5 +1,5 @@
-import type { Activity } from '@repo/design-system/components/ui/contribution-graph';
 import { USER } from '@/config/user';
+import type { Activity } from '@repo/design-system/components/ui/contribution-graph';
 
 type GitHubContributionsResponse = {
   contributions: Activity[];

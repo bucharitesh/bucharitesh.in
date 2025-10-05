@@ -12,6 +12,10 @@
       "@repo/design-system/*": ["./*"]
     }
   },
-  "include": ["**/*.ts", "**/*.tsx", "../../apps/website/components/scroll-area.tsx"],
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "../../apps/website/components/scroll-area.tsx"
+  ],
   "exclude": ["node_modules"]
 }
