@@ -99,7 +99,7 @@ const MouseSparkles = React.forwardRef<HTMLDivElement, MouseSparklesProps>(
         const size = selectRandom(configRef.current.sizes);
 
         wrapper.className = cn(
-          'absolute z-[10000] color-white font-size-[1rem] animation-duration-[1500ms] animation-fill-mode-forwards pointer-events-none',
+          'absolute z-[10000] pointer-events-none',
           className
         );
         wrapper.style.left = `${position.x}px`;
@@ -109,6 +109,7 @@ const MouseSparkles = React.forwardRef<HTMLDivElement, MouseSparklesProps>(
         wrapper.style.textShadow = `0px 0px 1.5rem rgb(${color} / 0.5)`;
         wrapper.style.animationName = configRef.current.animations[count++ % 3];
         wrapper.style.animationDuration = `${configRef.current.starAnimationDuration}ms`;
+        wrapper.style.animationFillMode = 'forwards';
 
         document.body.appendChild(wrapper);
 
@@ -126,12 +127,10 @@ const MouseSparkles = React.forwardRef<HTMLDivElement, MouseSparklesProps>(
     const createGlowPoint = React.useCallback(
       (position: Point) => {
         const glow = document.createElement('div');
-        glow.className = cn(
-          'absolute z-[9999] box-shadow-[0rem_0rem_1.2rem_0.6rem_rgb(239_42_201)] pointer-events-none',
-          className
-        );
+        glow.className = cn('absolute z-[9999] pointer-events-none', className);
         glow.style.left = `${position.x}px`;
         glow.style.top = `${position.y}px`;
+        glow.style.boxShadow = '0rem 0rem 1.2rem 0.6rem rgb(239 42 201)';
 
         document.body.appendChild(glow);
         setTimeout(
