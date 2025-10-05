@@ -3,9 +3,7 @@
 import { cn } from '@/lib/utils';
 import { Sparkle } from 'lucide-react';
 import * as React from 'react';
-// @ts-ignore
 import { createRoot } from 'react-dom/client';
-import '@/registry/styles/magical-mouse.css';
 
 interface Point {
   x: number;
@@ -100,7 +98,10 @@ const MouseSparkles = React.forwardRef<HTMLDivElement, MouseSparklesProps>(
         const color = selectRandom(configRef.current.colors);
         const size = selectRandom(configRef.current.sizes);
 
-        wrapper.className = cn('mouse-sparkles-star', className);
+        wrapper.className = cn(
+          'absolute z-[10000] color-white font-size-[1rem] animation-duration-[1500ms] animation-fill-mode-forwards pointer-events-none',
+          className
+        );
         wrapper.style.left = `${position.x}px`;
         wrapper.style.top = `${position.y}px`;
         wrapper.style.fontSize = size;
@@ -125,7 +126,10 @@ const MouseSparkles = React.forwardRef<HTMLDivElement, MouseSparklesProps>(
     const createGlowPoint = React.useCallback(
       (position: Point) => {
         const glow = document.createElement('div');
-        glow.className = cn('mouse-sparkles-glow-point', className);
+        glow.className = cn(
+          'absolute z-[9999] box-shadow-[0rem_0rem_1.2rem_0.6rem_rgb(239_42_201)] pointer-events-none',
+          className
+        );
         glow.style.left = `${position.x}px`;
         glow.style.top = `${position.y}px`;
 

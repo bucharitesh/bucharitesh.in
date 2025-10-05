@@ -181,11 +181,6 @@ export const Index: Record<string, any> = {
         type: 'registry:ui',
         target: '',
       },
-      {
-        path: 'registry/styles/magical-mouse.css',
-        type: 'registry:style',
-        target: '',
-      },
     ],
     component: React.lazy(async () => {
       const mod = await import('@/registry/bucharitesh/magical-mouse.tsx');
@@ -538,29 +533,6 @@ export const Index: Record<string, any> = {
     ],
     component: React.lazy(async () => {
       const mod = await import('@/registry/styles/modern-progress.css');
-      const exportName =
-        Object.keys(mod).find(
-          (key) =>
-            typeof mod[key] === 'function' || typeof mod[key] === 'object'
-        ) || item.name;
-      return { default: mod.default || mod[exportName] };
-    }),
-    meta: undefined,
-  },
-  'magical-mouse-styles': {
-    name: 'magical-mouse-styles',
-    description: '',
-    type: 'registry:style',
-    registryDependencies: undefined,
-    files: [
-      {
-        path: 'registry/styles/magical-mouse.css',
-        type: 'registry:style',
-        target: '',
-      },
-    ],
-    component: React.lazy(async () => {
-      const mod = await import('@/registry/styles/magical-mouse.css');
       const exportName =
         Object.keys(mod).find(
           (key) =>

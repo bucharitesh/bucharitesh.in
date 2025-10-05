@@ -105,12 +105,40 @@
         {
           "path": "registry/bucharitesh/magical-mouse.tsx",
           "type": "registry:ui"
-        },
-        {
-          "path": "registry/styles/magical-mouse.css",
-          "type": "registry:style"
         }
-      ]
+      ],
+      "css": {
+        "@keyframes fall-1": {
+          "0%": {
+            "transform": "translate(0px, 0px) rotateX(45deg) rotateY(30deg) rotateZ(0deg) scale(0.25)",
+            "opacity": "0"
+          },
+          "25%": {
+            "transform": "translate(10px, -10px) rotateX(45deg) rotateY(30deg) rotateZ(0deg) scale(1)",
+            "opacity": "1"
+          }
+        },
+        "@keyframes fall-2": {
+          "0%": {
+            "transform": "translate(0px, 0px) rotateX(-20deg) rotateY(10deg) scale(0.25)",
+            "opacity": "0"
+          },
+          "10%": {
+            "transform": "translate(-10px, -5px) rotateX(-20deg) rotateY(10deg) scale(1)",
+            "opacity": "1"
+          }
+        },
+        "@keyframes fall-3": {
+          "0%": {
+            "transform": "translate(0px, 0px) rotateX(0deg) rotateY(45deg) scale(0.5)",
+            "opacity": "0"
+          },
+          "15%": {
+            "transform": "translate(7px, 5px) rotateX(0deg) rotateY(45deg) scale(1)",
+            "opacity": "1"
+          }
+        }
+      }
     },
     {
       "name": "book-demo",
@@ -297,16 +325,6 @@
       "files": [
         {
           "path": "registry/styles/modern-progress.css",
-          "type": "registry:style"
-        }
-      ]
-    },
-    {
-      "name": "magical-mouse-styles",
-      "type": "registry:style",
-      "files": [
-        {
-          "path": "registry/styles/magical-mouse.css",
           "type": "registry:style"
         }
       ]

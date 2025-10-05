@@ -21,14 +21,4 @@ export const styles: Registry['items'] = [
       },
     ],
   },
-  {
-    name: 'magical-mouse-styles',
-    type: 'registry:style',
-    files: [
-      {
-        path: 'styles/magical-mouse.css',
-        type: 'registry:style',
-      },
-    ],
-  },
 ];
