@@ -1,10 +1,10 @@
 import { notFound } from 'next/navigation';
 
-import { getAllPosts } from '@/features/craft/data/posts';
+import { getAllCrafts } from '@/features/craft/data/posts';
 import { getLLMText } from '@/features/craft/lib/get-llm-text';
 
 export async function generateStaticParams() {
-  const posts = getAllPosts();
+  const posts = getAllCrafts();
 
   return posts.map((post) => ({
     slug: post.slug,
@@ -17,7 +17,7 @@ export async function GET(
 ) {
   const { slug } = await params;
 
-  const allPosts = getAllPosts();
+  const allPosts = getAllCrafts();
   const post = allPosts.find((post) => post.slug === slug);
 
   if (!post) {
