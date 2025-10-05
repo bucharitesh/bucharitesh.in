@@ -1,37 +1,75 @@
-#!/usr/bin/env node
+import { spawnSync } from 'node:child_process';
+import chalk from 'chalk';
+import ora from 'ora';
+import { promptForRestart } from './client';
+import { getDefaultConfig } from './config';
+import type { ValidClient } from './types';
+import { writeConfig } from './utils';
 
-// Thanks https://github.com/haydenbleasel/kibo/blob/main/scripts/index.ts
+export async function install(client: ValidClient): Promise<void> {
+  const capitalizedClient = client.charAt(0).toUpperCase() + client.slice(1);
 
-import { spawnSync } from "node:child_process";
+  const spinner = ora(
+    `Installing configuration for ${capitalizedClient}...`
+  ).start();
 
-const args = process.argv.slice(2);
+  try {
+    const config = { ...getDefaultConfig() };
 
-if (args.length < 2 || args[0] !== "add") {
-  console.log("Usage: npx bucharitesh add [components...]");
-  process.exit(1);
+    writeConfig(client, config);
+    spinner.succeed(
+      `Successfully installed configuration for ${capitalizedClient}`
+    );
+
+    console.log(
+      chalk.green(`${capitalizedClient} configuration updated successfully`)
+    );
+    console.log(
+      chalk.yellow(
+        `You may need to restart ${capitalizedClient} to see the Magic MCP server.`
+      )
+    );
+    await promptForRestart(client);
+  } catch (error) {
+    spinner.fail(`Failed to install configuration for ${capitalizedClient}`);
+    console.error(
+      chalk.red(
+        `Error: ${error instanceof Error ? error.message : String(error)}`
+      )
+    );
+    throw error;
+  }
 }
 
-const packageNames = args.slice(1);
-
-for (const packageName of packageNames) {
-  if (!packageName.trim()) {
-    continue;
+export async function addComponents(packageNames: string[]): Promise<void> {
+  if (packageNames.length === 0) {
+    throw new Error('No components specified');
   }
 
-  console.log(`Adding ${packageName} component...`);
+  for (const packageName of packageNames) {
+    if (!packageName.trim()) {
+      continue;
+    }
 
-  const command = `npx -y shadcn@latest add @bucharitesh/${packageName}`;
+    console.log(chalk.blue(`Adding ${packageName} component...`));
 
-  const result = spawnSync(command, {
-    stdio: "inherit",
-    shell: true,
-  });
+    const command = `npx -y shadcn@latest add @bucharitesh/${packageName}`;
 
-  if (result.error) {
-    console.error(`Failed to add ${packageName}:`, result.error.message);
-    process.exit(1);
-  } else if (result.status !== 0) {
-    console.error(`Command failed with exit code ${result.status}`);
-    process.exit(1);
+    const result = spawnSync(command, {
+      stdio: 'inherit',
+      shell: true,
+    });
+
+    if (result.error) {
+      throw new Error(`Failed to add ${packageName}: ${result.error.message}`);
+    }
+
+    if (result.status !== 0) {
+      throw new Error(
+        `Failed to add ${packageName}: Command exited with code ${result.status}`
+      );
+    }
+
+    console.log(chalk.green(`✓ Successfully added ${packageName}\n`));
   }
 }

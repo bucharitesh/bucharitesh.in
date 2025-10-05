@@ -1,5 +1,5 @@
 {
-  "name": "@repo/mcp",
+  "name": "@bucharitesh/mcp",
   "version": "0.0.1",
   "description": "Official MCP server for Magic UI.",
   "homepage": "https://bucharitesh.in",
@@ -10,7 +10,8 @@
   "scripts": {
     "build": "tsc && shx chmod +x dist/*.js",
     "start": "node dist/server.js",
-    "dev": "nodemon --watch src --ext ts,json --exec \"npm run build\""
+    "dev": "nodemon --watch src --ext ts,json --exec \"npm run build\"",
+    "publish:release": "pnpm build && pnpm publish --access public"
   },
   "type": "module",
   "main": "./dist/server.js",
@@ -19,9 +20,7 @@
   "bin": {
     "mcp": "./dist/server.js"
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.9.0",
     "zod": "^3.24.2"
