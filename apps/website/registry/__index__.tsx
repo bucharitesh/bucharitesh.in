@@ -56,11 +56,6 @@ export const Index: Record<string, any> = {
         type: 'registry:ui',
         target: '',
       },
-      {
-        path: 'registry/styles/modern-progress.css',
-        type: 'registry:style',
-        target: '',
-      },
     ],
     component: React.lazy(async () => {
       const mod = await import('@/registry/bucharitesh/modern-progress.tsx');
@@ -510,29 +505,6 @@ export const Index: Record<string, any> = {
     ],
     component: React.lazy(async () => {
       const mod = await import('@/registry/styles/book.css');
-      const exportName =
-        Object.keys(mod).find(
-          (key) =>
-            typeof mod[key] === 'function' || typeof mod[key] === 'object'
-        ) || item.name;
-      return { default: mod.default || mod[exportName] };
-    }),
-    meta: undefined,
-  },
-  'modern-progress-styles': {
-    name: 'modern-progress-styles',
-    description: '',
-    type: 'registry:style',
-    registryDependencies: undefined,
-    files: [
-      {
-        path: 'registry/styles/modern-progress.css',
-        type: 'registry:style',
-        target: '',
-      },
-    ],
-    component: React.lazy(async () => {
-      const mod = await import('@/registry/styles/modern-progress.css');
       const exportName =
         Object.keys(mod).find(
           (key) =>

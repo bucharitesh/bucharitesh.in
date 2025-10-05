@@ -1054,7 +1054,7 @@ const MouseSparkles = React.forwardRef<HTMLDivElement, MouseSparklesProps>(
         const size = selectRandom(configRef.current.sizes);
 
         wrapper.className = cn(
-          'absolute z-[10000] color-white font-size-[1rem] animation-duration-[1500ms] animation-fill-mode-forwards pointer-events-none',
+          'absolute z-[10000] pointer-events-none',
           className
         );
         wrapper.style.left = `${position.x}px`;
@@ -1064,6 +1064,7 @@ const MouseSparkles = React.forwardRef<HTMLDivElement, MouseSparklesProps>(
         wrapper.style.textShadow = `0px 0px 1.5rem rgb(${color} / 0.5)`;
         wrapper.style.animationName = configRef.current.animations[count++ % 3];
         wrapper.style.animationDuration = `${configRef.current.starAnimationDuration}ms`;
+        wrapper.style.animationFillMode = 'forwards';
 
         document.body.appendChild(wrapper);
 
@@ -1081,12 +1082,10 @@ const MouseSparkles = React.forwardRef<HTMLDivElement, MouseSparklesProps>(
     const createGlowPoint = React.useCallback(
       (position: Point) => {
         const glow = document.createElement('div');
-        glow.className = cn(
-          'absolute z-[9999] box-shadow-[0rem_0rem_1.2rem_0.6rem_rgb(239_42_201)] pointer-events-none',
-          className
-        );
+        glow.className = cn('absolute z-[9999] pointer-events-none', className);
         glow.style.left = `${position.x}px`;
         glow.style.top = `${position.y}px`;
+        glow.style.boxShadow = '0rem 0rem 1.2rem 0.6rem rgb(239 42 201)';
 
         document.body.appendChild(glow);
         setTimeout(
@@ -1220,10 +1219,7 @@ Description: A modern progress component for Next.js apps with next-themes and T
 --- file: bucharitesh/modern-progress.tsx ---
 import { cn } from '@/lib/utils';
 import { type VariantProps, cva } from 'class-variance-authority';
-// components/ui/progress.tsx
 import * as React from 'react';
-
-import '@/registry/styles/modern-progress.css';
 
 const progressVariants = cva(
   'relative flex w-full items-center justify-center overflow-hidden',
@@ -1336,25 +1332,6 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
 Progress.displayName = 'Progress';
 
 export { Progress };
-
---- file: styles/modern-progress.css ---
-body[data-pattern="stripes"],
-body [data-pattern="stripes"] {
-  --rgb: 255 255 255;
-  --opacity: 0.1;
-  --size: 6px 6px;
-  background-image: linear-gradient(
-    -45deg,
-    rgb(var(--rgb) / var(--opacity)) 25%,
-    transparent 25%,
-    transparent 50%,
-    rgb(var(--rgb) / var(--opacity)) 50%,
-    rgb(var(--rgb) / var(--opacity)) 75%,
-    transparent 75%,
-    transparent 100%
-  );
-  background-size: var(--size);
-}
 
 
 ===== EXAMPLE: modern-progress-demo =====

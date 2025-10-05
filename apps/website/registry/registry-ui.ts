@@ -31,11 +31,17 @@ export const ui: Registry['items'] = [
         path: 'bucharitesh/modern-progress.tsx',
         type: 'registry:ui',
       },
-      {
-        path: 'styles/modern-progress.css',
-        type: 'registry:style',
-      },
     ],
+    css: {
+      'body[data-pattern="stripes"],body [data-pattern="stripes"]': {
+        '--rgb': '255 255 255',
+        '--opacity': '0.1',
+        '--size': '6px 6px',
+        'background-image':
+          'linear-gradient(-45deg,rgb(var(--rgb) / var(--opacity)) 25%,transparent 25%,transparent 50%,rgb(var(--rgb) / var(--opacity)) 50%,rgb(var(--rgb) / var(--opacity)) 75%,transparent 75%,transparent 100%)',
+        'background-size': 'var(--size)',
+      },
+    },
   },
   {
     name: 'pixel-icon',

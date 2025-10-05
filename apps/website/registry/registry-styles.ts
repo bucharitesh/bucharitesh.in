@@ -11,14 +11,4 @@ export const styles: Registry['items'] = [
       },
     ],
   },
-  {
-    name: 'modern-progress-styles',
-    type: 'registry:style',
-    files: [
-      {
-        path: 'styles/modern-progress.css',
-        type: 'registry:style',
-      },
-    ],
-  },
 ];
