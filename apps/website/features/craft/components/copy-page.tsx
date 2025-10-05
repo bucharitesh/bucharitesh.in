@@ -110,11 +110,11 @@ export function ViewOptions({
     const q = getPrompt(fullMarkdownUrl, isComponent);
 
     const _items = [
-      // {
-      //   title: 'View as Markdown',
-      //   href: fullMarkdownUrl,
-      //   icon: Icons.markdown,
-      // },
+      {
+        title: 'View as Markdown',
+        href: fullMarkdownUrl,
+        icon: Icons.markdown,
+      },
       {
         title: 'Open in ChatGPT',
         href: `https://chatgpt.com/?${new URLSearchParams({

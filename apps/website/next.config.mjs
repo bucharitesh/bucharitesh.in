@@ -62,6 +62,14 @@ let nextConfig = {
       },
     ],
   },
+  async rewrites() {
+    return [
+      {
+        source: '/craft/:slug.mdx',
+        destination: '/blog.mdx/:slug',
+      },
+    ];
+  },
 };
 
 if (process.env.ANALYZE === 'true') {
