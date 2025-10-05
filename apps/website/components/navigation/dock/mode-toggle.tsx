@@ -78,7 +78,7 @@ export default function ModeToggle() {
 
   const { setMetaColor } = useMetaColor();
 
-  const playClick = useSound("/assets/achievement.mp3");
+  const playClick = useSound("/assets/button-click.mp3");
 
   const switchTheme = useCallback(() => {
     playClick();
