@@ -8,6 +8,9 @@ import { createMetadata } from '@/lib/seo/metadata';
 import type { Metadata } from 'next';
 import { Card } from './page-client';
 
+// Force static generation at build time
+export const dynamic = 'force-static';
+
 export async function generateMetadata(): Promise<Metadata> {
   const title = 'Craft';
   const description = "A collection of craft that I've written.";

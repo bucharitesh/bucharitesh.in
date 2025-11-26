@@ -13,7 +13,7 @@
     }
   ],
   "css": {
-    "body[data-pattern=\"stripes\"],body[data-pattern=\"stripes\"]": {
+    "body[data-pattern=\"stripes\"],body [data-pattern=\"stripes\"]": {
       "--rgb": "255 255 255",
       "--opacity": "0.1",
       "--size": "6px 6px",

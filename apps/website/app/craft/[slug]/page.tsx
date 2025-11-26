@@ -2,7 +2,6 @@ import { MDX } from '@/components/mdx';
 
 import { FloatingHeader } from '@/components/navigation/floating-header';
 import { ScrollArea } from '@/components/scroll-area';
-import { TOCItems, TOCProvider, TOCScrollArea } from '@/components/toc';
 import { USER } from '@/config/user';
 import { LLMCopyButtonWithViewOptions } from '@/features/craft/components/copy-page';
 import { getAllCrafts, getCraftBySlug } from '@/features/craft/data/posts';
@@ -16,8 +15,14 @@ import { getTableOfContents } from 'fumadocs-core/server';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-export const generateStaticParams = () => {
-  return getAllCrafts().map((p) => ({ slug: p.slug }));
+// Force static generation at build time
+export const dynamic = 'force-static';
+// Only generate pages for slugs returned by generateStaticParams
+export const dynamicParams = false;
+
+export const generateStaticParams = async () => {
+  const crafts = await getAllCrafts();
+  return crafts.map((p) => ({ slug: p.slug }));
 };
 
 export async function generateMetadata({
@@ -81,7 +86,7 @@ export default async function Page({
   };
 
   return (
-    <TOCProvider toc={toc}>
+    <>
       <JsonLd code={jsonLd} />
       <ScrollArea useScrollAreaId>
         <FloatingHeader scrollTitle={title} />
@@ -144,21 +149,15 @@ export default async function Page({
             {/* <CraftsPager craft={post} /> */}
           </div>
 
-          <div className="sticky top-14 left-0 col-span-1 hidden h-0 max-w-md space-y-4 lg:col-start-4! lg:row-start-1 lg:block">
-            {/* <TableOfContents toc={toc} /> */}
+          {/* <div className="sticky top-14 left-0 col-span-1 hidden h-0 max-w-md space-y-4 lg:col-start-4! lg:row-start-1 lg:block">
             <p className="mb-2 text-fd-muted-foreground text-sm">
               On this page
             </p>
-            <div className="flex flex-col">
-              <TOCScrollArea>
-                <TOCItems />
-              </TOCScrollArea>
-            </div>
-          </div>
+          </div> */}
 
           {/* <CraftsPager craft={craft} /> */}
         </div>
       </ScrollArea>
-    </TOCProvider>
+    </>
   );
 }

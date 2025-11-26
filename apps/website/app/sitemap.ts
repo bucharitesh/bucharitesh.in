@@ -23,7 +23,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: dayjs().toISOString(),
   }));
 
-  const crafts = await getAllCrafts().map(async (post) => ({
+  const allCrafts = await getAllCrafts();
+  const crafts = allCrafts.map(async (post) => ({
     url: await addPathToBaseURL(`/craft/${post.slug}`),
     lastModified: dayjs(post.metadata.date).toISOString(),
   }));

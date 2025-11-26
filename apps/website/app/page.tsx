@@ -11,6 +11,9 @@ import { createMetadata } from '@/lib/seo/metadata';
 import { FlipSentences } from '@repo/design-system/components/ui/flip-sentences';
 import type { Metadata } from 'next/types';
 
+// Force static generation at build time
+export const dynamic = 'force-static';
+
 export async function generateMetadata(): Promise<Metadata> {
   const title = USER.tagline;
   const description = USER.description;

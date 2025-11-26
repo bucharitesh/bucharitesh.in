@@ -6,6 +6,9 @@ import { ScreenLoadingSpinner } from '@repo/design-system/components/ui/loading'
 import type React from 'react';
 import { Suspense } from 'react';
 
+// Revalidate every hour for ISR (external API data)
+export const revalidate = 3600;
+
 async function fetchData() {
   const bookmarks = await getBookmarks();
   const sortedBookmarks = sortByProperty(bookmarks, 'title');

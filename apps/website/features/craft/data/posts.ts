@@ -39,7 +39,7 @@ function getMDXData(dir: string) {
   });
 }
 
-export function getAllPosts() {
+export async function getAllPosts() {
   let posts = getMDXData(
     path.join(process.cwd(), 'features/craft/content')
   ).sort(
@@ -47,17 +47,20 @@ export function getAllPosts() {
       new Date(b.metadata.date).getTime() - new Date(a.metadata.date).getTime()
   );
 
-  posts.map(async (post) => {
-    post.metadata.blurImage = await generateBlurUrl(post.metadata.image);
-  });
+  // Properly await blur image generation for all posts
+  await Promise.all(
+    posts.map(async (post) => {
+      post.metadata.blurImage = await generateBlurUrl(post.metadata.image);
+    })
+  );
 
   posts = posts.filter((post) => post.metadata.published);
 
   return posts;
 }
 
-export function getAllCrafts() {
-  let posts = getAllPosts();
+export async function getAllCrafts() {
+  let posts = await getAllPosts();
 
   posts = posts.filter(
     (post) => post.metadata.published && post.metadata.type === 'component'
@@ -66,8 +69,9 @@ export function getAllCrafts() {
   return posts;
 }
 
-export function getCraftBySlug(slug: string) {
-  return getAllCrafts().find((post) => post.slug === slug);
+export async function getCraftBySlug(slug: string) {
+  const crafts = await getAllCrafts();
+  return crafts.find((post) => post.slug === slug);
 }
 
 export function findNeighbour(posts: Post[], slug: string) {

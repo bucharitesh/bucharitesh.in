@@ -14,6 +14,11 @@ import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 import Balancer from 'react-wrap-balancer';
 
+// Revalidate every hour for ISR (external API data)
+export const revalidate = 3600;
+// Allow dynamic params for new bookmarks
+export const dynamicParams = true;
+
 export async function generateStaticParams() {
   const bookmarks = await getBookmarks();
   return bookmarks.map((bookmark: any) => ({ slug: bookmark.slug }));

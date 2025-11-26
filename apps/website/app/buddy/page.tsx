@@ -5,6 +5,9 @@ import { createMetadata } from '@/lib/seo/metadata';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
+// Force static generation at build time
+export const dynamic = 'force-static';
+
 export async function generateMetadata(): Promise<Metadata> {
   return createMetadata({
     title: 'Buddy',

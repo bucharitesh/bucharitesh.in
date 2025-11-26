@@ -2,8 +2,11 @@ import { USER } from '@/config/user';
 import { getAllPosts } from '@/features/craft/data/posts';
 import RSS from 'rss';
 
+// Force static generation at build time
+export const dynamic = 'force-static';
+
 export async function GET() {
-  const allPosts = getAllPosts();
+  const allPosts = await getAllPosts();
 
   const feed = new RSS({
     title: USER.name,

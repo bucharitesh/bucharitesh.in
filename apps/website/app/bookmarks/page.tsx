@@ -10,6 +10,9 @@ import Link from 'next/link';
 import type { Metadata } from 'next/types';
 import { Suspense } from 'react';
 
+// Revalidate every hour for ISR (external API data)
+export const revalidate = 3600;
+
 export async function generateMetadata(): Promise<Metadata> {
   const title = 'Bookmarks';
   const description =

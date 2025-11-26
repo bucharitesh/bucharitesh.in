@@ -3,7 +3,7 @@ import { getAllPosts } from '@/features/craft/data/posts';
 
 const content = `# Craft
 
-${await getAllPosts()
+${(await getAllPosts())
   .map(
     (post) =>
       `- [${post.metadata.title}](${post.metadata.href ? post.metadata.href : `https://${USER.domain}/craft/${post.slug}`})`
