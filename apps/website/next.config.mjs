@@ -68,6 +68,19 @@ let nextConfig = {
         source: '/craft/:slug.mdx',
         destination: '/blog.mdx/:slug',
       },
+      {
+        source: '/stats/:match*',
+        destination: 'https://analytics.bucharitesh.in/:match*',
+      },
+      {
+        source: '/analytics',
+        destination: 'https://analytics.bucharitesh.in/share/BV1nzMBM1yqZha6t',
+      },
+      {
+        source: '/analytics/:match*',
+        destination:
+          'https://analytics.bucharitesh.in/share/BV1nzMBM1yqZha6t/:match*',
+      },
     ];
   },
 };

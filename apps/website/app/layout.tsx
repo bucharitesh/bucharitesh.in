@@ -98,7 +98,8 @@ export default async function RootLayout({
         </Providers>
         <Script
           defer
-          src="https://analytics.bucharitesh.in/script.js"
+          strategy="lazyOnload"
+          src="/stats/script.js"
           data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
         />
       </body>
