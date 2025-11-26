@@ -96,6 +96,11 @@ export default async function RootLayout({
           </main>
           <DevTools />
         </Providers>
+        <Script
+          defer
+          src="https://analytics.bucharitesh.in/script.js"
+          data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
+        />
       </body>
     </html>
   );
