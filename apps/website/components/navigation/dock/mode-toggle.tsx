@@ -1,6 +1,7 @@
 'use client';
 
 import { META_THEME_COLORS } from '@/config/site';
+import { analytics } from '@/lib/analytics';
 import { useMetaColor } from '@/lib/hooks/use-meta-colors';
 import { useSound } from '@/lib/hooks/use-sound';
 import { type Variants, motion as m } from 'motion/react';
@@ -82,9 +83,15 @@ export default function ModeToggle() {
 
   const switchTheme = useCallback(() => {
     playClick();
-    setTheme(resolvedTheme === "dark" ? "light" : "dark");
+    const currentTheme = resolvedTheme === "dark" ? "dark" : "light";
+    const newTheme = currentTheme === "dark" ? "light" : "dark";
+    
+    // Track theme toggle
+    analytics.trackThemeToggle(currentTheme, newTheme);
+    
+    setTheme(newTheme);
     setMetaColor(
-      resolvedTheme === "dark"
+      currentTheme === "dark"
         ? META_THEME_COLORS.light
         : META_THEME_COLORS.dark
     );

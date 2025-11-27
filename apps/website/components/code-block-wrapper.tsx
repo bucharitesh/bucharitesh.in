@@ -7,7 +7,7 @@ import type { PackageManager } from '@/lib/hooks/use-config';
 import { useConfig } from '@/lib/hooks/use-config';
 import type { NpmCommands } from '@/types/unist';
 
-import { CopyButton } from '@repo/design-system/components/copy-button';
+import { CopyButtonWithAnalytics } from '@/components/copy-button-with-analytics';
 import { getIconForPackageManager } from './icons';
 
 export function CodeBlockCommand({
@@ -76,9 +76,10 @@ export function CodeBlockCommand({
         })}
       </Tabs>
 
-      <CopyButton
+      <CopyButtonWithAnalytics
         className="absolute top-2 right-2"
         value={tabs[packageManager] || ''}
+        componentName="npm_command"
       />
     </div>
   );

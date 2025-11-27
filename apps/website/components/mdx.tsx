@@ -10,7 +10,7 @@ import { visit } from 'unist-util-visit';
 import { ComponentCSS } from '@/components/component-css';
 import { ComponentPreview } from '@/components/component-preview';
 import { ComponentSource } from '@/components/component-source';
-import { CopyButton } from '@repo/design-system/components/copy-button';
+import { CopyButtonWithAnalytics } from '@/components/copy-button-with-analytics';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@repo/design-system/components/ui/tabs';
 
 import {
@@ -103,9 +103,10 @@ const components: MDXRemoteProps['components'] = {
         <pre {...props} />
 
         {__rawString__ && (
-          <CopyButton
+          <CopyButtonWithAnalytics
             className="absolute top-2 right-2"
             value={__rawString__}
+            componentName="code_block"
           />
         )}
       </>

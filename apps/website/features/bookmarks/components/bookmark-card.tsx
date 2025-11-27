@@ -1,4 +1,5 @@
 import { UTM_PARAMS } from '@/config/site';
+import { analytics } from '@/lib/analytics';
 import { cn } from '@/lib/utils';
 import { Link2Icon } from 'lucide-react';
 
@@ -7,6 +8,11 @@ export const BookmarkCard = ({
   order,
   className,
 }: { bookmark: any; order: number; className?: string }) => {
+  const handleBookmarkClick = () => {
+    // Track bookmark click with metadata
+    analytics.trackBookmarkClick(bookmark.title, bookmark.domain);
+  };
+
   return (
     <a
       key={bookmark._id}
@@ -18,6 +24,7 @@ export const BookmarkCard = ({
       target="_blank"
       rel="noopener noreferrer"
       data-bookmark-order={order}
+      onClick={handleBookmarkClick}
     >
       <span className="aspect-1200/630 overflow-hidden rounded-lg">
         <img
