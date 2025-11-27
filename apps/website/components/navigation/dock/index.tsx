@@ -11,6 +11,7 @@ import {
 import { ENABLE_BUDDY } from '@/config/site';
 import { useBuddyStore } from '@/features/buddy/buddy-logic';
 import { BuddyBuddyStatic } from '@/features/buddy/renderer';
+import { analytics } from '@/lib/analytics';
 import { DockConfig } from '@/lib/config';
 import { cn } from '@/lib/utils';
 import { usePathname } from 'next/navigation';
@@ -80,7 +81,10 @@ function BottomDock({ className }: { className: string }) {
       >
         {DockConfig.navbar.map((item) => (
           <DockIcon key={item.label} title={item.label}>
-            <Link href={item.href}>
+            <Link
+              href={item.href}
+              onClick={() => analytics.trackNavClick(item.href, item.label)}
+            >
               <item.icon className="size-4" />
             </Link>
             {isItemActive(item.href) && (
@@ -91,7 +95,11 @@ function BottomDock({ className }: { className: string }) {
         <DockSeperator />
         {Object.entries(DockConfig.contact.social).map(([name, social]) => (
           <DockIcon key={name} title={name}>
-            <Link href={social.url} target="_blank">
+            <Link
+              href={social.url}
+              target="_blank"
+              onClick={() => analytics.trackSocialLinkClick(name, social.url)}
+            >
               <social.icon className="size-4" />
             </Link>
           </DockIcon>

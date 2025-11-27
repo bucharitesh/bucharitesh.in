@@ -6,6 +6,7 @@ import {
   localCreatedByIdAtom,
   localEntriesAtom,
 } from '@/features/guestbook/data/guestbook';
+import { analytics } from '@/lib/analytics';
 import useClickOutside from '@/lib/hooks/use-click-outside';
 import { cn } from '@/lib/utils';
 import Signature, { type SignatureRef } from '@uiw/react-signature';
@@ -167,6 +168,8 @@ export default function WriteNoteCTA() {
     if (!isOpen && step === 0) {
       setIsOpen(true);
       setStep(1);
+      // Track guestbook form opened
+      analytics.trackGuestbookFormOpened();
       return;
     }
 
@@ -216,6 +219,10 @@ export default function WriteNoteCTA() {
       setLoading(false);
       return;
     }
+
+    // Track successful guestbook submission
+    const hasSignature = !!(formData.get('signature') as string);
+    analytics.trackGuestbookSubmission(hasSignature);
 
     // Get viewport dimensions safely on client-side
     const viewportWidth =

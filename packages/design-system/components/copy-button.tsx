@@ -24,10 +24,12 @@ export const motionIconProps = {
 export function CopyButton({
   value,
   className,
+  onCopy,
   ...props
 }: {
   value: string;
   className?: string;
+  onCopy?: () => void;
 }) {
   const [state, setState] = useOptimistic<'idle' | 'copied' | 'failed'>('idle');
   const [, startTransition] = useTransition();
@@ -42,6 +44,7 @@ export function CopyButton({
           try {
             setState('copied');
             await navigator.clipboard.writeText(value);
+            onCopy?.();
           } catch {
             setState('failed');
           }
