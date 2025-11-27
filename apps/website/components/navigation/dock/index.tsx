@@ -98,7 +98,14 @@ function BottomDock({ className }: { className: string }) {
             <Link
               href={social.url}
               target="_blank"
-              onClick={() => analytics.trackSocialLinkClick(name, social.url)}
+              onClick={() => {
+                if (social.url.startsWith('mailto:')) {
+                  const email = social.url.replace('mailto:', '');
+                  analytics.trackEmailLinkClick(email);
+                } else {
+                  analytics.trackSocialLinkClick(name, social.url);
+                }
+              }}
             >
               <social.icon className="size-4" />
             </Link>

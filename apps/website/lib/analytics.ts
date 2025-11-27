@@ -30,6 +30,15 @@ export const AnalyticsEvents = {
   // Engagement events
   THEME_TOGGLE: 'theme_toggle',
   COMPONENT_CODE_COPY: 'component_code_copy',
+
+  // Content interaction events
+  CRAFT_ITEM_CLICK: 'craft_item_click',
+  EXTERNAL_LINK_CLICK: 'external_link_click',
+
+  // Conversion events
+  EMAIL_LINK_CLICK: 'email_link_click',
+  BOOKMARK_SUBMISSION_FORM_OPENED: 'bookmark_submission_form_opened',
+  BOOKMARK_SUBMISSION_COMPLETED: 'bookmark_submission_completed',
 } as const;
 
 export type AnalyticsEventName =
@@ -61,6 +70,23 @@ export interface EventProperties {
   };
   [AnalyticsEvents.COMPONENT_CODE_COPY]: {
     component: string;
+  };
+  [AnalyticsEvents.CRAFT_ITEM_CLICK]: {
+    title: string;
+    href: string;
+    craft_type: string;
+  };
+  [AnalyticsEvents.EXTERNAL_LINK_CLICK]: {
+    url: string;
+    source: string;
+  };
+  [AnalyticsEvents.EMAIL_LINK_CLICK]: {
+    email: string;
+  };
+  [AnalyticsEvents.BOOKMARK_SUBMISSION_FORM_OPENED]: undefined;
+  [AnalyticsEvents.BOOKMARK_SUBMISSION_COMPLETED]: {
+    url: string;
+    type?: string;
   };
 }
 
@@ -153,6 +179,53 @@ export const analytics = {
   trackComponentCodeCopy: (component: string) => {
     trackEvent(AnalyticsEvents.COMPONENT_CODE_COPY, {
       component,
+    });
+  },
+
+  /**
+   * Track craft item click
+   */
+  trackCraftItemClick: (title: string, href: string, craftType: string) => {
+    trackEvent(AnalyticsEvents.CRAFT_ITEM_CLICK, {
+      title,
+      href,
+      craft_type: craftType,
+    });
+  },
+
+  /**
+   * Track external link click
+   */
+  trackExternalLinkClick: (url: string, source: string) => {
+    trackEvent(AnalyticsEvents.EXTERNAL_LINK_CLICK, {
+      url,
+      source,
+    });
+  },
+
+  /**
+   * Track email link click
+   */
+  trackEmailLinkClick: (email: string) => {
+    trackEvent(AnalyticsEvents.EMAIL_LINK_CLICK, {
+      email,
+    });
+  },
+
+  /**
+   * Track bookmark submission form opened
+   */
+  trackBookmarkSubmissionFormOpened: () => {
+    trackEvent(AnalyticsEvents.BOOKMARK_SUBMISSION_FORM_OPENED);
+  },
+
+  /**
+   * Track bookmark submission completed
+   */
+  trackBookmarkSubmissionCompleted: (url: string, type?: string) => {
+    trackEvent(AnalyticsEvents.BOOKMARK_SUBMISSION_COMPLETED, {
+      url,
+      type,
     });
   },
 };

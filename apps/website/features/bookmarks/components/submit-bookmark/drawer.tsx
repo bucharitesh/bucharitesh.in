@@ -12,6 +12,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from '@repo/design-system/components/ui/drawer';
+import { analytics } from '@/lib/analytics';
 import { SubmitBookmarkForm } from './form';
 
 export const SubmitBookmarkDrawer = ({
@@ -20,8 +21,15 @@ export const SubmitBookmarkDrawer = ({
 }: { bookmarks: any[]; currentBookmark: any }) => {
   const [open, setOpen] = useState(false);
 
+  const handleOpenChange = (newOpen: boolean) => {
+    setOpen(newOpen);
+    if (newOpen) {
+      analytics.trackBookmarkSubmissionFormOpened();
+    }
+  };
+
   return (
-    <Drawer open={open} onOpenChange={setOpen}>
+    <Drawer open={open} onOpenChange={handleOpenChange}>
       <DrawerTrigger asChild>
         <Button size="sm" className="relative">
           <SendIcon size={16} className="mr-2" />
