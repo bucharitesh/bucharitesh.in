@@ -28,11 +28,12 @@ import { CodeTabs } from '@/components/code-tabs';
 import { Icons, getIconForLanguageExtension } from '@/components/icons';
 import { Code, Heading } from '@repo/design-system/components/ui/typography';
 import { UTM_PARAMS } from '@/config/site';
+import { analytics } from '@/lib/analytics';
 import { rehypeAddQueryParams } from '@/lib/rehype-add-query-params';
 import { rehypeComponent } from '@/lib/rehype-component';
 import { rehypeNpmCommand } from '@/lib/rehype-npm-command';
 import { remarkCodeImport } from '@/lib/remark-code-import';
-import { cn } from '@/lib/utils';
+import { cn, isExternalLink } from '@/lib/utils';
 import type { NpmCommands } from '@/types/unist';
 
 const components: MDXRemoteProps['components'] = {
@@ -42,6 +43,14 @@ const components: MDXRemoteProps['components'] = {
   h4: (props: React.ComponentProps<'h4'>) => <Heading as="h4" {...props} />,
   h5: (props: React.ComponentProps<'h5'>) => <Heading as="h5" {...props} />,
   h6: (props: React.ComponentProps<'h6'>) => <Heading as="h6" {...props} />,
+  a: ({ href, ...props }: React.ComponentProps<'a'>) => {
+    const handleClick = () => {
+      if (href && isExternalLink(href)) {
+        analytics.trackExternalLinkClick(href, 'mdx_content');
+      }
+    };
+    return <a href={href} onClick={handleClick} {...props} />;
+  },
   table: Table,
   thead: TableHeader,
   tbody: TableBody,

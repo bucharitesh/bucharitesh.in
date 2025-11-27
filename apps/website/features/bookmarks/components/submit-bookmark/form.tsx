@@ -6,6 +6,7 @@ import { memo, useCallback, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 
+import { analytics } from '@/lib/analytics';
 import { cn } from '@/lib/utils';
 import { Button } from '@repo/design-system/components/ui/button';
 import {
@@ -74,6 +75,7 @@ export const SubmitBookmarkForm = memo(
           }
 
           form.reset();
+          analytics.trackBookmarkSubmissionCompleted(values.url, values.type);
           toast('Bookmark submitted', {
             description: (
               <span>

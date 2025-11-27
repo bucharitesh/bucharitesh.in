@@ -1,5 +1,6 @@
 'use client';
 
+import { analytics } from '@/lib/analytics';
 import { cn } from '@/lib/utils';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
@@ -177,6 +178,7 @@ export const Card = ({
           href={href}
           target={href?.startsWith('http') ? '_blank' : undefined}
           data-fake-button
+          onClick={() => analytics.trackCraftItemClick(title, href, craft_type)}
           className="mt-1 flex h-10 items-center justify-center gap-1.5 rounded-lg bg-neutral-100 font-medium text-neutral-900 text-sm transition-colors duration-150 hover:bg-neutral-200 dark:bg-neutral-800 dark:text-neutral-100 dark:hover:bg-neutral-700 "
         >
           {craft_type === 'project'

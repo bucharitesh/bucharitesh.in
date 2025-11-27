@@ -12,6 +12,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@repo/design-system/components/ui/dialog';
+import { analytics } from '@/lib/analytics';
 import { SubmitBookmarkForm } from './form';
 
 export const SubmitBookmarkDialog = ({
@@ -20,8 +21,15 @@ export const SubmitBookmarkDialog = ({
 }: { bookmarks: any[]; currentBookmark: any }) => {
   const [open, setOpen] = useState(false);
 
+  const handleOpenChange = (newOpen: boolean) => {
+    setOpen(newOpen);
+    if (newOpen) {
+      analytics.trackBookmarkSubmissionFormOpened();
+    }
+  };
+
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>
         <Button variant="default" size="sm" className="relative">
           <SendIcon size={16} />
