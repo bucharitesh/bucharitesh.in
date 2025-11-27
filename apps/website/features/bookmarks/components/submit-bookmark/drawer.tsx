@@ -3,6 +3,7 @@
 import { SendIcon } from 'lucide-react';
 import { useState } from 'react';
 
+import { analytics } from '@/lib/analytics';
 import { Button } from '@repo/design-system/components/ui/button';
 import {
   Drawer,
@@ -12,7 +13,6 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from '@repo/design-system/components/ui/drawer';
-import { analytics } from '@/lib/analytics';
 import { SubmitBookmarkForm } from './form';
 
 export const SubmitBookmarkDrawer = ({
