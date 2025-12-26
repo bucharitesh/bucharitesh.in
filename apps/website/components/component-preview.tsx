@@ -1,10 +1,10 @@
 'use client';
 
-import {
-  ResizableHandle,
-  ResizablePanel,
-  ResizablePanelGroup,
-} from '@repo/design-system/components/ui/resizable';
+// import {
+//   ResizableHandle,
+//   ResizablePanel,
+//   ResizablePanelGroup,
+// } from '@repo/design-system/components/ui/resizable';
 import { RefreshCcw } from 'lucide-react';
 import React, { ReactNode, useMemo, useState } from 'react';
 
@@ -120,28 +120,29 @@ type PreviewContentProps = {
 
 export const PreviewContent = ({ children, type }: PreviewContentProps) => {
   return (
-    <ResizablePanelGroup className="size-full" direction="horizontal">
-      <ResizablePanel
-        className={cn(
-          'peer not-fumadocs-codeblock z-10 size-full',
-          type === 'component' ? 'overflow-hidden' : 'overflow-auto'
-        )}
-        defaultSize={100}
-        maxSize={100}
-        minSize={40}
-      >
-        {children}
-      </ResizablePanel>
-      <ResizableHandle
-        className="z-20 peer-data-[panel-size=100.0]:w-0"
-        withHandle
-      />
-      <ResizablePanel
-        className="border-none bg-background"
-        defaultSize={0}
-        maxSize={70}
-        minSize={0}
-      />
-    </ResizablePanelGroup>
+    <>{children}</>
+    // <ResizablePanelGroup className="size-full" direction="horizontal">
+    //   <ResizablePanel
+    //     className={cn(
+    //       'peer not-fumadocs-codeblock z-10 size-full',
+    //       type === 'component' ? 'overflow-hidden' : 'overflow-auto'
+    //     )}
+    //     defaultSize={100}
+    //     maxSize={100}
+    //     minSize={40}
+    //   >
+    //     {children}
+    //   </ResizablePanel>
+    //   <ResizableHandle
+    //     className="z-20 peer-data-[panel-size=100.0]:w-0"
+    //     withHandle
+    //   />
+    //   <ResizablePanel
+    //     className="border-none bg-background"
+    //     defaultSize={0}
+    //     maxSize={70}
+    //     minSize={0}
+    //   />
+    // </ResizablePanelGroup>
   );
 };
