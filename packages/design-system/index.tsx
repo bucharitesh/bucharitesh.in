@@ -12,3 +12,6 @@ export const DesignSystemProvider = ({
     <TooltipProvider>{children}</TooltipProvider>
   </ThemeProvider>
 );
+
+// Export typography components
+export { Code, Heading, Prose, ProseMono } from './components/ui/typography';

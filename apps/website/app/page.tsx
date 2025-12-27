@@ -5,6 +5,7 @@ import { ScrollArea } from '@/components/scroll-area';
 import { USER } from '@/config/user';
 import { GitHubContribution } from '@/features/home/components/github-contribution';
 import Info from '@/features/home/components/info';
+import { Projects } from '@/features/home/components/projects';
 import { createOgImage } from '@/lib/createOgImage';
 import { JsonLd, Organization, WithContext } from '@/lib/seo/json-ld';
 import { createMetadata } from '@/lib/seo/metadata';
@@ -38,9 +39,9 @@ export default async function Page() {
     <>
       <JsonLd code={jsonLd} />
       <Info show={['time', 'screen', 'llms']} />
-      <ScrollArea useScrollAreaId className="bg-grid">
+      <ScrollArea useScrollAreaId className="">
         <FloatingHeader scrollTitle="Ritesh Bucha" />
-        <div className="layout relative z-10 content-wrapper">
+        <div className="layout relative z-10 content-wrapper mb-24">
           <header className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
             <ProfileImage />
             <div className="space-y-2">
@@ -75,6 +76,10 @@ export default async function Page() {
 
           <section className="mt-12">
             <GitHubContribution />
+          </section>
+
+          <section className="mt-12">
+            <Projects />
           </section>
 
           {/* <section className="mt-12">

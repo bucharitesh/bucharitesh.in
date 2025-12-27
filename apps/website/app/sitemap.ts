@@ -1,7 +1,7 @@
 import { ENABLE_BUDDY } from '@/config/site';
 import { getBookmarks } from '@/features/bookmarks/lib/raindrop';
 import { getAllCrafts } from '@/features/craft/data/posts';
-import { addPathToBaseURL } from '@/lib/url';
+import { addPathToBaseURL } from '@/lib/server-url';
 import dayjs from 'dayjs';
 import type { MetadataRoute } from 'next';
 
