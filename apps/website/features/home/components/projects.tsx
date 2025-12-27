@@ -11,7 +11,7 @@ import { ProjectItem } from './project-item';
 
 export function Projects() {
   return (
-    <Panel id="projects">
+    <Panel id="projects" className="space-y-4">
       <PanelHeader>
         <PanelTitle>
           Projects

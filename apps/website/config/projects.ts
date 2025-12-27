@@ -39,6 +39,7 @@ export const PROJECTS: Project[] = [
       'Tailwind CSS',
       'QR Code Generation',
     ],
+    logo: 'https://cdn.bucharitesh.in/images/project-logos/qrdx.svg?v=75a651b2',
     description: `A powerful QR code generator with advanced features and customization options for modern web applications.
 
 Features include:
@@ -64,6 +65,7 @@ Features include:
       'Component Registry',
       'Vercel',
     ],
+    logo: 'https://cdn.bucharitesh.in/images/project-logos/buchariteshin.svg',
     description: `A minimal, pixel-perfect dev portfolio, component registry, and blog to showcase work as a Design Engineer.
 
 **Featured:**
