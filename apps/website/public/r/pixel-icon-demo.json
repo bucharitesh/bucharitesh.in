@@ -4,7 +4,9 @@
   "type": "registry:example",
   "title": "Pixel Icon Demo",
   "description": "A demo of the Pixel Icon component",
-  "registryDependencies": ["@bucharitesh/pixel-icon"],
+  "registryDependencies": [
+    "@bucharitesh/pixel-icon"
+  ],
   "files": [
     {
       "path": "registry/example/pixel-icon-demo.tsx",

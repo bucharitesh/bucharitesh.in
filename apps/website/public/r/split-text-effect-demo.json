@@ -4,7 +4,9 @@
   "type": "registry:example",
   "title": "Split Text Effect Demo",
   "description": "A demo of the Split Text Effect component",
-  "registryDependencies": ["@bucharitesh/split-text-effect"],
+  "registryDependencies": [
+    "@bucharitesh/split-text-effect"
+  ],
   "files": [
     {
       "path": "registry/example/split-text-effect-demo.tsx",

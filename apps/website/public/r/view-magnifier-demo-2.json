@@ -4,7 +4,9 @@
   "type": "registry:example",
   "title": "View Magnifier Demo 2",
   "description": "A demo of the View Magnifier component with variants",
-  "registryDependencies": ["@bucharitesh/view-magnifier"],
+  "registryDependencies": [
+    "@bucharitesh/view-magnifier"
+  ],
   "files": [
     {
       "path": "registry/example/view-magnifier-demo-2.tsx",

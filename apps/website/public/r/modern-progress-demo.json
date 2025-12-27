@@ -4,7 +4,9 @@
   "type": "registry:example",
   "title": "Modern Progress Demo",
   "description": "A demo of the Modern Progress component",
-  "registryDependencies": ["@bucharitesh/modern-progress"],
+  "registryDependencies": [
+    "@bucharitesh/modern-progress"
+  ],
   "files": [
     {
       "path": "registry/example/modern-progress-demo.tsx",
