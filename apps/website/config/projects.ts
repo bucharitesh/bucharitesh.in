@@ -26,10 +26,10 @@ export type Project = {
 
 export const PROJECTS: Project[] = [
   {
-    id: 'qrdx-dev',
-    title: 'qrdx.dev',
+    id: 'QRdx',
+    title: 'QRdx',
     period: {
-      start: '03.2024',
+      start: '08.2025',
     },
     link: 'https://qrdx.dev',
     skills: [
