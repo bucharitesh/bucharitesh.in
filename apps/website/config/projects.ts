@@ -40,7 +40,7 @@ export const PROJECTS: Project[] = [
       'QR Code Generation',
     ],
     logo: 'https://cdn.bucharitesh.in/images/project-logos/qrdx.svg?v=75a651b2',
-    description: `A powerful QR code generator with advanced features and customization options for modern web applications.
+    description: `Better way to generate QR codes.
 
 Features include:
 - Dynamic QR code generation
@@ -50,10 +50,27 @@ Features include:
     isExpanded: true,
   },
   {
+    id: 'bucharitesh-cli',
+    title: '@bucharitesh/cli',
+    period: {
+      start: '03.2025',
+    },
+    link: 'https://www.npmjs.com/package/@bucharitesh/cli',
+    skills: ['CLI', 'TypeScript', 'Node.js', 'shadcn/ui', 'Open Source'],
+    logo: 'https://cdn.bucharitesh.in/images/project-logos/buchariteshin.svg',
+    description: `CLI tool for adding Bucharitesh components and configuring MCP for AI coding assistants.
+
+Features include:
+- Add components to projects via shadcn CLI
+- Configure MCP for multiple AI assistants
+- Support for Claude, Cursor, Cline, Roo-Cline, and Windsurf
+- Interactive component selection`,
+  },
+  {
     id: 'bucharitesh-in',
     title: 'bucharitesh.in',
     period: {
-      start: '01.2025',
+      start: '01.2024',
     },
     link: 'https://bucharitesh.in',
     skills: [
@@ -66,17 +83,7 @@ Features include:
       'Vercel',
     ],
     logo: 'https://cdn.bucharitesh.in/images/project-logos/buchariteshin.svg',
-    description: `A minimal, pixel-perfect dev portfolio, component registry, and blog to showcase work as a Design Engineer.
-
-**Featured:**
-- Clean & modern design
-- Light/Dark themes
-- SEO optimized (JSON-LD schema, sitemap, robots)
-- AI-ready with /llms.txt
-- Installable as PWA
-
-**Registry:**
-- Easily build and distribute reusable components using a custom registry powered by shadcn CLI
-- Each entry is well-documented with live preview & code snippets`,
+    description: `A minimal dev portfolio with guestbook, bookmarks and unique crafts and registry.
+`,
   },
 ];
