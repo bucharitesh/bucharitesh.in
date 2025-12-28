@@ -1,6 +1,7 @@
 import { BoxIcon, InfinityIcon, LinkIcon } from 'lucide-react';
 import Image from 'next/image';
 
+import { Icons } from '@/components/icons';
 import { Markdown } from '@/components/markdown';
 import type { Project } from '@/config/projects';
 import { UTM_PARAMS } from '@/config/site';
@@ -13,11 +14,7 @@ import {
   CollapsibleWithContext,
 } from '@repo/design-system/components/ui/collapsible';
 import { Tag } from '@repo/design-system/components/ui/tag';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from '@repo/design-system/components/ui/tooltip';
+import { TooltipWrapper } from '@repo/design-system/components/ui/tooltip';
 import { ProseMono } from '@repo/design-system/components/ui/typography';
 
 export function ProjectItem({
@@ -95,24 +92,28 @@ export function ProjectItem({
                   </dd>
                 </dl>
               </div>
-
-              <Tooltip>
-                <TooltipTrigger asChild>
+              {project.github && (
+                <TooltipWrapper content="Open Github Link">
                   <a
                     className="relative flex size-6 shrink-0 items-center justify-center text-muted-foreground after:absolute after:-inset-2 hover:text-foreground"
-                    href={addQueryParams(project.link, UTM_PARAMS)}
+                    href={project.github}
                     target="_blank"
                     rel="noreferrer noopener"
                   >
-                    <LinkIcon className="pointer-events-none size-4" />
-                    <span className="sr-only">Open Project Link</span>
+                    <Icons.github className="pointer-events-none size-4" />
                   </a>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Open Project Link</p>
-                </TooltipContent>
-              </Tooltip>
-
+                </TooltipWrapper>
+              )}
+              <TooltipWrapper content="Open Project Link">
+                <a
+                  className="relative flex size-6 shrink-0 items-center justify-center text-muted-foreground after:absolute after:-inset-2 hover:text-foreground"
+                  href={addQueryParams(project.link, UTM_PARAMS)}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  <LinkIcon className="pointer-events-none size-4" />
+                </a>
+              </TooltipWrapper>
               <div
                 className="shrink-0 text-muted-foreground [&_svg]:size-4"
                 aria-hidden

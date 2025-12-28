@@ -14,6 +14,8 @@ export type Project = {
   };
   /** Public URL (site, repository, demo, or video). */
   link: string;
+  /** Github repository URL. */
+  github?: string;
   /** Tags/technologies for chips or filtering. */
   skills: string[];
   /** Optional rich description; Markdown and line breaks supported. */
@@ -32,6 +34,7 @@ export const PROJECTS: Project[] = [
       start: '08.2025',
     },
     link: 'https://qrdx.dev',
+    github: 'https://github.com/bucharitesh/qrdx',
     skills: [
       'Next.js',
       'TypeScript',
@@ -56,6 +59,8 @@ Features include:
       start: '03.2025',
     },
     link: 'https://www.npmjs.com/package/@bucharitesh/cli',
+    github:
+      'https://github.com/bucharitesh/bucharitesh.in/tree/main/packages/cli',
     skills: ['CLI', 'TypeScript', 'Node.js', 'shadcn/ui', 'Open Source'],
     logo: 'https://cdn.bucharitesh.in/images/project-logos/buchariteshin.svg',
     description: `CLI tool for adding Bucharitesh components and configuring MCP for AI coding assistants.
@@ -73,6 +78,7 @@ Features include:
       start: '01.2024',
     },
     link: 'https://bucharitesh.in',
+    github: 'https://github.com/bucharitesh/bucharitesh.in',
     skills: [
       'Open Source',
       'Next.js',
