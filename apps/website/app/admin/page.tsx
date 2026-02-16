@@ -12,7 +12,7 @@ export default async function ProtectedPage() {
   }
 
   return (
-    <div className="h-screen bg-gray-1 p-12 text-gray-12">
+    <div className="h-screen bg-gray-1 p-6 pb-40 text-gray-12 overflow-y-auto">
       <h1>Welcome to the gang page</h1>
       <p>Only authenticated users can access this page.</p>
       <div
@@ -44,7 +44,7 @@ async function GuestbookEntries() {
     await sql`SELECT * from "guestbook" WHERE approved = false ORDER BY id DESC;`;
 
   return rows.map((entry) => (
-    <div key={entry.id} className="h-fit w-fit border border-gray-10 p-2">
+    <div key={entry.id} className="h-fit w-full border border-gray-10 p-2">
       <div className="flex items-center justify-center overflow-hidden rounded-[3px] border border-gray-6 bg-gray-3">
         <div
           className="object-contain"
