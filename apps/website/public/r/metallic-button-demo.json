@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "metallic-button-demo",
+  "type": "registry:example",
+  "title": "Metallic Button Demo",
+  "description": "A demo of the Metallic Button component",
+  "registryDependencies": [
+    "@bucharitesh/metallic-button"
+  ],
+  "files": [
+    {
+      "path": "registry/example/metallic-button-demo.tsx",
+      "content": "import { MetallicButton } from '@/registry/bucharitesh/metallic-button';\n\nexport default function MetallicButtonDemo() {\n  return (\n    <div className=\"flex items-center justify-center gap-6 bg-[#1d1d1d] p-10\">\n      <MetallicButton size=\"sm\" aria-label=\"Send\">\n        <svg\n          viewBox=\"0 0 1024 1024\"\n          xmlns=\"http://www.w3.org/2000/svg\"\n          fill=\"currentColor\"\n          className=\"-rotate-45\"\n        >\n          <path d=\"M843.968 896a51.072 51.072 0 0 1-51.968-52.032V232H180.032A51.072 51.072 0 0 1 128 180.032c0-29.44 22.528-52.032 52.032-52.032h663.936c29.44 0 52.032 22.528 52.032 52.032v663.936c0 29.44-22.528 52.032-52.032 52.032z\" />\n          <path d=\"M180.032 896a49.92 49.92 0 0 1-36.48-15.616c-20.736-20.8-20.736-53.76 0-72.832L807.616 143.616c20.864-20.8 53.76-20.8 72.832 0 20.8 20.8 20.8 53.76 0 72.768L216.384 880.384a47.232 47.232 0 0 1-36.352 15.616z\" />\n        </svg>\n      </MetallicButton>\n\n      <MetallicButton aria-label=\"Send\">\n        <svg\n          viewBox=\"0 0 1024 1024\"\n          xmlns=\"http://www.w3.org/2000/svg\"\n          fill=\"currentColor\"\n          className=\"-rotate-45\"\n        >\n          <path d=\"M843.968 896a51.072 51.072 0 0 1-51.968-52.032V232H180.032A51.072 51.072 0 0 1 128 180.032c0-29.44 22.528-52.032 52.032-52.032h663.936c29.44 0 52.032 22.528 52.032 52.032v663.936c0 29.44-22.528 52.032-52.032 52.032z\" />\n          <path d=\"M180.032 896a49.92 49.92 0 0 1-36.48-15.616c-20.736-20.8-20.736-53.76 0-72.832L807.616 143.616c20.864-20.8 53.76-20.8 72.832 0 20.8 20.8 20.8 53.76 0 72.768L216.384 880.384a47.232 47.232 0 0 1-36.352 15.616z\" />\n        </svg>\n      </MetallicButton>\n\n      <MetallicButton size=\"lg\" aria-label=\"Send\">\n        <svg\n          viewBox=\"0 0 1024 1024\"\n          xmlns=\"http://www.w3.org/2000/svg\"\n          fill=\"currentColor\"\n          className=\"-rotate-45\"\n        >\n          <path d=\"M843.968 896a51.072 51.072 0 0 1-51.968-52.032V232H180.032A51.072 51.072 0 0 1 128 180.032c0-29.44 22.528-52.032 52.032-52.032h663.936c29.44 0 52.032 22.528 52.032 52.032v663.936c0 29.44-22.528 52.032-52.032 52.032z\" />\n          <path d=\"M180.032 896a49.92 49.92 0 0 1-36.48-15.616c-20.736-20.8-20.736-53.76 0-72.832L807.616 143.616c20.864-20.8 53.76-20.8 72.832 0 20.8 20.8 20.8 53.76 0 72.768L216.384 880.384a47.232 47.232 0 0 1-36.352 15.616z\" />\n        </svg>\n      </MetallicButton>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}
