@@ -19,13 +19,14 @@
     "start": "next start"
   },
   "dependencies": {
-    "@radix-ui/react-icons": "^1.3.2",
     "@arcjet/ip": "1.0.0-beta.11",
     "@calcom/embed-react": "^1.5.3",
     "@google/generative-ai": "^0.21.0",
     "@hookform/resolvers": "^3.9.1",
     "@neondatabase/serverless": "^0.10.4",
     "@next/bundle-analyzer": "^15.5.2",
+    "@paper-design/shaders-react": "^0.0.71",
+    "@radix-ui/react-icons": "^1.3.2",
     "@repo/design-system": "workspace:*",
     "@tailwindcss/typography": "^0.5.15",
     "@turbo/gen": "^2.5.6",

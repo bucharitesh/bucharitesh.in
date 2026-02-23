@@ -1,0 +1,81 @@
+---
+title: Metallic Button
+date: "2026-01-12"
+description: A liquid metal button with WebGL shader background and prismatic outline ring
+author: bucharitesh
+published: true
+type: "component"
+image: "https://cdn.bucharitesh.in/metallic-button.png"
+video: "https://cdn.bucharitesh.in/metallic-button.mp4?v=1"
+aspect_ratio: 1.6
+---
+
+<ComponentPreview name="metallic-button-demo" openInV0Url />
+
+## Installation
+
+<CodeTabs className="gap-0">
+
+<TabsListInstallType />
+
+<TabsContent value="bucharitesh-cli" className="[&>figure]:mb-0">
+
+```bash
+npx @bucharitesh/cli@latest add metallic-button
+```
+
+</TabsContent>
+
+<TabsContent value="shadcn-cli" className="[&>figure]:mb-0">
+
+```bash
+npx shadcn add @bucharitesh/metallic-button
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install dependencies.</Step>
+
+```bash
+npm install @paper-design/shaders-react class-variance-authority
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource 
+  name="metallic-button" 
+  title="components/metallic-button.tsx"
+  showLineNumbers 
+/>
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Props
+
+| Prop       | Type   | Description                                | Default     |
+| ---------- | ------ | ------------------------------------------ | ----------- |
+| children   | ReactNode | Icon or content inside the button        | -           |
+| size       | `"sm"` \| `"default"` \| `"lg"` | Button size             | `"default"` |
+| lightColor | string | Inner face gradient top color              | `"#444"`    |
+| darkColor  | string | Inner face gradient bottom color           | `"#000"`    |
+| iconColor  | string | Icon / content color                       | `"#65615f"` |
+| speed      | number | Shader animation speed (0 = static)        | `0.5`       |
+| repetition | number | Shader pattern stripe density              | `1.5`       |
+| distortion | number | Shader noise distortion (0-1)              | `0`         |
+| angle      | number | Shader pattern angle (0-360)               | `100`       |
+| className  | string | Additional class names                     | -           |
+
+## Credits
+
+- Credit to [Majoramari](https://codepen.io/Majoramari/pen/pvbzpoa) for the original liquid metal button design.
+- Shader powered by [@paper-design/shaders](https://shaders.paper.design/liquid-metal).
