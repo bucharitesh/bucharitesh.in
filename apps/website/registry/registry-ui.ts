@@ -112,6 +112,20 @@ export const ui: Registry['items'] = [
     ],
   },
   {
+    name: 'metallic-button',
+    type: 'registry:ui',
+    description:
+      'A liquid metal button with WebGL shader background and prismatic outline ring.',
+    title: 'Metallic Button',
+    dependencies: ['class-variance-authority', '@paper-design/shaders-react'],
+    files: [
+      {
+        path: 'bucharitesh/metallic-button.tsx',
+        type: 'registry:ui',
+      },
+    ],
+  },
+  {
     name: 'magical-mouse',
     type: 'registry:ui',
     description:

@@ -145,6 +145,19 @@ export const examples: Registry['items'] = [
     ],
   },
   {
+    name: 'metallic-button-demo',
+    type: 'registry:example',
+    title: 'Metallic Button Demo',
+    description: 'A demo of the Metallic Button component',
+    registryDependencies: ['@bucharitesh/metallic-button'],
+    files: [
+      {
+        path: 'example/metallic-button-demo.tsx',
+        type: 'registry:example',
+      },
+    ],
+  },
+  {
     name: 'view-magnifier-demo',
     type: 'registry:example',
     title: 'View Magnifier Demo',

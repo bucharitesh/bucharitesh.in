@@ -138,6 +138,23 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
+  "metallic-button": {
+    name: "metallic-button",
+    description: "A liquid metal button with WebGL shader background and prismatic outline ring.",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/bucharitesh/metallic-button.tsx",
+      type: "registry:ui",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/bucharitesh/metallic-button.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
   "magical-mouse": {
     name: "magical-mouse",
     description: "A magical mouse component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
@@ -337,6 +354,23 @@ export const Index: Record<string, any> = {
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/example/text-highlight-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "metallic-button-demo": {
+    name: "metallic-button-demo",
+    description: "A demo of the Metallic Button component",
+    type: "registry:example",
+    registryDependencies: ["@bucharitesh/metallic-button"],
+    files: [{
+      path: "registry/example/metallic-button-demo.tsx",
+      type: "registry:example",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/example/metallic-button-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),

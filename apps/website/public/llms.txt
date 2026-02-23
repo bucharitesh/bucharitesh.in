@@ -11,6 +11,7 @@
 ## Craft
 
 - [Text Highlight](https://bucharitesh.in/craft/text-highlight)
+- [Metallic Button](https://bucharitesh.in/craft/metallic-button)
 - [Modern Progress](https://bucharitesh.in/craft/modern-progress)
 - [Game of Life](https://bucharitesh.in/craft/game-of-life)
 - [Magical Mouse](https://bucharitesh.in/craft/magical-mouse)
@@ -27,6 +28,7 @@ This file provides LLM-friendly entry points to Crafts
 - [Book](https://bucharitesh.in/craft/book): A book component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.
 - [Game of Life](https://bucharitesh.in/craft/game-of-life): A game of life component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.
 - [Magical Mouse](https://bucharitesh.in/craft/magical-mouse): A magical mouse component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.
+- [Metallic Button](https://bucharitesh.in/craft/metallic-button): A liquid metal button with WebGL shader background and prismatic outline ring.
 - [Modern Progress](https://bucharitesh.in/craft/modern-progress): A modern progress component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.
 - [Pixel Icon](https://bucharitesh.in/craft/pixel-icon): A pixel icon component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.
 - [Split Text Effect](https://bucharitesh.in/craft/split-text-effect): A split text effect component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.
@@ -46,6 +48,7 @@ This file provides LLM-friendly entry points to Crafts
 - [Split Text Effect Demo 2](https://github.com/bucharitesh/bucharitesh.in/blob/main/registry/example/split-text-effect-demo-2.tsx): Example usage
 - [Split Text Effect Demo 3](https://github.com/bucharitesh/bucharitesh.in/blob/main/registry/example/split-text-effect-demo-3.tsx): Example usage
 - [Text Highlight Demo](https://github.com/bucharitesh/bucharitesh.in/blob/main/registry/example/text-highlight-demo.tsx): Example usage
+- [Metallic Button Demo](https://github.com/bucharitesh/bucharitesh.in/blob/main/registry/example/metallic-button-demo.tsx): Example usage
 - [View Magnifier Demo](https://github.com/bucharitesh/bucharitesh.in/blob/main/registry/example/view-magnifier-demo.tsx): Example usage
 - [View Magnifier Demo 2](https://github.com/bucharitesh/bucharitesh.in/blob/main/registry/example/view-magnifier-demo-2.tsx): Example usage
 
