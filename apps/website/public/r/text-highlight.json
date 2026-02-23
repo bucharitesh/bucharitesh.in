@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "text-highlight",
+  "type": "registry:ui",
+  "title": "Text Highlight",
+  "description": "A highlighted text effect component using CSS conic and linear gradients with multiple color presets.",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "files": [
+    {
+      "path": "registry/bucharitesh/text-highlight.tsx",
+      "content": "import { cn } from '@/lib/utils';\nimport { type VariantProps, cva } from 'class-variance-authority';\nimport * as React from 'react';\n\nfunction buildHighlightBackground(rgb: string, angle: string) {\n  return [\n    `conic-gradient(at 0 100%, rgb(${rgb} / 100%) 1%, #fff0 3%) no-repeat 0 0 / auto 120%`,\n    `conic-gradient(from 180deg at 100% 0, #fff0, rgb(${rgb} / 100%) 1%, #fff0 4%) no-repeat 100% 100% / auto 120%`,\n    `linear-gradient(${angle}, rgb(${rgb} / 60%), rgb(${rgb} / 20%) 75%, rgb(${rgb} / 55%)) no-repeat center / auto`,\n  ].join(', ');\n}\n\nconst textHighlightVariants = cva(\n  'relative inline-block w-fit select-none whitespace-nowrap text-center font-semibold',\n  {\n    variants: {\n      size: {\n        sm: 'px-2 py-1 text-lg',\n        default: 'px-3 py-1.5 text-2xl',\n        lg: 'px-4 py-2 text-4xl',\n      },\n    },\n    defaultVariants: {\n      size: 'default',\n    },\n  }\n);\n\nexport interface TextHighlightProps\n  extends React.HTMLAttributes<HTMLSpanElement>,\n    VariantProps<typeof textHighlightVariants> {\n  /** RGB values (space-separated, e.g. \"255 232 62\") */\n  color: string;\n  /** Gradient angle (e.g. \"50deg\") */\n  angle?: string;\n  /** Rotation applied to the highlight (e.g. \"1deg\") */\n  rotate?: string;\n  /** Scale applied to the highlight (e.g. \"1.1\") */\n  scale?: string;\n  /** Skew applied to the highlight (e.g. \"-5deg\") */\n  skew?: string;\n}\n\nconst TextHighlight = React.forwardRef<HTMLSpanElement, TextHighlightProps>(\n  (\n    {\n      children,\n      className,\n      size,\n      color,\n      angle = '50deg',\n      rotate = '0deg',\n      scale = '1',\n      skew = '0deg',\n      ...props\n    },\n    ref\n  ) => {\n    return (\n      <span\n        ref={ref}\n        className={cn(textHighlightVariants({ size }), className)}\n        {...props}\n      >\n        <span\n          aria-hidden=\"true\"\n          className=\"absolute inset-0\"\n          style={{\n            zIndex: -1,\n            borderRadius: '3px 5px 3px 5px',\n            background: buildHighlightBackground(color, angle),\n            rotate,\n            scale,\n            transform: `skew(${skew})`,\n          }}\n        />\n        {children}\n      </span>\n    );\n  }\n);\nTextHighlight.displayName = 'TextHighlight';\n\nexport { TextHighlight, textHighlightVariants };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

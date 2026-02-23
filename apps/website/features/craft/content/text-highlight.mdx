@@ -1,0 +1,71 @@
+---
+title: Text Highlight
+date: "2026-02-24"
+description: A highlighted text effect using CSS conic and linear gradients
+author: bucharitesh
+published: true
+type: "component"
+# image: "https://cdn.bucharitesh.in/text-highlight.png"
+---
+
+<ComponentPreview name="text-highlight-demo" openInV0Url />
+
+## Installation
+
+<CodeTabs className="gap-0">
+
+<TabsListInstallType />
+
+<TabsContent value="bucharitesh-cli" className="[&>figure]:mb-0">
+
+```bash
+npx @bucharitesh/cli@latest add text-highlight
+```
+
+</TabsContent>
+
+<TabsContent value="shadcn-cli" className="[&>figure]:mb-0">
+
+```bash
+npx shadcn add @bucharitesh/text-highlight
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource 
+  name="text-highlight" 
+  title="components/text-highlight.tsx"
+  showLineNumbers 
+/>
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Props
+
+| Prop      | Type                                 | Description                                           | Default     |
+| --------- | ------------------------------------ | ----------------------------------------------------- | ----------- |
+| children  | ReactNode                            | The text content to highlight                         | -           |
+| color     | string                               | RGB values (space-separated, e.g. `"255 232 62"`)     | **required** |
+| angle     | string                               | Gradient angle (e.g. `"50deg"`)                       | `"50deg"`   |
+| rotate    | string                               | Rotation applied to the highlight (e.g. `"1deg"`)     | `"0deg"`    |
+| scale     | string                               | Scale applied to the highlight (e.g. `"1.1"`)         | `"1"`       |
+| skew      | string                               | Skew applied to the highlight (e.g. `"-5deg"`)        | `"0deg"`    |
+| size      | `"sm"` \| `"default"` \| `"lg"`      | Size of the highlighted text                          | `"default"` |
+| className | string                               | Additional class names                                | -           |
+
+## Credits
+
+- Credit to [Vivi Tseng (@vii120)](https://codepen.io/vii120/pen/KwMBaaY) for the original highlighted text effect with CSS gradients.
+- Inspired by [@artur_bien](https://x.com/artur_bien/status/2017600547650408843).

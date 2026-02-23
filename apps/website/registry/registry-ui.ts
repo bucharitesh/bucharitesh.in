@@ -98,6 +98,20 @@ export const ui: Registry['items'] = [
     ],
   },
   {
+    name: 'text-highlight',
+    type: 'registry:ui',
+    description:
+      'A highlighted text effect component using CSS conic and linear gradients with multiple color presets.',
+    title: 'Text Highlight',
+    dependencies: ['class-variance-authority'],
+    files: [
+      {
+        path: 'bucharitesh/text-highlight.tsx',
+        type: 'registry:ui',
+      },
+    ],
+  },
+  {
     name: 'magical-mouse',
     type: 'registry:ui',
     description:

@@ -121,6 +121,23 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
+  "text-highlight": {
+    name: "text-highlight",
+    description: "A highlighted text effect component using CSS conic and linear gradients with multiple color presets.",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/bucharitesh/text-highlight.tsx",
+      type: "registry:ui",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/bucharitesh/text-highlight.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
   "magical-mouse": {
     name: "magical-mouse",
     description: "A magical mouse component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
@@ -303,6 +320,23 @@ export const Index: Record<string, any> = {
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/example/split-text-effect-demo-3.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "text-highlight-demo": {
+    name: "text-highlight-demo",
+    description: "A demo of the Text Highlight component",
+    type: "registry:example",
+    registryDependencies: ["@bucharitesh/text-highlight"],
+    files: [{
+      path: "registry/example/text-highlight-demo.tsx",
+      type: "registry:example",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/example/text-highlight-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),

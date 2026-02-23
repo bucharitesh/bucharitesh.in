@@ -50,7 +50,9 @@ export async function getAllPosts() {
   // Properly await blur image generation for all posts
   await Promise.all(
     posts.map(async (post) => {
-      post.metadata.blurImage = await generateBlurUrl(post.metadata.image);
+      if (post.metadata.image) {
+        post.metadata.blurImage = await generateBlurUrl(post.metadata.image);
+      }
     })
   );
 

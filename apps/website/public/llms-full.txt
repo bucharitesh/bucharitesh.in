@@ -2086,6 +2086,137 @@ export default function SplitTextEffectDemo() {
 
 
 
+===== COMPONENT: text-highlight =====
+Title: Text Highlight
+Description: A highlighted text effect component using CSS conic and linear gradients with multiple color presets.
+
+--- file: bucharitesh/text-highlight.tsx ---
+import { cn } from '@/lib/utils';
+import { type VariantProps, cva } from 'class-variance-authority';
+import * as React from 'react';
+
+function buildHighlightBackground(rgb: string, angle: string) {
+  return [
+    `conic-gradient(at 0 100%, rgb(${rgb} / 100%) 1%, #fff0 3%) no-repeat 0 0 / auto 120%`,
+    `conic-gradient(from 180deg at 100% 0, #fff0, rgb(${rgb} / 100%) 1%, #fff0 4%) no-repeat 100% 100% / auto 120%`,
+    `linear-gradient(${angle}, rgb(${rgb} / 60%), rgb(${rgb} / 20%) 75%, rgb(${rgb} / 55%)) no-repeat center / auto`,
+  ].join(', ');
+}
+
+const textHighlightVariants = cva(
+  'relative inline-block w-fit select-none whitespace-nowrap text-center font-semibold',
+  {
+    variants: {
+      size: {
+        sm: 'px-2 py-1 text-lg',
+        default: 'px-3 py-1.5 text-2xl',
+        lg: 'px-4 py-2 text-4xl',
+      },
+    },
+    defaultVariants: {
+      size: 'default',
+    },
+  }
+);
+
+export interface TextHighlightProps
+  extends React.HTMLAttributes<HTMLSpanElement>,
+    VariantProps<typeof textHighlightVariants> {
+  /** RGB values (space-separated, e.g. "255 232 62") */
+  color: string;
+  /** Gradient angle (e.g. "50deg") */
+  angle?: string;
+  /** Rotation applied to the highlight (e.g. "1deg") */
+  rotate?: string;
+  /** Scale applied to the highlight (e.g. "1.1") */
+  scale?: string;
+  /** Skew applied to the highlight (e.g. "-5deg") */
+  skew?: string;
+}
+
+const TextHighlight = React.forwardRef<HTMLSpanElement, TextHighlightProps>(
+  (
+    {
+      children,
+      className,
+      size,
+      color,
+      angle = '50deg',
+      rotate = '0deg',
+      scale = '1',
+      skew = '0deg',
+      ...props
+    },
+    ref
+  ) => {
+    return (
+      <span
+        ref={ref}
+        className={cn(textHighlightVariants({ size }), className)}
+        {...props}
+      >
+        <span
+          aria-hidden="true"
+          className="absolute inset-0"
+          style={{
+            zIndex: -1,
+            borderRadius: '3px 5px 3px 5px',
+            background: buildHighlightBackground(color, angle),
+            rotate,
+            scale,
+            transform: `skew(${skew})`,
+          }}
+        />
+        {children}
+      </span>
+    );
+  }
+);
+TextHighlight.displayName = 'TextHighlight';
+
+export { TextHighlight, textHighlightVariants };
+
+
+===== EXAMPLE: text-highlight-demo =====
+Title: Text Highlight Demo
+
+--- file: example/text-highlight-demo.tsx ---
+import { TextHighlight } from '@/registry/bucharitesh/text-highlight';
+
+export default function TextHighlightDemo() {
+  return (
+    <div className="flex flex-col items-center justify-center gap-5 p-10">
+      <TextHighlight
+        color="255 232 62"
+        angle="50deg"
+        rotate="1deg"
+        scale="1.1"
+        skew="-5deg"
+      >
+        this is important
+      </TextHighlight>
+      <TextHighlight
+        color="91 233 92"
+        angle="30deg"
+        scale="0.92"
+        skew="7deg"
+      >
+        wait, this is also important
+      </TextHighlight>
+      <TextHighlight
+        color="255 100 185"
+        angle="150deg"
+        rotate="0.5deg"
+        skew="5deg"
+      >
+        wow, almost forgot this
+      </TextHighlight>
+    </div>
+  );
+}
+
+
+
 ===== COMPONENT: view-magnifier =====
 Title: View Magnifier
 Description: A view magnifier component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.

@@ -10,6 +10,7 @@
 
 ## Craft
 
+- [Text Highlight](https://bucharitesh.in/craft/text-highlight)
 - [Modern Progress](https://bucharitesh.in/craft/modern-progress)
 - [Game of Life](https://bucharitesh.in/craft/game-of-life)
 - [Magical Mouse](https://bucharitesh.in/craft/magical-mouse)
@@ -29,6 +30,7 @@ This file provides LLM-friendly entry points to Crafts
 - [Modern Progress](https://bucharitesh.in/craft/modern-progress): A modern progress component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.
 - [Pixel Icon](https://bucharitesh.in/craft/pixel-icon): A pixel icon component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.
 - [Split Text Effect](https://bucharitesh.in/craft/split-text-effect): A split text effect component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.
+- [Text Highlight](https://bucharitesh.in/craft/text-highlight): A highlighted text effect component using CSS conic and linear gradients with multiple color presets.
 - [View Magnifier](https://bucharitesh.in/craft/view-magnifier): A view magnifier component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.
 
 ## Examples
@@ -43,6 +45,7 @@ This file provides LLM-friendly entry points to Crafts
 - [Split Text Effect Demo](https://github.com/bucharitesh/bucharitesh.in/blob/main/registry/example/split-text-effect-demo.tsx): Example usage
 - [Split Text Effect Demo 2](https://github.com/bucharitesh/bucharitesh.in/blob/main/registry/example/split-text-effect-demo-2.tsx): Example usage
 - [Split Text Effect Demo 3](https://github.com/bucharitesh/bucharitesh.in/blob/main/registry/example/split-text-effect-demo-3.tsx): Example usage
+- [Text Highlight Demo](https://github.com/bucharitesh/bucharitesh.in/blob/main/registry/example/text-highlight-demo.tsx): Example usage
 - [View Magnifier Demo](https://github.com/bucharitesh/bucharitesh.in/blob/main/registry/example/view-magnifier-demo.tsx): Example usage
 - [View Magnifier Demo 2](https://github.com/bucharitesh/bucharitesh.in/blob/main/registry/example/view-magnifier-demo-2.tsx): Example usage
 

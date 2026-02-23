@@ -132,6 +132,19 @@ export const examples: Registry['items'] = [
     ],
   },
   {
+    name: 'text-highlight-demo',
+    type: 'registry:example',
+    title: 'Text Highlight Demo',
+    description: 'A demo of the Text Highlight component',
+    registryDependencies: ['@bucharitesh/text-highlight'],
+    files: [
+      {
+        path: 'example/text-highlight-demo.tsx',
+        type: 'registry:example',
+      },
+    ],
+  },
+  {
     name: 'view-magnifier-demo',
     type: 'registry:example',
     title: 'View Magnifier Demo',

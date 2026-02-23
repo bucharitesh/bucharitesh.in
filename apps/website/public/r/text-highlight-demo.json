@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "text-highlight-demo",
+  "type": "registry:example",
+  "title": "Text Highlight Demo",
+  "description": "A demo of the Text Highlight component",
+  "registryDependencies": [
+    "@bucharitesh/text-highlight"
+  ],
+  "files": [
+    {
+      "path": "registry/example/text-highlight-demo.tsx",
+      "content": "import { TextHighlight } from '@/registry/bucharitesh/text-highlight';\n\nexport default function TextHighlightDemo() {\n  return (\n    <div className=\"flex flex-col items-center justify-center gap-5 p-10\">\n      <TextHighlight\n        color=\"255 232 62\"\n        angle=\"50deg\"\n        rotate=\"1deg\"\n        scale=\"1.1\"\n        skew=\"-5deg\"\n      >\n        this is important\n      </TextHighlight>\n      <TextHighlight\n        color=\"91 233 92\"\n        angle=\"30deg\"\n        scale=\"0.92\"\n        skew=\"7deg\"\n      >\n        wait, this is also important\n      </TextHighlight>\n      <TextHighlight\n        color=\"255 100 185\"\n        angle=\"150deg\"\n        rotate=\"0.5deg\"\n        skew=\"5deg\"\n      >\n        wow, almost forgot this\n      </TextHighlight>\n    </div>\n  );\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

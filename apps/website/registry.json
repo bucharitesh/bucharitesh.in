@@ -116,6 +116,21 @@
       ]
     },
     {
+      "name": "text-highlight",
+      "type": "registry:ui",
+      "title": "Text Highlight",
+      "description": "A highlighted text effect component using CSS conic and linear gradients with multiple color presets.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "files": [
+        {
+          "path": "registry/bucharitesh/text-highlight.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "magical-mouse",
       "type": "registry:ui",
       "title": "Magical Mouse",
@@ -308,6 +323,21 @@
       "files": [
         {
           "path": "registry/example/split-text-effect-demo-3.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "text-highlight-demo",
+      "type": "registry:example",
+      "title": "Text Highlight Demo",
+      "description": "A demo of the Text Highlight component",
+      "registryDependencies": [
+        "@bucharitesh/text-highlight"
+      ],
+      "files": [
+        {
+          "path": "registry/example/text-highlight-demo.tsx",
           "type": "registry:example"
         }
       ]
