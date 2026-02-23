@@ -15,15 +15,13 @@ export async function generateMetadata(): Promise<Metadata> {
   const title = 'Craft';
   const description = "A collection of craft that I've written.";
 
-  const image = createOgImage({
-    title: title,
-    meta: description,
-  });
-
   return createMetadata({
     title: title,
     description: description,
-    image: image,
+    image: createOgImage({
+      title: title,
+      meta: description,
+    }),
   });
 }
 

@@ -22,7 +22,7 @@ export const viewport: Viewport = {
 
 export function generateMetadata(): Metadata {
   return {
-    title: { template: `%s | ${USER.name}`, default: `${USER.name}` },
+    title: { template: `%s`, default: `${USER.name}` },
     metadataBase: new URL(`https://${USER.domain}`),
     openGraph: {
       title: USER.name,

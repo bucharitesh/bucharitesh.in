@@ -39,15 +39,13 @@ export async function generateMetadata({
 
   const { title, date, description } = post.metadata;
 
-  const ogImage = createOgImage({
-    title: title,
-    meta: USER.domain + ' · ' + date,
-  });
-
   return createMetadata({
-    title: title,
+    title: `${title} | Craft`,
     description: description,
-    image: ogImage,
+    image: createOgImage({
+      title: title,
+      meta: USER.domain + ' · ' + date,
+    }),
   });
 }
 
